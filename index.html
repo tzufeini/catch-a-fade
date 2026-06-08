@@ -782,6 +782,11 @@ body.light .park{background:rgba(70,201,139,.22);}
     repeating-linear-gradient(125deg,
       #8C1F2C 0 7px, #E4E6EC 7px 11px,
       #16315F 11px 18px, #E4E6EC 18px 22px);
+  /* spiral stripes only (no dark wash) — used by the animated pseudo-element */
+  --bp-spiral-img:
+    repeating-linear-gradient(125deg,
+      #8C1F2C 0 21px, #E4E6EC 21px 33px,
+      #16315F 33px 54px, #E4E6EC 54px 66px);
   /* onboarding accents: gold is GONE — brand accent is the deep red, secondary is ocean blue, text is silvery */
   --ob-gold:#C7414E; --ob-cream:#ECEEF2;
   --ob-dimm:#9AA0AD; --ob-faant:#5B606B; --ob-grn:#4ADE80;
@@ -803,7 +808,9 @@ body.light .park{background:rgba(70,201,139,.22);}
 .ob-h{font-size:clamp(23px,7vw,33px);font-weight:900;line-height:1.08;letter-spacing:-.5px;color:var(--ob-cream);margin-bottom:12px;}
 .ob-s{font-size:14px;line-height:1.65;color:var(--ob-dimm);max-width:292px;margin:0 auto;}
 .ob-nav{padding:16px 26px 48px;position:relative;z-index:1;}
-.ob-cta{width:100%;padding:16px;border:none;border-radius:14px;background:var(--bp-spiral);color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.95),0 0 2px rgba(0,0,0,.7);font-size:15.5px;font-weight:820;cursor:pointer;letter-spacing:-.1px;box-shadow:0 12px 28px -12px rgba(0,0,0,.75);animation:bpFlow 5.5s linear infinite;transition:transform .12s,opacity .12s;}
+.ob-cta{position:relative;z-index:0;overflow:hidden;width:100%;padding:16px;border:none;border-radius:14px;background:#2a0f12;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.95),0 0 2px rgba(0,0,0,.7);font-size:15.5px;font-weight:820;cursor:pointer;letter-spacing:-.1px;box-shadow:0 12px 28px -12px rgba(0,0,0,.75);transition:transform .12s,opacity .12s;}
+.ob-cta::before{content:"";position:absolute;top:-90px;left:-90px;right:-90px;bottom:-90px;background:var(--bp-spiral-img);animation:bpSlide 5.5s linear infinite;z-index:-1;will-change:transform;}
+.ob-cta::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.30);z-index:-1;}
 .ob-cta:active{transform:scale(.97);opacity:.88;}
 .ob-ghost{text-align:center;margin-top:12px;font-size:13px;color:var(--ob-dimm);cursor:pointer;}
 .ob-ghost b{color:var(--ob-gold);}
@@ -921,12 +928,13 @@ body.light .park{background:rgba(70,201,139,.22);}
 @keyframes obTravel{0%{offset-distance:0%}100%{offset-distance:100%}}
 @keyframes obSpin{to{transform:rotate(360deg)}}
 /* barber-pole slow spin — shifts the spiral exactly one stripe-period for a seamless loop */
-@keyframes bpFlow{from{background-position:0 0;}to{background-position:-54px -38px;}}
+/* exactly one stripe-period (~66px along the 125° axis) → perfectly seamless infinite scroll */
+@keyframes bpSlide{from{transform:translate(0,0);}to{transform:translate(-54px,-38px);}}
 /* graceful fallback: if offset-path is unsupported, hide the route traveler (route still draws) */
 @supports not (offset-path: path('M0 0')){ #ob3 [style*="offset-path"]{display:none!important;} }
 /* reduced motion — instant, no movement */
 @media(prefers-reduced-motion:reduce){
-  [data-a],[style*="animation:ob"],.ob-impact,.ob-star,.ob-dot,.ob-modal-bg,.ob-sheet,.ob-cta{animation:none!important;opacity:1!important;}
+  [data-a],[style*="animation:ob"],.ob-impact,.ob-star,.ob-dot,.ob-modal-bg,.ob-sheet,.ob-cta,.ob-cta::before{animation:none!important;opacity:1!important;}
   .ob-star{filter:none!important;}
 }
 
@@ -1470,7 +1478,7 @@ body.light .park{background:rgba(70,201,139,.22);}
       </div>
     </div>
     <div class="ob-nav">
-      <button class="ob-cta" style="animation:obUp .38s .18s ease-out both,obPulse 1.8s .8s ease-in-out 2,bpFlow 5.5s linear infinite;" onclick="goAuth('signup')">Sign Up Free</button>
+      <button class="ob-cta" style="animation:obUp .38s .18s ease-out both,obPulse 1.8s .8s ease-in-out 2;" onclick="goAuth('signup')">Sign Up Free</button>
       <div class="ob-ghost" style="animation:obUp .38s .32s ease-out both;" onclick="goAuth('login')">Already have an account? <b>Log in</b></div>
     </div>
   </section>
@@ -4171,6 +4179,16 @@ function toggleTheme(){
   if(top==='home') setTimeout(initHomeMap,60);
   if(top==='tracking') setTimeout(initTrackMap,60);
 }
+/* match the device's appearance on first load: if the device is NOT in dark mode,
+   start the app (and therefore the map) in light mode */
+(function applySystemTheme(){
+  try{
+    if(window.matchMedia && !window.matchMedia('(prefers-color-scheme: dark)').matches){
+      document.body.classList.add('light');
+      var sw=document.getElementById('themeSwitch'); if(sw) sw.classList.remove('on');
+    }
+  }catch(e){}
+})();
 
 /* ---------- barber dash ---------- */
 function toggleOnline(){
