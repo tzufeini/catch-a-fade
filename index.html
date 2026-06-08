@@ -882,6 +882,20 @@ body.light .park{background:rgba(70,201,139,.22);}
     </div>
   </div>
 
+  <!-- Location denied modal -->
+  <div class="modal" id="locDeniedModal">
+    <div class="card" style="text-align:center">
+      <div style="font-size:48px;margin-bottom:14px">📍</div>
+      <h3>Oops!</h3>
+      <p>Catch a Fade is a location-based app — we need your location to find barbers near you.</p>
+      <p style="margin-top:10px;font-size:12.5px">Go to <b>Settings → Privacy → Location Services</b> and enable location for your browser, then tap Try Again.</p>
+      <div class="actions">
+        <button class="btn grad" onclick="openDeviceLocationSettings()">Open Settings</button>
+        <button class="btn ghost" onclick="retryLocationAfterDenied()">Try Again</button>
+      </div>
+    </div>
+  </div>
+
   <div id="tripBar" onclick="nav('tracking')">
     <div class="tb-av" id="tbAv">MB</div>
     <div class="tb-info">
@@ -1242,7 +1256,10 @@ body.light .park{background:rgba(70,201,139,.22);}
         <div class="row" style="gap:14px;min-width:0">
           <div class="av" id="profAv" style="width:64px;height:64px;border-radius:18px;background:var(--gradWarm);font-size:22px">TZ</div>
           <div style="min-width:0"><div style="font-size:19px;font-weight:780" id="profName">Tzuf Eini</div>
-            <div style="color:var(--dim);font-size:13px;margin-top:2px" id="profSub">Member since June 2026 · 14 cuts</div></div>
+            <div style="margin-top:3px" id="profSub">
+              <div style="color:var(--dim);font-size:13px;font-weight:700">14 cuts</div>
+              <div style="color:var(--faint);font-size:11.5px;margin-top:2px">Member since June 2026</div>
+            </div></div>
         </div>
         <button class="editBtn" onclick="openEditAccount()">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" style="vertical-align:-2px;margin-right:5px"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>Edit</button>
@@ -2087,7 +2104,14 @@ async function detectUserLocation(force){
     setLocPill('Nearby in '+(userCity||'your area'), 'gps');
     startGpsWatch();
   } catch(e){
-    // browser denied / timeout → IP fallback
+    if(e==='denied'){
+      // User explicitly tapped "Don't Allow" → show the Oops modal
+      _locMode='none';
+      setLocPill('Location required', 'none');
+      document.getElementById('locDeniedModal').classList.add('show');
+      return;
+    }
+    // Other failures (timeout, no-api) → silent IP fallback
     try {
       const { ll, city } = await ipGeo();
       userLL = ll; userCity = city || 'Your area'; _locDetected=true; _locMode='ip';
@@ -2106,6 +2130,14 @@ async function detectUserLocation(force){
   buildList();
 }
 function redetectLocation(){ detectUserLocation(true); }
+function openDeviceLocationSettings(){
+  // Try iOS deep-link first; falls back silently on non-iOS
+  try { window.location.href='app-settings:'; } catch(e){}
+}
+function retryLocationAfterDenied(){
+  document.getElementById('locDeniedModal').classList.remove('show');
+  detectUserLocation(true);
+}
 function geocodeAddress(addr){
   if(_googleReady && window.google && google.maps && google.maps.Geocoder){
     return new Promise(res=>{
@@ -2803,7 +2835,7 @@ const userProfile = {
   address:'284 Linden Ave, Apt 4B',
   style:'Skin fade · medium length on top',
   notes:'Buzz 402 at the door — kitchen has the outlet',
-  memberSub:'Member since '+getMemberSince()+' · 14 cuts'
+  cutCount:14
 };
 function nameInitials(n){
   const parts=(n||'').trim().split(/\s+/);
@@ -2825,7 +2857,12 @@ function renderProfile(){
     }
   }
   const n=document.getElementById('profName'); if(n) n.textContent=userProfile.name;
-  const s=document.getElementById('profSub'); if(s) s.textContent=userProfile.memberSub;
+  const s=document.getElementById('profSub');
+  if(s){
+    const cuts = userProfile.cutCount || 14;
+    s.innerHTML = '<div style="color:var(--dim);font-size:13px;font-weight:700">'+cuts+' cuts</div>'
+      +'<div style="color:var(--faint);font-size:11.5px;margin-top:2px">Member since '+getMemberSince()+'</div>';
+  }
 }
 function openEditAccount(){
   document.getElementById('edName').value=userProfile.name;
