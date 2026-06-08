@@ -21,10 +21,10 @@
 :root{
   --bg:#0C0C0F; --bg2:#101014; --card:#1A1A20; --card2:#22222A; --card3:#2B2B34;
   --line:rgba(255,255,255,.07); --line2:rgba(255,255,255,.12);
-  --text:#F5F2EE; --dim:#9B9BA6; --faint:#62626C;
-  --blue:#2A58CC; --blueDeep:#1D40A8; --green:#46C98B; --orange:#FF9F4A; --pink:#C82222;
+  --text:#ECEEF2; --dim:#9B9BA6; --faint:#62626C;
+  --blue:#2E84C4; --blueDeep:#16315F; --green:#46C98B; --orange:#FF9F4A; --pink:#8C1F2C;
   --red:#C82222; --bordeaux:#7A1515;
-  --grad:linear-gradient(135deg,#2A58CC,#C82222);
+  --grad:linear-gradient(135deg,#16315F,#8C1F2C);
   --gradWarm:linear-gradient(135deg,#C82222,#7A1515);
   --gradGreen:linear-gradient(135deg,#46C98B,#3FA9D8);
   --r:22px; --map:#14141A;
@@ -91,7 +91,7 @@ body{
   color:#fff;background:var(--blueDeep);padding:16px;width:100%;
 }
 .btn:active{transform:scale(.96);}
-.btn.grad{background:var(--grad);box-shadow:0 10px 26px -10px rgba(200,34,34,.5);}
+.btn.grad{background:var(--bp-spiral);color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.95),0 0 2px rgba(0,0,0,.7);box-shadow:0 12px 28px -12px rgba(0,0,0,.7);}
 .btn.green{background:var(--green);box-shadow:0 10px 26px -10px rgba(70,201,139,.6);}
 .btn.ghost{background:var(--card2);color:var(--text);}
 .btn.dark{background:#111;color:#fff;}
@@ -768,8 +768,18 @@ body.light .park{background:rgba(70,201,139,.22);}
 
 /* ======================== ONBOARDING ======================== */
 :root{
-  --ob-gold:#F5A623;--ob-cream:#F2EDE4;
-  --ob-dimm:#9A8E80;--ob-faant:#545048;--ob-grn:#4ADE80;
+  /* ---- barbershop palette: navy + ocean blue + Bordeaux red + silvery white ---- */
+  --bp-navy:#16315F; --bp-ocean:#2E84C4; --bp-red:#8C1F2C; --bp-red-lt:#C7414E; --bp-silver:#E4E6EC;
+  /* the barber-pole spiral: sharp diagonal stripes that cut across the button (+dark wash so text stays readable) */
+  --bp-spiral:
+    linear-gradient(rgba(0,0,0,.32),rgba(0,0,0,.32)),
+    repeating-linear-gradient(125deg,
+      #8C1F2C 0 22px, #E4E6EC 22px 34px,
+      #16315F 34px 56px, #E4E6EC 56px 68px,
+      #2E84C4 68px 90px, #E4E6EC 90px 102px);
+  /* onboarding accents: gold is GONE — brand accent is the deep red, secondary is ocean blue, text is silvery */
+  --ob-gold:#C7414E; --ob-cream:#ECEEF2;
+  --ob-dimm:#9AA0AD; --ob-faant:#5B606B; --ob-grn:#4ADE80;
 }
 .ob-screen{background:#0A0A0A;}
 .screen.ob-screen{display:flex;flex-direction:column;}
@@ -779,7 +789,7 @@ body.light .park{background:rgba(70,201,139,.22);}
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size:170px 170px;opacity:.045;}
 #obProg{position:absolute;top:54px;left:0;right:0;height:3px;background:rgba(255,255,255,.08);z-index:998;display:none;}
-#obFill{height:100%;background:var(--ob-gold);width:10%;transition:width .35s cubic-bezier(.4,0,.2,1);}
+#obFill{height:100%;background:var(--bp-ocean);width:10%;transition:width .35s cubic-bezier(.4,0,.2,1);}
 .ob-skip{position:absolute;top:62px;right:18px;z-index:30;font-size:13px;font-weight:700;color:var(--ob-dimm);padding:6px 10px;cursor:pointer;letter-spacing:-.05px;}
 .ob-body{flex:1;display:flex;flex-direction:column;align-items:center;padding:72px 26px 14px;text-align:center;position:relative;z-index:1;}
 .ob-vis{display:flex;align-items:center;justify-content:center;flex:1;min-height:0;width:100%;padding:14px 0;}
@@ -788,16 +798,16 @@ body.light .park{background:rgba(70,201,139,.22);}
 .ob-h{font-size:clamp(23px,7vw,33px);font-weight:900;line-height:1.08;letter-spacing:-.5px;color:var(--ob-cream);margin-bottom:12px;}
 .ob-s{font-size:14px;line-height:1.65;color:var(--ob-dimm);max-width:292px;margin:0 auto;}
 .ob-nav{padding:16px 26px 48px;position:relative;z-index:1;}
-.ob-cta{width:100%;padding:16px;border:none;border-radius:14px;background:var(--ob-gold);color:#080808;font-size:15.5px;font-weight:820;cursor:pointer;letter-spacing:-.1px;transition:transform .12s,opacity .12s;}
+.ob-cta{width:100%;padding:16px;border:none;border-radius:14px;background:var(--bp-spiral);color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.95),0 0 2px rgba(0,0,0,.7);font-size:15.5px;font-weight:820;cursor:pointer;letter-spacing:-.1px;box-shadow:0 12px 28px -12px rgba(0,0,0,.75);transition:transform .12s,opacity .12s;}
 .ob-cta:active{transform:scale(.97);opacity:.88;}
 .ob-ghost{text-align:center;margin-top:12px;font-size:13px;color:var(--ob-dimm);cursor:pointer;}
 .ob-ghost b{color:var(--ob-gold);}
 /* ob1 logo */
-.ob1-logo{width:88px;height:88px;border-radius:26px;background:linear-gradient(135deg,#1C1C1C,#262626);border:1px solid rgba(245,166,35,.18);display:flex;align-items:center;justify-content:center;box-shadow:0 0 64px 20px rgba(245,166,35,.09),0 22px 55px -14px #000;}
+.ob1-logo{width:88px;height:88px;border-radius:26px;background:linear-gradient(135deg,#1C1C1C,#262626);border:1px solid rgba(199,65,78,.24);display:flex;align-items:center;justify-content:center;box-shadow:0 0 64px 20px rgba(199,65,78,.10),0 22px 55px -14px #000;}
 /* ob2 map */
 .ob2-map{width:226px;height:160px;background:#0B1423;border-radius:18px;border:1px solid rgba(255,255,255,.06);position:relative;overflow:hidden;}
 @keyframes obRing{0%{opacity:.7;transform:translate(-50%,-50%) scale(.1);}100%{opacity:0;transform:translate(-50%,-50%) scale(1);}}
-.ob2-ring{position:absolute;top:50%;left:50%;border-radius:50%;border:1.5px solid rgba(245,166,35,.28);animation:obRing 2.8s ease-out infinite;}
+.ob2-ring{position:absolute;top:50%;left:50%;border-radius:50%;border:1.5px solid rgba(46,132,196,.32);animation:obRing 2.8s ease-out infinite;}
 /* ob6 card */
 .ob6-card{background:#181818;border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:17px;width:254px;text-align:left;}
 /* ob7 price */
@@ -810,7 +820,7 @@ body.light .park{background:rgba(70,201,139,.22);}
 .ob9-ico{width:24px;height:24px;border-radius:50%;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.22);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;color:#4ADE80;}
 /* ob16 CTA */
 #ob16{background:linear-gradient(175deg,#090909 0%,#0F0900 52%,#180D00 100%);}
-.ob10-glow{position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(245,166,35,.15) 0%,transparent 68%);top:42%;left:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:0;}
+.ob10-glow{position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(199,65,78,.18) 0%,transparent 68%);top:42%;left:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:0;}
 /* ob8 picker */
 .ob8-tog{display:flex;width:240px;background:#1A1A1A;border-radius:12px;padding:5px;gap:0;}
 .ob8-pill{flex:1;padding:9px 0;border-radius:8px;font-size:13.5px;font-weight:720;color:var(--ob-dimm);text-align:center;cursor:pointer;}
@@ -840,8 +850,9 @@ body.light .park{background:rgba(70,201,139,.22);}
 .ob-opt:active{transform:scale(.985);}
 .ob-opt .em{font-size:22px;flex:none;line-height:1;}
 .ob-opt .lbl{font-size:13.5px;font-weight:720;color:var(--ob-cream);line-height:1.3;}
-.ob-opt.on{border-color:var(--ob-gold);background:rgba(245,166,35,.08);}
-.ob-opt .chk{margin-left:auto;width:21px;height:21px;border-radius:50%;background:var(--ob-gold);align-items:center;justify-content:center;flex:none;display:none;}
+.ob-opt.on{border-color:var(--bp-ocean);background:rgba(46,132,196,.11);}
+.ob-opt .chk{margin-left:auto;width:21px;height:21px;border-radius:50%;background:var(--bp-ocean);align-items:center;justify-content:center;flex:none;display:none;}
+.ob-opt .chk svg{stroke:#fff;}
 .ob-opt.on .chk{display:flex;}
 .ob-opt-lg{padding:17px 16px;}
 .ob-opt-lg .lbl{font-size:14.5px;}
@@ -874,7 +885,7 @@ body.light .park{background:rgba(70,201,139,.22);}
 .ob-tip{font-size:11px;color:var(--ob-dimm);text-align:center;margin-top:7px;}
 /* social proof map — screen 9 */
 .ob-grid{width:250px;height:170px;background:#0B1423;border-radius:18px;border:1px solid rgba(255,255,255,.06);position:relative;overflow:hidden;}
-.ob-dot{position:absolute;width:7px;height:7px;border-radius:50%;background:var(--ob-gold);box-shadow:0 0 7px rgba(245,166,35,.7);opacity:0;}
+.ob-dot{position:absolute;width:7px;height:7px;border-radius:50%;background:var(--bp-ocean);box-shadow:0 0 7px rgba(46,132,196,.75);opacity:0;}
 .ob-counter{font-size:14.5px;font-weight:820;color:var(--ob-cream);margin-top:14px;}
 .ob-counter b{color:var(--ob-gold);}
 /* review stars — screen 10 */
@@ -1148,10 +1159,10 @@ body.light .park{background:rgba(70,201,139,.22);}
         <!-- TODO: replace with Lottie asset [barber_route.json] -->
         <div class="ob2-map" data-a="0" style="width:236px;height:166px;">
           <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.1" viewBox="0 0 236 166" preserveAspectRatio="none">
-            <line x1="0" y1="55" x2="236" y2="55" stroke="#F5A623" stroke-width=".6"/>
-            <line x1="0" y1="111" x2="236" y2="111" stroke="#F5A623" stroke-width=".6"/>
-            <line x1="79" y1="0" x2="79" y2="166" stroke="#F5A623" stroke-width=".6"/>
-            <line x1="158" y1="0" x2="158" y2="166" stroke="#F5A623" stroke-width=".6"/>
+            <line x1="0" y1="55" x2="236" y2="55" stroke="#2E84C4" stroke-width=".6"/>
+            <line x1="0" y1="111" x2="236" y2="111" stroke="#2E84C4" stroke-width=".6"/>
+            <line x1="79" y1="0" x2="79" y2="166" stroke="#2E84C4" stroke-width=".6"/>
+            <line x1="158" y1="0" x2="158" y2="166" stroke="#2E84C4" stroke-width=".6"/>
           </svg>
           <svg style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 236 166" fill="none">
             <path d="M34 134 L34 74 L120 74 L120 38 L202 38" stroke="var(--ob-gold)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="262" stroke-dashoffset="262" style="animation:obRoute 1.3s .3s ease-in-out forwards"/>
@@ -1251,7 +1262,7 @@ body.light .park{background:rgba(70,201,139,.22);}
           <span style="font-size:34px;line-height:1;animation:obPop .3s .3s ease-out both;">🍕</span>
           <span style="font-size:34px;line-height:1;animation:obPop .3s .55s ease-out both;">🛒</span>
           <span style="font-size:34px;line-height:1;animation:obPop .3s .8s ease-out both;">💊</span>
-          <span style="font-size:56px;line-height:1;filter:drop-shadow(0 0 14px rgba(245,166,35,.6));animation:obPop .5s 1.15s cubic-bezier(.2,1.6,.4,1) both;">✂️</span>
+          <span style="font-size:56px;line-height:1;filter:drop-shadow(0 0 14px rgba(199,65,78,.65));animation:obPop .5s 1.15s cubic-bezier(.2,1.6,.4,1) both;">✂️</span>
         </div>
       </div>
       <div class="ob-text">
