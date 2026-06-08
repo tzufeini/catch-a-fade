@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "marketingx",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "3456", "--directory", "marketingx"],
+      "port": 3456
+    },
+    {
+      "name": "fadego",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "3789"],
+      "port": 3789
+    }
+  ]
+}

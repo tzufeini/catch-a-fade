@@ -950,6 +950,19 @@ body.light .park{background:rgba(70,201,139,.22);}
     </div>
   </div>
 
+  <!-- Location permission priming modal (the in-app ASK, shown before the OS prompt) -->
+  <div class="modal" id="locPrimeModal">
+    <div class="card" style="text-align:center">
+      <div style="font-size:48px;margin-bottom:14px">📍</div>
+      <h3>Enable location</h3>
+      <p>Catch a Fade is a location-based app — turn on location so we can find barbers near you and bring them straight to your door.</p>
+      <div class="actions">
+        <button class="btn grad" onclick="enableLocationFromPrime()">Enable Location</button>
+        <button class="btn ghost" onclick="dismissLocPrime()">Not now</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Location denied modal -->
   <div class="modal" id="locDeniedModal">
     <div class="card" style="text-align:center">
@@ -2132,7 +2145,7 @@ loadGoogleMaps();
 
 /* ---------- nav stack ---------- */
 const TABS=['home','bookings','messages','profile'];
-let stack = localStorage.getItem('fadex_seen_ob') ? ['welcome'] : ['ob1'];
+let stack = sessionStorage.getItem('fadex_seen_ob') ? ['welcome'] : ['ob1'];
 function render(){
   const top=stack[stack.length-1], under=stack[stack.length-2];
   document.querySelectorAll('.screen').forEach(s=>{
@@ -2141,7 +2154,7 @@ function render(){
   });
   document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.t===top));
   showTripBar();
-  if(top==='home'){ setTimeout(initHomeMap,80); detectUserLocation(); }
+  if(top==='home'){ setTimeout(initHomeMap,80); maybeRequestLocation(); }
   if(top==='tracking') setTimeout(initTrackMap,80);
   if(top==='bookings') renderTrips();
   if(top==='messages') renderInbox();
@@ -2326,6 +2339,7 @@ let _locDetected = false;
 let _locMode = 'none'; // 'gps' | 'ip' | 'none'
 let _gpsWatchId = null;
 let _accuracyCircle = null;
+let _locPrimeShown = false; // in-app "Enable location" ask shown once per session
 function haversine(lat1,lng1,lat2,lng2){
   const R=3958.8, dLat=(lat2-lat1)*Math.PI/180, dLng=(lng2-lng1)*Math.PI/180;
   const a=Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLng/2)**2;
@@ -2456,6 +2470,35 @@ function openDeviceLocationSettings(){
 function retryLocationAfterDenied(){
   document.getElementById('locDeniedModal').classList.remove('show');
   detectUserLocation(true);
+}
+// Entering home: ASK in-app first ("Enable location"), then fire the OS prompt.
+// This guarantees the user is asked before ever seeing the "Oops" denied modal.
+async function maybeRequestLocation(){
+  // Already located this session → just keep the GPS watch alive, no prompt.
+  if(_locDetected && (_locMode==='gps' || _locMode==='ip')){
+    if(_locMode==='gps') startGpsWatch();
+    return;
+  }
+  // If the browser already granted permission, skip the ask and locate directly.
+  try {
+    if(navigator.permissions && navigator.permissions.query){
+      const st = await navigator.permissions.query({name:'geolocation'});
+      if(st.state==='granted'){ detectUserLocation(true); return; }
+    }
+  } catch(e){}
+  // Not granted yet → show the in-app priming ask (auto-shows once per session).
+  if(_locPrimeShown) return;
+  _locPrimeShown = true;
+  setLocPill('Location needed', 'none');
+  document.getElementById('locPrimeModal').classList.add('show');
+}
+function enableLocationFromPrime(){
+  document.getElementById('locPrimeModal').classList.remove('show');
+  detectUserLocation(true); // triggers the native OS prompt; denial → locDeniedModal
+}
+function dismissLocPrime(){
+  document.getElementById('locPrimeModal').classList.remove('show');
+  setLocPill('Tap to set location', 'none');
 }
 function geocodeAddress(addr){
   if(_googleReady && window.google && google.maps && google.maps.Geocoder){
@@ -3988,7 +4031,7 @@ function obSkip(){
   stack.push('ob10'); render();
 }
 function obComplete(){
-  localStorage.setItem('fadex_seen_ob','1');
+  sessionStorage.setItem('fadex_seen_ob','1');
   while(stack.length&&stack[stack.length-1].startsWith('ob')) stack.pop();
   if(!stack.length) stack.push('welcome');
   render();

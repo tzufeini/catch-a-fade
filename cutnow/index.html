@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#16a34a">
+  <title>CutNow — A Barber Comes to You</title>
+  <meta name="description" content="On-demand barber dispatch. Tap once — a professional barber comes to you in minutes.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     NAV
+══════════════════════════════════════════════ -->
+<nav id="main-nav">
+  <div class="nav-logo" onclick="App.navigate('landing')">Cut<span>Now</span></div>
+  <div class="nav-links">
+    <button class="nav-link nav-hide" onclick="App.navigate('landing')">Home</button>
+    <button class="nav-link nav-hide" onclick="App.renderProfile(1)">Barbers</button>
+    <button class="nav-link nav-hide" onclick="App.navigate('dashboard')">Dashboard</button>
+    <button class="btn btn-secondary btn-sm nav-hide" onclick="App.navigate('dashboard')">Barber Login</button>
+    <button class="btn btn-primary btn-sm" onclick="App.navigate('request')">Request Barber</button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     PAGE: LANDING
+══════════════════════════════════════════════ -->
+<section id="page-landing" class="page active">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-glow-a"></div>
+    <div class="hero-glow-b"></div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <div class="live-dot"></div>
+        Live in 48 cities · 2,000+ verified barbers
+      </div>
+      <h1>Tap Once.<br><span class="accent">A Barber</span><br>Comes to You.</h1>
+      <p class="hero-sub">On-demand grooming at your location. No booking. No waiting rooms. A professional barber arrives in minutes.</p>
+      <div class="hero-ctas">
+        <button class="btn btn-primary btn-lg" onclick="App.navigate('request')">
+          ✂️ Request a Barber
+        </button>
+        <button class="btn btn-secondary btn-lg" onclick="App.navigate('dashboard')">
+          Become a Barber Partner
+        </button>
+      </div>
+      <div class="hero-proof">
+        <div class="avatar-stack">
+          <div class="av">👨</div>
+          <div class="av">👩</div>
+          <div class="av">🧑</div>
+          <div class="av">👨‍🦱</div>
+          <div class="av">👨‍🦲</div>
+        </div>
+        <div class="proof-text"><strong>12,400+</strong> happy customers this week</div>
+      </div>
+
+      <!-- MAP PREVIEW -->
+      <div class="map-wrap">
+        <div class="map-container" id="hero-map"></div>
+        <div style="padding:16px 20px;background:#fff;display:flex;justify-content:space-between;align-items:center;font-size:.875rem">
+          <div style="display:flex;align-items:center;gap:8px;font-weight:700">
+            <span style="color:var(--green)">●</span> 3 barbers nearby
+          </div>
+          <div style="color:var(--muted)">Avg ETA: <strong style="color:var(--text)">9 min</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS BAND -->
+  <div class="container">
+    <div class="stats-row">
+      <div class="stat-item">
+        <div class="stat-val">2<span>k+</span></div>
+        <div class="stat-lbl">Active Barbers</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val">9<span>min</span></div>
+        <div class="stat-lbl">Average Arrival</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val">4<span>.9★</span></div>
+        <div class="stat-lbl">Average Rating</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val">48<span>+</span></div>
+        <div class="stat-lbl">Cities Live</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>How It Works</h2>
+        <p>Three steps between you and a fresh cut. No apps to navigate. No calendars to browse.</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <div class="step-icon">✂️</div>
+          <h3>Choose Your Service</h3>
+          <p>Pick your cut type and drop a reference photo. Set your style expectations upfront.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <div class="step-icon">📍</div>
+          <h3>Share Your Location</h3>
+          <p>We detect you automatically or you type an address. Home, hotel, office — anywhere works.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <div class="step-icon">🚀</div>
+          <h3>Barber Comes to You</h3>
+          <p>We match you with the nearest available barber. Track them live. Pay a fixed price after.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BARBER PROFILES -->
+  <div class="section section-gray">
+    <div class="container">
+      <div class="section-header">
+        <h2>Barbers Near You</h2>
+        <p>Every barber is identity-verified, background-checked, and rated after each cut.</p>
+      </div>
+      <div class="barbers-scroll" id="barber-cards">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- PRICING -->
+  <div class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Transparent Pricing</h2>
+        <p>Fixed rates. No surge pricing. No hidden fees. Tip is optional after your cut.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="price-card">
+          <div class="pc-icon">✂️</div>
+          <div class="pc-name">Fade</div>
+          <div class="pc-range">$35<span>–$60</span></div>
+          <div class="pc-desc">Classic to skin fade, tapered sides</div>
+        </div>
+        <div class="price-card">
+          <div class="pc-icon">🧔</div>
+          <div class="pc-name">Beard Trim</div>
+          <div class="pc-range">$20<span>–$35</span></div>
+          <div class="pc-desc">Shape, define, and clean up</div>
+        </div>
+        <div class="price-card featured">
+          <div class="pc-icon">💈</div>
+          <div class="pc-name">Full Haircut</div>
+          <div class="pc-range">$45<span>–$80</span></div>
+          <div class="pc-desc">Wash, cut, style — the full experience</div>
+          <span class="badge-pop">Most Popular</span>
+        </div>
+        <div class="price-card">
+          <div class="pc-icon">📐</div>
+          <div class="pc-name">Line-up</div>
+          <div class="pc-range">$25<span>–$40</span></div>
+          <div class="pc-desc">Edge work, temples, and neckline</div>
+        </div>
+        <div class="price-card">
+          <div class="pc-icon">⭐</div>
+          <div class="pc-name">Premium Style</div>
+          <div class="pc-range">$65<span>–$100</span></div>
+          <div class="pc-desc">Full grooming session, premium finish</div>
+        </div>
+        <div class="price-card">
+          <div class="pc-icon">👦</div>
+          <div class="pc-name">Kids' Cut</div>
+          <div class="pc-range">$25<span>–$40</span></div>
+          <div class="pc-desc">Under 12 · Patient, expert barbers</div>
+        </div>
+      </div>
+      <p style="text-align:center;margin-top:24px;color:var(--muted);font-size:.875rem">
+        💳 Tip is optional · No surge pricing · Price locked at request time
+      </p>
+    </div>
+  </div>
+
+  <!-- TRUST & SAFETY -->
+  <div class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <h2>Safe & Verified — Always</h2>
+        <p>Every barber goes through a rigorous onboarding process before their first cut.</p>
+      </div>
+      <div class="trust-grid">
+        <div class="trust-item">
+          <div class="trust-icon">🪪</div>
+          <h4>ID Verified</h4>
+          <p>Government ID checked before barbers go live on the platform</p>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">🔍</div>
+          <h4>Background Check</h4>
+          <p>Full criminal background check run by a certified provider</p>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">⭐</div>
+          <h4>Rated After Every Cut</h4>
+          <p>Barbers below 4.5 stars are reviewed. Persistent issues = removed</p>
+        </div>
+        <div class="trust-item">
+          <div class="trust-icon">🛡️</div>
+          <h4>Insured Sessions</h4>
+          <p>Every service session is covered under our platform insurance policy</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- APP DOWNLOAD BAND -->
+  <div class="app-band">
+    <div class="app-band-inner">
+      <div style="flex:1">
+        <h3>Take CutNow Everywhere</h3>
+        <p>Download the app for real-time barber tracking, push notifications, and one-tap rebooking.</p>
+        <div class="app-btns" style="margin-top:20px">
+          <a class="app-btn" onclick="App.showToast('📱 App Store coming soon!')">
+            <div class="app-btn-icon">🍎</div>
+            <div class="app-btn-text">
+              <small>Download on the</small>
+              <strong>App Store</strong>
+            </div>
+          </a>
+          <a class="app-btn" onclick="App.showToast('🤖 Google Play coming soon!')">
+            <div class="app-btn-icon">▶</div>
+            <div class="app-btn-text">
+              <small>Get it on</small>
+              <strong>Google Play</strong>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div style="font-size:8rem;flex-shrink:0;opacity:.85">📱</div>
+    </div>
+  </div>
+
+  <!-- CTA BAND -->
+  <div class="cta-band">
+    <div class="container">
+      <h2>Your Next Cut Is<br>Minutes Away</h2>
+      <p>No appointment. No waiting room. Just tap and a barber comes to you.</p>
+      <button class="btn btn-primary btn-lg" onclick="App.navigate('request')">✂️ Request a Barber Now</button>
+      <div style="margin-top:20px">
+        <button class="btn" style="color:rgba(255,255,255,.6);background:transparent;font-size:.875rem" onclick="App.navigate('dashboard')">
+          Are you a barber? Join the network →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">Cut<span>Now</span></div>
+        <p>On-demand barber dispatch. Professional grooming at your location in minutes, not days.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Customers</h4>
+        <ul>
+          <li><a onclick="App.navigate('request')">Request a Barber</a></li>
+          <li><a onclick="App.showToast('Coming soon')">Subscriptions</a></li>
+          <li><a onclick="App.showToast('Coming soon')">Group Bookings</a></li>
+          <li><a onclick="App.showToast('Coming soon')">Gift Cards</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Barbers</h4>
+        <ul>
+          <li><a onclick="App.navigate('dashboard')">Barber Dashboard</a></li>
+          <li><a onclick="App.showToast('Coming soon')">Apply to Join</a></li>
+          <li><a onclick="App.showToast('Coming soon')">Earning Potential</a></li>
+          <li><a onclick="App.showToast('Coming soon')">Barber Guidelines</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a onclick="App.showToast('Coming soon')">About Us</a></li>
+          <li><a onclick="App.showToast('Coming soon')">Safety</a></li>
+          <li><a onclick="App.showToast('Coming soon')">Press</a></li>
+          <li><a onclick="App.showToast('Coming soon')">Careers</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 CutNow Inc. All rights reserved.</span>
+      <div style="display:flex;gap:20px">
+        <a href="#" style="color:var(--muted);text-decoration:none">Privacy</a>
+        <a href="#" style="color:var(--muted);text-decoration:none">Terms</a>
+        <a href="#" style="color:var(--muted);text-decoration:none">Support</a>
+      </div>
+    </div>
+  </footer>
+
+</section><!-- /landing -->
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE: REQUEST
+══════════════════════════════════════════════ -->
+<section id="page-request" class="page">
+  <div class="request-page">
+    <div class="request-inner">
+      <button class="btn btn-outline btn-sm mb-24" style="padding:8px 16px" onclick="App.navigate('landing')">← Back</button>
+      <h1 class="page-title">Request a Barber</h1>
+      <p class="page-sub">Choose your service and we'll match you with the nearest available barber.</p>
+
+      <!-- Progress -->
+      <div class="progress-bar">
+        <div class="progress-step done" id="ps1"></div>
+        <div class="progress-step" id="ps2"></div>
+        <div class="progress-step" id="ps3"></div>
+      </div>
+
+      <!-- STEP 1: Service Selection -->
+      <div class="req-step active" id="req-step-1">
+        <div class="form-section">
+          <label class="form-label">1 of 3 — Choose your service</label>
+          <div class="service-grid">
+            <div class="svc-option" data-svc="fade" onclick="App.selectService('fade')">
+              <div class="svc-icon">✂️</div>
+              <div class="svc-name">Fade</div>
+              <div class="svc-price">$35–60</div>
+            </div>
+            <div class="svc-option" data-svc="beard" onclick="App.selectService('beard')">
+              <div class="svc-icon">🧔</div>
+              <div class="svc-name">Beard Trim</div>
+              <div class="svc-price">$20–35</div>
+            </div>
+            <div class="svc-option" data-svc="lineup" onclick="App.selectService('lineup')">
+              <div class="svc-icon">📐</div>
+              <div class="svc-name">Line-up</div>
+              <div class="svc-price">$25–40</div>
+            </div>
+            <div class="svc-option" data-svc="full" onclick="App.selectService('full')">
+              <div class="svc-icon">💈</div>
+              <div class="svc-name">Full Cut</div>
+              <div class="svc-price">$45–80</div>
+            </div>
+            <div class="svc-option" data-svc="premium" onclick="App.selectService('premium')">
+              <div class="svc-icon">⭐</div>
+              <div class="svc-name">Premium Style</div>
+              <div class="svc-price">$65–100</div>
+            </div>
+            <div class="svc-option" data-svc="kids" onclick="App.selectService('kids')">
+              <div class="svc-icon">👦</div>
+              <div class="svc-name">Kids' Cut</div>
+              <div class="svc-price">$25–40</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <label class="form-label">Notes for your barber <span style="color:var(--muted);font-weight:400">(optional)</span></label>
+          <textarea class="textarea" placeholder="e.g. &quot;Low fade, keep length on top, shape the beard tight…&quot;"></textarea>
+        </div>
+
+        <div class="form-section">
+          <label class="form-label">Reference photo <span style="color:var(--muted);font-weight:400">(optional)</span></label>
+          <div class="upload-area" onclick="App.showToast('📸 Camera access needed in production')">
+            <div class="upload-icon">📷</div>
+            <div class="upload-text">Tap to upload a style reference</div>
+            <div class="upload-sub">JPEG or PNG · Max 10MB</div>
+          </div>
+        </div>
+
+        <div class="step-nav">
+          <button class="btn btn-primary" onclick="
+            if(!document.querySelector('.svc-option.selected')){App.showToast('⚠️ Select a service first');return;}
+            App.setReqStep(2)
+          ">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: Location -->
+      <div class="req-step" id="req-step-2">
+        <div class="form-section">
+          <label class="form-label">2 of 3 — Where should the barber come?</label>
+          <div class="loc-options">
+            <button class="loc-btn" data-loc="gps" onclick="App.selectLocation('gps')">
+              <div class="loc-icon-wrap">📍</div>
+              <div class="loc-text">
+                <div class="loc-title">Use My Current Location</div>
+                <div class="loc-sub">Tap to auto-detect via GPS</div>
+              </div>
+            </button>
+            <button class="loc-btn" data-loc="manual" onclick="App.selectLocation('manual')">
+              <div class="loc-icon-wrap">✏️</div>
+              <div class="loc-text">
+                <div class="loc-title">Enter Address Manually</div>
+                <div class="loc-sub">Hotel, office, home — anywhere</div>
+              </div>
+            </button>
+            <button class="loc-btn" data-loc="hotel" onclick="App.selectLocation('hotel')">
+              <div class="loc-icon-wrap">🏨</div>
+              <div class="loc-text">
+                <div class="loc-title">Hotel Room</div>
+                <div class="loc-sub">Enter hotel name + room number</div>
+              </div>
+            </button>
+          </div>
+
+          <div id="manual-addr" style="display:none;margin-top:12px">
+            <input class="input" type="text" placeholder="Street address, city, state…" autocomplete="street-address">
+            <input class="input" style="margin-top:8px" type="text" placeholder="Apt / Suite / Room (optional)">
+          </div>
+        </div>
+
+        <div style="background:var(--blue-light);border-radius:var(--r-lg);padding:16px;margin-bottom:20px;display:flex;gap:12px;align-items:flex-start">
+          <span style="font-size:1.25rem">ℹ️</span>
+          <div>
+            <div style="font-weight:700;font-size:.9rem;margin-bottom:4px;color:var(--blue)">Your location stays private</div>
+            <div style="font-size:.8125rem;color:var(--muted)">Location is only shared with your matched barber after they accept your request.</div>
+          </div>
+        </div>
+
+        <div class="step-nav">
+          <button class="btn btn-secondary" onclick="App.setReqStep(1)">← Back</button>
+          <button class="btn btn-primary" onclick="
+            if(!document.querySelector('.loc-btn.active')){App.showToast('⚠️ Please set your location');return;}
+            App.setReqStep(3)
+          ">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: Confirm -->
+      <div class="req-step" id="req-step-3">
+        <div class="form-section">
+          <label class="form-label">3 of 3 — Confirm your request</label>
+          <div class="summary-card" id="req-summary">
+            <!-- Rendered by JS -->
+            <div class="summary-row"><span class="k">Service</span><span class="v">Full Haircut</span></div>
+            <div class="summary-row"><span class="k">Location</span><span class="v">📍 Current Location</span></div>
+            <div class="summary-row"><span class="k">Estimated Price</span><span class="v g">$45–80</span></div>
+            <div class="summary-row"><span class="k">ETA</span><span class="v">~8–15 min</span></div>
+            <div class="summary-row"><span class="k">Cancellation</span><span class="v text-muted">Free within 2 min</span></div>
+          </div>
+        </div>
+
+        <div style="background:var(--green-light);border-radius:var(--r-lg);padding:16px;margin-bottom:24px;display:flex;gap:12px;align-items:flex-start">
+          <span style="font-size:1.25rem">✅</span>
+          <div>
+            <div style="font-weight:700;font-size:.9rem;margin-bottom:4px;color:var(--green-dark)">Price locked in</div>
+            <div style="font-size:.8125rem;color:var(--muted)">Your price won't change after matching. No surge pricing, ever. Tip after if you loved it.</div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary big-btn" onclick="App.navigate('matching')">
+          ✂️ Request Barber Now
+        </button>
+        <p style="text-align:center;margin-top:14px;font-size:.8125rem;color:var(--muted)">
+          By requesting, you agree to our <a href="#" style="color:var(--green)">Terms of Service</a>
+        </p>
+
+        <div class="step-nav" style="margin-top:16px">
+          <button class="btn btn-secondary" onclick="App.setReqStep(2)" style="flex:0 0 auto;padding:12px 20px">← Back</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section><!-- /request -->
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE: MATCHING (DISPATCH)
+══════════════════════════════════════════════ -->
+<section id="page-matching" class="page">
+  <div class="matching-page">
+
+    <!-- Back button on map -->
+    <button class="dispatch-back" onclick="App.cancelRide()">← Cancel</button>
+
+    <!-- Map -->
+    <div class="dispatch-map" id="dispatch-map">
+      <!-- Rendered by JS -->
+    </div>
+
+    <!-- Bottom sheet -->
+    <div class="dispatch-bottom">
+      <div class="dispatch-handle"></div>
+
+      <!-- STATE: Searching -->
+      <div class="d-state active" id="d-searching">
+        <div class="searching-wrap">
+          <div class="search-rings">
+            <div class="ring ring-outer"></div>
+            <div class="ring ring-inner"></div>
+          </div>
+          <div class="search-title" id="search-title">Finding nearby barbers…</div>
+          <div class="search-sub">Checking availability in your area</div>
+          <div class="pulse-dots">
+            <div class="pd"></div>
+            <div class="pd"></div>
+            <div class="pd"></div>
+          </div>
+        </div>
+        <div style="margin-top:8px">
+          <div style="font-size:.875rem;color:var(--muted);text-align:center;margin-bottom:16px">
+            Matching you with the closest available, highest-rated barber
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
+            <span class="tag g">⚡ Priority: Closest first</span>
+            <span class="tag g">⭐ Verified barbers only</span>
+            <span class="tag g">📍 Live location match</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- STATE: Accepted -->
+      <div class="d-state" id="d-accepted">
+        <!-- Rendered by JS after acceptance -->
+      </div>
+
+    </div>
+  </div>
+</section><!-- /matching -->
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE: BARBER PROFILE
+══════════════════════════════════════════════ -->
+<section id="page-profile" class="page">
+  <div class="profile-page">
+    <div id="profile-content">
+      <!-- Rendered by JS -->
+    </div>
+  </div>
+</section><!-- /profile -->
+
+
+<!-- ═══════════════════════════════════════════
+     PAGE: BARBER DASHBOARD
+══════════════════════════════════════════════ -->
+<section id="page-dashboard" class="page">
+  <div class="dashboard-page">
+    <!-- Nav breadcrumb -->
+    <div style="display:flex;gap:8px;align-items:center;margin-bottom:24px;font-size:.8125rem;color:var(--muted)">
+      <span onclick="App.navigate('landing')" style="cursor:pointer;color:var(--green);font-weight:700">CutNow</span>
+      <span>›</span>
+      <span>Barber Dashboard</span>
+    </div>
+    <div id="dash-content">
+      <!-- Rendered by JS -->
+    </div>
+  </div>
+</section><!-- /dashboard -->
+
+
+<!-- Toast -->
+<div id="toast" class="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
