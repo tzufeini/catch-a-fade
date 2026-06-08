@@ -1411,7 +1411,7 @@ body.light .park{background:rgba(70,201,139,.22);}
     </div>
     <div class="body" style="padding:0 20px 22px">
       <div style="text-align:center;padding:16px 0 26px">
-        <div class="editAv" id="editAv" style="background:var(--gradWarm)">TZ
+        <div class="editAv" id="editAv" style="background:var(--gradWarm)"><span id="editAvTxt">TZ</span>
           <div class="cam"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M3 8a2 2 0 0 1 2-2h2l1.5-2h7L19 6h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="3.6"/></svg></div>
         </div>
         <input type="file" id="photoPicker" accept="image/*" style="display:none" onchange="applyPhoto(this)">
@@ -2322,18 +2322,34 @@ function clearSvcFilter(){
 }
 
 /* ---- photo picker ---- */
+function _applyPhotoUI(dataUrl){
+  // Apply to editAv (has span + cam child)
+  const eAv = document.getElementById('editAv');
+  if(eAv){
+    eAv.style.backgroundImage='url('+dataUrl+')';
+    eAv.style.backgroundSize='cover';
+    eAv.style.backgroundPosition='center';
+    const txt=document.getElementById('editAvTxt'); if(txt) txt.style.visibility='hidden';
+  }
+  // Apply to profAv (text-only, no children)
+  const pAv = document.getElementById('profAv');
+  if(pAv){
+    pAv.style.backgroundImage='url('+dataUrl+')';
+    pAv.style.backgroundSize='cover';
+    pAv.style.backgroundPosition='center';
+    pAv.style.color='transparent';
+  }
+}
 function applyPhoto(input){
   if(!input.files||!input.files[0]) return;
-  const url=URL.createObjectURL(input.files[0]);
-  ['editAv','accountAv'].forEach(id=>{
-    const el=document.getElementById(id); if(!el) return;
-    el.style.backgroundImage='url('+url+')';
-    el.style.backgroundSize='cover';
-    el.style.backgroundPosition='center';
-    el.textContent='';
-    const cam=el.querySelector('.cam'); if(cam) cam.style.display='flex';
-  });
-  notify('Photo updated','Your profile photo has been saved.');
+  const reader=new FileReader();
+  reader.onload=function(e){
+    const dataUrl=e.target.result;
+    try{ localStorage.setItem('fadex_profile_photo', dataUrl); }catch(ex){}
+    _applyPhotoUI(dataUrl);
+    notify('Photo updated','Your profile photo has been saved.');
+  };
+  reader.readAsDataURL(input.files[0]);
 }
 let svcPrice=38, tip=6;
 function pickOpt(el,p){
@@ -2783,10 +2799,22 @@ function nameInitials(n){
   return (((parts[0]||'')[0]||'')+((parts[1]||'')[0]||'')).toUpperCase()||'?';
 }
 function renderProfile(){
-  const a=document.getElementById('profAv'); if(a){ a.textContent=nameInitials(userProfile.name); }
+  const a=document.getElementById('profAv');
+  if(a){
+    const savedPhoto=localStorage.getItem('fadex_profile_photo');
+    if(savedPhoto){
+      a.style.backgroundImage='url('+savedPhoto+')';
+      a.style.backgroundSize='cover';
+      a.style.backgroundPosition='center';
+      a.style.color='transparent'; // hide initials text
+    } else {
+      a.style.backgroundImage='';
+      a.style.color='';
+      a.textContent=nameInitials(userProfile.name);
+    }
+  }
   const n=document.getElementById('profName'); if(n) n.textContent=userProfile.name;
   const s=document.getElementById('profSub'); if(s) s.textContent=userProfile.memberSub;
-  // sync booking notes/address indirectly via location picker — leave as is
 }
 function openEditAccount(){
   document.getElementById('edName').value=userProfile.name;
@@ -2795,7 +2823,19 @@ function openEditAccount(){
   document.getElementById('edAddress').value=userProfile.address;
   document.getElementById('edStyle').value=userProfile.style;
   document.getElementById('edNotes').value=userProfile.notes;
-  document.getElementById('editAv').firstChild.textContent=nameInitials(userProfile.name);
+  // Restore avatar — use saved photo if it exists, otherwise show initials
+  const savedPhoto = localStorage.getItem('fadex_profile_photo');
+  const eAv = document.getElementById('editAv');
+  const txt = document.getElementById('editAvTxt');
+  if(savedPhoto){
+    eAv.style.backgroundImage='url('+savedPhoto+')';
+    eAv.style.backgroundSize='cover';
+    eAv.style.backgroundPosition='center';
+    if(txt) txt.style.visibility='hidden';
+  } else {
+    eAv.style.backgroundImage='';
+    if(txt){ txt.style.visibility='visible'; txt.textContent=nameInitials(userProfile.name); }
+  }
   nav('editAccount');
 }
 function saveProfile(){
