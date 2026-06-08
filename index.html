@@ -380,10 +380,10 @@ body.light .park{background:rgba(70,201,139,.22);}
 .step{flex:1;text-align:center;position:relative;}
 .step .d{width:13px;height:13px;border-radius:50%;background:var(--card3);margin:0 auto;border:2px solid var(--bg);position:relative;z-index:2;}
 .step.done .d{background:var(--green);}
-.step.now .d{background:var(--blue);box-shadow:0 0 0 5px rgba(42,88,204,.25);}
-.step::before{content:"";position:absolute;top:6px;left:-50%;width:100%;height:2px;background:var(--card3);}
+.step.now .d{background:var(--blue);box-shadow:0 0 0 5px rgba(46,132,196,.28);}
+.step::before{content:"";position:absolute;top:5px;left:-50%;width:100%;height:3.5px;border-radius:2px;background:var(--card3);}
 .step:first-child::before{display:none;}
-.step.done::before,.step.now::before{background:var(--green);}
+.step.done::before,.step.now::before{background:var(--bp-spiral-thin);}
 .step small{font-size:9.5px;color:var(--faint);font-weight:650;display:block;margin-top:6px;}
 .step.now small,.step.done small{color:var(--text);}
 .route{position:absolute;inset:0;pointer-events:none;}
@@ -708,9 +708,10 @@ body.light .park{background:rgba(70,201,139,.22);}
 #tripBar{
   position:absolute;bottom:80px;left:10px;right:10px;z-index:35;
   background:var(--card2);border:1px solid var(--line2);border-radius:18px;
-  padding:11px 13px;display:none;align-items:center;gap:12px;cursor:pointer;
-  box-shadow:0 14px 36px -10px rgba(0,0,0,.65);
+  padding:11px 13px 11px 18px;display:none;align-items:center;gap:12px;cursor:pointer;
+  box-shadow:0 14px 36px -10px rgba(0,0,0,.65);overflow:hidden;
 }
+#tripBar::before{content:"";position:absolute;top:0;bottom:0;left:0;width:7px;background:var(--bp-spiral-thin);}
 #tripBar.show{display:flex;animation:tbIn .42s cubic-bezier(.2,.8,.2,1);}
 @keyframes tbIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 #tripBar .tb-av{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;font-size:14px;flex-shrink:0;position:relative;}
@@ -777,6 +778,12 @@ body.light .park{background:rgba(70,201,139,.22);}
       #8C1F2C 0 22px, #E4E6EC 22px 34px,
       #16315F 34px 56px, #E4E6EC 56px 68px,
       #2E84C4 68px 90px, #E4E6EC 90px 102px);
+  /* finer spiral for thin elements (progress lines, edges) */
+  --bp-spiral-thin:
+    repeating-linear-gradient(125deg,
+      #8C1F2C 0 7px, #E4E6EC 7px 11px,
+      #16315F 11px 18px, #E4E6EC 18px 22px,
+      #2E84C4 22px 29px, #E4E6EC 29px 33px);
   /* onboarding accents: gold is GONE — brand accent is the deep red, secondary is ocean blue, text is silvery */
   --ob-gold:#C7414E; --ob-cream:#ECEEF2;
   --ob-dimm:#9AA0AD; --ob-faant:#5B606B; --ob-grn:#4ADE80;
