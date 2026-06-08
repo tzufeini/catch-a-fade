@@ -199,16 +199,15 @@ body.light .park{background:rgba(70,201,139,.22);}
 .searchbar input::placeholder{color:var(--dim);font-weight:550;}
 .locClear{width:22px;height:22px;border-radius:50%;background:var(--card3);color:var(--dim);
   display:flex;align-items:center;justify-content:center;font-size:10px;cursor:pointer;flex-shrink:0;}
-.svcRow{display:flex;gap:9px;overflow-x:auto;padding:14px 20px 6px;}
+.svcRow{display:flex;gap:8px;overflow-x:auto;padding:10px 20px 10px;}
 .svcRow::-webkit-scrollbar{display:none;}
-.svc{
-  flex-shrink:0;width:74px;background:var(--card);border:1px solid var(--line);
-  border-radius:16px;padding:12px 6px;text-align:center;cursor:pointer;transition:.18s;
+.svcPill{
+  flex-shrink:0;padding:9px 18px;border-radius:30px;
+  background:var(--card2);border:1.5px solid var(--line2);
+  font-size:13.5px;font-weight:680;color:var(--dim);
+  cursor:pointer;transition:.18s;white-space:nowrap;
 }
-.svc .em{width:34px;height:34px;border-radius:11px;margin:0 auto 7px;display:flex;align-items:center;justify-content:center;}
-.svc small{font-size:11px;font-weight:650;color:var(--dim);}
-.svc.on{border-color:var(--blue);background:rgba(110,157,255,.10);}
-.svc.on small{color:var(--text);}
+.svcPill.on{background:var(--blue);border-color:var(--blue);color:#fff;}
 .secLabel{padding:14px 20px 6px;display:flex;justify-content:space-between;align-items:baseline;}
 .secLabel b{font-size:16px;font-weight:720;}
 .secLabel a{font-size:13px;color:var(--blue);font-weight:650;cursor:pointer;}
@@ -935,25 +934,12 @@ body.light .park{background:rgba(70,201,139,.22);}
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2.2"><path d="M12 2c1.5 4 4 6 4 9a4 4 0 0 1-8 0c0-2 1.5-3.5 1.5-3.5C10 9 10.5 7 12 2z"/><path d="M9 17a3 3 0 1 0 6 0c0-1-1-2-1.5-2-.5 1-1.5 1.5-1.5 1.5s-1-.5-1.5-1.5C10 15 9 16 9 17z"/></svg>
           <div><b>1.4× surge nearby</b><small>Demand is high — fares are slightly elevated.</small></div>
         </div>
-        <div class="svcRow">
-          <div class="svc on" onclick="pickSvc(this)"><div class="em" style="background:var(--grad)">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
-          </div><small>Fade</small></div>
-          <div class="svc" onclick="pickSvc(this)"><div class="em" style="background:var(--gradGreen)">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><path d="M4 18 L12 4 L20 18"/><line x1="7" y1="13" x2="17" y2="13"/></svg>
-          </div><small>Taper</small></div>
-          <div class="svc" onclick="pickSvc(this)"><div class="em" style="background:var(--gradWarm)">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M5 8c0 6 3 11 7 11s7-5 7-11"/><circle cx="9" cy="8" r="1.4" fill="#fff"/><circle cx="15" cy="8" r="1.4" fill="#fff"/></svg>
-          </div><small>Beard</small></div>
-          <div class="svc" onclick="pickSvc(this)"><div class="em" style="background:linear-gradient(135deg,#6E9DFF,#3FD1D8)">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6"><line x1="4" y1="12" x2="20" y2="12"/></svg>
-          </div><small>Line up</small></div>
-          <div class="svc" onclick="pickSvc(this)"><div class="em" style="background:linear-gradient(135deg,#9B7BFF,#6E6BFF)">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 3a7 7 0 0 0-7 7v8h14v-8a7 7 0 0 0-7-7z"/></svg>
-          </div><small>Full cut</small></div>
-          <div class="svc" onclick="pickSvc(this)"><div class="em" style="background:linear-gradient(135deg,#FFCf5A,#FF9F4A)">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2l2.8 6.2L21 9l-4.5 4.3L17.6 20 12 16.8 6.4 20l1.1-6.7L3 9l6.2-.8z"/></svg>
-          </div><small>VIP</small></div>
+        <div class="svcRow" id="svcRow">
+          <div class="svcPill on" onclick="filterToggle(this,'fade')">Fade</div>
+          <div class="svcPill" onclick="filterToggle(this,'taper')">Taper</div>
+          <div class="svcPill" onclick="filterToggle(this,'beard')">Beard</div>
+          <div class="svcPill" onclick="filterToggle(this,'lineup')">Line up</div>
+          <div class="svcPill" onclick="filterToggle(this,'fullcut')">Full cut</div>
         </div>
 
         <div class="secLabel" style="align-items:center"><b>Available now</b>
@@ -1427,8 +1413,9 @@ body.light .park{background:rgba(70,201,139,.22);}
         <div class="editAv" id="editAv" style="background:var(--gradWarm)">TZ
           <div class="cam"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M3 8a2 2 0 0 1 2-2h2l1.5-2h7L19 6h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="3.6"/></svg></div>
         </div>
+        <input type="file" id="photoPicker" accept="image/*" style="display:none" onchange="applyPhoto(this)">
         <div style="margin-top:18px;color:var(--blue);font-size:13.5px;font-weight:680;cursor:pointer"
-          onclick="notify('Photo','Choose from library or take a new one.')">Change photo</div>
+          onclick="document.getElementById('photoPicker').click()">Change photo</div>
       </div>
       <div class="fld"><label>Full name</label><input id="edName" /></div>
       <div class="fld"><label>Email</label><input id="edEmail" type="email" /></div>
@@ -2178,7 +2165,16 @@ function buildList(){
     el.innerHTML = emptyCard('No barbers within '+userRadius+' mi','Your closest pro, '+closest.b.n.split(' ')[0]+', is '+Math.round(closest.dist*10)/10+' mi away. Widen your radius?','Show any distance','setRadius(50)');
     return;
   }
-  el.innerHTML = inRange.map(({b,i,dist})=>{
+  // Filter by selected services (if any)
+  const svcFiltered = activeSvcs.size===0 ? inRange : inRange.filter(({b})=>[...activeSvcs].every(k=>barberDoesService(b,k)));
+  const showList = svcFiltered.length ? svcFiltered : inRange; // fallback: show all if no match
+  const noSvcMatch = activeSvcs.size>0 && !svcFiltered.length;
+  if(noSvcMatch){
+    const svcNames=[...activeSvcs].join(' + ');
+    el.innerHTML = emptyCard('No pros for '+svcNames+' nearby','None of the barbers in your area offer all selected services. Try a different combo or widen your radius.','Clear filters','clearSvcFilter()');
+    return;
+  }
+  el.innerHTML = showList.map(({b,i,dist})=>{
     const mi = dist<10 ? (Math.round(dist*10)/10).toFixed(1) : Math.round(dist);
     const eta = Math.max(3, Math.round(dist*4));
     return `
@@ -2289,7 +2285,55 @@ function renderInbox(){
 }
 
 /* ---------- service / options ---------- */
-function pickSvc(el){ el.parentElement.querySelectorAll('.svc').forEach(s=>s.classList.remove('on')); el.classList.add('on'); }
+/* ---- service filter (multi-select pills) ---- */
+const activeSvcs = new Set(['fade']);
+const SVC_KWORDS = {
+  fade:    ['fade'],
+  taper:   ['taper'],
+  beard:   ['beard'],
+  lineup:  ['line'],
+  fullcut: ['full','hair','cut']
+};
+function barberDoesService(b, key){
+  const sp = (b.sp||'').toLowerCase();
+  const svcs = b.services||{};
+  const kwords = SVC_KWORDS[key]||[key];
+  if(kwords.some(w=>sp.includes(w))) return true;
+  if(Object.keys(svcs).some(s=>svcs[s]&&kwords.some(w=>s.toLowerCase().includes(w)))) return true;
+  return false;
+}
+function filterToggle(el, key){
+  if(activeSvcs.has(key)){
+    activeSvcs.delete(key);
+    el.classList.remove('on');
+  } else {
+    activeSvcs.add(key);
+    el.classList.add('on');
+  }
+  buildList();
+  haptic();
+}
+
+function clearSvcFilter(){
+  activeSvcs.clear();
+  document.querySelectorAll('.svcPill').forEach(p=>p.classList.remove('on'));
+  buildList();
+}
+
+/* ---- photo picker ---- */
+function applyPhoto(input){
+  if(!input.files||!input.files[0]) return;
+  const url=URL.createObjectURL(input.files[0]);
+  ['editAv','accountAv'].forEach(id=>{
+    const el=document.getElementById(id); if(!el) return;
+    el.style.backgroundImage='url('+url+')';
+    el.style.backgroundSize='cover';
+    el.style.backgroundPosition='center';
+    el.textContent='';
+    const cam=el.querySelector('.cam'); if(cam) cam.style.display='flex';
+  });
+  notify('Photo updated','Your profile photo has been saved.');
+}
 let svcPrice=38, tip=6;
 function pickOpt(el,p){
   el.parentElement.querySelectorAll('.opt').forEach(o=>{ if(o.querySelector('.radio')===null) o.classList.remove('on'); });
