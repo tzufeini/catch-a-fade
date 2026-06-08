@@ -2145,7 +2145,7 @@ loadGoogleMaps();
 
 /* ---------- nav stack ---------- */
 const TABS=['home','bookings','messages','profile'];
-let stack = sessionStorage.getItem('fadex_seen_ob') ? ['welcome'] : ['ob1'];
+let stack = ['ob1']; // always run the onboarding before the app, on every launch
 function render(){
   const top=stack[stack.length-1], under=stack[stack.length-2];
   document.querySelectorAll('.screen').forEach(s=>{
@@ -2437,20 +2437,20 @@ async function detectUserLocation(force){
     setLocPill('Nearby in '+(userCity||'your area'), 'gps');
     startGpsWatch();
   } catch(e){
-    if(e==='denied'){
-      // User explicitly tapped "Don't Allow" → show the Oops modal
-      _locMode='none';
-      setLocPill('Location required', 'none');
-      document.getElementById('locDeniedModal').classList.add('show');
-      return;
-    }
-    // Other failures (timeout, no-api) → silent IP fallback
+    // GPS unavailable — denied, blocked at the site level, OS location off, or timed out.
+    // Try city-level IP location so the app STILL WORKS (the user opted in by tapping
+    // "Enable Location"). Only surface the "Oops → Settings" modal if even that fails.
     try {
       const { ll, city } = await ipGeo();
       userLL = ll; userCity = city || 'Your area'; _locDetected=true; _locMode='ip';
       setLocPill('Nearby in '+userCity, 'ip');
     } catch(e2){
       _locMode='none';
+      if(e==='denied'){
+        setLocPill('Location required', 'none');
+        document.getElementById('locDeniedModal').classList.add('show');
+        return;
+      }
       setLocPill('Tap to set location', 'none');
       return;
     }
