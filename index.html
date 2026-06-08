@@ -759,7 +759,7 @@ body.light .park{background:rgba(70,201,139,.22);}
 #ciLogoOuter{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:4;opacity:0;}
 #clipperLogoWrap{display:flex;flex-direction:column;align-items:center;gap:12px;}
 #clipperLogoWrap .logoMark{width:56px;height:56px;background:var(--grad);border-radius:16px;display:flex;align-items:center;justify-content:center;}
-#clipperLogoWrap .brand{font-size:28px;font-weight:800;color:var(--text);}
+#clipperLogoWrap .brand{font-size:52px;font-weight:850;letter-spacing:3px;color:var(--text);}
 #clipperLogoWrap .brand span{color:var(--blue);}
 /* scissors wrap (moves bottom → top) */
 #scissorWrap{position:absolute;left:50%;transform:translateX(-50%);z-index:5;display:flex;flex-direction:column;align-items:center;pointer-events:none;opacity:0;}
@@ -773,24 +773,22 @@ body.light .park{background:rgba(70,201,139,.22);}
   --bp-navy:#16315F; --bp-ocean:#2E84C4; --bp-red:#8C1F2C; --bp-red-lt:#C7414E; --bp-silver:#E4E6EC;
   /* the barber-pole spiral: sharp diagonal stripes that cut across the button (+dark wash so text stays readable) */
   --bp-spiral:
-    linear-gradient(rgba(0,0,0,.32),rgba(0,0,0,.32)),
+    linear-gradient(rgba(0,0,0,.30),rgba(0,0,0,.30)),
     repeating-linear-gradient(125deg,
-      #8C1F2C 0 22px, #E4E6EC 22px 34px,
-      #16315F 34px 56px, #E4E6EC 56px 68px,
-      #2E84C4 68px 90px, #E4E6EC 90px 102px);
+      #8C1F2C 0 21px, #E4E6EC 21px 33px,
+      #16315F 33px 54px, #E4E6EC 54px 66px);
   /* finer spiral for thin elements (progress lines, edges) */
   --bp-spiral-thin:
     repeating-linear-gradient(125deg,
       #8C1F2C 0 7px, #E4E6EC 7px 11px,
-      #16315F 11px 18px, #E4E6EC 18px 22px,
-      #2E84C4 22px 29px, #E4E6EC 29px 33px);
+      #16315F 11px 18px, #E4E6EC 18px 22px);
   /* onboarding accents: gold is GONE — brand accent is the deep red, secondary is ocean blue, text is silvery */
   --ob-gold:#C7414E; --ob-cream:#ECEEF2;
   --ob-dimm:#9AA0AD; --ob-faant:#5B606B; --ob-grn:#4ADE80;
 }
-.ob-screen{background:#0A0A0A;}
+.ob-screen{background:linear-gradient(180deg,#26272E 0%,#1C1D23 100%);}
 .screen.ob-screen{display:flex;flex-direction:column;}
-.ob-alt{background:#111111!important;}
+.ob-alt{background:linear-gradient(180deg,#2E2F37 0%,#24252C 100%)!important;}
 .ob-noise::before{
   content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -805,7 +803,7 @@ body.light .park{background:rgba(70,201,139,.22);}
 .ob-h{font-size:clamp(23px,7vw,33px);font-weight:900;line-height:1.08;letter-spacing:-.5px;color:var(--ob-cream);margin-bottom:12px;}
 .ob-s{font-size:14px;line-height:1.65;color:var(--ob-dimm);max-width:292px;margin:0 auto;}
 .ob-nav{padding:16px 26px 48px;position:relative;z-index:1;}
-.ob-cta{width:100%;padding:16px;border:none;border-radius:14px;background:var(--bp-spiral);color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.95),0 0 2px rgba(0,0,0,.7);font-size:15.5px;font-weight:820;cursor:pointer;letter-spacing:-.1px;box-shadow:0 12px 28px -12px rgba(0,0,0,.75);transition:transform .12s,opacity .12s;}
+.ob-cta{width:100%;padding:16px;border:none;border-radius:14px;background:var(--bp-spiral);color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.95),0 0 2px rgba(0,0,0,.7);font-size:15.5px;font-weight:820;cursor:pointer;letter-spacing:-.1px;box-shadow:0 12px 28px -12px rgba(0,0,0,.75);animation:bpFlow 5.5s linear infinite;transition:transform .12s,opacity .12s;}
 .ob-cta:active{transform:scale(.97);opacity:.88;}
 .ob-ghost{text-align:center;margin-top:12px;font-size:13px;color:var(--ob-dimm);cursor:pointer;}
 .ob-ghost b{color:var(--ob-gold);}
@@ -816,7 +814,7 @@ body.light .park{background:rgba(70,201,139,.22);}
 @keyframes obRing{0%{opacity:.7;transform:translate(-50%,-50%) scale(.1);}100%{opacity:0;transform:translate(-50%,-50%) scale(1);}}
 .ob2-ring{position:absolute;top:50%;left:50%;border-radius:50%;border:1.5px solid rgba(46,132,196,.32);animation:obRing 2.8s ease-out infinite;}
 /* ob6 card */
-.ob6-card{background:#181818;border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:17px;width:254px;text-align:left;}
+.ob6-card{background:#33343C;border:1px solid rgba(255,255,255,.10);border-radius:20px;padding:17px;width:254px;text-align:left;}
 /* ob7 price */
 .ob7-num{font-size:80px;font-weight:900;color:var(--ob-cream);letter-spacing:-4px;line-height:1;display:block;}
 .ob7-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(74,222,128,.09);border:1px solid rgba(74,222,128,.2);border-radius:30px;padding:7px 14px;margin-top:11px;}
@@ -853,7 +851,7 @@ body.light .park{background:rgba(70,201,139,.22);}
 /* ===== 16-SCREEN ONBOARDING (Acts 1–3) ===== */
 /* interactive answer cards — screens 4, 5, 14 */
 .ob-opts{display:flex;flex-direction:column;gap:10px;width:100%;max-width:300px;margin:0 auto;}
-.ob-opt{display:flex;align-items:center;gap:13px;background:#1A1A1A;border:1.5px solid #2A2A2A;border-radius:15px;padding:14px 15px;cursor:pointer;text-align:left;transition:border-color .18s,background .18s,transform .1s;}
+.ob-opt{display:flex;align-items:center;gap:13px;background:#33343C;border:1.5px solid #41434C;border-radius:15px;padding:14px 15px;cursor:pointer;text-align:left;transition:border-color .18s,background .18s,transform .1s;}
 .ob-opt:active{transform:scale(.985);}
 .ob-opt .em{font-size:22px;flex:none;line-height:1;}
 .ob-opt .lbl{font-size:13.5px;font-weight:720;color:var(--ob-cream);line-height:1.3;}
@@ -865,7 +863,7 @@ body.light .park{background:rgba(70,201,139,.22);}
 .ob-opt-lg .lbl{font-size:14.5px;}
 .ob-cta.dim{opacity:.35;pointer-events:none;}
 /* reflect-back & journey summary card — screens 5, 12 */
-.ob-rcard{background:#161616;border:1px solid #2A2A2A;border-left:3px solid var(--ob-gold);border-radius:14px;padding:13px 16px;width:100%;max-width:300px;margin:0 auto;text-align:left;}
+.ob-rcard{background:#30313A;border:1px solid #41434C;border-left:3px solid var(--ob-gold);border-radius:14px;padding:13px 16px;width:100%;max-width:300px;margin:0 auto;text-align:left;}
 .ob-rrow{display:flex;align-items:center;gap:11px;font-size:13px;font-weight:700;color:var(--ob-cream);padding:6px 0;line-height:1.35;}
 .ob-rrow .rc{width:21px;height:21px;border-radius:50%;background:rgba(74,222,128,.12);border:1px solid rgba(74,222,128,.25);display:flex;align-items:center;justify-content:center;flex:none;color:#4ADE80;font-size:11px;}
 /* aha stat — screen 6 */
@@ -876,14 +874,14 @@ body.light .park{background:rgba(70,201,139,.22);}
 @keyframes obShake{0%{opacity:0;transform:scale(.8)}45%{opacity:1;transform:scale(1.14)}60%{transform:scale(1) translateX(-5px)}74%{transform:translateX(5px)}88%{transform:translateX(-2px)}100%{opacity:1;transform:translateX(0)}}
 /* live demo — screen 8 */
 .ob-blist{display:flex;flex-direction:column;gap:9px;width:100%;max-width:300px;margin:0 auto;}
-.ob-bcard{display:flex;align-items:center;gap:11px;background:#1A1A1A;border:1px solid #2A2A2A;border-radius:14px;padding:11px 12px;cursor:pointer;text-align:left;transition:transform .1s,border-color .18s;}
+.ob-bcard{display:flex;align-items:center;gap:11px;background:#33343C;border:1px solid #41434C;border-radius:14px;padding:11px 12px;cursor:pointer;text-align:left;transition:transform .1s,border-color .18s;}
 .ob-bcard:active{transform:scale(.985);}
 .ob-bav{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:#fff;flex:none;}
 .ob-bava{font-size:10px;font-weight:750;color:#4ADE80;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.22);border-radius:6px;padding:3px 6px;white-space:nowrap;}
 .ob-modal{position:absolute;inset:0;z-index:40;display:none;}
 .ob-modal.show{display:block;}
 .ob-modal-bg{position:absolute;inset:0;background:rgba(0,0,0,.62);animation:obFade .25s ease both;}
-.ob-sheet{position:absolute;left:0;right:0;bottom:0;background:#141414;border-top:1px solid #2A2A2A;border-radius:22px 22px 0 0;padding:8px 20px 26px;animation:obSheetUp .32s cubic-bezier(.2,.8,.2,1) both;}
+.ob-sheet{position:absolute;left:0;right:0;bottom:0;background:#282933;border-top:1px solid #3C3D45;border-radius:22px 22px 0 0;padding:8px 20px 26px;animation:obSheetUp .32s cubic-bezier(.2,.8,.2,1) both;}
 .ob-sheet-grab{width:38px;height:4px;border-radius:3px;background:#333;margin:6px auto 14px;}
 @keyframes obFade{from{opacity:0}to{opacity:1}}
 @keyframes obSheetUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
@@ -906,14 +904,14 @@ body.light .park{background:rgba(70,201,139,.22);}
 .ob-badge{display:inline-flex;align-items:center;gap:5px;background:#222;border:1px solid #333;border-radius:9px;padding:6px 9px;font-size:11px;font-weight:720;color:var(--ob-cream);}
 /* price comparison — screen 13 */
 .ob-ptable{display:flex;flex-direction:column;gap:8px;width:100%;max-width:300px;margin:0 auto;}
-.ob-prow{display:flex;align-items:center;justify-content:space-between;background:#161616;border:1px solid #262626;border-radius:12px;padding:12px 15px;}
+.ob-prow{display:flex;align-items:center;justify-content:space-between;background:#30313A;border:1px solid #3C3D45;border-radius:12px;padding:12px 15px;}
 .ob-prow .pl{font-size:13px;font-weight:700;color:var(--ob-cream);}
 .ob-prow .pr{display:flex;align-items:center;gap:6px;font-size:15px;font-weight:850;color:#4ADE80;}
 .ob-prow.guarantee .pr{font-size:12px;color:var(--ob-gold);text-align:right;}
 /* testimonials — screen 15 */
 .ob-tscroll{display:flex;gap:11px;overflow-x:auto;width:100%;padding:4px 2px 8px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;}
 .ob-tscroll::-webkit-scrollbar{display:none;}
-.ob-tcard{min-width:246px;max-width:246px;background:#161616;border:1px solid #2A2A2A;border-radius:16px;padding:14px 15px;text-align:left;scroll-snap-align:center;}
+.ob-tcard{min-width:246px;max-width:246px;background:#30313A;border:1px solid #41434C;border-radius:16px;padding:14px 15px;text-align:left;scroll-snap-align:center;}
 .ob-tstars{font-size:12px;letter-spacing:1px;margin-bottom:8px;}
 .ob-tquote{font-size:12.5px;line-height:1.55;color:var(--ob-cream);font-weight:560;}
 .ob-tname{font-size:11.5px;color:var(--ob-dimm);margin-top:9px;font-weight:700;}
@@ -922,11 +920,13 @@ body.light .park{background:rgba(70,201,139,.22);}
 @keyframes obRoute{to{stroke-dashoffset:0;}}
 @keyframes obTravel{0%{offset-distance:0%}100%{offset-distance:100%}}
 @keyframes obSpin{to{transform:rotate(360deg)}}
+/* barber-pole slow spin — shifts the spiral exactly one stripe-period for a seamless loop */
+@keyframes bpFlow{from{background-position:0 0;}to{background-position:-54px -38px;}}
 /* graceful fallback: if offset-path is unsupported, hide the route traveler (route still draws) */
 @supports not (offset-path: path('M0 0')){ #ob3 [style*="offset-path"]{display:none!important;} }
 /* reduced motion — instant, no movement */
 @media(prefers-reduced-motion:reduce){
-  [data-a],[style*="animation:ob"],.ob-impact,.ob-star,.ob-dot,.ob-modal-bg,.ob-sheet{animation:none!important;opacity:1!important;}
+  [data-a],[style*="animation:ob"],.ob-impact,.ob-star,.ob-dot,.ob-modal-bg,.ob-sheet,.ob-cta{animation:none!important;opacity:1!important;}
   .ob-star{filter:none!important;}
 }
 
@@ -983,10 +983,7 @@ body.light .park{background:rgba(70,201,139,.22);}
     <!-- logo (visible while panels are still closed) -->
     <div id="ciLogoOuter">
       <div id="clipperLogoWrap">
-        <div class="logoMark">
-          <span style="font-size:30px;line-height:1">✂️</span>
-        </div>
-        <div class="brand">Catch a <span>Fade</span></div>
+        <div class="brand">CAF</div>
       </div>
     </div>
     <!-- scissors (sweeps bottom → top, cuts the curtains open) -->
@@ -1473,7 +1470,7 @@ body.light .park{background:rgba(70,201,139,.22);}
       </div>
     </div>
     <div class="ob-nav">
-      <button class="ob-cta" style="animation:obUp .38s .18s ease-out both,obPulse 1.8s .8s ease-in-out 2;" onclick="goAuth('signup')">Sign Up Free</button>
+      <button class="ob-cta" style="animation:obUp .38s .18s ease-out both,obPulse 1.8s .8s ease-in-out 2,bpFlow 5.5s linear infinite;" onclick="goAuth('signup')">Sign Up Free</button>
       <div class="ob-ghost" style="animation:obUp .38s .32s ease-out both;" onclick="goAuth('login')">Already have an account? <b>Log in</b></div>
     </div>
   </section>
@@ -2419,6 +2416,18 @@ const G_DARK=[
   {featureType:'water',elementType:'geometry',stylers:[{color:'#0a1820'}]},
   {featureType:'water',elementType:'labels.text.fill',stylers:[{color:'#3e6e7f'}]}
 ];
+const G_LIGHT=[
+  {featureType:'poi',stylers:[{visibility:'off'}]},
+  {featureType:'transit',stylers:[{visibility:'off'}]},
+  {elementType:'geometry',stylers:[{color:'#eef0f3'}]},
+  {elementType:'labels.text.fill',stylers:[{color:'#6b7280'}]},
+  {elementType:'labels.text.stroke',stylers:[{color:'#ffffff'}]},
+  {featureType:'landscape',elementType:'geometry',stylers:[{color:'#f3f4f6'}]},
+  {featureType:'administrative',elementType:'geometry',stylers:[{color:'#d8dbe0'}]},
+  {featureType:'road',elementType:'geometry',stylers:[{color:'#ffffff'}]},
+  {featureType:'road.highway',elementType:'geometry',stylers:[{color:'#ead9be'}]},
+  {featureType:'water',elementType:'geometry',stylers:[{color:'#bfe0ef'}]}
+];
 const BARBER_COLORS=['#2A58CC','#46C98B','#FF9F4A','#C82222','#1D40A8'];
 function googleBarberIcon(b,i){
   const c=BARBER_COLORS[i%5];
@@ -3238,7 +3247,10 @@ let homeMapInst, trackMapInst, trackBarberMarker, trackRoute;
 const DEFAULT_CENTER = [40.7580, -73.9855]; // Manhattan default
 let userLL = DEFAULT_CENTER.slice();
 const BARBER_OFFSETS = [[0.0095,0.0042],[0.0058,-0.0067],[-0.0074,-0.0033],[-0.0051,0.0078],[0.0036,0.0095]];
-const TILE_URL = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+const TILE_DARK = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+const TILE_LIGHT = 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
+function isLight(){ return document.body.classList.contains('light'); }
+function curTiles(){ return isLight() ? TILE_LIGHT : TILE_DARK; }
 const TILE_OPTS = {subdomains:'abcd', maxZoom:20, attribution:'© <a href="https://www.openstreetmap.org/copyright">OSM</a> · <a href="https://carto.com/attributions">CARTO</a>'};
 function barberDivIcon(b){
   return L.divIcon({
@@ -3262,7 +3274,7 @@ function initHomeMapLeaflet(){
   const el=document.getElementById('homeMap'); if(!el || typeof L==='undefined') return;
   if(homeMapInst && homeMapInst.invalidateSize){ homeMapInst.invalidateSize(); return; }
   homeMapInst = L.map('homeMap',{zoomControl:false,attributionControl:true,scrollWheelZoom:false,dragging:false,doubleClickZoom:false,boxZoom:false,touchZoom:false,keyboard:false}).setView(userLL,14);
-  L.tileLayer(TILE_URL, TILE_OPTS).addTo(homeMapInst);
+  L.tileLayer(curTiles(), TILE_OPTS).addTo(homeMapInst);
   L.marker(userLL,{icon:userDivIcon()}).addTo(homeMapInst);
   L.circle(userLL,{radius:1500,color:'#2A58CC',fillColor:'#2A58CC',fillOpacity:0.06,weight:1,dashArray:'4 6'}).addTo(homeMapInst);
   BARBERS.forEach((b,i)=>{
@@ -3284,7 +3296,7 @@ function initHomeMapGoogle(){
   homeMapInst = new google.maps.Map(el,{
     center:{lat:userLL[0],lng:userLL[1]}, zoom:14, disableDefaultUI:true,
     gestureHandling:'none', keyboardShortcuts:false,
-    clickableIcons:false, styles:G_DARK
+    clickableIcons:false, styles:isLight()?G_LIGHT:G_DARK
   });
   homeMapInst._isGoogle=true;
   watchGoogleMapHealth('homeMap');
@@ -3311,7 +3323,7 @@ function initTrackMapLeaflet(){
   const el=document.getElementById('trackMap'); if(!el || typeof L==='undefined') return;
   if(trackMapInst && trackMapInst.invalidateSize){ trackMapInst.invalidateSize(); return; }
   trackMapInst = L.map('trackMap',{zoomControl:false,attributionControl:true,scrollWheelZoom:false,dragging:true,doubleClickZoom:false,boxZoom:false}).setView(userLL,15);
-  L.tileLayer(TILE_URL, TILE_OPTS).addTo(trackMapInst);
+  L.tileLayer(curTiles(), TILE_OPTS).addTo(trackMapInst);
   L.marker(userLL,{icon:userDivIcon()}).addTo(trackMapInst);
 }
 function initTrackMapGoogle(){
@@ -3321,7 +3333,7 @@ function initTrackMapGoogle(){
   trackMapInst = new google.maps.Map(el,{
     center:{lat:userLL[0],lng:userLL[1]}, zoom:15, disableDefaultUI:true,
     gestureHandling:'greedy', keyboardShortcuts:false,
-    clickableIcons:false, styles:G_DARK
+    clickableIcons:false, styles:isLight()?G_LIGHT:G_DARK
   });
   trackMapInst._isGoogle=true;
   watchGoogleMapHealth('trackMap');
@@ -4152,6 +4164,12 @@ function quickSend(t){
 function toggleTheme(){
   document.body.classList.toggle('light');
   document.getElementById('themeSwitch').classList.toggle('on',!document.body.classList.contains('light'));
+  // re-render the active map so its tiles/style match the theme
+  ['homeMap','trackMap'].forEach(id=>{const e=document.getElementById(id);if(e) e.innerHTML='';});
+  homeMapInst=null; trackMapInst=null;
+  const top=stack[stack.length-1];
+  if(top==='home') setTimeout(initHomeMap,60);
+  if(top==='tracking') setTimeout(initTrackMap,60);
 }
 
 /* ---------- barber dash ---------- */
