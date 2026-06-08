@@ -297,6 +297,37 @@ body.light .park{background:rgba(70,201,139,.22);}
 .dots{display:flex;gap:6px;justify-content:center;margin-top:12px;}
 .dots i{width:6px;height:6px;border-radius:50%;background:var(--line2);transition:.2s;}
 .dots i.on{background:var(--blue);width:18px;border-radius:3px;}
+
+/* ===== PORTFOLIO & REVIEWS ===== */
+.revMulti{display:flex;flex-direction:column;gap:10px;padding:0 20px;}
+.revMulti .review{margin:0;}
+.ratingBreakWrap{padding:2px 20px 14px;}
+.ratingBreakRow{display:flex;align-items:center;gap:9px;margin-bottom:5px;}
+.ratingBreakRow .rbl{width:12px;font-size:11.5px;color:var(--faint);text-align:right;flex-shrink:0;}
+.ratingBar{flex:1;height:5px;background:var(--card2);border-radius:3px;overflow:hidden;}
+.ratingBarFill{height:100%;background:var(--orange);border-radius:3px;transition:width .4s ease;}
+.ratingBreakRow .rbc{width:24px;font-size:11px;color:var(--faint);text-align:left;}
+.revTag{display:inline-block;background:var(--card2);border-radius:8px;padding:3px 9px;font-size:11px;color:var(--blue);font-weight:650;margin:3px 3px 0 0;}
+.revSeeAll{display:block;text-align:center;color:var(--blue);font-size:13.5px;font-weight:660;padding:10px;cursor:pointer;}
+.rateWriteWrap{padding:0 20px 4px;}
+.rateWriteWrap label{font-size:12.5px;font-weight:680;color:var(--dim);display:block;margin-bottom:7px;}
+.rateWriteArea{width:100%;background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:13px 15px;font-family:inherit;font-size:14px;color:var(--text);resize:none;outline:none;box-sizing:border-box;line-height:1.5;}
+.rateWriteArea:focus{border-color:var(--blue);}
+.dashPortGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:2px 20px 6px;}
+.dashPortTile{border-radius:18px;aspect-ratio:1;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:10px;cursor:pointer;}
+.dashPortTile span{font-size:12px;font-weight:720;color:#fff;position:relative;z-index:2;}
+.dashPortTile::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(0,0,0,.62));}
+.uploadTile{border-radius:18px;aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border:2px dashed var(--line2);cursor:pointer;transition:.15s;color:var(--dim);background:var(--card);}
+.uploadTile:active{opacity:.65;}
+.uploadTile svg{opacity:.45;}
+.uploadTile span{font-size:12.5px;font-weight:680;}
+.dashRevCard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin:0 20px 10px;}
+.dashRevCard .drh{display:flex;align-items:center;gap:9px;margin-bottom:8px;}
+.dashRevCard .drh .av{width:36px;height:36px;border-radius:11px;font-size:13px;}
+.dashRevCard .drs{color:var(--orange);font-size:12.5px;margin-left:auto;}
+.dashRevCard .drt{font-size:13px;color:var(--dim);line-height:1.55;}
+.dashRevCard .drtags{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px;}
+.dashRevCard .drtag{background:var(--card2);border-radius:8px;padding:3px 9px;font-size:11px;color:var(--blue);font-weight:650;}
 .stickyBuy{
   padding:14px 20px 30px;border-top:1px solid var(--line);background:var(--bg);
   display:flex;align-items:center;gap:13px;
@@ -983,7 +1014,7 @@ body.light .park{background:rgba(70,201,139,.22);}
       </div>
 
       <div class="sect"><h3>Portfolio</h3></div>
-      <div class="gallery">
+      <div class="gallery" id="bpGallery">
         <div class="gtile" style="background:var(--grad)"><span>Mid skin fade</span></div>
         <div class="gtile" style="background:var(--gradWarm)"><span>Beard sculpt + lineup</span></div>
         <div class="gtile" style="background:var(--gradGreen)"><span>Textured crop</span></div>
@@ -1000,16 +1031,8 @@ body.light .park{background:rgba(70,201,139,.22);}
         <span class="chip">English</span><span class="chip">Spanish</span>
       </div>
 
-      <div class="sect" style="margin-top:16px"><h3>Reviews · 1,240</h3></div>
-      <div id="revBox">
-        <div class="review">
-          <div class="revHead"><div class="av" style="background:var(--gradWarm)">JL</div>
-            <div><b style="font-size:13.5px">Jordan L.</b><small style="color:var(--faint);font-size:11px">2 days ago</small></div>
-            <div class="revStars">★★★★★</div></div>
-          <div class="revText">"Best fade I've had in years and he came to my apartment. Showed up early, super clean setup. Booking again every two weeks."</div>
-        </div>
-      </div>
-      <div class="dots"><i class="on"></i><i></i><i></i></div>
+      <div class="sect" style="margin-top:16px"><h3 id="revCountHead">Reviews · 1,240</h3></div>
+      <div id="revBox"></div>
       <div style="height:14px"></div>
     </div>
     <div class="stickyBuy">
@@ -1336,6 +1359,15 @@ body.light .park{background:rgba(70,201,139,.22);}
         <div class="bInfo"><div class="bName">Skin Fade</div><div class="bMeta">61% of your bookings · highest tips</div></div>
         <div class="bRight"><div class="price" style="color:var(--green)">$38</div></div>
       </div>
+
+      <div class="sect" style="margin-top:20px">
+        <h3 style="display:flex;align-items:center;justify-content:space-between">My portfolio <span style="color:var(--blue);font-size:12px;font-weight:660;cursor:pointer;text-transform:none;letter-spacing:0" onclick="addPortfolioPhoto()">+ Upload photo</span></h3>
+      </div>
+      <div class="dashPortGrid" id="dashPortfolio"></div>
+
+      <div class="sect" style="margin-top:16px"><h3>Customer reviews</h3></div>
+      <div id="dashReviews"></div>
+
       <div style="height:24px"></div>
     </div>
   </section>
@@ -1620,6 +1652,10 @@ body.light .park{background:rgba(70,201,139,.22);}
           <span class="chip" onclick="pickRateTip(this,4)">15% · $4</span>
           <span class="chip on" onclick="pickRateTip(this,6)">20% · $6</span>
           <span class="chip" onclick="pickRateTip(this,8)">25% · $8</span>
+        </div>
+        <div class="rateWriteWrap" style="margin-top:16px">
+          <label>Leave a review (optional)</label>
+          <textarea class="rateWriteArea" id="rateText" rows="3" placeholder="Share what stood out — your review goes live on their profile…"></textarea>
         </div>
       </div>
     </div>
@@ -2179,7 +2215,7 @@ function setBarber(i){
   document.getElementById('bkName').textContent=b.n;
   applyFavHeart(favorites.indexOf(i)>=0);
 }
-function openBarber(i){ setBarber(i); nav('barberProfile'); }
+function openBarber(i){ setBarber(i); renderBarberProfile(i); nav('barberProfile'); }
 function rebook(i){
   setBarber(i); nav('booking');
   notify('Rebooking '+BARBERS[i].n.split(' ')[0],'Your usual service is pre-filled — just confirm.');
@@ -2738,8 +2774,8 @@ function openBarberOnboard(){
   setTimeout(renderWizStep, 60);
 }
 function goBarberSide(){
-  // If a barber has signed up on this device, take them straight to the dashboard.
-  if(BARBERS.length){ nav('barberDash'); } else { openBarberOnboard(); }
+  if(BARBERS.length){ renderDashPortfolio(); renderDashReviews(); nav('barberDash'); }
+  else { openBarberOnboard(); }
 }
 function cancelOnboard(){ back(); }
 
@@ -2941,7 +2977,7 @@ async function finishBarberSignup(){
   var hm=document.getElementById('homeMap'); if(hm) hm.innerHTML='';
   var tm=document.getElementById('trackMap'); if(tm) tm.innerHTML='';
   signup = {step:1, email:'', phone:'', firstName:'', lastName:'', years:'', bio:'', address:'', radius:5, services:{}, routing:'', account:'', bgConsent:false, idDone:false, selfieDone:false};
-  navTab('barberDash');
+  renderDashPortfolio(); renderDashReviews(); navTab('barberDash');
   notify('You\'re live, '+firstName, 'New jobs in your area will start appearing now.');
 }
 
@@ -2961,6 +2997,7 @@ function goToRating(){
   document.querySelectorAll('#rateTipRow .chip').forEach(c=>c.classList.remove('on'));
   document.querySelectorAll('#rateTipRow .chip')[2].classList.add('on'); // 20% default
   document.getElementById('rateTags').style.display='none';
+  const rtEl=document.getElementById('rateText'); if(rtEl) rtEl.value='';
   const b=BARBERS[current];
   document.getElementById('rateAv').textContent=b.in;
   document.getElementById('rateAv').style.background=b.g;
@@ -2985,9 +3022,20 @@ function updateRateBtn(){
 }
 function submitRating(){
   if(rateStars===0) return;
+  const rateText=(document.getElementById('rateText')||{value:''}).value.trim();
+  if(rateText || ratingTags.size>0){
+    const revKey=getRevKey(current);
+    const revs=loadBarberReviews(current);
+    const uNames=['Alex M.','Chris T.','Jordan K.','Sam L.','Taylor B.','Riley W.','Devon H.','Marcus J.'];
+    const uN=uNames[Math.floor(Math.random()*uNames.length)];
+    const uIn=uN.split(' ').map(x=>x[0]).join('');
+    const grads=['var(--grad)','var(--gradWarm)','var(--gradGreen)','linear-gradient(135deg,#9B7BFF,#6E6BFF)'];
+    revs.unshift({u:uN,in:uIn,g:grads[Math.floor(Math.random()*grads.length)],stars:rateStars,text:rateText,date:'Just now',tags:[...ratingTags]});
+    localStorage.setItem(revKey, JSON.stringify(revs));
+  }
   fillReceipt();
   nav('receipt');
-  notify('Rating submitted', rateStars+'★ for '+BARBERS[current].n.split(' ')[0]+' · '+tipAmt+'$ tip added.');
+  notify('Rating submitted', rateStars+'★ for '+BARBERS[current].n.split(' ')[0]+' · $'+tipAmt+' tip added.');
 }
 function fillReceipt(){
   const b=BARBERS[current];
@@ -3335,6 +3383,115 @@ setInterval(()=>{
   let n=parseInt(num.textContent); if(isNaN(n))return;
   if(n>0){ n--; num.textContent=n; r.style.setProperty('--p',(n/15*360)+'deg'); }
 },1000);
+
+/* ---------- portfolio & reviews ---------- */
+const BP_SEED=[
+  [{label:'Mid skin fade',bg:'var(--grad)'},{label:'Beard sculpt + lineup',bg:'var(--gradWarm)'},{label:'Textured crop',bg:'var(--gradGreen)'},{label:'Burst fade',bg:'linear-gradient(135deg,#9B7BFF,#6E6BFF)'},{label:'High top',bg:'linear-gradient(135deg,#FFCf5A,#FF9F4A)'}],
+  [{label:'Skin fade + lineup',bg:'var(--gradGreen)'},{label:'Taper fade',bg:'linear-gradient(135deg,#9B7BFF,#6E6BFF)'},{label:'Waves cut',bg:'var(--grad)'},{label:'Box fade',bg:'var(--gradWarm)'}],
+  [{label:'Bald fade',bg:'var(--gradWarm)'},{label:'Drop fade',bg:'var(--grad)'},{label:'Temple fade',bg:'linear-gradient(135deg,#FFCf5A,#FF9F4A)'},{label:'Mohawk fade',bg:'var(--gradGreen)'}],
+];
+const BR_SEED=[
+  [{u:'Jordan L.',in:'JL',g:'var(--gradWarm)',stars:5,text:'Best fade I\'ve had in years and he came to my apartment. Showed up early, super clean setup.',tags:['sharp','ontime'],date:'2 days ago'},
+   {u:'DeShawn K.',in:'DK',g:'var(--grad)',stars:5,text:'This man is a wizard with clippers. My taper was immaculate.',tags:['sharp','friendly'],date:'1 week ago'},
+   {u:'Marcus T.',in:'MT',g:'var(--gradGreen)',stars:4,text:'Great cut, very professional. Setup was clean and he was on time.',tags:['pro','clean'],date:'2 weeks ago'},
+   {u:'Isaiah R.',in:'IR',g:'linear-gradient(135deg,#9B7BFF,#6E6BFF)',stars:5,text:'Never going to a shop again. Dude came to my crib and gave me the cleanest fade.',tags:['sharp','value'],date:'3 weeks ago'}],
+  [{u:'Chris B.',in:'CB',g:'var(--gradGreen)',stars:5,text:'Came right on time, setup was immaculate. Best cut in the city no debate.',tags:['ontime','clean'],date:'3 days ago'},
+   {u:'Tyler M.',in:'TM',g:'var(--grad)',stars:4,text:'Super professional, fade was on point.',tags:['pro','sharp'],date:'1 week ago'},
+   {u:'Jaylen W.',in:'JW',g:'var(--gradWarm)',stars:5,text:'I\'ve been looking for a barber like this for years. No cap.',tags:['friendly','value'],date:'2 weeks ago'}],
+  [{u:'Sam D.',in:'SD',g:'var(--gradWarm)',stars:5,text:'Perfect fade every time. He remembers exactly how I like it.',tags:['sharp','pro'],date:'5 days ago'},
+   {u:'Antoine F.',in:'AF',g:'var(--gradGreen)',stars:4,text:'Clean cut, showed up on time. Would book again.',tags:['ontime','clean'],date:'2 weeks ago'}],
+];
+function getRevKey(i){ return 'fadex_reviews_'+(BARBERS[i]?BARBERS[i].n.replace(/\s/g,'_'):'b'+i); }
+function getPortKey(i){ return 'fadex_portfolio_'+(BARBERS[i]?BARBERS[i].n.replace(/\s/g,'_'):'b'+i); }
+function loadBarberReviews(i){
+  const stored=localStorage.getItem(getRevKey(i));
+  if(stored){ try{ return JSON.parse(stored); }catch(e){} }
+  return (BR_SEED[i]||BR_SEED[0]).map(r=>Object.assign({},r));
+}
+function loadBarberPortfolio(i){
+  const stored=localStorage.getItem(getPortKey(i));
+  if(stored){ try{ return JSON.parse(stored); }catch(e){} }
+  return (BP_SEED[i]||BP_SEED[0]).map(p=>Object.assign({},p));
+}
+
+function renderBarberProfile(i){
+  const b=BARBERS[i];
+  // Portfolio
+  const port=loadBarberPortfolio(i);
+  const gEl=document.getElementById('bpGallery');
+  if(gEl) gEl.innerHTML=port.map(p=>'<div class="gtile" style="background:'+p.bg+'"><span>'+p.label+'</span></div>').join('');
+  // Review count heading
+  const revs=loadBarberReviews(i);
+  const revHead=document.getElementById('revCountHead');
+  if(revHead) revHead.textContent='Reviews · '+(parseInt((b||{}).cuts)||0);
+  // Rating breakdown
+  const counts=[0,0,0,0,0];
+  revs.forEach(r=>{ if(r.stars>=1&&r.stars<=5) counts[r.stars-1]++; });
+  let html='<div class="ratingBreakWrap">';
+  for(let s=5;s>=1;s--){
+    const pct=revs.length?Math.round(counts[s-1]/revs.length*100):(s===5?80:s===4?14:4);
+    html+='<div class="ratingBreakRow"><span class="rbl">'+s+'</span><div class="ratingBar"><div class="ratingBarFill" style="width:'+pct+'%"></div></div><span class="rbc">'+(counts[s-1]||'')+'</span></div>';
+  }
+  html+='</div>';
+  // Reviews list
+  html+='<div class="revMulti">';
+  revs.slice(0,5).forEach(r=>{
+    const filled='★'.repeat(r.stars), empty='☆'.repeat(5-r.stars);
+    html+='<div class="review">'
+      +'<div class="revHead"><div class="av" style="background:'+r.g+'">'+r.in+'</div>'
+      +'<div><b style="font-size:13.5px">'+r.u+'</b><small style="color:var(--faint);font-size:11px;display:block;margin-top:2px">'+r.date+'</small></div>'
+      +'<div class="revStars">'+filled+'<span style="opacity:.3">'+empty+'</span></div></div>';
+    if(r.text) html+='<div class="revText">“'+r.text+'”</div>';
+    if(r.tags&&r.tags.length) html+='<div style="margin-top:8px">'+r.tags.map(t=>'<span class="revTag">'+t.replace(/_/g,' ')+'</span>').join('')+'</div>';
+    html+='</div>';
+  });
+  html+='</div>';
+  const rEl=document.getElementById('revBox');
+  if(rEl) rEl.innerHTML=html;
+}
+
+function renderDashPortfolio(){
+  const idx=BARBERS.length-1; // last signed-in barber = current barber account
+  const port=loadBarberPortfolio(idx<0?0:idx);
+  const el=document.getElementById('dashPortfolio'); if(!el) return;
+  const grads=['var(--grad)','var(--gradWarm)','var(--gradGreen)','linear-gradient(135deg,#9B7BFF,#6E6BFF)','linear-gradient(135deg,#FFCf5A,#FF9F4A)','linear-gradient(135deg,#3FD1D8,#6E9DFF)'];
+  let html=port.map((p,pi)=>'<div class="dashPortTile" style="background:'+p.bg+'" onclick="notify(\'Portfolio photo\',\''+p.label+' — tap & hold to delete.\')"><span>'+p.label+'</span></div>').join('');
+  html+='<div class="uploadTile" onclick="addPortfolioPhoto()"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 6v12M6 12h12"/></svg><span>Upload photo</span></div>';
+  el.innerHTML=html;
+}
+function renderDashReviews(){
+  const idx=BARBERS.length-1;
+  const revs=loadBarberReviews(idx<0?0:idx);
+  const el=document.getElementById('dashReviews'); if(!el) return;
+  if(!revs.length){
+    el.innerHTML='<div style="padding:4px 20px 8px;color:var(--faint);font-size:13px;text-align:center">Customer reviews will appear here after your first cut.</div>';
+    return;
+  }
+  el.innerHTML=revs.slice(0,5).map(r=>{
+    const stars='★'.repeat(r.stars);
+    return '<div class="dashRevCard">'
+      +'<div class="drh"><div class="av" style="background:'+r.g+'">'+r.in+'</div>'
+      +'<div><b style="font-size:13px">'+r.u+'</b><small style="color:var(--faint);font-size:11px;display:block">'+r.date+'</small></div>'
+      +'<div class="drs">'+stars+'</div></div>'
+      +(r.text?'<div class="drt">“'+r.text+'”</div>':'')
+      +(r.tags&&r.tags.length?'<div class="drtags">'+r.tags.map(t=>'<span class="drtag">'+t.replace(/_/g,' ')+'</span>').join('')+'</div>':'')
+      +'</div>';
+  }).join('');
+}
+
+let _portLabel='';
+function addPortfolioPhoto(){
+  const labels=['Skin fade','Taper fade','Bald fade','Drop fade','Burst fade','Beard sculpt','Lineup','Textured crop','High top','Box fade'];
+  const label=prompt('Name this cut (e.g. Skin fade, Lineup, Beard sculpt):',labels[Math.floor(Math.random()*labels.length)]);
+  if(!label||!label.trim()) return;
+  const idx=BARBERS.length-1;
+  const port=loadBarberPortfolio(idx<0?0:idx);
+  const grads=['var(--grad)','var(--gradWarm)','var(--gradGreen)','linear-gradient(135deg,#9B7BFF,#6E6BFF)','linear-gradient(135deg,#FFCf5A,#FF9F4A)','linear-gradient(135deg,#3FD1D8,#6E9DFF)'];
+  port.push({label:label.trim(),bg:grads[port.length%grads.length]});
+  localStorage.setItem(getPortKey(idx<0?0:idx), JSON.stringify(port));
+  renderDashPortfolio();
+  notify('Photo added','Your portfolio now has '+port.length+' looks.');
+}
 
 /* ---------- skeleton load ---------- */
 buildList();
