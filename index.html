@@ -831,6 +831,34 @@ body.light .park{background:rgba(70,201,139,.22);}
 [data-a="3"]{animation:obUp .38s .27s ease-out both;}
 [data-a="4"]{animation:obUp .38s .38s ease-out both;}
 [data-a="5"]{animation:obUp .38s .5s ease-out both;}
+
+/* ===== AUTH / SIGN-UP ===== */
+#auth{background:
+  radial-gradient(700px 480px at 80% 6%,rgba(42,88,204,.20),transparent 60%),
+  radial-gradient(640px 460px at 10% 98%,rgba(255,159,74,.20),transparent 60%),
+  var(--bg);}
+.auth-back{position:absolute;top:18px;left:16px;width:38px;height:38px;border-radius:50%;background:var(--card2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:6;}
+.auth-wrap{flex:1;display:flex;flex-direction:column;justify-content:center;padding:0 26px 30px;}
+.auth-logo{width:70px;height:70px;border-radius:21px;background:var(--grad);display:flex;align-items:center;justify-content:center;box-shadow:0 18px 44px -14px rgba(42,88,204,.8);margin:0 auto 22px;}
+.auth-h{font-size:28px;font-weight:820;letter-spacing:-1px;text-align:center;}
+.auth-sub{color:var(--dim);font-size:14.5px;text-align:center;margin-top:9px;line-height:1.5;}
+.auth-btns{display:flex;flex-direction:column;gap:11px;margin-top:30px;}
+.sso{display:flex;align-items:center;justify-content:center;gap:11px;width:100%;padding:15px;border-radius:14px;font-family:inherit;font-size:15.5px;font-weight:730;cursor:pointer;border:1px solid transparent;transition:transform .12s,filter .2s;letter-spacing:-.1px;}
+.sso:active{transform:scale(.975);}
+.sso .ssoIco{flex:none;display:flex;}
+.sso.apple{background:#000;color:#fff;border-color:var(--line2);}
+.sso.google{background:#fff;color:#1f1f1f;}
+.sso.email{background:var(--card2);color:var(--text);border-color:var(--line2);}
+.auth-or{display:flex;align-items:center;gap:12px;color:var(--faint);font-size:11.5px;font-weight:700;letter-spacing:.4px;margin:16px 2px 4px;text-transform:uppercase;}
+.auth-or::before,.auth-or::after{content:"";flex:1;height:1px;background:var(--line2);}
+.auth-foot{text-align:center;color:var(--faint);font-size:11px;line-height:1.6;margin-top:22px;padding:0 8px;}
+.auth-foot b{color:var(--dim);font-weight:700;}
+.auth-switch{text-align:center;color:var(--dim);font-size:14px;font-weight:600;margin-top:20px;cursor:pointer;}
+.auth-switch b{color:var(--blue);}
+.auth-emailForm{display:none;margin-top:26px;}
+.auth-emailForm label{display:block;font-size:12.5px;font-weight:700;color:var(--dim);margin:0 2px 7px;}
+.auth-emailForm input{width:100%;background:var(--card);border:1px solid var(--line2);border-radius:14px;padding:15px;color:var(--text);font-family:inherit;font-size:15.5px;outline:none;}
+.auth-emailForm input:focus{border-color:var(--blue);}
 </style>
 </head>
 <body>
@@ -1222,8 +1250,45 @@ body.light .park{background:rgba(70,201,139,.22);}
       </div>
     </div>
     <div class="ob-nav">
-      <button class="ob-cta" style="animation:obUp .38s .18s ease-out both,obPulse 1.8s .8s ease-in-out 2;" onclick="obComplete()">Sign Up Free</button>
-      <div class="ob-ghost" style="animation:obUp .38s .32s ease-out both;" onclick="obComplete()">Already have an account? <b>Log in</b></div>
+      <button class="ob-cta" style="animation:obUp .38s .18s ease-out both,obPulse 1.8s .8s ease-in-out 2;" onclick="goAuth('signup')">Sign Up Free</button>
+      <div class="ob-ghost" style="animation:obUp .38s .32s ease-out both;" onclick="goAuth('login')">Already have an account? <b>Log in</b></div>
+    </div>
+  </section>
+
+  <!-- ============ AUTH / SIGN-UP ============ -->
+  <section class="screen" id="auth">
+    <div class="auth-back" onclick="back()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="2.4"><path d="M15 18l-6-6 6-6"/></svg>
+    </div>
+    <div class="auth-wrap">
+      <div class="auth-logo"><span style="font-size:36px;line-height:1">✂️</span></div>
+      <div class="auth-h" id="authH">Create your account</div>
+      <div class="auth-sub" id="authSub">Sign up to see barbers near you right now.</div>
+
+      <div class="auth-btns" id="authSso">
+        <button class="sso apple" onclick="authWith('apple')">
+          <span class="ssoIco"><svg width="19" height="19" viewBox="0 0 24 24" fill="#fff"><path d="M16.36 12.78c.02 2.27 1.99 3.02 2.01 3.03-.02.05-.31 1.08-1.04 2.14-.63.92-1.28 1.83-2.31 1.85-1.01.02-1.34-.6-2.49-.6-1.16 0-1.52.58-2.47.62-1 .04-1.76-.99-2.39-1.91-1.3-1.88-2.29-5.3-.96-7.61.66-1.15 1.84-1.88 3.12-1.9.98-.02 1.9.66 2.49.66.59 0 1.71-.81 2.88-.69.49.02 1.87.2 2.76 1.49-.07.04-1.64.96-1.63 2.86M14.5 6.6c.52-.63.87-1.51.77-2.39-.75.03-1.66.5-2.2 1.13-.48.55-.91 1.45-.8 2.31.84.07 1.7-.43 2.23-1.05"/></svg></span>
+          Continue with Apple
+        </button>
+        <button class="sso google" onclick="authWith('google')">
+          <span class="ssoIco"><svg width="19" height="19" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34.6 6.1 29.6 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.3-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34.6 6.1 29.6 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.5 0 10.5-2.1 14.3-5.5l-6.6-5.6C29.7 34.6 27 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.6 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.3 5.6l6.6 5.6c-.5.4 7.4-5.4 7.4-15.2 0-1.3-.1-2.3-.4-3.5z"/></svg></span>
+          Continue with Google
+        </button>
+        <button class="sso email" onclick="authEmail()">
+          <span class="ssoIco"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7.5l8.5 5.5 8.5-5.5"/></svg></span>
+          Continue with Email
+        </button>
+      </div>
+
+      <div class="auth-emailForm" id="authEmailForm">
+        <label>Email address</label>
+        <input id="authEmailInput" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com"/>
+        <button class="btn grad" style="margin-top:13px" onclick="authEmailSubmit()">Continue</button>
+        <div class="auth-switch" onclick="authEmailBack()">← Other ways to sign in</div>
+      </div>
+
+      <div class="auth-foot">By continuing you agree to our <b>Terms</b> &amp; <b>Privacy Policy</b>.</div>
+      <div class="auth-switch" id="authSwitch" onclick="authSwitch()">Already have an account? <b>Log in</b></div>
     </div>
   </section>
 
@@ -4035,6 +4100,54 @@ function obComplete(){
   while(stack.length&&stack[stack.length-1].startsWith('ob')) stack.pop();
   if(!stack.length) stack.push('welcome');
   render();
+}
+/* ---------- customer sign-up / log-in (Apple · Google · Email) ---------- */
+let _authMode='signup';
+function goAuth(mode){
+  _authMode = (mode==='login') ? 'login' : 'signup';
+  sessionStorage.setItem('fadex_seen_ob','1');
+  // leave onboarding, land on the branded welcome as the base, then open auth on top
+  while(stack.length && stack[stack.length-1].startsWith('ob')) stack.pop();
+  if(!stack.length) stack.push('welcome');
+  if(stack[stack.length-1]!=='auth') stack.push('auth');
+  render();
+  applyAuthMode();
+  haptic();
+}
+function applyAuthMode(){
+  var login = _authMode==='login';
+  var h=document.getElementById('authH'), s=document.getElementById('authSub'), sw=document.getElementById('authSwitch');
+  if(h) h.textContent = login ? 'Welcome back' : 'Create your account';
+  if(s) s.textContent = login ? 'Log in to book your next fade.' : 'Sign up to see barbers near you right now.';
+  if(sw) sw.innerHTML = login ? 'New here? <b>Create an account</b>' : 'Already have an account? <b>Log in</b>';
+  // always reset to the provider buttons (collapse the email mini-form)
+  var sso=document.getElementById('authSso'), ef=document.getElementById('authEmailForm');
+  if(sso) sso.style.display='flex';
+  if(ef) ef.style.display='none';
+}
+function authSwitch(){ _authMode = (_authMode==='login') ? 'signup' : 'login'; applyAuthMode(); haptic(); }
+function authWith(provider){ finishAuth(provider); }
+function authEmail(){
+  document.getElementById('authSso').style.display='none';
+  var ef=document.getElementById('authEmailForm'); ef.style.display='block';
+  setTimeout(function(){ var i=document.getElementById('authEmailInput'); if(i) i.focus(); }, 60);
+}
+function authEmailBack(){
+  document.getElementById('authEmailForm').style.display='none';
+  document.getElementById('authSso').style.display='flex';
+}
+function authEmailSubmit(){
+  var v=(document.getElementById('authEmailInput').value||'').trim();
+  if(!v || v.indexOf('@')<1){ notify('Enter your email','We need a valid email address.'); return; }
+  finishAuth('email');
+}
+function finishAuth(provider){
+  // prototype: pretend the sign-in succeeded → return to the branded welcome
+  while(stack.length && stack[stack.length-1]==='auth') stack.pop();
+  if(!stack.length) stack.push('welcome');
+  render();
+  var label = provider==='apple' ? 'Apple' : provider==='google' ? 'Google' : 'email';
+  notify(_authMode==='login' ? 'Welcome back' : 'Account created', 'Signed in with '+label+'.');
 }
 // ob7: price ticks down
 let _ob7T=null;
