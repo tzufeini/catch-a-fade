@@ -16,15 +16,16 @@
   border-radius:50% 50% 50% 4px;transform:rotate(45deg);border:2.5px solid #0E1118;
   box-shadow:0 6px 14px rgba(0,0,0,.55);cursor:pointer;}
 .barber-pin span{transform:rotate(-45deg);font-weight:800;color:#fff;font-size:12px;}
-.user-dot{width:18px;height:18px;border-radius:50%;background:#6E9DFF;
-  border:3px solid #fff;box-shadow:0 0 0 6px rgba(110,157,255,.25),0 3px 8px rgba(0,0,0,.5);}
+.user-dot{width:18px;height:18px;border-radius:50%;background:#2A58CC;
+  border:3px solid #fff;box-shadow:0 0 0 6px rgba(42,88,204,.28),0 3px 8px rgba(0,0,0,.5);}
 :root{
   --bg:#0C0C0F; --bg2:#101014; --card:#1A1A20; --card2:#22222A; --card3:#2B2B34;
   --line:rgba(255,255,255,.07); --line2:rgba(255,255,255,.12);
-  --text:#F4F1EC; --dim:#9B9BA6; --faint:#62626C;
-  --blue:#6E9DFF; --blueDeep:#4C79EE; --green:#46C98B; --orange:#FF9F4A; --pink:#F78FB3;
-  --grad:linear-gradient(135deg,#6E9DFF,#9B7BFF);
-  --gradWarm:linear-gradient(135deg,#FF9F4A,#F78FB3);
+  --text:#F5F2EE; --dim:#9B9BA6; --faint:#62626C;
+  --blue:#2A58CC; --blueDeep:#1D40A8; --green:#46C98B; --orange:#FF9F4A; --pink:#C82222;
+  --red:#C82222; --bordeaux:#7A1515;
+  --grad:linear-gradient(135deg,#2A58CC,#C82222);
+  --gradWarm:linear-gradient(135deg,#C82222,#7A1515);
   --gradGreen:linear-gradient(135deg,#46C98B,#3FA9D8);
   --r:22px; --map:#14141A;
 }
@@ -39,8 +40,8 @@ html,body{height:100%;}
 body{
   font-family:-apple-system,'SF Pro Display','SF Pro Text','Inter',system-ui,sans-serif;
   background:
-    radial-gradient(900px 600px at 18% 0%,rgba(110,157,255,.16),transparent 60%),
-    radial-gradient(800px 600px at 88% 100%,rgba(155,123,255,.14),transparent 55%),
+    radial-gradient(900px 600px at 18% 0%,rgba(42,88,204,.16),transparent 60%),
+    radial-gradient(800px 600px at 88% 100%,rgba(200,34,34,.13),transparent 55%),
     #07070A;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   min-height:100%;overflow:hidden;color:var(--text);
@@ -90,7 +91,7 @@ body{
   color:#fff;background:var(--blueDeep);padding:16px;width:100%;
 }
 .btn:active{transform:scale(.96);}
-.btn.grad{background:var(--grad);box-shadow:0 10px 26px -10px rgba(110,157,255,.7);}
+.btn.grad{background:var(--grad);box-shadow:0 10px 26px -10px rgba(200,34,34,.5);}
 .btn.green{background:var(--green);box-shadow:0 10px 26px -10px rgba(70,201,139,.6);}
 .btn.ghost{background:var(--card2);color:var(--text);}
 .btn.dark{background:#111;color:#fff;}
@@ -108,20 +109,20 @@ svg.ic{display:block;}
   display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;
   padding:4px 9px;border-radius:30px;
 }
-.verified{background:rgba(110,157,255,.16);color:var(--blue);}
+.verified{background:rgba(42,88,204,.16);color:var(--blue);}
 .fade-up{animation:fadeUp .5s cubic-bezier(.2,.7,.2,1) both;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
 /* ===== WELCOME ===== */
 #welcome{background:
-  radial-gradient(700px 480px at 80% 8%,rgba(155,123,255,.34),transparent 60%),
+  radial-gradient(700px 480px at 80% 8%,rgba(42,88,204,.22),transparent 60%),
   radial-gradient(640px 460px at 10% 96%,rgba(255,159,74,.24),transparent 60%),
   var(--bg);}
 .wTop{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 32px;text-align:center;}
 .logoMark{
   width:84px;height:84px;border-radius:25px;background:var(--grad);
   display:flex;align-items:center;justify-content:center;
-  box-shadow:0 20px 50px -14px rgba(110,157,255,.8);margin-bottom:26px;
+  box-shadow:0 20px 50px -14px rgba(42,88,204,.8);margin-bottom:26px;
 }
 .brand{font-size:42px;font-weight:800;letter-spacing:-1.5px;}
 .brand span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
@@ -162,8 +163,8 @@ body.light .road{background:#fff;}
 .park{position:absolute;background:rgba(70,201,139,.10);border-radius:30px;}
 body.light .park{background:rgba(70,201,139,.22);}
 .radius{
-  position:absolute;border-radius:50%;border:1.5px dashed rgba(110,157,255,.4);
-  background:radial-gradient(circle,rgba(110,157,255,.10),transparent 70%);
+  position:absolute;border-radius:50%;border:1.5px dashed rgba(42,88,204,.4);
+  background:radial-gradient(circle,rgba(42,88,204,.10),transparent 70%);
 }
 .me{position:absolute;width:20px;height:20px;}
 .me::before{content:"";position:absolute;inset:0;border-radius:50%;background:var(--blue);
@@ -212,7 +213,7 @@ body.light .park{background:rgba(70,201,139,.22);}
 .secLabel b{font-size:16px;font-weight:720;}
 .secLabel a{font-size:13px;color:var(--blue);font-weight:650;cursor:pointer;}
 .radiusPill{font-size:12.5px;font-weight:680;color:var(--blue);cursor:pointer;
-  background:rgba(110,157,255,.10);border:1px solid rgba(110,157,255,.3);padding:6px 11px;border-radius:30px;}
+  background:rgba(42,88,204,.10);border:1px solid rgba(42,88,204,.3);padding:6px 11px;border-radius:30px;}
 .radiusPill b{color:var(--text);font-weight:780;}
 .radiusOptions{display:flex;flex-direction:column;gap:8px;margin-top:18px;}
 .radiusOptions .opt{margin-bottom:0;cursor:pointer;}
@@ -264,7 +265,7 @@ body.light .park{background:rgba(70,201,139,.22);}
 
 /* ===== PROFILE (barber) ===== */
 .pHero{padding:62px 20px 18px;position:relative;
-  background:linear-gradient(180deg,rgba(110,157,255,.16),transparent);}
+  background:linear-gradient(180deg,rgba(42,88,204,.16),transparent);}
 .pHero .big{width:86px;height:86px;border-radius:24px;font-size:30px;}
 .pName{font-size:23px;font-weight:780;letter-spacing:-.5px;margin-top:14px;display:flex;align-items:center;gap:8px;}
 .pSpec{color:var(--dim);font-size:14px;margin-top:4px;}
@@ -340,7 +341,7 @@ body.light .park{background:rgba(70,201,139,.22);}
   display:flex;align-items:center;gap:13px;background:var(--card);
   border:1.5px solid var(--line);border-radius:16px;padding:14px;margin-bottom:9px;cursor:pointer;transition:.16s;
 }
-.opt.on{border-color:var(--blue);background:rgba(110,157,255,.09);}
+.opt.on{border-color:var(--blue);background:rgba(42,88,204,.09);}
 .opt .emo{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .opt .ol{flex:1;}
 .opt .ol b{font-size:14.5px;font-weight:680;}
@@ -362,9 +363,9 @@ body.light .park{background:rgba(70,201,139,.22);}
 .tipRow .chip{flex:1;text-align:center;}
 
 /* ===== FINDING overlay ===== */
-#finding{background:radial-gradient(600px 600px at 50% 42%,rgba(110,157,255,.22),var(--bg));}
+#finding{background:radial-gradient(600px 600px at 50% 42%,rgba(42,88,204,.22),var(--bg));}
 .radar{width:170px;height:170px;border-radius:50%;position:relative;margin:0 auto 30px;}
-.radar i{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(110,157,255,.35);animation:rad 2.6s ease-out infinite;}
+.radar i{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(42,88,204,.35);animation:rad 2.6s ease-out infinite;}
 .radar i:nth-child(2){animation-delay:.9s}.radar i:nth-child(3){animation-delay:1.8s}
 @keyframes rad{0%{transform:scale(.2);opacity:1}100%{transform:scale(1);opacity:0}}
 .radar .core{position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);
@@ -379,7 +380,7 @@ body.light .park{background:rgba(70,201,139,.22);}
 .step{flex:1;text-align:center;position:relative;}
 .step .d{width:13px;height:13px;border-radius:50%;background:var(--card3);margin:0 auto;border:2px solid var(--bg);position:relative;z-index:2;}
 .step.done .d{background:var(--green);}
-.step.now .d{background:var(--blue);box-shadow:0 0 0 5px rgba(110,157,255,.25);}
+.step.now .d{background:var(--blue);box-shadow:0 0 0 5px rgba(42,88,204,.25);}
 .step::before{content:"";position:absolute;top:6px;left:-50%;width:100%;height:2px;background:var(--card3);}
 .step:first-child::before{display:none;}
 .step.done::before,.step.now::before{background:var(--green);}
@@ -481,7 +482,7 @@ body.light .park{background:rgba(70,201,139,.22);}
 .spark{margin-top:10px;}
 .reqCard{
   margin:10px 20px;border-radius:20px;padding:16px;border:1.5px solid var(--blue);
-  background:rgba(110,157,255,.08);animation:fadeUp .5s both;
+  background:rgba(42,88,204,.08);animation:fadeUp .5s both;
 }
 .reqTop{display:flex;align-items:center;gap:11px;margin-bottom:12px;}
 .ringTimer{width:44px;height:44px;border-radius:50%;flex-shrink:0;position:relative;
@@ -503,7 +504,7 @@ body.light .park{background:rgba(70,201,139,.22);}
 .fav-av{width:66px;height:66px;border-radius:21px;display:flex;align-items:center;justify-content:center;
   font-weight:800;color:#fff;font-size:21px;position:relative;}
 .fav-av .hb{position:absolute;bottom:-5px;right:-5px;width:23px;height:23px;border-radius:50%;
-  background:#F78FB3;border:3px solid var(--bg);display:flex;align-items:center;justify-content:center;}
+  background:#C82222;border:3px solid var(--bg);display:flex;align-items:center;justify-content:center;}
 .favItem small{display:block;font-size:11.5px;font-weight:650;color:var(--dim);margin-top:9px;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .favAdd{width:66px;height:66px;border-radius:21px;border:2px dashed var(--line2);
@@ -530,7 +531,7 @@ body.light .park{background:rgba(70,201,139,.22);}
 .favToggle{display:flex;align-items:center;gap:6px;background:var(--card2);border:1px solid var(--line2);
   color:var(--text);font-family:inherit;font-weight:680;font-size:12.5px;padding:8px 14px;border-radius:11px;cursor:pointer;flex-shrink:0;}
 .favToggle:active{transform:scale(.95);}
-.favToggle.on{background:#F78FB3;border-color:#F78FB3;color:#fff;}
+.favToggle.on{background:#C82222;border-color:#C82222;color:#fff;}
 /* payment default badge */
 .pmd{display:none;margin-left:5px;}
 .opt.on .pmd{display:inline-flex;}
@@ -582,7 +583,7 @@ body.light .park{background:rgba(70,201,139,.22);}
 .uploadTile small{color:var(--dim);font-size:12.5px;display:block;margin-top:2px;}
 .svcCheck{display:flex;align-items:center;gap:12px;background:var(--card);border:1.5px solid var(--line2);
   border-radius:14px;padding:13px 14px;margin-bottom:9px;cursor:pointer;transition:.16s;}
-.svcCheck.on{border-color:var(--blue);background:rgba(110,157,255,.08);}
+.svcCheck.on{border-color:var(--blue);background:rgba(42,88,204,.08);}
 .svcCheck .sc-box{width:24px;height:24px;border-radius:7px;border:2px solid var(--line2);flex-shrink:0;
   display:flex;align-items:center;justify-content:center;color:#fff;}
 .svcCheck.on .sc-box{background:var(--blue);border-color:var(--blue);}
@@ -593,7 +594,7 @@ body.light .park{background:rgba(70,201,139,.22);}
   font-family:inherit;color:var(--text);font-weight:700;font-size:14px;outline:none;padding:3px 4px;}
 .checkbox{display:flex;align-items:flex-start;gap:12px;cursor:pointer;padding:14px;background:var(--card);
   border:1.5px solid var(--line2);border-radius:14px;}
-.checkbox.on{border-color:var(--blue);background:rgba(110,157,255,.08);}
+.checkbox.on{border-color:var(--blue);background:rgba(42,88,204,.08);}
 .checkbox .cb{width:22px;height:22px;border-radius:6px;border:2px solid var(--line2);flex-shrink:0;
   display:flex;align-items:center;justify-content:center;margin-top:1px;color:#fff;}
 .checkbox.on .cb{background:var(--blue);border-color:var(--blue);}
@@ -604,7 +605,7 @@ body.light .park{background:rgba(70,201,139,.22);}
 .reviewItem{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--line);font-size:13.5px;gap:14px;}
 .reviewItem b{font-weight:680;color:var(--dim);}
 .reviewItem .rv{color:var(--text);font-weight:650;text-align:right;}
-.processCircle{width:90px;height:90px;border-radius:50%;border:4px solid rgba(110,157,255,.18);
+.processCircle{width:90px;height:90px;border-radius:50%;border:4px solid rgba(42,88,204,.18);
   border-top-color:var(--blue);margin:38px auto 22px;animation:spin 1s linear infinite;}
 .approveCheck{width:104px;height:104px;border-radius:50%;background:linear-gradient(135deg,#46C98B,#3FA9D8);
   margin:38px auto 22px;display:flex;align-items:center;justify-content:center;animation:apIn .5s cubic-bezier(.2,.8,.2,1);
@@ -632,11 +633,11 @@ body.light .park{background:rgba(70,201,139,.22);}
 .sbHint{display:inline-flex;align-items:center;gap:5px;margin:0 5px;vertical-align:-1px;}
 .sb{width:5px;height:18px;background:rgba(255,255,255,.18);border-radius:2px;animation:sbPulse 1s ease-in-out infinite;}
 .sb:nth-child(2){animation-delay:.2s;}
-@keyframes sbPulse{0%,100%{background:rgba(255,255,255,.18);transform:scaleY(1)}50%{background:#6E9DFF;transform:scaleY(1.2)}}
-.faceCircle{width:78px;height:78px;border-radius:50%;border:3.5px solid #6E9DFF;margin:18px auto 12px;
+@keyframes sbPulse{0%,100%{background:rgba(255,255,255,.18);transform:scaleY(1)}50%{background:#2A58CC;transform:scaleY(1.2)}}
+.faceCircle{width:78px;height:78px;border-radius:50%;border:3.5px solid #2A58CC;margin:18px auto 12px;
   position:relative;display:flex;align-items:center;justify-content:center;}
 .faceCircle.done{border-color:#46C98B;}
-.faceCircle .scan{position:absolute;inset:14px;border:2px dashed rgba(110,157,255,.6);border-radius:50%;animation:faceScan 1s linear infinite;}
+.faceCircle .scan{position:absolute;inset:14px;border:2px dashed rgba(42,88,204,.6);border-radius:50%;animation:faceScan 1s linear infinite;}
 @keyframes faceScan{to{transform:rotate(360deg)}}
 .apCancel{margin-top:10px;width:100%;background:rgba(255,255,255,.06);color:#fff;border:none;
   font-family:inherit;font-weight:680;font-size:14px;padding:13px;border-radius:13px;cursor:pointer;}
@@ -666,7 +667,7 @@ body.light .park{background:rgba(70,201,139,.22);}
 
 /* PIN card */
 .pinCard{margin:10px 20px 0;padding:16px;border-radius:18px;color:#fff;
-  background:linear-gradient(135deg,#1B2433,#22426A);border:1px solid rgba(110,157,255,.3);}
+  background:linear-gradient(135deg,#1B2433,#22426A);border:1px solid rgba(42,88,204,.3);}
 .pinCard .label{font-size:10.5px;font-weight:780;letter-spacing:1.4px;opacity:.85;text-transform:uppercase;text-align:center;}
 .pinDigits{display:flex;gap:9px;justify-content:center;margin:11px 0 8px;}
 .pinDigits span{width:48px;height:56px;border-radius:12px;background:rgba(255,255,255,.10);
@@ -735,7 +736,7 @@ body.light .park{background:rgba(70,201,139,.22);}
 .dayCard b{display:block;font-size:19px;font-weight:800;margin:3px 0 1px;}
 .dayCard .mo{font-size:10px;color:var(--faint);font-weight:600;}
 .dayCard:active{transform:scale(.95);}
-.dayCard.on{border-color:var(--blue);background:rgba(110,157,255,.13);}
+.dayCard.on{border-color:var(--blue);background:rgba(42,88,204,.13);}
 .dayCard.on small,.dayCard.on .mo{color:var(--blue);}
 .timeGrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;padding:4px 20px;}
 .timeSlot{border:1.5px solid var(--line);background:var(--card);border-radius:12px;
@@ -761,7 +762,7 @@ body.light .park{background:rgba(70,201,139,.22);}
 #clipperLogoWrap .brand span{color:var(--blue);}
 /* scissors wrap (moves bottom → top) */
 #scissorWrap{position:absolute;left:50%;transform:translateX(-50%);z-index:5;display:flex;flex-direction:column;align-items:center;pointer-events:none;opacity:0;}
-#scissorGlow{width:150px;height:5px;background:linear-gradient(90deg,transparent,var(--blue),var(--purple),var(--blue),transparent);border-radius:3px;filter:blur(5px);opacity:.95;}
+#scissorGlow{width:150px;height:5px;background:linear-gradient(90deg,transparent,#2A58CC,#ffffff,#C82222,transparent);border-radius:3px;filter:blur(5px);opacity:.95;}
 @keyframes sciShiver{0%,100%{transform:translateX(0)}33%{transform:translateX(-2.5px)}66%{transform:translateX(2.5px)}}
 #scissorSvg{animation:sciShiver .09s linear infinite;}
 </style>
@@ -798,21 +799,21 @@ body.light .park{background:rgba(70,201,139,.22);}
     <div id="scissorWrap">
       <div id="scissorGlow"></div>
       <svg id="scissorSvg" width="41" height="83" viewBox="0 0 68 138" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- left blade: tip top-left → pivot → left handle -->
-        <path d="M26 6 L34 62 L14 122" stroke="#8888ff" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M26 6 L34 62 L14 122" stroke="#d0d0ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/>
-        <!-- right blade: tip top-right → pivot → right handle -->
-        <path d="M42 6 L34 62 L54 122" stroke="#8888ff" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M42 6 L34 62 L54 122" stroke="#d0d0ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/>
+        <!-- left blade -->
+        <path d="M26 6 L34 62 L14 122" stroke="#2A58CC" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M26 6 L34 62 L14 122" stroke="#C0D4F8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/>
+        <!-- right blade -->
+        <path d="M42 6 L34 62 L54 122" stroke="#C82222" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M42 6 L34 62 L54 122" stroke="#F8C0C0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/>
         <!-- pivot screw -->
-        <circle cx="34" cy="62" r="7" fill="#4040bb" stroke="#a0a0ff" stroke-width="2.2"/>
-        <circle cx="34" cy="62" r="2.5" fill="#c0c0ff"/>
-        <!-- left finger ring -->
-        <circle cx="14" cy="126" r="13" stroke="#7575ff" stroke-width="3.5" fill="rgba(100,100,255,0.18)"/>
-        <circle cx="14" cy="126" r="7" stroke="#5555cc" stroke-width="1.5" fill="none"/>
-        <!-- right finger ring -->
-        <circle cx="54" cy="126" r="13" stroke="#7575ff" stroke-width="3.5" fill="rgba(100,100,255,0.18)"/>
-        <circle cx="54" cy="126" r="7" stroke="#5555cc" stroke-width="1.5" fill="none"/>
+        <circle cx="34" cy="62" r="7" fill="#1D40A8" stroke="#7A9EE8" stroke-width="2.2"/>
+        <circle cx="34" cy="62" r="2.5" fill="#F0F4FF"/>
+        <!-- left finger ring (blue) -->
+        <circle cx="14" cy="126" r="13" stroke="#2A58CC" stroke-width="3.5" fill="rgba(42,88,204,0.18)"/>
+        <circle cx="14" cy="126" r="7" stroke="#1D40A8" stroke-width="1.5" fill="none"/>
+        <!-- right finger ring (red) -->
+        <circle cx="54" cy="126" r="13" stroke="#C82222" stroke-width="3.5" fill="rgba(200,34,34,0.18)"/>
+        <circle cx="54" cy="126" r="7" stroke="#7A1515" stroke-width="1.5" fill="none"/>
       </svg>
     </div>
   </div>
@@ -847,7 +848,7 @@ body.light .park{background:rgba(70,201,139,.22);}
       </div>
       <div id="apStageScan" style="display:none">
         <div class="faceCircle">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#6E9DFF" stroke-width="1.8"><circle cx="9" cy="10" r="1" fill="#6E9DFF"/><circle cx="15" cy="10" r="1" fill="#6E9DFF"/><path d="M9 15c1 1 2 1.5 3 1.5s2-.5 3-1.5"/></svg>
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#2A58CC" stroke-width="1.8"><circle cx="9" cy="10" r="1" fill="#2A58CC"/><circle cx="15" cy="10" r="1" fill="#2A58CC"/><path d="M9 15c1 1 2 1.5 3 1.5s2-.5 3-1.5"/></svg>
           <div class="scan"></div>
         </div>
         <div class="apHint">Authenticating with Face ID…</div>
@@ -1004,7 +1005,7 @@ body.light .park{background:rgba(70,201,139,.22);}
         <div class="gtile" style="background:var(--grad)"><span>Mid skin fade</span></div>
         <div class="gtile" style="background:var(--gradWarm)"><span>Beard sculpt + lineup</span></div>
         <div class="gtile" style="background:var(--gradGreen)"><span>Textured crop</span></div>
-        <div class="gtile" style="background:linear-gradient(135deg,#9B7BFF,#6E6BFF)"><span>Burst fade</span></div>
+        <div class="gtile" style="background:linear-gradient(135deg,#C82222,#7A1515)"><span>Burst fade</span></div>
       </div>
 
       <div class="sect" style="margin-top:8px"><h3>About</h3></div>
@@ -1262,7 +1263,7 @@ body.light .park{background:rgba(70,201,139,.22);}
       </div>
 
       <div class="sect" style="margin-top:18px"><h3 style="display:flex;align-items:center;gap:6px">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="#F78FB3"><path d="M12 21C5 16 3 12 3 8.5A4.5 4.5 0 0 1 12 6a4.5 4.5 0 0 1 9 2.5C21 12 19 16 12 21z"/></svg>Favorite barbers</h3></div>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="#C82222"><path d="M12 21C5 16 3 12 3 8.5A4.5 4.5 0 0 1 12 6a4.5 4.5 0 0 1 9 2.5C21 12 19 16 12 21z"/></svg>Favorite barbers</h3></div>
       <div class="favRow" id="favRow"></div>
       <div class="sect" style="margin-top:16px"><h3>Settings</h3></div>
       <div class="setRow" onclick="nav('paymentMethods')"><div class="si"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.2"><rect x="2" y="5" width="20" height="14" rx="3"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div><div class="st">Payment methods</div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></div>
@@ -1374,7 +1375,7 @@ body.light .park{background:rgba(70,201,139,.22);}
       </div>
       <div id="locDefault">
       <div class="lrow" onclick="pickLoc('Current location')">
-        <div class="av" style="background:rgba(110,157,255,.16)">
+        <div class="av" style="background:rgba(42,88,204,.16)">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.2"><circle cx="12" cy="12" r="3.2"/><circle cx="12" cy="12" r="8"/><line x1="12" y1="1.5" x2="12" y2="4.5"/><line x1="12" y1="19.5" x2="12" y2="22.5"/><line x1="1.5" y1="12" x2="4.5" y2="12"/><line x1="19.5" y1="12" x2="22.5" y2="12"/></svg>
         </div>
         <div class="lr"><b>Use current location</b><small>GPS · you're near 284 Linden Ave</small></div>
@@ -1794,14 +1795,14 @@ const G_DARK=[
   {featureType:'water',elementType:'geometry',stylers:[{color:'#0a1820'}]},
   {featureType:'water',elementType:'labels.text.fill',stylers:[{color:'#3e6e7f'}]}
 ];
-const BARBER_COLORS=['#6E9DFF','#46C98B','#FF9F4A','#3FD1D8','#9B7BFF'];
+const BARBER_COLORS=['#2A58CC','#46C98B','#FF9F4A','#C82222','#1D40A8'];
 function googleBarberIcon(b,i){
   const c=BARBER_COLORS[i%5];
   const svg='<svg xmlns="http://www.w3.org/2000/svg" width="42" height="48" viewBox="0 0 42 48"><path d="M21 2C12 2 5 9 5 18c0 11 16 28 16 28s16-17 16-28C37 9 30 2 21 2z" fill="'+c+'" stroke="#0E1118" stroke-width="2.5"/><circle cx="21" cy="18" r="12" fill="'+c+'"/><text x="21" y="22.5" text-anchor="middle" font-family="-apple-system,sans-serif" font-weight="800" font-size="12" fill="#fff">'+b.in+'</text></svg>';
   return {url:'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg),scaledSize:new google.maps.Size(42,48),anchor:new google.maps.Point(21,46)};
 }
 function googleUserIcon(){
-  const svg='<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><circle cx="12" cy="12" r="9" fill="#6E9DFF" fill-opacity="0.25"/><circle cx="12" cy="12" r="6" fill="#6E9DFF" stroke="#fff" stroke-width="3"/></svg>';
+  const svg='<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><circle cx="12" cy="12" r="9" fill="#2A58CC" fill-opacity="0.25"/><circle cx="12" cy="12" r="6" fill="#2A58CC" stroke="#fff" stroke-width="3"/></svg>';
   return {url:'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg),scaledSize:new google.maps.Size(24,24),anchor:new google.maps.Point(12,12)};
 }
 loadGoogleMaps();
@@ -1963,7 +1964,7 @@ function haptic(){ if(navigator.vibrate) navigator.vibrate(8); }
 })();
 
 /* ---------- barbers (populated only by real signups via barber onboarding) ---------- */
-const BARBER_GRADIENTS=['var(--grad)','var(--gradGreen)','var(--gradWarm)','linear-gradient(135deg,#6E9DFF,#3FD1D8)','linear-gradient(135deg,#9B7BFF,#6E6BFF)','linear-gradient(135deg,#FFCf5A,#FF9F4A)'];
+const BARBER_GRADIENTS=['var(--grad)','var(--gradGreen)','var(--gradWarm)','linear-gradient(135deg,#1D40A8,#2A58CC)','linear-gradient(135deg,#C82222,#7A1515)','linear-gradient(135deg,#2A58CC,#7A1515)'];
 let BARBERS = JSON.parse(localStorage.getItem('fadex_barbers')||'[]');
 let favorites = JSON.parse(localStorage.getItem('fadex_favorites')||'[]');
 function persistBarbers(){ localStorage.setItem('fadex_barbers', JSON.stringify(BARBERS)); }
@@ -2036,8 +2037,8 @@ function updateAccuracyCircle(){
     map: homeMapInst,
     center: {lat:userLL[0], lng:userLL[1]},
     radius: userAccuracy,
-    strokeColor:'#6E9DFF', strokeOpacity:0.5, strokeWeight:1,
-    fillColor:'#6E9DFF', fillOpacity:0.10
+    strokeColor:'#2A58CC', strokeOpacity:0.5, strokeWeight:1,
+    fillColor:'#2A58CC', fillOpacity:0.10
   });
 }
 function ipGeo(){
@@ -2218,8 +2219,8 @@ function rebook(i){
 }
 function applyFavHeart(on){
   const f=document.getElementById('favBtn');
-  f.style.color=on?'#F78FB3':'var(--text)';
-  f.querySelector('svg').setAttribute('fill',on?'#F78FB3':'none');
+  f.style.color=on?'#C82222':'var(--text)';
+  f.querySelector('svg').setAttribute('fill',on?'#C82222':'none');
 }
 function toggleFav(){
   const idx=favorites.indexOf(current); let added;
@@ -2545,7 +2546,7 @@ function initHomeMapLeaflet(){
   homeMapInst = L.map('homeMap',{zoomControl:false,attributionControl:true,scrollWheelZoom:false,dragging:false,doubleClickZoom:false,boxZoom:false,touchZoom:false,keyboard:false}).setView(userLL,14);
   L.tileLayer(TILE_URL, TILE_OPTS).addTo(homeMapInst);
   L.marker(userLL,{icon:userDivIcon()}).addTo(homeMapInst);
-  L.circle(userLL,{radius:1500,color:'#6E9DFF',fillColor:'#6E9DFF',fillOpacity:0.06,weight:1,dashArray:'4 6'}).addTo(homeMapInst);
+  L.circle(userLL,{radius:1500,color:'#2A58CC',fillColor:'#2A58CC',fillOpacity:0.06,weight:1,dashArray:'4 6'}).addTo(homeMapInst);
   BARBERS.forEach((b,i)=>{
     const off=BARBER_OFFSETS[i%BARBER_OFFSETS.length];
     const ll=[(b.lat||userLL[0]+off[0]), (b.lng||userLL[1]+off[1])];
@@ -2571,8 +2572,8 @@ function initHomeMapGoogle(){
   watchGoogleMapHealth('homeMap');
   new google.maps.Marker({position:{lat:userLL[0],lng:userLL[1]}, map:homeMapInst, icon:googleUserIcon(), zIndex:1000});
   new google.maps.Circle({map:homeMapInst, center:{lat:userLL[0],lng:userLL[1]}, radius:1500,
-    strokeColor:'#6E9DFF', strokeOpacity:0.55, strokeWeight:1,
-    fillColor:'#6E9DFF', fillOpacity:0.07});
+    strokeColor:'#2A58CC', strokeOpacity:0.55, strokeWeight:1,
+    fillColor:'#2A58CC', fillOpacity:0.07});
   BARBERS.forEach((b,i)=>{
     const off=BARBER_OFFSETS[i%BARBER_OFFSETS.length];
     const m=new google.maps.Marker({
@@ -2622,8 +2623,8 @@ function trackDrawRoute(path){
   if(trackMapInst._isGoogle){
     trackRoute = new google.maps.Polyline({
       path:path.map(p=>({lat:p[0],lng:p[1]})), geodesic:true,
-      strokeColor:'#6E9DFF', strokeOpacity:0, strokeWeight:4,
-      icons:[{icon:{path:'M 0,-1 0,1',strokeOpacity:1,strokeColor:'#6E9DFF',scale:3},offset:'0',repeat:'10px'}],
+      strokeColor:'#2A58CC', strokeOpacity:0, strokeWeight:4,
+      icons:[{icon:{path:'M 0,-1 0,1',strokeOpacity:1,strokeColor:'#2A58CC',scale:3},offset:'0',repeat:'10px'}],
       map:trackMapInst
     });
     trackBarberMarker = new google.maps.Marker({
@@ -2634,7 +2635,7 @@ function trackDrawRoute(path){
     path.forEach(p=>b.extend({lat:p[0],lng:p[1]}));
     trackMapInst.fitBounds(b,{top:40,bottom:40,left:40,right:40});
   } else {
-    trackRoute = L.polyline(path,{color:'#6E9DFF',weight:4,dashArray:'2 9',opacity:.85}).addTo(trackMapInst);
+    trackRoute = L.polyline(path,{color:'#2A58CC',weight:4,dashArray:'2 9',opacity:.85}).addTo(trackMapInst);
     trackBarberMarker = L.marker(path[0],{icon:barberDivIcon(BARBERS[current])}).addTo(trackMapInst);
     trackMapInst.fitBounds(L.latLngBounds(path).pad(0.25));
   }
@@ -3073,7 +3074,7 @@ function submitRating(){
     const uNames=['Alex M.','Chris T.','Jordan K.','Sam L.','Taylor B.','Riley W.','Devon H.','Marcus J.'];
     const uN=uNames[Math.floor(Math.random()*uNames.length)];
     const uIn=uN.split(' ').map(x=>x[0]).join('');
-    const grads=['var(--grad)','var(--gradWarm)','var(--gradGreen)','linear-gradient(135deg,#9B7BFF,#6E6BFF)'];
+    const grads=['var(--grad)','var(--gradWarm)','var(--gradGreen)','linear-gradient(135deg,#C82222,#7A1515)'];
     revs.unshift({u:uN,in:uIn,g:grads[Math.floor(Math.random()*grads.length)],stars:rateStars,text:rateText,date:'Just now',tags:[...ratingTags]});
     localStorage.setItem(revKey, JSON.stringify(revs));
   }
@@ -3247,7 +3248,7 @@ let locTimer, locReq=0, _locResults=[];
 function exactRow(q){
   return '<div class="sect"><h3>Set this exact address</h3></div>'
     +'<div class="lrow" onclick="pickLoc(getLocInput())">'
-    +'<div class="av" style="background:rgba(110,157,255,.16)">'+kindSvg('pin','var(--blue)')+'</div>'
+    +'<div class="av" style="background:rgba(42,88,204,.16)">'+kindSvg('pin','var(--blue)')+'</div>'
     +'<div class="lr"><b style="color:var(--blue)">Use “'+escapeHtml(q)+'”</b><small>Drop a pin here for your barber</small></div>'
     +'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></div>';
 }
@@ -3430,15 +3431,15 @@ setInterval(()=>{
 
 /* ---------- portfolio & reviews ---------- */
 const BP_SEED=[
-  [{label:'Mid skin fade',bg:'var(--grad)'},{label:'Beard sculpt + lineup',bg:'var(--gradWarm)'},{label:'Textured crop',bg:'var(--gradGreen)'},{label:'Burst fade',bg:'linear-gradient(135deg,#9B7BFF,#6E6BFF)'},{label:'High top',bg:'linear-gradient(135deg,#FFCf5A,#FF9F4A)'}],
-  [{label:'Skin fade + lineup',bg:'var(--gradGreen)'},{label:'Taper fade',bg:'linear-gradient(135deg,#9B7BFF,#6E6BFF)'},{label:'Waves cut',bg:'var(--grad)'},{label:'Box fade',bg:'var(--gradWarm)'}],
+  [{label:'Mid skin fade',bg:'var(--grad)'},{label:'Beard sculpt + lineup',bg:'var(--gradWarm)'},{label:'Textured crop',bg:'var(--gradGreen)'},{label:'Burst fade',bg:'linear-gradient(135deg,#C82222,#7A1515)'},{label:'High top',bg:'linear-gradient(135deg,#FFCf5A,#FF9F4A)'}],
+  [{label:'Skin fade + lineup',bg:'var(--gradGreen)'},{label:'Taper fade',bg:'linear-gradient(135deg,#C82222,#7A1515)'},{label:'Waves cut',bg:'var(--grad)'},{label:'Box fade',bg:'var(--gradWarm)'}],
   [{label:'Bald fade',bg:'var(--gradWarm)'},{label:'Drop fade',bg:'var(--grad)'},{label:'Temple fade',bg:'linear-gradient(135deg,#FFCf5A,#FF9F4A)'},{label:'Mohawk fade',bg:'var(--gradGreen)'}],
 ];
 const BR_SEED=[
   [{u:'Jordan L.',in:'JL',g:'var(--gradWarm)',stars:5,text:'Best fade I\'ve had in years and he came to my apartment. Showed up early, super clean setup.',tags:['sharp','ontime'],date:'2 days ago'},
    {u:'DeShawn K.',in:'DK',g:'var(--grad)',stars:5,text:'This man is a wizard with clippers. My taper was immaculate.',tags:['sharp','friendly'],date:'1 week ago'},
    {u:'Marcus T.',in:'MT',g:'var(--gradGreen)',stars:4,text:'Great cut, very professional. Setup was clean and he was on time.',tags:['pro','clean'],date:'2 weeks ago'},
-   {u:'Isaiah R.',in:'IR',g:'linear-gradient(135deg,#9B7BFF,#6E6BFF)',stars:5,text:'Never going to a shop again. Dude came to my crib and gave me the cleanest fade.',tags:['sharp','value'],date:'3 weeks ago'}],
+   {u:'Isaiah R.',in:'IR',g:'linear-gradient(135deg,#C82222,#7A1515)',stars:5,text:'Never going to a shop again. Dude came to my crib and gave me the cleanest fade.',tags:['sharp','value'],date:'3 weeks ago'}],
   [{u:'Chris B.',in:'CB',g:'var(--gradGreen)',stars:5,text:'Came right on time, setup was immaculate. Best cut in the city no debate.',tags:['ontime','clean'],date:'3 days ago'},
    {u:'Tyler M.',in:'TM',g:'var(--grad)',stars:4,text:'Super professional, fade was on point.',tags:['pro','sharp'],date:'1 week ago'},
    {u:'Jaylen W.',in:'JW',g:'var(--gradWarm)',stars:5,text:'I\'ve been looking for a barber like this for years. No cap.',tags:['friendly','value'],date:'2 weeks ago'}],
@@ -3498,7 +3499,7 @@ function renderDashPortfolio(){
   const idx=BARBERS.length-1; // last signed-in barber = current barber account
   const port=loadBarberPortfolio(idx<0?0:idx);
   const el=document.getElementById('dashPortfolio'); if(!el) return;
-  const grads=['var(--grad)','var(--gradWarm)','var(--gradGreen)','linear-gradient(135deg,#9B7BFF,#6E6BFF)','linear-gradient(135deg,#FFCf5A,#FF9F4A)','linear-gradient(135deg,#3FD1D8,#6E9DFF)'];
+  const grads=['var(--grad)','var(--gradWarm)','var(--gradGreen)','linear-gradient(135deg,#1D40A8,#2A58CC)','linear-gradient(135deg,#C82222,#7A1515)','linear-gradient(135deg,#2A58CC,#7A1515)'];
   let html=port.map((p,pi)=>'<div class="dashPortTile" style="background:'+p.bg+'" onclick="notify(\'Portfolio photo\',\''+p.label+' — tap & hold to delete.\')"><span>'+p.label+'</span></div>').join('');
   html+='<div class="uploadTile" onclick="addPortfolioPhoto()"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 6v12M6 12h12"/></svg><span>Upload photo</span></div>';
   el.innerHTML=html;
@@ -3530,7 +3531,7 @@ function addPortfolioPhoto(){
   if(!label||!label.trim()) return;
   const idx=BARBERS.length-1;
   const port=loadBarberPortfolio(idx<0?0:idx);
-  const grads=['var(--grad)','var(--gradWarm)','var(--gradGreen)','linear-gradient(135deg,#9B7BFF,#6E6BFF)','linear-gradient(135deg,#FFCf5A,#FF9F4A)','linear-gradient(135deg,#3FD1D8,#6E9DFF)'];
+  const grads=['var(--grad)','var(--gradWarm)','var(--gradGreen)','linear-gradient(135deg,#1D40A8,#2A58CC)','linear-gradient(135deg,#C82222,#7A1515)','linear-gradient(135deg,#2A58CC,#7A1515)'];
   port.push({label:label.trim(),bg:grads[port.length%grads.length]});
   localStorage.setItem(getPortKey(idx<0?0:idx), JSON.stringify(port));
   renderDashPortfolio();
