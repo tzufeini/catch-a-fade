@@ -762,7 +762,7 @@ body.light .park{background:rgba(70,201,139,.22);}
 #clipperLogoWrap .brand span{color:var(--blue);}
 /* scissors wrap (moves bottom → top) */
 #scissorWrap{position:absolute;left:50%;transform:translateX(-50%);z-index:5;display:flex;flex-direction:column;align-items:center;pointer-events:none;opacity:0;}
-#scissorGlow{width:150px;height:5px;background:linear-gradient(90deg,transparent,#2A58CC,#ffffff,#C82222,transparent);border-radius:3px;filter:blur(5px);opacity:.95;}
+#scissorGlow{width:150px;height:5px;background:linear-gradient(90deg,transparent,#888888,#ffffff,#CC2222,transparent);border-radius:3px;filter:blur(5px);opacity:.95;}
 @keyframes sciShiver{0%,100%{transform:translateX(0)}33%{transform:translateX(-2.5px)}66%{transform:translateX(2.5px)}}
 #scissorSvg{animation:sciShiver .09s linear infinite;}
 </style>
@@ -790,7 +790,7 @@ body.light .park{background:rgba(70,201,139,.22);}
     <div id="ciLogoOuter">
       <div id="clipperLogoWrap">
         <div class="logoMark">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
+          <span style="font-size:30px;line-height:1">✂️</span>
         </div>
         <div class="brand">Catch a <span>Fade</span></div>
       </div>
@@ -799,21 +799,23 @@ body.light .park{background:rgba(70,201,139,.22);}
     <div id="scissorWrap">
       <div id="scissorGlow"></div>
       <svg id="scissorSvg" width="41" height="83" viewBox="0 0 68 138" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- left blade -->
-        <path d="M26 6 L34 62 L14 122" stroke="#2A58CC" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M26 6 L34 62 L14 122" stroke="#C0D4F8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/>
-        <!-- right blade -->
-        <path d="M42 6 L34 62 L54 122" stroke="#C82222" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M42 6 L34 62 L54 122" stroke="#F8C0C0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/>
+        <!-- left blade — silver steel -->
+        <path d="M24 5 L34 62 L15 122" stroke="#B0B0B0" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M24 5 L34 62 L15 122" stroke="#EEEEEE" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+        <!-- right blade — silver steel -->
+        <path d="M44 5 L34 62 L53 122" stroke="#B0B0B0" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M44 5 L34 62 L53 122" stroke="#EEEEEE" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
         <!-- pivot screw -->
-        <circle cx="34" cy="62" r="7" fill="#1D40A8" stroke="#7A9EE8" stroke-width="2.2"/>
-        <circle cx="34" cy="62" r="2.5" fill="#F0F4FF"/>
-        <!-- left finger ring (blue) -->
-        <circle cx="14" cy="126" r="13" stroke="#2A58CC" stroke-width="3.5" fill="rgba(42,88,204,0.18)"/>
-        <circle cx="14" cy="126" r="7" stroke="#1D40A8" stroke-width="1.5" fill="none"/>
-        <!-- right finger ring (red) -->
-        <circle cx="54" cy="126" r="13" stroke="#C82222" stroke-width="3.5" fill="rgba(200,34,34,0.18)"/>
-        <circle cx="54" cy="126" r="7" stroke="#7A1515" stroke-width="1.5" fill="none"/>
+        <circle cx="34" cy="62" r="7" fill="#909090" stroke="#D8D8D8" stroke-width="2.2"/>
+        <circle cx="34" cy="62" r="3" fill="#E4E4E4"/>
+        <!-- left finger ring — classic red -->
+        <circle cx="15" cy="126" r="13" fill="#CC2222" stroke="#8B1515" stroke-width="2.5"/>
+        <circle cx="15" cy="126" r="7.5" fill="#AA1818"/>
+        <circle cx="15" cy="126" r="3.5" fill="#CC2222" opacity="0.6"/>
+        <!-- right finger ring — classic red -->
+        <circle cx="53" cy="126" r="13" fill="#CC2222" stroke="#8B1515" stroke-width="2.5"/>
+        <circle cx="53" cy="126" r="7.5" fill="#AA1818"/>
+        <circle cx="53" cy="126" r="3.5" fill="#CC2222" opacity="0.6"/>
       </svg>
     </div>
   </div>
@@ -894,11 +896,7 @@ body.light .park{background:rgba(70,201,139,.22);}
   <section class="screen active" id="welcome">
     <div class="wTop">
       <div class="logoMark fade-up">
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/>
-          <line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/>
-          <line x1="8.12" y1="8.12" x2="12" y2="12"/>
-        </svg>
+        <span style="font-size:44px;line-height:1">✂️</span>
       </div>
       <div class="brand fade-up" style="animation-delay:.05s">Catch a Fade</div>
       <div class="tag fade-up" style="animation-delay:.1s">Premium barbers, at your door.<br/>Booked in 60 seconds.</div>
