@@ -9,9 +9,16 @@
     },
     {
       "name": "fadego",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "3789"],
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["/Users/tzufeini/Downloads/Econ Presentation 2/server.js"],
       "port": 3789
+    },
+    {
+      "name": "fadeprev",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "3790", "--directory", "/Users/tzufeini/Downloads/Econ Presentation 2"],
+      "autoPort": false,
+      "port": 3790
     }
   ]
 }

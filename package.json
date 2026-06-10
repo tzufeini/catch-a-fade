@@ -1,0 +1,10 @@
+{
+  "name": "catch-a-fade",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Catch a Fade — on-demand barber marketplace prototype (static app + tiny Node backend for email codes and AI support chat)",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "start": "node server.js"
+  }
+}

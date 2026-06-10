@@ -1,0 +1,16 @@
+# Render blueprint — deploys the Catch a Fade prototype as a free web service.
+# In the Render dashboard: New + → Blueprint → pick this repo → it reads this file.
+# You'll be prompted to paste the two secret keys (they live only on Render, never in git).
+services:
+  - type: web
+    name: catch-a-fade
+    runtime: node
+    plan: free
+    buildCommand: "true"
+    startCommand: node server.js
+    autoDeploy: true
+    envVars:
+      - key: RESEND_API_KEY
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false

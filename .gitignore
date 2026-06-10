@@ -1,0 +1,6 @@
+# local secrets — NEVER commit (production uses env vars on the host)
+keys.local.json
+.env
+node_modules/
+nohup.out
+.DS_Store

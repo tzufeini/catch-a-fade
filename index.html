@@ -2,10 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#07070A" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <title>Catch a Fade — On-Demand Barbers</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
 /* leaflet overrides */
 .leaflet-container{background:#0E1118;font-family:inherit;outline:none;touch-action:pan-y;}
@@ -37,6 +41,7 @@ body.light{
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 html,body{height:100%;}
+html{background:#07070A;}
 body{
   font-family:-apple-system,'SF Pro Display','SF Pro Text','Inter',system-ui,sans-serif;
   background:
@@ -514,9 +519,13 @@ body.light .park{background:rgba(70,201,139,.22);}
 .editBtn:active{transform:scale(.95);}
 /* edit account */
 .editAv{width:98px;height:98px;border-radius:29px;margin:0 auto;display:flex;align-items:center;
-  justify-content:center;font-weight:800;color:#fff;font-size:34px;position:relative;}
+  justify-content:center;font-weight:800;color:#fff;font-size:34px;position:relative;cursor:pointer;
+  transition:transform .12s;}
+.editAv:active{transform:scale(.97);}
 .editAv .cam{position:absolute;bottom:-7px;right:-7px;width:36px;height:36px;border-radius:50%;
-  background:var(--blueDeep);border:3.5px solid var(--bg);display:flex;align-items:center;justify-content:center;}
+  background:#1C1C22;border:3.5px solid var(--bg);display:flex;align-items:center;justify-content:center;
+  box-shadow:0 3px 10px rgba(0,0,0,.4);transition:transform .12s;}
+.editAv .cam:active{transform:scale(.88);}
 .fld{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:11px 15px;margin-bottom:10px;}
 .fld label{font-size:10.5px;font-weight:750;color:var(--faint);text-transform:uppercase;letter-spacing:.5px;}
 .fld input{width:100%;background:transparent;border:none;outline:none;font-family:inherit;
@@ -642,6 +651,29 @@ body.light .park{background:rgba(70,201,139,.22);}
 .apCancel{margin-top:10px;width:100%;background:rgba(255,255,255,.06);color:#fff;border:none;
   font-family:inherit;font-weight:680;font-size:14px;padding:13px;border-radius:13px;cursor:pointer;}
 
+/* ===== sign-in sheets (Apple Face ID / Google account picker) ===== */
+.apSub{font-size:12.5px;color:#A6A6B0;text-align:center;line-height:1.5;margin:2px 0 2px;}
+.apIdRow{margin-top:14px;padding:13px 14px;border-radius:14px;background:#101013;display:flex;align-items:center;gap:12px;}
+.apAvatar{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:#fff;flex-shrink:0;}
+.gSheet{background:#fff;border-radius:16px;width:100%;color:#202124;padding:22px 0 8px;animation:apIn .38s cubic-bezier(.2,.8,.2,1);margin:0 0 16px;max-height:92%;overflow:auto;box-shadow:0 -20px 50px rgba(0,0,0,.5);}
+.gLogo{display:flex;justify-content:center;margin-bottom:10px;}
+.gTitle{font-size:17px;font-weight:500;text-align:center;color:#202124;}
+.gDesc{font-size:13px;color:#5f6368;text-align:center;margin:4px 22px 16px;}
+.gAcct{display:flex;align-items:center;gap:14px;padding:12px 22px;cursor:pointer;}
+.gAcct:active{background:#f1f3f4;}
+.gAcctAv{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:#fff;flex-shrink:0;}
+.gAcctName{font-size:14px;font-weight:600;color:#202124;}
+.gAcctMail{font-size:12.5px;color:#5f6368;}
+.gDiv{height:1px;background:#e8eaed;margin:2px 0;}
+.gFoot{font-size:11px;color:#5f6368;padding:14px 22px 4px;line-height:1.5;}
+.gSpin{width:34px;height:34px;border:3px solid #e8eaed;border-top-color:#4285F4;border-radius:50%;animation:faceScan .7s linear infinite;margin:20px auto;}
+/* OTP code boxes */
+.otpRow{display:flex;gap:9px;justify-content:center;margin:10px 0 6px;}
+.otpRow input{width:44px;height:54px;text-align:center;font-size:23px;font-weight:760;border-radius:13px;border:1.5px solid var(--line2);background:var(--card2);color:var(--text);font-family:inherit;-webkit-appearance:none;}
+.otpRow input:focus{outline:none;border-color:var(--blue);background:var(--card);}
+.otpRow.err input{border-color:#E04545;animation:otpShk .4s;}
+@keyframes otpShk{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+
 /* modal overlay */
 .modal{position:absolute;inset:0;z-index:95;display:none;align-items:center;justify-content:center;
   background:rgba(0,0,0,.6);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);padding:0 24px;}
@@ -649,6 +681,8 @@ body.light .park{background:rgba(70,201,139,.22);}
 @keyframes mIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:none}}
 .modal .card{background:var(--card);border:1px solid var(--line2);border-radius:22px;padding:22px;width:100%;
   box-shadow:0 24px 60px -12px rgba(0,0,0,.85);}
+.cardDel{background:none;border:none;color:var(--faint);cursor:pointer;padding:6px;display:flex;align-items:center;border-radius:8px;flex:none;transition:color .15s,background .15s;}
+.cardDel:active{background:rgba(224,69,69,.14);color:#E04545;}
 .modal h3{font-size:18.5px;font-weight:780;margin-bottom:8px;letter-spacing:-.3px;}
 .modal p{font-size:13.5px;color:var(--dim);line-height:1.55;}
 .modal .actions{display:flex;flex-direction:column;gap:9px;margin-top:18px;}
@@ -773,7 +807,7 @@ body.light .park{background:rgba(70,201,139,.22);}
   --bp-navy:#16315F; --bp-ocean:#2E84C4; --bp-red:#8C1F2C; --bp-red-lt:#C7414E; --bp-silver:#E4E6EC;
   /* the barber-pole spiral: sharp diagonal stripes that cut across the button (+dark wash so text stays readable) */
   --bp-spiral:
-    linear-gradient(rgba(0,0,0,.30),rgba(0,0,0,.30)),
+    linear-gradient(rgba(0,0,0,.18),rgba(0,0,0,.18)),
     repeating-linear-gradient(125deg,
       #8C1F2C 0 21px, #E4E6EC 21px 33px,
       #16315F 33px 54px, #E4E6EC 54px 66px);
@@ -801,16 +835,16 @@ body.light .park{background:rgba(70,201,139,.22);}
 #obProg{position:absolute;top:54px;left:0;right:0;height:3px;background:rgba(255,255,255,.08);z-index:998;display:none;}
 #obFill{height:100%;background:var(--bp-ocean);width:10%;transition:width .35s cubic-bezier(.4,0,.2,1);}
 .ob-skip{position:absolute;top:62px;right:18px;z-index:30;font-size:13px;font-weight:700;color:var(--ob-dimm);padding:6px 10px;cursor:pointer;letter-spacing:-.05px;}
-.ob-body{flex:1;display:flex;flex-direction:column;align-items:center;padding:72px 26px 14px;text-align:center;position:relative;z-index:1;}
+.ob-body{flex:1;display:flex;flex-direction:column;align-items:center;padding:58px 24px 64px;text-align:center;position:relative;z-index:1;}
 .ob-vis{display:flex;align-items:center;justify-content:center;flex:1;min-height:0;width:100%;padding:14px 0;}
 .ob-text{width:100%;padding-bottom:4px;}
 .ob-line{display:block;width:34px;height:3px;background:var(--ob-gold);border-radius:2px;margin:0 auto 13px;}
-.ob-h{font-size:clamp(23px,7vw,33px);font-weight:900;line-height:1.08;letter-spacing:-.5px;color:var(--ob-cream);margin-bottom:12px;}
-.ob-s{font-size:14px;line-height:1.65;color:var(--ob-dimm);max-width:292px;margin:0 auto;}
+.ob-h{font-size:clamp(30px,9vw,43px);font-weight:900;line-height:1.08;letter-spacing:-.5px;color:var(--ob-cream);margin-bottom:14px;text-wrap:balance;-webkit-text-wrap:balance;}
+.ob-s{font-size:21px;line-height:1.5;color:var(--ob-dimm);max-width:330px;margin:0 auto;}
 .ob-nav{padding:16px 26px 48px;position:relative;z-index:1;}
 .ob-cta{position:relative;z-index:0;overflow:hidden;width:100%;padding:16px;border:none;border-radius:14px;background:#2a0f12;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.95),0 0 2px rgba(0,0,0,.7);font-size:15.5px;font-weight:820;cursor:pointer;letter-spacing:-.1px;box-shadow:0 12px 28px -12px rgba(0,0,0,.75);transition:transform .12s,opacity .12s;}
 .ob-cta::before{content:"";position:absolute;top:-90px;left:-90px;right:-90px;bottom:-90px;background:var(--bp-spiral-img);animation:bpSlide 5.5s linear infinite;z-index:-1;will-change:transform;}
-.ob-cta::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.30);z-index:-1;}
+.ob-cta::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.18);z-index:-1;}
 .ob-cta:active{transform:scale(.97);opacity:.88;}
 .ob-ghost{text-align:center;margin-top:12px;font-size:13px;color:var(--ob-dimm);cursor:pointer;}
 .ob-ghost b{color:var(--ob-gold);}
@@ -855,6 +889,27 @@ body.light .park{background:rgba(70,201,139,.22);}
 [data-a="5"]{animation:obUp .38s .5s ease-out both;}
 [data-a="6"]{animation:obUp .38s .6s ease-out both;}
 
+/* ===== AI support chat ===== */
+.scBody{display:flex;flex-direction:column;gap:10px;padding:14px 16px 18px;}
+.scMsg{max-width:80%;padding:11px 14px;border-radius:18px;font-size:14px;line-height:1.5;white-space:pre-wrap;word-wrap:break-word;animation:scIn .22s ease-out;}
+.scMsg.scBot{background:var(--card2);color:var(--text);border-bottom-left-radius:6px;align-self:flex-start;}
+.scMsg.scMe{background:var(--blue);color:#fff;border-bottom-right-radius:6px;align-self:flex-end;}
+.scTyping{display:flex;gap:4px;padding:14px 16px;background:var(--card2);border-radius:18px;border-bottom-left-radius:6px;align-self:flex-start;animation:scIn .22s ease-out;}
+.scTyping i{width:6px;height:6px;border-radius:50%;background:var(--dim);animation:scDot 1.1s infinite;}
+.scTyping i:nth-child(2){animation-delay:.18s}.scTyping i:nth-child(3){animation-delay:.36s}
+@keyframes scDot{0%,60%,100%{opacity:.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-3.5px)}}
+@keyframes scIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.scBar{display:flex;gap:9px;padding:10px 14px 16px;border-top:1px solid var(--line);align-items:center;background:var(--bg);}
+.scBar input{flex:1;background:var(--card);border:1px solid var(--line2);border-radius:22px;padding:12.5px 16px;color:var(--text);font-size:14px;outline:none;font-family:inherit;}
+.scBar input::placeholder{color:var(--faint);}
+.scSend{width:43px;height:43px;border-radius:50%;background:var(--blue);border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none;transition:transform .12s;}
+.scSend:active{transform:scale(.92);}
+.scOpts{display:flex;flex-direction:column;gap:7px;align-self:stretch;margin-top:2px;animation:scIn .25s ease-out;}
+.scOpt{display:flex;align-items:center;gap:11px;background:var(--card);border:1px solid var(--line2);border-radius:14px;padding:12px 14px;cursor:pointer;transition:border-color .15s,transform .1s;}
+.scOpt:active{border-color:var(--blue);transform:scale(.985);}
+.scOpt .em{font-size:17px;flex:none;line-height:1;}
+.scOpt .lb{flex:1;font-size:13.5px;font-weight:680;color:var(--text);}
+
 /* ===== 16-SCREEN ONBOARDING (Acts 1–3) ===== */
 /* interactive answer cards — screens 4, 5, 14 */
 .ob-opts{display:flex;flex-direction:column;gap:10px;width:100%;max-width:300px;margin:0 auto;}
@@ -896,8 +951,10 @@ body.light .park{background:rgba(70,201,139,.22);}
 .ob-bookLock{width:100%;margin-top:15px;padding:14px;border-radius:13px;background:#222;border:1px solid #2E2E2E;color:var(--ob-faant);font-size:14px;font-weight:780;text-align:center;cursor:not-allowed;}
 .ob-tip{font-size:11px;color:var(--ob-dimm);text-align:center;margin-top:7px;}
 /* social proof map — screen 9 */
-.ob-grid{width:250px;height:170px;background:#0B1423;border-radius:18px;border:1px solid rgba(255,255,255,.06);position:relative;overflow:hidden;}
+.ob-grid{width:min(320px,86vw);height:230px;background:radial-gradient(circle at 50% 36%,#27598a 0%,#1a3f63 45%,#102538 85%);border-radius:20px;border:1px solid rgba(95,170,230,.22);position:relative;overflow:hidden;box-shadow:0 20px 44px -18px rgba(0,0,0,.7),inset 0 0 60px rgba(79,168,232,.12);}
 .ob-dot{position:absolute;width:7px;height:7px;border-radius:50%;background:var(--bp-ocean);box-shadow:0 0 7px rgba(46,132,196,.75);opacity:0;}
+.ob9-pin{position:absolute;font-size:22px;line-height:1;transform:translate(-50%,-100%);filter:drop-shadow(0 4px 5px rgba(0,0,0,.55));z-index:2;}
+@keyframes ob9Pin{0%{opacity:0;transform:translate(-50%,-175%) scale(.4)}55%{opacity:1}70%{transform:translate(-50%,-92%) scale(1.05)}100%{opacity:1;transform:translate(-50%,-100%) scale(1)}}
 .ob-counter{font-size:14.5px;font-weight:820;color:var(--ob-cream);margin-top:14px;}
 .ob-counter b{color:var(--ob-gold);}
 /* review stars — screen 10 */
@@ -932,6 +989,35 @@ body.light .park{background:rgba(70,201,139,.22);}
 @keyframes bpSlide{from{transform:translate(0,0);}to{transform:translate(-54px,-38px);}}
 /* graceful fallback: if offset-path is unsupported, hide the route traveler (route still draws) */
 @supports not (offset-path: path('M0 0')){ #ob3 [style*="offset-path"]{display:none!important;} }
+
+/* ===== onboarding — LIGHT theme =====
+   Only the backgrounds and text legibility change. The spiral CTA buttons,
+   the red / ocean-blue / green accent colors, and the map visuals are untouched. */
+.ob-screen{
+  background:linear-gradient(180deg,#F6F2EA 0%,#ECE5D9 100%);
+  --ob-cream:#1C1D22;   /* titles + primary text: near-white → ink */
+  --ob-dimm:#5C616C;    /* subtitles: light grey → readable medium grey */
+  --ob-faant:#8C9099;   /* faint / disabled text */
+}
+.ob-alt{background:linear-gradient(180deg,#F0EADF 0%,#E6DECF 100%)!important;}
+#ob16{background:linear-gradient(175deg,#F4EDE1 0%,#F7F0E3 52%,#F9F2E5 100%)!important;}
+#obProg{background:rgba(0,0,0,.09);}
+/* content cards & chips → light surfaces (selected / accent states keep their own colors) */
+.ob-opt,.ob-bcard,.ob6-card,.ob-tcard,.ob-prow{background:#FBF8F2;border-color:#E3DCCF;}
+.ob-rcard{background:#FBF8F2;border-color:#E3DCCF;border-left-color:var(--ob-gold);}
+.ob-badge{background:#EFE9DE;border-color:#DED6C8;}
+.ob8-tog,.ob8-chip,.ob-bookLock{background:#EDE6DB;}
+.ob8-chip,.ob-bookLock{border-color:#DCD4C6;}
+.ob-sheet{background:#F6F2EA;border-top-color:#E3DCCF;}
+.ob-sheet-grab{background:#CFC7B8;}
+.ob-cutex{background:linear-gradient(135deg,#EFE9DE,#E7DFD2);border-color:#DCD4C6;}
+/* green price text reads poorly on light → use a richer green (still "money green") */
+.ob-prow .pr{color:#1F9D57;}
+/* dark simulated status bar (time / signal / wifi / battery) over the light onboarding */
+.phone.ob-lightbar .statusbar{color:#1C1D22;}
+.phone.ob-lightbar .bar{background:#1C1D22;}
+.phone.ob-lightbar .batt{border-color:#1C1D22;opacity:1;}
+.phone.ob-lightbar .batt::after,.phone.ob-lightbar .batt::before{background:#1C1D22;}
 /* reduced motion — instant, no movement */
 @media(prefers-reduced-motion:reduce){
   [data-a],[style*="animation:ob"],.ob-impact,.ob-star,.ob-dot,.ob-modal-bg,.ob-sheet,.ob-cta,.ob-cta::before{animation:none!important;opacity:1!important;}
@@ -1062,6 +1148,60 @@ body.light .park{background:rgba(70,201,139,.22);}
     </div>
   </div>
 
+  <!-- ===== Sign in with Apple (Face ID) ===== -->
+  <div class="applePay" id="appleAuth">
+    <div class="apSheet">
+      <div class="apHandle"></div>
+      <div style="display:flex;justify-content:center;margin:2px 0 8px"><svg width="34" height="34" viewBox="0 0 24 24" fill="#fff"><path d="M16.36 12.78c.02 2.27 1.99 3.02 2.01 3.03-.02.05-.31 1.08-1.04 2.14-.63.92-1.28 1.83-2.31 1.85-1.01.02-1.34-.6-2.49-.6-1.16 0-1.52.58-2.47.62-1 .04-1.76-.99-2.39-1.91-1.3-1.88-2.29-5.3-.96-7.61.66-1.15 1.84-1.88 3.12-1.9.98-.02 1.9.66 2.49.66.59 0 1.71-.81 2.88-.69.49.02 1.87.2 2.76 1.49-.07.04-1.64.96-1.63 2.86M14.5 6.6c.52-.63.87-1.51.77-2.39-.75.03-1.66.5-2.2 1.13-.48.55-.91 1.45-.8 2.31.84.07 1.7-.43 2.23-1.05"/></svg></div>
+      <div class="apMerchant" style="font-size:18px">Sign in with Apple</div>
+      <div class="apSub">Catch a Fade will receive your name and email.</div>
+      <div class="apIdRow">
+        <div class="apAvatar" id="aaAvatar" style="background:linear-gradient(135deg,#2A58CC,#C82222)">T</div>
+        <div style="flex:1;min-width:0"><div style="font-weight:700;font-size:14.5px" id="aaName">Apple ID</div><div style="font-size:11.5px;color:#A6A6B0" id="aaMail">you@icloud.com</div></div>
+      </div>
+      <div id="aaStageHint">
+        <div class="apHint"><b>Double-click</b><span class="sbHint"><span class="sb"></span><span class="sb"></span></span><b>the side button</b> to sign in with Face ID.</div>
+      </div>
+      <div id="aaStageScan" style="display:none">
+        <div class="faceCircle">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#2A58CC" stroke-width="1.8"><circle cx="9" cy="10" r="1" fill="#2A58CC"/><circle cx="15" cy="10" r="1" fill="#2A58CC"/><path d="M9 15c1 1 2 1.5 3 1.5s2-.5 3-1.5"/></svg>
+          <div class="scan"></div>
+        </div>
+        <div class="apHint">Authenticating with Face ID…</div>
+      </div>
+      <div id="aaStageDone" style="display:none">
+        <div class="faceCircle done"><svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#46C98B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4 10-11"/></svg></div>
+        <div class="apHint" style="color:#46C98B;font-weight:700">Signed in</div>
+      </div>
+      <button class="apCancel" id="aaCancelBtn" onclick="closeAppleAuth()">Cancel</button>
+    </div>
+  </div>
+
+  <!-- ===== Sign in with Google (account picker) ===== -->
+  <div class="applePay" id="googleAuth">
+    <div class="gSheet">
+      <div class="gLogo"><svg width="22" height="22" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34.6 6.1 29.6 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.3-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19 13 24 13c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34.6 6.1 29.6 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.5 0 10.5-2.1 14.3-5.5l-6.6-5.6C29.7 34.6 27 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.6 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.3 5.6l6.6 5.6c-.5.4 7.4-5.4 7.4-15.2 0-1.3-.1-2.3-.4-3.5z"/></svg></div>
+      <div class="gTitle" id="gaTitle">Choose an account</div>
+      <div class="gDesc">to continue to <b>Catch a Fade</b></div>
+      <div id="gaPick">
+        <div class="gAcct" onclick="googleAuthPick()">
+          <div class="gAcctAv" id="gaAv" style="background:#C82222">T</div>
+          <div style="flex:1;min-width:0"><div class="gAcctName" id="gaName">Tzuf Eini</div><div class="gAcctMail" id="gaMail">tzuf@gmail.com</div></div>
+        </div>
+        <div class="gDiv"></div>
+        <div class="gAcct" onclick="googleAuthPick()">
+          <div class="gAcctAv" style="background:#5f6368;font-size:18px">+</div>
+          <div class="gAcctName">Use another account</div>
+        </div>
+        <div class="gFoot">To continue, Google will share your name, email address and profile picture with Catch a Fade.</div>
+      </div>
+      <div id="gaSpin" style="display:none;padding:8px 0 22px">
+        <div class="gSpin"></div>
+        <div style="text-align:center;font-size:13px;color:#5f6368">Signing in…</div>
+      </div>
+    </div>
+  </div>
+
   <div class="modal" id="radiusModal">
     <div class="card">
       <h3>Distance from you</h3>
@@ -1145,19 +1285,19 @@ body.light .park{background:rgba(70,201,139,.22);}
       <div class="ob-vis">
         <!-- TODO: replace with Lottie asset [waiting_chair.json] -->
         <div data-a="0" style="position:relative;width:210px;height:150px;display:flex;align-items:flex-end;justify-content:center;">
-          <div style="position:absolute;top:2px;right:16px;width:56px;height:56px;border-radius:50%;border:3px solid #2A2A2A;background:#141414;display:flex;align-items:center;justify-content:center;">
+          <div style="position:absolute;top:2px;right:14px;width:56px;height:56px;border-radius:50%;border:3px solid #2A2A2A;background:#141414;display:flex;align-items:center;justify-content:center;">
             <div style="position:absolute;width:2.5px;height:17px;background:var(--ob-gold);border-radius:2px;top:12px;transform-origin:bottom center;animation:obSpin 2.6s linear infinite;"></div>
             <div style="position:absolute;width:2px;height:12px;background:var(--ob-cream);border-radius:2px;top:17px;transform-origin:bottom center;animation:obSpin 31s linear infinite;"></div>
             <div style="width:5px;height:5px;border-radius:50%;background:var(--ob-cream);z-index:1;"></div>
           </div>
-          <span style="font-size:78px;line-height:1;filter:grayscale(.25)">💺</span>
-          <span style="position:absolute;bottom:34px;left:50%;transform:translateX(-58%);font-size:32px;animation:obPop .4s .35s ease-out both;">🧑</span>
+          <span style="font-size:76px;line-height:1">🚶</span>
+          <span style="position:absolute;bottom:62px;left:50%;transform:translateX(-104%);font-size:38px;animation:obPop .45s .35s cubic-bezier(.2,1.6,.4,1) both;filter:drop-shadow(0 0 13px rgba(255,90,90,.5))">💸</span>
         </div>
       </div>
       <div class="ob-text">
         <span class="ob-line" data-a="1"></span>
-        <div class="ob-h" data-a="2">Getting a fresh cut<br/>shouldn't be this hard.</div>
-        <div class="ob-s" data-a="3">You call ahead. You drive across town. You wait. And half the time your barber isn't even available. Sound familiar?</div>
+        <div class="ob-h" data-a="2">Getting a fresh cut<br/>shouldn't be this <span style="color:var(--ob-gold)">expensive.</span></div>
+        <div class="ob-s" data-a="3">Marked-up shop prices, the drive, parking, the tip — a simple cut adds up fast (and that's before the wait). There's a better way.</div>
       </div>
     </div>
     <div class="ob-nav" data-a="4"><button class="ob-cta" onclick="obNext()">That's exactly it →</button></div>
@@ -1207,6 +1347,7 @@ body.light .park{background:rgba(70,201,139,.22);}
         <div class="ob-opt" data-a="4" onclick="ob4Pick('self',this)"><span class="em">✂️</span><span class="lbl">I cut it myself / a friend cuts it</span><span class="chk"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#080808" stroke-width="3.4"><path d="M20 6L9 17l-5-5"/></svg></span></div>
       </div>
     </div>
+    <div class="ob-nav" data-a="5"><button class="ob-cta dim" id="ob4Next" onclick="obNext()">Next →</button></div>
   </section>
 
   <!-- OB 5 · Question — What matters most? (+ reflect-back) -->
@@ -1215,9 +1356,8 @@ body.light .park{background:rgba(70,201,139,.22);}
     <!-- Step A: the question -->
     <div id="ob5A" style="display:flex;flex-direction:column;flex:1;min-height:0;">
       <div class="ob-body" style="justify-content:center;">
-        <div class="ob-text" style="margin-bottom:6px">
-          <div class="ob-h" data-a="0">What matters most<br/>when you get a cut?</div>
-          <div class="ob-s" data-a="1" style="margin:8px auto 18px">Pick up to two.</div>
+        <div class="ob-text" style="margin-bottom:18px">
+          <div class="ob-h" data-a="0">What matters most when you get a cut?</div>
         </div>
         <div class="ob-opts">
           <div class="ob-opt" id="ob5_price" data-a="2" onclick="ob5Toggle('price',this)"><span class="em">💰</span><span class="lbl">Best price in my area</span><span class="chk"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#080808" stroke-width="3.4"><path d="M20 6L9 17l-5-5"/></svg></span></div>
@@ -1253,12 +1393,12 @@ body.light .park{background:rgba(70,201,139,.22);}
           <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--ob-gold)" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
           <span class="ob-stat"><span id="ob6Num">0</span><span class="u">min</span></span>
         </div>
-        <div class="ob-impact" id="ob6Impact">10 hours a year. 🤯</div>
+        <div class="ob-impact" id="ob6Impact">15+ hours a year. 🤯</div>
       </div>
       <div class="ob-text">
         <span class="ob-line" data-a="1"></span>
-        <div class="ob-h" data-a="2">The average person spends<br/>47 minutes on a haircut.</div>
-        <div class="ob-s" data-a="3">Drive time, wait time, and the cut itself. Every. Single. Time. Over a year, that's nearly 10 hours just getting a fade.</div>
+        <div class="ob-h" data-a="2">One haircut really costs<br/>about 70 minutes.</div>
+        <div class="ob-s" data-a="3">Every cut costs you twice — your wallet <b style="color:var(--ob-cream)">and</b> your time.</div>
       </div>
     </div>
     <div class="ob-nav" data-a="4"><button class="ob-cta" onclick="obNext()">There has to be a better way →</button></div>
@@ -1353,26 +1493,7 @@ body.light .park{background:rgba(70,201,139,.22);}
     <div class="ob-nav" data-a="4"><button class="ob-cta" onclick="obNext()">I'm in →</button></div>
   </section>
 
-  <!-- OB 10 · Review prompt (SIMULATED — iOS SKStoreReviewRequest / Android In-App Review) -->
-  <section class="screen ob-screen ob-alt ob-noise" id="ob10">
-    <span class="ob-skip" onclick="obSkip()">Skip</span>
-    <div class="ob-body" style="justify-content:center;">
-      <div class="ob-vis" style="flex:none;height:110px">
-        <div class="ob-stars" id="ob10Stars">
-          <span class="ob-star" onclick="ob10Rate(1)">⭐</span>
-          <span class="ob-star" onclick="ob10Rate(2)">⭐</span>
-          <span class="ob-star" onclick="ob10Rate(3)">⭐</span>
-          <span class="ob-star" onclick="ob10Rate(4)">⭐</span>
-          <span class="ob-star" onclick="ob10Rate(5)">⭐</span>
-        </div>
-      </div>
-      <div class="ob-text">
-        <div class="ob-h" data-a="0" id="ob10H">Loving CatchAFade<br/>so far?</div>
-        <div class="ob-s" data-a="1" id="ob10S">You're one of thousands who've seen what on-demand barbers can do. If this feels right, a quick review helps other people find us.</div>
-      </div>
-    </div>
-    <div class="ob-nav" data-a="2"><div class="ob-ghost" style="margin-top:0;font-size:14px" onclick="obNext()">Maybe later</div></div>
-  </section>
+  <!-- OB 10 · (removed) review prompt — too early to ask during onboarding -->
 
   <!-- OB 11 · Trust & verification -->
   <section class="screen ob-screen ob-noise" id="ob11">
@@ -1434,23 +1555,11 @@ body.light .park{background:rgba(70,201,139,.22);}
     <div class="ob-nav" data-a="2"><button class="ob-cta" onclick="obNext()">That's a no-brainer →</button></div>
   </section>
 
-  <!-- OB 14 · Commitment -->
-  <section class="screen ob-screen ob-alt ob-noise" id="ob14">
-    <span class="ob-skip" onclick="obSkip()">Skip</span>
-    <div class="ob-body" style="justify-content:center;">
-      <div class="ob-text" style="margin-bottom:20px">
-        <div class="ob-h" data-a="0">How ready are you to<br/>change how you get cut?</div>
-      </div>
-      <div class="ob-opts">
-        <div class="ob-opt ob-opt-lg" data-a="1" onclick="ob14Pick('ready',this)"><span class="em">🔥</span><span class="lbl">Ready right now — let's book</span><span class="chk"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#080808" stroke-width="3.4"><path d="M20 6L9 17l-5-5"/></svg></span></div>
-        <div class="ob-opt ob-opt-lg" data-a="2" onclick="ob14Pick('soon',this)"><span class="em">👍</span><span class="lbl">Pretty ready — just want to look around first</span><span class="chk"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#080808" stroke-width="3.4"><path d="M20 6L9 17l-5-5"/></svg></span></div>
-        <div class="ob-opt ob-opt-lg" data-a="3" onclick="ob14Pick('curious',this)"><span class="em">🤔</span><span class="lbl">Curious — still figuring it out</span><span class="chk"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#080808" stroke-width="3.4"><path d="M20 6L9 17l-5-5"/></svg></span></div>
-      </div>
-    </div>
-  </section>
+  <!-- OB 14 · (removed) "How ready are you…" commitment question -->
 
   <!-- OB 15 · Testimonials (TODO: Replace with real user reviews from backend) -->
   <section class="screen ob-screen ob-noise" id="ob15">
+    <span class="ob-skip" onclick="obSkip()">Skip</span>
     <div class="ob-body" style="justify-content:center;">
       <div class="ob-text" style="margin-bottom:16px">
         <div class="ob-h" data-a="0">They already<br/>made the switch.</div>
@@ -1517,6 +1626,36 @@ body.light .park{background:rgba(70,201,139,.22);}
 
       <div class="auth-foot">By continuing you agree to our <b>Terms</b> &amp; <b>Privacy Policy</b>.</div>
       <div class="auth-switch" id="authSwitch" onclick="authSwitch()">Already have an account? <b>Log in</b></div>
+    </div>
+  </section>
+
+  <!-- ============ EMAIL CODE VERIFICATION ============ -->
+  <section class="screen" id="authCode">
+    <div class="auth-back" onclick="back()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="2.4"><path d="M15 18l-6-6 6-6"/></svg>
+    </div>
+    <div class="auth-wrap">
+      <div class="auth-logo"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.9"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7.5l8.5 5.5 8.5-5.5"/></svg></div>
+      <div class="auth-h">Check your email</div>
+      <div class="auth-sub">We sent a 6-digit code to<br/><b id="codeEmail" style="color:var(--text)">you@example.com</b></div>
+      <div class="otpRow" id="otpRow">
+        <input id="otp0" inputmode="numeric" maxlength="6" autocomplete="one-time-code" oninput="otpInput(0)" onkeydown="otpKey(event,0)" onpaste="otpPaste(event,0)"/>
+        <input id="otp1" inputmode="numeric" maxlength="1" oninput="otpInput(1)" onkeydown="otpKey(event,1)" onpaste="otpPaste(event,1)"/>
+        <input id="otp2" inputmode="numeric" maxlength="1" oninput="otpInput(2)" onkeydown="otpKey(event,2)" onpaste="otpPaste(event,2)"/>
+        <input id="otp3" inputmode="numeric" maxlength="1" oninput="otpInput(3)" onkeydown="otpKey(event,3)" onpaste="otpPaste(event,3)"/>
+        <input id="otp4" inputmode="numeric" maxlength="1" oninput="otpInput(4)" onkeydown="otpKey(event,4)" onpaste="otpPaste(event,4)"/>
+        <input id="otp5" inputmode="numeric" maxlength="1" oninput="otpInput(5)" onkeydown="otpKey(event,5)" onpaste="otpPaste(event,5)"/>
+      </div>
+      <div id="codeHint" style="display:none;margin-top:16px;padding:12px 15px;border-radius:14px;background:rgba(46,132,196,.12);border:1px solid rgba(46,132,196,.32);cursor:pointer" onclick="fillOtp(_authCode)">
+        <div style="font-size:10.5px;font-weight:750;color:var(--faint);text-transform:uppercase;letter-spacing:.7px">Demo mode · email not set up yet</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px">
+          <span id="codeHintVal" style="font-size:26px;font-weight:850;letter-spacing:6px;color:var(--text)">––––––</span>
+          <span style="font-size:12.5px;font-weight:750;color:var(--blue);white-space:nowrap">Tap to autofill →</span>
+        </div>
+      </div>
+      <button class="btn grad" style="margin-top:16px" onclick="verifyCode()">Verify &amp; continue</button>
+      <div class="auth-switch" id="resendRow" onclick="resendCode()">Didn't get it? <b>Resend code</b></div>
+      <div class="auth-foot">Enter the code to confirm it's really you.</div>
     </div>
   </section>
 
@@ -1895,6 +2034,7 @@ body.light .park{background:rgba(70,201,139,.22);}
         <svg width="13" height="13" viewBox="0 0 24 24" fill="#C82222"><path d="M12 21C5 16 3 12 3 8.5A4.5 4.5 0 0 1 12 6a4.5 4.5 0 0 1 9 2.5C21 12 19 16 12 21z"/></svg>Favorite barbers</h3></div>
       <div class="favRow" id="favRow"></div>
       <div class="sect" style="margin-top:16px"><h3>Settings</h3></div>
+      <div class="setRow" onclick="openStylePrefs()"><div class="si"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.2"><path d="M6 3v6a6 6 0 0 0 12 0V3M6 9h12"/><circle cx="12" cy="19" r="2"/></svg></div><div class="st">My styles<div id="prefStyleSub" style="color:var(--faint);font-size:11.5px;font-weight:500;margin-top:2px">Match me with the right barbers</div></div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></div>
       <div class="setRow" onclick="nav('paymentMethods')"><div class="si"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.2"><rect x="2" y="5" width="20" height="14" rx="3"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div><div class="st">Payment methods</div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></div>
       <div class="setRow" onclick="toggleTheme()"><div class="si"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="2.2"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg></div><div class="st">Dark mode</div><div class="switch on" id="themeSwitch"></div></div>
       <div class="setRow" onclick="nav('safety')"><div class="si"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.2"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z"/></svg></div><div class="st">Safety & trust center</div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></div>
@@ -2040,22 +2180,46 @@ body.light .park{background:rgba(70,201,139,.22);}
     </div>
     <div class="body" style="padding:0 20px 22px">
       <div style="text-align:center;padding:16px 0 26px">
-        <div class="editAv" id="editAv" style="background:var(--gradWarm)"><span id="editAvTxt">TZ</span>
-          <div class="cam"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M3 8a2 2 0 0 1 2-2h2l1.5-2h7L19 6h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="3.6"/></svg></div>
+        <div class="editAv" id="editAv" style="background:var(--gradWarm)" onclick="pickPhoto()" title="Change photo"><span id="editAvTxt">TZ</span>
+          <div class="cam"><span style="font-size:18px;line-height:1">📷</span></div>
         </div>
         <input type="file" id="photoPicker" accept="image/*" style="display:none" onchange="applyPhoto(this)">
         <div style="margin-top:18px;color:var(--blue);font-size:13.5px;font-weight:680;cursor:pointer"
-          onclick="document.getElementById('photoPicker').click()">Change photo</div>
+          onclick="pickPhoto()">Change photo</div>
       </div>
       <div class="fld"><label>Full name</label><input id="edName" /></div>
       <div class="fld"><label>Email</label><input id="edEmail" type="email" /></div>
-      <div class="fld"><label>Phone number</label><input id="edPhone" type="tel" /></div>
+      <div class="fld"><label>Phone number</label><input id="edPhone" type="tel" inputmode="tel" placeholder="(555) 123-4567" oninput="formatPhoneInput(this,event)" /></div>
       <div class="fld"><label>Home address</label><input id="edAddress" /></div>
       <div class="fld"><label>Preferred style</label><input id="edStyle" /></div>
       <div class="fld" style="margin-bottom:0"><label>Notes for your barber</label><input id="edNotes" /></div>
     </div>
     <div class="stickyBuy">
       <button class="btn green" onclick="saveProfile()">Save changes</button>
+    </div>
+  </section>
+
+  <!-- ============ PREFERRED STYLES ============ -->
+  <section class="screen" id="stylePrefs">
+    <div class="head">
+      <div class="iconbtn" onclick="back()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M15 5l-7 7 7 7"/></svg></div>
+      <h2>My styles</h2>
+    </div>
+    <div class="body" style="padding:4px 20px 22px">
+      <p style="color:var(--dim);font-size:13.5px;line-height:1.5;margin:6px 0 16px">
+        Pick the cuts you usually get. We'll match you with barbers who specialize in the same work — or something close.
+      </p>
+      <div class="sect"><h3>Cuts I get</h3></div>
+      <div id="stylePrefChips" style="display:flex;flex-wrap:wrap;gap:9px;padding:2px 0 6px"></div>
+
+      <div class="setRow" style="margin-top:20px;cursor:pointer" onclick="toggleMatchStyles()">
+        <div class="si"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.2"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg></div>
+        <div class="st">Match barbers to my styles<div style="color:var(--faint);font-size:11.5px;font-weight:500;margin-top:2px">Prioritize pros who do the cuts I picked</div></div>
+        <div class="switch" id="matchStylesSwitch"></div>
+      </div>
+    </div>
+    <div class="stickyBuy">
+      <button class="btn green" onclick="saveStylePrefs()">Save preferences</button>
     </div>
   </section>
 
@@ -2082,6 +2246,7 @@ body.light .park{background:rgba(70,201,139,.22);}
         <div class="ol"><b>Mastercard •••• 8830<span class="pill pmd" style="background:rgba(70,201,139,.16);color:var(--green)">Default</span></b><small>Expires 03 / 26</small></div>
         <div class="radio"></div>
       </div>
+      <div id="userCards"></div>
       <button class="btn ghost" style="margin-top:6px;font-size:14.5px" onclick="nav('addCard')">+ Add payment method</button>
       <div class="sect" style="padding-left:0;margin-top:18px"><h3>Promos & credit</h3></div>
       <div class="opt" onclick="notify('Promo applied','FADE20 added — 20% off your next booking.')">
@@ -2109,12 +2274,12 @@ body.light .park{background:rgba(70,201,139,.22);}
         <button class="btn ghost" style="flex:1;font-size:13.5px;padding:14px" onclick="back();notify('Google Pay linked','Google Pay is ready to use at checkout.')">G Pay</button>
       </div>
       <div style="text-align:center;color:var(--faint);font-size:11px;font-weight:700;margin:16px 0 8px;letter-spacing:.8px">OR ENTER CARD DETAILS</div>
-      <div class="fld" id="fldNum"><label>Card number</label><input id="cardNum" placeholder="1234  5678  9012  3456" inputmode="numeric" /></div>
+      <div class="fld" id="fldNum"><label>Card number</label><input id="cardNum" placeholder="1234 5678 9012 3456" inputmode="numeric" autocomplete="cc-number" oninput="formatCardNum(this,event)" /></div>
       <div style="display:flex;gap:10px">
-        <div class="fld" id="fldExp" style="flex:1"><label>Expiry</label><input id="cardExp" placeholder="MM / YY" inputmode="numeric" /></div>
-        <div class="fld" id="fldCvc" style="flex:1"><label>CVC</label><input id="cardCvc" placeholder="•••" inputmode="numeric" /></div>
+        <div class="fld" id="fldExp" style="flex:1"><label>Expiry</label><input id="cardExp" placeholder="MM / YY" inputmode="numeric" autocomplete="cc-exp" oninput="formatCardExp(this,event)" /></div>
+        <div class="fld" id="fldCvc" style="flex:1"><label>CVC</label><input id="cardCvc" placeholder="•••" inputmode="numeric" autocomplete="cc-csc" oninput="formatCardCvc(this,event)" /></div>
       </div>
-      <div class="fld" id="fldZip"><label>Billing ZIP</label><input id="cardZip" placeholder="ZIP / postal code" inputmode="numeric" /></div>
+      <div class="fld" id="fldZip"><label>Billing ZIP</label><input id="cardZip" placeholder="ZIP / postal code" inputmode="numeric" oninput="formatCardZip(this,event)" /></div>
       <div class="fld" id="fldName" style="margin-bottom:0"><label>Name on card</label><input id="cardName" placeholder="Full name" /></div>
       <div style="display:flex;gap:8px;align-items:center;margin-top:14px;color:var(--faint);font-size:11.5px">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.4"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
@@ -2327,18 +2492,31 @@ body.light .park{background:rgba(70,201,139,.22);}
         <div class="searchbar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg><div class="q">Search help articles…</div></div>
       </div>
       <div class="sect"><h3>Top questions</h3></div>
-      <div class="faq" onclick="toggleFaq(this)"><b>How is the cancellation fee calculated?</b><small>You can cancel for free within the first 2 minutes of booking. After that, $5 applies once your barber is on the way, $10 if they've arrived, and $25 once the cut has started — same idea as Uber's rider cancellation policy.</small></div>
+      <div class="faq" onclick="toggleFaq(this)"><b>How is the cancellation fee calculated?</b><small>You can cancel free within the first 2 minutes of booking. After that the fee covers your barber's time: $5 once they're on the way, $10 if they've arrived, and $25 once the cut has started.</small></div>
       <div class="faq" onclick="toggleFaq(this)"><b>What if my barber doesn't show up?</b><small>If your barber doesn't arrive within 10 minutes of the promised ETA, the appointment is cancelled at no cost and we automatically match you with another verified pro nearby.</small></div>
       <div class="faq" onclick="toggleFaq(this)"><b>Are the barbers background-checked?</b><small>Every Catch a Fade pro passes ID verification, a criminal background check and a portfolio review. Look for the "Verified Pro" badge on their profile.</small></div>
       <div class="faq" onclick="toggleFaq(this)"><b>How does tipping work?</b><small>You can pre-tip at booking or tip after the cut on the rating screen. 100% of every tip goes directly to your barber.</small></div>
-      <div class="faq" onclick="toggleFaq(this)"><b>What's the PIN for?</b><small>When your barber arrives, you'll see a 4-digit PIN. Share it with them — they'll enter it in their app to confirm they're at the right address. Same as Uber's pickup PIN.</small></div>
+      <div class="faq" onclick="toggleFaq(this)"><b>What's the PIN for?</b><small>When your barber arrives, you'll see a 4-digit PIN. Share it with them — they'll enter it in their app to confirm they're at the right address before the cut starts.</small></div>
       <div class="faq" onclick="toggleFaq(this)"><b>How does surge pricing work?</b><small>When demand is higher than the number of available barbers (Saturday nights, holidays, etc.), prices go up a small multiplier to bring more barbers online. You'll always see the multiplier before you confirm.</small></div>
       <div class="faq" onclick="toggleFaq(this)"><b>Can I request the same barber again?</b><small>Yes — add them to your favorites from their profile or the rating screen. Catch a Fade+ members get priority scheduling with favorite barbers.</small></div>
       <div class="sect"><h3>Contact</h3></div>
-      <div class="setRow" onclick="notify('Support chat','We typically reply within 5 minutes.')"><div class="si"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.2"><path d="M21 12a8 8 0 0 1-11.5 7.2L4 21l1.8-5.5A8 8 0 1 1 21 12z"/></svg></div><div class="st">Message support</div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></div>
-      <a class="setRow" href="tel:+18005550100" style="text-decoration:none;color:inherit"><div class="si"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L7.6 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></svg></div><div class="st">Call support · 24 / 7</div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></a>
+      <div class="setRow" onclick="openSupportChat()"><div class="si"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.2"><path d="M21 12a8 8 0 0 1-11.5 7.2L4 21l1.8-5.5A8 8 0 1 1 21 12z"/></svg></div><div class="st">Message support<span class="pill" style="margin-left:8px;background:rgba(46,132,196,.14);color:var(--blue);font-size:10px;padding:2.5px 7px">CAF Support · AI</span></div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></div>
       <div class="setRow" onclick="notify('Lost & found','Tell us what was left behind during your last cut.')"><div class="si"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2.2"><rect x="4" y="6" width="16" height="14" rx="2"/><path d="M9 6V4a3 3 0 0 1 6 0v2"/></svg></div><div class="st">Report a lost item</div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></div>
-      <div style="padding:18px 20px;color:var(--faint);font-size:11.5px;text-align:center;line-height:1.5">Catch a Fade · v2.4.0 prototype<br/>© 2026 Catch a Fade Inc · 24-hour response time</div>
+      <div style="padding:18px 20px;color:var(--faint);font-size:11.5px;text-align:center;line-height:1.5">Catch a Fade · v2.4.0 prototype<br/>© 2026 Catch a Fade Inc · AI support, 24 / 7</div>
+    </div>
+  </section>
+
+  <!-- ============ SUPPORT CHAT (AI) ============ -->
+  <section class="screen" id="supportChat">
+    <div class="head">
+      <div class="iconbtn" onclick="back()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M15 5l-7 7 7 7"/></svg></div>
+      <h2>CAF Support 💈</h2>
+      <span style="margin-left:auto;display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:var(--green)"><span style="width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green)"></span>online</span>
+    </div>
+    <div class="body scBody" id="scBody"></div>
+    <div class="scBar">
+      <input id="scInput" placeholder="Ask us anything…" autocomplete="off" onkeydown="if(event.key==='Enter'){scSend();}" />
+      <button class="scSend" onclick="scSend()" aria-label="Send"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
     </div>
   </section>
 
@@ -2378,6 +2556,23 @@ body.light .park{background:rgba(70,201,139,.22);}
  *  Free tier: $200/month credit (~28,500 loads). Restrict by referrer.
  * =================================================================== */
 const GOOGLE_MAPS_KEY = 'AIzaSyCP45rZDYMA6Y11_AL9nuy7Jqv7huoVIJg'; // <-- paste key here, e.g. 'AIzaSyB...'
+
+/* ===================================================================
+ *  EMAILJS — sends the real 6-digit sign-in code to the typed email.
+ *  Free at emailjs.com. Paste your 3 keys below to turn it ON.
+ *  (Leave blank to keep the simulated flow + on-device notification.)
+ *    1. Create a free account at emailjs.com
+ *    2. Add an Email Service (e.g. Gmail) → copy its SERVICE ID
+ *    3. Create an Email Template; in the template's "To Email" field put {{email}}
+ *       and in the subject/body use the code variable {{passcode}}  → copy its TEMPLATE ID
+ *    4. Account → API Keys → copy your PUBLIC KEY
+ * =================================================================== */
+const EMAILJS_CFG = {
+  publicKey:  '',   // <-- paste EmailJS Public Key
+  serviceId:  '',   // <-- paste EmailJS Service ID
+  templateId: ''    // <-- paste EmailJS Template ID
+};
+function emailjsReady(){ return !!(window.emailjs && EMAILJS_CFG.publicKey && EMAILJS_CFG.serviceId && EMAILJS_CFG.templateId); }
 
 let _googleReady=false;
 function loadGoogleMaps(){
@@ -2464,8 +2659,12 @@ function render(){
   if(top==='tracking') setTimeout(initTrackMap,80);
   if(top==='bookings') renderTrips();
   if(top==='messages') renderInbox();
+  if(top==='profile') updatePrefStyleSub();
+  if(top==='paymentMethods') renderCards();
   // onboarding: progress bar + re-animate entrance + per-screen effects
   const _obP=document.getElementById('obProg'), _obF=document.getElementById('obFill');
+  const _isOb = !!(top && /^ob\d+$/.test(top));
+  const _ph=document.getElementById('phone'); if(_ph) _ph.classList.toggle('ob-lightbar', _isOb);   // dark status bar over the light onboarding
   if(top && /^ob\d+$/.test(top)){
     const _obStep=parseInt(top.replace('ob',''),10);
     if(_obP) _obP.style.display='block';
@@ -2887,14 +3086,22 @@ function buildList(){
   }
   // Filter by selected services (if any)
   const svcFiltered = activeSvcs.size===0 ? inRange : inRange.filter(({b})=>[...activeSvcs].every(k=>barberDoesService(b,k)));
-  const showList = svcFiltered.length ? svcFiltered : inRange; // fallback: show all if no match
+  let showList = svcFiltered.length ? svcFiltered : inRange; // fallback: show all if no match
   const noSvcMatch = activeSvcs.size>0 && !svcFiltered.length;
   if(noSvcMatch){
     const svcNames=[...activeSvcs].join(' + ');
     el.innerHTML = emptyCard('No pros for '+svcNames+' nearby','None of the barbers in your area offer all selected services. Try a different combo or widen your radius.','Clear filters','clearSvcFilter()');
     return;
   }
+  // Preferred-style matching: float barbers who do the customer's go-to cuts to the top
+  const matchOn = userProfile.matchStyles && (userProfile.prefStyles||[]).length>0;
+  if(matchOn){
+    showList = showList.map((x,ix)=>({x, s:styleMatchScore(x.b), ix}))
+      .sort((a,b)=> b.s-a.s || a.ix-b.ix)   // best style-match first, keep distance order within ties
+      .map(o=>o.x);
+  }
   el.innerHTML = showList.map(({b,i,dist})=>{
+    const matchN = matchOn ? styleMatchScore(b) : 0;
     const mi = dist<10 ? (Math.round(dist*10)/10).toFixed(1) : Math.round(dist);
     const eta = Math.max(3, Math.round(dist*4));
     return `
@@ -2904,7 +3111,7 @@ function buildList(){
         <div class="bName">${b.n} <span class="pill verified" style="padding:2px 7px">
           <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 1.8 3 .2.9 2.9 2.3 1.9-1 2.8 1 2.8-2.3 1.9-.9 2.9-3 .2L12 22l-2.4-1.7-3-.2-.9-2.9-2.3-1.9 1-2.8-1-2.8 2.3-1.9.9-2.9 3-.2z"/></svg></span></div>
         <div class="bMeta"><span class="star">★ ${b.r}</span><span class="dot"></span>${b.cuts} cuts<span class="dot"></span>${mi} mi</div>
-        <div class="bTags"><span class="tg">${b.sp.split(' · ')[0]}</span><span class="tg">${b.sp.split(' · ')[1]||''}</span></div>
+        <div class="bTags">${matchN>0?`<span class="tg" style="background:rgba(46,132,196,.18);color:var(--blue);border-color:transparent">✓ Your style</span>`:''}<span class="tg">${b.sp.split(' · ')[0]}</span><span class="tg">${b.sp.split(' · ')[1]||''}</span></div>
       </div>
       <div class="bRight">
         <div class="eta">~${eta} min</div>
@@ -3012,8 +3219,32 @@ const SVC_KWORDS = {
   taper:   ['taper'],
   beard:   ['beard'],
   lineup:  ['line'],
-  fullcut: ['full','hair','cut']
+  fullcut: ['full','hair','cut'],
+  scissor: ['scissor'],
+  kids:    ['kid','child'],
+  design:  ['design','pattern','art'],
+  curly:   ['curl','textur'],
+  hottowel:['towel','shave']
 };
+// Style options a customer can pick as their go-to cuts (keys map into SVC_KWORDS)
+const STYLE_OPTIONS = [
+  {key:'fade',    label:'Skin fade'},
+  {key:'taper',   label:'Taper'},
+  {key:'lineup',  label:'Line up'},
+  {key:'beard',   label:'Beard trim'},
+  {key:'scissor', label:'Scissor cut'},
+  {key:'fullcut', label:'Full haircut'},
+  {key:'curly',   label:'Curly / textured'},
+  {key:'design',  label:'Hair design'},
+  {key:'kids',    label:'Kids cut'},
+  {key:'hottowel',label:'Hot-towel shave'}
+];
+// How many of the customer's preferred styles this barber covers ("same or almost")
+function styleMatchScore(b){
+  const pref = userProfile.prefStyles||[];
+  if(!pref.length) return 0;
+  return pref.reduce((n,k)=>n + (barberDoesService(b,k)?1:0), 0);
+}
 function barberDoesService(b, key){
   const sp = (b.sp||'').toLowerCase();
   const svcs = b.services||{};
@@ -3040,6 +3271,52 @@ function clearSvcFilter(){
   buildList();
 }
 
+/* ---- preferred styles (Settings → My styles) ---- */
+let _pendingStyles = null; // working copy while the picker is open
+function openStylePrefs(){
+  _pendingStyles = (userProfile.prefStyles||[]).slice();
+  renderStylePrefChips();
+  const sw=document.getElementById('matchStylesSwitch');
+  if(sw) sw.classList.toggle('on', !!userProfile.matchStyles);
+  nav('stylePrefs');
+}
+function renderStylePrefChips(){
+  const el=document.getElementById('stylePrefChips'); if(!el) return;
+  const sel=_pendingStyles||[];
+  el.innerHTML = STYLE_OPTIONS.map(o=>
+    '<span class="chip'+(sel.indexOf(o.key)>=0?' on':'')+'" onclick="toggleStyleChip(\''+o.key+'\')">'+o.label+'</span>'
+  ).join('');
+}
+function toggleStyleChip(key){
+  if(!_pendingStyles) _pendingStyles=[];
+  const i=_pendingStyles.indexOf(key);
+  if(i>=0) _pendingStyles.splice(i,1); else _pendingStyles.push(key);
+  renderStylePrefChips(); haptic();
+}
+function toggleMatchStyles(){
+  userProfile.matchStyles = !userProfile.matchStyles;
+  const sw=document.getElementById('matchStylesSwitch');
+  if(sw) sw.classList.toggle('on', userProfile.matchStyles);
+  haptic();
+}
+function saveStylePrefs(){
+  userProfile.prefStyles = (_pendingStyles||[]).slice();
+  persistPrefs();
+  updatePrefStyleSub();
+  buildList();
+  back();
+  const n=userProfile.prefStyles.length;
+  notify('Styles saved', n ? (n+' style'+(n>1?'s':'')+' · '+(userProfile.matchStyles?'matching on':'matching off')) : 'No styles picked yet');
+}
+function styleLabel(key){ const o=STYLE_OPTIONS.find(x=>x.key===key); return o?o.label:key; }
+function updatePrefStyleSub(){
+  const el=document.getElementById('prefStyleSub'); if(!el) return;
+  const p=userProfile.prefStyles||[];
+  if(!p.length){ el.textContent='Match me with the right barbers'; return; }
+  const names=p.slice(0,3).map(styleLabel).join(', ')+(p.length>3?' +'+(p.length-3):'');
+  el.textContent = (userProfile.matchStyles?'Matching · ':'')+names;
+}
+
 /* ---- photo picker ---- */
 function _applyPhotoUI(dataUrl){
   // Apply to editAv (has span + cam child)
@@ -3058,6 +3335,11 @@ function _applyPhotoUI(dataUrl){
     pAv.style.backgroundPosition='center';
     pAv.style.color='transparent';
   }
+}
+function pickPhoto(){
+  var p=document.getElementById('photoPicker');
+  if(p){ p.value=''; p.click(); }   // reset so re-picking the same file still fires onchange
+  haptic();
 }
 function applyPhoto(input){
   if(!input.files||!input.files[0]) return;
@@ -3169,7 +3451,7 @@ function leaveTracking(){ clearInterval(trackTimer); back(); }
 function cancelTrip(){ clearInterval(trackTimer); endTrip(); navTab('home'); notify('Booking cancelled','You can rebook anytime.'); }
 
 let trackTimer;
-/* ---------- Uber-style trip state machine ---------- */
+/* ---------- live trip state machine ---------- */
 let tripStartedAt=0, tripState='idle', tripPin='', graceTickT, waitTickT, tripCompleteT;
 function genPin(){ return String(1000+Math.floor(Math.random()*9000)); }
 function computeFee(){
@@ -3514,8 +3796,14 @@ const userProfile = {
   address:'284 Linden Ave, Apt 4B',
   style:'Skin fade · medium length on top',
   notes:'Buzz 402 at the door — kitchen has the outlet',
-  cutCount:14
+  cutCount:14,
+  prefStyles: JSON.parse(localStorage.getItem('fadex_pref_styles')||'[]'),
+  matchStyles: localStorage.getItem('fadex_match_styles')==='1'
 };
+function persistPrefs(){
+  localStorage.setItem('fadex_pref_styles', JSON.stringify(userProfile.prefStyles||[]));
+  localStorage.setItem('fadex_match_styles', userProfile.matchStyles?'1':'0');
+}
 function nameInitials(n){
   const parts=(n||'').trim().split(/\s+/);
   return (((parts[0]||'')[0]||'')+((parts[1]||'')[0]||'')).toUpperCase()||'?';
@@ -3547,6 +3835,7 @@ function openEditAccount(){
   document.getElementById('edName').value=userProfile.name;
   document.getElementById('edEmail').value=userProfile.email;
   document.getElementById('edPhone').value=userProfile.phone;
+  formatPhoneInput(document.getElementById('edPhone'));
   document.getElementById('edAddress').value=userProfile.address;
   document.getElementById('edStyle').value=userProfile.style;
   document.getElementById('edNotes').value=userProfile.notes;
@@ -3564,6 +3853,164 @@ function openEditAccount(){
     if(txt){ txt.style.visibility='visible'; txt.textContent=nameInitials(userProfile.name); }
   }
   nav('editAccount');
+}
+/* Auto-format a phone field as you type → (123) 456-7890 */
+/* ---------- AI support chat ---------- */
+let scMsgs=[], scBusy=false;
+function openSupportChat(){
+  if(!scMsgs.length){
+    var first=(userProfile&&userProfile.name)? userProfile.name.split(' ')[0] : '';
+    scMsgs=[{role:'assistant',content:'Hey'+(first?' '+first:'')+' 👋 I\'m CAF Support, your Catch a Fade assistant. What can I help you with today? Pick an option below or just type.',opts:true}];
+  }
+  nav('supportChat'); scRender();
+}
+var SC_OPTS=[
+  ['📅','Help with a booking','I need help with a booking'],
+  ['💸','Cancellation & fees','How do cancellation fees work?'],
+  ['🏷️','Pricing','How does pricing work?'],
+  ['💰','Tipping','How does tipping work?'],
+  ['🔢','Arrival PIN','What is the arrival PIN for?'],
+  ['⏱️','Barber running late','My barber is running late — what happens?'],
+  ['🧢','I lost an item','I left something behind after my cut'],
+  ['💵','Refunds','How do refunds work?'],
+  ['👤','Talk to a human','Can I talk to a human?']
+];
+function scOptsHTML(){
+  return '<div class="scOpts">'+SC_OPTS.map(function(o){
+    return '<div class="scOpt" onclick="scQuick(\''+o[2].replace(/'/g,"\\'")+'\')"><span class="em">'+o[0]+'</span><span class="lb">'+o[1]+'</span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="2.6"><path d="M9 6l6 6-6 6"/></svg></div>';
+  }).join('')+'</div>';
+}
+/* tolerate typos, but catch keyboard-mash: a message is gibberish when most words
+   have no vowel, a 5+ consonant run, or the same letter 3+ times in a row */
+function scIsGibberish(t){
+  var s=String(t).toLowerCase().replace(/[^a-z\s]/g,' ').replace(/\s+/g,' ').trim();
+  if(!s) return !/\d/.test(t);                       // pure symbols → gibberish; digits might be a PIN
+  var words=s.split(' '), junk=0;
+  for(var i=0;i<words.length;i++){
+    var w=words[i];
+    if(w.length<=2) continue;                        // "i", "ok", "no" are fine
+    if(!/[aeiouy]/.test(w) || /[bcdfghjklmnpqrstvwxz]{5,}/.test(w) || /(.)\1\1/.test(w)) junk++;
+  }
+  return junk>0 && junk>=Math.ceil(words.length/2);
+}
+function scEsc(s){ return String(s).replace(/[&<>"']/g,function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function scRender(){
+  var el=document.getElementById('scBody'); if(!el) return;
+  var h=scMsgs.map(function(m,i){
+    var b='<div class="scMsg '+(m.role==='user'?'scMe':'scBot')+'">'+scEsc(m.content)+'</div>';
+    // option buttons render below the newest bot message that offers them
+    if(m.opts && i===scMsgs.length-1) b+=scOptsHTML();
+    return b;
+  }).join('');
+  el.innerHTML=h;
+  el.scrollTop=el.scrollHeight;
+}
+function scShowTyping(on){
+  var el=document.getElementById('scBody'); if(!el) return;
+  var t=document.getElementById('scTyping');
+  if(on && !t){ var d=document.createElement('div'); d.className='scTyping'; d.id='scTyping'; d.innerHTML='<i></i><i></i><i></i>'; el.appendChild(d); el.scrollTop=el.scrollHeight; }
+  if(!on && t){ t.remove(); }
+}
+function scQuick(q){ var inp=document.getElementById('scInput'); if(inp) inp.value=q; scSend(); }
+function scSend(){
+  if(scBusy) return;
+  var inp=document.getElementById('scInput'); var txt=(inp&&inp.value||'').trim(); if(!txt) return;
+  inp.value='';
+  scMsgs.push({role:'user',content:txt}); scRender(); scShowTyping(true); scBusy=true; haptic();
+  // CAF Support "thinks" for at least 1.1–1.9s so replies feel typed, never teleported
+  var t0=Date.now(), minThink=1100+Math.random()*800;
+  var finish=function(reply, opts){
+    var wait=Math.max(0, minThink-(Date.now()-t0));
+    setTimeout(function(){ scBusy=false; scShowTyping(false); scMsgs.push({role:'assistant',content:reply,opts:!!opts}); scRender(); }, wait);
+  };
+  // keyboard mash → apologize and reopen the help menu (typos are fine, the AI handles those)
+  if(scIsGibberish(txt)){
+    finish('Sorry, I didn\'t get that 😅 Here\'s what I can help you with:', true);
+    return;
+  }
+  fetch('/api/support-chat',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({messages:scMsgs.map(function(m){ return {role:m.role,content:m.content}; })})})
+  .then(function(r){ return r.json(); })
+  .then(function(j){
+    var reply=(j&&j.ok&&j.reply)? j.reply : scLocalAnswer(txt);
+    finish(reply, /didn'?t (get|catch|understand)/i.test(reply));
+  })
+  .catch(function(){ var reply=scLocalAnswer(txt); finish(reply, /didn'?t (get|catch|understand)/i.test(reply)); });
+}
+/* built-in answers used until the Claude API key is connected (and as offline fallback) */
+function scLocalAnswer(q){
+  q=q.toLowerCase();
+  if(/cancel|fee/.test(q)) return 'Cancelling is free within the first 2 minutes after booking. After that the fee covers your barber\'s time: $5 once they\'re on the way, $10 after they\'ve arrived, and $25 once the cut has started.';
+  if(/pin/.test(q)) return 'When your barber arrives you\'ll see a 4-digit PIN in the app. Tell it to them — they enter it in their app to confirm they\'re at the right address, and then the cut officially starts.';
+  if(/tip/.test(q)) return 'You can pre-tip when you book, or tip after the cut on the rating screen. 100% of every tip goes straight to your barber.';
+  if(/surge|price|cost|charge|expensive/.test(q)) return 'Your price is the barber\'s base rate for the service you pick. At peak times (Saturday nights, holidays) a small multiplier can apply to bring more barbers online — you always see the final price before you confirm.';
+  if(/late|no.?show|where.*barber|barber.*late|eta/.test(q)) return 'You can watch your barber approach live on the map. If they\'re more than 10 minutes past the promised ETA, the booking auto-cancels at no cost and we rematch you with another verified pro nearby.';
+  if(/lost|left|forgot/.test(q)) return 'Sorry about that! Tap "Report a lost item" on the Help screen and tell us what was left behind — we\'ll connect you with your barber right away.';
+  if(/refund|wrong|bad|complaint|terrible/.test(q)) return 'Sorry to hear that. Open the booking under Bookings and tap "Get help" to request a review — refunds usually process within 3–5 business days. Want me to flag this for a human teammate too?';
+  if(/safe|background|check|verified/.test(q)) return 'Every Catch a Fade pro passes ID verification, a criminal background check, and a portfolio review before they can take bookings. Look for the "Verified Pro" badge on their profile.';
+  if(/same barber|favorite|favourite|again/.test(q)) return 'Add a barber to your favorites from their profile or the rating screen — then you can book them directly. Catch a Fade+ members get priority scheduling with their favorites.';
+  if(/human|person|agent|real/.test(q)) return 'I can loop in a human teammate — they typically reply within a few minutes. In the meantime, tell me what\'s going on and I\'ll do my best to help right now.';
+  if(/book|appointment|schedul|reschedul/.test(q)) return 'Sure — what\'s going on with your booking? You can see and manage it under Bookings. Tell me the issue (change the time, wrong address, cancel, rebook) and I\'ll walk you through it.';
+  if(/^(hi|hello|hey|yo|sup|what'?s up)\b/.test(q)) return 'Hey! What can I help you with — a booking, fees, tipping, or something else?';
+  return 'Sorry, I didn\'t get that 😅 Here\'s what I can help you with:';
+}
+
+/* ---- Add-card live formatting: spaces every 4 digits, auto "/" in expiry, auto-advance ---- */
+function formatCardNum(el, e){
+  const deleting = !!(e && typeof e.inputType==='string' && e.inputType.indexOf('delete')===0);
+  const amex = /^3[47]/.test((el.value||'').replace(/\D/g,''));
+  let d=(el.value||'').replace(/\D/g,'').slice(0, amex?15:16);
+  let out;
+  if(amex){ // Amex groups 4-6-5
+    out=d.slice(0,4);
+    if(d.length>4)  out+=' '+d.slice(4,10);
+    if(d.length>10) out+=' '+d.slice(10,15);
+  }else{
+    out=(d.match(/\d{1,4}/g)||[]).join(' ');
+  }
+  el.value=out;
+  // full number typed → hop to expiry
+  if(!deleting && d.length===(amex?15:16)){ var n=document.getElementById('cardExp'); if(n) n.focus(); }
+}
+function formatCardExp(el, e){
+  const deleting = !!(e && typeof e.inputType==='string' && e.inputType.indexOf('delete')===0);
+  let d=(el.value||'').replace(/\D/g,'');
+  if(d.length>=1 && d[0]>'1'){ d='0'+d; }           // typing "9" → "09 / "
+  if(d.length>=2){ var mo=parseInt(d.slice(0,2),10);
+    if(mo>12) d='0'+d[0]+d.slice(1);                // "13" → month 01, the 3 starts the year
+    else if(mo===0) d='0';                          // "00" → hold at 0 until a real month digit
+  }
+  d=d.slice(0,4);
+  let out=d.slice(0,2);
+  if(d.length>2 || (d.length===2 && !deleting)) out+=' / ';
+  if(d.length>2) out+=d.slice(2,4);
+  el.value=out;
+  // MM/YY complete → hop to CVC
+  if(!deleting && d.length===4){ var n=document.getElementById('cardCvc'); if(n) n.focus(); }
+}
+function formatCardCvc(el, e){
+  const deleting = !!(e && typeof e.inputType==='string' && e.inputType.indexOf('delete')===0);
+  const amex = /^3[47]/.test((document.getElementById('cardNum')||{value:''}).value.replace(/\D/g,''));
+  const max = amex?4:3;
+  el.value=(el.value||'').replace(/\D/g,'').slice(0,max);
+  if(!deleting && el.value.length===max){ var n=document.getElementById('cardZip'); if(n) n.focus(); }
+}
+function formatCardZip(el, e){
+  const deleting = !!(e && typeof e.inputType==='string' && e.inputType.indexOf('delete')===0);
+  el.value=(el.value||'').replace(/[^\dA-Za-z\- ]/g,'').toUpperCase().slice(0,10);
+  if(!deleting && /^\d{5}$/.test(el.value)){ var n=document.getElementById('cardName'); if(n) n.focus(); }
+}
+function formatPhoneInput(el, e){
+  const deleting = !!(e && typeof e.inputType==='string' && e.inputType.indexOf('delete')===0);
+  let d=(el.value||'').replace(/\D/g,'');
+  if(d.length>10 && d[0]==='1') d=d.slice(1);   // drop US country code if pasted
+  d=d.slice(0,10);
+  let out='';
+  if(d.length>=1) out='('+d.slice(0,3);
+  if(d.length>=4) out+=') '+d.slice(3,6);
+  else if(d.length===3 && !deleting) out+=') ';  // close the parens right after the area code
+  if(d.length>=7) out+='-'+d.slice(6,10);
+  el.value=out;
 }
 function saveProfile(){
   userProfile.name=document.getElementById('edName').value.trim()||userProfile.name;
@@ -3615,7 +4062,7 @@ function renderWizStep(){
     case 3: return '<div class="wizTitle">What\'s your phone number?</div>'
       +'<div class="wizSub">Clients reach you here. We\'ll text a verification code next.</div>'
       +'<div class="wizFld"><label>Mobile number</label>'
-      +'<input id="wPhone" type="tel" placeholder="+1 (555) 555-0142" value="'+(signup.phone||'')+'" autocomplete="tel"/></div>';
+      +'<input id="wPhone" type="tel" inputmode="tel" placeholder="(555) 555-0142" value="'+(signup.phone||'')+'" autocomplete="tel" oninput="formatPhoneInput(this,event)"/></div>';
     case 4: return '<div class="wizTitle">Enter the SMS code</div>'
       +'<div class="wizSub">Sent to <b>'+escapeHtml(signup.phone)+'</b>. Any 4 digits work.</div>'
       +'<div class="codeRow">'
@@ -3889,6 +4336,23 @@ function notify(t,s){
   el.classList.add('show'); clearTimeout(gT);
   gT=setTimeout(()=>el.classList.remove('show'),3000);
 }
+/* ---- real device (OS) notifications for the sign-in flow ---- */
+function ensureNotifyPermission(){
+  try{ if(('Notification' in window) && Notification.permission==='default'){ Notification.requestPermission(); } }catch(e){}
+}
+function deviceNotify(title, body){
+  // Always show the in-app toast so the flow works everywhere…
+  notify(title, body);
+  // …and fire a REAL OS notification to the device when allowed.
+  try{
+    if(!('Notification' in window)) return;
+    if(Notification.permission==='granted'){
+      new Notification(title, {body:body, icon:'data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64"><rect width="64" height="64" rx="14" fill="%23111"/><text x="32" y="44" font-size="34" text-anchor="middle">✂️</text></svg>'), tag:'catchafade-auth'});
+    } else if(Notification.permission==='default'){
+      Notification.requestPermission().then(function(p){ if(p==='granted'){ new Notification(title,{body:body, tag:'catchafade-auth'}); } });
+    }
+  }catch(e){}
+}
 let eT;
 function notifyErr(t,s){
   document.getElementById('errToastT').textContent=t;
@@ -3966,9 +4430,40 @@ function submitCard(){
     return notifyErr('Invalid payment method','Enter the name as it appears on your card.');
   }
 
-  // ✓ All valid
+  // ✓ All valid — persist it to the wallet
+  const brand = cardBrand(num);
+  const last4 = num.slice(-4);
+  const expDisp = String(mo).padStart(2,'0')+' / '+String(yr).slice(-2);
+  savedCards.push({ brand:brand, last4:last4, exp:expDisp, name:name });
+  persistCards();
+  renderCards();
+  // clear the form for next time
+  ['cardNum','cardExp','cardCvc','cardZip','cardName'].forEach(function(id){ var e=document.getElementById(id); if(e) e.value=''; });
   back();
-  notify('Card added','Your card has been saved to your wallet.');
+  notify('Card added', brand+' •••• '+last4+' saved to your wallet.');
+}
+let savedCards = JSON.parse(localStorage.getItem('fadex_cards')||'[]');
+function persistCards(){ localStorage.setItem('fadex_cards', JSON.stringify(savedCards)); }
+function cardBrand(num){
+  if(/^4/.test(num)) return 'Visa';
+  if(/^(5[1-5]|2[2-7])/.test(num)) return 'Mastercard';
+  if(/^3[47]/.test(num)) return 'Amex';
+  if(/^(6011|65|64[4-9]|622)/.test(num)) return 'Discover';
+  return 'Card';
+}
+function renderCards(){
+  const el=document.getElementById('userCards'); if(!el) return;
+  el.innerHTML = savedCards.map(function(c,i){
+    return '<div class="opt" onclick="pickPM(this)">'
+      + '<div class="emo" style="background:var(--card3)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--dim)" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="3"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>'
+      + '<div class="ol"><b>'+c.brand+' •••• '+c.last4+'</b><small>Expires '+c.exp+'</small></div>'
+      + '<button class="cardDel" onclick="event.stopPropagation();removeCard('+i+')" aria-label="Remove card"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>'
+      + '</div>';
+  }).join('');
+}
+function removeCard(i){
+  const c=savedCards[i]; savedCards.splice(i,1); persistCards(); renderCards();
+  if(c) notify('Card removed', c.brand+' •••• '+c.last4+' was removed.');
 }
 function pickLoc(n){
   const el=document.getElementById('bkLoc'); if(el) el.textContent=n;
@@ -4355,13 +4850,14 @@ function obNext(){
   const top=stack[stack.length-1];
   if(!top || !/^ob\d+$/.test(top)) return;
   const step=parseInt(top.replace('ob',''),10);
-  if(step>=OB_TOTAL){ obComplete(); return; }
-  stack.push('ob'+(step+1)); render(); haptic();
+  let next=step+1;
+  while(next<=OB_TOTAL && !document.getElementById('ob'+next)) next++; // skip any removed screens
+  if(next>OB_TOTAL){ obComplete(); return; }
+  stack.push('ob'+next); render(); haptic();
 }
 function obSkip(){
-  // Skip (screens 1–14) jumps straight to the final CTA (screen 16)
-  while(stack.length && /^ob\d+$/.test(stack[stack.length-1])) stack.pop();
-  stack.push('ob16'); render(); haptic();
+  // Skip the marketing screens and go STRAIGHT to the sign-in process.
+  goAuth('signup');
 }
 function obComplete(){
   sessionStorage.setItem('fadex_seen_ob','1');
@@ -4394,7 +4890,11 @@ function applyAuthMode(){
   if(ef) ef.style.display='none';
 }
 function authSwitch(){ _authMode = (_authMode==='login') ? 'signup' : 'login'; applyAuthMode(); haptic(); }
-function authWith(provider){ finishAuth(provider); }
+function authWith(provider){
+  if(provider==='apple') return openAppleAuth();
+  if(provider==='google') return openGoogleAuth();
+  return authEmail();
+}
 function authEmail(){
   document.getElementById('authSso').style.display='none';
   var ef=document.getElementById('authEmailForm'); ef.style.display='block';
@@ -4404,18 +4904,195 @@ function authEmailBack(){
   document.getElementById('authEmailForm').style.display='none';
   document.getElementById('authSso').style.display='flex';
 }
+
+/* ----- Sign in with Apple (Face ID sheet) ----- */
+let _aaT1,_aaT2,_aaT3;
+function openAppleAuth(){
+  ensureNotifyPermission();
+  var mail = (userProfile.email||'you@icloud.com').replace(/@.*/,'@icloud.com');
+  document.getElementById('aaName').textContent = userProfile.name||'Apple ID';
+  document.getElementById('aaMail').textContent = mail;
+  document.getElementById('aaAvatar').textContent = nameInitials(userProfile.name);
+  document.getElementById('aaStageHint').style.display='block';
+  document.getElementById('aaStageScan').style.display='none';
+  document.getElementById('aaStageDone').style.display='none';
+  document.getElementById('aaCancelBtn').style.display='block';
+  document.getElementById('appleAuth').classList.add('show');
+  haptic();
+  clearTimeout(_aaT1);clearTimeout(_aaT2);clearTimeout(_aaT3);
+  _aaT1=setTimeout(function(){
+    document.getElementById('aaStageHint').style.display='none';
+    document.getElementById('aaStageScan').style.display='block';
+  },1600);
+  _aaT2=setTimeout(function(){
+    document.getElementById('aaStageScan').style.display='none';
+    document.getElementById('aaStageDone').style.display='block';
+    document.getElementById('aaCancelBtn').style.display='none';
+  },3100);
+  _aaT3=setTimeout(function(){
+    document.getElementById('appleAuth').classList.remove('show');
+    finishAuth('apple');
+  },4100);
+}
+function closeAppleAuth(){
+  clearTimeout(_aaT1);clearTimeout(_aaT2);clearTimeout(_aaT3);
+  document.getElementById('appleAuth').classList.remove('show');
+}
+
+/* ----- Sign in with Google (account picker) ----- */
+let _gaT;
+function openGoogleAuth(){
+  ensureNotifyPermission();
+  var mail=(userProfile.email||'you@gmail.com').replace(/@.*/,'@gmail.com');
+  document.getElementById('gaName').textContent=userProfile.name||'Your account';
+  document.getElementById('gaMail').textContent=mail;
+  document.getElementById('gaAv').textContent=nameInitials(userProfile.name);
+  document.getElementById('gaPick').style.display='block';
+  document.getElementById('gaSpin').style.display='none';
+  document.getElementById('googleAuth').classList.add('show');
+  haptic();
+}
+function googleAuthPick(){
+  document.getElementById('gaPick').style.display='none';
+  document.getElementById('gaSpin').style.display='block';
+  haptic();
+  clearTimeout(_gaT);
+  _gaT=setTimeout(function(){
+    document.getElementById('googleAuth').classList.remove('show');
+    finishAuth('google');
+  },1700);
+}
+function closeGoogleAuth(){ clearTimeout(_gaT); document.getElementById('googleAuth').classList.remove('show'); }
+
+/* ----- Email + 6-digit code verification ----- */
+let _authCode='', _authEmail='';
+function genCode(){ return String(Math.floor(100000 + Math.random()*900000)); }
 function authEmailSubmit(){
   var v=(document.getElementById('authEmailInput').value||'').trim();
-  if(!v || v.indexOf('@')<1){ notify('Enter your email','We need a valid email address.'); return; }
+  if(!v || v.indexOf('@')<1 || v.indexOf('.')<2){ notify('Enter your email','We need a valid email address.'); return; }
+  ensureNotifyPermission();
+  _authEmail=v;
+  sendAuthCode();
+  document.getElementById('codeEmail').textContent=v;
+  clearOtp();
+  nav('authCode');
+  setTimeout(function(){ var f=document.getElementById('otp0'); if(f) f.focus(); }, 350);
+}
+// Sends the code via EmailJS v4 — publicKey passed in the send() options arg (no init needed).
+function sendEmailCode(recipientEmail, passcode){
+  if(!emailjsReady()) return Promise.reject(new Error('emailjs-not-configured'));
+  return emailjs.send(EMAILJS_CFG.serviceId, EMAILJS_CFG.templateId, {
+    email: recipientEmail,   // → template "To Email" must be {{email}}
+    passcode: passcode,      // → {{passcode}} in subject/body
+    code: passcode,          // → {{code}} alias
+    app_name: 'CatchAFade'
+  }, { publicKey: EMAILJS_CFG.publicKey });
+}
+function sendAuthCode(){
+  _authCode = genCode();
+  showCodeHint(null);
+  notify('Sending code…', 'Emailing a 6-digit code to '+_authEmail+'.');
+  // Ask our backend (server.js) to send the real email via Resend.
+  fetch('/api/send-code', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({ email:_authEmail, code:_authCode })
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(j){
+    if(j && j.ok){
+      // ✅ Real email delivered — never show the code in-app.
+      showCodeHint(null);
+      notify('Code sent ✓', 'We emailed a 6-digit code to '+_authEmail+'. Check your inbox (and spam).');
+    } else {
+      // Backend reached but Resend declined (test-mode only emails the owner) → show code on screen.
+      showCodeHint(_authCode);
+      var msg = (j && j.restricted)
+        ? 'Resend test mode only emails the account owner — your code is shown below.'
+        : 'Showing your code below.';
+      notify('Your code: '+_authCode, msg);
+    }
+  })
+  .catch(function(){
+    // No backend (opened as a plain static file / offline) → on-screen + device fallback.
+    showCodeHint(_authCode);
+    deviceNotify('CatchAFade · '+_authCode, 'Your verification code is '+_authCode+'.');
+  });
+}
+function showCodeHint(code){
+  var h=document.getElementById('codeHint'); if(!h) return;
+  if(code){ var v=document.getElementById('codeHintVal'); if(v) v.textContent=code; h.style.display='block'; }
+  else { h.style.display='none'; }
+}
+function fillOtp(code){
+  if(!code) return;
+  for(var i=0;i<6;i++){ var el=document.getElementById('otp'+i); if(el) el.value=code[i]||''; }
+  document.getElementById('otpRow').classList.remove('err');
+  haptic();
+  setTimeout(verifyCode, 180);
+}
+function resendCode(){ sendAuthCode(); clearOtp(); var f=document.getElementById('otp0'); if(f) f.focus(); haptic(); }
+function clearOtp(){
+  for(var i=0;i<6;i++){ var el=document.getElementById('otp'+i); if(el) el.value=''; }
+  document.getElementById('otpRow').classList.remove('err');
+}
+function otpVal(){ var s=''; for(var i=0;i<6;i++){ s+=(document.getElementById('otp'+i).value||''); } return s; }
+function otpInput(i){
+  var el=document.getElementById('otp'+i);
+  var raw=(el.value||'').replace(/\D/g,'');
+  if(raw.length>1){ otpFill(raw, i); return; }   // multi-digit (paste / SMS-autofill) → spread across boxes
+  el.value=raw.slice(0,1);
+  document.getElementById('otpRow').classList.remove('err');
+  if(el.value && i<5){ var n=document.getElementById('otp'+(i+1)); if(n) n.focus(); }
+  if(otpVal().length===6) setTimeout(verifyCode, 120);
+}
+// Spread a string of digits across the boxes starting at `start` (used by paste + autofill)
+function otpFill(digits, start){
+  start = start||0;
+  digits=(digits||'').replace(/\D/g,'');
+  if(!digits) return;
+  for(var k=0; (start+k)<6 && k<digits.length; k++){
+    var el=document.getElementById('otp'+(start+k)); if(el) el.value=digits[k];
+  }
+  document.getElementById('otpRow').classList.remove('err');
+  var focusIdx=Math.min(start+digits.length, 5);
+  var f=document.getElementById('otp'+focusIdx); if(f) f.focus();
+  if(otpVal().length===6) setTimeout(verifyCode, 120);
+}
+// Paste the whole code into any box → fills them all
+function otpPaste(e, i){
+  var txt='';
+  try{ txt=(e.clipboardData||window.clipboardData).getData('text')||''; }catch(_){ }
+  var digits=txt.replace(/\D/g,'');
+  if(!digits) return;            // nothing useful — let the default paste happen
+  e.preventDefault();
+  otpFill(digits, i||0);
+}
+function otpKey(e,i){
+  if(e.key==='Backspace' && !document.getElementById('otp'+i).value && i>0){
+    var p=document.getElementById('otp'+(i-1)); if(p){ p.focus(); p.value=''; }
+  }
+}
+function verifyCode(){
+  var entered=otpVal();
+  if(entered.length<6){ notify('Enter all 6 digits','Check your email for the code.'); return; }
+  if(entered!==_authCode){
+    document.getElementById('otpRow').classList.add('err');
+    notifyErr('Incorrect code','That code doesn\'t match. Tap Resend for a new one.');
+    haptic();
+    return;
+  }
+  // pop the code screen + auth, then enter the app
+  while(stack.length && (stack[stack.length-1]==='authCode' || stack[stack.length-1]==='auth')) stack.pop();
   finishAuth('email');
 }
 function finishAuth(provider){
-  // prototype: pretend the sign-in succeeded → return to the branded welcome
-  while(stack.length && stack[stack.length-1]==='auth') stack.pop();
-  if(!stack.length) stack.push('welcome');
+  // sign-in succeeded → drop any onboarding/auth screens and enter the app
+  while(stack.length && (/^ob\d+$/.test(stack[stack.length-1]) || stack[stack.length-1]==='auth' || stack[stack.length-1]==='authCode' || stack[stack.length-1]==='welcome')) stack.pop();
+  stack.push('home');
+  sessionStorage.setItem('fadex_seen_ob','1');
   render();
   var label = provider==='apple' ? 'Apple' : provider==='google' ? 'Google' : 'email';
-  notify(_authMode==='login' ? 'Welcome back' : 'Account created', 'Signed in with '+label+'.');
+  deviceNotify(_authMode==='login' ? 'Welcome back to CatchAFade' : 'You\'re all set', 'Signed in with '+label+'. Barbers near you are loading.');
 }
 /* ===== ONBOARDING — interactions, answers & dynamic copy ===== */
 let obAnswers = { howYouCut:null, whatMatters:[], commitmentLevel:null };
@@ -4432,17 +5109,14 @@ function ob4Pick(key, el){
   obAnswers.howYouCut = key;
   el.parentNode.querySelectorAll('.ob-opt').forEach(o=>o.classList.remove('on'));
   el.classList.add('on'); haptic();
-  setTimeout(obNext, 300);
+  var nx=document.getElementById('ob4Next'); if(nx) nx.classList.remove('dim'); // wait for Next, don't auto-advance
 }
 
 /* Screen 5 — multi-select (max 2) + reflect-back */
 function ob5Toggle(key, el){
   const i = obAnswers.whatMatters.indexOf(key);
   if(i>=0){ obAnswers.whatMatters.splice(i,1); el.classList.remove('on'); }
-  else {
-    if(obAnswers.whatMatters.length>=2){ notify('Pick up to two','Tap one to deselect first.'); return; }
-    obAnswers.whatMatters.push(key); el.classList.add('on');
-  }
+  else { obAnswers.whatMatters.push(key); el.classList.add('on'); }   // pick as many as you want
   haptic();
   const nx=document.getElementById('ob5Next');
   if(nx) nx.classList.toggle('dim', obAnswers.whatMatters.length===0);
@@ -4501,11 +5175,11 @@ function obStatTick(){
   const el=document.getElementById('ob6Num'), imp=document.getElementById('ob6Impact');
   if(!el) return;
   if(imp) imp.classList.remove('show');
-  if(obReduced()){ el.textContent='47'; if(imp){ imp.style.opacity='1'; } return; }
+  if(obReduced()){ el.textContent='70'; if(imp){ imp.style.opacity='1'; } return; }
   let n=0; el.textContent='0';
   _obStatT=setInterval(()=>{
-    n += Math.max(1, Math.round((47-n)/6));
-    if(n>=47){ n=47; clearInterval(_obStatT); if(imp) imp.classList.add('show'); }
+    n += Math.max(1, Math.round((70-n)/6));
+    if(n>=70){ n=70; clearInterval(_obStatT); if(imp) imp.classList.add('show'); }
     el.textContent=n;
   }, 38);
 }
@@ -4531,16 +5205,30 @@ function ob8Close(){ document.getElementById('ob8Modal').classList.remove('show'
 let _ob9T=null;
 function ob9Build(){
   const grid=document.getElementById('ob9Grid'); if(!grid) return;
-  grid.innerHTML='';
-  const N=36, reduced=obReduced();
+  const reduced=obReduced();
+  // 1) brighter street grid so it reads like a real map
+  let html='<svg viewBox="0 0 320 230" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;opacity:.34">'
+    +'<line x1="0" y1="58" x2="320" y2="58" stroke="#6FB8F0" stroke-width="1.1"/>'
+    +'<line x1="0" y1="118" x2="320" y2="118" stroke="#6FB8F0" stroke-width="1.1"/>'
+    +'<line x1="0" y1="178" x2="320" y2="178" stroke="#6FB8F0" stroke-width="1.1"/>'
+    +'<line x1="74" y1="0" x2="74" y2="230" stroke="#6FB8F0" stroke-width="1.1"/>'
+    +'<line x1="160" y1="0" x2="160" y2="230" stroke="#6FB8F0" stroke-width="1.1"/>'
+    +'<line x1="246" y1="0" x2="246" y2="230" stroke="#6FB8F0" stroke-width="1.1"/>'
+    +'<path d="M0 200 L120 120 L200 150 L320 70" stroke="#8FD0FF" stroke-width="1.8" fill="none" opacity=".85"/>'
+    +'</svg>';
+  // 2) lots of red location pins dropping out of the sky onto the map
+  const N=24;
+  const pins=[];
   for(let k=0;k<N;k++){
-    const d=document.createElement('div'); d.className='ob-dot';
-    d.style.left=(8+((k*53)%86))+'%';
-    d.style.top=(10+((k*37)%76))+'%';
-    if(reduced){ d.style.opacity='.9'; }
-    else { d.style.animation='obDotIn .3s '+(0.045*k).toFixed(2)+'s ease-out forwards'; }
-    grid.appendChild(d);
+    const x=(7+((k*53)%86)).toFixed(1), y=(12+((k*71)%74)).toFixed(1);
+    const anim=reduced ? '' : ('animation:ob9Pin .55s '+(0.055*k).toFixed(2)+'s cubic-bezier(.2,1.6,.35,1) both');
+    pins.push('<span class="ob9-pin" style="left:'+x+'%;top:'+y+'%;'+(reduced?'':anim)+'">📍</span>');
   }
+  // 3) a "you" dot in the middle for reference
+  html+='<span style="position:absolute;left:50%;top:50%;width:12px;height:12px;border-radius:50%;background:#2E84C4;border:2.5px solid #0A1320;transform:translate(-50%,-50%);box-shadow:0 0 0 6px rgba(46,132,196,.22);z-index:1"></span>';
+  html+=pins.join('');
+  grid.innerHTML=html;
+  // 4) count up the city total
   const cEl=document.getElementById('ob9Count');
   clearInterval(_ob9T);
   if(!cEl) return;
@@ -4580,7 +5268,7 @@ function ob14Pick(key, el){
   obAnswers.commitmentLevel=key;
   el.parentNode.querySelectorAll('.ob-opt').forEach(o=>o.classList.remove('on'));
   el.classList.add('on'); haptic();
-  setTimeout(obNext, 300);
+  var nx=document.getElementById('ob14Next'); if(nx) nx.classList.remove('dim'); // wait for Next, don't auto-advance
 }
 function ob15Apply(){
   const sub=document.getElementById('ob15Sub'); if(!sub) return;
