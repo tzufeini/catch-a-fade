@@ -137,9 +137,63 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  // Pitchcraft — AI marketing-copy generator. POST { product, audience, format, tone }
+  if (req.method === 'POST' && url.pathname === '/api/pitch') {
+    let body = '';
+    req.on('data', c => { body += c; if (body.length > 20000) req.destroy(); });
+    req.on('end', async () => {
+      let data; try { data = JSON.parse(body || '{}'); } catch (e) { return sendJSON(res, 400, { ok: false, error: 'bad json' }); }
+      // No key → tell the client to use its built-in sample generator (keeps the demo working).
+      if (!ANTHROPIC_KEY) return sendJSON(res, 200, { ok: false, configured: false });
+
+      const product = String(data.product || '').slice(0, 1200).trim();
+      const audience = String(data.audience || '').slice(0, 600).trim();
+      const format = String(data.format || 'cold-email').slice(0, 40).trim();
+      const tone = String(data.tone || 'confident').slice(0, 40).trim();
+      if (!product) return sendJSON(res, 400, { ok: false, error: 'missing product' });
+
+      const FORMAT_BRIEF = {
+        'cold-email': 'a short cold outreach email (subject line + 3-5 sentence body + clear CTA). Format as "Subject: ..." then a blank line then the body.',
+        'landing-headline': 'three landing-page hero options, each a punchy headline plus a one-line subhead. Number them 1-3.',
+        'product-description': 'a compelling e-commerce product description (~60-90 words) that sells benefits, then 3 short bullet feature highlights.',
+        'ad': 'three high-converting paid-ad variations (Google/Meta style): each with a headline (max ~40 chars) and one-line primary text. Number them 1-3.',
+        'linkedin': 'an engaging LinkedIn post (hook first line, 4-7 short lines, light line breaks, one soft CTA). No more than 1-2 emojis.',
+        'tweet': 'three scroll-stopping X/Twitter posts under 270 characters each. Number them 1-3.'
+      };
+      const brief = FORMAT_BRIEF[format] || FORMAT_BRIEF['cold-email'];
+      const system = [
+        'You are Pitchcraft, an elite direct-response copywriter. You write marketing copy that is specific, benefit-led, and free of clichés and corporate filler.',
+        'Rules: never use the words "revolutionary", "game-changer", "unlock", "elevate", or "in today\'s fast-paced world". No fabricated statistics or fake testimonials. Write copy a real founder could ship today.',
+        'Output ONLY the requested copy — no preamble, no explanations, no markdown headers.'
+      ].join('\n');
+      const userMsg = 'Write ' + brief
+        + '\n\nProduct / offer:\n' + product
+        + (audience ? '\n\nTarget audience:\n' + audience : '')
+        + '\n\nTone: ' + tone + '.';
+
+      try {
+        const r = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: { 'x-api-key': ANTHROPIC_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
+          body: JSON.stringify({ model: SUPPORT_MODEL, max_tokens: 900, system: system, messages: [{ role: 'user', content: userMsg }] })
+        });
+        const j = await r.json().catch(() => ({}));
+        if (r.ok) {
+          const copy = (j.content || []).filter(b => b.type === 'text').map(b => b.text).join('').trim();
+          if (copy) return sendJSON(res, 200, { ok: true, copy });
+          return sendJSON(res, 200, { ok: false, error: 'empty reply' });
+        }
+        return sendJSON(res, 200, { ok: false, error: (j && j.error && j.error.message) || ('anthropic ' + r.status) });
+      } catch (err) {
+        return sendJSON(res, 200, { ok: false, error: String(err && err.message || err) });
+      }
+    });
+    return;
+  }
+
   // Static files
   let pathname = decodeURIComponent(url.pathname);
-  if (pathname === '/') pathname = '/index.html';
+  if (pathname.endsWith('/')) pathname += 'index.html'; // serve directory index (/, /pitchcraft/, …)
   const filePath = path.normalize(path.join(ROOT, pathname));
   if (!filePath.startsWith(ROOT)) { res.writeHead(403); return res.end('forbidden'); }
   fs.readFile(filePath, (err, content) => {

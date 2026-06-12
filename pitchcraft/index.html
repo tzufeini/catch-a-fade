@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pitchcraft — AI marketing copy that actually converts</title>
+<meta name="description" content="Generate cold emails, landing headlines, product descriptions, ads and social posts in seconds. Direct-response copy your customers actually respond to.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✍️</text></svg>">
+<style>
+  :root{
+    --bg:#0b0c10; --panel:#14161d; --panel2:#1b1e27; --line:#262a36;
+    --ink:#f4f6fb; --mut:#9aa3b5; --mut2:#727b8e;
+    --brand:#7c5cff; --brand2:#22d3ee; --good:#34d399; --warn:#fbbf24;
+    --r:16px; --shadow:0 20px 60px rgba(0,0,0,.45);
+    --max:1100px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:radial-gradient(1200px 700px at 75% -10%,rgba(124,92,255,.18),transparent 60%),
+               radial-gradient(900px 600px at 0% 0%,rgba(34,211,238,.12),transparent 55%),
+               var(--bg);
+    color:var(--ink);
+    font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;justify-content:center;
+    border:1px solid transparent;border-radius:12px;padding:12px 18px;font-weight:650;font-size:15px;
+    cursor:pointer;text-decoration:none;transition:transform .06s ease,filter .15s ease,background .15s;
+    background:var(--panel2);color:var(--ink);border-color:var(--line);
+  }
+  .btn:active{transform:translateY(1px)}
+  .btn.primary{background:linear-gradient(135deg,var(--brand),#9b7bff);border-color:transparent;color:#fff;box-shadow:0 8px 24px rgba(124,92,255,.35)}
+  .btn.primary:hover{filter:brightness(1.06)}
+  .btn.ghost{background:transparent}
+  .btn[disabled]{opacity:.5;cursor:not-allowed}
+  .pill{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:var(--mut);
+        background:var(--panel);border:1px solid var(--line);padding:6px 12px;border-radius:999px}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--good);box-shadow:0 0 0 3px rgba(52,211,153,.18)}
+
+  /* nav */
+  header.nav{position:sticky;top:0;z-index:40;backdrop-filter:blur(12px);
+    background:rgba(11,12,16,.72);border-bottom:1px solid var(--line)}
+  .nav .wrap{display:flex;align-items:center;gap:16px;height:62px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.3px;font-size:18px}
+  .logo{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-size:17px;
+        background:linear-gradient(135deg,var(--brand),var(--brand2))}
+  .nav nav{margin-left:auto;display:flex;align-items:center;gap:6px}
+  .nav nav a{color:var(--mut);font-weight:600;font-size:14.5px;padding:8px 12px;border-radius:10px}
+  .nav nav a:hover{color:var(--ink);background:var(--panel)}
+  @media(max-width:720px){.nav nav a.hide{display:none}}
+
+  /* hero */
+  .hero{padding:64px 0 26px;text-align:center}
+  .hero h1{font-size:clamp(34px,6vw,60px);line-height:1.04;letter-spacing:-1.5px;margin:18px auto 16px;max-width:14ch;font-weight:850}
+  .hero h1 .grad{background:linear-gradient(135deg,var(--brand2),var(--brand) 60%,#ff8bd0);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p.sub{font-size:clamp(16px,2.3vw,20px);color:var(--mut);max-width:60ch;margin:0 auto 26px}
+  .hero .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .trust{margin-top:22px;color:var(--mut2);font-size:13px;display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+  .trust b{color:var(--ink)}
+
+  /* app card */
+  .app{margin:30px auto 10px;background:linear-gradient(180deg,var(--panel),#0f1117);
+    border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);overflow:hidden}
+  .app-grid{display:grid;grid-template-columns:1fr 1fr;min-height:440px}
+  @media(max-width:860px){.app-grid{grid-template-columns:1fr}}
+  .form{padding:26px;border-right:1px solid var(--line)}
+  @media(max-width:860px){.form{border-right:none;border-bottom:1px solid var(--line)}}
+  .form h3,.out h3{margin:0 0 4px;font-size:15px;letter-spacing:-.2px}
+  .form .hint,.out .hint{color:var(--mut);font-size:13px;margin:0 0 18px}
+  label{display:block;font-size:12.5px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.5px;margin:14px 0 7px}
+  textarea,input,select{
+    width:100%;background:var(--panel2);border:1px solid var(--line);color:var(--ink);
+    border-radius:12px;padding:12px 14px;font:inherit;font-size:14.5px;resize:vertical;outline:none;transition:border .15s,box-shadow .15s}
+  textarea:focus,input:focus,select:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(124,92,255,.18)}
+  textarea{min-height:84px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:7px}
+  .chip{font-size:13px;padding:8px 12px;border-radius:999px;border:1px solid var(--line);background:var(--panel2);
+    color:var(--mut);cursor:pointer;font-weight:600;transition:.12s}
+  .chip[aria-pressed="true"]{background:rgba(124,92,255,.16);border-color:var(--brand);color:#fff}
+  .gen-row{display:flex;align-items:center;gap:12px;margin-top:20px}
+  .gen-row .left{font-size:12.5px;color:var(--mut)}
+  .gen-row .left b{color:var(--ink)}
+
+  .out{padding:26px;display:flex;flex-direction:column}
+  .out .head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .result{flex:1;margin-top:14px;background:var(--panel2);border:1px solid var(--line);border-radius:14px;
+    padding:18px;white-space:pre-wrap;font-size:14.6px;line-height:1.62;min-height:220px;overflow:auto}
+  .result.empty{display:grid;place-items:center;color:var(--mut2);text-align:center;font-size:14px}
+  .result .badge{display:inline-block;font-size:11px;font-weight:700;color:var(--warn);
+    border:1px solid rgba(251,191,36,.4);background:rgba(251,191,36,.1);padding:2px 8px;border-radius:999px;margin-bottom:12px}
+  .out .tools{display:flex;gap:8px;margin-top:12px}
+  .out .tools .btn{padding:9px 14px;font-size:13.5px}
+  .spinner{width:18px;height:18px;border:2.5px solid rgba(255,255,255,.25);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* logos / social proof */
+  .logos{padding:30px 0 8px;text-align:center;color:var(--mut2);font-size:12.5px;letter-spacing:.4px;text-transform:uppercase}
+  .logos .strip{display:flex;gap:30px;justify-content:center;flex-wrap:wrap;margin-top:14px;opacity:.8;font-weight:800;font-size:18px;color:var(--mut)}
+
+  /* sections */
+  section.block{padding:64px 0}
+  .eyebrow{color:var(--brand2);font-weight:750;font-size:13px;letter-spacing:1.4px;text-transform:uppercase;text-align:center}
+  .h2{font-size:clamp(26px,4vw,40px);letter-spacing:-1px;text-align:center;margin:10px auto 8px;max-width:18ch;font-weight:820}
+  .lede{color:var(--mut);text-align:center;max-width:60ch;margin:0 auto 38px;font-size:17px}
+  .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:820px){.features{grid-template-columns:1fr}}
+  .feat{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+  .feat .ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:21px;
+    background:rgba(124,92,255,.14);border:1px solid rgba(124,92,255,.3);margin-bottom:12px}
+  .feat h4{margin:0 0 6px;font-size:17px}
+  .feat p{margin:0;color:var(--mut);font-size:14.5px}
+
+  /* pricing */
+  .prices{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
+  @media(max-width:820px){.prices{grid-template-columns:1fr}}
+  .price{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:26px;display:flex;flex-direction:column}
+  .price.pop{border-color:var(--brand);box-shadow:0 0 0 1px var(--brand),0 20px 50px rgba(124,92,255,.2);position:relative}
+  .price.pop .tag{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--brand),#9b7bff);
+    color:#fff;font-size:12px;font-weight:700;padding:5px 12px;border-radius:999px}
+  .price h4{margin:0 0 2px;font-size:15px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px}
+  .price .amt{font-size:42px;font-weight:850;letter-spacing:-1.5px;margin:6px 0 2px}
+  .price .amt span{font-size:15px;color:var(--mut);font-weight:600;letter-spacing:0}
+  .price ul{list-style:none;padding:0;margin:16px 0 22px;display:flex;flex-direction:column;gap:10px}
+  .price li{font-size:14.4px;color:var(--ink);display:flex;gap:9px;align-items:flex-start}
+  .price li::before{content:"✓";color:var(--good);font-weight:800}
+  .price .btn{margin-top:auto}
+
+  /* faq */
+  .faq{max-width:760px;margin:0 auto}
+  details{border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:4px 18px;margin-bottom:10px}
+  details summary{cursor:pointer;font-weight:650;padding:14px 0;list-style:none;display:flex;justify-content:space-between;align-items:center}
+  details summary::-webkit-details-marker{display:none}
+  details summary::after{content:"+";color:var(--mut);font-size:20px}
+  details[open] summary::after{content:"–"}
+  details p{margin:0 0 16px;color:var(--mut);font-size:14.6px}
+
+  footer{border-top:1px solid var(--line);padding:30px 0;color:var(--mut2);font-size:13.5px;text-align:center;margin-top:30px}
+
+  /* modal */
+  .modal-bg{position:fixed;inset:0;background:rgba(4,5,8,.7);backdrop-filter:blur(4px);z-index:90;display:none;align-items:center;justify-content:center;padding:20px}
+  .modal-bg.show{display:flex}
+  .modal{background:var(--panel);border:1px solid var(--line);border-radius:20px;max-width:420px;width:100%;padding:28px;box-shadow:var(--shadow);text-align:center}
+  .modal .ic{font-size:40px}
+  .modal h3{margin:10px 0 6px;font-size:22px;letter-spacing:-.4px}
+  .modal p{color:var(--mut);margin:0 0 18px;font-size:15px}
+  .modal .btn{width:100%;margin-bottom:10px}
+  .modal .x{font-size:13px;color:var(--mut);cursor:pointer;background:none;border:none}
+  .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);opacity:0;
+    background:var(--ink);color:#0b0c10;font-weight:650;font-size:14px;padding:11px 18px;border-radius:12px;z-index:120;transition:.25s;pointer-events:none}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <div class="brand"><div class="logo">✍️</div> Pitchcraft</div>
+    <nav>
+      <a href="#tool" class="hide">Try it</a>
+      <a href="#features" class="hide">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#" class="btn primary" id="navCta" style="padding:9px 16px">Go Pro</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- HERO -->
+  <section class="hero">
+    <span class="pill"><span class="dot"></span> New · 6 copy formats, one click</span>
+    <h1>Marketing copy that <span class="grad">actually converts</span></h1>
+    <p class="sub">Describe your product once. Get cold emails, landing-page headlines, product descriptions, ads and social posts written like a $400/hr direct-response copywriter — in about 8 seconds.</p>
+    <div class="cta">
+      <a href="#tool" class="btn primary">Generate free copy →</a>
+      <a href="#pricing" class="btn ghost">See pricing</a>
+    </div>
+    <div class="trust">
+      <span><b>3 free</b> generations, no card</span>
+      <span><b>6</b> copy formats</span>
+      <span>Cancel anytime</span>
+    </div>
+  </section>
+
+  <!-- TOOL -->
+  <section id="tool" class="app">
+    <div class="app-grid">
+      <div class="form">
+        <h3>What are you selling?</h3>
+        <p class="hint">The more specific you are, the sharper the copy.</p>
+
+        <label for="product">Product / offer</label>
+        <textarea id="product" placeholder="e.g. A 6-week online course that teaches busy parents to cook 20 healthy dinners in under 30 minutes each. $149, lifetime access, 30-day refund."></textarea>
+
+        <label for="audience">Target audience <span style="text-transform:none;font-weight:500;color:var(--mut2)">(optional)</span></label>
+        <input id="audience" placeholder="e.g. Working parents, 30–45, short on time">
+
+        <label>Format</label>
+        <div class="chips" id="formats">
+          <button class="chip" data-fmt="cold-email" aria-pressed="true">✉️ Cold email</button>
+          <button class="chip" data-fmt="landing-headline">🎯 Landing headline</button>
+          <button class="chip" data-fmt="product-description">🛍️ Product description</button>
+          <button class="chip" data-fmt="ad">📣 Ad copy</button>
+          <button class="chip" data-fmt="linkedin">💼 LinkedIn post</button>
+          <button class="chip" data-fmt="tweet">🐦 X / Twitter</button>
+        </div>
+
+        <label>Tone</label>
+        <div class="chips" id="tones">
+          <button class="chip" data-tone="confident" aria-pressed="true">Confident</button>
+          <button class="chip" data-tone="friendly">Friendly</button>
+          <button class="chip" data-tone="bold">Bold</button>
+          <button class="chip" data-tone="professional">Professional</button>
+          <button class="chip" data-tone="playful">Playful</button>
+        </div>
+
+        <div class="gen-row">
+          <button class="btn primary" id="genBtn" style="flex:1">Generate copy</button>
+        </div>
+        <div class="gen-row" style="margin-top:10px">
+          <div class="left" id="quota">✨ <b id="freeLeft">3</b> free generations left today</div>
+        </div>
+      </div>
+
+      <div class="out">
+        <div class="head">
+          <div><h3>Your copy</h3><p class="hint" style="margin:0">Edit, copy, ship.</p></div>
+          <span class="pill" id="fmtLabel">Cold email</span>
+        </div>
+        <div class="result empty" id="result">Fill in your product on the left and hit <b style="color:var(--ink);margin:0 4px">Generate</b> to see your copy here.</div>
+        <div class="tools" id="tools" style="display:none">
+          <button class="btn" id="copyBtn">📋 Copy</button>
+          <button class="btn ghost" id="regenBtn">↻ Regenerate</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="logos">
+    Built for founders, marketers &amp; agencies
+    <div class="strip"><span>Startups</span><span>Shopify</span><span>SaaS</span><span>Agencies</span><span>Newsletters</span></div>
+  </div>
+
+  <!-- FEATURES -->
+  <section id="features" class="block">
+    <div class="eyebrow">Why Pitchcraft</div>
+    <h2 class="h2">Stop staring at a blank page</h2>
+    <p class="lede">Every format is tuned with real direct-response principles — specificity, benefits over features, and a clear call to action. No fluff, no "in today's fast-paced world."</p>
+    <div class="features">
+      <div class="feat"><div class="ic">⚡</div><h4>8-second drafts</h4><p>Go from a one-line product description to ship-ready copy faster than you can open a blank doc.</p></div>
+      <div class="feat"><div class="ic">🎯</div><h4>6 proven formats</h4><p>Cold emails, hero headlines, product pages, paid ads, LinkedIn and X — each with its own playbook baked in.</p></div>
+      <div class="feat"><div class="ic">🧪</div><h4>Variations to test</h4><p>Headlines and ads come back as 3 options so you can A/B test instead of betting on one line.</p></div>
+      <div class="feat"><div class="ic">🗣️</div><h4>Your tone, dialed in</h4><p>Confident, friendly, bold, professional or playful — match your brand voice in a click.</p></div>
+      <div class="feat"><div class="ic">✂️</div><h4>Edit-ready output</h4><p>Clean, paste-anywhere text. No markdown soup, no "here's your copy!" preambles to delete.</p></div>
+      <div class="feat"><div class="ic">🔒</div><h4>Yours to keep</h4><p>Everything you generate is yours — no watermarks, no attribution, commercial use included.</p></div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="block">
+    <div class="eyebrow">Pricing</div>
+    <h2 class="h2">One great cold email pays for it</h2>
+    <p class="lede">Start free. Upgrade when copy becomes part of how you grow.</p>
+    <div class="prices">
+      <div class="price">
+        <h4>Free</h4>
+        <div class="amt">$0<span> / forever</span></div>
+        <ul><li>3 generations per day</li><li>All 6 formats</li><li>All tones</li><li>Copy &amp; edit output</li></ul>
+        <a href="#tool" class="btn ghost">Start free</a>
+      </div>
+      <div class="price pop">
+        <div class="tag">Most popular</div>
+        <h4>Pro</h4>
+        <div class="amt">$19<span> / month</span></div>
+        <ul><li><b>Unlimited</b>&nbsp;generations</li><li>3 variations per request</li><li>Priority generation speed</li><li>Save &amp; organize campaigns</li><li>Brand voice presets</li></ul>
+        <button class="btn primary" data-checkout="pro">Go Pro</button>
+      </div>
+      <div class="price">
+        <h4>Team</h4>
+        <div class="amt">$49<span> / month</span></div>
+        <ul><li>Everything in Pro</li><li>5 seats included</li><li>Shared brand voices</li><li>API access</li><li>Priority support</li></ul>
+        <button class="btn" data-checkout="team">Start Team</button>
+      </div>
+    </div>
+    <p style="text-align:center;color:var(--mut2);font-size:13px;margin-top:18px">Secure checkout · Cancel anytime · 7-day money-back guarantee</p>
+  </section>
+
+  <!-- FAQ -->
+  <section class="block">
+    <div class="eyebrow">FAQ</div>
+    <h2 class="h2">Good questions</h2>
+    <div class="faq" style="margin-top:30px">
+      <details open><summary>Is the copy actually good?</summary><p>Pitchcraft is prompted with real direct-response rules: lead with the benefit, get specific, kill the clichés, and always end on a clear call to action. It's a strong first draft you can ship — or a launchpad you tweak in 30 seconds.</p></details>
+      <details><summary>Do I own what I generate?</summary><p>Yes. Everything you create is yours, including for commercial use. No watermarks, no attribution required.</p></details>
+      <details><summary>What do I get for free?</summary><p>3 generations a day across all formats and tones, no credit card. Upgrade to Pro for unlimited generations and saved campaigns.</p></details>
+      <details><summary>Can I cancel anytime?</summary><p>Anytime, in one click. Pro and Team are month-to-month, and there's a 7-day money-back guarantee.</p></details>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="brand" style="justify-content:center;margin-bottom:8px">✍️ Pitchcraft</div>
+    © <span id="yr"></span> Pitchcraft. Copy that converts. · <a href="#pricing">Pricing</a> · <a href="#tool">Try it free</a>
+  </div>
+</footer>
+
+<!-- PAYWALL MODAL -->
+<div class="modal-bg" id="modal">
+  <div class="modal">
+    <div class="ic">🚀</div>
+    <h3 id="mTitle">You're out of free copy for today</h3>
+    <p id="mBody">Upgrade to Pro for <b>unlimited</b> generations, 3 variations per request and saved campaigns — for the price of one freelance email.</p>
+    <button class="btn primary" data-checkout="pro">Go Pro — $19/mo</button>
+    <button class="x" id="mClose">Maybe later</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  "use strict";
+  // ---- Stripe Payment Link goes here once you create one (dashboard.stripe.com/payment-links).
+  // Until then, checkout buttons open a friendly "coming soon" so nothing breaks in the demo.
+  var CHECKOUT_URLS = { pro:"", team:"" };
+
+  var FREE_PER_DAY = 3;
+  var $ = function(s){ return document.querySelector(s); };
+  var state = { format:"cold-email", tone:"confident", last:null };
+
+  document.getElementById("yr").textContent = new Date().getFullYear();
+
+  // ---------- free-quota tracking (per day, localStorage) ----------
+  function today(){ return new Date().toISOString().slice(0,10); }
+  function quota(){
+    var raw; try{ raw = JSON.parse(localStorage.getItem("pc_quota")||"{}"); }catch(e){ raw={}; }
+    if(raw.day !== today()){ raw = { day:today(), used:0 }; }
+    return raw;
+  }
+  function saveQuota(q){ try{ localStorage.setItem("pc_quota", JSON.stringify(q)); }catch(e){} }
+  function isPro(){ try{ return localStorage.getItem("pc_pro")==="1"; }catch(e){ return false; } }
+  function freeLeft(){ return isPro() ? Infinity : Math.max(0, FREE_PER_DAY - quota().used); }
+  function renderQuota(){
+    var el = $("#freeLeft"), wrap = $("#quota");
+    if(isPro()){ wrap.innerHTML = "⭐ <b>Pro</b> — unlimited generations"; return; }
+    var n = freeLeft();
+    el.textContent = n;
+    wrap.innerHTML = "✨ <b id='freeLeft'>"+n+"</b> free generation"+(n===1?"":"s")+" left today";
+  }
+
+  // ---------- chip selectors ----------
+  function wireChips(containerId, key, onChange){
+    var c = document.getElementById(containerId);
+    c.addEventListener("click", function(e){
+      var b = e.target.closest(".chip"); if(!b) return;
+      c.querySelectorAll(".chip").forEach(function(x){ x.setAttribute("aria-pressed","false"); });
+      b.setAttribute("aria-pressed","true");
+      state[key] = b.dataset.fmt || b.dataset.tone;
+      if(onChange) onChange(b);
+    });
+  }
+  var FMT_LABEL = {"cold-email":"Cold email","landing-headline":"Landing headline","product-description":"Product description","ad":"Ad copy","linkedin":"LinkedIn post","tweet":"X / Twitter"};
+  wireChips("formats","format", function(b){ $("#fmtLabel").textContent = FMT_LABEL[b.dataset.fmt]; });
+  wireChips("tones","tone");
+
+  // ---------- toast ----------
+  var toastT;
+  function toast(msg){
+    var t = $("#toast"); t.textContent = msg; t.classList.add("show");
+    clearTimeout(toastT); toastT = setTimeout(function(){ t.classList.remove("show"); }, 1900);
+  }
+
+  // ---------- modal ----------
+  function openModal(){ $("#modal").classList.add("show"); }
+  function closeModal(){ $("#modal").classList.remove("show"); }
+  $("#mClose").addEventListener("click", closeModal);
+  $("#modal").addEventListener("click", function(e){ if(e.target === $("#modal")) closeModal(); });
+
+  function checkout(plan){
+    var url = CHECKOUT_URLS[plan];
+    if(url){ window.location.href = url; return; }
+    // Demo mode: simulate a successful upgrade so the product is fully explorable.
+    closeModal();
+    if(confirm("This demo isn't wired to a live payment processor yet.\n\nAdd a Stripe Payment Link in index.html (CHECKOUT_URLS) to take real payments.\n\nUnlock Pro in this browser for now?")){
+      try{ localStorage.setItem("pc_pro","1"); }catch(e){}
+      renderQuota(); toast("⭐ Pro unlocked — generate away!");
+    }
+  }
+  document.addEventListener("click", function(e){
+    var b = e.target.closest("[data-checkout]"); if(!b) return;
+    e.preventDefault(); checkout(b.dataset.checkout);
+  });
+  $("#navCta").addEventListener("click", function(e){ e.preventDefault(); checkout("pro"); });
+
+  // ---------- local sample generator (fallback when no API key) ----------
+  function sampleCopy(p, aud, fmt, tone){
+    var name = (p.split(/[.\n]/)[0]||"your offer").trim().slice(0,80) || "your offer";
+    var who = aud ? aud.trim() : "the people who need this most";
+    var T = { confident:"", friendly:"", bold:"", professional:"", playful:"" };
+    switch(fmt){
+      case "landing-headline":
+        return "1. "+cap(name)+", without the usual hassle\n   Everything "+who+" need to get results — in one place.\n\n"+
+               "2. The faster way to get what "+name.toLowerCase()+" promises\n   Built for "+who+". Set up in minutes, not weeks.\n\n"+
+               "3. Finally — "+name.toLowerCase()+" that just works\n   Join the "+who+" who stopped settling for good enough.";
+      case "product-description":
+        return cap(name)+" gives "+who+" a simpler way to get there. Instead of piecing together half-measures, you get one clear path that's built to deliver — fast.\n\n"+
+               "• Designed specifically for "+who+"\n• Get going in minutes, see results sooner\n• Backed by a no-risk guarantee";
+      case "ad":
+        return "1. Headline: "+cap(short(name))+"\n   Text: The shortcut "+who+" have been waiting for. Try it today.\n\n"+
+               "2. Headline: Made for "+cap(short(who))+"\n   Text: Stop guessing. Get "+name.toLowerCase()+" that actually delivers.\n\n"+
+               "3. Headline: Your unfair advantage\n   Text: "+cap(name)+" — built to get results, risk-free.";
+      case "linkedin":
+        return "Most "+who+" are doing this the hard way.\n\nI was too — until I built "+name.toLowerCase()+".\n\nHere's what changed:\n\n→ Less time wasted on the busywork\n→ A clear path instead of guesswork\n→ Results you can actually point to\n\nIf you're "+who+", this one's for you.\n\nCurious? Drop a comment and I'll share more. 👇";
+      case "tweet":
+        return "1. "+cap(name)+", but without the part everyone hates. Built for "+who+". 🧵\n\n"+
+               "2. I made "+name.toLowerCase()+" for "+who+" who are tired of doing it the hard way. Here's why it works:\n\n"+
+               "3. Unpopular opinion: "+who+" deserve better than the status quo. So I built "+name.toLowerCase()+".";
+      default: /* cold-email */
+        return "Subject: a quicker way for "+short(who)+"\n\n"+
+               "Hi there,\n\nIf you're like most "+who+", you've probably felt the friction of doing this the long way. "+
+               cap(name)+" was built to fix exactly that — a simpler path that gets you results without the usual overhead.\n\n"+
+               "Worth a 10-minute look? I'd love to show you how it works.\n\nBest,\n[Your name]";
+    }
+  }
+  function cap(s){ s=(s||"").trim(); return s.charAt(0).toUpperCase()+s.slice(1); }
+  function short(s){ s=(s||"").trim(); return s.length>40 ? s.slice(0,40).replace(/\s+\S*$/,"")+"…" : s; }
+
+  // ---------- generate ----------
+  var generating = false;
+  function setResult(text, demo){
+    var r = $("#result");
+    r.classList.remove("empty");
+    r.innerHTML = (demo ? '<span class="badge">SAMPLE — add an API key for AI-written copy</span>' : "") +
+                  '<span></span>';
+    r.lastChild.textContent = text;
+    $("#tools").style.display = "flex";
+    state.last = text;
+  }
+  async function generate(){
+    if(generating) return;
+    var product = $("#product").value.trim();
+    if(!product){ toast("Tell me what you're selling first ✍️"); $("#product").focus(); return; }
+    if(!isPro() && freeLeft() <= 0){ openModal(); return; }
+
+    generating = true;
+    var btn = $("#genBtn"); var orig = btn.innerHTML;
+    btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Writing…';
+
+    var payload = { product:product, audience:$("#audience").value.trim(), format:state.format, tone:state.tone };
+    var text = null, demo = false;
+    try{
+      var resp = await fetch("/api/pitch", { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(payload) });
+      var j = await resp.json().catch(function(){ return {}; });
+      if(j && j.ok && j.copy){ text = j.copy; }
+      else { text = sampleCopy(payload.product, payload.audience, payload.format, payload.tone); demo = true; }
+    }catch(e){
+      text = sampleCopy(payload.product, payload.audience, payload.format, payload.tone); demo = true;
+    }
+
+    setResult(text, demo);
+    if(!isPro()){ var q = quota(); q.used += 1; saveQuota(q); renderQuota(); if(freeLeft()===0) setTimeout(openModal, 900); }
+    btn.disabled = false; btn.innerHTML = orig;
+    generating = false;
+  }
+  $("#genBtn").addEventListener("click", generate);
+  $("#regenBtn").addEventListener("click", generate);
+
+  $("#copyBtn").addEventListener("click", function(){
+    if(!state.last) return;
+    navigator.clipboard.writeText(state.last).then(function(){ toast("📋 Copied to clipboard"); },
+      function(){ toast("Press ⌘/Ctrl-C to copy"); });
+  });
+
+  renderQuota();
+})();
+</script>
+</body>
+</html>
