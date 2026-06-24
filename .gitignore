@@ -4,3 +4,19 @@ keys.local.json
 node_modules/
 nohup.out
 .DS_Store
+
+# build output
+www/
+native-bridge.js
+
+# Capacitor / iOS native build artifacts (the ios/ project itself IS committed)
+ios/App/Pods/
+ios/App/App/public/
+ios/App/build/
+ios/DerivedData/
+*.xcuserstate
+resources/
+assets/
+# ...but the SIE study site's own assets MUST be committed (they get deployed)
+!sie-exam-prep/assets/
+!sie-exam-prep/assets/**

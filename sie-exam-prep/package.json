@@ -1,0 +1,12 @@
+{
+  "name": "sie-mastery",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SIE Mastery — Securities Industry Essentials exam-prep study site (static).",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

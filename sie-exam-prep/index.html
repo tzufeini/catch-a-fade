@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SIE Mastery — a complete, engaging Securities Industry Essentials (SIE) exam prep course. 20 chapters of lessons, visuals, mnemonics, and 300+ practice questions." />
+  <title>SIE Mastery — Securities Industry Essentials Exam Prep</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css?v=3" />
+</head>
+<body>
+  <!-- Mobile top bar -->
+  <header class="topbar">
+    <button id="menuToggle" class="icon-btn" aria-label="Open menu">☰</button>
+    <div class="topbar-title">SIE&nbsp;<span>Mastery</span></div>
+    <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">◑</button>
+  </header>
+
+  <div class="layout">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar">
+      <div class="brand">
+        <div class="brand-logo">SIE</div>
+        <div class="brand-text">
+          <div class="brand-title">SIE Mastery</div>
+          <div class="brand-sub">Securities Industry Essentials</div>
+        </div>
+        <button id="themeToggleDesktop" class="icon-btn theme-desktop" aria-label="Toggle theme">◑</button>
+      </div>
+
+      <div class="progress-card">
+        <div class="ring-wrap">
+          <svg class="ring" viewBox="0 0 80 80" width="64" height="64">
+            <circle class="ring-bg" cx="40" cy="40" r="34" />
+            <circle id="progressRing" class="ring-fg" cx="40" cy="40" r="34" />
+          </svg>
+          <div id="progressPct" class="ring-pct">0%</div>
+        </div>
+        <div class="progress-meta">
+          <div class="progress-label">Course progress</div>
+          <div id="progressDetail" class="progress-detail">0 of 20 chapters</div>
+        </div>
+      </div>
+
+      <div class="search-wrap">
+        <input id="searchInput" type="search" placeholder="Search topics, terms…" autocomplete="off" />
+        <div id="searchResults" class="search-results" hidden></div>
+      </div>
+
+      <nav class="nav">
+        <a href="#/dashboard" class="nav-top" data-route="dashboard"><span class="nav-ico">▦</span> Dashboard</a>
+        <a href="#/fullexam" class="nav-top" data-route="fullexam"><span class="nav-ico">◉</span> Full Practice Exam</a>
+        <a href="#/exam" class="nav-top" data-route="exam"><span class="nav-ico">◎</span> Mock Exam</a>
+        <a href="#/bank" class="nav-top" data-route="bank"><span class="nav-ico">❒</span> Question Bank</a>
+        <a href="#/cards" class="nav-top" data-route="cards"><span class="nav-ico">⊞</span> Flashcards</a>
+        <a href="#/guide" class="nav-top" data-route="guide"><span class="nav-ico">✦</span> Study Guide</a>
+      </nav>
+
+      <div id="chapterNav" class="chapter-nav"><!-- populated by app.js --></div>
+
+      <div class="sidebar-foot">
+        <button id="resetProgress" class="ghost-btn">Reset progress</button>
+      </div>
+    </aside>
+
+    <div id="overlay" class="overlay" hidden></div>
+
+    <!-- Main content -->
+    <main id="main" class="main">
+      <div id="view" class="view"><!-- routed content --></div>
+    </main>
+  </div>
+
+  <script src="assets/content.js?v=5"></script>
+  <script src="assets/exam1.js?v=5"></script>
+  <script src="assets/cards.js?v=5"></script>
+  <script src="assets/app.js?v=5"></script>
+</body>
+</html>
