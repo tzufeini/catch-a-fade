@@ -19,6 +19,13 @@
       "runtimeArgs": ["-m", "http.server", "3790", "--directory", "/Users/tzufeini/Downloads/Econ Presentation 2"],
       "autoPort": false,
       "port": 3790
+    },
+    {
+      "name": "sieprep",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "4178", "--directory", "/Users/tzufeini/Downloads/Econ Presentation 2/sie-exam-prep"],
+      "autoPort": false,
+      "port": 4178
     }
   ]
 }

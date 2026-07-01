@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Sign in with Apple (required because the app also offers Google login). -->
+	<key>com.apple.developer.applesignin</key>
+	<array>
+		<string>Default</string>
+	</array>
+	<!-- Push notifications. Xcode switches this to "production" automatically for
+	     App Store / TestFlight builds. -->
+	<key>aps-environment</key>
+	<string>development</string>
+</dict>
+</plist>

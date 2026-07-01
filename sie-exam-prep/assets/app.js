@@ -709,7 +709,36 @@
   function closeSidebar() { $("#sidebar").classList.remove("open"); $("#overlay").hidden = true; }
 
   // ============================================================ INIT
+  // ============================================================ PASSCODE GATE
+  function initPasscodeGate() {
+    var PASS = "245890";
+    var screen = document.getElementById("lockScreen");
+    if (!screen) return;
+    var unlocked = false;
+    try { unlocked = localStorage.getItem("sie-unlocked") === "yes"; } catch (e) {}
+    if (unlocked) { document.documentElement.classList.add("unlocked"); screen.style.display = "none"; return; }
+    var input = document.getElementById("lockInput");
+    var btn = document.getElementById("lockBtn");
+    var err = document.getElementById("lockErr");
+    var card = document.getElementById("lockCard");
+    function attempt() {
+      if (input && input.value.trim() === PASS) {
+        try { localStorage.setItem("sie-unlocked", "yes"); } catch (e) {}
+        screen.classList.add("hide");
+        setTimeout(function () { document.documentElement.classList.add("unlocked"); screen.style.display = "none"; }, 400);
+      } else {
+        if (err) err.textContent = "Incorrect passcode. Try again.";
+        if (card) { card.classList.remove("shake"); void card.offsetWidth; card.classList.add("shake"); }
+        if (input) { input.value = ""; input.focus(); }
+      }
+    }
+    if (btn) btn.addEventListener("click", attempt);
+    if (input) input.addEventListener("keydown", function (e) { if (e.key === "Enter") attempt(); });
+    if (input) setTimeout(function () { input.focus(); }, 100);
+  }
+
   function init() {
+    initPasscodeGate();
     buildSidebar();
     refreshProgress();
     window.addEventListener("hashchange", router);

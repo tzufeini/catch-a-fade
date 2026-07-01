@@ -14,3 +14,20 @@ services:
         sync: false
       - key: ANTHROPIC_API_KEY
         sync: false
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_PUBLISHABLE_KEY
+        sync: false
+      - key: PLATFORM_FEE_PERCENT
+        value: "25"
+      # App Review demo login (not secret — goes in App Store Connect review notes)
+      - key: REVIEW_EMAIL
+        value: "review@catchafade.app"
+      - key: REVIEW_CODE
+        value: "010101"
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_PUBLISHABLE_KEY
+        sync: false
+      - key: SUPABASE_SECRET_KEY
+        sync: false

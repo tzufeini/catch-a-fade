@@ -8,9 +8,25 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital@0;1&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/styles.css?v=3" />
+  <link rel="stylesheet" href="assets/styles.css?v=6" />
+  <script>
+    // Skip the passcode for returning (already-unlocked) visitors — before first paint.
+    try { if (localStorage.getItem('sie-unlocked') === 'yes') document.documentElement.classList.add('unlocked'); } catch (e) {}
+  </script>
 </head>
 <body>
+  <!-- Passcode gate (first-time use) -->
+  <div id="lockScreen" class="lock-screen">
+    <div class="lock-card" id="lockCard">
+      <div class="lock-logo">SIE</div>
+      <h1>SIE Mastery</h1>
+      <p>Enter your access passcode to continue.</p>
+      <input id="lockInput" class="lock-input" type="password" inputmode="numeric" maxlength="6" placeholder="••••••" autocomplete="off" aria-label="Passcode" />
+      <button id="lockBtn" class="btn btn-primary lock-btn">Unlock</button>
+      <div id="lockErr" class="lock-err" role="alert"></div>
+    </div>
+  </div>
+
   <!-- Mobile top bar -->
   <header class="topbar">
     <button id="menuToggle" class="icon-btn" aria-label="Open menu">☰</button>
@@ -73,9 +89,9 @@
     </main>
   </div>
 
-  <script src="assets/content.js?v=5"></script>
-  <script src="assets/exam1.js?v=5"></script>
-  <script src="assets/cards.js?v=5"></script>
-  <script src="assets/app.js?v=5"></script>
+  <script src="assets/content.js?v=6"></script>
+  <script src="assets/exam1.js?v=6"></script>
+  <script src="assets/cards.js?v=6"></script>
+  <script src="assets/app.js?v=6"></script>
 </body>
 </html>
