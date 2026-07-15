@@ -735,11 +735,12 @@
 
   // ============================================================ PASSCODE GATE
   function initPasscodeGate() {
-    var PASS = "245890";
+    var PASS = "242526";
+    var UNLOCK_VERSION = "v2"; // bump this whenever the passcode changes — re-locks everyone
     var screen = document.getElementById("lockScreen");
     if (!screen) return;
     var unlocked = false;
-    try { unlocked = localStorage.getItem("sie-unlocked") === "yes"; } catch (e) {}
+    try { unlocked = localStorage.getItem("sie-unlocked") === UNLOCK_VERSION; } catch (e) {}
     if (unlocked) { document.documentElement.classList.add("unlocked"); screen.style.display = "none"; return; }
     var input = document.getElementById("lockInput");
     var btn = document.getElementById("lockBtn");
@@ -747,7 +748,7 @@
     var card = document.getElementById("lockCard");
     function attempt() {
       if (input && input.value.trim() === PASS) {
-        try { localStorage.setItem("sie-unlocked", "yes"); } catch (e) {}
+        try { localStorage.setItem("sie-unlocked", UNLOCK_VERSION); } catch (e) {}
         screen.classList.add("hide");
         setTimeout(function () { document.documentElement.classList.add("unlocked"); screen.style.display = "none"; }, 400);
       } else {
