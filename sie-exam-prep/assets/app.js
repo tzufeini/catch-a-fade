@@ -220,7 +220,7 @@
     const totalHours = CH.reduce((n, c) => n + (c.estHours || 0), 0);
     const done = Object.keys(STATE.done).filter((k) => STATE.done[k]).length;
 
-    let html = '<section class="hero"><h1>Master the SIE Exam 🎓</h1>' +
+    let html = countdownBanner() + '<section class="hero"><h1>Master the SIE Exam 🎓</h1>' +
       "<p>A complete, guided course for FINRA's <strong>Securities Industry Essentials</strong> exam — " +
       "20 chapters of clear lessons, visual breakdowns, memory aids, and " + (tq || "300+") +
       " practice questions. Built for the full 100–150 hour prep journey.</p>" +
@@ -709,6 +709,30 @@
   function closeSidebar() { $("#sidebar").classList.remove("open"); $("#overlay").hidden = true; }
 
   // ============================================================ INIT
+  // ============================================================ EXAM COUNTDOWN
+  var EXAM_DATE = new Date(2026, 7, 3); // August 3, 2026 (month is 0-indexed)
+  function daysToExam() {
+    var now = new Date();
+    var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    return Math.round((EXAM_DATE - today) / 86400000);
+  }
+  function renderCountdown() {
+    var el = document.getElementById("examCountdown");
+    if (!el) return;
+    var d = daysToExam();
+    if (d > 1) el.innerHTML = '<div class="cd-num">' + d + '</div><div class="cd-lbl">days until your SIE exam</div><div class="cd-date">August 3, 2026</div>';
+    else if (d === 1) el.innerHTML = '<div class="cd-num">1</div><div class="cd-lbl">day until your SIE exam — final review!</div><div class="cd-date">August 3, 2026</div>';
+    else if (d === 0) el.innerHTML = '<div class="cd-num">Today</div><div class="cd-lbl">is exam day — you\'ve got this 💪</div>';
+    else el.innerHTML = '<div class="cd-lbl">Hope your SIE exam went great! 🎉</div>';
+  }
+  function countdownBanner() {
+    var d = daysToExam();
+    if (d > 1) return '<div class="exam-banner">🎯 <b>' + d + ' days</b> until your SIE exam &nbsp;·&nbsp; <span>August 3, 2026</span></div>';
+    if (d === 1) return '<div class="exam-banner urgent">🎯 <b>1 day</b> until your SIE exam &nbsp;·&nbsp; <span>final review!</span></div>';
+    if (d === 0) return '<div class="exam-banner urgent">🎯 <b>Exam day is today</b> — you\'ve got this 💪</div>';
+    return "";
+  }
+
   // ============================================================ PASSCODE GATE
   function initPasscodeGate() {
     var PASS = "245890";
@@ -741,6 +765,7 @@
     initPasscodeGate();
     buildSidebar();
     refreshProgress();
+    renderCountdown();
     window.addEventListener("hashchange", router);
     router();
 

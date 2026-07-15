@@ -599,6 +599,27 @@ table.blk-table tr:hover td { background: var(--panel); }
 .fc-done { text-align: center; padding: 30px; }
 .fc-done .score-num { font-size: 52px; }
 
+/* ============================================================ Exam countdown */
+.exam-countdown {
+  display: block; text-align: center; border-radius: var(--radius); padding: 14px 12px;
+  background: linear-gradient(135deg, var(--sec4), var(--sec4b));
+  color: #fff; box-shadow: 0 8px 20px -8px var(--sec4);
+}
+.exam-countdown .cd-num { font-size: 32px; font-weight: 800; line-height: 1; letter-spacing: -.02em; }
+.exam-countdown .cd-lbl { font-size: 12.5px; opacity: .96; margin-top: 5px; font-weight: 600; }
+.exam-countdown .cd-date { font-size: 11px; opacity: .82; margin-top: 3px; }
+
+.exam-banner {
+  display: flex; align-items: center; justify-content: center; gap: 4px; flex-wrap: wrap;
+  text-align: center; border-radius: 12px; padding: 11px 16px; margin-bottom: 16px; font-size: 14px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--sec4) 22%, transparent), color-mix(in srgb, var(--sec4b) 18%, transparent));
+  border: 1px solid color-mix(in srgb, var(--sec4) 40%, transparent); color: var(--text);
+}
+.exam-banner b { color: var(--gold); }
+.exam-banner span { color: var(--text-dim); }
+.exam-banner.urgent { border-color: var(--red); }
+.exam-banner.urgent b { color: var(--red); }
+
 /* ============================================================ Passcode lock */
 .lock-screen {
   position: fixed; inset: 0; z-index: 3000; display: grid; place-items: center; padding: 24px;

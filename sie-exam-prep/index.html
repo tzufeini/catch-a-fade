@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital@0;1&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/styles.css?v=6" />
+  <link rel="stylesheet" href="assets/styles.css?v=7" />
   <script>
     // Skip the passcode for returning (already-unlocked) visitors — before first paint.
     try { if (localStorage.getItem('sie-unlocked') === 'yes') document.documentElement.classList.add('unlocked'); } catch (e) {}
@@ -60,6 +60,8 @@
         </div>
       </div>
 
+      <div id="examCountdown" class="exam-countdown"></div>
+
       <div class="search-wrap">
         <input id="searchInput" type="search" placeholder="Search topics, terms…" autocomplete="off" />
         <div id="searchResults" class="search-results" hidden></div>
@@ -89,9 +91,9 @@
     </main>
   </div>
 
-  <script src="assets/content.js?v=6"></script>
-  <script src="assets/exam1.js?v=6"></script>
-  <script src="assets/cards.js?v=6"></script>
-  <script src="assets/app.js?v=6"></script>
+  <script src="assets/content.js?v=7"></script>
+  <script src="assets/exam1.js?v=7"></script>
+  <script src="assets/cards.js?v=7"></script>
+  <script src="assets/app.js?v=7"></script>
 </body>
 </html>
