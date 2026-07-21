@@ -2803,12 +2803,13 @@ function startTrip(){
   av.textContent=b.in; av.style.background=b.g;
   document.getElementById('tbState').textContent=b.n.split(' ')[0]+' is on the way';
   document.getElementById('tbSub').textContent=BARBERS[current].n+' · live trip';
-  document.getElementById('tbEta').textContent='8';
+  var _tbe=document.getElementById('tbEta'); if(_tbe) _tbe.textContent='8';
   showTripBar();
 }
 function updateTripBar(eta,state,sub){
   if(!tripActive) return;
-  if(eta!=null) document.getElementById('tbEta').textContent=eta;
+  var _tbe=document.getElementById('tbEta');
+  if(eta!=null && _tbe) _tbe.textContent=eta;
   if(state) document.getElementById('tbState').textContent=state;
   if(sub) document.getElementById('tbSub').textContent=sub;
 }
@@ -2947,9 +2948,15 @@ function FALLBACK_BARBERS(){
       services:svc, lat:x[5], lng:x[6], verified:true, fromDB:false };
   });
 }
-let BARBERS = JSON.parse(localStorage.getItem('fadex_barbers')||'[]');
-if(!BARBERS.length) BARBERS = FALLBACK_BARBERS();   // never an empty marketplace
-let favorites = JSON.parse(localStorage.getItem('fadex_favorites')||'[]');
+// Safe localStorage JSON reader: a single corrupt key must never halt the
+// top-level script (which would brick the whole app on launch).
+function lsGet(key, fallback){
+  try{ var v=localStorage.getItem(key); return v==null ? fallback : JSON.parse(v); }
+  catch(e){ try{ localStorage.removeItem(key); }catch(_){ } return fallback; }
+}
+let BARBERS = lsGet('fadex_barbers', []);
+if(!Array.isArray(BARBERS) || !BARBERS.length) BARBERS = FALLBACK_BARBERS();   // never an empty marketplace
+let favorites = lsGet('fadex_favorites', []);
 function persistBarbers(){ localStorage.setItem('fadex_barbers', JSON.stringify(BARBERS)); }
 
 /* ===================================================================
@@ -3247,6 +3254,13 @@ function emptyCard(title, sub, btnText, btnFn){
 
 /* ---------- home list ---------- */
 function barberLL(b,i){
+  // Fallback/demo barbers (not from the DB) are placed a short walk from the
+  // user wherever they are — so the map, distances and ETAs stay realistic for
+  // a reviewer or first user anywhere on earth, not just in NYC.
+  if(b.fromDB===false){
+    const off=BARBER_OFFSETS[i%BARBER_OFFSETS.length];
+    return [userLL[0]+off[0], userLL[1]+off[1]];
+  }
   if(b.lat!=null && b.lng!=null) return [b.lat, b.lng];
   const off=BARBER_OFFSETS[i%BARBER_OFFSETS.length];
   return [userLL[0]+off[0], userLL[1]+off[1]];
@@ -3262,7 +3276,10 @@ function buildList(){
     const ll=barberLL(b,i);
     return {b, i, dist: haversine(userLL[0],userLL[1],ll[0],ll[1])};
   }).sort((x,y)=>x.dist-y.dist);
-  const inRange = enriched.filter(x=>x.dist <= userRadius);
+  // radius 50 is the "Any distance" option — no cap, so users far from
+  // every barber (new cities, App Review) can always reach the full list
+  const effRadius = userRadius >= 50 ? Infinity : userRadius;
+  const inRange = enriched.filter(x=>x.dist <= effRadius);
   if(!inRange.length){
     const closest = enriched[0];
     el.innerHTML = emptyCard('No barbers within '+userRadius+' mi','Your closest pro, '+closest.b.n.split(' ')[0]+', is '+Math.round(closest.dist*10)/10+' mi away. Widen your radius?','Show any distance','setRadius(50)');
@@ -3773,8 +3790,7 @@ function initHomeMapLeaflet(){
   L.marker(userLL,{icon:userDivIcon()}).addTo(homeMapInst);
   L.circle(userLL,{radius:1500,color:'#2A58CC',fillColor:'#2A58CC',fillOpacity:0.06,weight:1,dashArray:'4 6'}).addTo(homeMapInst);
   BARBERS.forEach((b,i)=>{
-    const off=BARBER_OFFSETS[i%BARBER_OFFSETS.length];
-    const ll=[(b.lat||userLL[0]+off[0]), (b.lng||userLL[1]+off[1])];
+    const ll=barberLL(b,i);
     L.marker(ll,{icon:barberDivIcon(b)}).on('click',()=>openBarber(i)).addTo(homeMapInst);
   });
   if(navigator.geolocation){
@@ -3800,9 +3816,9 @@ function initHomeMapGoogle(){
     strokeColor:'#2A58CC', strokeOpacity:0.55, strokeWeight:1,
     fillColor:'#2A58CC', fillOpacity:0.07});
   BARBERS.forEach((b,i)=>{
-    const off=BARBER_OFFSETS[i%BARBER_OFFSETS.length];
+    const ll=barberLL(b,i);
     const m=new google.maps.Marker({
-      position:{lat:(b.lat||userLL[0]+off[0]), lng:(b.lng||userLL[1]+off[1])},
+      position:{lat:ll[0], lng:ll[1]},
       map:homeMapInst, icon:googleBarberIcon(b,i)
     });
     m.addListener('click', ()=>openBarber(i));
@@ -3887,6 +3903,11 @@ function startTracking(){
   ['stepWay','stepArr','stepCut'].forEach(id=>{ const e=document.getElementById(id); e.classList.remove('done'); e.classList.remove('now'); });
   document.getElementById('stepWay').classList.add('now');
   document.getElementById('etaMin').parentElement.innerHTML='<span id="etaMin">8</span><span style="font-size:18px;color:var(--dim)"> min away</span>';
+  // The previous completed trip replaces #tbEta's container with a LIVE badge;
+  // rebuild the mini trip-bar ETA so a fresh #tbEta exists for THIS booking
+  // (otherwise startTrip()/updateTripBar() would null-deref on the 2nd trip).
+  (function(){ var tbe=document.getElementById('tbEta');
+    if(tbe && tbe.parentElement) tbe.parentElement.innerHTML='<b id="tbEta">8</b><small>min</small>'; })();
   const firstName=BARBERS[current].n.split(' ')[0];
   document.getElementById('trkState').textContent=BARBERS[current].n+' is on the way';
   // trip card + chat header show the REAL booked barber
@@ -3970,12 +3991,19 @@ function startTracking(){
  * → onSuccess. Card data goes straight to Stripe; it never touches our code. */
 let _stripe=null, _stripeCard=null, _payClientSecret=null, _payOnSuccess=null, _payBusy=false;
 function apiFetch(path, opts, ms){
-  var ac=new AbortController(); var t=setTimeout(function(){ ac.abort(); }, ms||12000);
+  // default generous enough to ride out a free-tier cold start (~30-60s)
+  var ac=new AbortController(); var t=setTimeout(function(){ ac.abort(); }, ms||60000);
   opts=opts||{}; opts.signal=ac.signal;
   return fetch((window.API_BASE||'')+path, opts).then(
     function(r){ clearTimeout(t); return r.json(); },
     function(e){ clearTimeout(t); throw e; });
 }
+// Fire-and-forget warm-up: wake the backend the moment the app opens so
+// auth/payments are fast by the time the user reaches them. Slight delay so
+// the native bridge has settled window.API_BASE first.
+setTimeout(function(){
+  try{ fetch((window.API_BASE||'')+'/api/health').catch(function(){}); }catch(_){ }
+}, 1500);
 function loadStripeJs(){
   return new Promise(function(resolve,reject){
     if(window.Stripe) return resolve();
@@ -4045,6 +4073,13 @@ function paySubmit(){
     closePaySheet(false);
     notify('Payment confirmed ✓','Your card was charged securely via Stripe.');
     if(_payOnSuccess){ var cb=_payOnSuccess; _payOnSuccess=null; cb(res.paymentIntent); }
+  })
+  .catch(function(){
+    // network drop mid-confirm: never leave the sheet stuck on "Processing…"
+    _payBusy=false;
+    btn.disabled=false; btn.textContent='Pay';
+    payShowErr('Connection lost while confirming. You were not charged twice — try again.');
+    haptic();
   });
 }
 function closePaySheet(cancelled){
@@ -4066,8 +4101,8 @@ function confirmBooking(){
 /* ---------- user profile (persisted; empty until the user signs in / edits) ---------- */
 const userProfile = Object.assign({
   name:'', email:'', phone:'', address:'', style:'', notes:'', cutCount:0
-}, JSON.parse(localStorage.getItem('fadex_profile')||'{}'), {
-  prefStyles: JSON.parse(localStorage.getItem('fadex_pref_styles')||'[]'),
+}, lsGet('fadex_profile', {}), {
+  prefStyles: lsGet('fadex_pref_styles', []),
   matchStyles: localStorage.getItem('fadex_match_styles')==='1'
 });
 function persistProfile(){
@@ -4558,9 +4593,12 @@ function goToRating(){
   rateStars=0; ratingTags.clear();
   document.querySelectorAll('#rating .rateStar').forEach(s=>s.classList.remove('on'));
   document.querySelectorAll('#rating .tagCloud .chip').forEach(c=>c.classList.remove('on'));
-  document.querySelectorAll('#rateTipRow .chip').forEach(c=>c.classList.remove('on'));
-  document.querySelectorAll('#rateTipRow .chip')[2].classList.add('on'); // 20% default
-  document.getElementById('rateTags').style.display='none';
+  // (tip row was removed from the rating UI; guard the optional default so a
+  //  missing element can never throw and strand the user after payment)
+  var _tipChips=document.querySelectorAll('#rateTipRow .chip');
+  _tipChips.forEach(c=>c.classList.remove('on'));
+  if(_tipChips[2]) _tipChips[2].classList.add('on'); // 20% default
+  var _rtags=document.getElementById('rateTags'); if(_rtags) _rtags.style.display='none';
   const rtEl=document.getElementById('rateText'); if(rtEl) rtEl.value='';
   const b=BARBERS[current];
   document.getElementById('rateAv').textContent=b.in;
@@ -4710,7 +4748,7 @@ function luhnCheck(n){
   }
   return s%10===0;
 }
-let savedCards = JSON.parse(localStorage.getItem('fadex_cards')||'[]');
+let savedCards = lsGet('fadex_cards', []);
 function persistCards(){ localStorage.setItem('fadex_cards', JSON.stringify(savedCards)); }
 function cardBrand(num){
   if(/^4/.test(num)) return 'Visa';
@@ -5220,13 +5258,23 @@ function sendEmailCode(recipientEmail, passcode){
   }, { publicKey: EMAILJS_CFG.publicKey });
 }
 let _useSupabaseAuth = false;   // true when the emailed code is a real Supabase OTP
+// App Review demo account: the server signs this address in with a fixed code
+// (see server.js REVIEW_EMAIL/REVIEW_CODE). It must ALWAYS verify against the
+// server — never Supabase — or the documented code would be rejected.
+const REVIEW_EMAIL = 'review@catchafade.app';
+function isReviewEmail(){ return (_authEmail||'').trim().toLowerCase() === REVIEW_EMAIL; }
+// The backend runs on a free tier that can cold-start in 30–60s, so the first
+// request after idle is slow. Give send/verify a generous window before we
+// consider the server unreachable.
+var AUTH_TIMEOUT_MS = 60000;
 // Our server generates + emails the code via Resend (it mints a REAL Supabase OTP
 // whenever Supabase is up, so verifying still creates a real session). This works
 // even when Supabase's own mailer is rate-limited or the project is paused.
 function sendAuthCode(){
   notify('Sending code…', 'Emailing a 6-digit code to '+_authEmail+'.');
+  var review = isReviewEmail();
   var ac = new AbortController();
-  var t = setTimeout(function(){ ac.abort(); }, 9000);
+  var t = setTimeout(function(){ ac.abort(); }, AUTH_TIMEOUT_MS);
   fetch((window.API_BASE||'')+'/api/send-code', {
     method:'POST', headers:{'Content-Type':'application/json'},
     body: JSON.stringify({ email:_authEmail }),
@@ -5235,15 +5283,24 @@ function sendAuthCode(){
   .then(function(r){ clearTimeout(t); return r.json(); })
   .then(function(j){
     if(j && j.ok){
-      _useSupabaseAuth = (j.mode==='supabase');
+      // Review account always verifies via the server, never Supabase.
+      _useSupabaseAuth = review ? false : (j.mode==='supabase');
       notify('Code sent ✓', 'We emailed a 6-digit code to '+_authEmail+'. Check your inbox (and spam).');
     } else if(j && j.restricted){
       notifyErr('Couldn\'t email this address', 'We couldn\'t deliver to that inbox. Double-check the address and try again.');
+    } else if(review){
+      // Never route the review account through Supabase — just let them enter the fixed code.
+      _useSupabaseAuth = false;
+      notify('Enter your code', 'Use the 6-digit code from your reviewer notes.');
     } else {
       sendAuthCodeDirect();
     }
   })
-  .catch(function(){ clearTimeout(t); sendAuthCodeDirect(); });
+  .catch(function(){
+    clearTimeout(t);
+    if(review){ _useSupabaseAuth = false; notify('Enter your code', 'Use the 6-digit code from your reviewer notes.'); }
+    else { sendAuthCodeDirect(); }
+  });
 }
 // Our server is unreachable → ask Supabase to email the code itself.
 function sendAuthCodeDirect(){
@@ -5317,7 +5374,8 @@ function verifyCode(){
   };
   if(_useSupabaseAuth){
     // REAL: ask Supabase to verify the code → creates a persistent session.
-    var c = sbReady();
+    var c = (typeof sbReady==='function') ? sbReady() : null;
+    if(!c){ authBad('Couldn\'t verify — check your connection and try again.'); return; }
     c.auth.verifyOtp({ email:_authEmail, token:entered, type:'email' }).then(function(res){
       if(!res || !res.error) return authOk(res);
       // admin-minted codes verify as 'magiclink' on some Supabase versions
@@ -5330,7 +5388,7 @@ function verifyCode(){
   }
   // server-stored code: ask the server to verify it
   var ac = new AbortController();
-  var t = setTimeout(function(){ ac.abort(); }, 9000);
+  var t = setTimeout(function(){ ac.abort(); }, AUTH_TIMEOUT_MS);
   fetch((window.API_BASE||'')+'/api/verify-code', {
     method:'POST', headers:{'Content-Type':'application/json'},
     body: JSON.stringify({ email:_authEmail, code:entered }),
@@ -5368,11 +5426,11 @@ function signOut(){
 }
 function confirmDeleteAccount(){
   if(!confirm('Delete your account?\n\nThis permanently removes your profile and history. This cannot be undone.')) return;
-  var wipe=function(){
+  var wipe=function(silent){
     try{ localStorage.clear(); sessionStorage.clear(); }catch(e){}
     userProfile.loggedIn=false; userProfile.name=''; userProfile.email=''; userProfile.phone=''; userProfile.address=''; userProfile.cutCount=0;
     stack=['ob1']; render();
-    notify('Account deleted','Your account and data have been removed.');
+    if(!silent) notify('Account deleted','Your account and data have been removed.');
   };
   var c=null; try{ c=sbReady(); }catch(e){}
   if(!c){ wipe(); return; }
@@ -5385,8 +5443,16 @@ function confirmDeleteAccount(){
       body: JSON.stringify({ accessToken: token }), signal: ac.signal
     })
     .then(function(r){ clearTimeout(t); return r.json(); })
-    .then(function(){ try{ c.auth.signOut(); }catch(e){} wipe(); })
-    .catch(function(){ clearTimeout(t); try{ c.auth.signOut(); }catch(e){} wipe(); notifyErr('Server deletion pending','Your device data is cleared; the account record will be removed shortly. Questions? TZUFEINI@gmail.com'); });
+    .then(function(j){
+      try{ c.auth.signOut(); }catch(e){}
+      var ok = !!(j && j.ok);
+      wipe(!ok);
+      // Only claim clean success when the server actually confirmed deletion.
+      if(!ok){
+        notifyErr('Server deletion pending','You\'re signed out and your device data is cleared. The account record will be removed shortly — questions? TZUFEINI@gmail.com');
+      }
+    })
+    .catch(function(){ clearTimeout(t); try{ c.auth.signOut(); }catch(e){} wipe(true); notifyErr('Server deletion pending','You\'re signed out and your device data is cleared; the account record will be removed shortly. Questions? TZUFEINI@gmail.com'); });
   }).catch(wipe);
 }
 /* ===== ONBOARDING — interactions, answers & dynamic copy ===== */
