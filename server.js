@@ -40,7 +40,18 @@ const STRIPE_SECRET = process.env.STRIPE_SECRET_KEY || LOCAL.STRIPE_SECRET_KEY |
 const STRIPE_PUBLISHABLE = process.env.STRIPE_PUBLISHABLE_KEY || LOCAL.STRIPE_PUBLISHABLE_KEY || '';
 const FEE_PERCENT = Number(process.env.PLATFORM_FEE_PERCENT || LOCAL.PLATFORM_FEE_PERCENT || 25); // 25% = Uber's standard take rate
 let stripe = null;
-try { if (STRIPE_SECRET) stripe = require('stripe')(STRIPE_SECRET); } catch (e) { console.warn('stripe lib not loaded:', e.message); }
+try {
+  if (STRIPE_SECRET) {
+    const Stripe = require('stripe');
+    // Force Stripe's fetch-based HTTP client — native fetch works on this host
+    // (same path the Anthropic call uses), while the default Node https client
+    // was throwing StripeConnectionError on the free-tier instance. Longer
+    // timeout + retries ride out cold starts.
+    const stripeOpts = { timeout: 30000, maxNetworkRetries: 2 };
+    if (typeof Stripe.createFetchHttpClient === 'function') stripeOpts.httpClient = Stripe.createFetchHttpClient();
+    stripe = Stripe(STRIPE_SECRET, stripeOpts);
+  }
+} catch (e) { console.warn('stripe lib not loaded:', e.message); }
 
 // ---- Supabase (database / auth) --------------------------------------------
 // Admin client (secret key) for privileged server-side work. The app talks to
@@ -221,6 +232,7 @@ const server = http.createServer((req, res) => {
         return sendJSON(res, 200, { ok: false, error: (j && j.message) || ('resend ' + r.status), restricted: r.status === 403 });
       } catch (err) {
         if (mode === 'local') OTP_STORE.delete(email);
+        console.error('[create-payment-intent] stripe error:', err && err.message || err);
         return sendJSON(res, 200, { ok: false, error: String(err && err.message || err) });
       }
     });
@@ -283,6 +295,7 @@ const server = http.createServer((req, res) => {
         }
         return sendJSON(res, 200, { ok: false, error: (j && j.error && j.error.message) || ('anthropic ' + r.status) });
       } catch (err) {
+        console.error('[create-payment-intent] stripe error:', err && err.message || err);
         return sendJSON(res, 200, { ok: false, error: String(err && err.message || err) });
       }
     });
@@ -356,6 +369,7 @@ const server = http.createServer((req, res) => {
           breakdown: { servicePrice, platformFee: fee, total, feePercent: FEE_PERCENT }
         });
       } catch (err) {
+        console.error('[create-payment-intent] stripe error:', err && err.message || err);
         return sendJSON(res, 200, { ok: false, error: String(err && err.message || err) });
       }
     });

@@ -6,7 +6,7 @@ services:
     name: catch-a-fade
     runtime: node
     plan: free
-    buildCommand: "true"
+    buildCommand: "npm install"
     startCommand: node server.js
     autoDeploy: true
     envVars:
