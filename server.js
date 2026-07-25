@@ -39,6 +39,8 @@ const PUSH_TOKENS = new Set(); // iOS device tokens registered for push (in-memo
 const STRIPE_SECRET = process.env.STRIPE_SECRET_KEY || LOCAL.STRIPE_SECRET_KEY || '';
 const STRIPE_PUBLISHABLE = process.env.STRIPE_PUBLISHABLE_KEY || LOCAL.STRIPE_PUBLISHABLE_KEY || '';
 const FEE_PERCENT = Number(process.env.PLATFORM_FEE_PERCENT || LOCAL.PLATFORM_FEE_PERCENT || 25); // 25% = Uber's standard take rate
+// Flat cancellation fee kept outside the free window (matches the in-app copy and the Terms).
+const CANCEL_FEE_CENTS = Math.round(Number(process.env.CANCEL_FEE_CENTS || LOCAL.CANCEL_FEE_CENTS || 500));
 let stripe = null;
 try {
   if (STRIPE_SECRET) {
@@ -74,9 +76,9 @@ const SUPPORT_SYSTEM = [
   '- Pricing: the barber\'s base rate per service; at peak demand a small multiplier may apply and is always shown before confirming.',
   '- No-shows: if the barber is more than 10 minutes past the promised ETA, the booking auto-cancels at no cost and the customer is rematched with another verified pro nearby.',
   '- Lost items: use "Report a lost item" on the Help screen; support connects the customer with their barber.',
-  '- Safety: every pro passes ID verification, a criminal background check, and a portfolio review ("Verified Pro" badge).',
-  '- Catch a Fade+: membership with priority scheduling for favorite barbers.',
-  '- Refunds: request via the booking\'s "Get help"; typically 3-5 business days.',
+  '- Safety: barbers submit a government ID and a portfolio, which our team reviews before they can take bookings ("Verified Pro" badge). Do not claim we run criminal background checks.',
+  '- There is no paid membership or subscription. If asked, say the app is free to download and customers only pay per booking.',
+  '- Refunds: cancelling a booking automatically refunds the card (in full inside the free window, otherwise minus the $5 fee); banks usually show it in 3-5 business days. For anything else use "Get help" on the booking.',
   'Style: warm, concise (2-4 short sentences), plain language. Never mention, compare to, or give examples from any other company or app. If unsure, say so and offer to connect a human teammate.',
   'Typos and broken grammar are fine — answer the intended question. But if a message is pure gibberish (keyboard mashing, random characters) with no discernible intent, do not guess: reply exactly "Sorry, I didn\'t get that 😅 Here\'s what I can help you with:" and nothing else (the app shows a help menu under it).',
 ].join('\n');
@@ -92,9 +94,41 @@ const CORS = {
   'Access-Control-Allow-Headers': 'Content-Type',
   'Access-Control-Allow-Methods': 'POST,OPTIONS'
 };
+
+// ---- abuse control ---------------------------------------------------------
+// The payment endpoint mints real Stripe PaymentIntents, so it must not be an
+// open faucet: an unauthenticated, unlimited endpoint is the classic
+// card-testing target. Simple in-memory sliding window, per IP.
+const RATE_BUCKETS = new Map();
+function rateLimited(req, key, limit, windowMs) {
+  const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim()
+    || (req.socket && req.socket.remoteAddress) || 'unknown';
+  const id = key + '|' + ip;
+  const now = Date.now();
+  const hits = (RATE_BUCKETS.get(id) || []).filter(t => now - t < windowMs);
+  if (hits.length >= limit) { RATE_BUCKETS.set(id, hits); return true; }
+  hits.push(now); RATE_BUCKETS.set(id, hits);
+  if (RATE_BUCKETS.size > 5000) {                       // keep the map bounded
+    for (const [k, v] of RATE_BUCKETS) if (!v.some(t => now - t < windowMs)) RATE_BUCKETS.delete(k);
+  }
+  return false;
+}
+// A booking is a real haircut, so the amount has sane bounds. This blocks both
+// the "pay 63 cents for a $40 cut" tamper and absurd/accidental charges.
+const MIN_SERVICE_CENTS = 500;      // $5
+const MAX_SERVICE_CENTS = 50000;    // $500
 function sendJSON(res, status, obj) {
   res.writeHead(status, Object.assign({ 'Content-Type': 'application/json' }, CORS));
   res.end(JSON.stringify(obj));
+}
+// Never write a full email address (or other PII) into the logs — mask it so
+// operational logs stay useful without becoming a personal-data store.
+function maskEmail(e) {
+  const s = String(e || '');
+  const at = s.indexOf('@');
+  if (at < 1) return '***';
+  const name = s.slice(0, at), dom = s.slice(at);
+  return (name.length <= 2 ? name[0] + '*' : name[0] + '***' + name[name.length - 1]) + dom;
 }
 function codeEmailHTML(code) {
   return '<div style="font-family:-apple-system,Segoe UI,sans-serif;max-width:440px;margin:0 auto">'
@@ -165,6 +199,16 @@ const PRIVACY_HTML = pageHTML('Privacy Policy — Catch a Fade',
   + '<li><b>Booking activity</b> — the services you book, along with ratings and tips, so the app can show your history and match you with barbers.</li></ul>'
   + '<h2>Payments</h2><p>Payments are processed by Stripe. Your card number goes directly to Stripe and is never stored on our servers.</p>'
   + '<h2>Where your data lives</h2><p>Your account and booking data are stored with Supabase, our database and authentication provider.</p>'
+  + '<h2>Who else processes your data</h2>'
+  + '<p>We share the minimum necessary data with these service providers, and only so the app can work:</p>'
+  + '<ul>'
+  + '<li><b>Stripe</b> — payment processing. Card details go straight to Stripe; we never receive or store them.</li>'
+  + '<li><b>Supabase</b> — account, authentication and booking records.</li>'
+  + '<li><b>Resend</b> — delivers your sign-in code by email.</li>'
+  + '<li><b>Anthropic</b> — powers the in-app support assistant. What you type into support chat is sent to Anthropic to generate a reply.</li>'
+  + '<li><b>Google Maps, OpenStreetMap/Nominatim and Photon (Komoot)</b> — maps, and address search. When you type an address to search, that text is sent to a maps provider to return suggestions.</li>'
+  + '</ul>'
+  + '<p>We do not sell your personal data, and we do not share it for advertising.</p>'
   + '<h2>How we use and share it</h2><p>We use your information only to run the service: creating your account, arranging bookings, processing payments, and providing support. We share with your barber only what a booking needs — your name and the booking location. We do not sell your personal information.</p>'
   + '<h2>Deleting your account</h2><p>You can delete your account at any time in the app under <b>Account</b>. This removes your profile and the data associated with it.</p>'
   + '<h2>Contact</h2><p>Questions about this policy? Email <a href="mailto:TZUFEINI@gmail.com">TZUFEINI@gmail.com</a>.</p>');
@@ -199,13 +243,16 @@ const server = http.createServer((req, res) => {
     req.on('end', async () => {
       let data; try { data = JSON.parse(body || '{}'); } catch (e) { return sendJSON(res, 400, { ok: false, error: 'bad json' }); }
       const email = String(data.email || '').trim().toLowerCase();
+      if (rateLimited(req, 'send-code', 8, 60 * 1000)) {
+        return sendJSON(res, 429, { ok: false, error: 'Too many code requests — please wait a minute.' });
+      }
       if (!email || email.indexOf('@') < 1 || email.indexOf('.') < 2) {
         return sendJSON(res, 400, { ok: false, error: 'missing email' });
       }
       // App Review demo account: fixed code, nothing emailed.
       if (REVIEW_EMAIL && email === REVIEW_EMAIL) {
         OTP_STORE.set(email, { code: REVIEW_CODE, exp: Date.now() + OTP_TTL_MS, tries: 0 });
-        console.log('[send-code]', email, 'mode=review (fixed code, no email sent)');
+        console.log('[send-code]', maskEmail(email), 'mode=review (fixed code, no email sent)');
         return sendJSON(res, 200, { ok: true, mode: 'local' });
       }
       // Prefer a real Supabase OTP (verifying it creates a real session in the app);
@@ -225,14 +272,14 @@ const server = http.createServer((req, res) => {
           body: JSON.stringify({ from: FROM, to: email, subject: 'Your CatchAFade code is ' + code, html: codeEmailHTML(code) })
         });
         const j = await r.json().catch(() => ({}));
-        console.log('[send-code]', email, 'mode=' + mode, r.ok ? ('sent id=' + j.id) : ('FAILED ' + r.status + ' ' + (j && j.message)));
+        console.log('[send-code]', maskEmail(email), 'mode=' + mode, r.ok ? ('sent id=' + j.id) : ('FAILED ' + r.status + ' ' + (j && j.message)));
         if (r.ok) return sendJSON(res, 200, { ok: true, id: j.id, mode });
         if (mode === 'local') OTP_STORE.delete(email);
         // Resend refused (e.g. test-mode recipient restriction) — tell the client so it can explain honestly.
         return sendJSON(res, 200, { ok: false, error: (j && j.message) || ('resend ' + r.status), restricted: r.status === 403 });
       } catch (err) {
         if (mode === 'local') OTP_STORE.delete(email);
-        console.error('[create-payment-intent] stripe error:', err && err.message || err);
+        console.error('[send-code] email delivery error:', err && err.message || err);
         return sendJSON(res, 200, { ok: false, error: String(err && err.message || err) });
       }
     });
@@ -273,7 +320,12 @@ const server = http.createServer((req, res) => {
         return sendJSON(res, 400, { ok: false, error: 'no user message' });
       }
       try {
+        // Bound the upstream call: without a timeout a hung Anthropic request
+        // would hold this connection open past the client's own deadline.
+        const scCtl = new AbortController();
+        const scTimer = setTimeout(() => scCtl.abort(), 30000);
         const r = await fetch('https://api.anthropic.com/v1/messages', {
+          signal: scCtl.signal,
           method: 'POST',
           headers: {
             'x-api-key': ANTHROPIC_KEY,
@@ -288,6 +340,7 @@ const server = http.createServer((req, res) => {
           })
         });
         const j = await r.json().catch(() => ({}));
+        clearTimeout(scTimer);
         if (r.ok) {
           const reply = (j.content || []).filter(b => b.type === 'text').map(b => b.text).join('').trim();
           if (reply) return sendJSON(res, 200, { ok: true, reply });
@@ -295,7 +348,7 @@ const server = http.createServer((req, res) => {
         }
         return sendJSON(res, 200, { ok: false, error: (j && j.error && j.error.message) || ('anthropic ' + r.status) });
       } catch (err) {
-        console.error('[create-payment-intent] stripe error:', err && err.message || err);
+        console.error('[support-chat] anthropic error:', err && err.message || err);
         return sendJSON(res, 200, { ok: false, error: String(err && err.message || err) });
       }
     });
@@ -345,9 +398,17 @@ const server = http.createServer((req, res) => {
     req.on('data', c => { body += c; if (body.length > 10000) req.destroy(); });
     req.on('end', async () => {
       if (!stripe) return sendJSON(res, 200, { ok: false, configured: false });
+      if (rateLimited(req, 'pi', 12, 60 * 1000)) {
+        return sendJSON(res, 429, { ok: false, error: 'Too many payment attempts. Please wait a moment and try again.' });
+      }
       let data; try { data = JSON.parse(body || '{}'); } catch (e) { return sendJSON(res, 400, { ok: false, error: 'bad json' }); }
       const servicePrice = Math.round(Number(data.servicePrice) || 0); // barber's price, in cents
-      if (servicePrice < 50) return sendJSON(res, 400, { ok: false, error: 'invalid servicePrice (cents)' });
+      // NOTE: the price still originates on the client. Bounds stop the obvious
+      // tamper; before switching to LIVE keys the amount must be looked up
+      // server-side from the barber's service catalog and the caller authenticated.
+      if (!Number.isFinite(servicePrice) || servicePrice < MIN_SERVICE_CENTS || servicePrice > MAX_SERVICE_CENTS) {
+        return sendJSON(res, 400, { ok: false, error: 'invalid servicePrice (cents)' });
+      }
       const fee = Math.round(servicePrice * FEE_PERCENT / 100);
       const total = servicePrice + fee;                                // what the customer pays
       const currency = (data.currency || 'usd').toLowerCase();
@@ -363,13 +424,60 @@ const server = http.createServer((req, res) => {
           params.application_fee_amount = fee;
           params.transfer_data = { destination: String(data.barberStripeAccount) };
         }
-        const pi = await stripe.paymentIntents.create(params);
+        // Idempotency: a retry (flaky network / cold start) must not create a
+        // second PaymentIntent for the same booking attempt.
+        const idem = String(data.idempotencyKey || '').slice(0, 200);
+        const pi = idem
+          ? await stripe.paymentIntents.create(params, { idempotencyKey: idem })
+          : await stripe.paymentIntents.create(params);
         return sendJSON(res, 200, {
           ok: true, clientSecret: pi.client_secret, paymentIntentId: pi.id,
           breakdown: { servicePrice, platformFee: fee, total, feePercent: FEE_PERCENT }
         });
       } catch (err) {
         console.error('[create-payment-intent] stripe error:', err && err.message || err);
+        return sendJSON(res, 200, { ok: false, error: String(err && err.message || err) });
+      }
+    });
+    return;
+  }
+
+  // Refund a cancelled booking. The app charges up front, so a cancellation has
+  // to put the money back: full refund inside the free-cancellation window,
+  // otherwise everything except the flat cancellation fee.
+  if (req.method === 'POST' && url.pathname === '/api/refund-booking') {
+    let body = '';
+    req.on('data', c => { body += c; if (body.length > 10000) req.destroy(); });
+    req.on('end', async () => {
+      if (!stripe) return sendJSON(res, 200, { ok: false, configured: false });
+      if (rateLimited(req, 'refund', 10, 60 * 1000)) {
+        return sendJSON(res, 429, { ok: false, error: 'Too many requests — please wait a moment.' });
+      }
+      let data; try { data = JSON.parse(body || '{}'); } catch (e) { return sendJSON(res, 400, { ok: false, error: 'bad json' }); }
+      const piId = String(data.paymentIntentId || '').trim();
+      if (!/^pi_[A-Za-z0-9_]+$/.test(piId)) return sendJSON(res, 400, { ok: false, error: 'invalid paymentIntentId' });
+      const freeWindow = !!data.freeCancellation;
+      try {
+        const pi = await stripe.paymentIntents.retrieve(piId);
+        // Nothing captured yet → cancel outright, nothing to refund.
+        if (pi.status !== 'succeeded') {
+          try { await stripe.paymentIntents.cancel(piId); } catch (e) {}
+          return sendJSON(res, 200, { ok: true, refunded: 0, cancelled: true });
+        }
+        const charged = Number(pi.amount_received || pi.amount || 0);
+        const feeCents = freeWindow ? 0 : CANCEL_FEE_CENTS;
+        const refundAmount = Math.max(0, charged - feeCents);
+        if (refundAmount <= 0) return sendJSON(res, 200, { ok: true, refunded: 0, cancellationFee: charged });
+        const r = await stripe.refunds.create(
+          { payment_intent: piId, amount: refundAmount, reason: 'requested_by_customer' },
+          { idempotencyKey: 'refund_' + piId }
+        );
+        return sendJSON(res, 200, {
+          ok: true, refunded: refundAmount, cancellationFee: feeCents,
+          refundId: r.id, status: r.status
+        });
+      } catch (err) {
+        console.error('[refund-booking] stripe error:', err && err.message || err);
         return sendJSON(res, 200, { ok: false, error: String(err && err.message || err) });
       }
     });
@@ -419,7 +527,9 @@ const server = http.createServer((req, res) => {
       const category = String(data.category || 'general').slice(0, 200);
       const message = String(data.message || '').slice(0, 5000);
       const email = String(data.email || '').trim().slice(0, 200);
-      console.error('REPORT [' + category + ']' + (email ? ' from ' + email : '') + ': ' + message);
+      // The full report (which can contain names/phones/addresses) goes to the
+      // support inbox, not to the server log — logs only get a masked breadcrumb.
+      console.error('REPORT [' + category + ']' + (email ? ' from ' + maskEmail(email) : '') + ' (' + message.length + ' chars)');
       if (RESEND_KEY) {
         try {
           await fetch('https://api.resend.com/emails', {
