@@ -3113,21 +3113,36 @@ function ipGeo(){
     throw 0;
   });
 }
+// Free fallback so the city still resolves if Google is denied, capped or offline.
+function reverseGeocodeOSM(ll){
+  return fetch('https://nominatim.openstreetmap.org/reverse?format=json&zoom=10&lat='+encodeURIComponent(ll[0])+'&lon='+encodeURIComponent(ll[1]))
+    .then(r=>r.json()).then(j=>{
+      const a=(j&&j.address)||{};
+      const city=a.city||a.town||a.village||a.municipality||a.county||'';
+      const state=a.state||'';
+      return city+(state?(city?', ':'')+state:'');
+    }).catch(()=>'');
+}
 function reverseGeocode(ll){
   if(_googleReady && window.google && google.maps && google.maps.Geocoder){
     return new Promise(res=>{
+      let done=false;
+      const finish=v=>{ if(!done){ done=true; res(v); } };
       const g=new google.maps.Geocoder();
+      // never let a hung Google call leave the pill stuck on "Locating you…"
+      const t=setTimeout(()=>{ reverseGeocodeOSM(ll).then(finish); }, 6000);
       g.geocode({location:{lat:ll[0],lng:ll[1]}},(results,status)=>{
+        clearTimeout(t);
         if(status==='OK' && results[0]){
           const c=results[0].address_components;
           const city=(c.find(x=>x.types.indexOf('locality')>=0)||{}).long_name||'';
           const state=(c.find(x=>x.types.indexOf('administrative_area_level_1')>=0)||{}).short_name||'';
-          res(city+(state?(city?', ':'')+state:''));
-        } else res('');
+          finish(city+(state?(city?', ':'')+state:''));
+        } else reverseGeocodeOSM(ll).then(finish);
       });
     });
   }
-  return Promise.resolve('');
+  return reverseGeocodeOSM(ll);
 }
 async function detectUserLocation(force){
   if(_locDetected && !force && _locMode==='gps') return;
@@ -3210,18 +3225,7 @@ function dismissLocPrime(){
   document.getElementById('locPrimeModal').classList.remove('show');
   setLocPill('Tap to set location', 'none');
 }
-function geocodeAddress(addr){
-  if(_googleReady && window.google && google.maps && google.maps.Geocoder){
-    return new Promise(res=>{
-      const g=new google.maps.Geocoder();
-      g.geocode({address:addr},(results,status)=>{
-        if(status==='OK' && results[0]){
-          const loc=results[0].geometry.location;
-          res({lat:loc.lat(),lng:loc.lng()});
-        } else res(null);
-      });
-    });
-  }
+function geocodeAddressOSM(addr){
   return fetch('https://photon.komoot.io/api/?limit=1&q='+encodeURIComponent(addr))
     .then(r=>r.json()).then(j=>{
       if(j&&j.features&&j.features[0]){
@@ -3230,6 +3234,24 @@ function geocodeAddress(addr){
       }
       return null;
     }).catch(()=>null);
+}
+function geocodeAddress(addr){
+  if(_googleReady && window.google && google.maps && google.maps.Geocoder){
+    return new Promise(res=>{
+      let done=false;
+      const finish=v=>{ if(!done){ done=true; res(v); } };
+      const g=new google.maps.Geocoder();
+      const t=setTimeout(()=>{ geocodeAddressOSM(addr).then(finish); }, 6000);
+      g.geocode({address:addr},(results,status)=>{
+        clearTimeout(t);
+        if(status==='OK' && results[0]){
+          const loc=results[0].geometry.location;
+          finish({lat:loc.lat(),lng:loc.lng()});
+        } else geocodeAddressOSM(addr).then(finish);
+      });
+    });
+  }
+  return geocodeAddressOSM(addr);
 }
 function openRadiusPicker(){
   const body=document.getElementById('radiusOptionsBody');
