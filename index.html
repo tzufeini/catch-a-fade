@@ -5458,7 +5458,9 @@ function sendAuthCode(){
       _useSupabaseAuth = review ? false : (j.mode==='supabase');
       notify('Code sent ✓', 'We emailed a 6-digit code to '+_authEmail+'. Check your inbox (and spam).');
     } else if(j && j.restricted){
-      notifyErr('Couldn\'t email this address', 'We couldn\'t deliver to that inbox. Double-check the address and try again.');
+      // Our transactional sender refused this recipient (sandbox sender only reaches the
+      // account owner). Don't blame the user's address — let Supabase mail the code instead.
+      sendAuthCodeDirect();
     } else if(review){
       // Never route the review account through Supabase — just let them enter the fixed code.
       _useSupabaseAuth = false;
