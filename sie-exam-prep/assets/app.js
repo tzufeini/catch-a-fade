@@ -40,6 +40,7 @@
   STATE.done = STATE.done || {};       // { chapterNum: true }
   STATE.scores = STATE.scores || {};   // { chapterNum: {correct,total} }
   STATE.answered = STATE.answered || {}; // { "ch-qi": choiceIndex }
+  STATE.missed = STATE.missed || {};   // { qKey: {q,choices,answer,explanation,topic,_ch,n} }
 
   const isDone = (n) => !!STATE.done[n];
   function setDone(n, v) { if (v) STATE.done[n] = true; else delete STATE.done[n]; saveState(STATE); refreshProgress(); buildSidebar(); }
@@ -184,7 +185,7 @@
     return html;
   }
 
-  function wireQuiz(root, onAnswer) {
+  function wireQuiz(root, onAnswer, questions) {
     $$(".qcard", root).forEach((card) => {
       const answer = Number(card.getAttribute("data-answer"));
       const choices = $$(".choice", card);
@@ -201,10 +202,43 @@
             if (ci === picked && picked !== answer) c.classList.add("wrong");
           });
           const ex = $(".explain", card); if (ex) ex.classList.add("show");
+          // weak-areas tracking: any miss is recorded, any correct answer clears it
+          if (questions) {
+            const id = card.getAttribute("data-q") || "";
+            const idx = Number(id.slice(id.lastIndexOf("-") + 1));
+            const q = questions[idx];
+            if (q) { if (picked === answer) clearMiss(q); else recordMiss(q); }
+          }
           if (onAnswer) onAnswer(picked === answer, picked);
         });
       });
     });
+  }
+
+  // ---- missed-question store (Weak Areas) ----
+  function qKey(text) {
+    let h = 5381; const s = String(text || "");
+    for (let i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0;
+    return "q" + h.toString(36);
+  }
+  function recordMiss(q) {
+    const k = qKey(q.q);
+    const prev = STATE.missed[k];
+    STATE.missed[k] = {
+      q: q.q, choices: q.choices, answer: q.answer,
+      explanation: q.explanation || "", topic: q.topic || "",
+      _ch: q._ch || q.chapter || null, n: (prev ? prev.n : 0) + 1,
+    };
+    saveState(STATE);
+  }
+  function clearMiss(q) {
+    const k = qKey(q.q);
+    if (STATE.missed[k]) { delete STATE.missed[k]; saveState(STATE); }
+  }
+  function missedList() {
+    return Object.keys(STATE.missed).map((k) => STATE.missed[k])
+      .filter((m) => m && m.q && Array.isArray(m.choices) && m.choices.length === 4)
+      .sort((a, b) => (b.n || 0) - (a.n || 0));
   }
 
   // ============================================================ VIEWS
@@ -229,6 +263,8 @@
       '<a class="btn" href="#/fullexam">◉ Full Practice Exam</a>' +
       '<a class="btn" href="#/cards">⊞ Flashcards</a>' +
       '<a class="btn" href="#/exam">◎ Quick Mock Exam</a>' +
+      '<a class="btn" href="#/final">⚑ Final Review</a>' +
+      (missedList().length ? '<a class="btn" href="#/weak">⟳ Weak Areas (' + missedList().length + ')</a>' : "") +
       '<a class="btn" href="#/guide">✦ How to Study</a></div></section>';
 
     html += '<div class="stat-grid">' +
@@ -337,7 +373,7 @@
       if (answered === c.questions.length) {
         if (correct / answered >= 0.7) setDone(c.number, true);
       }
-    });
+    }, c.questions.map((q) => Object.assign({ _ch: c.number }, q)));
 
     // complete button
     const cb = $("#markComplete");
@@ -381,7 +417,7 @@
       $("#bankBody").innerHTML = '<div class="quiz-head"><span class="quiz-progress" id="qprog">0 / ' + qs.length +
         " answered · 0 correct</span></div>" + renderQuiz(qs, "bank");
       let a = 0, k = 0;
-      wireQuiz($("#bankBody"), (ok) => { a++; if (ok) k++; const p = $("#qprog"); if (p) p.textContent = a + " / " + qs.length + " answered · " + k + " correct"; });
+      wireQuiz($("#bankBody"), (ok) => { a++; if (ok) k++; const p = $("#qprog"); if (p) p.textContent = a + " / " + qs.length + " answered · " + k + " correct"; }, qs);
     }
     draw("all", false);
     $("#bankFilter").addEventListener("change", (e) => draw(e.target.value, false));
@@ -513,7 +549,8 @@
       SECTIONS.forEach((s) => (bySec[s.key] = { c: 0, t: 0 }));
       qs.forEach((q, i) => {
         bySec[q._sec].t++;
-        if (answers[i] === q.answer) { correct++; bySec[q._sec].c++; }
+        if (answers[i] === q.answer) { correct++; bySec[q._sec].c++; clearMiss(q); }
+        else recordMiss(q);
       });
       const pct = Math.round((correct / qs.length) * 100);
       const pass = pct >= EXAM.pass;
@@ -666,6 +703,123 @@
     draw();
   }
 
+  // ============================================================ WEAK AREAS
+  function renderWeak() {
+    const list = missedList();
+    let html = '<div class="ch-header"><h1>Weak Areas ⟳</h1>' +
+      '<p class="ch-lead">Every question you miss — in chapter quizzes, the Question Bank, mock exams, or the full exam — lands here automatically. Answer it correctly (anywhere) and it clears. Empty list = nothing left to fix.</p></div>';
+    if (!list.length) {
+      html += '<div class="score-hero"><div class="score-num pass">0</div>' +
+        '<div class="score-sub">No missed questions on record 🎉 Keep drilling — anything you get wrong will show up here.</div>' +
+        '<div style="margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">' +
+        '<a class="btn btn-primary" href="#/exam">◎ Take a mock exam</a>' +
+        '<a class="btn" href="#/bank">❒ Question Bank</a></div></div>';
+      setView(html); return;
+    }
+    const byCh = {};
+    list.forEach((m) => { const k = m._ch || "?"; byCh[k] = (byCh[k] || 0) + 1; });
+    const chips = Object.keys(byCh).sort((a, b) => byCh[b] - byCh[a])
+      .map((k) => '<span class="q-pill">' + (k === "?" ? "Misc" : "Ch " + k) + " · " + byCh[k] + "</span>").join(" ");
+    html += '<div class="quiz-head"><h2>' + list.length + ' to clear</h2>' +
+      '<button class="btn" id="clearMissed">Clear all</button></div>' +
+      '<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px">' + chips + "</div>";
+    const qs = list.map((m) => Object.assign({}, m, { topic: (m._ch ? "Ch " + m._ch + (m.topic ? " · " : "") : "") + (m.topic || "") + (m.n > 1 ? " · missed ×" + m.n : "") }));
+    html += renderQuiz(qs, "weak");
+    setView(html);
+    wireQuiz(view(), (ok) => {
+      const remaining = missedList().length;
+      const h = $(".quiz-head h2"); if (h) h.textContent = remaining + " to clear";
+    }, list);
+    const cb = $("#clearMissed");
+    if (cb) cb.onclick = () => { if (confirm("Forget all missed questions?")) { STATE.missed = {}; saveState(STATE); renderWeak(); } };
+  }
+
+  // ============================================================ FINAL REVIEW
+  const MUSTKNOW = [
+    { t: "Trading, Settlement & Margin", rows: [
+      ["Regular-way settlement (stocks, corporates, munis, Treasuries)", "T+1"],
+      ["Cash settlement", "Same business day"],
+      ["Ex-dividend date (regular way)", "The record date itself (under T+1)"],
+      ["Reg T initial requirement", "50% — payment due 2 business days after settlement"],
+      ["Minimum equity to open a margin account", "$2,000 (or 100% of purchase if less)"],
+      ["Pattern day trader minimum equity", "$25,000"],
+      ["Freeriding penalty", "90-day cash-up-front restriction"],
+      ["Trade confirmation delivery", "At or before completion (settlement)"],
+      ["Account statements", "At least quarterly"],
+      ["Options: 1 standard contract", "100 shares"],
+      ["Options agreement returned", "Within 15 days of account approval"],
+      ["Letter of intent (breakpoints)", "13 months, backdatable 90 days"],
+      ["Commercial paper / BA maximum maturity", "270 days"],
+      ["T-bill maximum maturity", "52 weeks"],
+    ]},
+    { t: "Investor & Offering Thresholds", rows: [
+      ["Accredited investor", "$1M net worth excluding primary residence OR $200k income ($300k joint)"],
+      ["FINRA institutional account", "$50 million total assets"],
+      ["QIB (Rule 144A)", "$100M in securities ($10M for a broker-dealer)"],
+      ["Reg D 506(b) non-accredited purchasers", "Max 35"],
+      ["Rule 144 holding period (reporting issuer)", "6 months"],
+      ["Rule 144 volume limit", "Greater of 1% of outstanding or avg weekly volume (past 4 weeks)"],
+      ["Penny stock", "Unlisted stock under $5"],
+    ]},
+    { t: "AML & Conduct", rows: [
+      ["CTR (Currency Transaction Report)", "Cash over $10,000 in one day — filed with FinCEN within 15 days"],
+      ["SAR (Suspicious Activity Report)", "$5,000+ suspicious — filed within 30 days; never tell the customer"],
+      ["Money-laundering stages", "Placement → Layering → Integration"],
+      ["Gift limit", "$100 per person per year"],
+      ["MSRB G-37 political contributions", "$250 de minimis (if you can vote for them) — violation = 2-year ban"],
+      ["Cold calling hours", "8 a.m.–9 p.m. in the CUSTOMER's time zone"],
+      ["Do-Not-Call registry", "Firms must scrub call lists against the national DNC list every 31 days"],
+      ["Holding customer mail", "Up to 3 months with written request (longer needs a valid reason)"],
+      ["Insider trading civil penalty", "Up to 3× the profit gained or loss avoided"],
+      ["Reg S-P privacy notice", "At account opening and annually; opt-out for non-affiliate sharing"],
+    ]},
+    { t: "Registration, CE & Communications", rows: [
+      ["Form U5 (termination)", "Filed within 30 days"],
+      ["Statutory disqualification lookback", "10 years (felony or securities-related misdemeanor)"],
+      ["CE Regulatory Element", "ANNUALLY by December 31 (per registration category)"],
+      ["CE Firm Element", "Annually, by the firm"],
+      ["Retail communication", "More than 25 retail investors in 30 days — principal pre-approval"],
+      ["Correspondence", "25 or fewer retail investors in 30 days"],
+      ["Registration lapse after leaving the industry", "2 years before exams expire"],
+      ["FINRA arbitration claim eligibility", "6 years from the event"],
+      ["Simplified arbitration", "Claims of $50,000 or less — one arbitrator, decided on the papers"],
+      ["Minor Rule Violation plan", "Censure + fine up to $2,500"],
+      ["Books & records retention", "Blotters/general ledger 6 years (first 2 accessible) · most others 3 years · complaints 4 years · organizational documents (Form BD, minutes) = LIFETIME of the firm"],
+      ["SIPC coverage", "$500,000 per separate customer, max $250,000 cash"],
+      ["FDIC coverage (bank deposits)", "$250,000 — SIPC ≠ FDIC"],
+    ]},
+    { t: "Retirement & Tax", rows: [
+      ["Early-withdrawal penalty", "10% before age 59½"],
+      ["RMDs (Traditional IRA / 401(k))", "Begin at age 73 — Roth IRA owners have none"],
+      ["Roth IRA contributions", "NEVER deductible; qualified withdrawals tax-free (5-year rule + 59½)"],
+      ["Wash-sale window", "30 days before or after the sale"],
+      ["Long-term capital gain", "Held MORE than one year"],
+      ["529 / education", "State-sponsored; high limits set by states — not the MSRB"],
+    ]},
+  ];
+  function renderFinal() {
+    let html = countdownBanner() +
+      '<div class="ch-header"><h1>Final Review ⚑</h1>' +
+      '<p class="ch-lead">Your last-week cram page: every must-know number and rule on one screen, then every chapter\'s high-yield cheat sheet. If you can answer everything here cold, you are ready.</p>' +
+      '<div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">' +
+      '<a class="btn btn-primary" href="#/weak">⟳ Drill your weak areas (' + missedList().length + ')</a>' +
+      '<a class="btn" href="#/fullexam">◉ Full Practice Exam</a>' +
+      '<a class="btn" href="#/cards/all">⊞ All flashcards</a></div></div>';
+    html += '<div class="section-title">Must-know numbers &amp; rules</div>';
+    MUSTKNOW.forEach((g) => {
+      html += renderBlock({ type: "table", title: g.t, headers: ["Rule", "The answer they want"], rows: g.rows });
+    });
+    html += '<div class="section-title">Every chapter\'s cheat sheet</div>';
+    CH.forEach((c, i) => {
+      if (!c.cheatSheet || !c.cheatSheet.length) return;
+      html += '<details class="foldout"' + (i === 0 ? " open" : "") + '><summary>⚡ Ch ' + c.number + " · " + esc(c.title) +
+        '</summary><div class="fold-body"><ul class="cheat-list">' +
+        c.cheatSheet.map((x) => "<li>" + safeHtml(x) + "</li>").join("") +
+        '</ul><div style="margin-top:10px"><a class="btn" href="#/chapter/' + c.number + '">Open chapter →</a></div></div></details>';
+    });
+    setView(html);
+  }
+
   // ============================================================ SEARCH
   let searchIndex = null;
   function buildSearchIndex() {
@@ -699,6 +853,8 @@
     else if (parts[0] === "exam") renderExam();
     else if (parts[0] === "bank") renderBank();
     else if (parts[0] === "cards") { if (parts[1]) renderFlashSession(parts[1]); else renderFlashcards(); }
+    else if (parts[0] === "weak") renderWeak();
+    else if (parts[0] === "final") renderFinal();
     else if (parts[0] === "guide") renderGuide();
     else renderDashboard();
     highlightNav();

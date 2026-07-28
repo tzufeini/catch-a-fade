@@ -26961,19 +26961,19 @@ window.SIE_DATA = {
       },
       {
        "type": "key",
-       "title": "Regulatory Element — timing (traditional/tested standard)",
+       "title": "Regulatory Element — timing (current rule)",
        "items": [
-        "Mandatory <strong>computer-based</strong> training.",
-        "Due within <strong>120 days after the 2nd anniversary</strong> of initial registration...",
-        "...and <strong>every 3 years thereafter</strong>.",
-        "Failure to complete makes the registration <strong>inactive</strong>."
+        "Mandatory <strong>computer-based</strong> training delivered by FINRA.",
+        "Due <strong>ANNUALLY by December 31</strong> — every year, for <strong>each registration category</strong> held.",
+        "Failure to complete on time makes the registration <strong>CE-inactive</strong> — no commission-earning activity until it is done.",
+        "CE-inactive for <strong>2 years</strong> → registration is administratively terminated."
        ]
       },
       {
        "type": "callout",
-       "style": "note",
-       "title": "The 2023 update",
-       "text": "FINRA moved the Regulatory Element to an ANNUAL requirement, due by December 31 each year. Some exams still test the classic '2nd anniversary, then every 3 years' cycle — know both, and lead with the classic answer unless the question specifies the current annual rule."
+       "style": "warning",
+       "title": "Old-rule trap",
+       "text": "Before 2023 the Regulatory Element was due within 120 days of the 2nd registration anniversary and every 3 years thereafter. That schedule was ELIMINATED — the current exam tests the ANNUAL, by-December-31 rule. If you see the old cycle as an answer choice, it is the trap."
       },
       {
        "type": "key",
@@ -26998,7 +26998,7 @@ window.SIE_DATA = {
        "type": "callout",
        "style": "exam",
        "title": "Exam focus",
-       "text": "'Needs analysis' and 'written training plan' = Firm Element. 'Computer-based, 2nd anniversary then every 3 years, inactive if missed' = Regulatory Element."
+       "text": "Needs analysis + written training plan = FIRM Element (the firm designs it). Computer-based, annual by December 31, CE-inactive if missed = REGULATORY Element (FINRA delivers it). Two elements, two owners, one annual clock."
       }
      ]
     },
