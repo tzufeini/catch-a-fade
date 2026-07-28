@@ -3056,7 +3056,7 @@ function setLocPill(text, mode){
       sub.innerHTML = 'GPS · ±'+(userAccuracy?Math.round(userAccuracy*3.28):'—')+' ft';
       sub.style.color='var(--green)';
     } else if(mode2==='ip'){
-      sub.innerHTML = 'IP estimate · city-level only';
+      sub.innerHTML = 'Rough estimate · tap for precise GPS';
       sub.style.color='var(--dim)';
     } else {
       sub.innerHTML = 'Locating…';
@@ -3160,7 +3160,11 @@ async function detectUserLocation(force){
     try {
       const { ll, city } = await ipGeo();
       userLL = ll; userCity = city || 'Your area'; _locDetected=true; _locMode='ip';
-      setLocPill('Nearby in '+userCity, 'ip');
+      // IP location is city-level at best and often lands on the ISP's hub 20-30km
+      // away — say so, and keep listening so a real GPS fix takes over the moment
+      // the permission comes through.
+      setLocPill('Near '+userCity+' (approx.)', 'ip');
+      startGpsWatch();
     } catch(e2){
       _locMode='none';
       if(e==='denied'){
@@ -5835,6 +5839,12 @@ loadBarbersFromSupabase().then(function(ok){ if(ok) refreshBarbersUI(); });
 document.addEventListener('visibilitychange', function(){
   if(document.visibilityState==='visible' && (!BARBERS.length || !BARBERS[0].fromDB)){
     loadBarbersFromSupabase().then(function(ok){ if(ok) refreshBarbersUI(); });
+  }
+  // Stuck on the coarse IP guess? The classic path is: user denies location, sees the
+  // wrong city, goes to Settings and enables it, comes back. Retry real GPS on every
+  // return to the foreground until we have a precise fix.
+  if(document.visibilityState==='visible' && _locDetected && _locMode!=='gps'){
+    detectUserLocation(true);
   }
 });
 // If the user is already signed in (Supabase session, or the persisted login flag
