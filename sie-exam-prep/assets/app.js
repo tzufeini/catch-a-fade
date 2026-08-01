@@ -435,14 +435,23 @@
       '<div class="callout exam"><h4>✪ Format</h4><p>The real exam is ' + EXAM.scored + " scored questions in " + EXAM.minutes +
       " minutes — but here there is <strong>no clock</strong>. Take as long as you need, pause whenever you want, and submit when you're done.</p></div>" +
       '<div style="display:flex;gap:10px;flex-wrap:wrap">' +
-      examBtn("Quick", 30) + examBtn("Half", 50) + examBtn("Full SIE", 75) + "</div></div>";
+      '<button class="btn" data-exam-sweep="1">Chapter Sweep · 20 Qs</button>' +
+      examBtn("Quick", 30) + examBtn("Half", 50) + examBtn("Full SIE", 75) + "</div>" +
+      '<p style="color:var(--text-faint);font-size:13px;margin-top:4px">Chapter Sweep = exactly one random question from every chapter, shuffled, with no chapter labels — you have to recognize the topic yourself.</p></div>';
     setView(html);
     $$("[data-exam-len]").forEach((b) => b.addEventListener("click", () => {
       const n = Number(b.getAttribute("data-exam-len"));
       const qs = buildExamSet(n);
-      const minutes = Math.max(5, Math.round(EXAM.minutes * (n / EXAM.scored)));
-      startExam(qs, minutes, "Mock Exam", renderExam);
+      startExam(qs, 0, "Mock Exam", renderExam);
     }));
+    const sw = $("[data-exam-sweep]");
+    if (sw) sw.addEventListener("click", () => {
+      const qs = shuffled(CH.filter((c) => c.questions && c.questions.length).map((c) => {
+        const q = c.questions[Math.floor(Math.random() * c.questions.length)];
+        return Object.assign({ _ch: c.number, _sec: c.section }, q);
+      }));
+      startExam(qs, 0, "Chapter Sweep", renderExam, { hideCh: true });
+    });
   }
 
   // ---- Full-length fixed practice exams (window.SIE_EXAMS) ----
@@ -493,7 +502,8 @@
     return set;
   }
 
-  function startExam(qs, minutes, title, onRestart) {
+  function startExam(qs, minutes, title, onRestart, opts) {
+    opts = opts || {};
     const answers = new Array(qs.length).fill(null);
     const flags = new Array(qs.length).fill(false);
     let cur = 0;
@@ -525,7 +535,7 @@
         '<div class="choice ' + (answers[cur] === ci ? "correct" : "") + '" data-pick="' + ci + '">' +
         '<span class="c-key">' + letters[ci] + "</span><span>" + esc(c) + "</span></div>").join("");
       $("#examQ").innerHTML = '<div class="qcard"><div class="q-meta"><span class="q-pill">Q' + (cur + 1) + " / " + qs.length +
-        '</span><span class="q-pill">Ch ' + q._ch + "</span></div><div class=\"q-text\">" + esc(q.q) + "</div>" +
+        "</span>" + (opts.hideCh ? "" : '<span class="q-pill">Ch ' + q._ch + "</span>") + "</div><div class=\"q-text\">" + esc(q.q) + "</div>" +
         '<div class="choices">' + ch + "</div></div>";
       $$("#examQ .choice").forEach((el) => (el.onclick = () => { answers[cur] = Number(el.getAttribute("data-pick")); shell(); }));
     }
