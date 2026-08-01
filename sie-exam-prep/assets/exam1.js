@@ -113,13 +113,13 @@ window.SIE_EXAMS = [
    {
     "q": "All of the following are exempt securities under the Securities Act of 1933 EXCEPT:",
     "choices": [
-     "U.S. Treasury bonds",
+     "Open-end investment company shares",
+     "Bonds issued by the U.S. Treasury",
      "General obligation municipal bonds",
-     "Commercial paper maturing in 270 days or less",
-     "Shares of an open-end investment company (mutual fund)"
+     "Commercial paper maturing in 270 days"
     ],
-    "answer": 3,
-    "explanation": "Open-end mutual fund shares are non-exempt securities that must be registered with the SEC and sold with a prospectus. Treasury issues, municipal bonds, and short-term commercial paper of 270 days or less are all exempt from the registration requirements of the 1933 Act.",
+    "answer": 0,
+    "explanation": "Open-end investment company (mutual fund) shares are non-exempt securities that must be registered with the SEC and sold with a prospectus. Treasury bonds, general obligation municipal bonds, and commercial paper maturing in 270 days or less are all exempt from the registration requirements of the 1933 Act.",
     "topic": "Exempt securities (1933 Act)",
     "chapter": 3,
     "difficulty": "medium",
@@ -147,13 +147,13 @@ window.SIE_EXAMS = [
    {
     "q": "Which statement about the secondary market is TRUE?",
     "choices": [
-     "Nasdaq operates as an auction market in which buyers and sellers meet on a physical trading floor",
-     "The fourth market refers to direct institution-to-institution trading through electronic communication networks (ECNs)",
-     "The Securities Exchange Act of 1933 created the SEC",
-     "The third market refers to trading of unlisted securities only over the OTC bulletin board"
+     "Nasdaq operates as an auction market where buyers meet on a trading floor",
+     "The SEC was created by the Securities Exchange Act of 1933 to police trading",
+     "The fourth market is direct institution-to-institution trading through ECNs",
+     "The third market is over-the-counter trading of unlisted securities only"
     ],
-    "answer": 1,
-    "explanation": "The fourth market is direct institution-to-institution trading, typically through ECNs, bypassing exchanges and broker-dealers. Nasdaq is a negotiated dealer market rather than a floor-based auction market; the SEC was created by the Securities Exchange Act of 1934, not 1933; and the third market is the trading of exchange-listed securities in the OTC market.",
+    "answer": 2,
+    "explanation": "The fourth market is direct institution-to-institution trading, typically through ECNs, bypassing exchanges and broker-dealers. Nasdaq is a negotiated dealer market, not a floor-based auction market; the SEC was created by the Securities Exchange Act of 1934, not 1933; and the third market is OTC trading of exchange-listed securities, not unlisted ones.",
     "topic": "Secondary market structure",
     "chapter": 4,
     "difficulty": "hard",
@@ -198,13 +198,13 @@ window.SIE_EXAMS = [
    {
     "q": "Castle Rock Brewing files a registration statement with the SEC for a new common stock offering. During the cooling-off period, which of the following is permitted?",
     "choices": [
-     "Accepting binding orders and payment from interested investors",
-     "Distributing a final prospectus that confirms the public offering price",
-     "Distributing a preliminary (red herring) prospectus and gathering indications of interest",
-     "Publishing detailed research recommending purchase of the new shares"
+     "Accepting binding orders and payments from interested investors",
+     "Distributing a preliminary prospectus and taking indications of interest",
+     "Delivering a final prospectus that confirms the public offering price",
+     "Publishing research reports that recommend purchase of the new shares"
     ],
-    "answer": 2,
-    "explanation": "During the cooling-off period, a firm may distribute a preliminary prospectus (red herring) and collect non-binding indications of interest, but may not accept orders or payment. The final prospectus with the actual offering price is delivered only after the effective date, and binding sales cannot occur until then.",
+    "answer": 1,
+    "explanation": "During the cooling-off period, a firm may distribute a preliminary prospectus (red herring) and collect non-binding indications of interest, but may not accept orders or payment. The final prospectus with the actual offering price is delivered only after the effective date, and research recommending the new issue may not be published while the offering is in registration.",
     "topic": "Cooling-off period / primary market",
     "chapter": 3,
     "difficulty": "medium",
@@ -266,13 +266,13 @@ window.SIE_EXAMS = [
    {
     "q": "Which of the following statements correctly distinguishes a stock right from a warrant?",
     "choices": [
-     "A right is typically issued with a longer life than a warrant",
-     "A right is usually issued at a subscription price below current market value, while a warrant is issued with an exercise price above current market value",
-     "A warrant is offered only to existing shareholders, whereas a right may be attached to a new bond issue",
-     "Both rights and warrants always carry voting privileges in the issuing corporation"
+     "Rights are long-lived instruments, while warrants expire within 30 to 45 days of issue",
+     "Warrants go only to existing shareholders; rights are attached to bond issues as sweeteners",
+     "Rights carry voting privileges in the issuing corporation, while warrants do not",
+     "Rights are priced below the stock's market value at issue; warrants are priced above it"
     ],
-    "answer": 1,
-    "explanation": "A preemptive right lets existing shareholders buy new shares at a subscription price set below the current market price, and rights are short-lived (typically 30-45 days). A warrant is a long-term instrument issued with an exercise price above the current market, often attached as a sweetener to a bond or preferred offering. Neither rights nor warrants carry voting privileges, eliminating the last choice.",
+    "answer": 3,
+    "explanation": "A preemptive right lets existing shareholders buy new shares at a subscription price set below the current market price, while a warrant is issued with an exercise price above the current market. The lifespan distractor is reversed — rights are short-lived (typically 30-45 days) and warrants are long-term — and it is warrants, not rights, that are attached to bond issues as sweeteners. Neither rights nor warrants carry voting privileges.",
     "topic": "Rights vs warrants",
     "chapter": 5,
     "difficulty": "medium",
@@ -300,13 +300,13 @@ window.SIE_EXAMS = [
    {
     "q": "All of the following are exempt securities under the Securities Act of 1933 EXCEPT:",
     "choices": [
-     "U.S. Treasury notes",
-     "General obligation municipal bonds",
-     "Common stock of a NYSE-listed industrial corporation",
-     "Bonds issued by a domestic bank"
+     "Notes issued by the United States Treasury",
+     "General obligation bonds of a municipality",
+     "Common stock of a listed industrial company",
+     "Debt securities issued by a national bank"
     ],
     "answer": 2,
-    "explanation": "Common stock of a listed industrial corporation is a non-exempt security that must be registered under the Act of 1933. Treasury notes, municipal GO bonds, and bank-issued securities all qualify as exempt securities. The NYSE listing is a red herring; exchange listing does not confer an Act of 1933 exemption.",
+    "explanation": "Common stock of an industrial corporation is a non-exempt security that must be registered under the Act of 1933; exchange listing does not confer an exemption. Treasury notes, municipal GO bonds, and bank-issued debt securities all qualify as exempt securities under the Act.",
     "topic": "Exempt securities (EXCEPT)",
     "chapter": 7,
     "difficulty": "medium",
@@ -351,13 +351,13 @@ window.SIE_EXAMS = [
    {
     "q": "Which statement is TRUE regarding the pricing of open-end versus closed-end investment companies?",
     "choices": [
-     "Both open-end and closed-end fund shares are priced by supply and demand on an exchange",
-     "Open-end fund shares are bought and redeemed at NAV using forward pricing, while closed-end shares trade in the secondary market at a premium or discount to NAV",
-     "Closed-end funds use forward pricing and may only be redeemed directly with the fund",
-     "Open-end fund shares regularly trade at a discount to NAV during periods of net redemptions"
+     "Open-end shares are redeemed at the next computed NAV; closed-end shares trade at market prices",
+     "Both open-end and closed-end shares are priced by supply and demand in exchange trading",
+     "Closed-end shares use forward pricing and may be redeemed only directly with the fund",
+     "Open-end shares often trade at a discount to NAV during periods of heavy net redemptions"
     ],
-    "answer": 1,
-    "explanation": "Open-end (mutual) fund shares are continuously issued and redeemed by the fund at the next computed NAV (forward pricing), so they do not trade at a premium or discount. Closed-end fund shares have a fixed number outstanding and trade in the secondary market, where supply and demand can set price above (premium) or below (discount) NAV. Forward pricing applies to open-end funds, making the third choice incorrect.",
+    "answer": 0,
+    "explanation": "Open-end (mutual) fund shares are continuously issued and redeemed by the fund at the next computed NAV (forward pricing), so they never trade at a premium or discount. Closed-end fund shares have a fixed number outstanding and trade in the secondary market, where supply and demand can price them above or below NAV. Forward pricing and direct redemption describe open-end funds, not closed-end funds.",
     "topic": "Open-end vs closed-end pricing",
     "chapter": 10,
     "difficulty": "medium",
@@ -368,13 +368,13 @@ window.SIE_EXAMS = [
    {
     "q": "Which of the following statements regarding Ginnie Mae, Fannie Mae, and Freddie Mac securities is TRUE?",
     "choices": [
-     "All three are backed by the full faith and credit of the U.S. government",
-     "Ginnie Mae carries the explicit full faith and credit guarantee of the U.S. government, while Fannie Mae and Freddie Mac carry only an implied government backing",
-     "Fannie Mae is a direct agency of the federal government, while Ginnie Mae is a private corporation",
-     "None of the three are subject to prepayment risk because the mortgages are federally insured"
+     "All three securities carry the direct full faith and credit backing of the U.S. Treasury",
+     "Fannie Mae is a government agency, while Ginnie Mae is a shareholder-owned private corporation",
+     "None of the three carries prepayment risk because the underlying mortgages are federally insured",
+     "Only Ginnie Mae securities carry the explicit full faith and credit of the U.S. government"
     ],
-    "answer": 1,
-    "explanation": "Ginnie Mae (GNMA) is a wholly owned government corporation whose pass-through securities carry the explicit full faith and credit guarantee of the U.S. government. Fannie Mae and Freddie Mac are government-sponsored enterprises whose securities carry only an implied, not explicit, backing. All mortgage-backed pass-throughs face prepayment risk, so the last choice is false.",
+    "answer": 3,
+    "explanation": "Ginnie Mae (GNMA) is a wholly owned government corporation whose pass-through securities carry the explicit full faith and credit guarantee of the U.S. government. Fannie Mae and Freddie Mac are government-sponsored enterprises whose securities carry only an implied backing, so the claim that all three have direct Treasury backing is too broad. All mortgage-backed pass-throughs face prepayment risk regardless of any insurance on the underlying loans.",
     "topic": "GNMA explicit vs GSE implied backing",
     "chapter": 7,
     "difficulty": "hard",
@@ -385,13 +385,13 @@ window.SIE_EXAMS = [
    {
     "q": "A debenture is best described as:",
     "choices": [
-     "A bond secured by a first mortgage on real property",
-     "A bond secured by securities the issuer owns and pledges as collateral",
-     "An unsecured bond backed only by the general credit and earning power of the issuer",
-     "A short-term unsecured promissory note issued by a corporation at a discount"
+     "A bond secured by a first mortgage on the issuer's real property",
+     "An unsecured bond backed only by the issuer's general credit",
+     "A bond secured by a portfolio of securities the issuer pledges",
+     "A short-term note sold at a discount to finance current operations"
     ],
-    "answer": 2,
-    "explanation": "A debenture is an unsecured corporate bond backed solely by the issuer's full faith, credit, and earning power, with no specific assets pledged. A mortgage bond is secured by real property and a collateral trust bond by pledged securities, so those choices describe secured debt. The discounted short-term note describes commercial paper, a money market instrument, not a debenture.",
+    "answer": 1,
+    "explanation": "A debenture is an unsecured corporate bond backed solely by the issuer's full faith, credit, and earning power, with no specific assets pledged. A bond backed by a first mortgage is a mortgage bond and one backed by pledged securities is a collateral trust bond — both secured debt — while the discounted short-term note describes commercial paper, a money market instrument.",
     "topic": "Debenture (unsecured debt)",
     "chapter": 7,
     "difficulty": "medium",
@@ -436,13 +436,13 @@ window.SIE_EXAMS = [
    {
     "q": "Which statement is TRUE regarding general obligation (GO) bonds versus revenue bonds?",
     "choices": [
-     "GO bonds are backed by revenues from a specific facility, while revenue bonds are backed by the issuer's taxing power",
-     "GO bonds are backed by the full faith, credit, and taxing power of the issuer and usually require voter approval, while revenue bonds are backed by income from a specific project and generally do not",
-     "Revenue bonds are always considered safer than GO bonds because they are self-supporting",
-     "GO bonds may only be issued by the federal government, while revenue bonds are issued by states"
+     "GO bonds are backed by facility revenues; revenue bonds rely on the issuer's taxes",
+     "Revenue bonds are considered safer than GO bonds because they are self-supporting",
+     "GO bonds are backed by the issuer's taxing power and typically require voter approval",
+     "Revenue bonds require voter approval because they pledge income from a public project"
     ],
-    "answer": 1,
-    "explanation": "GO bonds are secured by the municipal issuer's full faith, credit, and taxing power and typically require voter approval because they pledge taxes. Revenue bonds are payable only from the revenues of the specific project they finance and generally do not need voter approval. Revenue bonds are not automatically safer; payment depends on project performance, which can carry more risk than a tax-backed GO.",
+    "answer": 2,
+    "explanation": "GO bonds pledge the issuer's full faith, credit, and taxing power, and because they commit tax dollars they typically require voter approval. Revenue bonds are payable only from the income of the project they finance and generally do not require voter approval — the voter-approval requirement attaches to GO bonds, not revenue bonds. Revenue bonds are not automatically safer; repayment depends on project performance.",
     "topic": "GO vs revenue bonds",
     "chapter": 8,
     "difficulty": "medium",
@@ -470,13 +470,13 @@ window.SIE_EXAMS = [
    {
     "q": "A resident of Ohio buys municipal bonds issued by an Ohio school district. Which statement best describes the tax treatment of the interest?",
     "choices": [
-     "The interest is subject to federal tax but exempt from Ohio state tax",
-     "The interest is fully taxable at the federal, state, and local levels",
-     "The interest is exempt from federal tax and, because the investor lives in the issuing state, also exempt from Ohio state tax (triple tax-exempt)",
-     "The interest is exempt from Ohio state tax but fully taxable at the federal level"
+     "The interest is exempt from both federal income tax and Ohio income tax",
+     "The interest is exempt from federal income tax but subject to Ohio tax",
+     "The interest is exempt from Ohio income tax but subject to federal tax",
+     "The interest is taxable at the federal, state, and local levels alike"
     ],
-    "answer": 2,
-    "explanation": "Interest on municipal bonds is generally exempt from federal income tax, and when the investor resides in the state of issuance the interest is typically also exempt from that state's (and often local) income tax, producing the triple tax-exempt benefit. An out-of-state resident would usually owe state tax, which is the key in-state advantage. The choices claiming federal taxability are wrong because municipal interest is federally tax-exempt.",
+    "answer": 0,
+    "explanation": "Municipal bond interest is generally exempt from federal income tax, and because the investor resides in the issuing state, the interest is also exempt from Ohio (and often local) income tax — the triple tax-exempt benefit. The federal-exempt-but-state-taxable treatment describes an out-of-state bondholder, not an in-state resident, and any choice claiming federal taxability fails because municipal interest is federally tax-exempt.",
     "topic": "Municipal tax-exempt interest / in-state benefit",
     "chapter": 8,
     "difficulty": "medium",
@@ -504,13 +504,13 @@ window.SIE_EXAMS = [
    {
     "q": "An investor compares an exchange-traded fund (ETF), a closed-end fund, and an open-end (mutual) fund. Each of the following is a feature of a standard ETF EXCEPT:",
     "choices": [
-     "Shares trade intraday on an exchange at market-determined prices",
-     "Shares are continuously redeemed by the issuer directly from individual retail investors at NAV",
-     "Investors typically pay a commission or face a bid-ask spread when trading",
-     "The fund discloses its holdings and seeks to track an index"
+     "Shares trade throughout the day on an exchange at market prices",
+     "Investors typically pay a commission or a bid-ask spread to trade",
+     "The fund discloses holdings and typically tracks a market index",
+     "Shares are redeemed at NAV directly from the fund by retail investors"
     ],
-    "answer": 1,
-    "explanation": "ETF shares are bought and sold on an exchange between investors, not redeemed directly from the fund by retail holders; only authorized participants create or redeem large blocks (creation units) with the issuer. Direct redemption with the fund at NAV describes an open-end mutual fund, making it the EXCEPT answer.",
+    "answer": 3,
+    "explanation": "ETF shares are bought and sold on an exchange between investors; only authorized participants create or redeem large blocks (creation units) with the issuer. Direct redemption at NAV by retail investors describes an open-end mutual fund, making it the feature a standard ETF lacks. Intraday exchange trading, commissions and bid-ask spreads, and disclosed index-tracking portfolios are all standard ETF features.",
     "topic": "ETF vs CEF vs mutual fund",
     "chapter": 11,
     "difficulty": "medium",
@@ -538,13 +538,13 @@ window.SIE_EXAMS = [
    {
     "q": "Maria, age 47, has held a non-qualified variable annuity for nine years. Which statement about her annuity during the accumulation phase is TRUE?",
     "choices": [
-     "Earnings inside the separate account are taxed each year as they are credited",
-     "Earnings grow tax-deferred, and the value of her accumulation units fluctuates with separate account performance",
-     "Her contributions were made pre-tax, so the entire withdrawal will be ordinary income",
-     "The insurer guarantees a fixed accumulation unit value regardless of investment results"
+     "Earnings in the separate account are taxed each year as they are credited",
+     "Earnings grow tax-deferred and her accumulation unit value fluctuates",
+     "Her contributions were pre-tax, so any withdrawal is fully ordinary income",
+     "The insurer guarantees the accumulation unit value regardless of results"
     ],
     "answer": 1,
-    "explanation": "In a variable annuity, accumulation-phase earnings grow tax-deferred and the accumulation unit value rises and falls with separate account performance. Contributions to a non-qualified annuity are made with after-tax dollars, so only the earnings are taxable on withdrawal, eliminating the 'pre-tax/entire withdrawal' choice.",
+    "explanation": "During the accumulation phase of a variable annuity, earnings grow tax-deferred and the accumulation unit value rises and falls with separate account performance. Contributions to a non-qualified annuity are made with after-tax dollars, so only the earnings portion is taxable at withdrawal — the pre-tax/fully-taxable choice describes a qualified arrangement. No unit value is guaranteed; a guaranteed value would describe a fixed annuity.",
     "topic": "Variable annuity accumulation",
     "chapter": 13,
     "difficulty": "medium",
@@ -555,13 +555,13 @@ window.SIE_EXAMS = [
    {
     "q": "A 52-year-old client takes a $20,000 withdrawal from a non-qualified variable annuity that he funded with $50,000 of after-tax contributions and that has grown to $90,000. How is the withdrawal taxed?",
     "choices": [
-     "Entirely tax-free as a return of his original cost basis",
-     "Entirely as ordinary income plus a 10% penalty, because earnings come out first (LIFO)",
-     "As a long-term capital gain because he held it more than one year",
-     "Half ordinary income and half return of basis, prorated"
+     "The full $20,000 is a tax-free return of his after-tax cost basis",
+     "The full $20,000 is prorated between taxable earnings and tax-free basis",
+     "The full $20,000 is ordinary income plus a 10% early-withdrawal penalty",
+     "The full $20,000 is a long-term capital gain taxed at preferential rates"
     ],
-    "answer": 1,
-    "explanation": "Non-qualified annuities are taxed LIFO, so withdrawals are deemed to come from the $40,000 of earnings first; the full $20,000 is ordinary income, and because he is under 59½ a 10% early-withdrawal penalty also applies. Annuity gains are always ordinary income, never capital gains, which rules out the long-term gain choice.",
+    "answer": 2,
+    "explanation": "Non-qualified annuities are taxed LIFO, so withdrawals are deemed to come from the $40,000 of earnings first; the full $20,000 is ordinary income, and because he is under 59½ a 10% early-withdrawal penalty also applies. Prorating between earnings and basis (the exclusion ratio) applies only to annuitized payments, not lump-sum withdrawals, and annuity gains are always ordinary income, never capital gains.",
     "topic": "Annuity LIFO taxation / 59½ penalty",
     "chapter": 13,
     "difficulty": "hard",
@@ -589,13 +589,13 @@ window.SIE_EXAMS = [
    {
     "q": "Which of the following BEST describes the role of the Options Clearing Corporation (OCC)?",
     "choices": [
-     "It sets the premium at which each listed option trades",
-     "It issues and guarantees the performance of standardized listed options contracts",
-     "It guarantees that the underlying stock will not decline in value",
-     "It insures option holders against losses up to $500,000"
+     "It sets the premium at which each listed options contract trades",
+     "It guarantees that the stock underlying each contract will not fall",
+     "It insures option holders against market losses up to $500,000",
+     "It issues and guarantees performance of standardized listed contracts"
     ],
-    "answer": 1,
-    "explanation": "The OCC issues all standardized, exchange-listed options and acts as guarantor, ensuring contracts are honored and removing counterparty default risk between buyer and writer. It does not set premiums (the market does) and does not guarantee stock prices or insure against investment losses.",
+    "answer": 3,
+    "explanation": "The OCC issues all standardized, exchange-listed options and acts as guarantor, ensuring contracts are honored and removing counterparty default risk between buyer and writer. It does not set premiums (the market does), does not guarantee underlying stock prices, and does not insure against investment losses — the $500,000 figure belongs to SIPC coverage of missing customer assets, not the OCC.",
     "topic": "OCC role",
     "chapter": 12,
     "difficulty": "medium",
@@ -725,13 +725,13 @@ window.SIE_EXAMS = [
    {
     "q": "An investor holds a fixed annuity that will pay a level $1,500 per month for life. Over a 25-year retirement, the investor's chief concern is that the fixed payment will buy progressively less as consumer prices climb. Which risk does this describe, and how is it generally addressed?",
     "choices": [
-     "Credit risk, addressed by buying only investment-grade bonds",
-     "Inflation (purchasing power) risk, addressed by allocating some assets to equities or a variable annuity",
-     "Liquidity risk, addressed by holding only money market funds",
-     "Reinvestment risk, addressed by laddering certificates of deposit"
+     "Purchasing power risk, offset by adding equities or a variable annuity",
+     "Reinvestment risk, offset by laddering bonds and certificates of deposit",
+     "Credit risk, offset by holding only investment-grade corporate bonds",
+     "Liquidity risk, offset by shifting assets into money market instruments"
     ],
-    "answer": 1,
-    "explanation": "A fixed, level lifetime payment is exposed to inflation (purchasing power) risk because rising prices erode the real value of unchanging dollars; allocating to equities or a variable annuity, whose payments can rise with separate-account performance, helps offset it. Credit, liquidity, and reinvestment risks describe different concerns and do not match a worry about declining purchasing power of a guaranteed payment.",
+    "answer": 0,
+    "explanation": "A fixed, level lifetime payment is exposed to inflation (purchasing power) risk because rising prices erode the real value of unchanging dollars; allocating to equities or a variable annuity, whose payments can rise with separate-account performance, helps offset it. Reinvestment risk — the strongest distractor — concerns reinvesting cash flows at lower rates, not the eroding real value of a guaranteed payment; credit and liquidity risks likewise describe different concerns.",
     "topic": "Inflation risk - fixed annuity",
     "chapter": 13,
     "difficulty": "medium",
@@ -793,13 +793,13 @@ window.SIE_EXAMS = [
    {
     "q": "A UGMA custodial account is opened for 9-year-old Priya Nandakumar, with her aunt serving as custodian. Which of the following is TRUE regarding this account?",
     "choices": [
-     "The account is registered under the custodian's Social Security number, and the custodian pays tax on all earnings",
-     "The account is registered under the minor's Social Security number, and the minor is the beneficial owner of the assets",
-     "Securities may be purchased on margin to enhance the minor's returns",
-     "Ownership of the assets reverts to the custodian once the minor reaches the age of majority"
+     "The custodian's Social Security number is used, and the custodian pays tax on earnings",
+     "The minor's Social Security number is used, and the minor beneficially owns the assets",
+     "Margin purchases are permitted when the custodian judges them prudent for the minor",
+     "The assets revert to the custodian once the minor reaches the age of majority"
     ],
     "answer": 1,
-    "explanation": "A UGMA account uses the minor's Social Security number because the minor is the beneficial owner; the custodian only manages the assets, and earnings are taxed to the minor. Margin is prohibited in custodial accounts (they must be cash accounts), and at the age of majority the assets transfer to the now-adult former minor, never to the custodian.",
+    "explanation": "A UGMA account uses the minor's Social Security number because the minor is the beneficial owner; the custodian only manages the assets, and earnings are taxed to the minor. Margin is prohibited in custodial accounts (they must be cash accounts) regardless of the custodian's judgment, and at the age of majority the assets transfer to the now-adult former minor, never back to the custodian.",
     "topic": "UGMA/minor accounts",
     "chapter": 16,
     "difficulty": "medium",
@@ -912,13 +912,13 @@ window.SIE_EXAMS = [
    {
     "q": "A customer purchases a common stock in a cash account. Under the current regular-way settlement cycle, when does settlement occur and by when must the firm send the customer the trade confirmation?",
     "choices": [
-     "Settlement is T+2; the confirmation must be sent within five business days of the trade",
-     "Settlement is T+1; the confirmation must be sent at or before completion of the transaction (settlement)",
-     "Settlement is T+1; the confirmation must be sent within three business days after settlement",
-     "Settlement is T+3; the confirmation must be sent on the trade date"
+     "Settlement is T+2; the confirmation is due within five business days",
+     "Settlement is T+3; the confirmation is due on the trade date itself",
+     "Settlement is T+1; the confirmation is due at or before settlement",
+     "Settlement is T+1; the confirmation is due within three business days"
     ],
-    "answer": 1,
-    "explanation": "Regular-way settlement for equities is now T+1 (one business day after the trade date), and SEC Rule 10b-10 requires the trade confirmation to be delivered at or before completion of the transaction, i.e., by settlement date. T+2 and T+3 are outdated cycles, and there is no five-business-day confirmation window.",
+    "answer": 2,
+    "explanation": "Regular-way settlement for equities is now T+1 (one business day after the trade date), and SEC Rule 10b-10 requires the trade confirmation to be delivered at or before completion of the transaction, i.e., by settlement. The strongest distractor pairs the correct T+1 cycle with a nonexistent three-business-day confirmation window; T+2 and T+3 are outdated settlement cycles.",
     "topic": "Settlement T+1 / confirmation timing",
     "chapter": 17,
     "difficulty": "medium",
@@ -997,13 +997,13 @@ window.SIE_EXAMS = [
    {
     "q": "Priya elects to make Roth 401(k) salary-deferral contributions. Her employer provides a 100% match on the first 4% she defers. Absent any election to treat the match as Roth, how are the employer matching dollars traditionally treated?",
     "choices": [
-     "The match is deposited into a Roth (after-tax) source and grows tax-free like her own deferrals",
-     "The match is deposited into a pre-tax (traditional) account and is taxed as ordinary income when withdrawn",
-     "The match is prohibited because employers may not match Roth 401(k) deferrals",
-     "The match is added to her IRA rather than the 401(k) plan"
+     "It goes into her Roth source and grows tax-free like her own salary deferrals",
+     "It is disallowed because employers may not match Roth 401(k) salary deferrals",
+     "It is deposited into an IRA for her because matches cannot stay in the 401(k)",
+     "It goes into a pre-tax source and is taxed as ordinary income when withdrawn"
     ],
-    "answer": 1,
-    "explanation": "Employer matching contributions to a Roth 401(k) have traditionally been placed in a pre-tax (traditional) source and are taxed as ordinary income when distributed; only the employee's own Roth deferrals and their earnings come out tax-free. The match is permitted, so the distractor claiming employers may not match is incorrect.",
+    "answer": 3,
+    "explanation": "Employer matching contributions to a Roth 401(k) have traditionally been placed in a pre-tax (traditional) source and are taxed as ordinary income when distributed; only the employee's own Roth deferrals and their earnings come out tax-free. The strongest distractor assumes the match follows the employee's Roth treatment, but absent a special election it does not, and matching Roth deferrals is fully permitted.",
     "topic": "Roth 401(k) employer match",
     "chapter": 19,
     "difficulty": "hard",
@@ -1014,13 +1014,13 @@ window.SIE_EXAMS = [
    {
     "q": "A client asks about contribution limits for a 529 college savings plan. Which statement is TRUE?",
     "choices": [
-     "Federal law caps lifetime 529 contributions at $250,000 per beneficiary nationwide",
-     "There is no federal dollar contribution limit; maximum aggregate account balances are set by each individual state",
-     "529 plans are limited to the annual IRA contribution limit each year",
-     "Contributions to a 529 plan are deductible on the federal income tax return"
+     "There is no federal dollar limit; each state sets its aggregate maximum",
+     "Federal law caps lifetime contributions at $250,000 per beneficiary",
+     "Contributions are deductible on the contributor's federal income return",
+     "Annual contributions are capped at the federal IRA contribution limit"
     ],
-    "answer": 1,
-    "explanation": "There is no federal dollar contribution limit on 529 plans; instead, each state sets its own aggregate maximum account balance, often several hundred thousand dollars per beneficiary. There is no single nationwide federal cap, and 529 contributions are made with after-tax dollars (no federal deduction), though some states offer an in-state deduction or credit.",
+    "answer": 0,
+    "explanation": "There is no federal dollar contribution limit on 529 plans; instead, each state sets its own aggregate maximum account balance, often several hundred thousand dollars per beneficiary. The $250,000 figure resembles many states' aggregate caps but is not a federal nationwide limit, and 529 contributions are made with after-tax dollars (no federal deduction), though some states offer an in-state deduction or credit.",
     "topic": "529 contribution limits",
     "chapter": 19,
     "difficulty": "medium",
@@ -1031,13 +1031,13 @@ window.SIE_EXAMS = [
    {
     "q": "Which of the following BEST describes the prohibited practice of 'front-running'?",
     "choices": [
-     "Buying a security based on material nonpublic information obtained from a corporate insider",
-     "A registered representative entering an order for his own account ahead of a large customer order he knows will move the market",
-     "Inserting a third party between a customer and the best available market to generate an extra commission",
-     "Engaging in excessive trading in a customer account to generate commissions"
+     "Trading on material nonpublic information obtained from a company insider",
+     "Entering a personal order ahead of a known market-moving customer order",
+     "Placing a third party between a customer and the best available market",
+     "Trading a customer's account excessively to generate extra commissions"
     ],
     "answer": 1,
-    "explanation": "Front-running is trading for one's own or the firm's account ahead of a known, imminent customer block order expected to move the market price. The insider-information choice describes insider trading, the third-party choice describes interpositioning, and the excessive-trading choice describes churning.",
+    "explanation": "Front-running is trading for one's own or the firm's account ahead of a known, imminent customer order expected to move the market price. Trading on insider tips describes insider trading, inserting a third party between the customer and the best market describes interpositioning, and excessive trading for commissions describes churning.",
     "topic": "Prohibited activities",
     "chapter": 19,
     "difficulty": "hard",
@@ -1065,13 +1065,13 @@ window.SIE_EXAMS = [
    {
     "q": "Under Regulation S-P, when must a broker-dealer deliver its initial privacy notice to a new retail customer?",
     "choices": [
-     "Within 30 days after the relationship is established",
-     "Not later than the time the customer relationship is established",
-     "Within 90 days of opening the account",
-     "Only upon the customer's written request"
+     "Within 30 days after the customer relationship is first established",
+     "Within 90 days after the customer's new account has been opened",
+     "Only after the customer submits a written request for the notice",
+     "No later than the time the customer relationship is established"
     ],
-    "answer": 1,
-    "explanation": "Regulation S-P requires the initial privacy notice to be delivered not later than when the customer relationship is established, with an annual notice thereafter (subject to exceptions). The 30-day and 90-day windows are wrong, and the notice is mandatory rather than provided only on request.",
+    "answer": 3,
+    "explanation": "Regulation S-P requires the initial privacy notice to be delivered not later than when the customer relationship is established, with an annual notice thereafter (subject to exceptions). The 30-day grace period is the strongest distractor because other disclosure rules use similar windows, but Reg S-P allows no delay; the 90-day window is likewise wrong, and the notice is mandatory rather than provided only on request.",
     "topic": "Reg S-P privacy notice",
     "chapter": 19,
     "difficulty": "medium",
@@ -1167,13 +1167,13 @@ window.SIE_EXAMS = [
    {
     "q": "Maya, a registered representative at Harbor Point Securities, drafts a market commentary on emerging-market debt and emails identical copies to 24 of her individual retail clients within a single 30-calendar-day period. How is this piece classified under FINRA's communications rules?",
     "choices": [
-     "A retail communication, because it was sent to multiple retail investors",
-     "An institutional communication, because it concerns sophisticated debt products",
-     "Correspondence, because it was distributed to 25 or fewer retail investors within any 30 calendar-day period",
-     "A public appearance, because the same content reached numerous clients"
+     "Correspondence, because it reached 25 or fewer retail investors in 30 days",
+     "A retail communication, because it was distributed to multiple retail investors",
+     "An institutional communication, because it covers sophisticated debt products",
+     "A public appearance, because identical content reached numerous investors"
     ],
-    "answer": 2,
-    "explanation": "A communication distributed to 25 or fewer retail investors within any 30 calendar-day period is correspondence; one made available to MORE THAN 25 retail investors in that window is a retail communication. Maya reached 24 clients, which does not exceed 25, so the piece is correspondence. It is not an institutional communication because the recipients are individual retail clients, not institutions.",
+    "answer": 0,
+    "explanation": "A communication distributed to 25 or fewer retail investors within any 30 calendar-day period is correspondence; one made available to MORE THAN 25 retail investors in that window is a retail communication. Maya reached 24 clients, which does not exceed 25, so the piece is correspondence — reaching multiple retail investors alone does not make it a retail communication. It is not an institutional communication because the recipients are individual retail clients, and the sophistication of the product is irrelevant to the classification.",
     "topic": "Communications categories",
     "chapter": 20,
     "difficulty": "hard",
@@ -1184,13 +1184,13 @@ window.SIE_EXAMS = [
    {
     "q": "Which of the following statements correctly distinguishes the MSRB from FINRA with respect to municipal securities?",
     "choices": [
-     "The MSRB both writes and enforces rules for municipal securities firms, while FINRA only writes them",
-     "The MSRB writes rules governing municipal securities dealers but does not conduct examinations or bring enforcement actions; FINRA and bank regulators enforce those rules",
-     "The MSRB is a division of the SEC that directly fines municipal dealers",
-     "Neither the MSRB nor FINRA has any authority over municipal securities, which are regulated solely by the states"
+     "The MSRB both writes and enforces municipal rules; FINRA plays no municipal role",
+     "The MSRB is a division of the SEC that directly examines and fines dealers",
+     "The MSRB writes rules for municipal dealers; FINRA and bank regulators enforce them",
+     "Neither the MSRB nor FINRA has authority; the states alone regulate municipals"
     ],
-    "answer": 1,
-    "explanation": "The MSRB is a rule-writing SRO with no enforcement power of its own; its rules are enforced against broker-dealers by FINRA and against bank dealers by the federal bank regulators. Choice 0 reverses the roles, and choice 2 is wrong because the MSRB is an independent SRO subject to SEC oversight, not an SEC division.",
+    "answer": 2,
+    "explanation": "The MSRB is a rule-writing SRO with no enforcement power of its own; its rules are enforced against broker-dealers by FINRA and against bank dealers by the federal bank regulators. The strongest distractor reverses the roles by giving the MSRB enforcement power, and the MSRB is an independent SRO subject to SEC oversight — not an SEC division — so it never examines or fines dealers itself.",
     "topic": "SROs vs SEC / MSRB",
     "chapter": 20,
     "difficulty": "medium",
@@ -1235,13 +1235,13 @@ window.SIE_EXAMS = [
    {
     "q": "Devon was convicted of a securities-related misdemeanor (a fraudulent-misrepresentation charge) seven years ago and has otherwise a clean record. With respect to associating with a FINRA member firm, which statement is correct?",
     "choices": [
-     "He is not subject to statutory disqualification because only felonies trigger it",
-     "He is subject to statutory disqualification because the securities-related misdemeanor occurred within the past 10 years",
-     "He is permanently barred for life and may never associate with any member",
-     "He is subject to disqualification only if the conviction occurred within the past 5 years"
+     "He is not disqualified because only felony convictions trigger the provision",
+     "He is disqualified because the securities misdemeanor falls within 10 years",
+     "He would face disqualification only if the conviction were within 5 years",
+     "He is barred permanently and may never associate with any member firm"
     ],
     "answer": 1,
-    "explanation": "Statutory disqualification is triggered by any felony within the past 10 years OR a securities-related (investment-related) misdemeanor within the past 10 years; Devon's securities misdemeanor was seven years ago, placing it inside the window. Choice 0 is wrong because investment-related misdemeanors also count, and choice 2 is wrong because disqualification is not an automatic lifetime bar; the firm may apply for eligibility.",
+    "explanation": "Statutory disqualification is triggered by any felony within the past 10 years OR a securities/investment-related misdemeanor within the past 10 years; Devon's securities misdemeanor was seven years ago, placing it inside the window. The felonies-only view is the strongest distractor — it is true that ordinary misdemeanors do not disqualify, but investment-related ones do — and disqualification is not an automatic lifetime bar, since the firm may apply for eligibility.",
     "topic": "Statutory disqualification",
     "chapter": 20,
     "difficulty": "medium",

@@ -433,7 +433,7 @@
       '<p class="ch-lead">Simulate the real SIE: questions are drawn across all four content areas in the same proportions FINRA uses. Passing is ' + EXAM.pass + "%.</p></div>";
     html += '<div class="exam-setup">' +
       '<div class="callout exam"><h4>✪ Format</h4><p>The real exam is ' + EXAM.scored + " scored questions in " + EXAM.minutes +
-      " minutes. Choose a length below — the timer scales accordingly.</p></div>" +
+      " minutes — but here there is <strong>no clock</strong>. Take as long as you need, pause whenever you want, and submit when you're done.</p></div>" +
       '<div style="display:flex;gap:10px;flex-wrap:wrap">' +
       examBtn("Quick", 30) + examBtn("Half", 50) + examBtn("Full SIE", 75) + "</div></div>";
     setView(html);
@@ -450,7 +450,7 @@
   function renderFullExam() {
     const exams = fullExams();
     let html = '<div class="ch-header"><h1>Full Practice Exam ◉</h1>' +
-      '<p class="ch-lead">Full-length, fixed exams written at real-exam rigor — calculations, traps, EXCEPT and Roman-numeral items, and scenarios. Same blueprint weighting as FINRA, a 105-minute clock, and a scored report with rationales for every question.</p></div>';
+      '<p class="ch-lead">Full-length, fixed exams written at real-exam rigor — calculations, traps, EXCEPT and Roman-numeral items, and scenarios. Same blueprint weighting as FINRA, no time limit, and a scored report with rationales for every question.</p></div>';
     if (!exams.length) {
       html += '<div class="callout note"><h4>✎ Being prepared</h4><p>An original 75-question full-length exam is being authored and fact-checked. It will appear here automatically — no refresh of anything else needed.</p></div>';
       setView(html); return;
@@ -460,7 +460,7 @@
       const n = ex.total || (ex.questions || []).length;
       html += '<div class="ch-card"><div class="cc-top"><div class="cc-num">◉</div><div class="cc-sec">Full length · blueprint-weighted</div></div>' +
         "<h3>" + esc(ex.title) + "</h3>" +
-        '<div class="cc-meta"><span>' + n + " questions</span><span>105 min</span><span>70% to pass</span></div>" +
+        '<div class="cc-meta"><span>' + n + " questions</span><span>No time limit</span><span>70% to pass</span></div>" +
         '<div style="margin-top:14px"><button class="btn btn-primary" data-start="' + esc(ex.id) + '">▶ Start exam</button></div></div>';
     });
     html += "</div>";
@@ -496,7 +496,6 @@
   function startExam(qs, minutes, title, onRestart) {
     const answers = new Array(qs.length).fill(null);
     const flags = new Array(qs.length).fill(false);
-    let remaining = minutes * 60;
     let cur = 0;
 
     function shell() {
@@ -505,7 +504,7 @@
         '" data-go="' + i + '">' + (i + 1) + "</button>").join("");
       view().innerHTML =
         '<div class="ch-header"><div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">' +
-        "<h1>" + esc(title) + "</h1><div class=\"exam-timer\" id=\"examTimer\"></div></div>" +
+        "<h1>" + esc(title) + "</h1></div>" +
         '<div class="exam-grid-nav">' + grid + "</div></div>" +
         '<div id="examQ"></div>' +
         '<div class="complete-bar"><div class="chap-nav-btns">' +
@@ -514,7 +513,6 @@
         '<button class="btn" id="eNext">Next →</button></div>' +
         '<button class="btn btn-primary" id="eSubmit">Submit exam</button></div>';
       drawQ();
-      tick();
       $("#ePrev").onclick = () => { cur = Math.max(0, cur - 1); shell(); };
       $("#eNext").onclick = () => { cur = Math.min(qs.length - 1, cur + 1); shell(); };
       $("#eFlag").onclick = () => { flags[cur] = !flags[cur]; shell(); };
@@ -531,17 +529,7 @@
         '<div class="choices">' + ch + "</div></div>";
       $$("#examQ .choice").forEach((el) => (el.onclick = () => { answers[cur] = Number(el.getAttribute("data-pick")); shell(); }));
     }
-    function tick() {
-      const t = $("#examTimer");
-      const m = Math.floor(remaining / 60), s = remaining % 60;
-      if (t) { t.textContent = "⏱ " + m + ":" + String(s).padStart(2, "0"); t.style.color = remaining < 60 ? "var(--red)" : ""; }
-    }
-    clearInterval(examTimer);
-    examTimer = setInterval(() => {
-      remaining--; tick();
-      if (remaining <= 0) { clearInterval(examTimer); finish(); }
-    }, 1000);
-
+    // No time limit — the exam ends only when the student submits it.
     function finish() {
       clearInterval(examTimer);
       let correct = 0;
