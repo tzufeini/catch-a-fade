@@ -429,6 +429,9 @@
   let examTimer = null;
   function renderExam() {
     if (totalQuestions() < 10) { setView('<div class="empty">The question bank is still being generated — the mock exam unlocks once it is ready.</div>'); return; }
+    // an unfinished mock/sweep auto-resumes — it keeps running until submitted or discarded
+    const live = loadExamSession();
+    if (live && live.kind !== "full") { runExam(live); return; }
     clearInterval(examTimer);
     let html = '<div class="ch-header"><h1>Mock Exam ◎</h1>' +
       '<p class="ch-lead">Simulate the real SIE: questions are drawn across all four content areas in the same proportions FINRA uses. Passing is ' + EXAM.pass + "%.</p></div>";
@@ -477,6 +480,9 @@
   function fullExams() { return window.SIE_EXAMS || []; }
   function renderFullExam() {
     const exams = fullExams();
+    // an unfinished full exam auto-resumes — it keeps running until submitted or discarded
+    const live = loadExamSession();
+    if (live && live.kind === "full") { runExam(live); return; }
     let html = '<div class="ch-header"><h1>Full Practice Exam ◉</h1>' +
       '<p class="ch-lead">Full-length, fixed exams written at real-exam rigor — calculations, traps, EXCEPT and Roman-numeral items, and scenarios. Same blueprint weighting as FINRA, no time limit, and a scored report with rationales for every question.</p></div>';
     if (!exams.length) {
@@ -568,12 +574,17 @@
         '<button class="btn" id="ePrev">← Prev</button>' +
         '<button class="btn" id="eFlag">⚑ Flag</button>' +
         '<button class="btn" id="eNext">Next →</button></div>' +
-        '<button class="btn btn-primary" id="eSubmit">Submit exam</button></div>';
+        '<div style="display:flex;gap:10px">' +
+        '<button class="btn" id="eDiscard">✕ Discard</button>' +
+        '<button class="btn btn-primary" id="eSubmit">Submit exam</button></div></div>';
       drawQ();
       $("#ePrev").onclick = () => { cur = Math.max(0, cur - 1); persist(); shell(); };
       $("#eNext").onclick = () => { cur = Math.min(qs.length - 1, cur + 1); persist(); shell(); };
       $("#eFlag").onclick = () => { flags[cur] = !flags[cur]; persist(); shell(); };
       $("#eSubmit").onclick = () => finish();
+      $("#eDiscard").onclick = () => {
+        if (confirm("Discard this exam? The answers in it will be lost.")) { clearExamSession(); restartFnFor(sess.kind)(); }
+      };
       $$("[data-go]").forEach((b) => (b.onclick = () => { cur = Number(b.getAttribute("data-go")); persist(); shell(); }));
     }
     function drawQ() {
