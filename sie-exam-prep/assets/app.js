@@ -264,6 +264,7 @@
       '<a class="btn" href="#/cards">⊞ Flashcards</a>' +
       '<a class="btn" href="#/exam">◎ Quick Mock Exam</a>' +
       '<a class="btn" href="#/final">⚑ Final Review</a>' +
+      (loadExamSession() ? '<a class="btn" href="#/resume">▶ Resume exam</a>' : "") +
       (missedList().length ? '<a class="btn" href="#/weak">⟳ Weak Areas (' + missedList().length + ')</a>' : "") +
       '<a class="btn" href="#/guide">✦ How to Study</a></div></section>';
 
@@ -431,25 +432,43 @@
     clearInterval(examTimer);
     let html = '<div class="ch-header"><h1>Mock Exam ◎</h1>' +
       '<p class="ch-lead">Simulate the real SIE: questions are drawn across all four content areas in the same proportions FINRA uses. Passing is ' + EXAM.pass + "%.</p></div>";
-    html += '<div class="exam-setup">' +
+    html += resumeBanner() + '<div class="exam-setup">' +
       '<div class="callout exam"><h4>✪ Format</h4><p>The real exam is ' + EXAM.scored + " scored questions in " + EXAM.minutes +
       " minutes — but here there is <strong>no clock</strong>. Take as long as you need, pause whenever you want, and submit when you're done.</p></div>" +
       '<div style="display:flex;gap:10px;flex-wrap:wrap">' +
       '<button class="btn" data-exam-sweep="1">Chapter Sweep · 20 Qs</button>' +
       examBtn("Quick", 30) + examBtn("Half", 50) + examBtn("Full SIE", 75) + "</div>" +
-      '<p style="color:var(--text-faint);font-size:13px;margin-top:4px">Chapter Sweep = exactly one random question from every chapter, shuffled, with no chapter labels — you have to recognize the topic yourself.</p></div>';
+      '<p style="color:var(--text-faint);font-size:13px;margin-top:4px">Chapter Sweep = exactly one random question from every chapter, in chapter order (Q1 = Ch 1 … Q20 = Ch 20), with no labels shown.</p>' +
+      '<div class="section-title" style="margin-top:10px">Instant-feedback mode</div>' +
+      '<div style="display:flex;gap:10px;flex-wrap:wrap">' +
+      '<button class="btn" data-practice-len="20">Instant · 20 Qs</button>' +
+      '<button class="btn" data-practice-len="30">Instant · 30 Qs</button>' +
+      '<button class="btn" data-practice-len="75">Instant · 75 Qs</button></div>' +
+      '<p style="color:var(--text-faint);font-size:13px;margin-top:4px">Instant mode shows the correct answer and the full explanation the moment you pick — best for learning. Misses still land in Weak Areas.</p></div>';
     setView(html);
     $$("[data-exam-len]").forEach((b) => b.addEventListener("click", () => {
       const n = Number(b.getAttribute("data-exam-len"));
       const qs = buildExamSet(n);
-      startExam(qs, 0, "Mock Exam", renderExam);
+      startExam(qs, 0, "Mock Exam", null, { kind: "mock" });
+    }));
+    $$("[data-practice-len]").forEach((b) => b.addEventListener("click", () => {
+      const n = Number(b.getAttribute("data-practice-len"));
+      const qs = buildExamSet(n);
+      let ph = '<div class="ch-header"><h1>Instant Practice ◎</h1>' +
+        '<p class="ch-lead">Blueprint-weighted draw of ' + qs.length + ' questions. The answer and explanation appear the moment you pick. No clock, nothing to submit.</p></div>' +
+        '<div class="quiz-head"><span class="quiz-progress" id="qprog">0 / ' + qs.length + ' answered · 0 correct</span>' +
+        '<a class="btn" href="#/exam">Exit</a></div>' + renderQuiz(qs, "practice");
+      setView(ph);
+      let a = 0, k = 0;
+      wireQuiz(view(), (ok) => { a++; if (ok) k++; const p = $("#qprog"); if (p) p.textContent = a + " / " + qs.length + " answered · " + k + " correct"; }, qs);
     }));
     const sw = $("[data-exam-sweep]");
     if (sw) sw.addEventListener("click", () => {
-      const qs = shuffled(CH.filter((c) => c.questions && c.questions.length).map((c) => {
+      // in chapter order: Q1 = Chapter 1, Q2 = Chapter 2, ... Q20 = Chapter 20
+      const qs = CH.filter((c) => c.questions && c.questions.length).map((c) => {
         const q = c.questions[Math.floor(Math.random() * c.questions.length)];
         return Object.assign({ _ch: c.number, _sec: c.section }, q);
-      }));
+      });
       startExam(qs, 0, "Chapter Sweep", renderExam, { hideCh: true });
     });
   }
@@ -464,7 +483,7 @@
       html += '<div class="callout note"><h4>✎ Being prepared</h4><p>An original 75-question full-length exam is being authored and fact-checked. It will appear here automatically — no refresh of anything else needed.</p></div>';
       setView(html); return;
     }
-    html += '<div class="card-grid">';
+    html += resumeBanner() + '<div class="card-grid">';
     exams.forEach((ex) => {
       const n = ex.total || (ex.questions || []).length;
       html += '<div class="ch-card"><div class="cc-top"><div class="cc-num">◉</div><div class="cc-sec">Full length · blueprint-weighted</div></div>' +
@@ -478,7 +497,7 @@
       const ex = fullExams().find((e) => e.id === b.getAttribute("data-start"));
       if (!ex) return;
       const qs = shuffled((ex.questions || []).map((q) => Object.assign({}, q, { _sec: q.section, _ch: q.chapter })));
-      startExam(qs, EXAM.minutes, ex.title, renderFullExam);
+      startExam(qs, 0, ex.title, null, { kind: "full" });
     }));
   }
 
@@ -502,11 +521,39 @@
     return set;
   }
 
+  // ---- exam session persistence (survives navigation and reload) ----
+  const EXAM_SESSION_KEY = "sie-exam-session";
+  function loadExamSession() { try { const s = JSON.parse(localStorage.getItem(EXAM_SESSION_KEY)); return (s && Array.isArray(s.qs) && s.qs.length) ? s : null; } catch (e) { return null; } }
+  function saveExamSession(s) { try { localStorage.setItem(EXAM_SESSION_KEY, JSON.stringify(s)); } catch (e) {} }
+  function clearExamSession() { try { localStorage.removeItem(EXAM_SESSION_KEY); } catch (e) {} }
+  function restartFnFor(kind) { return kind === "full" ? renderFullExam : renderExam; }
+  function resumeBanner() {
+    const s = loadExamSession();
+    if (!s) return "";
+    const done = s.answers.filter((a) => a != null).length;
+    return '<div class="callout tip"><h4>▶ Exam in progress</h4><p>' + esc(s.title) + " — " + done + " of " + s.qs.length +
+      ' answered. Your progress is saved even while you study other pages. <a href="#/resume">Resume it now →</a></p></div>';
+  }
+
   function startExam(qs, minutes, title, onRestart, opts) {
     opts = opts || {};
-    const answers = new Array(qs.length).fill(null);
-    const flags = new Array(qs.length).fill(false);
-    let cur = 0;
+    if (loadExamSession() && !confirm("You already have an exam in progress. Start a new one and discard it?")) return;
+    const sess = { kind: (opts.kind || "mock"), title: title, hideCh: !!opts.hideCh,
+      qs: qs, answers: new Array(qs.length).fill(null), flags: new Array(qs.length).fill(false), cur: 0 };
+    saveExamSession(sess);
+    runExam(sess);
+  }
+
+  function resumeExam() {
+    const sess = loadExamSession();
+    if (!sess) { renderExam(); return; }
+    runExam(sess);
+  }
+
+  function runExam(sess) {
+    const qs = sess.qs, answers = sess.answers, flags = sess.flags, opts = { hideCh: sess.hideCh }, title = sess.title;
+    let cur = sess.cur || 0;
+    function persist() { sess.cur = cur; saveExamSession(sess); }
 
     function shell() {
       let grid = qs.map((q, i) =>
@@ -523,11 +570,11 @@
         '<button class="btn" id="eNext">Next →</button></div>' +
         '<button class="btn btn-primary" id="eSubmit">Submit exam</button></div>';
       drawQ();
-      $("#ePrev").onclick = () => { cur = Math.max(0, cur - 1); shell(); };
-      $("#eNext").onclick = () => { cur = Math.min(qs.length - 1, cur + 1); shell(); };
-      $("#eFlag").onclick = () => { flags[cur] = !flags[cur]; shell(); };
+      $("#ePrev").onclick = () => { cur = Math.max(0, cur - 1); persist(); shell(); };
+      $("#eNext").onclick = () => { cur = Math.min(qs.length - 1, cur + 1); persist(); shell(); };
+      $("#eFlag").onclick = () => { flags[cur] = !flags[cur]; persist(); shell(); };
       $("#eSubmit").onclick = () => finish();
-      $$("[data-go]").forEach((b) => (b.onclick = () => { cur = Number(b.getAttribute("data-go")); shell(); }));
+      $$("[data-go]").forEach((b) => (b.onclick = () => { cur = Number(b.getAttribute("data-go")); persist(); shell(); }));
     }
     function drawQ() {
       const q = qs[cur];
@@ -537,11 +584,11 @@
       $("#examQ").innerHTML = '<div class="qcard"><div class="q-meta"><span class="q-pill">Q' + (cur + 1) + " / " + qs.length +
         "</span>" + (opts.hideCh ? "" : '<span class="q-pill">Ch ' + q._ch + "</span>") + "</div><div class=\"q-text\">" + esc(q.q) + "</div>" +
         '<div class="choices">' + ch + "</div></div>";
-      $$("#examQ .choice").forEach((el) => (el.onclick = () => { answers[cur] = Number(el.getAttribute("data-pick")); shell(); }));
+      $$("#examQ .choice").forEach((el) => (el.onclick = () => { answers[cur] = Number(el.getAttribute("data-pick")); persist(); shell(); }));
     }
     // No time limit — the exam ends only when the student submits it.
     function finish() {
-      clearInterval(examTimer);
+      clearExamSession();
       let correct = 0;
       const bySec = {};
       SECTIONS.forEach((s) => (bySec[s.key] = { c: 0, t: 0 }));
@@ -580,7 +627,7 @@
         html += "</div><div class=\"explain show\"><span class=\"ex-tag\">Correct: " + letters[q.answer] + "</span> " + safeHtml(q.explanation || "") + "</div></div>";
       });
       setView(html);
-      $("#examAgain").onclick = () => (onRestart ? onRestart() : renderExam());
+      $("#examAgain").onclick = () => restartFnFor(sess.kind)();
     }
 
     shell();
@@ -853,6 +900,7 @@
     else if (parts[0] === "cards") { if (parts[1]) renderFlashSession(parts[1]); else renderFlashcards(); }
     else if (parts[0] === "weak") renderWeak();
     else if (parts[0] === "final") renderFinal();
+    else if (parts[0] === "resume") resumeExam();
     else if (parts[0] === "guide") renderGuide();
     else renderDashboard();
     highlightNav();
