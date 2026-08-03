@@ -9,15 +9,15 @@ window.SIE_EXAMS = [
   "total": 75,
   "questions": [
    {
-    "q": "An investor short-sells 100 shares of Meridian Logistics at $58 per share and simultaneously buys 1 Meridian call with a strike of $60 for a premium of $4. At what stock price does this combined position break even at expiration?",
+    "q": "An investor sells short 100 shares of stock at $58.00 per share and buys 1 call option with a $60.00 strike price at a premium of $4.00. What is the breakeven point on the combined position?",
     "choices": [
-     "$54",
-     "$56",
-     "$62",
-     "$64"
+     "$54.00",
+     "$56.00",
+     "$62.00",
+     "$64.00"
     ],
     "answer": 0,
-    "explanation": "For a short stock position hedged with a long call, the breakeven equals the short-sale price minus the premium paid: $58 minus $4 = $54. The investor still profits as the stock falls below $54. The $64 choice wrongly adds the premium to the strike, which is the breakeven for a stand-alone long call, not for this combination.",
+    "explanation": "For short stock hedged with a long call, the breakeven equals the short sale price minus the premium paid: $58.00 - $4.00 = $54.00. The position profits as the stock falls below $54.00. The $64.00 choice adds the premium to the strike price, which is the breakeven for a stand-alone long call, not for this combination.",
     "topic": "Options breakeven (short stock + long call)",
     "chapter": 4,
     "difficulty": "hard",
@@ -26,15 +26,15 @@ window.SIE_EXAMS = [
     "n": 1
    },
    {
-    "q": "A corporate bond carries a 6% coupon paid semi-annually and is currently quoted at 80. What is its current yield?",
+    "q": "A corporate bond with a 6% coupon paid semiannually is quoted at 80. What is the bond's current yield?",
     "choices": [
-     "6.0%",
-     "7.5%",
-     "4.8%",
-     "3.75%"
+     "3.75%",
+     "4.80%",
+     "6.00%",
+     "7.50%"
     ],
-    "answer": 1,
-    "explanation": "Current yield equals annual interest divided by market price. The 6% coupon pays $60 per year regardless of payment frequency, and a quote of 80 means a price of $800. So $60 divided by $800 equals 7.5%. Choosing 3.75% wrongly uses only a single $30 semi-annual payment instead of annualizing the coupon first.",
+    "answer": 3,
+    "explanation": "Current yield equals annual interest divided by market price. The 6% coupon pays $60.00 per year regardless of payment frequency, and a quote of 80 equals a price of $800.00; $60.00 divided by $800.00 is 7.50%. The 3.75% choice uses only a single $30.00 semiannual payment instead of annualizing the coupon.",
     "topic": "Current yield with semi-annual coupon",
     "chapter": 3,
     "difficulty": "medium",
@@ -43,15 +43,15 @@ window.SIE_EXAMS = [
     "n": 2
    },
    {
-    "q": "A customer opens a new margin account and buys 100 shares of a stock trading at $32 per share. Under the rules, how much equity must the customer deposit?",
+    "q": "A customer opens a new margin account and purchases 100 shares of stock at $32.00 per share. What is the minimum deposit the customer must make?",
     "choices": [
-     "$1,600",
-     "$2,000",
-     "$3,200",
-     "$800"
+     "$800.00",
+     "$1,600.00",
+     "$2,000.00",
+     "$3,200.00"
     ],
-    "answer": 1,
-    "explanation": "Regulation T at 50% of $3,200 would be only $1,600, but FINRA's $2,000 minimum equity requirement overrides any Reg T amount that falls below it (and here the purchase price of $3,200 exceeds $2,000, so the floor is not capped). The customer must therefore deposit the full $2,000. Choosing $1,600 ignores the $2,000 floor.",
+    "answer": 2,
+    "explanation": "Regulation T requires 50% of the $3,200.00 purchase, or $1,600.00, but FINRA's $2,000.00 minimum equity requirement overrides any Regulation T amount below it. Because the purchase price exceeds $2,000.00, the floor applies in full and the customer must deposit $2,000.00. The $1,600.00 choice ignores the minimum equity floor.",
     "topic": "Margin minimum equity floor",
     "chapter": 4,
     "difficulty": "hard",
@@ -60,15 +60,15 @@ window.SIE_EXAMS = [
     "n": 3
    },
    {
-    "q": "Sterling Foods declares a 5-for-4 forward stock split. An investor who owns 400 shares trading at $50 per share will, after the split, own how many shares and at approximately what price?",
+    "q": "Company ABC declares a 5-for-4 stock split. If a customer owns 400 shares at $50.00 per share, what is the customer's position after the split?",
     "choices": [
-     "500 shares at $40",
+     "320 shares at $50.00",
      "320 shares at $62.50",
-     "500 shares at $50",
-     "320 shares at $50"
+     "500 shares at $40.00",
+     "500 shares at $50.00"
     ],
-    "answer": 0,
-    "explanation": "A 5-for-4 split multiplies shares by 5/4: 400 times 1.25 equals 500 shares, and the price is divided by the same ratio: $50 times 4/5 equals $40. Total value stays $20,000 before and after. The 320-share answers reverse the ratio, which would describe a 4-for-5 reverse split instead.",
+    "answer": 2,
+    "explanation": "A 5-for-4 split multiplies the share count by 5/4 (400 x 1.25 = 500 shares) and divides the price by the same ratio ($50.00 x 4/5 = $40.00), leaving the total value unchanged at $20,000.00. The 320-share choices reverse the ratio, which would describe a 4-for-5 reverse split.",
     "topic": "Forward stock split effects",
     "chapter": 3,
     "difficulty": "medium",
@@ -77,15 +77,15 @@ window.SIE_EXAMS = [
     "n": 4
    },
    {
-    "q": "Greenline Transit common stock has a record date of Thursday, June 18. Assuming standard regular-way (T+1) settlement, on what date does the stock begin trading ex-dividend?",
+    "q": "Company ABC common stock has a dividend record date of Thursday, June 18. Under regular way (T+1) settlement, the stock begins trading ex-dividend on:",
     "choices": [
-     "Tuesday, June 16",
-     "Wednesday, June 17",
-     "Thursday, June 18",
-     "Friday, June 19"
+     "Tuesday, June 16.",
+     "Wednesday, June 17.",
+     "Thursday, June 18.",
+     "Friday, June 19."
     ],
     "answer": 2,
-    "explanation": "Under T+1 settlement, the ex-dividend date is the same business day as the record date, because a regular-way trade settles in one business day and a buyer must own the stock by the record date to receive the dividend. Therefore the ex-date is Thursday, June 18. Choosing Wednesday, June 17 reflects the old one-day-before convention that applied under the prior T+2 settlement cycle and no longer applies.",
+    "explanation": "Under T+1 settlement, the ex-dividend date falls on the same business day as the record date: a regular way trade settles in one business day, and a buyer must own the stock by the record date to receive the dividend. The ex-date is therefore Thursday, June 18. Wednesday, June 17 reflects the one-day-before convention used under the former T+2 settlement cycle.",
     "topic": "Ex-dividend date under T+1",
     "chapter": 3,
     "difficulty": "medium",
@@ -94,15 +94,15 @@ window.SIE_EXAMS = [
     "n": 5
    },
    {
-    "q": "Which of the following is NOT considered a restricted person under FINRA rules governing the purchase of new equity issues (IPOs)?",
+    "q": "Under FINRA rules governing new issues, which of the following may purchase an equity initial public offering (IPO) at the public offering price?",
     "choices": [
-     "A FINRA member firm's institutional proprietary account",
-     "A registered representative of a broker-dealer",
-     "An immediate family member of an associated person who is materially supported by that person",
-     "The grandparent of a registered representative"
+     "A registered representative (RR) of a member firm",
+     "The proprietary trading account of a member firm",
+     "An immediate family member materially supported by an RR",
+     "The grandparent of a registered representative (RR)"
     ],
     "answer": 3,
-    "explanation": "A grandparent is NOT a restricted person because grandparents (along with aunts, uncles, and cousins) fall outside the definition of immediate family for new-issue purposes. Registered representatives, member-firm proprietary accounts, and materially supported immediate family members are all restricted persons who may not buy new equity issues at the public offering price.",
+    "explanation": "Grandparents, along with aunts, uncles, and cousins, fall outside the definition of immediate family for new-issue purposes, so the grandparent of an RR is not a restricted person and may purchase the IPO. RRs, member-firm proprietary accounts, and materially supported immediate family members are all restricted persons prohibited from buying new equity issues at the public offering price.",
     "topic": "Restricted persons / new issues",
     "chapter": 1,
     "difficulty": "hard",
@@ -111,7 +111,7 @@ window.SIE_EXAMS = [
     "n": 6
    },
    {
-    "q": "All of the following are exempt securities under the Securities Act of 1933 EXCEPT:",
+    "q": "Under the Securities Act of 1933, registration is required for which of the following securities?",
     "choices": [
      "Open-end investment company shares",
      "Bonds issued by the U.S. Treasury",
@@ -119,7 +119,7 @@ window.SIE_EXAMS = [
      "Commercial paper maturing in 270 days"
     ],
     "answer": 0,
-    "explanation": "Open-end investment company (mutual fund) shares are non-exempt securities that must be registered with the SEC and sold with a prospectus. Treasury bonds, general obligation municipal bonds, and commercial paper maturing in 270 days or less are all exempt from the registration requirements of the 1933 Act.",
+    "explanation": "Open-end investment company (mutual fund) shares are non-exempt securities that must be registered with the Securities and Exchange Commission (SEC) and sold with a prospectus. Treasury bonds, general obligation municipal bonds, and commercial paper maturing in 270 days or less are all exempt from registration under the Act.",
     "topic": "Exempt securities (1933 Act)",
     "chapter": 3,
     "difficulty": "medium",
@@ -128,15 +128,15 @@ window.SIE_EXAMS = [
     "n": 7
    },
    {
-    "q": "Consider the following statements about the U.S. federal funds rate. Which are TRUE? I. It is the rate banks charge each other for overnight loans of reserves. II. The Federal Reserve sets it directly by decree each morning. III. It is targeted by the FOMC through open market operations.",
+    "q": "The rate that banks charge one another for overnight loans of reserves, which the Federal Open Market Committee (FOMC) targets through open market operations, is known as:",
     "choices": [
-     "I only",
-     "I and III",
-     "II and III",
-     "I, II and III"
+     "the discount rate.",
+     "the federal funds rate.",
+     "the prime lending rate.",
+     "the broker call loan rate."
     ],
     "answer": 1,
-    "explanation": "Statements I and III are correct: the fed funds rate is the rate banks charge one another for overnight reserve loans, and the FOMC steers it toward a target range using open market operations. Statement II is false because the Fed does not set the fed funds rate by decree; it is market-determined. By contrast, the discount rate is the rate the Fed sets directly.",
+    "explanation": "The federal funds rate is the market-determined rate banks charge one another for overnight loans of reserves; the FOMC steers it toward a target range through open market operations rather than setting it directly. The discount rate, by contrast, is set directly by the Federal Reserve for loans at the discount window.",
     "topic": "Fed funds vs discount rate",
     "chapter": 2,
     "difficulty": "hard",
@@ -145,15 +145,15 @@ window.SIE_EXAMS = [
     "n": 8
    },
    {
-    "q": "Which statement about the secondary market is TRUE?",
+    "q": "Which of the following statements about the secondary market is correct?",
     "choices": [
-     "Nasdaq operates as an auction market where buyers meet on a trading floor",
-     "The SEC was created by the Securities Exchange Act of 1933 to police trading",
-     "The fourth market is direct institution-to-institution trading through ECNs",
-     "The third market is over-the-counter trading of unlisted securities only"
+     "The Nasdaq stock market operates as an auction market conducted on a physical trading floor.",
+     "The Securities and Exchange Commission (SEC) was created by the Securities Exchange Act of 1933.",
+     "The fourth market is institution-to-institution trading through electronic communication networks (ECNs).",
+     "The third market is over-the-counter (OTC) trading limited to securities that are not listed on an exchange."
     ],
     "answer": 2,
-    "explanation": "The fourth market is direct institution-to-institution trading, typically through ECNs, bypassing exchanges and broker-dealers. Nasdaq is a negotiated dealer market, not a floor-based auction market; the SEC was created by the Securities Exchange Act of 1934, not 1933; and the third market is OTC trading of exchange-listed securities, not unlisted ones.",
+    "explanation": "The fourth market is direct institution-to-institution trading, typically through ECNs, that bypasses both exchanges and broker-dealers. Nasdaq is a negotiated dealer market, not a floor-based auction market; the SEC was created by the Securities Exchange Act of 1934, not 1933; and the third market is OTC trading of exchange-listed securities, not unlisted ones.",
     "topic": "Secondary market structure",
     "chapter": 4,
     "difficulty": "hard",
@@ -162,15 +162,15 @@ window.SIE_EXAMS = [
     "n": 9
    },
    {
-    "q": "A registered representative in New York wants to make unsolicited cold calls to a prospective retail customer who lives in Denver, Colorado (Mountain Time). Under the Telephone Consumer Protection Act, during which window may the rep place these calls?",
+    "q": "Under the Telephone Consumer Protection Act of 1991, a registered representative (RR) in New York may place cold calls to a prospective customer in Denver:",
     "choices": [
-     "8:00 a.m. to 9:00 p.m. New York time",
-     "8:00 a.m. to 9:00 p.m. Denver time",
-     "9:00 a.m. to 5:00 p.m. Denver time",
-     "Any time, because both parties are within the United States"
+     "between 8:00 a.m. and 9:00 p.m. Eastern Time.",
+     "between 8:00 a.m. and 9:00 p.m. Mountain Time.",
+     "between 9:00 a.m. and 5:00 p.m. Mountain Time.",
+     "at any hour, because both parties are in the U.S."
     ],
     "answer": 1,
-    "explanation": "Cold-call timing restrictions are measured in the called party's local time zone, so calls to Denver must occur between 8:00 a.m. and 9:00 p.m. Mountain Time. Using the caller's New York time zone is the classic trap, as is the 9-to-5 window, which is not the rule.",
+    "explanation": "Cold-call time restrictions are measured in the called party's local time zone, so calls to Denver are permitted between 8:00 a.m. and 9:00 p.m. Mountain Time. Using the caller's Eastern Time zone is the classic trap, and the 9:00-to-5:00 window is not the rule.",
     "topic": "Cold-calling permitted hours",
     "chapter": 1,
     "difficulty": "medium",
@@ -179,15 +179,15 @@ window.SIE_EXAMS = [
     "n": 10
    },
    {
-    "q": "A bank customer brings $11,500 in cash into a branch to deposit. Which regulatory filing is triggered, and who is required to file it?",
+    "q": "A customer deposits $11,500.00 in cash at a bank branch. Which of the following filings is required?",
     "choices": [
-     "A Suspicious Activity Report (SAR) filed by the customer",
-     "A Currency Transaction Report (CTR) filed by the financial institution",
-     "A Currency Transaction Report (CTR) filed by the customer",
-     "No filing is required because the amount is under $25,000"
+     "A currency transaction report (CTR) filed by the bank",
+     "A currency transaction report (CTR) filed by the customer",
+     "A suspicious activity report (SAR) filed by the customer",
+     "No filing, because the amount is less than $25,000.00"
     ],
-    "answer": 1,
-    "explanation": "A Currency Transaction Report must be filed by the financial institution (not the customer) for any cash transaction exceeding $10,000, and $11,500 exceeds that threshold. A SAR is filed for suspicious activity regardless of dollar amount and is likewise filed by the institution, never by the customer.",
+    "answer": 0,
+    "explanation": "A currency transaction report must be filed by the financial institution, never the customer, for any cash transaction exceeding $10,000.00, and $11,500.00 exceeds that threshold. A SAR is filed for suspicious activity regardless of dollar amount and is likewise filed by the institution, not the customer.",
     "topic": "AML thresholds (CTR)",
     "chapter": 1,
     "difficulty": "medium",
@@ -196,15 +196,15 @@ window.SIE_EXAMS = [
     "n": 11
    },
    {
-    "q": "Castle Rock Brewing files a registration statement with the SEC for a new common stock offering. During the cooling-off period, which of the following is permitted?",
+    "q": "Under the Securities Act of 1933, which of the following actions is permitted during the cooling-off period of a new issue?",
     "choices": [
-     "Accepting binding orders and payments from interested investors",
-     "Distributing a preliminary prospectus and taking indications of interest",
-     "Delivering a final prospectus that confirms the public offering price",
-     "Publishing research reports that recommend purchase of the new shares"
+     "Accepting binding orders and payment from interested investors",
+     "Distributing a preliminary prospectus to prospective purchasers",
+     "Delivering a final prospectus stating the public offering price",
+     "Publishing research reports recommending the new shares"
     ],
     "answer": 1,
-    "explanation": "During the cooling-off period, a firm may distribute a preliminary prospectus (red herring) and collect non-binding indications of interest, but may not accept orders or payment. The final prospectus with the actual offering price is delivered only after the effective date, and research recommending the new issue may not be published while the offering is in registration.",
+    "explanation": "During the cooling-off period, a firm may distribute a preliminary prospectus (red herring) and accept non-binding indications of interest, but it may not accept orders or payment. The final prospectus with the actual offering price is delivered only after the effective date, and research recommending the new issue may not be published while the offering is in registration.",
     "topic": "Cooling-off period / primary market",
     "chapter": 3,
     "difficulty": "medium",
@@ -213,15 +213,15 @@ window.SIE_EXAMS = [
     "n": 12
    },
    {
-    "q": "Meridian Steelworks declares a quarterly cash dividend on Monday, October 6. The board sets the record date as Thursday, October 9. Under the current T+1 settlement standard, on what date does the stock begin trading ex-dividend?",
+    "q": "Company XYZ declares a cash dividend with a record date of Thursday, October 9. Under regular way (T+1) settlement, the stock begins trading ex-dividend on:",
     "choices": [
-     "Tuesday, October 7",
-     "Wednesday, October 8",
-     "Thursday, October 9",
-     "Friday, October 10"
+     "Tuesday, October 7.",
+     "Wednesday, October 8.",
+     "Thursday, October 9.",
+     "Friday, October 10."
     ],
-    "answer": 1,
-    "explanation": "Under T+1 regular-way settlement, the ex-dividend date is one business day before the record date, so it is Wednesday, October 8. A buyer must purchase before the ex-date to be the owner of record on October 9 and receive the dividend. October 9 is wrong because that is the record date itself, not the ex-date.",
+    "answer": 2,
+    "explanation": "Under T+1 regular way settlement, the ex-dividend date falls on the same business day as the record date. A purchase on Wednesday, October 8 settles on Thursday, October 9, making that buyer the owner of record entitled to the dividend, while a purchase on Thursday, October 9 settles one day too late. The ex-date is therefore Thursday, October 9. Wednesday, October 8 reflects the one-day-before convention used under the former T+2 settlement cycle.",
     "topic": "Ex-dividend date (T+1)",
     "chapter": 5,
     "difficulty": "medium",
@@ -230,15 +230,15 @@ window.SIE_EXAMS = [
     "n": 13
    },
    {
-    "q": "A corporate bond carries a 6% coupon paid semi-annually and is currently trading at a price of 80. What is the bond's current yield?",
+    "q": "A corporate bond pays a 6% coupon on a semiannual basis and is trading at 80. What is its current yield?",
     "choices": [
+     "4.80%",
      "6.00%",
      "7.50%",
-     "4.80%",
      "8.00%"
     ],
-    "answer": 1,
-    "explanation": "Current yield equals annual coupon income divided by market price. The 6% coupon on a $1,000 par bond pays $30 every six months, which annualizes to $60; dividing $60 by the market price of $800 (a price of 80) gives 7.50%. The 6.00% answer mistakenly uses the nominal coupon and ignores that a discount price raises the yield above the coupon.",
+    "answer": 2,
+    "explanation": "Current yield equals annual coupon income divided by market price. The 6% coupon on a $1,000.00 par bond pays $30.00 every six months, or $60.00 per year; $60.00 divided by the $800.00 market price is 7.50%. The 6.00% choice uses the nominal coupon and ignores that a discount price raises the current yield above the coupon rate.",
     "topic": "Current yield (semi-annual coupon)",
     "chapter": 7,
     "difficulty": "hard",
@@ -247,7 +247,7 @@ window.SIE_EXAMS = [
     "n": 14
    },
    {
-    "q": "A bond is trading at a premium to par. Which of the following correctly ranks its yields from lowest to highest?",
+    "q": "A bond is trading at a premium. Which of the following ranks the bond's yields from lowest to highest?",
     "choices": [
      "Yield to maturity, current yield, nominal yield",
      "Nominal yield, current yield, yield to maturity",
@@ -255,7 +255,7 @@ window.SIE_EXAMS = [
      "Current yield, nominal yield, yield to maturity"
     ],
     "answer": 0,
-    "explanation": "For a premium bond, yields rank from lowest to highest as yield to maturity, current yield, then nominal (coupon) yield. The premium amortizes toward par, pulling YTM below both the current yield and the coupon. The reversed order (nominal lowest) describes a discount bond, not a premium bond.",
+    "explanation": "For a premium bond, the yields rank from lowest to highest as yield to maturity, current yield, and nominal (coupon) yield. The premium amortizes toward par, pulling yield to maturity below both the current yield and the coupon. The reversed order, with nominal yield lowest, describes a discount bond.",
     "topic": "Premium bond yield ranking",
     "chapter": 7,
     "difficulty": "hard",
@@ -264,15 +264,15 @@ window.SIE_EXAMS = [
     "n": 15
    },
    {
-    "q": "Which of the following statements correctly distinguishes a stock right from a warrant?",
+    "q": "At the time of issuance, which of the following distinguishes a right from a warrant?",
     "choices": [
-     "Rights are long-lived instruments, while warrants expire within 30 to 45 days of issue",
-     "Warrants go only to existing shareholders; rights are attached to bond issues as sweeteners",
-     "Rights carry voting privileges in the issuing corporation, while warrants do not",
-     "Rights are priced below the stock's market value at issue; warrants are priced above it"
+     "A right is a long-term instrument, while a warrant expires within 30 to 45 days.",
+     "A warrant is issued to existing shareholders, while a right is attached to a bond offering.",
+     "A right carries voting privileges in the issuing corporation, while a warrant does not.",
+     "A right is priced below the stock's market price, while a warrant is priced above it."
     ],
     "answer": 3,
-    "explanation": "A preemptive right lets existing shareholders buy new shares at a subscription price set below the current market price, while a warrant is issued with an exercise price above the current market. The lifespan distractor is reversed — rights are short-lived (typically 30-45 days) and warrants are long-term — and it is warrants, not rights, that are attached to bond issues as sweeteners. Neither rights nor warrants carry voting privileges.",
+    "explanation": "A preemptive right allows existing shareholders to buy new shares at a subscription price set below the current market price, while a warrant is issued with an exercise price above the current market price. The lifespan choice is reversed — rights are short-lived (typically 30 to 45 days) and warrants are long-term — and it is warrants, not rights, that are attached to bond offerings as sweeteners. Neither instrument carries voting privileges.",
     "topic": "Rights vs warrants",
     "chapter": 5,
     "difficulty": "medium",
@@ -281,15 +281,15 @@ window.SIE_EXAMS = [
     "n": 16
    },
    {
-    "q": "An investor short sells 200 shares of a stock at $18 per share and simultaneously buys 2 call options on the same stock with a $20 strike for a premium of $3 per share. What is the investor's breakeven point on this combined position?",
+    "q": "An investor sells short 200 shares of stock at $18.00 per share and buys 2 call options with a $20.00 strike price at a premium of $3.00 per share. What is the breakeven point on the combined position?",
     "choices": [
-     "$15 per share",
-     "$21 per share",
-     "$23 per share",
-     "$17 per share"
+     "$15.00",
+     "$17.00",
+     "$21.00",
+     "$23.00"
     ],
     "answer": 0,
-    "explanation": "For a short stock position hedged with a long call, breakeven equals the short sale price minus the premium paid: $18 minus $3 equals $15. The gain on the falling stock must first recover the $3 premium before the position profits. The $21 answer wrongly adds the premium to the strike, which is the breakeven for a long call alone.",
+    "explanation": "For short stock hedged with a long call, the breakeven equals the short sale price minus the premium paid: $18.00 - $3.00 = $15.00. The decline in the stock must first recover the $3.00 premium before the position profits. The $21.00 choice adds the premium to the strike price, which is the breakeven for a long call alone.",
     "topic": "Short stock + long call breakeven",
     "chapter": 9,
     "difficulty": "hard",
@@ -298,15 +298,15 @@ window.SIE_EXAMS = [
     "n": 17
    },
    {
-    "q": "All of the following are exempt securities under the Securities Act of 1933 EXCEPT:",
+    "q": "Which of the following securities must be registered under the Securities Act of 1933?",
     "choices": [
-     "Notes issued by the United States Treasury",
+     "Treasury notes issued by the U.S. government",
      "General obligation bonds of a municipality",
      "Common stock of a listed industrial company",
      "Debt securities issued by a national bank"
     ],
     "answer": 2,
-    "explanation": "Common stock of an industrial corporation is a non-exempt security that must be registered under the Act of 1933; exchange listing does not confer an exemption. Treasury notes, municipal GO bonds, and bank-issued debt securities all qualify as exempt securities under the Act.",
+    "explanation": "Common stock of an industrial company is a non-exempt security that must be registered under the Securities Act of 1933; exchange listing does not confer an exemption. Treasury notes, municipal general obligation bonds, and debt securities issued by a national bank are all exempt securities under the Act.",
     "topic": "Exempt securities (EXCEPT)",
     "chapter": 7,
     "difficulty": "medium",
@@ -315,15 +315,15 @@ window.SIE_EXAMS = [
     "n": 18
    },
    {
-    "q": "A registered representative opens a new margin account for a customer who wants to buy $1,800 worth of marginable stock. Under Regulation T, how much must the customer deposit?",
+    "q": "A customer opens a new margin account and purchases $1,800.00 of marginable stock. Under Regulation T, what amount must the customer deposit?",
     "choices": [
-     "$900, which is 50% of the purchase",
-     "$1,800, the full purchase amount",
-     "$2,000, the minimum equity requirement",
-     "$1,000, the FINRA house minimum"
+     "$900.00",
+     "$1,000.00",
+     "$1,800.00",
+     "$2,000.00"
     ],
-    "answer": 1,
-    "explanation": "Although Reg T calls for 50% ($900) and the account has a $2,000 minimum-equity floor, a customer is never required to deposit more than the full purchase price of the securities. Because $1,800 is less than the $2,000 floor, the customer simply pays $1,800 in full. The $2,000 minimum cannot force a deposit larger than the value of the stock purchased, so it is the classic trap.",
+    "answer": 2,
+    "explanation": "Regulation T calls for 50%, or $900.00, and a new margin account carries a $2,000.00 minimum equity requirement, but a customer is never required to deposit more than the full purchase price of the securities. Because $1,800.00 is less than the $2,000.00 floor, the customer pays $1,800.00 in full. The $2,000.00 choice is the classic trap: the minimum cannot force a deposit larger than the cost of the stock.",
     "topic": "Reg T $2,000 minimum trap",
     "chapter": 9,
     "difficulty": "hard",
@@ -332,15 +332,15 @@ window.SIE_EXAMS = [
     "n": 19
    },
    {
-    "q": "A company executes a 1-for-4 reverse stock split. An investor who held 800 shares trading at $3 per share before the split will, immediately after the split, hold:",
+    "q": "Company ABC executes a 1-for-4 reverse stock split. If a customer owns 800 shares at $3.00 per share, what is the customer's position immediately after the split?",
     "choices": [
-     "200 shares at $12, with total value of $2,400",
-     "3,200 shares at $0.75, with total value of $2,400",
-     "200 shares at $0.75, with total value of $150",
-     "800 shares at $12, with total value of $9,600"
+     "200 shares at $0.75",
+     "200 shares at $12.00",
+     "800 shares at $12.00",
+     "3,200 shares at $0.75"
     ],
-    "answer": 0,
-    "explanation": "A 1-for-4 reverse split divides the share count by 4 (800 becomes 200) and multiplies the price by 4 ($3 becomes $12), leaving total market value unchanged at $2,400. Reverse splits reduce share count and raise price per share, the opposite of a forward split. The 3,200-share answer mistakenly applies a forward 4-for-1 split.",
+    "answer": 1,
+    "explanation": "A 1-for-4 reverse split divides the share count by 4 (800 becomes 200) and multiplies the price by 4 ($3.00 becomes $12.00), leaving the total market value unchanged at $2,400.00. The 3,200-share choice applies a 4-for-1 forward split, which is the opposite adjustment.",
     "topic": "Reverse split effects",
     "chapter": 5,
     "difficulty": "medium",
@@ -349,15 +349,15 @@ window.SIE_EXAMS = [
     "n": 20
    },
    {
-    "q": "Which statement is TRUE regarding the pricing of open-end versus closed-end investment companies?",
+    "q": "Which of the following statements about the pricing of open-end and closed-end investment company shares is correct?",
     "choices": [
-     "Open-end shares are redeemed at the next computed NAV; closed-end shares trade at market prices",
-     "Both open-end and closed-end shares are priced by supply and demand in exchange trading",
-     "Closed-end shares use forward pricing and may be redeemed only directly with the fund",
-     "Open-end shares often trade at a discount to NAV during periods of heavy net redemptions"
+     "Open-end shares are redeemed at net asset value (NAV); closed-end shares trade at market prices.",
+     "Both open-end and closed-end shares are priced by supply and demand in exchange trading.",
+     "Closed-end shares use forward pricing and are redeemed directly with the issuing fund.",
+     "Open-end shares often trade at a discount to NAV during periods of heavy redemptions."
     ],
     "answer": 0,
-    "explanation": "Open-end (mutual) fund shares are continuously issued and redeemed by the fund at the next computed NAV (forward pricing), so they never trade at a premium or discount. Closed-end fund shares have a fixed number outstanding and trade in the secondary market, where supply and demand can price them above or below NAV. Forward pricing and direct redemption describe open-end funds, not closed-end funds.",
+    "explanation": "Open-end fund shares are continuously issued and redeemed by the fund at the next computed NAV (forward pricing) and never trade at a premium or discount. Closed-end fund shares have a fixed number outstanding and trade in the secondary market, where supply and demand may price them above or below NAV. Forward pricing and direct redemption describe open-end funds, not closed-end funds.",
     "topic": "Open-end vs closed-end pricing",
     "chapter": 10,
     "difficulty": "medium",
@@ -366,15 +366,15 @@ window.SIE_EXAMS = [
     "n": 21
    },
    {
-    "q": "Which of the following statements regarding Ginnie Mae, Fannie Mae, and Freddie Mac securities is TRUE?",
+    "q": "Which of the following agency securities is backed by the full faith and credit of the U.S. government?",
     "choices": [
-     "All three securities carry the direct full faith and credit backing of the U.S. Treasury",
-     "Fannie Mae is a government agency, while Ginnie Mae is a shareholder-owned private corporation",
-     "None of the three carries prepayment risk because the underlying mortgages are federally insured",
-     "Only Ginnie Mae securities carry the explicit full faith and credit of the U.S. government"
+     "Federal National Mortgage Association (FNMA) pass-throughs",
+     "Government National Mortgage Association (GNMA) pass-throughs",
+     "Federal Home Loan Mortgage Corporation (FHLMC) pass-throughs",
+     "Consolidated bonds of the Federal Home Loan Banks (FHLB)"
     ],
-    "answer": 3,
-    "explanation": "Ginnie Mae (GNMA) is a wholly owned government corporation whose pass-through securities carry the explicit full faith and credit guarantee of the U.S. government. Fannie Mae and Freddie Mac are government-sponsored enterprises whose securities carry only an implied backing, so the claim that all three have direct Treasury backing is too broad. All mortgage-backed pass-throughs face prepayment risk regardless of any insurance on the underlying loans.",
+    "answer": 1,
+    "explanation": "GNMA is a wholly owned government corporation, and its pass-through securities carry the explicit full faith and credit guarantee of the U.S. government. FNMA, FHLMC, and the FHLBs are government-sponsored enterprises whose securities carry only an implied backing. All mortgage-backed pass-throughs, including GNMAs, remain subject to prepayment risk.",
     "topic": "GNMA explicit vs GSE implied backing",
     "chapter": 7,
     "difficulty": "hard",
@@ -385,13 +385,13 @@ window.SIE_EXAMS = [
    {
     "q": "A debenture is best described as:",
     "choices": [
-     "A bond secured by a first mortgage on the issuer's real property",
-     "An unsecured bond backed only by the issuer's general credit",
-     "A bond secured by a portfolio of securities the issuer pledges",
-     "A short-term note sold at a discount to finance current operations"
+     "a bond secured by a first mortgage on the issuer's real property.",
+     "an unsecured bond backed only by the issuer's general credit.",
+     "a bond secured by a portfolio of securities pledged by the issuer.",
+     "a short-term note sold at a discount to finance current operations."
     ],
     "answer": 1,
-    "explanation": "A debenture is an unsecured corporate bond backed solely by the issuer's full faith, credit, and earning power, with no specific assets pledged. A bond backed by a first mortgage is a mortgage bond and one backed by pledged securities is a collateral trust bond — both secured debt — while the discounted short-term note describes commercial paper, a money market instrument.",
+    "explanation": "A debenture is an unsecured corporate bond backed solely by the issuer's full faith, credit, and earning power, with no specific assets pledged. A bond secured by a first mortgage is a mortgage bond, and one secured by pledged securities is a collateral trust bond — both secured debt — while the discounted short-term note describes commercial paper.",
     "topic": "Debenture (unsecured debt)",
     "chapter": 7,
     "difficulty": "medium",
@@ -400,15 +400,15 @@ window.SIE_EXAMS = [
     "n": 23
    },
    {
-    "q": "Consider the following instruments: I. Commercial paper II. Banker's acceptance III. Treasury bond. Which are considered money market instruments?",
+    "q": "All of the following are money market instruments EXCEPT:",
     "choices": [
-     "I and II only",
-     "I and III only",
-     "II and III only",
-     "I, II and III"
+     "commercial paper.",
+     "banker's acceptances.",
+     "Treasury bills.",
+     "Treasury bonds."
     ],
-    "answer": 0,
-    "explanation": "Money market instruments are short-term debt maturing in one year or less; commercial paper (up to 270 days) and banker's acceptances (up to 270 days) both qualify. A Treasury bond is a long-term instrument with maturities exceeding 10 years and is not a money market instrument. Only a Treasury bill, not a Treasury bond, belongs in the money market.",
+    "answer": 3,
+    "explanation": "Money market instruments are short-term debt obligations maturing in one year or less; commercial paper and banker's acceptances mature in 270 days or less, and Treasury bills mature in one year or less. Treasury bonds are long-term instruments with maturities exceeding 10 years and therefore trade in the capital market, not the money market.",
     "topic": "Money market instruments",
     "chapter": 7,
     "difficulty": "medium",
@@ -417,15 +417,15 @@ window.SIE_EXAMS = [
     "n": 24
    },
    {
-    "q": "An investor in the 32% federal tax bracket is comparing a corporate bond yielding 6.5% with an in-state municipal bond. Approximately what tax-equivalent yield must the corporate bond offer to match a municipal bond yielding 4.6%?",
+    "q": "A customer in the 32% federal tax bracket owns a municipal bond yielding 4.6%. What is the approximate tax-equivalent yield of the bond?",
     "choices": [
+     "3.13%",
      "4.60%",
      "6.07%",
-     "6.76%",
-     "3.13%"
+     "6.76%"
     ],
-    "answer": 2,
-    "explanation": "Tax-equivalent yield equals the tax-exempt municipal yield divided by (1 minus the tax bracket): 4.6% / 0.68 equals about 6.76%. Because the corporate bond's 6.5% is below that 6.76% break-even, the in-state municipal bond is actually the better after-tax choice. The 6.07% answer wrongly multiplies the muni yield by (1 minus bracket) instead of dividing.",
+    "answer": 3,
+    "explanation": "Tax-equivalent yield equals the tax-exempt yield divided by (1 minus the tax bracket): 4.6% divided by 0.68 is approximately 6.76%. A taxable bond must therefore yield more than 6.76% to outperform this municipal bond after tax. The 3.13% choice multiplies by (1 minus the bracket) instead of dividing, and 6.07% multiplies by (1 plus the bracket).",
     "topic": "Tax-equivalent yield",
     "chapter": 8,
     "difficulty": "hard",
@@ -434,15 +434,15 @@ window.SIE_EXAMS = [
     "n": 25
    },
    {
-    "q": "Which statement is TRUE regarding general obligation (GO) bonds versus revenue bonds?",
+    "q": "Which of the following statements correctly distinguishes a general obligation (GO) bond from a revenue bond?",
     "choices": [
-     "GO bonds are backed by facility revenues; revenue bonds rely on the issuer's taxes",
-     "Revenue bonds are considered safer than GO bonds because they are self-supporting",
-     "GO bonds are backed by the issuer's taxing power and typically require voter approval",
-     "Revenue bonds require voter approval because they pledge income from a public project"
+     "GO bonds are backed by facility revenues, while revenue bonds are backed by the issuer's taxes.",
+     "Revenue bonds are safer than GO bonds because the financed projects are self-supporting.",
+     "GO bonds are backed by the issuer's taxing power and normally require voter approval.",
+     "Revenue bonds normally require voter approval because they pledge income from a public project."
     ],
     "answer": 2,
-    "explanation": "GO bonds pledge the issuer's full faith, credit, and taxing power, and because they commit tax dollars they typically require voter approval. Revenue bonds are payable only from the income of the project they finance and generally do not require voter approval — the voter-approval requirement attaches to GO bonds, not revenue bonds. Revenue bonds are not automatically safer; repayment depends on project performance.",
+    "explanation": "GO bonds pledge the issuer's full faith, credit, and taxing power, and because they commit tax dollars they normally require voter approval. Revenue bonds are payable only from the earnings of the project they finance and generally do not require voter approval. Revenue bonds are not automatically safer; repayment depends on project performance.",
     "topic": "GO vs revenue bonds",
     "chapter": 8,
     "difficulty": "medium",
@@ -451,15 +451,15 @@ window.SIE_EXAMS = [
     "n": 26
    },
    {
-    "q": "A mutual fund has a breakpoint schedule giving a 5.0% sales charge on investments below $25,000 and a 4.0% charge on investments of $25,000 to $49,999. An investor places a single $25,000 purchase when the fund's NAV per share is $19.20. What is the public offering price per share?",
+    "q": "A mutual fund imposes a 5.0% sales charge on purchases below $25,000 and a 4.0% sales charge on purchases of $25,000 to $49,999. If a customer invests $25,000 when the net asset value (NAV) is $19.20 per share, what is the public offering price (POP) per share?",
     "choices": [
-     "$20.16",
-     "$20.00",
      "$19.97",
+     "$20.00",
+     "$20.16",
      "$24.00"
     ],
     "answer": 1,
-    "explanation": "At the $25,000 breakpoint the 4.0% sales charge applies, and POP equals NAV divided by (1 minus the sales charge): $19.20 / 0.96 equals exactly $20.00. The $20.16 answer incorrectly uses the 5.0% charge ($19.20 / 0.95), which applies only below the breakpoint. Reaching the breakpoint lowers the charge and therefore the POP.",
+    "explanation": "At the $25,000 breakpoint the 4.0% sales charge applies. POP equals NAV divided by (100% minus the sales charge): $19.20 / 0.96 = $20.00. The $20.16 distractor uses the 5.0% charge ($19.20 / 0.95), which applies only below the breakpoint. Reaching a breakpoint lowers the sales charge and therefore the POP.",
     "topic": "Breakpoints and POP",
     "chapter": 10,
     "difficulty": "hard",
@@ -468,15 +468,15 @@ window.SIE_EXAMS = [
     "n": 27
    },
    {
-    "q": "A resident of Ohio buys municipal bonds issued by an Ohio school district. Which statement best describes the tax treatment of the interest?",
+    "q": "A customer who resides in Ohio purchases a municipal bond issued by an Ohio school district. The interest on this bond is normally:",
     "choices": [
-     "The interest is exempt from both federal income tax and Ohio income tax",
-     "The interest is exempt from federal income tax but subject to Ohio tax",
-     "The interest is exempt from Ohio income tax but subject to federal tax",
-     "The interest is taxable at the federal, state, and local levels alike"
+     "exempt from both federal income tax and Ohio income tax.",
+     "exempt from federal income tax but subject to Ohio income tax.",
+     "exempt from Ohio income tax but subject to federal income tax.",
+     "subject to income tax at the federal, state, and local levels."
     ],
     "answer": 0,
-    "explanation": "Municipal bond interest is generally exempt from federal income tax, and because the investor resides in the issuing state, the interest is also exempt from Ohio (and often local) income tax — the triple tax-exempt benefit. The federal-exempt-but-state-taxable treatment describes an out-of-state bondholder, not an in-state resident, and any choice claiming federal taxability fails because municipal interest is federally tax-exempt.",
+    "explanation": "Municipal bond interest is generally exempt from federal income tax, and because the customer resides in the issuing state, the interest is also exempt from Ohio (and often local) income tax. Federal-exempt-but-state-taxable treatment describes an out-of-state bondholder, and any choice imposing federal tax fails because municipal interest is federally tax exempt.",
     "topic": "Municipal tax-exempt interest / in-state benefit",
     "chapter": 8,
     "difficulty": "medium",
@@ -485,15 +485,15 @@ window.SIE_EXAMS = [
     "n": 28
    },
    {
-    "q": "A registered representative in New York wants to make cold calls to a prospect located in California. Under the Telephone Consumer Protection Act, during which hours may the rep place the cold call?",
+    "q": "A registered representative (RR) in New York places cold calls to prospects in California. Under the Telephone Consumer Protection Act of 1991, the calls normally must be placed between which of the following hours?",
     "choices": [
-     "Between 8:00 a.m. and 9:00 p.m. in the rep's New York time zone",
-     "Between 8:00 a.m. and 9:00 p.m. in the prospect's California time zone",
-     "Any time, because both parties are in the United States",
-     "Only between 9:00 a.m. and 5:00 p.m. in the prospect's time zone"
+     "8:00 a.m. and 9:00 p.m. Eastern Time",
+     "8:00 a.m. and 9:00 p.m. Pacific Time",
+     "9:00 a.m. and 5:00 p.m. Eastern Time",
+     "9:00 a.m. and 5:00 p.m. Pacific Time"
     ],
     "answer": 1,
-    "explanation": "Cold-calling rules require calls be placed between 8:00 a.m. and 9:00 p.m. in the time zone of the person being called, so the California prospect's local time governs. Using the rep's New York time zone is the trap because the protection follows the recipient, not the caller. The permitted window is 8 a.m. to 9 p.m., not 9 a.m. to 5 p.m.",
+    "explanation": "Cold calls must be placed between 8:00 a.m. and 9:00 p.m. in the time zone of the person being called, so the California prospect's Pacific Time governs. Using the RR's Eastern Time is the trap — the protection follows the recipient, not the caller — and the permitted window is 8:00 a.m. to 9:00 p.m., not 9:00 a.m. to 5:00 p.m.",
     "topic": "Cold-calling permitted hours",
     "chapter": 9,
     "difficulty": "medium",
@@ -502,15 +502,15 @@ window.SIE_EXAMS = [
     "n": 29
    },
    {
-    "q": "An investor compares an exchange-traded fund (ETF), a closed-end fund, and an open-end (mutual) fund. Each of the following is a feature of a standard ETF EXCEPT:",
+    "q": "All of the following are characteristics of an exchange-traded fund (ETF) **EXCEPT**:",
     "choices": [
-     "Shares trade throughout the day on an exchange at market prices",
-     "Investors typically pay a commission or a bid-ask spread to trade",
-     "The fund discloses holdings and typically tracks a market index",
-     "Shares are redeemed at NAV directly from the fund by retail investors"
+     "shares trade on an exchange throughout the day at market prices.",
+     "investors normally pay a commission or a bid-ask spread to trade shares.",
+     "the portfolio is disclosed and typically tracks a market index.",
+     "retail investors redeem shares at net asset value (NAV) directly with the fund."
     ],
     "answer": 3,
-    "explanation": "ETF shares are bought and sold on an exchange between investors; only authorized participants create or redeem large blocks (creation units) with the issuer. Direct redemption at NAV by retail investors describes an open-end mutual fund, making it the feature a standard ETF lacks. Intraday exchange trading, commissions and bid-ask spreads, and disclosed index-tracking portfolios are all standard ETF features.",
+    "explanation": "ETF shares are bought and sold on an exchange between investors; only authorized participants create or redeem large blocks (creation units) with the issuer. Direct redemption at NAV by retail investors describes an open-end mutual fund. Intraday exchange trading, commissions and bid-ask spreads, and disclosed index-tracking portfolios are all standard ETF characteristics.",
     "topic": "ETF vs CEF vs mutual fund",
     "chapter": 11,
     "difficulty": "medium",
@@ -519,15 +519,15 @@ window.SIE_EXAMS = [
     "n": 30
    },
    {
-    "q": "A client buys an exchange-traded note (ETN) linked to the performance of a broad commodity index. The index rises 12% over the holding period, but the firm that issued the ETN files for bankruptcy. Which statement BEST describes the client's exposure?",
+    "q": "A customer holds an exchange-traded note (ETN) linked to a commodity index that has risen 12%. If the issuer of the ETN declares bankruptcy, the customer:",
     "choices": [
-     "The client is fully protected because the ETN is collateralized by the commodities in the index",
-     "The client bears the credit risk of the issuer and may lose principal despite the index gain",
-     "SIPC reimburses the client for the 12% index gain that was not realized",
-     "The ETN automatically converts to shares of the underlying commodity ETF"
+     "is protected because the note is collateralized by the commodities in the index.",
+     "bears the credit risk of the issuer and may lose principal despite the index gain.",
+     "is reimbursed by the Securities Investor Protection Corporation (SIPC) for the gain.",
+     "receives shares of an equivalent commodity exchange-traded fund (ETF) instead."
     ],
     "answer": 1,
-    "explanation": "An ETN is an unsecured debt obligation of the issuer, so repayment depends on the issuer's creditworthiness and a default can cause loss even when the linked index gains. It is not collateralized by the underlying assets, so the 'fully protected' choice is wrong, and SIPC addresses broker-dealer failure of custodied assets, not the credit loss on the note itself.",
+    "explanation": "An ETN is an unsecured debt obligation of the issuer, so repayment depends on the issuer's creditworthiness and a default can cause loss even when the linked index gains. The note is not collateralized by the underlying assets, and SIPC covers missing customer assets in a broker-dealer failure, not credit losses on the note itself.",
     "topic": "ETN credit risk",
     "chapter": 11,
     "difficulty": "hard",
@@ -536,15 +536,15 @@ window.SIE_EXAMS = [
     "n": 31
    },
    {
-    "q": "Maria, age 47, has held a non-qualified variable annuity for nine years. Which statement about her annuity during the accumulation phase is TRUE?",
+    "q": "A customer owns a nonqualified variable annuity that is in the accumulation phase. Which of the following statements about the annuity is true?",
     "choices": [
-     "Earnings in the separate account are taxed each year as they are credited",
-     "Earnings grow tax-deferred and her accumulation unit value fluctuates",
-     "Her contributions were pre-tax, so any withdrawal is fully ordinary income",
-     "The insurer guarantees the accumulation unit value regardless of results"
+     "Earnings in the separate account are taxed each year as they are credited.",
+     "Earnings grow tax deferred, and the value of an accumulation unit fluctuates.",
+     "Contributions were made with pretax dollars, so any withdrawal is fully taxable.",
+     "The insurer guarantees the value of an accumulation unit regardless of performance."
     ],
     "answer": 1,
-    "explanation": "During the accumulation phase of a variable annuity, earnings grow tax-deferred and the accumulation unit value rises and falls with separate account performance. Contributions to a non-qualified annuity are made with after-tax dollars, so only the earnings portion is taxable at withdrawal — the pre-tax/fully-taxable choice describes a qualified arrangement. No unit value is guaranteed; a guaranteed value would describe a fixed annuity.",
+    "explanation": "During the accumulation phase of a variable annuity, earnings grow tax deferred and the accumulation unit value rises and falls with separate account performance. Contributions to a nonqualified annuity are made with after-tax dollars, so only the earnings portion is taxable at withdrawal — pretax funding describes a qualified arrangement. No unit value is guaranteed; a guaranteed value describes a fixed annuity.",
     "topic": "Variable annuity accumulation",
     "chapter": 13,
     "difficulty": "medium",
@@ -553,15 +553,15 @@ window.SIE_EXAMS = [
     "n": 32
    },
    {
-    "q": "A 52-year-old client takes a $20,000 withdrawal from a non-qualified variable annuity that he funded with $50,000 of after-tax contributions and that has grown to $90,000. How is the withdrawal taxed?",
+    "q": "A customer, age 52, withdraws $20,000 from a nonqualified variable annuity funded with $50,000 of after-tax contributions and now valued at $90,000. The withdrawal is:",
     "choices": [
-     "The full $20,000 is a tax-free return of his after-tax cost basis",
-     "The full $20,000 is prorated between taxable earnings and tax-free basis",
-     "The full $20,000 is ordinary income plus a 10% early-withdrawal penalty",
-     "The full $20,000 is a long-term capital gain taxed at preferential rates"
+     "a tax-free return of the customer's after-tax cost basis.",
+     "prorated between taxable earnings and tax-free cost basis.",
+     "taxable as ordinary income plus a 10% early-withdrawal penalty.",
+     "taxable as a long-term capital gain at preferential rates."
     ],
     "answer": 2,
-    "explanation": "Non-qualified annuities are taxed LIFO, so withdrawals are deemed to come from the $40,000 of earnings first; the full $20,000 is ordinary income, and because he is under 59½ a 10% early-withdrawal penalty also applies. Prorating between earnings and basis (the exclusion ratio) applies only to annuitized payments, not lump-sum withdrawals, and annuity gains are always ordinary income, never capital gains.",
+    "explanation": "Nonqualified annuity withdrawals are taxed last in, first out (LIFO), so the $20,000 is deemed to come from the $40,000 of earnings first and is fully taxable as ordinary income; because the customer is under age 59½, a 10% early-withdrawal penalty also applies. The exclusion-ratio proration applies only to annuitized payments, and annuity earnings are never capital gains.",
     "topic": "Annuity LIFO taxation / 59½ penalty",
     "chapter": 13,
     "difficulty": "hard",
@@ -570,15 +570,15 @@ window.SIE_EXAMS = [
     "n": 33
    },
    {
-    "q": "An investor who writes (sells) a put option is obligated to do which of the following if the option is exercised against her?",
+    "q": "The writer of a put option that is exercised is obligated to:",
     "choices": [
-     "Sell the underlying stock at the strike price",
-     "Purchase the underlying stock at the strike price",
-     "Purchase the underlying stock at the current market price",
-     "Deliver cash equal to the premium received"
+     "sell the underlying stock at the strike price.",
+     "buy the underlying stock at the strike price.",
+     "buy the underlying stock at the current market price.",
+     "pay the holder cash equal to the premium received."
     ],
     "answer": 1,
-    "explanation": "A short put obligates the writer to BUY the underlying stock at the strike price if exercised, because the long put holder has the right to sell at that strike. Selling stock at the strike is the obligation of a short call, which is the trap answer here.",
+    "explanation": "A short put obligates the writer to buy the underlying stock at the strike price upon exercise, because the put holder has the right to sell at that strike. Selling stock at the strike price is the obligation of a call writer, which is the trap answer.",
     "topic": "Options - short put obligation",
     "chapter": 12,
     "difficulty": "medium",
@@ -587,15 +587,15 @@ window.SIE_EXAMS = [
     "n": 34
    },
    {
-    "q": "Which of the following BEST describes the role of the Options Clearing Corporation (OCC)?",
+    "q": "Which of the following **best** describes the function of the Options Clearing Corporation (OCC)?",
     "choices": [
-     "It sets the premium at which each listed options contract trades",
-     "It guarantees that the stock underlying each contract will not fall",
-     "It insures option holders against market losses up to $500,000",
-     "It issues and guarantees performance of standardized listed contracts"
+     "It sets the premiums at which listed options contracts trade.",
+     "It guarantees that the price of the underlying stock will not decline.",
+     "It insures option holders against market losses up to $500,000.",
+     "It issues and guarantees performance of standardized listed options."
     ],
     "answer": 3,
-    "explanation": "The OCC issues all standardized, exchange-listed options and acts as guarantor, ensuring contracts are honored and removing counterparty default risk between buyer and writer. It does not set premiums (the market does), does not guarantee underlying stock prices, and does not insure against investment losses — the $500,000 figure belongs to SIPC coverage of missing customer assets, not the OCC.",
+    "explanation": "The OCC issues all standardized, exchange-listed options and acts as guarantor, ensuring that contracts are honored and eliminating counterparty default risk between buyer and writer. The market, not the OCC, sets premiums; the OCC does not guarantee stock prices; and the $500,000 figure belongs to SIPC coverage of missing customer assets, not the OCC.",
     "topic": "OCC role",
     "chapter": 12,
     "difficulty": "medium",
@@ -604,15 +604,15 @@ window.SIE_EXAMS = [
     "n": 35
    },
    {
-    "q": "A trader sells short 100 shares of Halcyon Corp at $68 and simultaneously buys 1 Halcyon call with a $70 strike for a premium of $3. What is the breakeven point on this combined position?",
+    "q": "An investor sells short 100 shares of Company ABC stock at $68.00 per share and buys 1 ABC 70 call for a premium of $3.00. What is the breakeven point on the combined position?",
     "choices": [
-     "$71",
-     "$67",
-     "$65",
-     "$73"
+     "$65.00",
+     "$67.00",
+     "$71.00",
+     "$73.00"
     ],
-    "answer": 2,
-    "explanation": "For a short stock position hedged with a long call, breakeven equals the short-sale price minus the premium paid: $68 − $3 = $65. The $70 strike is a distractor; the call is bought for protection and does not set breakeven, which is driven by the price received on the short sale less the hedge cost.",
+    "answer": 0,
+    "explanation": "For short stock hedged with a long call, breakeven equals the short-sale price minus the premium paid: $68.00 − $3.00 = $65.00. The $70 strike is a distractor; the call is purchased for protection and does not set breakeven, which is driven by the proceeds of the short sale less the cost of the hedge.",
     "topic": "Options breakeven - short stock + long call",
     "chapter": 12,
     "difficulty": "hard",
@@ -621,15 +621,15 @@ window.SIE_EXAMS = [
     "n": 36
    },
    {
-    "q": "A real estate investment trust (REIT) must meet specific tests to qualify for favorable tax treatment as a pass-through entity. Which combination correctly states two of those requirements? I. Invest at least 75% of total assets in real estate, cash, or government securities. II. Distribute at least 90% of taxable income to shareholders. III. Distribute at least 75% of taxable income to shareholders.",
+    "q": "To qualify for tax treatment as a pass-through entity, a real estate investment trust (REIT) must normally meet which of the following tests?",
     "choices": [
-     "I and II only",
-     "I and III only",
-     "II only",
-     "I, II, and III"
+     "At least 75% of assets in real estate and at least 75% of taxable income distributed",
+     "At least 75% of assets in real estate and at least 90% of taxable income distributed",
+     "At least 90% of assets in real estate and at least 75% of taxable income distributed",
+     "At least 90% of assets in real estate and at least 90% of taxable income distributed"
     ],
-    "answer": 0,
-    "explanation": "A qualifying REIT must hold at least 75% of its assets in real estate-related holdings, cash, or government securities, and distribute at least 90% of its taxable income to shareholders. Statement III is incorrect because the income-distribution threshold is 90%, not 75%, so only I and II are correct.",
+    "answer": 1,
+    "explanation": "A qualifying REIT must invest at least 75% of its total assets in real estate-related holdings, cash, or government securities and must distribute at least 90% of its taxable income to shareholders. The distractors reverse or misstate the thresholds — the asset test is 75%, and the distribution test is 90%, not 75%.",
     "topic": "REIT qualification tests",
     "chapter": 14,
     "difficulty": "medium",
@@ -638,15 +638,15 @@ window.SIE_EXAMS = [
     "n": 37
    },
    {
-    "q": "When a direct participation program organized as a limited partnership is liquidated, in what order are claims generally satisfied?",
+    "q": "In the liquidation of a limited partnership, claims are normally satisfied in which of the following orders?",
     "choices": [
-     "General partners, then limited partners, then secured lenders, then unsecured creditors",
-     "Secured creditors, then other (general) creditors, then limited partners, then general partners",
-     "Limited partners, then general partners, then all creditors",
-     "Unsecured creditors, then secured creditors, then general partners, then limited partners"
+     "General partners, limited partners, secured creditors, general creditors",
+     "Secured creditors, general creditors, limited partners, general partners",
+     "Limited partners, general partners, secured creditors, general creditors",
+     "General creditors, secured creditors, general partners, limited partners"
     ],
     "answer": 1,
-    "explanation": "On dissolution, secured lenders are paid first, followed by general (unsecured) creditors, then limited partners, and finally the general partners. Partners are residual claimants paid only after all creditors, so any ordering that places partners ahead of creditors is incorrect.",
+    "explanation": "On dissolution, secured creditors are paid first, followed by general (unsecured) creditors, then limited partners, and finally the general partners. Partners are residual claimants paid only after all creditors, so any ordering that places partners ahead of creditors is incorrect.",
     "topic": "Limited partnership liquidation order",
     "chapter": 14,
     "difficulty": "hard",
@@ -655,15 +655,15 @@ window.SIE_EXAMS = [
     "n": 38
    },
    {
-    "q": "A passive investor in a limited partnership generates a $9,000 passive loss for the year from that investment. Under current tax rules, against what may she generally use this passive loss?",
+    "q": "A limited partner in a direct participation program (DPP) reports a $9,000 passive loss for the year. The loss may generally be deducted against:",
     "choices": [
-     "Against her wages and salary income",
-     "Against passive income from other passive activities",
-     "Against portfolio income such as interest and dividends",
-     "Against capital gains from the sale of marketable stock"
+     "earned income, such as wages and salaries.",
+     "passive income from other passive activities.",
+     "portfolio income, such as interest and dividends.",
+     "capital gains from the sale of listed stock."
     ],
     "answer": 1,
-    "explanation": "Passive losses from a limited partnership may generally be deducted only against passive income from other passive activities, not against earned income or portfolio income. Wages, interest, dividends, and stock capital gains are active or portfolio income and cannot absorb passive losses, eliminating those choices.",
+    "explanation": "Passive losses may generally be deducted only against passive income from other passive activities, not against earned or portfolio income. Wages, interest, dividends, and gains on listed stock are active or portfolio income and cannot absorb passive losses.",
     "topic": "Passive income/loss rules",
     "chapter": 14,
     "difficulty": "medium",
@@ -672,15 +672,15 @@ window.SIE_EXAMS = [
     "n": 39
    },
    {
-    "q": "A corporate bond pays a coupon of $24 every six months and is currently quoted at a price of 96. What is the bond's current yield?",
+    "q": "A corporate bond pays interest of $24.00 semiannually and is quoted at 96. What is the bond's current yield?",
     "choices": [
+     "2.40%",
      "4.80%",
      "5.00%",
-     "2.40%",
      "5.20%"
     ],
-    "answer": 1,
-    "explanation": "The semi-annual coupon of $24 annualizes to $48; at a price of 96 (= $960), current yield = $48 / $960 = 5.00%. The 2.40% trap uses only one semi-annual payment, and 4.80% divides the annual coupon by par ($1,000) instead of the discounted market price.",
+    "answer": 2,
+    "explanation": "The semiannual interest of $24.00 annualizes to $48.00; at a price of 96 ($960.00), current yield = $48.00 / $960.00 = 5.00%. The 2.40% distractor uses only one semiannual payment, and 4.80% divides the annual interest by par ($1,000) instead of the discounted market price.",
     "topic": "Current yield - semiannual coupon",
     "chapter": 15,
     "difficulty": "hard",
@@ -689,15 +689,15 @@ window.SIE_EXAMS = [
     "n": 40
    },
    {
-    "q": "Prevailing interest rates in the market fall after an investor buys a long-term, non-callable corporate bond at par. Which statement is TRUE regarding the effect on this bond?",
+    "q": "Interest rates fall after an investor purchases a noncallable corporate bond at par. Which of the following statements about the bond is true?",
     "choices": [
-     "The bond's market price will fall below par",
-     "The bond's market price will rise above par",
-     "The bond's coupon rate will be reset downward",
-     "The bond's price will remain unchanged because it is non-callable"
+     "The market price will fall below par.",
+     "The market price will rise above par.",
+     "The coupon rate will be reset downward.",
+     "The market price will remain at par."
     ],
     "answer": 1,
-    "explanation": "Bond prices move inversely to interest rates, so when market rates fall the price of an existing fixed-rate bond rises above par. The coupon is fixed for the life of the bond and does not reset, and being non-callable does not make the price immune to rate changes.",
+    "explanation": "Bond prices move inversely to interest rates, so when market rates fall the price of an existing fixed-rate bond rises above par. The coupon is fixed for the life of the bond and does not reset, and the noncallable feature does not make the price immune to rate changes.",
     "topic": "Bond price/yield inverse relationship",
     "chapter": 15,
     "difficulty": "medium",
@@ -706,15 +706,15 @@ window.SIE_EXAMS = [
     "n": 41
    },
    {
-    "q": "A 30-year bondholder is most concerned that, if she has to reinvest her semi-annual coupon payments, she will only be able to do so at lower prevailing interest rates than her bond's coupon. This concern is BEST described as which type of risk?",
+    "q": "A bondholder is concerned that semiannual interest payments will have to be reinvested at rates below the bond's coupon. This concern is **best** described as:",
     "choices": [
-     "Credit (default) risk",
-     "Reinvestment risk",
-     "Call risk",
-     "Inflation (purchasing power) risk"
+     "credit risk.",
+     "reinvestment risk.",
+     "call risk.",
+     "purchasing power risk."
     ],
     "answer": 1,
-    "explanation": "Reinvestment risk is the danger that interim cash flows such as coupons must be reinvested at lower rates than the original yield, reducing total realized return. Call risk involves early redemption of the bond itself and inflation risk concerns eroding purchasing power, so neither matches a concern specifically about reinvesting coupons.",
+    "explanation": "Reinvestment risk is the risk that interim cash flows, such as coupon payments, must be reinvested at rates below the original yield, reducing total realized return. Call risk involves early redemption of the bond itself, and purchasing power risk concerns eroding real value — neither matches a concern about reinvesting coupons.",
     "topic": "Reinvestment risk scenario",
     "chapter": 15,
     "difficulty": "medium",
@@ -723,15 +723,15 @@ window.SIE_EXAMS = [
     "n": 42
    },
    {
-    "q": "An investor holds a fixed annuity that will pay a level $1,500 per month for life. Over a 25-year retirement, the investor's chief concern is that the fixed payment will buy progressively less as consumer prices climb. Which risk does this describe, and how is it generally addressed?",
+    "q": "A customer receives a level $1,500.00 monthly payment for life from a fixed annuity and is concerned that rising prices will erode the payment's purchasing power. Which of the following identifies this risk and an allocation that **best** offsets it?",
     "choices": [
-     "Purchasing power risk, offset by adding equities or a variable annuity",
-     "Reinvestment risk, offset by laddering bonds and certificates of deposit",
-     "Credit risk, offset by holding only investment-grade corporate bonds",
-     "Liquidity risk, offset by shifting assets into money market instruments"
+     "Purchasing power risk; adding equities or a variable annuity",
+     "Reinvestment risk; laddering bonds and certificates of deposit (CDs)",
+     "Credit risk; holding only investment-grade corporate bonds",
+     "Liquidity risk; shifting assets into money market instruments"
     ],
     "answer": 0,
-    "explanation": "A fixed, level lifetime payment is exposed to inflation (purchasing power) risk because rising prices erode the real value of unchanging dollars; allocating to equities or a variable annuity, whose payments can rise with separate-account performance, helps offset it. Reinvestment risk — the strongest distractor — concerns reinvesting cash flows at lower rates, not the eroding real value of a guaranteed payment; credit and liquidity risks likewise describe different concerns.",
+    "explanation": "A fixed, level lifetime payment is exposed to purchasing power (inflation) risk because rising prices erode the real value of unchanging dollars; allocating to equities or a variable annuity, whose payments can rise with separate account performance, helps offset it. Reinvestment risk concerns reinvesting cash flows at lower rates, not eroding real value, and credit and liquidity risks describe different concerns.",
     "topic": "Inflation risk - fixed annuity",
     "chapter": 13,
     "difficulty": "medium",
@@ -740,15 +740,15 @@ window.SIE_EXAMS = [
     "n": 43
    },
    {
-    "q": "Compared with an open-end mutual fund, a closed-end fund's shares are MOST accurately described by which statement?",
+    "q": "Compared with the shares of an open-end investment company, closed-end fund shares:",
     "choices": [
-     "They are always priced at net asset value (NAV) at the next forward calculation",
-     "They trade in the secondary market and may sell at a premium or discount to NAV",
-     "They are continuously issued and redeemed by the fund at NAV",
-     "They can only be purchased with a front-end sales load"
+     "are always priced at the next computed net asset value (NAV).",
+     "trade in the secondary market at a premium or discount to NAV.",
+     "are continuously issued and redeemed by the fund at NAV.",
+     "may be purchased only by paying a front-end sales charge."
     ],
     "answer": 1,
-    "explanation": "Closed-end fund shares trade on the secondary market at prices set by supply and demand, so they can trade above (premium) or below (discount) NAV. Continuous issuance and redemption at the forward-priced NAV describes an open-end fund, so those NAV-based choices are incorrect for a closed-end fund.",
+    "explanation": "Closed-end fund shares trade in the secondary market at prices set by supply and demand, so they may trade above (premium) or below (discount) NAV. Continuous issuance and redemption at the next computed NAV describes an open-end fund, making the NAV-based choices incorrect for a closed-end fund.",
     "topic": "Open-end vs closed-end pricing",
     "chapter": 11,
     "difficulty": "medium",
@@ -757,15 +757,15 @@ window.SIE_EXAMS = [
     "n": 44
    },
    {
-    "q": "An investor is choosing between three corporate bonds. Which pair of features below would expose an investor to BOTH call risk and reinvestment risk in a falling-rate environment? I. A callable bond trading at a premium. II. A high coupon relative to current market rates. III. A zero-coupon, non-callable bond.",
+    "q": "When interest rates are falling, which of the following bonds exposes an investor to both call risk and reinvestment risk?",
     "choices": [
-     "I and II only",
-     "II and III only",
-     "I and III only",
-     "I, II, and III"
+     "A callable bond with a coupon above current market rates",
+     "A callable bond with a coupon below current market rates",
+     "A noncallable zero-coupon bond trading at a discount",
+     "A noncallable bond with a coupon equal to current market rates"
     ],
     "answer": 0,
-    "explanation": "A callable bond (I) with a high coupon relative to current rates (II) is most likely to be called when rates fall, forcing the investor to reinvest returned principal at lower prevailing rates. A zero-coupon, non-callable bond (III) has no interim coupons to reinvest and cannot be called early, so it bears neither risk in this scenario, leaving I and II.",
+    "explanation": "A callable bond carrying a coupon above current market rates is the most likely to be called when rates fall, forcing the investor to reinvest returned principal at lower prevailing rates — both call risk and reinvestment risk. An issuer has no incentive to call a below-market coupon, and a noncallable zero-coupon bond has no interim coupons to reinvest and cannot be called early.",
     "topic": "Call risk + reinvestment risk",
     "chapter": 15,
     "difficulty": "hard",
@@ -774,15 +774,15 @@ window.SIE_EXAMS = [
     "n": 45
    },
    {
-    "q": "Marcus and Diane Holloway, a married couple, want to open a joint brokerage account in which they each own a fixed, unequal percentage of the assets — Marcus 60% and Diane 40% — and each spouse wants their respective share to pass to their own named beneficiaries upon death rather than automatically to the survivor. Which account type is appropriate?",
+    "q": "A married couple opening a joint account want each spouse to own a stated, unequal percentage of the assets and to have each interest pass to that spouse's estate at death. Which of the following forms of ownership is appropriate?",
     "choices": [
      "Joint tenants with right of survivorship (JTWROS)",
      "Tenants in common (TIC)",
      "Tenancy by the entirety",
-     "A transfer-on-death (TOD) JTWROS account"
+     "JTWROS with transfer on death (TOD) registration"
     ],
     "answer": 1,
-    "explanation": "Tenants in common allows unequal ownership percentages (here 60/40), and at death a decedent's share passes to that person's estate or named beneficiaries rather than to the surviving co-owner. JTWROS is wrong because survivorship automatically passes the deceased's interest to the surviving tenant, defeating the goal of each share going to its own beneficiaries.",
+    "explanation": "Tenants in common permits unequal ownership percentages, and at death a decedent's share passes to that person's estate or named beneficiaries rather than to the surviving co-owner. JTWROS is the trap because survivorship automatically passes the deceased's interest to the surviving tenant, defeating the goal of each share passing to its own estate.",
     "topic": "Account tenancy (TIC vs JTWROS)",
     "chapter": 16,
     "difficulty": "medium",
@@ -791,15 +791,15 @@ window.SIE_EXAMS = [
     "n": 46
    },
    {
-    "q": "A UGMA custodial account is opened for 9-year-old Priya Nandakumar, with her aunt serving as custodian. Which of the following is TRUE regarding this account?",
+    "q": "A custodial account is opened for a minor under the Uniform Gifts to Minors Act (UGMA). Which of the following statements about the account is true?",
     "choices": [
-     "The custodian's Social Security number is used, and the custodian pays tax on earnings",
-     "The minor's Social Security number is used, and the minor beneficially owns the assets",
-     "Margin purchases are permitted when the custodian judges them prudent for the minor",
-     "The assets revert to the custodian once the minor reaches the age of majority"
+     "The custodian's Social Security number is used, and the custodian is taxed on earnings.",
+     "The minor's Social Security number is used, and the minor beneficially owns the assets.",
+     "Margin purchases are permitted when the custodian judges them prudent for the minor.",
+     "The assets revert to the custodian when the minor reaches the age of majority."
     ],
     "answer": 1,
-    "explanation": "A UGMA account uses the minor's Social Security number because the minor is the beneficial owner; the custodian only manages the assets, and earnings are taxed to the minor. Margin is prohibited in custodial accounts (they must be cash accounts) regardless of the custodian's judgment, and at the age of majority the assets transfer to the now-adult former minor, never back to the custodian.",
+    "explanation": "A UGMA account uses the minor's Social Security number because the minor is the beneficial owner; the custodian only manages the assets, and earnings are taxed to the minor. Custodial accounts must be cash accounts — margin is prohibited regardless of the custodian's judgment — and at the age of majority the assets transfer to the now-adult former minor, never back to the custodian.",
     "topic": "UGMA/minor accounts",
     "chapter": 16,
     "difficulty": "medium",
@@ -808,15 +808,15 @@ window.SIE_EXAMS = [
     "n": 47
    },
    {
-    "q": "Which document gives a broker-dealer permission to pledge a margin customer's securities as collateral for a bank loan that the firm uses to finance the customer's debit balance?",
+    "q": "Which of the following documents permits a broker-dealer to pledge a margin customer's securities as collateral for a bank loan?",
     "choices": [
-     "The credit agreement",
-     "The loan consent agreement",
-     "The hypothecation agreement",
-     "The customer's account verification notice"
+     "Credit agreement",
+     "Loan consent agreement",
+     "Hypothecation agreement",
+     "Account verification notice"
     ],
     "answer": 2,
-    "explanation": "The hypothecation agreement permits the broker-dealer to pledge (rehypothecate) the customer's margin securities to a bank as collateral for the firm's loan financing the debit balance. The loan consent agreement is distinct — it lets the firm lend the customer's securities to others (e.g., for short sales) and is optional, not the document used to pledge collateral for the customer's own margin loan.",
+    "explanation": "The hypothecation agreement permits the broker-dealer to pledge (rehypothecate) the customer's margin securities to a bank as collateral for the loan financing the customer's debit balance. The loan consent agreement is distinct and optional — it permits the firm to lend the customer's securities to others, such as short sellers.",
     "topic": "Margin documents/hypothecation",
     "chapter": 17,
     "difficulty": "medium",
@@ -825,15 +825,15 @@ window.SIE_EXAMS = [
     "n": 48
    },
    {
-    "q": "A customer opens a new margin account and buys 100 shares of a stock at $18 per share. Reg T requires an initial deposit of 50%, but FINRA also imposes a minimum equity standard for margin accounts. How much must the customer deposit?",
+    "q": "A customer buys 100 shares of stock at $18.00 per share in a new margin account. Taking into account Regulation T and the FINRA minimum equity requirement, what amount must the customer deposit?",
     "choices": [
-     "$900",
-     "$1,800",
-     "$2,000",
-     "$1,000"
+     "$900.00",
+     "$1,000.00",
+     "$1,800.00",
+     "$2,000.00"
     ],
-    "answer": 1,
-    "explanation": "The total purchase is $1,800. Although the FINRA minimum equity for a margin account is $2,000, the required deposit can never exceed 100% of the purchase price; because the full cost ($1,800) is less than $2,000, the customer simply pays the full $1,800. Answering $2,000 is the trap — you never deposit more than the cost of the stock — and $900 (Reg T 50%) would leave equity below the price for a position this small.",
+    "answer": 2,
+    "explanation": "The total purchase is $1,800.00. Although the FINRA minimum equity for a margin account is $2,000, the required deposit can never exceed 100% of the purchase price; because the full cost ($1,800.00) is less than $2,000, the customer deposits the full $1,800.00. The $2,000.00 choice is the trap — a customer never deposits more than the cost of the securities — and $900.00 reflects Regulation T's 50% alone, which is insufficient for a purchase this small.",
     "topic": "Margin minimum equity floor",
     "chapter": 17,
     "difficulty": "hard",
@@ -842,15 +842,15 @@ window.SIE_EXAMS = [
     "n": 49
    },
    {
-    "q": "An investor sells short 100 shares of a stock at $14 per share in a new margin account. Considering the Reg T requirement and the FINRA minimum equity requirement, how much must the investor deposit to establish this short position?",
+    "q": "A customer sells short 100 shares of stock at $14.00 per share in a new margin account. Taking into account Regulation T and the FINRA minimum equity requirement, what amount must the customer deposit?",
     "choices": [
-     "$700",
-     "$1,400",
-     "$2,000",
-     "$2,100"
+     "$700.00",
+     "$1,400.00",
+     "$2,000.00",
+     "$2,100.00"
     ],
     "answer": 2,
-    "explanation": "The short sale proceeds are $1,400, so Reg T 50% would be $700; however, every new margin account is subject to the $2,000 minimum equity requirement. Because $2,000 exceeds both the Reg T amount and the position's value, the $2,000 minimum equity requirement controls. The $2,100 figure incorrectly stacks an extra amount on top of the floor.",
+    "explanation": "The short-sale proceeds are $1,400.00, so Regulation T's 50% requirement would be $700.00; however, every new margin account is subject to the $2,000 minimum equity requirement. Because $2,000 exceeds both the Regulation T amount and the value of the position, the minimum equity requirement controls. The $2,100.00 figure incorrectly stacks an additional amount on top of the floor.",
     "topic": "Short-margin minimum equity",
     "chapter": 17,
     "difficulty": "hard",
@@ -859,15 +859,15 @@ window.SIE_EXAMS = [
     "n": 50
    },
    {
-    "q": "An investor short sells 200 shares of Temberton Mills at $46 and simultaneously buys 2 Temberton Mills call options with a $45 strike, paying a premium of $3 per share. What is the investor's breakeven point on the combined position?",
+    "q": "An investor sells short 200 shares of Company ABC at $46.00 per share and buys 2 ABC 45 calls at a premium of $3.00 per share. What is the breakeven point on the combined position?",
     "choices": [
-     "$43",
-     "$42",
-     "$48",
-     "$49"
+     "$42.00",
+     "$43.00",
+     "$48.00",
+     "$49.00"
     ],
-    "answer": 0,
-    "explanation": "For a short stock position hedged by a long call, breakeven equals the short sale price minus the premium paid: $46 − $3 = $43. The long call caps the upside loss, but its premium reduces the profit on the short, so the stock must fall to $43 before the position is profitable. The $49 distractor results from incorrectly adding the premium instead of subtracting it.",
+    "answer": 1,
+    "explanation": "For short stock hedged with a long call, breakeven equals the short sale price minus the premium paid: $46.00 − $3.00 = $43.00. The stock must decline below $43.00 before the position is profitable; $49.00 results from adding the premium rather than subtracting it.",
     "topic": "Options breakeven (short stock + long call)",
     "chapter": 17,
     "difficulty": "hard",
@@ -876,15 +876,15 @@ window.SIE_EXAMS = [
     "n": 51
    },
    {
-    "q": "A corporate bond pays a semiannual coupon of $27.50 per payment and is currently trading at a price of 110. What is the bond's current yield?",
+    "q": "A corporate bond pays a semiannual coupon of $27.50 and is currently trading at 110. What is the bond's current yield?",
     "choices": [
      "2.50%",
+     "4.55%",
      "5.00%",
-     "5.50%",
-     "4.55%"
+     "5.50%"
     ],
-    "answer": 1,
-    "explanation": "Each semiannual payment is $27.50, so the annual coupon income is $55. Current yield = annual income ÷ market price = $55 ÷ $1,100 = 5.00%. The 2.50% trap divides a single $27.50 semiannual payment by the price without first annualizing the coupon, and 5.50% ignores the premium price by using par.",
+    "answer": 2,
+    "explanation": "Annual coupon income is $27.50 × 2 = $55.00, and current yield equals annual income divided by market price: $55.00 ÷ $1,100.00 = 5.00%. The 2.50% figure divides a single semiannual payment by the price without annualizing, and 5.50% incorrectly uses par rather than the premium market price.",
     "topic": "Current yield (semiannual coupon)",
     "chapter": 16,
     "difficulty": "medium",
@@ -893,15 +893,15 @@ window.SIE_EXAMS = [
     "n": 52
    },
    {
-    "q": "A customer enters an order to buy 500 shares of a heavily traded large-cap stock and tells the registered representative the single most important thing is that the order be filled right now, even if the price moves slightly. Which order type best fits this instruction?",
+    "q": "A customer instructs a registered representative to buy 500 shares of an actively traded stock immediately at the best available price. Which of the following order types satisfies this instruction?",
     "choices": [
-     "A limit order",
-     "A market order",
-     "A buy stop order",
-     "A stop-limit order"
+     "Limit order",
+     "Market order",
+     "Buy stop order",
+     "Stop-limit order"
     ],
     "answer": 1,
-    "explanation": "A market order executes immediately at the best available price, guaranteeing execution but not a specific price — exactly what a customer prioritizing an immediate fill wants. A limit order guarantees price but not execution and could go unfilled if the market moves away, which conflicts with the customer's stated priority.",
+    "explanation": "A market order executes immediately at the best available price, guaranteeing execution but not price. A limit order guarantees price but not execution and may go unfilled if the market moves away, which conflicts with the customer's priority of an immediate fill.",
     "topic": "Order types (market order)",
     "chapter": 17,
     "difficulty": "medium",
@@ -910,15 +910,15 @@ window.SIE_EXAMS = [
     "n": 53
    },
    {
-    "q": "A customer purchases a common stock in a cash account. Under the current regular-way settlement cycle, when does settlement occur and by when must the firm send the customer the trade confirmation?",
+    "q": "A customer purchases common stock in a cash account. Under regular way settlement, when does the trade settle, and by when must the firm deliver the trade confirmation?",
     "choices": [
-     "Settlement is T+2; the confirmation is due within five business days",
-     "Settlement is T+3; the confirmation is due on the trade date itself",
-     "Settlement is T+1; the confirmation is due at or before settlement",
-     "Settlement is T+1; the confirmation is due within three business days"
+     "T+2, with the confirmation due within five business days",
+     "T+3, with the confirmation due on the trade date",
+     "T+1, with the confirmation due at or before settlement",
+     "T+1, with the confirmation due within three business days"
     ],
     "answer": 2,
-    "explanation": "Regular-way settlement for equities is now T+1 (one business day after the trade date), and SEC Rule 10b-10 requires the trade confirmation to be delivered at or before completion of the transaction, i.e., by settlement. The strongest distractor pairs the correct T+1 cycle with a nonexistent three-business-day confirmation window; T+2 and T+3 are outdated settlement cycles.",
+    "explanation": "Regular way settlement for equities is T+1 (one business day after the trade date), and Securities and Exchange Commission (SEC) Rule 10b-10 requires delivery of the confirmation at or before completion of the transaction. T+2 and T+3 are outdated cycles, and no three-business-day confirmation window exists.",
     "topic": "Settlement T+1 / confirmation timing",
     "chapter": 17,
     "difficulty": "medium",
@@ -927,15 +927,15 @@ window.SIE_EXAMS = [
     "n": 54
    },
    {
-    "q": "A company announces a 1-for-5 reverse stock split. An investor who held 1,000 shares trading at $4.00 per share immediately before the split will, after the split, hold which of the following?",
+    "q": "In the event of a 1-for-5 reverse stock split, an investor who owns 1,000 shares priced at $4.00 per share will hold which of the following positions?",
     "choices": [
-     "5,000 shares at $0.80 per share, total value $4,000",
-     "200 shares at $20.00 per share, total value $4,000",
-     "200 shares at $0.80 per share, total value $160",
-     "5,000 shares at $20.00 per share, total value $100,000"
+     "200 shares at $0.80 per share",
+     "200 shares at $20.00 per share",
+     "5,000 shares at $0.80 per share",
+     "5,000 shares at $20.00 per share"
     ],
     "answer": 1,
-    "explanation": "A 1-for-5 reverse split divides the share count by 5 (1,000 ÷ 5 = 200 shares) and multiplies the price by 5 ($4.00 × 5 = $20.00), leaving total value unchanged at $4,000. The first choice describes a forward 5-for-1 split (more shares, lower price), the opposite of what occurred.",
+    "explanation": "A 1-for-5 reverse split divides the share count by 5 (1,000 ÷ 5 = 200) and multiplies the price by 5 ($4.00 × 5 = $20.00), leaving the $4,000.00 total value unchanged. The 5,000-share choices describe a forward 5-for-1 split, the opposite adjustment.",
     "topic": "Reverse stock split effects",
     "chapter": 16,
     "difficulty": "medium",
@@ -944,15 +944,15 @@ window.SIE_EXAMS = [
     "n": 55
    },
    {
-    "q": "A board of directors sets the record date for a cash dividend as Thursday, October 16. Under the current T+1 regular-way settlement cycle, and assuming no intervening holidays, on what day must an investor purchase the stock to be entitled to the dividend, and what is the ex-dividend date?",
+    "q": "A corporation sets Thursday, October 16, as the record date for a cash dividend. Under regular way settlement, what is the last day an investor may purchase the stock and receive the dividend, and what is the ex-dividend date?",
     "choices": [
-     "Buy no later than Thursday, October 16; ex-date is Friday, October 17",
-     "Buy no later than Wednesday, October 15; ex-date is Thursday, October 16, the record date",
-     "Buy no later than Tuesday, October 14; ex-date is Wednesday, October 15",
-     "Buy no later than Friday, October 17; ex-date is Thursday, October 16"
+     "Purchase by Tuesday, October 14; ex-date Wednesday, October 15",
+     "Purchase by Wednesday, October 15; ex-date Thursday, October 16",
+     "Purchase by Thursday, October 16; ex-date Friday, October 17",
+     "Purchase by Friday, October 17; ex-date Thursday, October 16"
     ],
-    "answer": 2,
-    "explanation": "Under T+1 settlement the ex-dividend date is set one business day before the record date, so with a record date of Thursday October 16 the ex-date is Wednesday October 15. To be a holder of record, the investor must buy before the ex-date — that is, no later than Tuesday October 14 — so the trade settles by the record date. Buying on or after the ex-date settles too late to receive the dividend.",
+    "answer": 1,
+    "explanation": "Under the T+1 settlement cycle, the ex-dividend date is the same business day as the record date — Thursday, October 16. A purchase on Wednesday, October 15 settles on Thursday, October 16, making the buyer a holder of record entitled to the dividend; a purchase on or after the ex-date settles after the record date and is too late. The one-business-day-before ex-date belonged to the former T+2 cycle.",
     "topic": "Ex-dividend date under T+1",
     "chapter": 16,
     "difficulty": "hard",
@@ -961,15 +961,15 @@ window.SIE_EXAMS = [
     "n": 56
    },
    {
-    "q": "Which of the following statements regarding the periodic account record (verification notice) that a broker-dealer must send to customers are TRUE? I. The firm must send customers a notice with their current account information at least once every 36 months. II. The notice must give the customer an opportunity to report any inaccuracies in the recorded investment objectives and financial information. III. Sending trade confirmations satisfies this requirement, so no separate periodic notice is ever required.",
+    "q": "A broker-dealer must furnish each customer with a copy of the customer's account record, providing an opportunity to correct the recorded investment objectives and financial information, at least once every:",
     "choices": [
-     "I only",
-     "I and II",
-     "II and III",
-     "I, II and III"
+     "12 months.",
+     "24 months.",
+     "36 months.",
+     "60 months."
     ],
-    "answer": 1,
-    "explanation": "Firms must furnish customers with an account record for review at least once every 36 months, and that notice must invite the customer to update or correct recorded objectives and financial data — so statements I and II are true. Statement III is false: trade confirmations are a separate requirement and do not eliminate the periodic 36-month verification obligation.",
+    "answer": 2,
+    "explanation": "Firms must send customers a copy of the account record for verification at least once every 36 months, and the notice must invite the customer to report inaccuracies in recorded objectives and financial data. Trade confirmations are a separate requirement and do not satisfy this obligation.",
     "topic": "Account verification notice timing",
     "chapter": 16,
     "difficulty": "medium",
@@ -978,15 +978,15 @@ window.SIE_EXAMS = [
     "n": 57
    },
    {
-    "q": "Marcus, age 34, earns $90,000 and contributes the annual maximum to his Roth IRA. Which statement about his Roth contribution is TRUE?",
+    "q": "A customer contributes the annual maximum to a Roth individual retirement account (IRA). Which of the following statements about the contribution is accurate?",
     "choices": [
-     "The contribution is tax-deductible in the year it is made, and qualified withdrawals are tax-free",
-     "The contribution is never tax-deductible, but qualified withdrawals of both contributions and earnings are tax-free",
-     "The contribution is non-deductible, and all withdrawals including earnings are always fully taxable",
-     "The contribution is deductible only if Marcus is not an active participant in an employer plan"
+     "The contribution is deductible, and qualified distributions are tax-free.",
+     "The contribution is not deductible, and qualified distributions are tax-free.",
+     "The contribution is not deductible, and all distributions are fully taxable.",
+     "The contribution is deductible only for customers not covered by an employer plan."
     ],
     "answer": 1,
-    "explanation": "Roth IRA contributions are made with after-tax dollars and are never deductible; in exchange, qualified distributions (account open at least 5 years and the owner is 59 1/2 or older) of both contributions and earnings come out tax-free. The deductibility and active-participant rules in the tempting distractor apply only to Traditional IRAs.",
+    "explanation": "Roth IRA contributions are made with after-tax dollars and are never deductible; in exchange, qualified distributions of both contributions and earnings (account open at least five years and owner age 59 1/2 or older) are tax-free. The deductibility and active-participant rules apply only to traditional IRAs.",
     "topic": "Roth IRA contributions",
     "chapter": 19,
     "difficulty": "medium",
@@ -995,15 +995,15 @@ window.SIE_EXAMS = [
     "n": 58
    },
    {
-    "q": "Priya elects to make Roth 401(k) salary-deferral contributions. Her employer provides a 100% match on the first 4% she defers. Absent any election to treat the match as Roth, how are the employer matching dollars traditionally treated?",
+    "q": "An employee makes Roth salary deferrals to a 401(k) plan, and the employer matches a portion of the deferrals. Absent an election to designate the match as Roth, the matching contribution is normally:",
     "choices": [
-     "It goes into her Roth source and grows tax-free like her own salary deferrals",
-     "It is disallowed because employers may not match Roth 401(k) salary deferrals",
-     "It is deposited into an IRA for her because matches cannot stay in the 401(k)",
-     "It goes into a pre-tax source and is taxed as ordinary income when withdrawn"
+     "allocated to the Roth source and distributed tax-free with the deferrals.",
+     "allocated to a pre-tax source and taxed as ordinary income when distributed.",
+     "prohibited, because employers may not match Roth salary deferrals.",
+     "deposited into an individual retirement account (IRA) for the employee."
     ],
-    "answer": 3,
-    "explanation": "Employer matching contributions to a Roth 401(k) have traditionally been placed in a pre-tax (traditional) source and are taxed as ordinary income when distributed; only the employee's own Roth deferrals and their earnings come out tax-free. The strongest distractor assumes the match follows the employee's Roth treatment, but absent a special election it does not, and matching Roth deferrals is fully permitted.",
+    "answer": 1,
+    "explanation": "Employer matching contributions have traditionally been allocated to a pre-tax source and are taxed as ordinary income upon distribution; only the employee's own Roth deferrals and their earnings qualify for tax-free treatment. Matching Roth deferrals is fully permitted, and the match remains in the 401(k) plan.",
     "topic": "Roth 401(k) employer match",
     "chapter": 19,
     "difficulty": "hard",
@@ -1012,15 +1012,15 @@ window.SIE_EXAMS = [
     "n": 59
    },
    {
-    "q": "A client asks about contribution limits for a 529 college savings plan. Which statement is TRUE?",
+    "q": "Which of the following statements regarding contributions to a Section 529 college savings plan is accurate?",
     "choices": [
-     "There is no federal dollar limit; each state sets its aggregate maximum",
-     "Federal law caps lifetime contributions at $250,000 per beneficiary",
-     "Contributions are deductible on the contributor's federal income return",
-     "Annual contributions are capped at the federal IRA contribution limit"
+     "Federal law caps lifetime contributions at $250,000 per beneficiary.",
+     "Annual contributions may not exceed the annual IRA contribution limit.",
+     "Contributions are deductible on the contributor's federal income tax return.",
+     "Each state establishes its own aggregate contribution maximum per beneficiary."
     ],
-    "answer": 0,
-    "explanation": "There is no federal dollar contribution limit on 529 plans; instead, each state sets its own aggregate maximum account balance, often several hundred thousand dollars per beneficiary. The $250,000 figure resembles many states' aggregate caps but is not a federal nationwide limit, and 529 contributions are made with after-tax dollars (no federal deduction), though some states offer an in-state deduction or credit.",
+    "answer": 3,
+    "explanation": "There is no federal dollar limit on 529 plan contributions; each state sets its own aggregate maximum, often several hundred thousand dollars per beneficiary. The $250,000 figure resembles many state caps but is not federal law, and contributions are made with after-tax dollars, though some states offer a state-level deduction or credit.",
     "topic": "529 contribution limits",
     "chapter": 19,
     "difficulty": "medium",
@@ -1029,15 +1029,15 @@ window.SIE_EXAMS = [
     "n": 60
    },
    {
-    "q": "Which of the following BEST describes the prohibited practice of 'front-running'?",
+    "q": "A trader for a broker-dealer, aware of an imminent customer order expected to move the market, enters an order for the firm's account first. This prohibited practice is known as:",
     "choices": [
-     "Trading on material nonpublic information obtained from a company insider",
-     "Entering a personal order ahead of a known market-moving customer order",
-     "Placing a third party between a customer and the best available market",
-     "Trading a customer's account excessively to generate extra commissions"
+     "churning.",
+     "insider trading.",
+     "interpositioning.",
+     "front-running."
     ],
-    "answer": 1,
-    "explanation": "Front-running is trading for one's own or the firm's account ahead of a known, imminent customer order expected to move the market price. Trading on insider tips describes insider trading, inserting a third party between the customer and the best market describes interpositioning, and excessive trading for commissions describes churning.",
+    "answer": 3,
+    "explanation": "Front-running is trading for one's own or the firm's account ahead of a known, imminent customer order expected to move the market. Insider trading involves material nonpublic information, interpositioning places a third party between a customer and the best market, and churning is excessive trading to generate commissions.",
     "topic": "Prohibited activities",
     "chapter": 19,
     "difficulty": "hard",
@@ -1046,15 +1046,15 @@ window.SIE_EXAMS = [
     "n": 61
    },
    {
-    "q": "A customer deposits $11,200 in cash (currency) to fund a brokerage account in a single business day. Which action is the firm required to take?",
+    "q": "A customer deposits $11,200.00 in currency into a brokerage account in a single business day. Which of the following is the firm required to file with the Financial Crimes Enforcement Network (FinCEN)?",
     "choices": [
-     "File a Currency Transaction Report (CTR) with FinCEN because the cash exceeds $10,000",
-     "File a Suspicious Activity Report (SAR) regardless of whether the activity is suspicious",
-     "Take no action because brokerage deposits are exempt from currency reporting",
-     "File a CTR only if the customer cannot explain the source of the funds"
+     "A Currency Transaction Report (CTR), because the deposit exceeds $10,000",
+     "A Suspicious Activity Report (SAR), whether or not the activity is suspicious",
+     "A CTR, but only if the customer cannot document the source of the funds",
+     "No report, because deposits into securities accounts are exempt from reporting"
     ],
     "answer": 0,
-    "explanation": "A Currency Transaction Report must be filed with FinCEN for any cash (currency) transaction exceeding $10,000 in a single business day, regardless of whether the activity appears suspicious. A SAR is a separate, suspicion-based trigger (generally $5,000 or more where a suspicious basis exists), not a substitute for the dollar-based CTR requirement.",
+    "explanation": "A CTR must be filed for any currency transaction exceeding $10,000 in a single business day, regardless of whether the activity appears suspicious. A SAR is a separate, suspicion-based filing (generally $5,000 or more with a suspicious basis) and is not a substitute for the dollar-based CTR requirement.",
     "topic": "AML CTR threshold",
     "chapter": 19,
     "difficulty": "medium",
@@ -1063,15 +1063,15 @@ window.SIE_EXAMS = [
     "n": 62
    },
    {
-    "q": "Under Regulation S-P, when must a broker-dealer deliver its initial privacy notice to a new retail customer?",
+    "q": "Under Regulation S-P, a broker-dealer must provide its initial privacy notice to a new customer:",
     "choices": [
-     "Within 30 days after the customer relationship is first established",
-     "Within 90 days after the customer's new account has been opened",
-     "Only after the customer submits a written request for the notice",
-     "No later than the time the customer relationship is established"
+     "within 30 days after the customer relationship is established.",
+     "within 90 days after the customer's new account is opened.",
+     "only upon receiving the customer's written request for it.",
+     "no later than when the customer relationship is established."
     ],
     "answer": 3,
-    "explanation": "Regulation S-P requires the initial privacy notice to be delivered not later than when the customer relationship is established, with an annual notice thereafter (subject to exceptions). The 30-day grace period is the strongest distractor because other disclosure rules use similar windows, but Reg S-P allows no delay; the 90-day window is likewise wrong, and the notice is mandatory rather than provided only on request.",
+    "explanation": "Regulation S-P requires delivery of the initial privacy notice not later than when the customer relationship is established, with annual notices thereafter subject to exceptions. No 30-day or 90-day grace period applies, and the notice is mandatory rather than provided only on request.",
     "topic": "Reg S-P privacy notice",
     "chapter": 19,
     "difficulty": "medium",
@@ -1080,15 +1080,15 @@ window.SIE_EXAMS = [
     "n": 63
    },
    {
-    "q": "A corporate bond with a $1,000 par value pays a 6% coupon in semiannual installments and is currently trading at $1,200. What is the bond's current yield?",
+    "q": "A corporate bond with a $1,000 par value and a 6% coupon is currently trading at $1,200.00. What is the bond's current yield?",
     "choices": [
+     "4.0%",
      "5.0%",
      "6.0%",
-     "7.2%",
-     "4.0%"
+     "7.2%"
     ],
-    "answer": 0,
-    "explanation": "Current yield equals annual income divided by current market price. The 6% coupon pays $30 every six months, so annual income is $60; $60 / $1,200 = 5.0%. The tempting 6.0% answer is the nominal (coupon) yield based on par, which is wrong because the bond trades at a premium above par.",
+    "answer": 1,
+    "explanation": "Current yield equals annual income divided by market price: $60.00 ÷ $1,200.00 = 5.0%. The 6.0% figure is the nominal (coupon) yield based on par, which overstates the yield because the bond trades at a premium.",
     "topic": "Current yield (semiannual coupon)",
     "chapter": 18,
     "difficulty": "hard",
@@ -1097,15 +1097,15 @@ window.SIE_EXAMS = [
     "n": 64
    },
    {
-    "q": "An investor sells short 100 shares of Vanta Corp at $48 per share and simultaneously buys 1 Vanta call with a $50 strike for a premium of $3. What is the breakeven price on this position?",
+    "q": "An investor sells short 100 shares of Company XYZ at $48.00 per share and buys 1 XYZ 50 call at a premium of $3.00. What is the breakeven point on the position?",
     "choices": [
-     "$51",
-     "$53",
-     "$45",
-     "$50"
+     "$45.00",
+     "$50.00",
+     "$51.00",
+     "$53.00"
     ],
-    "answer": 2,
-    "explanation": "For a short stock position hedged with a long call, breakeven equals the short sale price minus the premium paid: $48 - $3 = $45. The investor profits if the stock falls below $45; the $51 and $53 figures wrongly add the premium, which applies to a long-stock/long-put setup, not this one.",
+    "answer": 0,
+    "explanation": "For short stock hedged with a long call, breakeven equals the short sale price minus the premium paid: $48.00 − $3.00 = $45.00. The investor profits only if the stock falls below $45.00; adding the premium applies to long stock protected by a long put, not to this position.",
     "topic": "Options breakeven (short stock + long call)",
     "chapter": 18,
     "difficulty": "hard",
@@ -1114,15 +1114,15 @@ window.SIE_EXAMS = [
     "n": 65
    },
    {
-    "q": "A customer opens a new margin account and wants to buy 100 shares of a stock priced at $18 per share. Reg T initial margin is 50%, and FINRA imposes a $2,000 minimum equity requirement. What minimum must the customer deposit?",
+    "q": "A customer opens a new margin account and purchases 100 shares of stock at $18.00 per share. What minimum deposit is required?",
     "choices": [
-     "$900, which is 50% of the $1,800 purchase",
-     "$1,800, the full purchase amount",
-     "$1,700, the price minus a small margin",
-     "$2,000, even though it exceeds the purchase price"
+     "$900.00",
+     "$1,700.00",
+     "$1,800.00",
+     "$2,000.00"
     ],
-    "answer": 1,
-    "explanation": "Reg T 50% would require only $900, but the FINRA $2,000 minimum equity rule applies, yet it can never force a deposit greater than 100% of the purchase price. Because the trade is only $1,800, the customer deposits the full $1,800 rather than $2,000, since you never pay more than the cost of the stock.",
+    "answer": 2,
+    "explanation": "Regulation T would require only 50%, or $900.00, but the $2,000 minimum equity requirement for a new margin account applies. Because a required deposit can never exceed 100% of the purchase price, the customer deposits the full $1,800.00 rather than $2,000.00.",
     "topic": "Margin minimum equity trap",
     "chapter": 18,
     "difficulty": "hard",
@@ -1131,15 +1131,15 @@ window.SIE_EXAMS = [
     "n": 66
    },
    {
-    "q": "Northwind Industries declares a cash dividend to shareholders of record on Thursday, July 17. Assuming a regular-way T+1 settlement cycle and no intervening holidays, on what date does the stock trade ex-dividend?",
+    "q": "A corporation declares a cash dividend payable to shareholders of record on Thursday, July 17. Under regular way settlement, the stock begins trading ex-dividend on:",
     "choices": [
-     "Thursday, July 17 (the record date itself)",
-     "Friday, July 18 (one business day after record)",
-     "Wednesday, July 16 (one business day before record)",
-     "Monday, July 21 (the payable date)"
+     "Wednesday, July 16.",
+     "Thursday, July 17.",
+     "Friday, July 18.",
+     "Monday, July 21."
     ],
-    "answer": 2,
-    "explanation": "Under the T+1 settlement cycle, the ex-dividend date is one business day before the record date, so it falls on Wednesday, July 16. A buyer on the ex-date does not settle until after the record date and therefore is not entitled to the dividend; the record date and the day after are too late to qualify.",
+    "answer": 1,
+    "explanation": "Under the T+1 settlement cycle, the ex-dividend date is the same business day as the record date — Thursday, July 17. A purchase on Wednesday, July 16 settles on the record date and receives the dividend, while a purchase on or after the ex-date settles after the record date and is not entitled to it. The one-business-day-before convention applied under the former T+2 cycle.",
     "topic": "Ex-dividend date (T+1)",
     "chapter": 18,
     "difficulty": "hard",
@@ -1148,15 +1148,15 @@ window.SIE_EXAMS = [
     "n": 67
    },
    {
-    "q": "A registered representative arranges a private securities transaction for a customer outside the scope of her employment without notifying her firm. Considering this conduct and interpositioning, evaluate the statements: I. Selling away involves effecting securities transactions away from the firm without prior written notice and approval. II. Interpositioning improperly places a third party between the customer and the best available market. III. Both practices are permitted as long as the customer consents.",
+    "q": "A registered representative (RR) effects securities transactions for customers outside the scope of the RR's employment without providing prior written notice to the employing member. This practice is known as:",
     "choices": [
-     "I only",
-     "I and II",
-     "II and III",
-     "I, II and III"
+     "churning.",
+     "interpositioning.",
+     "selling away.",
+     "freeriding."
     ],
-    "answer": 1,
-    "explanation": "Statement I correctly defines selling away (private securities transactions without firm notice and approval), and statement II correctly defines interpositioning. Statement III is false because both practices are prohibited regardless of customer consent, so the best answer is I and II only.",
+    "answer": 2,
+    "explanation": "Selling away is effecting private securities transactions outside the firm without the required prior written notice and, when compensation is involved, written approval. Interpositioning — placing a third party between a customer and the best available market — is a separate prohibited practice, and customer consent does not make either one permissible.",
     "topic": "Selling away & interpositioning",
     "chapter": 19,
     "difficulty": "hard",
@@ -1165,15 +1165,15 @@ window.SIE_EXAMS = [
     "n": 68
    },
    {
-    "q": "Maya, a registered representative at Harbor Point Securities, drafts a market commentary on emerging-market debt and emails identical copies to 24 of her individual retail clients within a single 30-calendar-day period. How is this piece classified under FINRA's communications rules?",
+    "q": "A registered representative distributes an identical written market commentary to 24 retail investors within a 30-calendar-day period. Under FINRA rules, the communication is classified as:",
     "choices": [
-     "Correspondence, because it reached 25 or fewer retail investors in 30 days",
-     "A retail communication, because it was distributed to multiple retail investors",
-     "An institutional communication, because it covers sophisticated debt products",
-     "A public appearance, because identical content reached numerous investors"
+     "correspondence.",
+     "a retail communication.",
+     "an institutional communication.",
+     "a public appearance."
     ],
     "answer": 0,
-    "explanation": "A communication distributed to 25 or fewer retail investors within any 30 calendar-day period is correspondence; one made available to MORE THAN 25 retail investors in that window is a retail communication. Maya reached 24 clients, which does not exceed 25, so the piece is correspondence — reaching multiple retail investors alone does not make it a retail communication. It is not an institutional communication because the recipients are individual retail clients, and the sophistication of the product is irrelevant to the classification.",
+    "explanation": "A written communication distributed to 25 or fewer retail investors within any 30-calendar-day period is correspondence; a retail communication is one distributed to more than 25 retail investors in that window. Because the recipients are retail investors, the piece cannot be an institutional communication regardless of the product discussed.",
     "topic": "Communications categories",
     "chapter": 20,
     "difficulty": "hard",
@@ -1182,15 +1182,15 @@ window.SIE_EXAMS = [
     "n": 69
    },
    {
-    "q": "Which of the following statements correctly distinguishes the MSRB from FINRA with respect to municipal securities?",
+    "q": "Which of the following statements correctly describes the regulatory role of the Municipal Securities Rulemaking Board (MSRB)?",
     "choices": [
-     "The MSRB both writes and enforces municipal rules; FINRA plays no municipal role",
-     "The MSRB is a division of the SEC that directly examines and fines dealers",
-     "The MSRB writes rules for municipal dealers; FINRA and bank regulators enforce them",
-     "Neither the MSRB nor FINRA has authority; the states alone regulate municipals"
+     "The MSRB writes and enforces its own rules for municipal securities dealers.",
+     "The MSRB is a division of the SEC and directly examines municipal dealers.",
+     "The MSRB writes rules that are enforced by FINRA and the federal bank regulators.",
+     "The MSRB lacks rulemaking authority because states regulate municipal securities."
     ],
     "answer": 2,
-    "explanation": "The MSRB is a rule-writing SRO with no enforcement power of its own; its rules are enforced against broker-dealers by FINRA and against bank dealers by the federal bank regulators. The strongest distractor reverses the roles by giving the MSRB enforcement power, and the MSRB is an independent SRO subject to SEC oversight — not an SEC division — so it never examines or fines dealers itself.",
+    "explanation": "The MSRB is a rulemaking self-regulatory organization with no enforcement power of its own; FINRA enforces its rules against broker-dealers, and the federal bank regulators enforce them against bank dealers. The MSRB is subject to Securities and Exchange Commission (SEC) oversight but is not an SEC division and never examines or fines dealers.",
     "topic": "SROs vs SEC / MSRB",
     "chapter": 20,
     "difficulty": "medium",
@@ -1199,15 +1199,15 @@ window.SIE_EXAMS = [
     "n": 70
    },
    {
-    "q": "An associated person buys 100 shares of common stock at $48 and simultaneously purchases one put option on the same stock with a $48 strike for a premium of $3.50. At what stock price does this protective-put position break even at expiration, and what is the maximum loss?",
+    "q": "An investor buys 100 shares of Company ABC at $48.00 per share and buys 1 ABC 48 put at a premium of $3.50. What are the breakeven point and the maximum potential loss?",
     "choices": [
-     "Breakeven $51.50; maximum loss $350",
+     "Breakeven $44.50; maximum loss $350.00",
      "Breakeven $44.50; maximum loss unlimited",
-     "Breakeven $51.50; maximum loss $4,800",
-     "Breakeven $44.50; maximum loss $350"
+     "Breakeven $51.50; maximum loss $350.00",
+     "Breakeven $51.50; maximum loss $4,800.00"
     ],
-    "answer": 0,
-    "explanation": "For long stock plus a long put, breakeven equals the stock cost plus the premium paid: $48 + $3.50 = $51.50. Maximum loss is capped because the put lets the holder sell at $48: total cost of $51.50 minus the $48 exercise recovery equals $3.50 per share, or $350 on 100 shares. Choice 1 wrongly subtracts the premium (a call breakeven) and calls the loss unlimited, ignoring the downside protection the put provides.",
+    "answer": 2,
+    "explanation": "For long stock protected by a long put, breakeven equals the stock cost plus the premium: $48.00 + $3.50 = $51.50. The put guarantees a sale at $48.00, capping the loss at $3.50 per share, or $350.00 on 100 shares; subtracting the premium yields a call breakeven, and the loss cannot be unlimited with the put in place.",
     "topic": "Options breakeven / max loss",
     "chapter": 20,
     "difficulty": "hard",
@@ -1216,15 +1216,15 @@ window.SIE_EXAMS = [
     "n": 71
    },
    {
-    "q": "A registered representative wants to engage in a private securities transaction by selling interests in a real-estate limited partnership to friends outside her firm, for which she will receive selling compensation. Which statements are TRUE under FINRA rules? I. She must provide prior written notice to her employing member describing the transaction in detail. II. If she will be compensated, the firm must approve the transaction in writing and record it on its books. III. A transaction in which she receives no compensation requires no notice of any kind.",
+    "q": "A registered representative (RR) will receive selling compensation for participating in a private securities transaction. Which of the following actions must the RR take?",
     "choices": [
-     "I and II only",
-     "I and III only",
-     "II and III only",
-     "I, II and III"
+     "Provide prior written notice and obtain the employing member's written approval",
+     "Provide verbal notice to the employing member after the transaction is completed",
+     "File written notice with FINRA at least 30 days before the first transaction",
+     "Take no action, provided none of the purchasers is a customer of the member"
     ],
     "answer": 0,
-    "explanation": "Prior written notice to the employing member is always required for a private securities transaction (I), and when the rep will be compensated the firm must approve it in writing and record it on its books as if it were the firm's own business (II). Statement III is false: even an uncompensated private securities transaction still requires prior written notice, so the notice obligation is never eliminated.",
+    "explanation": "A private securities transaction always requires prior written notice to the employing member, and when the RR will receive selling compensation, the member must approve the transaction in writing and record it on its books. Notice is required even when no compensation is involved, and it goes to the member, not to FINRA.",
     "topic": "Private securities transactions",
     "chapter": 20,
     "difficulty": "hard",
@@ -1233,15 +1233,15 @@ window.SIE_EXAMS = [
     "n": 72
    },
    {
-    "q": "Devon was convicted of a securities-related misdemeanor (a fraudulent-misrepresentation charge) seven years ago and has otherwise a clean record. With respect to associating with a FINRA member firm, which statement is correct?",
+    "q": "An individual was convicted of a securities-related misdemeanor seven years ago. With respect to association with a FINRA member firm, the individual is:",
     "choices": [
-     "He is not disqualified because only felony convictions trigger the provision",
-     "He is disqualified because the securities misdemeanor falls within 10 years",
-     "He would face disqualification only if the conviction were within 5 years",
-     "He is barred permanently and may never associate with any member firm"
+     "not disqualified, because only felony convictions trigger disqualification.",
+     "not disqualified, because the conviction occurred more than five years ago.",
+     "permanently barred from associating with a member firm in any capacity.",
+     "subject to statutory disqualification, because the conviction is within 10 years."
     ],
-    "answer": 1,
-    "explanation": "Statutory disqualification is triggered by any felony within the past 10 years OR a securities/investment-related misdemeanor within the past 10 years; Devon's securities misdemeanor was seven years ago, placing it inside the window. The felonies-only view is the strongest distractor — it is true that ordinary misdemeanors do not disqualify, but investment-related ones do — and disqualification is not an automatic lifetime bar, since the firm may apply for eligibility.",
+    "answer": 3,
+    "explanation": "Statutory disqualification is triggered by any felony, or any securities- or investment-related misdemeanor, within the past 10 years; a securities misdemeanor seven years ago falls inside the window. Ordinary misdemeanors do not disqualify, but investment-related ones do, and disqualification is not a permanent bar because the firm may apply for continued eligibility.",
     "topic": "Statutory disqualification",
     "chapter": 20,
     "difficulty": "medium",
@@ -1250,15 +1250,15 @@ window.SIE_EXAMS = [
     "n": 73
    },
    {
-    "q": "Which of the following is NOT accurate regarding SIPC coverage for a customer of a failed broker-dealer?",
+    "q": "The Securities Investor Protection Corporation (SIPC) protects customers of a failed broker-dealer against all of the following EXCEPT:",
     "choices": [
-     "SIPC protects up to $500,000 per separate customer, of which no more than $250,000 may be for cash claims",
-     "SIPC reimburses customers for losses caused by a decline in the market value of their securities",
-     "SIPC steps in when a member broker-dealer fails financially and customer assets are missing",
-     "Commodity futures contracts are generally not covered by SIPC"
+     "missing securities held at the failed firm.",
+     "missing cash balances, up to a $250,000 maximum.",
+     "declines in the market value of securities.",
+     "missing customer assets, up to $500,000 in total."
     ],
-    "answer": 1,
-    "explanation": "SIPC covers the loss of customer cash and securities when a member broker-dealer fails, up to $500,000 total per separate customer with a $250,000 sublimit on cash; it does NOT cover ordinary market losses, making choice 1 the inaccurate statement and thus the answer. The protection addresses a missing-assets/firm-failure event, not poor investment performance, so the other three statements are all correct.",
+    "answer": 2,
+    "explanation": "SIPC covers the loss of customer cash and securities when a member firm fails, up to $500,000 per separate customer with a $250,000 limit on cash claims; it does not cover ordinary market losses. Commodity futures contracts are likewise generally outside SIPC coverage.",
     "topic": "SIPC scope",
     "chapter": 20,
     "difficulty": "medium",
@@ -1267,15 +1267,15 @@ window.SIE_EXAMS = [
     "n": 74
    },
    {
-    "q": "Priya passed her Series 7 and registered with a member firm on March 1, 2024. Under FINRA's continuing-education Regulatory Element requirements as currently structured (effective 2023), when must she complete the Regulatory Element?",
+    "q": "Under FINRA's continuing education requirements, a registered person must complete the Regulatory Element:",
     "choices": [
-     "Within 120 days of registration, then every two years",
-     "On the second anniversary of her registration and every three years thereafter",
-     "Annually, by December 31 of each calendar year for as long as she remains registered",
-     "On the first anniversary of registration only, with no further requirement"
+     "within 120 days of initial registration and every two years thereafter.",
+     "by the first anniversary of registration, with no continuing requirement.",
+     "by the second anniversary of registration and every three years thereafter.",
+     "annually, by December 31 of each calendar year a registration is held."
     ],
-    "answer": 2,
-    "explanation": "Effective January 1, 2023, FINRA changed the Regulatory Element so that registered persons must complete it annually, by December 31 of each year they hold a registration; the former cadence tied to the second anniversary and a three-year cycle was eliminated. Choice 1 describes that outdated schedule, and choice 0 confuses the Regulatory Element with unrelated post-registration windows.",
+    "answer": 3,
+    "explanation": "Effective January 1, 2023, the Regulatory Element must be completed annually, by December 31 of each year the person holds a registration. The second-anniversary and three-year cycle describes the prior schedule, which has been eliminated.",
     "topic": "Continuing education Regulatory Element",
     "chapter": 20,
     "difficulty": "medium",

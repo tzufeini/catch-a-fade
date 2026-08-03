@@ -1025,357 +1025,357 @@ window.SIE_DATA = {
    ],
    "questions": [
     {
-     "q": "A municipal securities firm that is a bank dealer (not a FINRA member) is found to have used misleading advertising in violation of MSRB rules. Which organization will most likely bring the enforcement action?",
+     "q": "A bank dealer is found to have violated an advertising rule written by the Municipal Securities Rulemaking Board (MSRB). Enforcement of MSRB rules against a bank dealer is the responsibility of:",
      "choices": [
-      "The MSRB, because it wrote the rule that was violated and enforces its own rules against all dealers",
-      "The appropriate banking regulator (such as the FRB, OCC, or FDIC), because the firm is a bank dealer",
-      "FINRA, because all municipal securities advertising rules are enforced by FINRA regardless of membership",
-      "The SEC's Division of Trading and Markets, acting as the primary day-to-day enforcer of MSRB rules"
+      "the MSRB, which wrote the advertising rule.",
+      "the Financial Industry Regulatory Authority (FINRA).",
+      "the Securities and Exchange Commission (SEC).",
+      "the appropriate federal banking regulator."
      ],
-     "answer": 1,
-     "explanation": "The MSRB writes municipal securities rules but does not enforce them. Enforcement is split: FINRA enforces MSRB rules against its broker-dealer members, while for a bank dealer the appropriate banking regulator (FRB, OCC, or FDIC) brings the action. Because this firm is a bank dealer and not a FINRA member, the bank regulator is the enforcer.",
+     "answer": 3,
+     "explanation": "The MSRB writes rules for municipal securities dealers but does not enforce them. FINRA enforces MSRB rules against its broker-dealer members; for a bank dealer, the appropriate federal banking regulator (FRB, OCC, or FDIC) brings the enforcement action. Because a bank dealer is not a FINRA member, the banking regulator is the enforcer.",
      "topic": "MSRB enforcement",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Which of the following is NOT a function performed or guaranteed by SIPC?",
+     "q": "The Securities Investor Protection Corporation (SIPC) provides each of the following protections EXCEPT:",
      "choices": [
-      "Returning customer securities and cash up to $500,000, of which up to $250,000 may be cash",
-      "Covering customers of a broker-dealer that becomes insolvent and is liquidated",
-      "Protecting investors against a decline in the market value of securities held in their account",
-      "Stepping in once a failed firm's own resources are insufficient to satisfy customer claims"
+      "coverage of customer claims up to $500,000, of which no more than $250,000 may be cash.",
+      "coverage of customers of a member broker-dealer that fails financially and is liquidated.",
+      "coverage of losses caused by a decline in the market value of a customer's securities.",
+      "coverage of customer claims once the failed firm's own assets are insufficient to satisfy them."
      ],
      "answer": 2,
-     "explanation": "SIPC protects customers against the loss of cash and securities when a member broker-dealer fails financially, up to $500,000 per separate customer (of which no more than $250,000 may be cash). It explicitly does NOT protect against market losses, so that statement is the exception. The other choices accurately describe SIPC's coverage limit and its trigger.",
+     "explanation": "SIPC protects customers against the loss of cash and securities when a member broker-dealer fails financially, up to $500,000 per separate customer (of which no more than $250,000 may be cash), stepping in when the firm's own assets fall short. SIPC does not protect against market losses, making that choice the exception.",
      "topic": "SIPC",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "A firm buys 1,000 shares into its own inventory and later sells those shares to a retail customer, charging a markup over its current cost. In this transaction the firm acted as a:",
+     "q": "A broker-dealer buys 1,000 shares of stock into its inventory and later sells those shares to a customer at a price that includes a markup over the firm's cost. In this transaction, the firm is acting as a:",
      "choices": [
-      "Broker (agent), and the compensation is a commission",
-      "Dealer (principal), and the compensation is a markup",
-      "Broker (agent), and the compensation is a markup",
-      "Dealer (principal), and the compensation is a commission"
+      "broker, earning a commission.",
+      "broker, earning a markup.",
+      "dealer, earning a commission.",
+      "dealer, earning a markup."
      ],
-     "answer": 1,
-     "explanation": "Selling from its own inventory means the firm took the other side of the trade as a principal (a dealer), and a principal is compensated by a markup. A broker/agent never owns the security and is paid a commission. Pairing 'principal' with 'commission' or 'agent' with 'markup' is the trap.",
+     "answer": 3,
+     "explanation": "A firm that sells from its own inventory takes the other side of the trade as a principal (dealer) and is compensated by a markup. A broker (agent) never owns the security and is paid a commission. Pairing dealer with commission, or broker with markup, is the trap.",
      "topic": "Broker vs dealer",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "An introducing firm operates on a fully-disclosed basis with its clearing firm. Which statement is TRUE?",
+     "q": "An introducing broker-dealer clears its customer trades on a fully disclosed basis. Which of the following statements describes this arrangement?",
      "choices": [
-      "Customer funds and securities are held by the introducing firm, which performs all back-office processing",
-      "The clearing firm knows the identity of the introducing firm's customers and holds their funds and securities",
-      "The clearing firm sees only an omnibus account and does not know the underlying customers' identities",
-      "The introducing firm guarantees settlement of all trades directly to the DTCC on the clearing firm's behalf"
+      "The introducing firm holds customer funds and securities and performs its own back-office processing.",
+      "The clearing firm knows each customer's identity and holds the customers' funds and securities.",
+      "The clearing firm carries the customers in a single commingled account without knowing their identities.",
+      "The introducing firm guarantees settlement of all customer trades directly to the clearing corporation."
      ],
      "answer": 1,
-     "explanation": "In a fully-disclosed arrangement, the introducing firm discloses each customer's identity to the clearing firm, which carries the accounts and holds the assets. The omnibus description is the opposite arrangement (individual identities are hidden), and the introducing firm neither holds customer assets nor guarantees settlement to the DTCC.",
+     "explanation": "In a fully disclosed arrangement, the introducing firm discloses each customer's identity to the clearing firm, which carries the accounts and holds customer assets. A single commingled account with hidden identities describes an omnibus arrangement, and the introducing firm neither holds customer assets nor guarantees settlement to the clearing corporation.",
      "topic": "Fully-disclosed vs omnibus",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "Match the responsibility to the correct party: (I) maintains a record of the registered owners of a company's stock; (II) ensures the number of shares issued never exceeds the amount authorized; (III) cancels old certificates and issues new ones upon transfer. Which assignment is correct?",
+     "q": "A corporation's registrar performs which of the following functions?",
      "choices": [
-      "I and III are the transfer agent; II is the registrar",
-      "I and II are the registrar; III is the transfer agent",
-      "I, II, and III are all functions of the transfer agent",
-      "I is the registrar; II and III are the transfer agent"
+      "Maintaining the record of the corporation's registered shareholders",
+      "Ensuring that shares issued do not exceed the number of shares authorized",
+      "Canceling old certificates and issuing new certificates upon transfer",
+      "Calculating and disbursing dividend payments to shareholders of record"
      ],
-     "answer": 0,
-     "explanation": "The transfer agent issues and cancels certificates and maintains the record of registered owners (I and III). The registrar's distinct job is the audit-style control of ensuring shares outstanding never exceed shares authorized (II). Assigning the over-issuance check to the transfer agent, or the recordkeeping to the registrar, is the trap.",
+     "answer": 1,
+     "explanation": "The registrar's function is the audit-style control of ensuring that shares outstanding never exceed shares authorized. Maintaining the record of registered owners and canceling old certificates and issuing new ones are functions of the transfer agent, and dividend disbursement is a paying agent function. Assigning the transfer agent's duties to the registrar is the trap.",
      "topic": "Transfer agent vs registrar",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "A regular-way trade in a corporate stock is executed on Tuesday, June 16, with no intervening holidays. Under current rules it settles on which date?",
+     "q": "A customer buys shares of a corporate stock in a regular way transaction on Tuesday, June 16, with no intervening holidays. The trade settles on:",
      "choices": [
-      "Tuesday, June 16 (same day)",
-      "Wednesday, June 17 (T+1)",
-      "Thursday, June 18 (T+2)",
-      "Friday, June 19 (T+3)"
+      "Tuesday, June 16.",
+      "Wednesday, June 17.",
+      "Thursday, June 18.",
+      "Friday, June 19."
      ],
      "answer": 1,
-     "explanation": "Regular-way settlement for most securities is now T+1, so a Tuesday trade settles the next business day, Wednesday June 17. T+2 and T+3 reflect older cycles and are dated traps; same-day (cash) settlement applies only to cash trades, not regular-way.",
+     "explanation": "Regular way settlement for most securities is T+1, so a Tuesday trade settles the next business day, Wednesday, June 17. T+2 and T+3 reflect older settlement cycles, and same-day settlement applies only to cash-settlement trades, not regular way trades.",
      "topic": "Settlement T+1",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "An institution that owns and invests $60 million in securities wants to buy unregistered securities resold under Rule 144A. Which statement about its status is TRUE?",
+     "q": "An institution that owns and invests $60 million in securities on a discretionary basis wants to purchase securities being resold under Rule 144A. Which of the following statements describes the institution's status?",
      "choices": [
-      "It qualifies as a QIB because its portfolio exceeds the $50 million threshold",
-      "It qualifies as a QIB because accredited institutions may purchase under Rule 144A",
-      "It is an institutional accredited investor but it does not qualify as a QIB",
-      "It is neither an accredited investor nor a QIB until it reaches $100 million"
+      "It is a qualified institutional buyer (QIB) because its portfolio exceeds $50 million.",
+      "It is a QIB because it satisfies the standard for accredited investor status.",
+      "It is an institutional accredited investor but does not qualify as a QIB.",
+      "It is neither an accredited investor nor a QIB at its current portfolio size."
      ],
      "answer": 2,
-     "explanation": "QIB status generally requires owning and investing on a discretionary basis at least $100 million in securities of unaffiliated issuers (only registered broker-dealers qualify at $10 million). With $60 million the institution easily meets the institutional accredited-investor standard but cannot buy under Rule 144A as a QIB. The '$50 million threshold' is fabricated, accredited status alone never confers 144A eligibility, and the $100 million figure applies to QIB status only — accreditation requires far less.",
+     "explanation": "QIB status generally requires owning and investing on a discretionary basis at least $100 million in securities of unaffiliated issuers (registered broker-dealers qualify at $10 million). With $60 million, the institution meets the institutional accredited investor standard but cannot purchase under Rule 144A as a QIB. There is no $50 million threshold, and accredited status alone never confers Rule 144A eligibility.",
      "topic": "Accredited/QIB",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Which of the following individuals would NOT, by income or net worth alone, qualify as an accredited investor under Reg D?",
+     "q": "Under Regulation D, which of the following individuals does NOT qualify as an accredited investor?",
      "choices": [
-      "A person with $250,000 of income in each of the last two years who reasonably expects the same this year",
-      "A married couple with $350,000 of joint income in each of the last two years expecting the same",
-      "A person whose total net worth is $1.1 million, of which $400,000 is equity in their primary residence",
-      "A single person with $210,000 of income in each of the last two years expecting the same this year"
+      "An individual with annual income of $250,000 in each of the two most recent years who expects the same this year",
+      "A married couple with joint annual income of $350,000 in each of the two most recent years who expect the same this year",
+      "An individual with a net worth of $1.1 million that includes $400,000 of equity in a primary residence",
+      "An individual with annual income of $210,000 in each of the two most recent years who expects the same this year"
      ],
      "answer": 2,
-     "explanation": "Net worth for accreditation excludes the equity in a primary residence, so the third person's qualifying net worth is only $700,000, below the $1 million threshold. The income tests ($200,000 individual / $300,000 joint in each of the last two years, reasonably expected to repeat) are met by the other three choices.",
+     "explanation": "Net worth for accreditation excludes equity in a primary residence, so this individual's qualifying net worth is only $700,000, below the $1 million threshold. The income tests ($200,000 individual or $300,000 joint in each of the two most recent years, reasonably expected to continue) are met by the other three individuals.",
      "topic": "Accredited investor",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "A money manager crosses a large block of stock for a pension fund directly with another institution through an electronic communication network, with no broker-dealer acting as intermediary. This trade occurs in the:",
+     "q": "A pension fund sells a block of exchange-listed stock directly to another institution through an electronic communications network (ECN), with no broker-dealer acting as intermediary. This trade takes place in the:",
      "choices": [
-      "Primary market, because the block size makes it an underwriting",
-      "Second market, because exchange-listed securities are involved",
-      "Third market, because an institution is trading exchange-listed stock off-exchange through a market maker",
-      "Fourth market, because institutions are trading directly with each other"
+      "primary market.",
+      "second market.",
+      "third market.",
+      "fourth market."
      ],
      "answer": 3,
-     "explanation": "The fourth market is direct institution-to-institution trading, typically via ECNs, with no broker-dealer intermediary, which is exactly this scenario. The third market also involves off-exchange trading of listed securities but still through a broker-dealer/market maker. The absence of a dealer is what separates fourth from third.",
+     "explanation": "The fourth market is direct institution-to-institution trading, typically through an ECN, with no broker-dealer intermediary. The third market also involves off-exchange trading of listed securities but is conducted through a market maker. The absence of a broker-dealer distinguishes the fourth market from the third.",
      "topic": "Markets",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "Which statement correctly distinguishes an investment adviser (IA) from a broker-dealer (BD)?",
+     "q": "Which of the following statements correctly distinguishes an investment adviser (IA) from a broker-dealer (BD)?",
      "choices": [
-      "An IA provides securities advice for compensation, while a BD effects trades for customers' accounts",
-      "An IA is paid commissions on each executed trade, while a BD charges ongoing asset-based advisory fees",
-      "An IA registers primarily with FINRA, while a BD registers with the SEC and the states exclusively",
-      "An IA is held to a suitability standard, while a BD owes its clients an ongoing fiduciary duty"
+      "An IA provides securities advice for compensation, while a BD effects transactions for the accounts of others.",
+      "An IA is paid a commission on each executed trade, while a BD charges an asset-based advisory fee.",
+      "An IA registers with FINRA, while a BD registers with the Securities and Exchange Commission (SEC) or the states.",
+      "An IA is subject to a suitability standard, while a BD owes its customers an ongoing fiduciary duty."
      ],
      "answer": 0,
-     "explanation": "An investment adviser is in the business of giving securities advice for compensation; a broker-dealer effects securities transactions for the accounts of others. The reversed-compensation choice is the strongest trap: it is the BD that earns trade commissions and the IA that typically charges asset-based fees. The duty standards are likewise reversed elsewhere — the IA is the fiduciary (the BD follows Reg BI) — and IAs register with the SEC or the states, never with FINRA.",
+     "explanation": "An IA is in the business of giving securities advice for compensation; a BD effects securities transactions for the accounts of others. The compensation choice is reversed: the BD earns trade commissions and the IA typically charges asset-based fees. The duty standards are likewise reversed — the IA is the fiduciary — and IAs register with the SEC or the states, never with FINRA.",
      "topic": "IA vs BD",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "Place these post-trade roles in order for an exchange-listed equity trade: (I) NSCC nets and guarantees the obligations between the buying and selling firms; (II) DTC moves the securities by book-entry between participant accounts; (III) the two broker-dealers report and submit the matched trade for clearance. Which is the correct sequence?",
+     "q": "In the clearance and settlement of an exchange-listed equity trade, which of the following entities nets and guarantees the obligations between the buying and selling firms?",
      "choices": [
-      "III, then I, then II",
-      "I, then II, then III",
-      "II, then III, then I",
-      "III, then II, then I"
+      "The Depository Trust Company (DTC)",
+      "The National Securities Clearing Corporation (NSCC)",
+      "The Options Clearing Corporation (OCC)",
+      "The Securities Investor Protection Corporation (SIPC)"
      ],
-     "answer": 0,
-     "explanation": "Trades are first submitted and matched by the broker-dealers (III), then the NSCC nets and guarantees the resulting obligations as central counterparty (I), and finally DTC effects book-entry delivery of the securities (II). NSCC (netting/CCP) and DTC (depository/settlement) are sibling DTCC subsidiaries; reversing their order is the trap.",
+     "answer": 1,
+     "explanation": "After the broker-dealers submit and match the trade, the NSCC acts as central counterparty, netting and guaranteeing the resulting obligations; the DTC then effects book-entry delivery of the securities. NSCC (netting) and DTC (depository) are sibling DTCC subsidiaries, and confusing their roles is the trap. The OCC clears listed options, and SIPC protects customers of failed firms.",
      "topic": "DTCC/NSCC/DTC",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "A 6% corporate bond that pays interest semi-annually is quoted at 80. What is its current yield?",
+     "q": "A 6% corporate bond that pays interest semiannually is quoted at 80. What is the bond's current yield?",
      "choices": [
+      "4.80%",
       "6.00%",
       "7.50%",
-      "4.80%",
       "12.00%"
      ],
-     "answer": 1,
-     "explanation": "Current yield equals annual interest divided by market price. The 6% bond pays $60 per year (two $30 coupons), and a quote of 80 means $800, so $60 / $800 = 7.50%. Answering 6% ignores the discount price (nominal-yield trap), and 4.80% multiplies by price instead of dividing.",
+     "answer": 2,
+     "explanation": "Current yield equals annual interest divided by market price. The bond pays $60.00 per year (two $30.00 coupons), and a quote of 80 equals $800.00, so $60.00 / $800.00 = 7.50%. Answering 6.00% ignores the discount price (the nominal-yield trap), and 4.80% multiplies by the price instead of dividing.",
      "topic": "Current yield",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "A prime brokerage arrangement is BEST described by which statement?",
+     "q": "Which of the following arrangements describes a prime brokerage account?",
      "choices": [
-      "An introducing firm forwards all of its customer orders to a single clearing firm on a fully disclosed basis",
-      "A carrying firm holds another firm's customers in one commingled account without learning their identities",
-      "A retail broker-dealer holds a customer's fully paid securities in street name to simplify trade settlement",
-      "One broker provides custody, clearing, and financing while the client executes trades through several others"
+      "An introducing firm sends all of its customer orders to a single clearing firm on a fully disclosed basis.",
+      "A carrying firm holds another firm's customers in a single commingled account without knowing their identities.",
+      "A broker-dealer holds a customer's fully paid securities in street name to facilitate trade settlement.",
+      "One firm provides custody, clearing, and financing while the customer executes trades through other broker-dealers."
      ],
      "answer": 3,
-     "explanation": "Prime brokerage lets an institutional client (often a hedge fund) execute through multiple executing brokers while a single prime broker centralizes custody, clearing, financing, securities lending, and reporting. The commingled-account choice — the strongest distractor — describes an omnibus clearing arrangement, and the single-clearing-firm choice describes a fully disclosed relationship; street-name custody alone lacks the multi-executing-broker hallmark of prime brokerage.",
+     "explanation": "Prime brokerage allows an institutional customer, often a hedge fund, to execute through multiple executing brokers while a single prime broker centralizes custody, clearing, financing, and reporting. The commingled account describes an omnibus arrangement, the single clearing firm describes a fully disclosed relationship, and street-name custody alone lacks the multiple-executing-broker feature of prime brokerage.",
      "topic": "Prime brokerage",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "Each of the following operates under SEC oversight. Which one is NOT a self-regulatory organization (SRO) or designated rule-writer in the manner described?",
+     "q": "Which of the following organizations is NOT a self-regulatory organization (SRO)?",
      "choices": [
-      "FINRA, which writes and enforces conduct rules for its broker-dealer members",
-      "The MSRB, which writes rules for municipal securities firms but relies on others to enforce them",
-      "The Federal Reserve Board, which sets the initial margin requirement under Regulation T",
-      "The CBOE, which writes and enforces rules for its options-trading members as a registered exchange"
+      "The Financial Industry Regulatory Authority (FINRA)",
+      "The Municipal Securities Rulemaking Board (MSRB)",
+      "The Federal Reserve Board (FRB)",
+      "The Chicago Board Options Exchange (Cboe)"
      ],
      "answer": 2,
-     "explanation": "The FRB is a federal government agency that conducts monetary policy and sets Reg T margin; it is not an SRO. FINRA, the MSRB, and registered exchanges such as the CBOE are SROs or designated rule-writers operating under SEC oversight. The FRB is therefore the exception, even though it does set the initial margin rule.",
+     "explanation": "The FRB is a federal government agency that conducts monetary policy and sets the initial margin requirement under Regulation T; it is not an SRO. FINRA, the MSRB, and registered exchanges such as the Cboe operate as SROs under Securities and Exchange Commission (SEC) oversight. The FRB's role in setting margin makes it the trap.",
      "topic": "Regulators/SROs",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "An investor opens a new long margin account to buy 100 shares of a stock trading at $18. Considering both Reg T and FINRA's minimum-equity rule, how much must the investor deposit?",
+     "q": "A customer opens a new margin account and buys 100 shares of stock at $18.00 per share. What amount must the customer deposit?",
      "choices": [
-      "$450, because the 25% maintenance margin requirement sets the deposit",
-      "$900, because Reg T requires a deposit of 50% of the purchase price",
-      "$1,800, because a required deposit never exceeds the full purchase price",
-      "$2,000, because FINRA's minimum equity applies regardless of trade size"
+      "$450.00",
+      "$900.00",
+      "$1,800.00",
+      "$2,000.00"
      ],
      "answer": 2,
-     "explanation": "The purchase is $1,800. Reg T's 50% would be $900 and FINRA's minimum equity is $2,000, but a customer is never required to deposit more than 100% of the purchase price — so the customer simply pays the full $1,800. Demanding $2,000 on an $1,800 trade is the classic trap; $900 ignores the minimum-equity rule entirely, and 25% is the ongoing maintenance requirement, not an initial deposit.",
+     "explanation": "The purchase totals $1,800.00. Regulation T's 50% would be $900.00 and FINRA's minimum equity is $2,000.00, but a customer is never required to deposit more than 100% of the purchase price, so the customer deposits the full $1,800.00. Requiring $2,000.00 on an $1,800.00 trade is the classic trap; $900.00 ignores the minimum equity rule, and $450.00 reflects the 25% maintenance requirement, not an initial deposit.",
      "topic": "Margin minimum equity",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "Which statement about the relationship between the SEC and FINRA is TRUE?",
+     "q": "Which of the following statements describes the relationship between the Securities and Exchange Commission (SEC) and FINRA?",
      "choices": [
-      "FINRA is a federal government agency created by the Securities Exchange Act of 1934",
-      "FINRA is a self-regulatory organization whose rules and disciplinary actions are subject to SEC oversight and appeal",
-      "The SEC, not FINRA, brings disciplinary actions directly against individual registered representatives for rule violations",
-      "FINRA registers and oversees investment advisers, while the SEC oversees broker-dealers"
+      "FINRA is a federal government agency created by the Securities Exchange Act of 1934.",
+      "FINRA is a self-regulatory organization (SRO) subject to SEC oversight.",
+      "The SEC, not FINRA, disciplines registered representatives who violate FINRA rules.",
+      "FINRA regulates investment advisers, while the SEC regulates broker-dealers."
      ],
      "answer": 1,
-     "explanation": "FINRA is an SRO (a non-governmental membership organization) operating under SEC oversight, and its disciplinary actions can be appealed to the SEC. The SEC, not FINRA, is the government agency created by the 1934 Act; FINRA disciplines its own member reps; and investment advisers are overseen by the SEC or the states, not FINRA.",
+     "explanation": "FINRA is an SRO — a nongovernmental membership organization — operating under SEC oversight, and its disciplinary actions may be appealed to the SEC. The SEC, not FINRA, is the government agency created by the Securities Exchange Act of 1934; FINRA disciplines its own member representatives; and investment advisers are regulated by the SEC or the states, not FINRA.",
      "topic": "SEC vs FINRA",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "Consider these statements about market venues: (I) an IPO of common stock occurs in the primary market; (II) a customer buying NYSE-listed stock through a Nasdaq market maker off the exchange floor is trading in the third market; (III) an investor buying already-issued shares on an exchange is trading in the secondary market. Which are correct?",
+     "q": "A customer buys an exchange-listed stock from a market maker in the over-the-counter (OTC) market. This transaction occurs in the:",
      "choices": [
-      "I and III only",
-      "II and III only",
-      "I, II, and III",
-      "I and II only"
+      "first market.",
+      "second market.",
+      "third market.",
+      "fourth market."
      ],
      "answer": 2,
-     "explanation": "All three are correct: issuer-to-public sales (IPOs) are the primary market; exchange-listed securities traded OTC through a market maker are the third market; and trading of already-issued securities among investors is the secondary market. Each description matches its market precisely.",
+     "explanation": "Exchange-listed securities traded OTC through a market maker constitute the third market. The first market is exchange trading, the second market is OTC trading of unlisted securities, and the fourth market is direct institution-to-institution trading with no broker-dealer intermediary. All are part of the secondary market, where already-issued securities trade among investors.",
      "topic": "Markets",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "A broker-dealer carries another firm's customers in a single commingled account on its books, knowing only the introducing firm and not the individual customers. This describes which arrangement, and who is responsible for knowing the underlying customers?",
+     "q": "A carrying firm holds another broker-dealer's customer positions in a single commingled account and does not know the individual customers' identities. Which of the following statements describes this arrangement?",
      "choices": [
-      "Omnibus; the carrying firm must identify each of the underlying customers",
-      "Omnibus; the introducing firm remains responsible for its customers' identities",
-      "Fully disclosed; the carrying firm knows and carries each customer directly",
-      "Prime brokerage; each executing broker must identify the underlying customers"
+      "It is an omnibus arrangement, and the carrying firm must identify each underlying customer.",
+      "It is an omnibus arrangement, and the introducing firm remains responsible for knowing its customers.",
+      "It is a fully disclosed arrangement, and the carrying firm knows each customer's identity.",
+      "It is a prime brokerage arrangement, and each executing broker must identify the underlying customers."
      ],
      "answer": 1,
-     "explanation": "In an omnibus arrangement the carrying firm holds the introducing firm's customers in one commingled account and does NOT know their individual identities, so the introducing firm retains responsibility for knowing the underlying customers. The strongest distractor keeps the correct omnibus label but shifts the know-your-customer duty to the carrying firm — backwards. Fully disclosed is the opposite structure, and prime brokerage is a multi-executing-broker custody setup, not a commingled clearing account.",
+     "explanation": "In an omnibus arrangement, the carrying firm holds the introducing firm's customers in one commingled account and does not know their identities, so the introducing firm retains responsibility for knowing its customers. The strongest distractor keeps the omnibus label but shifts the know-your-customer duty to the carrying firm. Fully disclosed is the opposite structure, and prime brokerage is a multiple-executing-broker custody arrangement.",
      "topic": "Omnibus accounts",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A registered representative wants to give a year-end gift to a business client. Which gift complies with FINRA's gift rule?",
+     "q": "A registered representative (RR) wants to give a year-end gift in connection with the firm's business. Under FINRA rules, which of the following gifts is permitted?",
      "choices": [
-      "A $150 set of golf clubs, because the limit applies per gift, not per year",
-      "A $90 gift basket of food and wine",
-      "Two separate $75 gifts to the same person in the same year, totaling $150",
-      "A $250 watch, because the higher limit applies when the client is institutional"
+      "A single set of golf clubs valued at $150.00",
+      "A gift basket of food items valued at $90.00",
+      "Two $75.00 gifts to the same person in the same year",
+      "A $250.00 watch given to an institutional client"
      ],
      "answer": 1,
-     "explanation": "FINRA caps gifts at $100 per person per year, so the $90 basket complies. The $150 clubs exceed the limit, the two $75 gifts aggregate to $150 (over the cap), and a client's institutional status does not raise the $100 ceiling. Each wrong choice is built on the per-year aggregation rule.",
+     "explanation": "FINRA limits business-related gifts to $100 per person per year, so the $90.00 gift basket is permitted. The $150.00 golf clubs exceed the limit, the two $75.00 gifts aggregate to $150.00 for the year, and a recipient's institutional status does not raise the $100 ceiling. Each wrong choice turns on the annual aggregation rule.",
      "topic": "Gift limit",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "Which statement comparing the primary and secondary markets is TRUE?",
+     "q": "Which of the following statements about the primary and secondary markets is TRUE?",
      "choices": [
-      "Proceeds of secondary-market sales go to the issuing corporation, just as primary-market proceeds do",
-      "The secondary market is where an underwriter first distributes a new issue to the investing public",
-      "The secondary market is restricted to institutional investors and excludes individual investors",
-      "Primary-market proceeds go to the issuing corporation; secondary-market proceeds go to the selling investor"
+      "Proceeds of both primary and secondary market sales are paid to the issuing corporation.",
+      "A new issue is first distributed to the investing public in the secondary market.",
+      "Trading in the secondary market is limited to institutional investors and excludes individuals.",
+      "Primary market proceeds go to the issuer; secondary market proceeds go to the selling investor."
      ],
      "answer": 3,
-     "explanation": "In the primary market the issuer sells new securities and receives the proceeds; in the secondary market already-issued securities trade between investors, so the selling investor — not the issuer — receives the money. The strongest distractor sends secondary-market proceeds to the issuer as well, but the issuer is paid only once, at issuance. An underwriter's first-time distribution describes the primary market, and there is no institutions-only restriction on secondary trading.",
+     "explanation": "In the primary market, the issuer sells new securities and receives the proceeds; in the secondary market, already-issued securities trade between investors, so the selling investor receives the money. The issuer is paid only once, at issuance. An underwriter's initial distribution of a new issue occurs in the primary market, and secondary trading is open to all investors.",
      "topic": "Primary vs secondary",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "A bank customer deposits $7,500 in cash in the morning and another $4,000 in cash in the afternoon on the same business day. With respect to the Currency Transaction Report (CTR), the firm must:",
+     "q": "A customer deposits $7,500.00 in cash in the morning and another $4,000.00 in cash the same afternoon. Under the Bank Secrecy Act (BSA), the firm must:",
      "choices": [
-      "File no CTR, because neither transaction individually exceeds $10,000",
-      "File a CTR, because aggregate same-day cash by one person exceeds $10,000",
-      "File only a Suspicious Activity Report, never a CTR, for deposits split across one day",
-      "Wait until a single transaction exceeds $10,000 before any filing is required"
+      "file no report, because neither deposit alone exceeds $10,000.00.",
+      "file a currency transaction report (CTR), aggregating the same-day deposits.",
+      "file a suspicious activity report (SAR) instead of a CTR for the deposits.",
+      "file a report only when a single transaction exceeds $10,000.00."
      ],
      "answer": 1,
-     "explanation": "A CTR is required when cash transactions by or on behalf of one person exceed $10,000 in a single business day, and same-day amounts aggregate: $7,500 + $4,000 = $11,500. Treating the two deposits separately to dodge the threshold is exactly the structuring the aggregation rule defeats, making 'no CTR' the trap.",
+     "explanation": "A CTR is required when cash transactions by or on behalf of one person exceed $10,000 in a single business day, and same-day amounts are aggregated: $7,500.00 + $4,000.00 = $11,500.00. Treating the deposits separately to avoid the threshold is exactly the structuring the aggregation rule is designed to defeat.",
      "topic": "CTR / AML",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "Which of the following statements about clearing, carrying, and introducing firms is NOT correct?",
+     "q": "Each of the following statements about introducing and clearing firms is correct EXCEPT:",
      "choices": [
-      "A self-clearing firm executes and clears its own trades without relying on a separate clearing firm",
-      "A carrying firm may hold customer funds and securities and is subject to higher net-capital requirements than a typical introducing firm",
-      "An introducing firm operating on a fully-disclosed basis holds custody of its customers' cash and securities",
-      "A clearing firm may provide trade comparison, settlement, and custody services for introducing firms"
+      "a self-clearing firm executes and clears its own trades without a separate clearing firm.",
+      "a carrying firm may hold the funds and securities of its introducing firms' customers.",
+      "a fully disclosed introducing firm holds custody of customer funds and securities.",
+      "a clearing firm may provide trade comparison, settlement, and custody services."
      ],
      "answer": 2,
-     "explanation": "A fully-disclosed introducing firm does NOT hold customer assets; the clearing/carrying firm does. That statement is therefore incorrect and is the exception. The other choices correctly describe self-clearing, the carrying firm's custody role and higher net-capital burden, and the services a clearing firm provides.",
+     "explanation": "A fully disclosed introducing firm does not hold customer assets; the clearing or carrying firm does, which is why carrying firms are subject to higher net capital requirements. That statement is the exception. The other choices correctly describe self-clearing firms, a carrying firm's custody role, and the services a clearing firm provides.",
      "topic": "Introducing vs clearing",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "An investor in the 32% federal tax bracket compares a corporate bond yielding 6.0% with a municipal bond yielding 4.5%. Ignoring state taxes, which statement is TRUE?",
+     "q": "An investor in the 32% federal income tax bracket compares a corporate bond yielding 6.00% with a municipal bond yielding 4.50%. Ignoring state taxes, which of the following statements is TRUE?",
      "choices": [
-      "The municipal bond is better; its tax-equivalent yield of about 6.6% exceeds the corporate's 6.0%",
-      "The corporate bond is better; its 6.0% nominal yield exceeds the municipal's 4.5% stated yield",
-      "The corporate bond is better; the municipal's tax-equivalent yield works out to only about 3.06%",
-      "The two are equivalent; the corporate's after-tax yield of about 4.5% matches the municipal's yield"
+      "The municipal bond is preferable because its tax-equivalent yield is approximately 6.60%.",
+      "The corporate bond is preferable because its nominal yield exceeds the municipal bond's stated yield.",
+      "The corporate bond is preferable because the municipal bond's tax-equivalent yield is approximately 3.06%.",
+      "The bonds are equivalent because the corporate bond's after-tax yield is approximately 4.50%."
      ],
      "answer": 0,
-     "explanation": "Tax-equivalent yield = municipal yield / (1 - tax bracket) = 4.5% / 0.68 = about 6.6%, which beats the 6.0% taxable corporate, so the muni wins after tax. Comparing nominal yields directly ignores the muni's tax exemption, and 3.06% comes from multiplying by (1 - bracket) instead of dividing — both classic traps. Nor are the bonds equivalent: the corporate's actual after-tax yield is about 4.1%, not 4.5%.",
+     "explanation": "Tax-equivalent yield equals the municipal yield divided by (1 - tax bracket): 4.50% / 0.68 = approximately 6.60%, which exceeds the corporate bond's 6.00%. Comparing nominal yields ignores the municipal bond's tax exemption, and 3.06% results from multiplying by (1 - bracket) instead of dividing. The bonds are not equivalent: the corporate bond's after-tax yield is approximately 4.1%, not 4.50%.",
      "topic": "Tax-equivalent yield",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "Which statement about the Federal Reserve Board's role in the securities markets is TRUE?",
+     "q": "Which of the following actions is performed by the Federal Reserve Board (FRB)?",
      "choices": [
-      "The FRB enforces FINRA conduct rules against broker-dealers that extend credit",
-      "The FRB sets the initial margin requirement on securities through Regulation T",
-      "The FRB sets the maintenance margin minimums, which exceed Reg T's initial requirement",
-      "The FRB guarantees customer accounts up to $500,000 if a broker-dealer fails"
+      "Enforcing FINRA conduct rules against broker-dealers that extend credit",
+      "Setting the initial margin requirement on securities under Regulation T",
+      "Setting minimum maintenance margin requirements for customer accounts",
+      "Protecting customer accounts up to $500,000 if a broker-dealer fails"
      ],
      "answer": 1,
-     "explanation": "The FRB governs the extension of credit on securities through Regulation T, which sets the initial margin requirement (currently 50%). Maintenance margins are set by FINRA and the exchanges, not the FRB; the FRB does not enforce FINRA conduct rules; and $500,000 account protection is SIPC's function. Each wrong choice swaps in the wrong agency.",
+     "explanation": "The FRB governs the extension of credit on securities through Regulation T, which sets the initial margin requirement (currently 50%). Maintenance margin minimums are set by FINRA and the exchanges, FINRA enforces its own conduct rules, and $500,000 account protection is the function of the Securities Investor Protection Corporation (SIPC).",
      "topic": "FRB / Reg T",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "An analyst is evaluating ColtCo, a publicly traded manufacturer, and pulls two of its primary financial statements. To answer the questions below, the analyst must know what each statement is FOR. Which statement correctly pairs a financial statement with its purpose?",
+     "q": "Which of the following statements correctly pairs a financial statement with its purpose?",
      "choices": [
-      "The balance sheet reports revenues and expenses over a fiscal quarter to produce net income",
-      "The balance sheet presents assets, liabilities, and equity at a single point in time",
-      "The income statement is a snapshot of what the company owns and owes on one reporting date",
-      "The income statement must balance under the identity Assets = Liabilities + Equity"
+      "The balance sheet reports revenues and expenses over a fiscal period to produce net income.",
+      "The balance sheet presents assets, liabilities, and equity as of a single date.",
+      "The income statement is a snapshot of what a company owns and owes on one reporting date.",
+      "The income statement must balance so that assets equal liabilities plus equity."
      ],
      "answer": 1,
-     "explanation": "The balance sheet is a point-in-time snapshot of financial POSITION, built on the identity Assets = Liabilities + Shareholders' Equity — it must balance. The income statement instead covers a PERIOD (quarter or year), netting revenues against expenses to reach net income. The strongest distractor attaches the balancing identity to the income statement; that identity belongs only to the balance sheet. The key SIE trap is point-in-time (balance sheet) versus period-of-time (income statement).",
+     "explanation": "The balance sheet is a point-in-time snapshot of financial position, built on the identity Assets = Liabilities + Shareholders' Equity. The income statement covers a period, netting revenues against expenses to reach net income. The strongest distractor attaches the balancing identity to the income statement, but that identity belongs only to the balance sheet. The core trap is point in time (balance sheet) versus period of time (income statement).",
      "topic": "Financial statements — purpose",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "An issuer reports the following for the most recent fiscal year: total assets $48 million, total liabilities $30 million, net sales $60 million, cost of goods sold $42 million, operating expenses $9 million, interest expense $2 million, and income tax $1 million. Which statement is correct?",
+     "q": "A company reports total assets of $48 million, total liabilities of $30 million, net sales of $60 million, cost of goods sold of $42 million, operating expenses of $9 million, interest expense of $2 million, and income tax of $1 million. What are the company's shareholders' equity and net income?",
      "choices": [
       "Shareholders' equity of $18 million; net income of $9 million",
       "Shareholders' equity of $78 million; net income of $6 million",
@@ -1383,35 +1383,35 @@ window.SIE_DATA = {
       "Shareholders' equity of $18 million; net income of $6 million"
      ],
      "answer": 3,
-     "explanation": "Two statements are at work. From the balance sheet: Shareholders' Equity = Assets - Liabilities = $48M - $30M = $18M. From the income statement: Net Income = $60M - $42M - $9M - $2M - $1M = $6M. The strongest trap pairs the correct $18 million of equity with $9 million of 'net income' — that $9 million is operating income, stopping before interest and taxes. $78 million adds assets and liabilities instead of subtracting, and the remaining pairing simply swaps the two results.",
+     "explanation": "From the balance sheet: shareholders' equity = assets - liabilities = $48 million - $30 million = $18 million. From the income statement: net income = $60 - $42 - $9 - $2 - $1 = $6 million. The strongest trap pairs the correct equity with $9 million, which is operating income before interest and taxes. $78 million adds assets and liabilities instead of subtracting, and the remaining choice swaps the two results.",
      "topic": "Financial statements — balance sheet & income statement calculation",
      "difficulty": "hard",
      "style": "calculation"
     },
     {
-     "q": "Each of the following items would appear on a company's BALANCE SHEET, EXCEPT:",
+     "q": "Each of the following items appears on a company's balance sheet EXCEPT:",
      "choices": [
-      "Retained earnings",
-      "Net sales (revenue)",
-      "Unearned revenue",
-      "Accounts payable"
+      "retained earnings.",
+      "net sales (revenue).",
+      "unearned revenue.",
+      "accounts payable."
      ],
      "answer": 1,
-     "explanation": "Net sales (revenue) is the top line of the INCOME STATEMENT, which measures performance over a period — it does not appear on the balance sheet. Retained earnings (part of shareholders' equity), accounts payable (a current liability), and unearned revenue (a liability for cash collected before it is earned) are all balance-sheet items. Unearned revenue is the strongest trap: despite the word 'revenue,' it sits on the balance sheet as a liability, not on the income statement.",
+     "explanation": "Net sales is the top line of the income statement, which measures performance over a period; it does not appear on the balance sheet. Retained earnings (shareholders' equity), accounts payable (a current liability), and unearned revenue (a liability for cash collected before it is earned) are all balance sheet items. Unearned revenue is the strongest trap: despite the word revenue, it is a balance sheet liability.",
      "topic": "Financial statements — statement classification",
      "difficulty": "hard",
      "style": "except"
     },
     {
-     "q": "An analyst reviewing an issuer makes four claims about its financial statements. Which combination is entirely correct? I. Working capital equals current assets minus current liabilities and is derived from the balance sheet. II. Net income from the income statement, less dividends paid, flows into retained earnings on the balance sheet. III. The income statement and balance sheet both describe a single point in time. IV. A company can be profitable on its income statement yet still face a liquidity problem visible on its balance sheet.",
+     "q": "Each of the following statements about a company's financial statements is correct EXCEPT:",
      "choices": [
-      "I and III only",
-      "I, II, and IV only",
-      "II, III, and IV only",
-      "I, II, III, and IV"
+      "working capital equals current assets minus current liabilities on the balance sheet.",
+      "net income less dividends paid flows into retained earnings on the balance sheet.",
+      "the income statement and the balance sheet each report a single point in time.",
+      "a company may be profitable on its income statement yet still face a liquidity shortfall."
      ],
-     "answer": 1,
-     "explanation": "Statements I, II, and IV are correct. (I) Working capital = current assets − current liabilities, both balance-sheet figures. (II) Net income retained after dividends increases retained earnings, the link between the income statement and the balance sheet. (IV) Profitability (income statement) and liquidity/solvency (balance sheet) are distinct — a profitable firm can still be short on current assets to cover near-term obligations. Statement III is FALSE and is the trap: only the balance sheet is a point-in-time snapshot; the income statement covers a period of time. Any choice including III must be eliminated.",
+     "answer": 2,
+     "explanation": "Only the balance sheet is a point-in-time snapshot; the income statement covers a period of time, making that statement the exception. The others are correct: working capital is derived from balance sheet figures, retained earnings link the income statement to the balance sheet, and profitability (income statement) and liquidity (balance sheet) are distinct, so a profitable firm can still lack current assets to cover near-term obligations.",
      "topic": "Financial statements — purpose & interrelationship",
      "difficulty": "hard",
      "style": "roman"
@@ -2457,7 +2457,7 @@ window.SIE_DATA = {
    ],
    "questions": [
     {
-     "q": "A market analyst observes that real GDP has declined for two consecutive quarters, the unemployment rate has climbed from 4% to 6%, and corporate inventories are building up faster than firms can sell them. Based strictly on standard business-cycle terminology, which phase is the economy MOST likely in?",
+     "q": "Which of the following phases of the business cycle is characterized by two consecutive quarters of declining real gross domestic product (GDP) and rising unemployment?",
      "choices": [
       "Expansion",
       "Peak",
@@ -2465,97 +2465,97 @@ window.SIE_DATA = {
       "Trough"
      ],
      "answer": 2,
-     "explanation": "Two consecutive quarters of falling real GDP with rising unemployment and unwanted inventory accumulation is the textbook signature of a contraction (recession). A trough is the bottom turning point where the decline stops and recovery begins — not ongoing decline — and a peak marks the top just before output turns down, not after it has already fallen.",
+     "explanation": "Two consecutive quarters of declining real GDP with rising unemployment defines a contraction (recession). A trough is the turning point at which the decline ends, and a peak is the turning point just before output begins to fall.",
      "topic": "Business-cycle phases",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Over the past year an economy's nominal GDP rose 6% while the GDP deflator rose 4%. A second economy posted nominal growth of 3% with a deflator increase of 5%. Which statement correctly compares their REAL output?",
+     "q": "Over one year, Country X's nominal gross domestic product (GDP) rises 6% while its GDP deflator rises 4%; Country Y's nominal GDP rises 3% while its deflator rises 5%. Which of the following statements about real output is correct?",
      "choices": [
-      "The first economy expanded about 2% and the second contracted about 2%",
-      "The first economy contracted about 2% and the second expanded about 2%",
-      "Both economies expanded, the first by about 2% and the second by about 8%",
-      "Both economies expanded, the first by about 6% and the second by about 3%"
+      "Country X expanded about 2% and Country Y contracted about 2%.",
+      "Country X contracted about 2% and Country Y expanded about 2%.",
+      "Both countries expanded, Country X by about 2% and Country Y by about 8%.",
+      "Both countries expanded, Country X by about 6% and Country Y by about 3%."
      ],
      "answer": 0,
-     "explanation": "Real growth is approximately nominal growth minus the change in the deflator. Economy one: 6% − 4% = +2% (expansion); economy two: 3% − 5% = −2% (contraction). The deflator must be subtracted, not added, so the 8% figure is wrong, and quoting the raw 6% and 3% nominal rates ignores inflation entirely — only the first economy grew in real terms.",
+     "explanation": "Real growth approximately equals nominal growth minus the change in the deflator: 6% − 4% = +2% for Country X and 3% − 5% = −2% for Country Y. The deflator is subtracted, not added, and quoting the raw nominal rates ignores inflation entirely.",
      "topic": "GDP real vs nominal",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "All of the following are correctly matched between a Federal Reserve monetary-policy lever and the body that sets it EXCEPT:",
+     "q": "Which of the following statements about Federal Reserve policy tools is TRUE?",
      "choices": [
-      "Discount rate — set by the Federal Reserve Board (acting on regional bank requests)",
-      "Reserve requirement — set by the Federal Reserve Board",
-      "Federal funds rate — set directly by the Federal Reserve Board by decree",
-      "Open market operations — directed by the Federal Open Market Committee (FOMC)"
+      "The discount rate is set by a direct vote of the U.S. Congress.",
+      "The reserve requirement is set by the U.S. Department of the Treasury.",
+      "The federal funds rate is targeted, not set, by the Federal Reserve.",
+      "The prime rate is set directly by the Federal Reserve Board."
      ],
      "answer": 2,
-     "explanation": "The federal funds rate is what banks charge EACH OTHER for overnight reserve loans; it is market-determined and only TARGETED by the FOMC through open market operations, never set by Board decree. The discount rate, reserve requirement, and open market operations are all correctly attributed, making the fed funds statement the exception.",
+     "explanation": "The federal funds rate is what banks charge one another for overnight loans of reserves; it is market determined, and the Federal Open Market Committee (FOMC) only targets it through open market operations. The discount rate and the reserve requirement are set by the Federal Reserve Board, and the prime rate is set by commercial banks.",
      "topic": "Fed tools and control",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "During a routine week with no scheduled FOMC meeting, the Fed wants to nudge the effective federal funds rate slightly lower and add reserves to the banking system with maximum precision. Which tool is it MOST likely to use?",
+     "q": "The Federal Reserve wants to add reserves to the banking system and ease the federal funds rate lower on a day-to-day basis. Which of the following actions is it MOST likely to take?",
      "choices": [
       "Lowering the reserve requirement for member banks",
-      "Lowering the discount rate charged to member banks",
-      "Lowering the prime rate charged to business borrowers",
-      "Buying Treasury securities in open market operations"
+      "Lowering the discount rate charged to banks",
+      "Lowering the prime rate charged to borrowers",
+      "Buying Treasury securities in the open market"
      ],
      "answer": 3,
-     "explanation": "Open market operations — here, buying securities to inject reserves — are the Fed's most flexible, precise, day-to-day tool and directly pressure the fed funds rate. The prime rate is set by commercial banks, not the Fed; reserve-requirement changes are blunt and rarely used; and the discount rate is a coarse signaling rate, not a fine-tuning tool.",
+     "explanation": "Open market operations — buying securities to inject reserves — are the Federal Reserve's most flexible and precise day-to-day tool and put direct downward pressure on the federal funds rate. The prime rate is set by commercial banks, reserve requirement changes are blunt and rarely used, and the discount rate is a signaling tool rather than a fine-tuning tool.",
      "topic": "Open market operations",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Congress passes a large infrastructure bill funded by increased federal borrowing while, in the same week, the Federal Reserve sells Treasury securities in the open market. Which statement BEST characterizes the combined stance of these two actions?",
+     "q": "Congress increases government spending funded by additional federal borrowing, and the Federal Reserve sells Treasury securities in the open market. Respectively, these actions represent:",
      "choices": [
-      "Both are expansionary monetary policy",
-      "Expansionary fiscal policy paired with contractionary monetary policy, partially offsetting each other",
-      "Contractionary monetary policy paired with expansionary fiscal policy, with the Fed action borrowing-funded",
-      "Both are contractionary fiscal policy"
+      "expansionary fiscal policy and expansionary monetary policy.",
+      "expansionary fiscal policy and contractionary monetary policy.",
+      "contractionary fiscal policy and expansionary monetary policy.",
+      "contractionary fiscal policy and contractionary monetary policy."
      ],
      "answer": 1,
-     "explanation": "Spending and taxation are FISCAL policy (Congress/President); higher spending is expansionary. Open market operations are MONETARY policy (the Fed); SELLING securities drains reserves and is contractionary. The two pull in opposite directions across two different policy domains, so they partially offset.",
+     "explanation": "Spending and taxation are fiscal policy, and increased spending is expansionary. Open market operations are monetary policy, and selling securities drains reserves, which is contractionary. The two actions pull in opposite directions and partially offset each other.",
      "topic": "Fiscal vs monetary policy",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "A corporate bond carries a 6% coupon (paid as $30 every six months) and currently trades at 80. An investor must rank its nominal yield, current yield, and the relationship to par. What is the bond's current yield, and how does it compare to the coupon rate?",
+     "q": "A corporate bond with a 6% coupon pays interest of $30.00 every six months and is currently trading at 80. What is the bond's current yield?",
      "choices": [
-      "6.00%, the same as the coupon rate",
-      "4.80%, lower than the coupon rate",
-      "7.50%, higher than the coupon rate",
-      "3.75%, lower than the coupon rate"
+      "3.75%",
+      "4.80%",
+      "6.00%",
+      "7.50%"
      ],
-     "answer": 2,
-     "explanation": "Annual coupon income is $60 ($30 twice). Current yield = $60 ÷ $800 = 7.50%, and because the bond trades at a discount, current yield must exceed the 6% coupon. The 4.80% figure comes from multiplying the coupon by the price instead of dividing, and 3.75% uses only one semiannual $30 payment.",
+     "answer": 3,
+     "explanation": "Annual interest is $60.00 ($30.00 twice yearly), and current yield equals annual interest divided by market price: $60.00 ÷ $800.00 = 7.50%. Because the bond trades at a discount, its current yield exceeds the 6% coupon; 4.80% multiplies rather than divides by the price, and 3.75% uses only one semiannual payment.",
      "topic": "Current yield calculation",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "An investor holds long-maturity, fixed-rate bonds. The Fed unexpectedly raises the discount rate and signals further tightening. Compared with otherwise identical SHORT-maturity bonds, what is the MOST likely immediate effect on the investor's long bonds?",
+     "q": "In response to Federal Reserve tightening, interest rates rise across all maturities. Compared with short-term bonds of the same quality, prices of long-term bonds will MOST likely:",
      "choices": [
-      "Their prices fall more than those of the short-maturity bonds",
-      "Their prices fall less than those of the short-maturity bonds",
-      "Their prices rise because coupons can be reinvested at higher rates",
-      "Their prices hold steady until the bonds are redeemed at maturity"
+      "decline more than the short-term bond prices.",
+      "decline less than the short-term bond prices.",
+      "increase as coupons are reinvested at higher rates.",
+      "remain unchanged until the bonds reach maturity."
      ],
      "answer": 0,
-     "explanation": "Bond prices move inversely to rates, and longer maturities carry greater duration, so long bonds fall more sharply than short bonds for the same rate move. Higher reinvestment rates on coupons do not raise the bond's own price, fixed coupons never reset, and the repricing is immediate (mark-to-market), not deferred until maturity.",
+     "explanation": "Bond prices move inversely to interest rates, and the longer the maturity, the greater the price sensitivity, so long-term bonds decline more than short-term bonds for the same rate increase. Higher reinvestment rates do not raise a bond's price, and repricing occurs immediately rather than at maturity.",
      "topic": "Interest rates and bond prices",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "An analyst must classify four series by their timing relative to the cycle. Which one is a LEADING economic indicator?",
+     "q": "Which of the following is a leading economic indicator?",
      "choices": [
       "Average duration of unemployment",
       "Index of industrial production",
@@ -2563,83 +2563,83 @@ window.SIE_DATA = {
       "Corporate profits after taxes"
      ],
      "answer": 2,
-     "explanation": "Building permits anticipate future construction activity, so they are a LEADING indicator that turns before the broad economy. Industrial production is COINCIDENT, while average duration of unemployment and after-tax corporate profits confirm trends after the fact and are LAGGING.",
+     "explanation": "Building permits anticipate future construction activity and are a leading indicator. Industrial production is a coincident indicator, while average duration of unemployment and after-tax corporate profits are lagging indicators that confirm trends after the fact.",
      "topic": "Leading indicators",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "Consider: I. Stock prices (S&P 500). II. Personal income. III. Consumer Price Index. IV. Manufacturers' new orders for consumer goods. Which are LEADING indicators?",
+     "q": "Which of the following pairs consists of two leading economic indicators?",
      "choices": [
-      "I and III only",
-      "I and IV only",
-      "II and III only",
-      "I, II, and IV only"
+      "Stock prices and personal income",
+      "Personal income and the Consumer Price Index (CPI)",
+      "Stock prices and manufacturers' new orders",
+      "Manufacturers' new orders and the Consumer Price Index (CPI)"
      ],
-     "answer": 1,
-     "explanation": "Stock prices and manufacturers' new orders both turn ahead of the broader economy and are LEADING. Personal income is COINCIDENT, and the CPI is LAGGING because consumer prices confirm inflation after it develops, so only I and IV qualify.",
+     "answer": 2,
+     "explanation": "Stock prices and manufacturers' new orders both turn ahead of the broader economy and are leading indicators. Personal income is a coincident indicator, and the CPI is a lagging indicator because consumer prices confirm inflation after it develops.",
      "topic": "Leading vs lagging indicators",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "A normal (positive) yield curve is best described by which statement, and what does its shape imply?",
+     "q": "A normal (positive) yield curve indicates that:",
      "choices": [
-      "Short-term yields exceed long-term yields, reflecting expected rate cuts",
-      "Long-term yields exceed short-term yields, compensating for risks over time",
-      "Yields are equal across all maturities, reflecting expected rate stability",
-      "Long-term yields equal short-term yields less a built-in inflation premium"
+      "short-term yields are higher than long-term yields.",
+      "long-term yields are higher than short-term yields.",
+      "yields are the same at every point along the curve.",
+      "long-term yields equal short-term yields less inflation."
      ],
      "answer": 1,
-     "explanation": "A normal (ascending) curve slopes upward: longer maturities pay higher yields to compensate investors for inflation, default, and interest-rate risk over time. Short yields above long yields describes an INVERTED curve, and identical yields at every maturity describes a FLAT curve — neither is the normal shape.",
+     "explanation": "A normal yield curve slopes upward: longer maturities pay higher yields to compensate investors for inflation, default, and interest-rate risk over time. Short-term yields above long-term yields describe an inverted curve, and equal yields at every maturity describe a flat curve.",
      "topic": "Yield-curve shapes",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "The 3-month Treasury bill yields 5.0% while the 10-year Treasury note yields 4.2%, producing an inverted curve. Which interpretation is MOST commonly cited and consistent with this shape?",
+     "q": "The 3-month Treasury bill yields 5.0% while the 10-year Treasury note yields 4.2%. This inverted yield curve MOST commonly signals that the market expects:",
      "choices": [
-      "The market expects rising future rates and accelerating economic growth",
-      "The Fed has lowered the reserve requirement to encourage bank lending",
-      "Long-term inflation expectations have surged above short-term levels",
-      "The market expects falling future rates and slowing economic growth"
+      "rising interest rates and accelerating economic growth.",
+      "the Federal Reserve to lower the reserve requirement.",
+      "long-term inflation to run above short-term inflation.",
+      "falling interest rates and slowing economic growth."
      ],
      "answer": 3,
-     "explanation": "When short yields exceed long yields, the market is pricing in FALLING future rates and slowing growth — inversion is a classic recession warning. Rising rates and faster growth would steepen a normal curve, and surging long-run inflation expectations would push LONG yields above short yields, not below them.",
+     "explanation": "When short-term yields exceed long-term yields, the market is pricing in falling future rates and slowing growth; an inverted curve is a classic recession warning. Rising rates and faster growth would produce a steep normal curve, and higher long-run inflation expectations would push long-term yields above short-term yields.",
      "topic": "Inverted yield curve",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "A bond trades at a premium. Which ranking of its coupon rate, current yield, and yield to maturity (YTM) is correct, and why?",
+     "q": "A bond is trading at a premium. Which of the following correctly ranks the bond's coupon rate, current yield, and yield to maturity (YTM)?",
      "choices": [
-      "Coupon rate > current yield > yield to maturity",
-      "Yield to maturity > current yield > coupon rate",
-      "Current yield > coupon rate > yield to maturity",
-      "Coupon rate = current yield = yield to maturity"
+      "Coupon rate > current yield > YTM",
+      "YTM > current yield > coupon rate",
+      "Current yield > coupon rate > YTM",
+      "Coupon rate = current yield = YTM"
      ],
      "answer": 0,
-     "explanation": "A premium bond's price is above par, so its yields rank coupon > current yield > YTM as the premium amortizes away and reduces total return by maturity. The reversed ranking — YTM highest — describes a DISCOUNT bond redeemed at par above its cost, and all three measures are equal only when a bond trades exactly at par.",
+     "explanation": "A premium bond's price is above par, so its yields rank coupon rate > current yield > YTM; the premium amortizes away and reduces total return by maturity. The reversed ranking describes a discount bond, and all three measures are equal only for a bond trading exactly at par.",
      "topic": "Bond yield relationships",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "The CPI rises from 250.0 to 255.0 over one year, then the following year rises from 255.0 to only 257.0. Which statement BEST describes the two-year pattern?",
+     "q": "The Consumer Price Index (CPI) rises from 250.0 to 255.0 in one year and from 255.0 to 257.0 the following year. This pattern is BEST described as:",
      "choices": [
-      "Inflation in year one, followed by deflation in year two",
-      "Deflation in year one, followed by inflation in year two",
-      "Inflation in both years, with disinflation in year two",
-      "Inflation in both years, with reflation emerging in year two"
+      "inflation in the first year, followed by deflation.",
+      "deflation in the first year, followed by inflation.",
+      "inflation in both years, with disinflation in the second.",
+      "inflation in both years, with reflation in the second."
      ],
      "answer": 2,
-     "explanation": "Year-one inflation = 5/250 = 2.0%; year two = 2/255 ≈ 0.8%. Prices ROSE in both years (inflation), but at a slower rate — that is disinflation, not deflation. Deflation requires a falling index, which never occurred, and reflation would mean inflation re-accelerating rather than slowing.",
+     "explanation": "Inflation is 5 ÷ 250 = 2.0% in the first year and 2 ÷ 255 ≈ 0.8% in the second. Prices rose in both years but at a slower rate, which is disinflation. Deflation requires a falling index, which never occurred, and reflation would mean inflation re-accelerating.",
      "topic": "CPI, inflation, and disinflation",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "All of the following Federal Reserve actions would tend to be EXPANSIONARY (loosening) EXCEPT:",
+     "q": "Which of the following Federal Reserve actions decreases the money supply?",
      "choices": [
       "Lowering the discount rate charged to banks",
       "Selling Treasury securities in the open market",
@@ -2647,139 +2647,139 @@ window.SIE_DATA = {
       "Buying Treasury securities in the open market"
      ],
      "answer": 1,
-     "explanation": "Selling Treasury securities REMOVES reserves from the banking system, shrinking the money supply — a contractionary action and therefore the exception. Lowering the discount rate, lowering the reserve requirement, and buying securities all inject reserves or free up lending capacity, expanding the money supply.",
+     "explanation": "Selling Treasury securities removes reserves from the banking system and shrinks the money supply, a contractionary action. Lowering the discount rate, lowering the reserve requirement, and buying securities all add reserves or free up lending capacity, expanding the money supply.",
      "topic": "Easing vs tightening",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "An economy shows real GDP growth near zero, unemployment climbing to 8%, AND the CPI rising at 7% annually. A standard Keynesian demand-stimulus response is politically difficult here precisely because of this combination. The condition is BEST labeled:",
+     "q": "An economy shows stagnant output and rising unemployment while consumer prices increase at 7% annually. This condition is known as:",
      "choices": [
-      "Disinflation",
-      "Deflation",
-      "Stagflation",
-      "Reflation"
+      "disinflation.",
+      "deflation.",
+      "stagflation.",
+      "reflation."
      ],
      "answer": 2,
-     "explanation": "Stagnant output and high unemployment occurring together with high inflation is stagflation, which is hard to fix because stimulating demand can worsen inflation. Disinflation is merely a slowing inflation rate, deflation is a falling price level, and reflation is deliberately re-stimulating a depressed economy back to normal prices.",
+     "explanation": "Stagnant output and high unemployment occurring together with high inflation is stagflation, which is difficult to address because stimulating demand can worsen inflation. Disinflation is a slowing rate of inflation, deflation is a falling price level, and reflation is the deliberate re-stimulation of a depressed economy.",
      "topic": "Stagflation distinction",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Which statement about the discount rate versus the federal funds rate is TRUE?",
+     "q": "Which of the following statements about the discount rate and the federal funds rate is TRUE?",
      "choices": [
-      "Both rates are set directly by a formal vote of the FOMC at each of its scheduled meetings",
-      "The discount rate is what banks charge one another; the fed funds rate is what the Fed charges banks",
-      "The fed funds rate is set in the open market but can never fall below the current discount rate",
-      "The discount rate is what the Fed charges banks; the fed funds rate is what banks charge one another"
+      "Both rates are set by a vote of the Federal Open Market Committee (FOMC) at its meetings.",
+      "The discount rate is charged between banks; the federal funds rate is charged by the Federal Reserve.",
+      "The federal funds rate is set in the market but can never fall below the discount rate.",
+      "The discount rate is charged by the Federal Reserve; the federal funds rate is charged between banks."
      ],
      "answer": 3,
-     "explanation": "The discount rate is charged by the Federal Reserve to banks borrowing directly from it; the fed funds rate is charged by banks to one another for overnight loans of reserves. The reversed version swaps the two definitions, the effective fed funds rate is market-determined rather than voted on with the discount rate by the FOMC, and it has historically traded BELOW the discount rate, so it certainly can be lower.",
+     "explanation": "The discount rate is what the Federal Reserve charges banks that borrow from it directly; the federal funds rate is what banks charge one another for overnight loans of reserves. The federal funds rate is market determined rather than set by FOMC vote, and it has historically traded below the discount rate.",
      "topic": "Discount vs fed funds rate",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "An analyst notes: leading indicators turned down three months ago, coincident indicators are now flattening, and lagging indicators are still rising. Which interpretation is MOST consistent with these data?",
+     "q": "Leading indicators have declined for three months, coincident indicators are flattening, and lagging indicators are still rising. These data MOST likely indicate that the economy is:",
      "choices": [
-      "The economy is at a trough, with recovery imminent",
-      "The economy is approaching or entering a peak / early contraction",
-      "The economy is in a deep recession with no recovery in sight",
-      "The signals contradict one another and imply nothing about the cycle"
+      "at a trough, with recovery beginning.",
+      "at or near a peak, entering contraction.",
+      "well into a deep and prolonged recession.",
+      "producing contradictory economic signals."
      ],
      "answer": 1,
-     "explanation": "Leading indicators turn first (already declining), coincident indicators turn with the economy (now flattening), and lagging indicators turn last (still rising) — the classic sequence at a peak rolling into early contraction. The pattern is internally consistent and points to a downturn beginning, not a trough.",
+     "explanation": "Leading indicators turn first, coincident indicators turn with the economy, and lagging indicators turn last — the classic sequence at a peak rolling into early contraction. The pattern is internally consistent and points to a downturn beginning, not a trough.",
      "topic": "Indicator sequencing",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Which pairings of a policy tool with the entity that controls it are correct? I. Taxation — Congress. II. Reserve requirement — the Federal Reserve. III. Government spending — the Federal Reserve. IV. Discount rate — the U.S. Treasury.",
+     "q": "Which of the following correctly pairs a policy tool with the entity that controls it?",
      "choices": [
-      "I and II only",
-      "I, II, and III only",
-      "II and IV only",
-      "I, II, III, and IV"
+      "Taxation — Federal Reserve",
+      "Reserve requirement — Federal Reserve",
+      "Government spending — Federal Reserve",
+      "Discount rate — U.S. Treasury"
      ],
-     "answer": 0,
-     "explanation": "Taxation is fiscal policy controlled by Congress (I correct) and the reserve requirement is monetary policy controlled by the Fed (II correct). Government spending is fiscal (Congress/President), not the Fed, so III is wrong, and the discount rate is set by the Fed, not the Treasury, so IV is wrong — leaving only I and II.",
+     "answer": 1,
+     "explanation": "The reserve requirement is a monetary policy tool controlled by the Federal Reserve. Taxation and government spending are fiscal policy tools controlled by Congress and the President, and the discount rate is set by the Federal Reserve, not the U.S. Treasury.",
      "topic": "Policy control attribution",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "An investor buys a 5% coupon bond at par ($1,000). One year later, comparable new-issue rates have risen to 7%. Which statement BEST describes the bond's resulting price and current yield?",
+     "q": "An investor buys a 5% coupon bond at par. One year later, yields on comparable new issues have risen to 7%. The investor's bond will MOST likely trade at:",
      "choices": [
-      "It trades at a premium, and its current yield falls below 5%",
-      "It trades at a discount, and its current yield rises above 5%",
-      "It trades at a discount, and its current yield falls below 5%",
-      "It remains near par, and its coupon resets upward to about 7%"
+      "a premium, with a current yield below 5%.",
+      "a discount, with a current yield above 5%.",
+      "a discount, with a current yield below 5%.",
+      "par, with the coupon adjusting upward to 7%."
      ],
      "answer": 1,
-     "explanation": "When market rates rise above a fixed 5% coupon, the bond reprices to a DISCOUNT so a new buyer earns a competitive yield. Current yield is the fixed $50 coupon divided by the now-lower price, so it rises ABOVE 5% — a falling price cannot push current yield down — and coupons on a fixed-rate bond never reset.",
+     "explanation": "When market rates rise above a fixed 5% coupon, the bond reprices to a discount so that a new buyer earns a competitive yield. Current yield is the fixed $50.00 coupon divided by the now-lower price, so it rises above 5%, and coupons on a fixed-rate bond never reset.",
      "topic": "Rate changes and pricing",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "An investor in the 32% federal tax bracket is comparing a tax-free municipal bond yielding 3.5% with a taxable corporate bond. Ignoring state taxes and credit risk, the corporate bond must yield AT LEAST what taxable yield to be equally attractive?",
+     "q": "A customer in the 32% federal tax bracket holds a municipal bond yielding 3.5%. Ignoring state taxes, what yield must a taxable corporate bond offer to provide an equivalent after-tax return?",
      "choices": [
-      "4.62%",
-      "5.15%",
       "2.38%",
-      "3.50%"
+      "3.50%",
+      "4.62%",
+      "5.15%"
      ],
-     "answer": 1,
-     "explanation": "Tax-equivalent yield = tax-free yield ÷ (1 − tax bracket) = 3.5% ÷ (1 − 0.32) = 3.5% ÷ 0.68 ≈ 5.15%. Dividing by 0.68 (not multiplying by 0.68, which gives 2.38%) is required; 4.62% incorrectly uses a different bracket.",
+     "answer": 3,
+     "explanation": "Tax-equivalent yield equals the tax-free yield divided by (1 − tax bracket): 3.5% ÷ 0.68 ≈ 5.15%. Multiplying by 0.68 instead of dividing produces 2.38%, and 4.62% results from applying the wrong bracket.",
      "topic": "Tax-equivalent yield",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "An investor expects 5% nominal yield on a one-year instrument while inflation is projected at 3%. The economy then weakens and the Fed eases aggressively, pushing nominal yields to 3% while inflation expectations climb to 4%. What happens to the approximate REAL (inflation-adjusted) return the investor can newly lock in?",
+     "q": "An investor can earn a 5% nominal yield when inflation is expected to be 3%. Yields then fall to 3% while expected inflation rises to 4%. The approximate real return now available to the investor:",
      "choices": [
-      "It stays positive at about 2%",
-      "It turns negative, falling from about +2% to about −1%",
-      "It rises from about +2% to about +3%",
-      "Real return is unaffected because only nominal rates changed"
+      "remains positive at about 2%.",
+      "falls to about negative 1%.",
+      "rises to about positive 3%.",
+      "falls to about positive 1%."
      ],
      "answer": 1,
-     "explanation": "Real return ≈ nominal − inflation. Initially 5% − 3% = +2%. After easing: 3% − 4% = −1%, a negative real return. Falling nominal yields combined with rising inflation expectations squeeze the real return below zero.",
+     "explanation": "Real return approximately equals nominal yield minus inflation: initially 5% − 3% = +2%; afterward 3% − 4% = −1%. Falling nominal yields combined with rising inflation expectations push the real return below zero; a result of positive 1% comes from subtracting in the wrong order.",
      "topic": "Real vs nominal interest rates",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "Two figures are reported for the same year: GDP rises 2% in real terms, while a separate aggregate that counts income earned by the nation's citizens regardless of location also rises. Which statement about these measures is TRUE?",
+     "q": "Which of the following statements about gross domestic product (GDP) is TRUE?",
      "choices": [
-      "GDP counts final output produced within the country's borders; the citizen-based measure is GNP",
-      "GDP counts income earned by the nation's citizens worldwide; the border-based measure is GNP",
-      "GDP counts intermediate goods as well as final goods so production is not understated",
-      "A rise in nominal GDP is by itself sufficient proof that the nation's real output increased"
+      "GDP measures final output produced within a nation's borders.",
+      "GDP measures income earned by a nation's citizens worldwide.",
+      "GDP includes intermediate goods as well as final goods.",
+      "A rise in nominal GDP proves that real output increased."
      ],
      "answer": 0,
-     "explanation": "GDP measures the market value of final goods and services produced WITHIN a country's borders; the citizenship/ownership-based aggregate is GNP — the reversed version swaps the two. Intermediate goods are EXCLUDED to avoid double-counting, and nominal GDP can rise purely from inflation, so a rising nominal figure alone cannot prove real growth.",
+     "explanation": "GDP is the market value of final goods and services produced within a country's borders; output attributed to a nation's citizens regardless of location is gross national product (GNP). Intermediate goods are excluded to avoid double counting, and nominal GDP can rise purely from inflation.",
      "topic": "GDP vs GNP fine points",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "The federal government cuts personal income tax rates and increases unemployment benefits to revive a sluggish economy. Which Federal Reserve action would REINFORCE this fiscal stimulus rather than offset it?",
+     "q": "The federal government cuts personal income tax rates to stimulate a sluggish economy. Which of the following Federal Reserve actions would reinforce this fiscal stimulus?",
      "choices": [
-      "Raising the reserve requirement on bank deposits",
+      "Raising the reserve requirement on deposits",
       "Selling Treasury securities in the open market",
-      "Raising the target range for the federal funds rate",
+      "Raising the target for the federal funds rate",
       "Buying Treasury securities in the open market"
      ],
      "answer": 3,
-     "explanation": "Tax cuts and higher benefits are expansionary fiscal policy; buying Treasury securities injects reserves and pushes rates lower, easing in the same direction and reinforcing the stimulus. Raising the reserve requirement, selling securities, and raising the fed funds target all drain reserves or raise rates — contractionary moves that would offset it.",
+     "explanation": "Tax cuts are expansionary fiscal policy; buying Treasury securities injects reserves and pushes rates lower, easing in the same direction. Raising the reserve requirement, selling securities, and raising the federal funds target are contractionary moves that would offset the stimulus.",
      "topic": "Coordinating fiscal and monetary policy",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Starting from the bottom of a downturn, which sequence correctly orders the four phases of a complete business cycle until the economy reaches the next bottom?",
+     "q": "Beginning at the low point of the business cycle, which of the following correctly orders the four phases?",
      "choices": [
       "Peak, expansion, trough, contraction",
       "Trough, expansion, peak, contraction",
@@ -2787,35 +2787,35 @@ window.SIE_DATA = {
       "Contraction, trough, peak, expansion"
      ],
      "answer": 1,
-     "explanation": "Beginning at the low point: trough (bottom) leads to expansion (recovery and growth), then to peak (top), then to contraction (decline back toward the next trough). The other orders misplace phases — for example, putting a trough immediately after a peak skips the contraction that must occur between the top and the bottom.",
+     "explanation": "From the low point, the cycle proceeds trough, expansion, peak, contraction, returning to the next trough. The other orders misplace phases — for example, a trough cannot immediately follow a peak because a contraction must occur between the top and the bottom.",
      "topic": "Business-cycle ordering",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "An analyst is positioning a portfolio for a recession she believes is two quarters away, as signaled by a recently inverted yield curve. To preserve capital while staying invested in equities, which group of stocks should she OVERWEIGHT, and why?",
+     "q": "An investor who expects a recession wants to remain invested in common stock while limiting exposure to the downturn. Which of the following groups of stocks is MOST suitable?",
      "choices": [
-      "Cyclical stocks such as automobile manufacturers and luxury-goods retailers, because their earnings rise fastest off a trough",
-      "Defensive stocks such as food, utility and pharmaceutical companies, because demand for their products holds up regardless of the business cycle",
-      "Growth stocks such as early-stage technology firms, because they reinvest earnings rather than pay dividends",
-      "Special-situation cyclical stocks such as steel and homebuilders, because they pay the highest dividends in a downturn"
+      "Automobile manufacturers and luxury-goods retailers",
+      "Food, utility, and pharmaceutical companies",
+      "Early-stage, high-growth technology companies",
+      "Steel producers and residential homebuilders"
      ],
      "answer": 1,
-     "explanation": "Defensive (non-cyclical) stocks sell staples that consumers buy in good times and bad: food/consumer staples, utilities, household products, and pharmaceuticals. Their earnings and share prices are relatively stable through a contraction, so they are overweighted heading into a recession. Cyclical stocks (autos, luxury goods, steel, homebuilders, durable goods) are the opposite trade — their earnings track the cycle and fall in a downturn, so they are bought near the trough/early expansion, not before a recession. Growth stocks are defined by reinvesting earnings for fast expansion, not by recession resilience, and they are typically more volatile in a downturn.",
+     "explanation": "Defensive stocks — food, utilities, household products, and pharmaceuticals — sell staples that consumers buy in good times and bad, so their earnings hold up through a contraction. Automakers, luxury-goods retailers, steel producers, and homebuilders are cyclical, and growth stocks are defined by reinvested earnings, not recession resistance.",
      "topic": "Cyclical, Defensive & Growth Securities",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Each of the following pairings of a stock classification to its economic behavior is correct EXCEPT:",
+     "q": "Each of the following stock classifications is correctly matched with an example EXCEPT:",
      "choices": [
-      "Defensive — utility and food companies whose sales remain steady through a recession",
-      "Cyclical — a homebuilder and an automaker whose earnings rise in expansion and fall in contraction",
-      "Growth — a company that reinvests most of its earnings, pays little or no dividend, and trades at a high P/E",
-      "Counter-cyclical/defensive — a luxury-cruise and fine-jewelry retailer whose sales are unaffected by the business cycle"
+      "Defensive — utilities and food producers with steady sales through a recession",
+      "Cyclical — automakers and homebuilders whose earnings track the business cycle",
+      "Growth — companies that reinvest most earnings and pay little or no dividend",
+      "Defensive — luxury-goods retailers whose sales are unaffected by the business cycle"
      ],
      "answer": 3,
-     "explanation": "This is the trap. Luxury cruises and fine jewelry are big-ticket discretionary purchases — the textbook example of a CYCLICAL business, because consumers cut them first when the economy weakens. They are NOT defensive/counter-cyclical. The other three are correct: defensive = staples/utilities/food (steady demand), cyclical = autos and homebuilders (earnings track the cycle), and growth = high-reinvestment, low/no-dividend, high-P/E firms. On an EXCEPT question you select the FALSE statement, which is the luxury-goods-as-defensive pairing.",
+     "explanation": "Luxury goods are big-ticket discretionary purchases and a textbook example of a cyclical business, because consumers cut them first when the economy weakens; labeling them defensive is the false pairing. Defensive companies sell staples with steady demand, cyclical earnings track the cycle, and growth companies reinvest earnings, pay little or no dividend, and trade at high price-earnings ratios.",
      "topic": "Cyclical, Defensive & Growth Securities",
      "difficulty": "hard",
      "style": "EXCEPT"
@@ -3910,71 +3910,71 @@ window.SIE_DATA = {
    ],
    "questions": [
     {
-     "q": "A privately held manufacturer wants to raise $40 million by selling common stock to the public for the first time. The underwriter requires that the entire issue be sold or the deal is canceled; partial proceeds are escrowed and returned to investors if the threshold is not met, and the underwriter bears no inventory risk on unsold shares. Which underwriting commitment is described?",
+     "q": "The underwriter acts as agent, and the entire issue must be sold or the offering is canceled and escrowed funds are returned to investors. This underwriting arrangement is known as:",
      "choices": [
-      "Firm commitment underwriting",
-      "Standby underwriting",
-      "All-or-none underwriting",
-      "Mini-maximum underwriting"
+      "a firm-commitment underwriting.",
+      "a standby underwriting.",
+      "an all-or-none underwriting.",
+      "a mini-maximum underwriting."
      ],
      "answer": 2,
-     "explanation": "All-or-none is a best-efforts variant in which the underwriter acts as agent (no inventory risk) but the deal is canceled and proceeds escrowed and returned unless 100% is sold. Firm commitment is wrong because the underwriter would buy the whole issue and bear inventory risk; mini-max sets a floor below 100%, not a 100% requirement; standby applies to rights offerings.",
+     "explanation": "All-or-none is a best-efforts variant: the underwriter acts as agent with no inventory risk, and unless the entire issue is sold, the offering is canceled and escrowed funds are returned. In a firm commitment the underwriter buys the whole issue and bears inventory risk; a mini-maximum sets a floor below 100%; a standby applies to rights offerings.",
      "topic": "Underwriting commitments",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Under a mini-maximum best-efforts underwriting, an issuer sets a minimum of 600,000 shares and a maximum of 1,000,000 shares at $20. By the deadline the syndicate has firm subscriptions for 720,000 shares. Which statement is TRUE?",
+     "q": "Under a mini-maximum best-efforts underwriting, an issuer sets a minimum of 600,000 shares and a maximum of 1,000,000 shares at $20.00 per share. If 720,000 shares are sold by the closing date, what are the issuer's gross proceeds?",
      "choices": [
-      "The offering is canceled and all funds returned because fewer than the maximum were sold",
-      "The offering closes and the issuer receives $14,400,000 in gross proceeds",
-      "The offering closes but the issuer receives only the $12,000,000 minimum, with the excess refunded",
-      "The underwriter must purchase the unsold 280,000 shares to make the issuer whole"
+      "$0",
+      "$12,000,000",
+      "$14,400,000",
+      "$20,000,000"
      ],
-     "answer": 1,
-     "explanation": "In a mini-max, once the minimum (600,000) is met the offering proceeds and the issuer keeps proceeds for every share actually sold: 720,000 x $20 = $14,400,000. It is not canceled because the floor was exceeded; the issuer is not capped at the minimum; and in any best-efforts deal the underwriter acts as agent and does not buy unsold shares.",
+     "answer": 2,
+     "explanation": "Once the 600,000-share minimum is met, a mini-maximum offering closes and the issuer keeps the proceeds of every share actually sold: 720,000 x $20.00 = $14,400,000. The offering is not canceled because the floor was exceeded, proceeds are not capped at the $12,000,000 minimum, and a best-efforts underwriter acts as agent and does not purchase unsold shares.",
      "topic": "Mini-max math",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "All of the following are exempt SECURITIES under the Securities Act of 1933 EXCEPT:",
+     "q": "Under the Securities Act of 1933, registration is required for which of the following securities?",
      "choices": [
       "A general obligation bond of a county school district",
       "Commercial paper with a 180-day original maturity",
-      "A fixed annuity contract sold by an insurance company",
+      "A fixed annuity contract issued by an insurance company",
       "Common stock issued by a bank holding company"
      ],
      "answer": 3,
-     "explanation": "Municipal securities, short-term commercial paper (under 270 days), and fixed annuities are exempt securities. Securities of a bank HOLDING COMPANY are not exempt; only securities issued directly by the bank itself are exempt. The holding company is a separate issuer whose stock must be registered, which is the trap.",
+     "explanation": "Municipal securities, commercial paper with a maturity under 270 days, and fixed annuities are exempt securities under the Securities Act of 1933. Stock of a bank holding company is not exempt; only securities issued directly by the bank itself are. The holding company is a separate issuer whose stock must be registered.",
      "topic": "Exempt securities",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "An issuer conducts an offering relying on the intrastate exemption under Rule 147. An investor who purchased in the offering wants to resell her shares to a buyer in a neighboring state four months after the offering closed. Which statement is TRUE?",
+     "q": "An investor purchased securities in an intrastate offering made under Rule 147. Four months later, the investor wants to sell to a resident of another state. Which of the following statements is TRUE?",
      "choices": [
-      "She may resell to the out-of-state buyer immediately because Rule 147 only restricts the issuer, not investors",
-      "She may resell out of state because four months exceeds the Rule 144 six-month holding period",
-      "She may not resell to an out-of-state resident until six months after she purchased the securities",
-      "She may resell out of state only after filing a Form 144 with the SEC"
+      "The investor may sell immediately, because Rule 147 restricts only the issuer.",
+      "The investor may sell, because four months satisfies the Rule 144 holding period.",
+      "The investor may not sell to an out-of-state resident until six months after purchase.",
+      "The investor may sell only after filing Form 144 with the Securities and Exchange Commission."
      ],
      "answer": 2,
-     "explanation": "Rule 147 requires resales be limited to in-state residents for six months after the purchaser bought the securities; out-of-state resale before that breaks the exemption. Four months is not enough; the Rule 144 six-month period is a separate rule for restricted stock; and Form 144 governs control/restricted sales, not intrastate resale limits.",
+     "explanation": "Rule 147 limits resales to in-state residents for six months after the investor's purchase; an out-of-state resale before then breaks the exemption. Four months is insufficient, the Rule 144 six-month holding period is a separate rule for restricted stock, and Form 144 governs sales of control and restricted stock, not intrastate resales.",
      "topic": "Rule 147 intrastate",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "An individual reports: salary $90,000; total assets of $1.4 million including a primary residence with a fair market value of $900,000 against which there is an $850,000 mortgage; no other liabilities. Based solely on net worth, does this person qualify as an accredited investor?",
+     "q": "An investor earns a $90,000 salary and reports total assets of $1,400,000, including a primary residence valued at $900,000 that carries an $850,000 mortgage. Under the accredited-investor net-worth standard, the investor:",
      "choices": [
-      "Yes, because total assets of $1.4 million exceed the $1 million minimum",
-      "Yes, because home equity may be counted toward the $1 million minimum",
-      "No, because the $850,000 mortgage must be netted against all other assets",
-      "No, because net worth excluding the residence and its mortgage is $500,000"
+      "qualifies, because total assets of $1,400,000 exceed the $1,000,000 minimum.",
+      "qualifies, because home equity counts toward the $1,000,000 minimum.",
+      "does not qualify, because net worth excluding the residence is $500,000.",
+      "does not qualify, because the mortgage must be netted against all other assets."
      ],
-     "answer": 3,
-     "explanation": "The accredited-investor net-worth test excludes the primary residence and the mortgage it secures up to the home's value. Removing the $900,000 home and the $850,000 mortgage leaves $500,000 in other assets with no other debt, below $1 million. Counting home equity is the trap — the mortgage is excluded along with the home, not netted against other assets — and the $200,000 income test is also not met at a $90,000 salary.",
+     "answer": 2,
+     "explanation": "The accredited-investor net-worth test excludes the primary residence and the mortgage it secures up to the home's value. Removing the $900,000 residence and the $850,000 mortgage leaves $500,000 in other assets, below the $1,000,000 minimum. Counting home equity is the trap, and a $90,000 salary does not meet the income test.",
      "topic": "Reg D accredited",
      "difficulty": "hard",
      "style": "calc"
@@ -3982,153 +3982,153 @@ window.SIE_DATA = {
     {
      "q": "Which of the following correctly distinguishes Rule 144A from Regulation S?",
      "choices": [
-      "Rule 144A exempts offshore offers and sales; Reg S permits resales to qualified institutional buyers",
-      "Both rules impose a six-month holding period before the securities may be resold to public investors",
-      "Rule 144A permits resales to qualified institutional buyers; Reg S exempts offers and sales outside the U.S.",
-      "Rule 144A is available only to control persons; Reg S is available only to affiliates of the issuer"
+      "Rule 144A covers offshore offers and sales; Regulation S covers resales to qualified institutional buyers (QIBs).",
+      "Rule 144A covers resales to qualified institutional buyers; Regulation S covers offshore offers and sales.",
+      "Both rules impose a uniform six-month holding period before any public resale of the securities.",
+      "Rule 144A is available only to control persons; Regulation S is available only to issuer affiliates."
      ],
-     "answer": 2,
-     "explanation": "Rule 144A is a safe harbor for reselling restricted securities to QIBs (institutions that own or invest at least $100 million in securities), with no holding period; Reg S is a safe harbor for offers and sales occurring outside the U.S. The reversed pairing swaps the two rules — the strongest trap — and neither rule imposes a uniform six-month holding period or is limited to control persons or affiliates.",
+     "answer": 1,
+     "explanation": "Rule 144A is a safe harbor for reselling restricted securities to qualified institutional buyers, with no holding period; Regulation S is a safe harbor for offers and sales outside the United States. The reversed pairing swaps the two rules, and neither rule imposes a uniform six-month holding period or is limited to control persons or affiliates.",
      "topic": "144A vs Reg S",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A corporate officer (an affiliate) acquired her company's stock in the open market two years ago. She wants to sell during the current quarter. Reported average weekly trading volume over the prior four weeks is 950,000 shares, and total shares outstanding are 80,000,000. Under Rule 144, what is the maximum number of shares she may sell during this 90-day period?",
+     "q": "An affiliate acquired shares of her company's stock in the open market two years ago. The issuer has 80,000,000 shares outstanding, and average weekly trading volume for the preceding four weeks is 950,000 shares. Under Rule 144, what is the maximum number of shares the affiliate may sell in a 90-day period?",
      "choices": [
+      "240,000 shares",
       "800,000 shares",
       "950,000 shares",
-      "1,000,000 shares",
-      "240,000 shares"
+      "1,000,000 shares"
      ],
-     "answer": 1,
-     "explanation": "The Rule 144 volume limit for an affiliate is the GREATER of 1% of outstanding shares or the average weekly trading volume over the preceding four weeks. 1% of 80,000,000 = 800,000; the four-week average is 950,000; the greater is 950,000. Choosing 800,000 takes the smaller figure (the trap). There is no holding-period issue because control stock bought in the market is not restricted.",
+     "answer": 2,
+     "explanation": "The Rule 144 volume limit for an affiliate is the greater of 1% of shares outstanding or the average weekly trading volume of the preceding four weeks. 1% of 80,000,000 is 800,000; the four-week average is 950,000; the greater is 950,000. Choosing 800,000 takes the smaller figure. Control stock bought in the open market has no holding period.",
      "topic": "Rule 144 volume",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "Which statement about restricted stock versus control stock is TRUE?",
+     "q": "Which of the following statements about restricted stock and control stock is TRUE?",
      "choices": [
-      "Control stock faces Rule 144 volume limits; a non-affiliate's restricted stock trades freely after the holding period",
-      "Restricted stock is defined by who currently owns it; control stock is defined by how the shares were acquired",
-      "Restricted stock may never be resold to the public, even after the applicable holding period has been satisfied",
-      "Both restricted and control stock require a Form 144 filing on every sale, no matter how small the transaction"
+      "Control stock is subject to Rule 144 volume limits; a non-affiliate's restricted stock is freely salable after the holding period.",
+      "Restricted stock is defined by who currently owns it; control stock is defined by how the shares were acquired.",
+      "Restricted stock may never be resold to the public, even after the applicable holding period has been satisfied.",
+      "Every sale of restricted or control stock requires a Form 144 filing, regardless of the size of the transaction."
      ],
      "answer": 0,
-     "explanation": "Control stock (owned by an affiliate) is always subject to Rule 144 volume limits when sold; restricted stock held by a non-affiliate for the holding period (six months for a current reporting issuer, one year if non-reporting) generally becomes freely salable. The reversed definitions are the classic trap: restricted describes how the stock was acquired, control describes who owns it. Seasoned restricted stock can be sold publicly, and Form 144 is not required for sales of 5,000 shares or fewer and $50,000 or less in a 90-day period.",
+     "explanation": "Control stock, owned by an affiliate, is always subject to Rule 144 volume limits when sold; restricted stock held by a non-affiliate for the holding period generally becomes freely salable. The reversed definitions are the trap: restricted describes how the stock was acquired, control describes who owns it. Form 144 is not required for sales of 5,000 shares or fewer and $50,000 or less in 90 days.",
      "topic": "Restricted vs control",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "During the cooling-off period of a registered IPO, a registered representative takes the following actions. Which one is PERMITTED?",
+     "q": "During the cooling-off period of an initial public offering (IPO), a registered representative (RR) is permitted to:",
      "choices": [
-      "Sending a research report on the issuer to clients to build interest before effectiveness",
-      "Sending a preliminary prospectus (red herring) to a customer who asks about the offering",
-      "Accepting a customer's signed order and a check to be held until the effective date",
-      "Confirming the final public offering price to a customer and guaranteeing an allocation"
+      "send a customer a research report on the issuer prepared by the firm.",
+      "send a preliminary prospectus to a customer who requests one.",
+      "accept a signed order with payment to be held until the effective date.",
+      "confirm the final public offering price and guarantee an allocation."
      ],
      "answer": 1,
-     "explanation": "During cooling-off the underwriter may distribute a preliminary prospectus (red herring) and gather non-binding indications of interest. Research reports on the issuer are prohibited (quiet period), no binding orders or payment may be accepted before effectiveness, and the final POP and firm allocations are not set until the registration is effective.",
+     "explanation": "During the cooling-off period the underwriters may distribute a preliminary prospectus (red herring) and gather non-binding indications of interest. Research reports on the issuer are prohibited, no binding orders or payment may be accepted before effectiveness, and the final public offering price and allocations are not set until the registration is effective.",
      "topic": "Cooling-off period",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Consider these statements about a preliminary prospectus (red herring): I. It omits the final public offering price. II. It may be used to solicit binding purchase orders. III. It contains a statement in red that the registration has not yet become effective. IV. It includes the underwriting spread expressed as a final dollar figure. Which are TRUE?",
+     "q": "Which of the following statements about a preliminary prospectus (red herring) is TRUE?",
      "choices": [
-      "I and III only",
-      "I, III, and IV only",
-      "II and IV only",
-      "I, II, and III only"
+      "It may be used to accept binding purchase orders from customers.",
+      "It includes the final public offering price of the securities.",
+      "It discloses that the registration statement has not yet become effective.",
+      "It includes the underwriting spread expressed as a final dollar amount."
      ],
-     "answer": 0,
-     "explanation": "A red herring omits the final POP (and therefore the final spread) and carries the red-ink legend that the registration is not yet effective, so I and III are true. It may NOT be used to take binding orders, only indications of interest, making II false; the final spread in dollars is not yet fixed, making IV false.",
+     "answer": 2,
+     "explanation": "A preliminary prospectus carries a legend stating that the registration statement has not become effective. It omits the final public offering price and the final spread, and it may be used only to obtain non-binding indications of interest, never binding orders.",
      "topic": "Red herring",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "A seasoned public company files a single registration statement covering $500 million of securities it intends to sell to the public in multiple tranches over the next three years as financing needs arise. This is BEST described as:",
+     "q": "A seasoned issuer files one registration statement covering $500 million of securities to be sold in portions over the next three years as financing needs arise. This filing is BEST described as:",
      "choices": [
-      "A follow-on (subsequent primary) offering completed in one closing",
-      "A shelf registration under Rule 415",
-      "A combined (split) primary/secondary offering",
-      "A Regulation A Tier 2 offering"
+      "a follow-on (subsequent primary) offering.",
+      "a shelf registration under Rule 415.",
+      "a combined primary and secondary offering.",
+      "an offering under Regulation A Tier 2."
      ],
      "answer": 1,
-     "explanation": "Shelf registration (Rule 415) lets a seasoned issuer register securities once and sell them in pieces over up to three years, with only a short supplement at each takedown. A follow-on is a single subsequent sale, not a multi-tranche shelf; a combined offering mixes issuer and selling-shareholder shares; and Reg A Tier 2 is capped at $75 million, far below $500 million.",
+     "explanation": "Shelf registration under Rule 415 permits a seasoned issuer to register securities once and sell them in portions over up to three years, filing a short supplement at each takedown. A follow-on offering is a single subsequent sale, a combined offering mixes issuer and selling-shareholder shares, and Regulation A Tier 2 is capped at $75 million.",
      "topic": "Shelf registration",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "An offering sells 4,000,000 newly issued shares from the company plus 1,000,000 existing shares being sold by the founder, who is cashing out part of her stake. Which statement is TRUE about the proceeds and classification?",
+     "q": "A registered offering consists of 4,000,000 newly issued shares sold by the issuer and 1,000,000 outstanding shares sold by an existing shareholder. Which of the following statements is TRUE?",
      "choices": [
-      "All of the proceeds go to the issuer, because every share in a registered offering benefits the company",
-      "The issuer receives the new-share proceeds and the founder receives hers; this is a combined (split) offering",
-      "The founder's participation makes this a pure secondary offering that contains no primary component",
-      "Because a control person is selling, the entire offering must comply with Rule 144 volume limits"
+      "The issuer receives the proceeds from the sale of all 5,000,000 shares in the offering.",
+      "The offering is a combined offering; each seller receives the proceeds of its own shares.",
+      "The offering is a pure secondary offering and therefore contains no primary component.",
+      "The entire offering is subject to Rule 144 volume limitations because a control person is selling."
      ],
      "answer": 1,
-     "explanation": "When newly issued (primary) shares and existing selling-shareholder (secondary) shares are sold together it is a combined or split offering: the issuer receives the proceeds from its new shares and the selling shareholder receives the proceeds from her existing shares. It is not all-to-issuer, not purely secondary (the 4,000,000 new shares are primary), and a registered selling-shareholder offering is not the same as a private Rule 144 resale.",
+     "explanation": "An offering that includes newly issued (primary) shares and outstanding (secondary) shares is a combined offering: the issuer receives the proceeds of the new shares, and the selling shareholder receives the proceeds of the outstanding shares. The issue is not purely secondary, and a registered offering by a selling shareholder is not a Rule 144 open-market resale.",
      "topic": "Primary vs secondary",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "Which of the following is an exempt TRANSACTION rather than an exempt security?",
+     "q": "Which of the following is an exempt transaction rather than an exempt security under the Securities Act of 1933?",
      "choices": [
-      "A new issue of Treasury notes sold at a federal government auction",
-      "A general obligation bond issued by a state or its political subdivision",
-      "Common stock sold to a limited group of investors under Regulation D",
-      "Commercial paper issued with an original maturity of only 120 days"
+      "A new issue of Treasury notes sold at a federal auction",
+      "A general obligation bond issued by a state government",
+      "Common stock sold under a Regulation D private placement",
+      "Commercial paper with a 120-day original maturity"
      ],
      "answer": 2,
-     "explanation": "A Reg D private placement is an exempt TRANSACTION; the securities themselves are non-exempt, but the manner of sale (limited, to accredited/sophisticated investors) qualifies for exemption from registration. Treasuries, municipal GOs, and short-term commercial paper (under 270 days) are exempt SECURITIES, exempt by their nature regardless of how they are sold.",
+     "explanation": "A Regulation D private placement is an exempt transaction: the securities themselves are non-exempt, but the manner of sale qualifies for exemption from registration. Treasury securities, municipal general obligation bonds, and commercial paper maturing within 270 days are exempt securities regardless of how they are sold.",
      "topic": "Exempt security vs transaction",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "Under Regulation A, an issuer wants to raise the maximum permitted while avoiding full SEC registration. Which statement about the Reg A tiers is TRUE?",
+     "q": "Under Regulation A, which of the following statements about the offering tiers is TRUE?",
      "choices": [
-      "Tier 1 permits up to $75 million and Tier 2 up to $20 million in any 12-month period",
-      "Tier 1 permits up to $20 million and Tier 2 up to $75 million in any 12-month period",
-      "Both tiers permit up to $50 million, with audited financial statements required in each",
-      "Tier 2 permits an unlimited raise but restricts sales to accredited investors only"
+      "Tier 1 permits up to $75 million and Tier 2 up to $20 million in a 12-month period.",
+      "Tier 1 permits up to $20 million and Tier 2 up to $75 million in a 12-month period.",
+      "Each tier permits up to $50 million, with audited financial statements required in both.",
+      "Tier 2 permits an unlimited raise but limits sales to accredited investors only."
      ],
      "answer": 1,
-     "explanation": "Reg A Tier 1 allows up to $20 million and Tier 2 up to $75 million over 12 months; Tier 2 adds ongoing reporting, audited financials, and investment limits for non-accredited investors. Swapping the caps is the strongest trap — the larger $75 million ceiling belongs to Tier 2. Neither tier is capped at $50 million, audited financials are a Tier 2 (not universal) requirement, and Tier 2 is not accredited-only.",
+     "explanation": "Tier 1 permits up to $20 million and Tier 2 up to $75 million in any 12-month period; Tier 2 adds ongoing reporting, audited financial statements, and investment limits for non-accredited investors. Swapping the caps is the trap; neither tier is capped at $50 million, and Tier 2 is not limited to accredited investors.",
      "topic": "Reg A tiers",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "A non-affiliate purchased restricted securities of an SEC-reporting company in a private placement. The issuer has remained current in its periodic reports. After what holding period may this non-affiliate freely resell the securities into the public market without volume limits?",
+     "q": "A non-affiliate purchased restricted securities of an issuer that is current in its Securities and Exchange Commission (SEC) reporting obligations. After what holding period may the securities be resold publicly without volume limits?",
      "choices": [
+      "90 days",
       "6 months",
       "1 year",
-      "2 years",
-      "90 days"
+      "2 years"
      ],
-     "answer": 0,
-     "explanation": "For restricted securities of a reporting issuer with current public information, a non-affiliate may resell after a six-month holding period with no volume limits. One year applies only when the issuer is NOT subject to reporting requirements (no current public info). The six-month answer hinges on the issuer being a current reporting company, the precise distinction tested.",
+     "answer": 1,
+     "explanation": "A non-affiliate holding restricted securities of a current reporting issuer may resell freely after six months with no volume limits. The one-year period applies only when the issuer is not subject to reporting requirements; the reporting status of the issuer is the distinction tested.",
      "topic": "Rule 144 holding period",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "A syndicate underwrites a corporate bond issue on a firm-commitment basis, structured as a Western (divided) account. A member with a 15% participation sells its full allotment, but the syndicate as a whole leaves 8% of the total issue unsold at the close. What is this member's remaining liability?",
+     "q": "A syndicate member has a 15% participation in a Western (divided) account. The member sells its entire allotment, but 8% of the total issue remains unsold. The member's remaining liability is:",
      "choices": [
-      "It has no further liability, because its own allotment was fully sold",
-      "It must take down 15% of the unsold bonds, matching its participation",
-      "It must take down 8% of the unsold bonds, matching the overall shortfall",
-      "It must take down 1.2% of the total issue, or 15% of the 8% left unsold"
+      "none, because the member sold its entire allotment.",
+      "8% of the total issue, the syndicate's unsold balance.",
+      "15% of the unsold bonds, matching its participation.",
+      "1.2% of the total issue, or 15% of the 8% unsold."
      ],
      "answer": 0,
-     "explanation": "In a Western (divided) account, each member is responsible only for selling its own allotment; once it sells its share it has no liability for bonds left unsold by others. Taking a pro-rata share of the unsold balance (15% of the shortfall) describes an Eastern (undivided) account — the classic trap distinguishing the two account types.",
+     "explanation": "In a Western (divided) account, each member is liable only for its own allotment; a member that sells its full share has no liability for bonds left unsold by others. Responsibility for a pro-rata share of the unsold balance describes an Eastern (undivided) account, the classic trap distinguishing the two account types.",
      "topic": "Syndicate accounts",
      "difficulty": "hard",
      "style": "scenario"
@@ -4136,111 +4136,111 @@ window.SIE_DATA = {
     {
      "q": "Which of the following statements about the Securities Act of 1933 is TRUE?",
      "choices": [
-      "It primarily regulates secondary-market trading of securities listed on the national exchanges",
-      "It empowers the SEC to certify the accuracy and investment merit of each registered offering",
-      "It created the SEC and established the self-regulatory framework that includes FINRA's predecessor",
-      "It requires registration and prospectus delivery for public offerings of non-exempt securities"
+      "It primarily regulates the secondary-market trading of securities listed on national exchanges.",
+      "It empowers the SEC (Securities and Exchange Commission) to approve offerings on their merits.",
+      "It created the SEC and established the framework of self-regulatory organizations.",
+      "It requires registration and prospectus delivery for public offerings of non-exempt securities."
      ],
      "answer": 3,
-     "explanation": "The 1933 Act (the 'Paper Act') governs the primary market: it mandates registration and prospectus delivery for new non-exempt issues to ensure full and fair disclosure. The 1934 Act covers secondary trading and created the SEC; the SEC never approves, certifies, or vouches for the merit of an offering; and the SRO framework stems from the 1934 Act, not 1933.",
+     "explanation": "The Securities Act of 1933 governs the primary market, requiring registration and prospectus delivery for public offerings of non-exempt securities. The Securities Exchange Act of 1934 governs secondary trading, created the SEC, and established the self-regulatory framework; the SEC never certifies or approves the merits of an offering.",
      "topic": "1933 Act",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "An affiliate intends to sell control stock under Rule 144. All of the following are required or true EXCEPT:",
+     "q": "An affiliate acquired shares of his company's stock in the open market and intends to sell them under Rule 144. Which of the following statements is TRUE?",
      "choices": [
-      "A six-month holding period must be satisfied before open-market control stock may be resold",
-      "A Form 144 filing is generally required for sales exceeding 5,000 shares or $50,000 within 90 days",
-      "Rule 144 volume limitations apply even when the affiliate acquired the shares in the open market",
-      "The manner-of-sale and current-public-information conditions of Rule 144 must be satisfied"
+      "The shares must be held for six months before they may be resold.",
+      "No holding period applies before the shares may be resold.",
+      "Rule 144 volume limitations do not apply to sales of the shares.",
+      "A Form 144 filing is never required, regardless of the amount sold."
      ],
-     "answer": 0,
-     "explanation": "Control stock an affiliate bought in the open market has NO holding period; the shares were already publicly traded. Only restricted (unregistered) stock carries the six-month/one-year holding period. The other statements are correct: Form 144 is required above the 5,000-share/$50,000 de minimis, volume limits always apply to an affiliate's sales, and manner-of-sale and current-information conditions must be met.",
+     "answer": 1,
+     "explanation": "Control stock an affiliate acquires in the open market carries no holding period; only restricted (unregistered) securities are subject to the six-month or one-year holding period. Volume limitations always apply to an affiliate's sales, and Form 144 is required for sales exceeding 5,000 shares or $50,000 in 90 days.",
      "topic": "Rule 144 control stock",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "The post-IPO quiet period (research blackout) and the cooling-off period are sometimes confused. Which statement correctly distinguishes them?",
+     "q": "Which of the following correctly distinguishes the cooling-off period from the post-offering quiet period?",
      "choices": [
-      "The cooling-off period begins at the effective date, while the quiet period begins when the registration is filed",
-      "The cooling-off period runs from the filing date to effectiveness; the quiet period limits underwriter research after the IPO",
-      "Both periods last exactly 20 calendar days and prohibit all communications between underwriters and prospective investors",
-      "The quiet period permits unrestricted research distribution, while the cooling-off period bars use of the red herring"
+      "The cooling-off period begins at the effective date; the quiet period begins when the registration statement is filed.",
+      "The cooling-off period runs from filing to effectiveness; the quiet period limits underwriter research after the offering.",
+      "Both periods last exactly 20 calendar days and prohibit all communications with prospective investors.",
+      "The quiet period permits unrestricted research; the cooling-off period prohibits use of the preliminary prospectus."
      ],
      "answer": 1,
-     "explanation": "The cooling-off period (a minimum of 20 days from filing to effectiveness) is when underwriters circulate the red herring and collect non-binding indications of interest; the post-IPO quiet period limits research publication by participating underwriters after the deal. The timing-reversal option is the strongest trap — cooling-off precedes effectiveness, not the reverse — and research is restricted (not free) during the quiet period while the red herring is permitted (not banned) during cooling-off.",
+     "explanation": "The cooling-off period runs from the filing date to the effective date, during which underwriters circulate the red herring and gather non-binding indications of interest. The quiet period restricts research publication by participating underwriters after the offering; research is not unrestricted, and the red herring is permitted during cooling-off.",
      "topic": "Quiet vs cooling-off",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "Consider these statements about a firm-commitment underwriting: I. The underwriter acts as principal and buys the entire issue from the issuer. II. The spread is the difference between the public offering price and the price the underwriter pays the issuer. III. Unsold shares are returned to the issuer at no cost to the underwriter. IV. The underwriter bears the financial risk of unsold shares. Which combination is correct?",
+     "q": "Which of the following statements about a firm-commitment underwriting is TRUE?",
      "choices": [
-      "I, II, and IV only",
-      "I, II, and III only",
-      "II and IV only",
-      "I and III only"
+      "The underwriter acts as agent and may return unsold shares to the issuer.",
+      "The underwriter buys the entire issue as principal and bears the risk of unsold shares.",
+      "The underwriter is compensated by a stated commission rather than by the spread.",
+      "The issuer receives the full public offering price for every share that is sold."
      ],
-     "answer": 0,
-     "explanation": "In a firm commitment the underwriter buys the whole issue as principal (I), profits on the spread between POP and the issuer's proceeds (II), and bears the risk of any unsold shares because it owns them (IV). Statement III is false; the defining feature of firm commitment is that the underwriter, not the issuer, bears the risk of unsold shares, which are not returned to the issuer.",
+     "answer": 1,
+     "explanation": "In a firm commitment the underwriter purchases the entire issue from the issuer as principal, resells it at the public offering price, and keeps the spread. Unsold shares are not returned to the issuer; the underwriter bears that risk, and the issuer receives the offering price less the spread.",
      "topic": "Firm commitment",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "A small private company plans to raise $3 million by selling securities only to residents of the single state in which it is incorporated and does most of its business. It wants to avoid SEC registration entirely. Which exemption is most appropriate, and what is a key condition?",
+     "q": "A company incorporated in one state, doing substantially all of its business there, plans to sell $3 million of securities only to residents of that state without federal registration. Which of the following exemptions applies?",
      "choices": [
-      "Reg S, conditioned on all offers and sales taking place outside of the United States",
-      "Rule 144A, conditioned on restricting every resale to qualified institutional buyers",
-      "Reg A Tier 1, conditioned on qualifying an offering circular with the SEC and state regulators",
-      "Rule 147, conditioned on substantial in-state business and sales only to state residents"
+      "Regulation S",
+      "Rule 144A",
+      "Regulation A Tier 1",
+      "Rule 147"
      ],
      "answer": 3,
-     "explanation": "A purely in-state offering by an issuer that does a substantial part of its business in that state and sells only to residents fits Rule 147, exempting it from federal registration. Reg A is the strongest distractor but still requires an SEC-qualified offering circular, which the issuer wants to avoid; Reg S covers offshore sales and 144A covers institutional resales of restricted securities.",
+     "explanation": "Rule 147 exempts from federal registration an offering by an issuer that does a substantial portion of its business in one state and sells only to residents of that state. Regulation A is the strongest distractor but still requires an offering circular qualified with the Securities and Exchange Commission (SEC); Regulation S covers offshore sales, and Rule 144A covers institutional resales of restricted securities.",
      "topic": "Rule 147",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Under Regulation D Rule 506(b), which statement is TRUE regarding investor composition and solicitation?",
+     "q": "Under Rule 506(b) of Regulation D, which of the following statements is TRUE?",
      "choices": [
-      "General solicitation is permitted, and an unlimited number of non-accredited investors may participate",
-      "The offering is capped at 35 total investors, every one of whom must be verified as accredited",
-      "General solicitation is prohibited, and up to 35 non-accredited (sophisticated) investors may participate",
-      "Sales are limited to accredited investors only, and the issuer may advertise the offering freely"
+      "General solicitation is permitted, and an unlimited number of non-accredited investors may invest.",
+      "The offering is limited to 35 total investors, all of whom must be verified as accredited.",
+      "General solicitation is prohibited, and up to 35 non-accredited investors may invest.",
+      "General solicitation is permitted, and sales are limited to accredited investors only."
      ],
      "answer": 2,
-     "explanation": "Rule 506(b) prohibits general solicitation and advertising while permitting an unlimited number of accredited investors plus up to 35 non-accredited but sophisticated investors. Free advertising to accredited-only buyers describes Rule 506(c), the strongest distractor; 506(b) is neither capped at 35 total investors nor open to unlimited non-accredited buyers.",
+     "explanation": "Rule 506(b) prohibits general solicitation and advertising while permitting an unlimited number of accredited investors plus up to 35 non-accredited but sophisticated investors. Permitted advertising with accredited-only sales describes Rule 506(c), the strongest distractor; 506(b) is neither capped at 35 total investors nor open to unlimited non-accredited investors.",
      "topic": "Reg D 506(b)",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "An issuer's IPO shows an indicated price range of $18-$22 in the red herring. By the effective date demand is strong and the deal is priced at $24. A registered rep had collected a customer's indication of interest at $20 during the cooling-off period. Which action is correct after effectiveness?",
+     "q": "A customer gives an indication of interest at $20.00 during the cooling-off period of an initial public offering (IPO). The offering becomes effective at a final price of $24.00. The registered representative (RR) must:",
      "choices": [
-      "The rep must recontact the customer to reconfirm at the final $24 price with a final prospectus",
-      "The indication automatically becomes a binding purchase at $20 that the firm is obligated to honor",
-      "The firm may fill the order at the $20 price the customer indicated before the effective date",
-      "The customer may not purchase, because the final price was set above the indicated red-herring range"
+      "treat the indication of interest as a binding order at $20.00.",
+      "fill the order at the $20.00 price the customer originally indicated.",
+      "reconfirm the order at $24.00 and deliver a final prospectus.",
+      "tell the customer that buying above the indicated price is prohibited."
      ],
-     "answer": 0,
-     "explanation": "Indications of interest gathered during the cooling-off period are never binding on either party; once the registration is effective, the rep must reconfirm the order at the actual public offering price and deliver a final prospectus. The IOI does not auto-convert to a binding trade, cannot be filled at the stale $20 price, and pricing above the indicated range does not bar a willing customer from buying at the final POP.",
+     "answer": 2,
+     "explanation": "Indications of interest gathered during the cooling-off period bind neither party. Once the registration is effective, the RR must reconfirm the order at the final public offering price and deliver a final prospectus; the order cannot be filled at the earlier indicated price, and a final price above the customer's indication does not bar a willing customer from purchasing.",
      "topic": "Indications of interest",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "All of the following statements about the prospectus delivery and registration process are TRUE EXCEPT:",
+     "q": "Which of the following statements about the registration requirements of the Securities Act of 1933 is TRUE?",
      "choices": [
-      "A final (statutory) prospectus must be delivered to purchasers in a registered non-exempt public offering",
-      "The effective date is set by the SEC after the registration statement clears review",
-      "Selling securities to the public before the effective date violates the 1933 Act",
-      "An exempt security such as a U.S. Treasury bond requires delivery of a statutory prospectus to retail buyers"
+      "Delivery of a final prospectus is optional in a registered public offering.",
+      "Sales to the public may begin as soon as the registration statement is filed.",
+      "The effective date of a registration statement is determined by the issuer.",
+      "Purchasers of U.S. Treasury bonds are not required to receive a statutory prospectus."
      ],
      "answer": 3,
-     "explanation": "Exempt securities like U.S. Treasuries are exempt from the registration and prospectus-delivery requirements of the 1933 Act, so no statutory prospectus is required, making that statement the EXCEPTION (false). The other statements are accurate: final prospectus delivery is required for registered non-exempt offerings, the SEC sets effectiveness after review, and pre-effective sales are prohibited.",
+     "explanation": "Exempt securities such as U.S. Treasury bonds are exempt from the registration and prospectus-delivery requirements of the Securities Act of 1933. In a registered non-exempt offering, a final prospectus must be delivered, sales may not occur before the effective date, and the SEC (Securities and Exchange Commission), not the issuer, sets the effective date.",
      "topic": "Prospectus delivery",
      "difficulty": "hard",
      "style": "trap"
@@ -5232,323 +5232,323 @@ window.SIE_DATA = {
    ],
    "questions": [
     {
-     "q": "An investor wants to sell 500 shares of an OTC equity security. A market maker is quoting the stock 21.40 - 21.65, 10 x 8. Assuming the customer's order is executed against this quote with no markdown disclosed separately, what total proceeds (before any commission) will the customer receive, and is the size sufficient?",
+     "q": "A market maker quotes an over-the-counter (OTC) stock 21.40 - 21.65, 10 x 8. If a customer sells 500 shares against this quote, what are the total proceeds before commission?",
      "choices": [
-      "$10,700; the 10 x 8 means 1,000 shares are bid, so the 500-share sell is fully fillable",
-      "$10,825; the customer sells at the ask of 21.65",
-      "$10,825 less a markup, since selling customers pay the ask",
-      "$10,700, but the size shows only 800 shares are available to a seller, leaving the order partially unfilled"
+      "$10,700; the bid size of 1,000 shares covers the entire order",
+      "$10,700; only 800 shares are available, so part goes unfilled",
+      "$10,825; the customer receives the ask price on the sale",
+      "$10,825, less a markup, because selling customers trade at the ask"
      ],
      "answer": 0,
-     "explanation": "A customer who sells trades against the market maker's BID (the lower price, 21.40): 500 x $21.40 = $10,700. The $10,825 choices wrongly use the ask (21.65), which is what a buyer pays. The 10 x 8 size means 1,000 shares are bid and 800 are offered; a seller draws on the bid size (1,000), so the 500-share sell is fully fillable. Choice 3 wrongly applies the offer size to a sell order.",
+     "explanation": "A selling customer trades against the market maker's bid: 500 x $21.40 = $10,700. The $10,825 choices wrongly use the ask of 21.65, the price a buyer pays. The size 10 x 8 means 1,000 shares are bid and 800 are offered; a seller draws on the bid size, so the 500-share order is fully fillable.",
      "topic": "Market maker bid/ask",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "A dealer is quoting a Nasdaq stock 45.10 - 45.40. Immediately after a wave of buying, the dealer revises the quote to 45.30 - 45.50. Which statement BEST describes what happened to the spread and the dealer's inventory pressure?",
+     "q": "A dealer quoting a Nasdaq stock 45.10 - 45.40 revises the quote to 45.30 - 45.50 after heavy customer buying. Which of the following BEST describes the revised quote?",
      "choices": [
-      "The spread widened to 0.40 because the dealer raised its selling price to discourage additional buyers",
-      "The spread is unchanged at 0.30 because the bid and the ask both moved higher by the same amount",
-      "The spread narrowed to 0.20 because the dealer raised the ask more than the bid to slow customer buying",
-      "The spread narrowed to 0.20 because the dealer raised the bid more than the ask to attract sellers"
+      "The spread widened to 0.40 because the dealer raised its ask to discourage additional buyers.",
+      "The spread is unchanged at 0.30 because the bid and the ask rose by the same amount.",
+      "The spread narrowed to 0.20 because the ask rose more than the bid to slow customer buying.",
+      "The spread narrowed to 0.20 because the bid rose more than the ask to attract sellers."
      ],
      "answer": 3,
-     "explanation": "Original spread = 45.40 − 45.10 = 0.30; new spread = 45.50 − 45.30 = 0.20, so it narrowed. The bid rose 0.20 while the ask rose only 0.10 — the dealer raised its buying price more aggressively to draw in sellers and rebuild inventory depleted by the buying wave. The reversed version (ask raised more than the bid) contradicts the actual quote changes, and 0.40 comes from wrongly subtracting the old bid from the new ask.",
+     "explanation": "The original spread was 0.30 (45.40 - 45.10); the revised spread is 0.20 (45.50 - 45.30), so it narrowed. The bid rose 0.20 while the ask rose only 0.10 — the dealer raised its buying price more aggressively to attract sellers and rebuild inventory depleted by the buying. The 0.40 figure comes from wrongly subtracting the old bid from the new ask.",
      "topic": "Spread",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "A new associate claims that because a company filed a registration statement to sell its IPO, all subsequent trading of that stock between investors is governed by the same statute that covered the IPO. Which statement correctly identifies the controlling law and corrects this error?",
+     "q": "Which of the following statements correctly describes the roles of the Securities Act of 1933 and the Securities Exchange Act of 1934?",
      "choices": [
-      "The 1933 Act governs only the new-issue offering; the 1934 Act governs trading between investors",
-      "The 1934 Act governs only the new-issue offering; the 1933 Act governs trading between investors",
-      "The 1933 Act governs both markets because registration follows a security throughout its life",
-      "The 1934 Act governs both markets because it created the SEC, which oversees all securities activity"
+      "The 1933 act governs new issues, and the 1934 act governs trading between investors.",
+      "The 1934 act governs new issues, and the 1933 act governs trading between investors.",
+      "The 1933 act governs both markets because registration follows a security throughout its life.",
+      "The 1934 act governs both markets because it created the Securities and Exchange Commission (SEC)."
      ],
      "answer": 0,
-     "explanation": "The 1933 Act governs the PRIMARY market — registration and disclosure for new issues like the IPO. Once shares trade between investors, the Securities Exchange Act of 1934, which created the SEC, controls the SECONDARY market. The SEC's broad oversight does not mean the 1934 Act governs issuance, and 1933 Act registration does not follow the security into secondary trading.",
+     "explanation": "The Securities Act of 1933 governs the primary market — registration and disclosure for new issues. The Securities Exchange Act of 1934, which created the SEC, governs the secondary market, where securities trade between investors. Registration under the 1933 act does not follow a security into secondary trading, and the SEC's broad oversight does not make the 1934 act govern issuance.",
      "topic": "1933 vs 1934 Act",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Two large institutions arrange a block trade in a listed stock directly with each other, completely bypassing any broker-dealer or exchange. This transaction occurs in the:",
+     "q": "Two institutions execute a block trade in an exchange-listed stock directly with each other, without using a broker-dealer. This trade takes place in which of the following markets?",
      "choices": [
       "Third market",
       "Fourth market",
       "Primary market",
-      "Dark pool, which is a regulated subset of the third market"
+      "Dark pool"
      ],
      "answer": 1,
-     "explanation": "The FOURTH market is direct institution-to-institution trading without a broker-dealer intermediary, often via ECNs. The THIRD market is the trading of exchange-LISTED securities OTC, which still involves a broker-dealer/market maker. Because no broker-dealer is involved here, it is the fourth market, not the third.",
+     "explanation": "The fourth market is direct institution-to-institution trading without a broker-dealer intermediary, often through electronic communication networks (ECNs). The third market is OTC trading of exchange-listed securities and still involves a broker-dealer, so it does not apply here.",
      "topic": "Third vs fourth market",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A retail customer enters a market order to BUY 200 shares of a thinly traded OTC stock. The inside market is 8.20 - 8.55. The executing firm fills the customer at 8.55 and then adds its compensation. Compared with filling at the inside bid, which is TRUE about the customer's cost and the firm's role?",
+     "q": "The inside market for an over-the-counter (OTC) stock is 8.20 - 8.55. If a customer enters a market order to buy 200 shares, which of the following statements is TRUE?",
      "choices": [
-      "The customer pays the 8.20 bid, since customer orders execute at the more favorable of the two quotes",
-      "The customer pays the 8.375 midpoint, since best execution requires market orders to be filled between the quotes",
-      "The customer pays the 8.55 ask, and a separate commission would apply only if the firm acted as agent",
-      "The customer pays the 8.55 ask, but the 0.35 spread violates the 5% policy and must be refunded to the customer"
+      "The customer pays the bid because customer orders execute at the more favorable quote.",
+      "The customer pays the midpoint because best execution requires fills between the quotes.",
+      "The customer pays the ask, and a commission applies only if the firm acts as agent.",
+      "The customer pays the ask, but the spread exceeds the 5% policy and must be refunded."
      ],
      "answer": 2,
-     "explanation": "A customer who BUYS pays the ASK (8.55); the spread is the dealer's built-in compensation when acting as principal, and a separately disclosed commission applies only when the firm acts as agent. The 5% policy is a fair-pricing guideline, not an automatic cap that voids a quoted spread (0.35 on 8.20 is under 5% anyway); best execution does not mandate midpoint fills, and buyers do not trade at the bid.",
+     "explanation": "A buying customer pays the ask (8.55). The spread is the dealer's compensation when acting as principal; a separately disclosed commission applies only when the firm acts as agent. Best execution does not require midpoint fills, buyers do not trade at the bid, and the 5% policy is a fair-pricing guideline, not an automatic refund trigger (0.35 on 8.20 is under 5% anyway).",
      "topic": "Bid/ask application",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "A trainee describes a market where one designated participant is assigned per security to maintain orderliness, buyers and sellers compete through simultaneous bids and offers, and trading is centralized on a single exchange. He then adds that prices are set by direct negotiation between competing dealers over a quote network. Which feature does NOT belong to the market he is describing?",
+     "q": "Which of the following features describes a negotiated market rather than an auction market?",
      "choices": [
-      "A single designated market maker assigned to each security to maintain a fair and orderly market",
-      "Prices established through direct negotiation between competing dealers over a quotation network",
-      "Many buyers and sellers competing against one another through simultaneous bids and offers",
-      "Trading in each security centralized at a single physical or electronic exchange location"
+      "A single designated market maker assigned to each listed security",
+      "Prices established through direct negotiation between competing dealers",
+      "Buyers and sellers competing through simultaneous bids and offers",
+      "Trading in each security centralized at a single exchange location"
      ],
      "answer": 1,
-     "explanation": "The first three features describe an AUCTION market (e.g., NYSE): one designated market maker per security, simultaneous competing bids and offers, and centralized trading. Prices set by direct negotiation between competing dealers over a quotation network describe a NEGOTIATED market (Nasdaq/OTC), so that feature does not belong.",
+     "explanation": "A single designated market maker per security, simultaneous competing bids and offers, and centralized trading describe an auction market such as the NYSE. Prices set through direct negotiation between competing dealers over a quotation network describe a negotiated market such as Nasdaq.",
      "topic": "Auction vs negotiated",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "Consider the following statements about Nasdaq:\n\nI. It is a negotiated market\nII. Securities trade through competing market makers\nIII. A single specialist is assigned to each security to maintain an orderly market\nIV. It has no single physical trading floor\n\nWhich are correct?",
+     "q": "Which of the following BEST describes trading on Nasdaq?",
      "choices": [
-      "I and III only",
-      "II and III only",
-      "I, II, and IV only",
-      "I, II, III, and IV"
+      "Securities trade through a single specialist assigned to maintain an orderly market.",
+      "Securities trade through multiple competing market makers in a negotiated market.",
+      "Securities trade on a centralized physical floor through an auction process.",
+      "Securities trade directly between institutions without any dealer participation."
      ],
-     "answer": 2,
-     "explanation": "Nasdaq is a negotiated, dealer-driven market with multiple competing market makers and no single physical floor (I, II, IV). Statement III describes the NYSE auction model, where one designated market maker/specialist is assigned per security — Nasdaq deliberately uses competing dealers instead, so III is false.",
+     "answer": 1,
+     "explanation": "Nasdaq is a negotiated, dealer-driven market in which multiple market makers compete through their quotations, with no single physical trading floor. A single specialist maintaining an orderly auction describes the NYSE, and direct institution-to-institution trading without dealers describes the fourth market.",
      "topic": "Auction vs negotiated",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "A customer compares executing a trade in a dark pool versus on a lit exchange. Which statement is TRUE regarding dark pools?",
+     "q": "Which of the following statements about dark pools is TRUE?",
      "choices": [
-      "They conceal orders before execution but report the completed trades afterward",
-      "They display resting orders publicly before execution to satisfy transparency rules",
-      "They conceal orders before execution and are exempt from reporting trades afterward",
-      "They restrict trading to unlisted OTC equities that no national exchange will quote"
+      "Orders are concealed before execution, but completed trades are reported afterward.",
+      "Orders are displayed publicly before execution to meet transparency requirements.",
+      "Orders are concealed before execution, and completed trades are exempt from reporting.",
+      "Orders are restricted to over-the-counter (OTC) equities that no exchange will quote."
      ],
      "answer": 0,
-     "explanation": "The defining feature of a dark pool is the absence of PRE-trade transparency — orders are concealed before execution so large blocks do not move the market — but executed trades must still be reported afterward. The closest wrong choice concedes the concealment but claims a reporting exemption; dark pools are SEC-regulated ATSs subject to post-trade reporting, and they routinely trade listed stocks.",
+     "explanation": "A dark pool's defining feature is the absence of pre-trade transparency — orders are concealed before execution so large blocks do not move the market — but executed trades must still be reported afterward. Dark pools are SEC-regulated alternative trading systems and routinely trade listed stocks.",
      "topic": "Dark pools",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "An ECN and a traditional Nasdaq market maker both facilitate trading. Which statement BEST distinguishes an ECN from a market maker?",
+     "q": "Which of the following BEST distinguishes an electronic communication network (ECN) from a market maker?",
      "choices": [
-      "An ECN commits its own capital to every trade, whereas a market maker merely matches customer orders",
-      "An ECN serves only institutional subscribers, whereas a market maker must accept retail order flow",
-      "An ECN must register as a national exchange, whereas a market maker registers as an ATS with the SEC",
-      "An ECN matches orders without taking either side, whereas a market maker trades from its own inventory"
+      "An ECN commits its own capital to every trade, while a market maker merely matches orders.",
+      "An ECN serves only institutional subscribers, while a market maker must accept retail orders.",
+      "An ECN registers as a national exchange, while a market maker registers as an alternative trading system.",
+      "An ECN matches orders without taking either side, while a market maker trades from its own inventory."
      ],
      "answer": 3,
-     "explanation": "An ECN is an electronic order-matching system (a type of ATS) that pairs buyers and sellers without taking a principal position; a market maker commits its own capital and trades AS PRINCIPAL from inventory. The strongest distractor simply reverses these roles, and ECNs register as ATSs rather than as national exchanges.",
+     "explanation": "An ECN is an electronic matching system that pairs buy and sell orders without taking a principal position; a market maker commits its own capital and trades as principal from inventory. The strongest distractor simply reverses these roles, and ECNs register as alternative trading systems, not as national exchanges.",
      "topic": "ECNs/ATSs",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A stock is quoted 30.00 - 30.30. A customer buys 1,000 shares at the offer and sells them the same day at the bid, with no commissions charged because the firm acted as principal both times. Ignoring any price movement, what is the customer's round-trip cost attributable to the spread?",
+     "q": "A stock is quoted 30.00 - 30.30. If a customer buys 1,000 shares at the ask and sells them the same day at the bid, with no commission charged, what is the cost attributable to the spread?",
      "choices": [
-      "$0, because no commission was charged",
+      "$0",
       "$150",
       "$300",
       "$330"
      ],
      "answer": 2,
-     "explanation": "The customer buys at 30.30 and sells at 30.00, losing the full 0.30 spread per share: 0.30 x 1,000 = $300. The '$0' choice wrongly assumes no commission means no cost — the spread itself is the implicit transaction cost. $150 incorrectly counts only half the spread.",
+     "explanation": "The customer buys at 30.30 and sells at 30.00, losing the full 0.30 spread per share: 0.30 x 1,000 = $300. The absence of a commission does not make the trade free — the spread itself is the implicit transaction cost. $150 counts only half the spread.",
      "topic": "Spread cost",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "Which of the following best describes the relationship between an ATS and an ECN?",
+     "q": "Which of the following statements correctly describes the relationship between an alternative trading system (ATS) and an electronic communication network (ECN)?",
      "choices": [
-      "An ECN is the broad regulatory category, and ATSs and dark pools are two specific types of ECN",
-      "An ATS and an ECN are interchangeable labels for the same venues, with no regulatory distinction",
-      "An ATS is the broad regulatory category, and ECNs and dark pools are two specific types of ATS",
-      "An ATS must register as a national securities exchange, while an ECN registers as a broker-dealer"
+      "An ECN is the broad regulatory category, and ATSs and dark pools are types of ECNs.",
+      "An ATS and an ECN are interchangeable labels for the same set of trading venues.",
+      "An ATS is the broad regulatory category, and ECNs and dark pools are types of ATSs.",
+      "An ATS registers as a national securities exchange, and an ECN registers as a broker-dealer."
      ],
      "answer": 2,
-     "explanation": "ATS (Alternative Trading System) is the broad SEC regulatory category for non-exchange trading venues; ECNs and dark pools are both specific TYPES of ATS. The inverted choice swaps the hierarchy, and an ATS by definition operates WITHOUT registering as a national securities exchange.",
+     "explanation": "ATS is the broad SEC regulatory category for non-exchange trading venues; ECNs and dark pools are both specific types of ATS. The inverted choice swaps the hierarchy, and an ATS by definition operates without registering as a national securities exchange.",
      "topic": "ECNs/ATSs",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A broker-dealer that is NOT a registered exchange specialist buys a NYSE-listed stock for a customer by trading OTC against another dealer's quote rather than routing to the NYSE floor. This activity takes place in the:",
+     "q": "A broker-dealer executes a customer's order in a New York Stock Exchange (NYSE)-listed stock over the counter rather than on the exchange. This trade takes place in the:",
      "choices": [
-      "Fourth market",
-      "Third market",
-      "First market",
-      "Primary market"
+      "fourth market.",
+      "third market.",
+      "first market.",
+      "primary market."
      ],
      "answer": 1,
-     "explanation": "The THIRD market is the OTC trading of exchange-LISTED securities, involving a broker-dealer/market maker off the exchange floor. The fourth market is direct institution-to-institution trading with no broker-dealer; since a broker-dealer is involved here, it is the third market.",
+     "explanation": "The third market is the OTC trading of exchange-listed securities through a broker-dealer away from the exchange. The fourth market involves no broker-dealer; because one executes this trade, the third market applies.",
      "topic": "Third vs fourth market",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "An OTC equity is quoted by three market makers as follows: Dealer A 12.10 - 12.45; Dealer B 12.15 - 12.50; Dealer C 12.05 - 12.40. What is the inside (best) market, and at what price would a customer SELL?",
+     "q": "Three market makers quote an over-the-counter (OTC) stock as follows: Dealer A, 12.10 - 12.45; Dealer B, 12.15 - 12.50; Dealer C, 12.05 - 12.40. What is the inside market, and at which price does a customer's sell order execute?",
      "choices": [
-      "Inside market 12.15 - 12.40; customer sells at 12.15",
-      "Inside market 12.15 - 12.40; customer sells at 12.40",
-      "Inside market 12.05 - 12.50; customer sells at 12.05",
-      "Inside market 12.10 - 12.45; customer sells at 12.10"
+      "12.15 - 12.40; the customer sells at 12.15",
+      "12.15 - 12.40; the customer sells at 12.40",
+      "12.05 - 12.50; the customer sells at 12.05",
+      "12.10 - 12.45; the customer sells at 12.10"
      ],
      "answer": 0,
-     "explanation": "The inside market pairs the HIGHEST bid (Dealer B's 12.15) with the LOWEST ask (Dealer C's 12.40), giving 12.15 - 12.40. A selling customer hits the best (highest) BID and receives 12.15. Choice 1 wrongly has the seller receiving the ask (12.40), the price a buyer would pay; choices 2 and 4 use the wrong dealers' quotes for the inside market.",
+     "explanation": "The inside market pairs the highest bid (Dealer B's 12.15) with the lowest ask (Dealer C's 12.40), giving 12.15 - 12.40. A selling customer hits the best bid and receives 12.15; 12.40 is the ask, the price a buyer would pay. The remaining choices build the inside market from the wrong dealers' quotes.",
      "topic": "Inside market",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "All of the following statements about the Nasdaq and OTC markets are TRUE EXCEPT:",
+     "q": "All of the following statements about the Nasdaq and over-the-counter (OTC) markets are true EXCEPT:",
      "choices": [
-      "Securities quoted on the OTC Pink Marketplace may provide little public financial disclosure",
-      "A stock that moves up to a Nasdaq listing is assigned to a single specialist in an auction market",
-      "Nasdaq operates as a negotiated market in which dealers compete through their posted quotations",
-      "A Nasdaq-listed security trades through multiple competing market makers rather than one dealer"
+      "Securities quoted on the OTC Pink Marketplace may provide little public financial disclosure.",
+      "A stock that gains a Nasdaq listing is assigned to a single specialist in an auction market.",
+      "Nasdaq operates as a negotiated market in which dealers compete through posted quotations.",
+      "A Nasdaq-listed security trades through multiple competing market makers rather than one dealer."
      ],
      "answer": 1,
-     "explanation": "Nasdaq is a negotiated, dealer-driven market: a listed security is quoted by multiple COMPETING market makers, not assigned to a single specialist in an auction — the single-specialist auction model is the NYSE, not Nasdaq. The other statements are true: Pink Marketplace issuers may disclose very little, and Nasdaq dealers compete through posted quotes.",
+     "explanation": "Nasdaq is a negotiated, dealer-driven market in which a listed security is quoted by multiple competing market makers — the single-specialist auction model belongs to the NYSE, not Nasdaq. The remaining statements are true: Pink Marketplace issuers may disclose very little, and Nasdaq dealers compete through posted quotations.",
      "topic": "OTC/unlisted equities",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "Regarding the price-discovery and reporting differences between a dark pool and a lit ECN, which statement is TRUE?",
+     "q": "Which of the following statements correctly compares an electronic communication network (ECN) with a dark pool?",
      "choices": [
-      "An ECN displays orders pre-trade and a dark pool conceals them, but both report executed trades",
-      "A dark pool displays orders pre-trade and an ECN conceals them, but both report executed trades",
-      "An ECN and a dark pool both display orders pre-trade, but only the ECN reports executed trades",
-      "An ECN and a dark pool both conceal orders pre-trade, but only the dark pool reports executed trades"
+      "An ECN displays orders before execution and a dark pool conceals them; both report completed trades.",
+      "A dark pool displays orders before execution and an ECN conceals them; both report completed trades.",
+      "An ECN and a dark pool both display orders before execution, but only the ECN reports trades.",
+      "An ECN and a dark pool both conceal orders before execution, but only the dark pool reports trades."
      ],
      "answer": 0,
-     "explanation": "ECNs are 'lit' venues that display orders in the public quote stream, contributing to pre-trade price discovery, while dark pools conceal orders until after execution; BOTH must report executed trades to the consolidated tape. The mirror-image choice exactly reverses the two venues, and no combination exempts either venue from post-trade reporting.",
+     "explanation": "ECNs are lit venues that display orders in the public quote stream, contributing to pre-trade price discovery; dark pools conceal orders until execution. Both venue types must report executed trades to the consolidated tape — no combination exempts either venue from post-trade reporting.",
      "topic": "Dark pools vs ECNs",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "Which of the following statements correctly contrasts a market maker's principal trade with an agency trade?",
+     "q": "Which of the following statements correctly contrasts a dealer's principal capacity with its agency capacity?",
      "choices": [
-      "As principal the firm charges a disclosed commission; as agent it earns the markup built into its quote",
-      "As principal the firm matches two outside parties for a fee; as agent it sells shares out of inventory",
-      "As principal and as agent alike, the firm must add a separately disclosed commission to the trade price",
-      "As principal the firm trades from inventory for a markup or markdown; as agent it charges a commission"
+      "As principal, the firm charges a disclosed commission; as agent, it earns the markup in its quote.",
+      "As principal, the firm matches two outside parties for a fee; as agent, it sells shares from inventory.",
+      "In either capacity, the firm must add a separately disclosed commission to the trade price.",
+      "As principal, the firm trades from inventory for a markup or markdown; as agent, it charges a commission."
      ],
      "answer": 3,
-     "explanation": "Acting as PRINCIPAL, a dealer trades from its own inventory and is compensated via markup (customer buys) or markdown (customer sells). Acting as AGENT, the firm arranges the trade between parties and charges a separately disclosed commission. The choice pairing commissions with principal trades and markups with agency trades swaps the two forms of compensation — the classic trap.",
+     "explanation": "Acting as principal, a dealer trades from its own inventory and is compensated by a markup (customer buys) or markdown (customer sells). Acting as agent, the firm arranges the trade between parties and charges a separately disclosed commission. The choice pairing commissions with principal trades and markups with agency trades swaps the two forms of compensation — the classic trap.",
      "topic": "Market maker roles",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "Consider these statements about the third and fourth markets:\n\nI. The third market involves listed securities traded OTC\nII. The fourth market involves direct trading between institutions, often via ECNs\nIII. The third market always bypasses broker-dealers entirely\nIV. The fourth market typically operates without a broker-dealer intermediary\n\nWhich are correct?",
+     "q": "Which of the following statements about the third market is TRUE?",
      "choices": [
-      "I and II only",
-      "I, II, and IV only",
-      "II, III, and IV only",
-      "I, III, and IV only"
+      "Exchange-listed securities trade over the counter (OTC) through broker-dealers.",
+      "Institutions trade directly with one another without a broker-dealer intermediary.",
+      "Unlisted securities trade on an exchange floor through a designated market maker.",
+      "New issues are distributed to public investors through an underwriting syndicate."
      ],
-     "answer": 1,
-     "explanation": "I, II, and IV are correct: the third market is OTC trading of listed securities (via broker-dealers), and the fourth market is direct institution-to-institution trading, frequently through ECNs, without a broker-dealer. III is false because the third market still USES broker-dealers — it is the fourth market that bypasses them.",
+     "answer": 0,
+     "explanation": "The third market is the OTC trading of exchange-listed securities through broker-dealers. Direct institution-to-institution trading without a broker-dealer is the fourth market, and the remaining choices describe exchange trading and the primary market.",
      "topic": "Third vs fourth market",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "A market maker quotes a stock 50.00 - 50.20, 5 x 5. A customer places a market order to buy 800 shares. After filling the 500 displayed at the ask, the maker must source 300 more shares as the next-best offers are 50.25 (200 shares) and 50.30 (100 shares). What average price per share does the customer pay across all 800 shares?",
+     "q": "A market maker quotes a stock 50.00 - 50.20, 5 x 5. If a customer's market order to buy 800 shares fills 500 shares at the ask, 200 shares at 50.25, and 100 shares at 50.30, what is the approximate average price paid per share?",
      "choices": [
-      "50.20",
-      "Approximately 50.22",
-      "Approximately 50.24",
-      "50.30"
+      "$50.20",
+      "$50.22",
+      "$50.24",
+      "$50.30"
      ],
      "answer": 1,
-     "explanation": "Cost = (500 x 50.20) + (200 x 50.25) + (100 x 50.30) = 25,100 + 10,050 + 5,030 = $40,180. Divide by 800 = $50.225, i.e., about 50.22. Choosing 50.20 ignores that only 500 shares were available at the inside ask, so the order 'walked the book' to higher-priced offers.",
+     "explanation": "Total cost = (500 x 50.20) + (200 x 50.25) + (100 x 50.30) = $40,180; divided by 800 shares, the average is $50.225, or approximately $50.22. Choosing $50.20 ignores that only 500 shares were available at the inside ask before the order walked the book to higher-priced offers.",
      "topic": "Quote size / fill",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "An issuer's common stock trades on the OTC Pink Marketplace and is not listed on any national exchange. Which statement about this security is TRUE?",
+     "q": "A common stock is quoted on the over-the-counter (OTC) Pink Marketplace and is not listed on any national exchange. Which of the following statements about this security is TRUE?",
      "choices": [
-      "It trades through an auction process, because every equity must ultimately execute on an exchange",
-      "It trades in the fourth market by definition, since no exchange participates in the transactions",
-      "It trades through dealer quotes in a negotiated market and may carry elevated liquidity risk",
-      "It trades free of the federal antifraud provisions, which reach only exchange-listed securities"
+      "It trades through an auction process, because every equity must execute on an exchange.",
+      "It trades in the fourth market, because no exchange participates in the transactions.",
+      "It trades through dealer quotations in a negotiated market and may carry elevated liquidity risk.",
+      "It is exempt from the federal antifraud provisions, which reach only listed securities."
      ],
      "answer": 2,
-     "explanation": "Unlisted OTC equities trade in a NEGOTIATED dealer market through quotes and often carry heightened risk from thin liquidity and sparse disclosure. Antifraud provisions apply to ALL securities regardless of listing; being unlisted does not force auction trading; and the fourth market means direct institution-to-institution trading, not simply any trade executed away from an exchange.",
+     "explanation": "Unlisted OTC equities trade in a negotiated dealer market through quotations and often carry heightened risk from thin liquidity and limited disclosure. The federal antifraud provisions apply to all securities regardless of listing, being unlisted does not force auction trading, and the fourth market means direct institution-to-institution trading, not any off-exchange trade.",
      "topic": "OTC/unlisted equities",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "All of the following are TRUE about ECNs EXCEPT:",
+     "q": "All of the following statements about electronic communication networks (ECNs) are true EXCEPT:",
      "choices": [
-      "They operate outside normal exchange hours, giving subscribers access to after-hours trading",
-      "They take the opposite side of subscriber orders as principal to guarantee every execution",
-      "They allow subscribing institutions and broker-dealers to trade directly with one another",
-      "They register with the SEC as alternative trading systems rather than as national exchanges"
+      "They operate outside normal exchange hours, giving subscribers access to after-hours trading.",
+      "They take the opposite side of subscriber orders as principal to guarantee every execution.",
+      "They allow subscribing institutions and broker-dealers to trade directly with one another.",
+      "They register with the Securities and Exchange Commission (SEC) as alternative trading systems."
      ],
      "answer": 1,
-     "explanation": "ECNs MATCH subscriber orders against one another; they do NOT take the principal side of trades — committing capital as counterparty is what a market maker does. The other statements are true: subscribers trade directly with each other, ECNs support after-hours sessions, and they are SEC-registered alternative trading systems.",
+     "explanation": "ECNs match subscriber orders against one another; they do not take the principal side of a trade — committing capital as counterparty is what a market maker does. The other statements are true: ECNs support after-hours trading, permit subscribers to trade directly with each other, and register with the SEC as alternative trading systems.",
      "topic": "ECNs/ATSs",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "A customer is deciding between routing a 50,000-share sell order to a dark pool versus a lit exchange. Which statement BEST explains why the institution might prefer the dark pool?",
+     "q": "An institution routes a 50,000-share sell order to a dark pool rather than to a lit exchange. Which of the following BEST explains this routing choice?",
      "choices": [
-      "Hiding the order before execution keeps the market from moving against the revealed selling pressure",
-      "Skipping the public tape entirely lets the institution avoid ever disclosing the completed sale",
-      "Settling in real time rather than on the standard T+1 cycle gets the institution its cash sooner",
-      "Guaranteeing execution at or above the national best bid assures a better price than the exchange"
+      "Concealing the order before execution keeps the market from moving against the selling pressure.",
+      "Bypassing the consolidated tape allows the institution to avoid disclosing the completed sale.",
+      "Settling in real time rather than on the standard cycle delivers the sale proceeds sooner.",
+      "Guaranteed execution at or above the national best bid assures a better price than the exchange."
      ],
      "answer": 0,
-     "explanation": "The chief appeal of a dark pool is pre-trade opacity: hiding a 50,000-share order prevents front-running and adverse price movement from revealed supply. Dark pools do not guarantee price improvement over the NBBO, do not change the standard T+1 settlement cycle, and DO report trades after execution — the disclosure-avoidance choice fails on that last point.",
+     "explanation": "The chief appeal of a dark pool is pre-trade opacity: concealing a large order prevents front-running and adverse price movement from revealed supply. Dark pools do not guarantee price improvement over the national best bid and offer, do not alter the standard settlement cycle, and must report trades after execution — the disclosure-avoidance choice fails on that last point.",
      "topic": "Dark pools",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "A market maker raises its quoted spread on a volatile OTC stock from 0.10 to 0.40. Which of the following is the MOST accurate interpretation?",
+     "q": "A market maker widens its quoted spread on a volatile over-the-counter (OTC) stock from 0.10 to 0.40. Which of the following interpretations is MOST accurate?",
      "choices": [
-      "The wider spread signals deeper liquidity, since dealers quote more size as spreads increase",
-      "The wider spread benefits selling customers, who now receive a higher bid for their shares",
-      "The wider spread breaches the 5% markup policy and must be reported as a trade violation",
-      "The wider spread compensates the dealer for greater risk and raises customers' implicit cost"
+      "The wider spread signals deeper liquidity, since dealers quote more size as spreads increase.",
+      "The wider spread benefits selling customers, who now receive a higher bid for their shares.",
+      "The wider spread violates the 5% markup policy and must be reported as a trade violation.",
+      "The wider spread compensates the dealer for greater risk and raises customers' implicit cost."
      ],
      "answer": 3,
-     "explanation": "Spreads widen when a security is more volatile and less liquid, compensating the dealer for inventory risk and raising the implicit round-trip cost to customers. A wider spread signals LESS liquidity, not more; it means a LOWER bid for sellers; and the 5% policy is a fair-pricing guideline for markups and commissions — a quoted spread is not automatically a reportable violation.",
+     "explanation": "Spreads widen when a security is more volatile and less liquid, compensating the dealer for inventory risk and raising the customer's implicit round-trip cost. A wider spread signals less liquidity, not more; it means a lower bid for sellers; and the 5% policy is a fair-pricing guideline — a quoted spread is not automatically a reportable violation.",
      "topic": "Spread interpretation",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Which statement about the auction market on the NYSE is TRUE?",
+     "q": "Which of the following statements about the New York Stock Exchange (NYSE) auction market is TRUE?",
      "choices": [
-      "Competing market makers negotiate quotations for each security over an electronic network",
-      "Each order received during the session must be executed at that day's official opening price",
-      "The designated market maker commits its own capital chiefly when order flow becomes imbalanced",
-      "Trading follows the same negotiated-dealer structure that Nasdaq uses for its listed stocks"
+      "Competing market makers negotiate quotations for each security over an electronic network.",
+      "Every order received during the trading session is executed at the official opening price.",
+      "The designated market maker commits its own capital chiefly when order flow is imbalanced.",
+      "Trading follows the same negotiated-dealer structure that Nasdaq uses for its listed stocks."
      ],
      "answer": 2,
-     "explanation": "On the NYSE auction market, the designated market maker (formerly specialist) maintains a fair and orderly market and steps in with its OWN capital chiefly when there is a temporary imbalance between buy and sell orders. Competing-dealer negotiation over a network describes Nasdaq's negotiated model, not the NYSE auction, and orders execute throughout the session, not all at the open.",
+     "explanation": "The designated market maker (formerly specialist) maintains a fair and orderly market and steps in with its own capital chiefly when buy and sell orders are temporarily imbalanced. Negotiation among competing dealers over a network describes Nasdaq's model, not the NYSE auction, and orders execute throughout the session, not only at the open.",
      "topic": "Auction market / DMM",
      "difficulty": "hard",
      "style": "true"
@@ -6674,7 +6674,7 @@ window.SIE_DATA = {
    ],
    "questions": [
     {
-     "q": "A corporation has 9 vacancies on its board up for election at the annual meeting. A shareholder owns 400 shares. Under cumulative voting, what is the maximum number of votes the shareholder may cast for a single nominee?",
+     "q": "A shareholder owns 400 shares of a company holding an election to fill nine seats on its board of directors. Under cumulative voting, what is the maximum number of votes the shareholder may cast for a single nominee?",
      "choices": [
       "400",
       "1,200",
@@ -6682,27 +6682,27 @@ window.SIE_DATA = {
       "3,600"
      ],
      "answer": 3,
-     "explanation": "Cumulative voting lets a shareholder multiply shares by the number of open seats and concentrate all votes on one candidate: 400 x 9 = 3,600. The trap answer 400 reflects statutory voting (a maximum of one vote per share per seat), which favors larger holders; cumulative voting is designed to help minority shareholders pool their votes.",
+     "explanation": "Under cumulative voting, shares owned are multiplied by the number of open seats, and all votes may be cast for one nominee: 400 x 9 = 3,600. The distractor 400 reflects statutory voting, which limits a shareholder to one vote per share per seat and favors larger holders; cumulative voting is designed to help minority shareholders concentrate their votes.",
      "topic": "Cumulative voting",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "Which of the following is TRUE regarding the relative rights of common and preferred stockholders?",
+     "q": "Which of the following statements best describes the position of preferred stockholders relative to common stockholders?",
      "choices": [
-      "Common stockholders are paid in a liquidation before preferred stockholders but after bondholders",
-      "Preferred stockholders elect the board of directors while common stockholders hold nonvoting shares",
-      "Common stockholders receive a fixed stated dividend while preferred payouts rise with company earnings",
-      "Preferred stockholders have priority for dividends and liquidation assets but generally cannot vote"
+      "They receive liquidation proceeds only after the common stockholders have been paid.",
+      "They elect the board of directors, while common stockholders hold nonvoting shares.",
+      "They receive dividends that rise with earnings, while common dividends are fixed.",
+      "They have priority as to dividends and liquidation proceeds but generally cannot vote."
      ],
      "answer": 3,
-     "explanation": "Preferred stock carries a senior claim to dividends and to assets in liquidation, but ordinarily no vote and a fixed, capped return. The choice paying common before preferred reverses liquidation priority — common is last in line, after creditors and preferred — and the voting and fixed-dividend choices each swap the two classes' actual features.",
+     "explanation": "Preferred stockholders have a senior claim to dividends and to assets in a liquidation but ordinarily no voting rights and a fixed, capped return. The distractors reverse the actual relationship: common stockholders vote and stand last in a liquidation, and it is the preferred dividend that is fixed.",
      "topic": "Common vs preferred",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "An investor holds 100 shares of 6% cumulative preferred stock with a $100 par value. The company paid no dividend last year and only $4 per share two years ago. Before any common dividend may be paid this year, how much must the company pay this preferred holder in total?",
+     "q": "A customer owns 100 shares of a 6% cumulative preferred stock ($100 par) whose issuer paid a $4.00-per-share dividend two years ago and no dividend last year. Including the current year's dividend, what total amount must the customer receive before any dividend may be paid on the common stock?",
      "choices": [
       "$600",
       "$1,400",
@@ -6710,97 +6710,97 @@ window.SIE_DATA = {
       "$1,800"
      ],
      "answer": 1,
-     "explanation": "The stated dividend is 6% of $100 par = $6/share/year. Cumulative preferred must receive all arrears before common: two years ago left a $2 shortfall ($6 owed minus $4 paid), last year was fully unpaid at $6, plus this year's $6 = $2 + $6 + $6 = $14/share x 100 = $1,400. The trap $1,800 wrongly assumes all three years were fully unpaid; only $2 of the oldest year remained owed.",
+     "explanation": "The stated dividend is 6% of $100 par, or $6.00 per share per year. Cumulative preferred must receive all arrears before any common dividend: $2.00 still owed from two years ago ($6.00 less the $4.00 paid), $6.00 from last year, and $6.00 for the current year equals $14.00 per share; $14.00 x 100 shares = $1,400.00. The $1,800 distractor incorrectly treats all three years as fully unpaid.",
      "topic": "Cumulative preferred",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "A subscription right and a warrant are both equity-linked instruments. Which statement best distinguishes them?",
+     "q": "Which of the following statements best distinguishes subscription rights from warrants?",
      "choices": [
-      "Rights are short-term with a subscription price below market; warrants are long-term with an exercise price above market at issuance",
-      "Warrants expire within roughly 30 to 45 days of issuance, while rights typically remain exercisable for five years or longer",
-      "Rights and warrants are both distributed only to existing shareholders in order to preserve proportional ownership interests",
-      "Rights are priced at a premium to market when issued; warrants carry an exercise price below the prevailing market price"
+      "Rights are short-term and priced below the market; warrants are long-term and priced above the market at issuance.",
+      "Rights are exercisable for five years or longer, while warrants expire within 30 to 45 days of issuance.",
+      "Rights and warrants are both issued only to existing shareholders to preserve proportionate ownership interests.",
+      "Rights are priced above the market at issuance, while warrants carry an exercise price below the market."
      ],
      "answer": 0,
-     "explanation": "Rights are short-lived (typically weeks) and let current shareholders subscribe below market to avoid dilution; warrants are long-term sweeteners attached to other securities, with a strike set above market at issuance. The choices reversing the time frames or the pricing are the classic traps, and warrants — unlike rights — go to purchasers of other securities, not only to existing shareholders.",
+     "explanation": "Rights are short-lived (typically weeks) and allow existing shareholders to subscribe below the market price to avoid dilution; warrants are long-term instruments whose exercise price is set above the market price at issuance. The distractors reverse the time frames or the pricing, and warrants — unlike rights — may be issued to purchasers of other securities, not only to existing shareholders.",
      "topic": "Rights vs warrants",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "Regarding American Depositary Receipts (ADRs), which of the following is NOT a characteristic of ADR ownership?",
+     "q": "An investor who owns an American Depositary Receipt (ADR) normally:",
      "choices": [
-      "The holder is generally entitled to receive dividends, which are converted into and paid in U.S. dollars",
-      "The holder remains exposed to exchange-rate risk between the U.S. dollar and the issuer's home currency",
-      "The holder exercises voting rights identical to those of a direct owner of the foreign ordinary shares",
-      "The holder's dividend payments may be reduced by withholding tax imposed by the issuer's home country"
+      "receives dividend payments in the currency of the issuer's home country.",
+      "bears no exposure to changes in the value of the issuer's home currency.",
+      "has limited voting rights or no voting rights in the foreign issuer.",
+      "receives dividends without reduction for foreign withholding taxes."
      ],
      "answer": 2,
-     "explanation": "ADR holders usually have limited or no voting rights — the depositary bank holds the underlying shares, and voting is often restricted or imperfectly passed through — so identical voting rights is the false statement. Dollar-denominated dividends, currency risk, and foreign withholding tax are all genuine features of ADR ownership.",
+     "explanation": "The depositary bank holds the underlying foreign shares, so ADR holders normally have limited voting rights or none at all. The other choices are false: dividends are converted into and paid in U.S. dollars, the holder remains exposed to exchange-rate risk, and dividends may be reduced by withholding tax imposed by the issuer's home country.",
      "topic": "ADRs",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "Today is Tuesday. A customer wants to buy a common stock and capture the dividend; the stock's record date is set for Thursday of this week. Under standard T+1 regular-way settlement, what is the LAST day the customer can purchase the stock and still be entitled to the dividend?",
+     "q": "The record date for a common stock's cash dividend is Thursday. Under regular way settlement (T+1), what is the last day a customer may purchase the stock and still be entitled to the dividend?",
      "choices": [
-      "No later than Tuesday (today)",
-      "No later than Wednesday",
-      "No later than Thursday",
-      "No later than Friday"
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
      ],
      "answer": 1,
-     "explanation": "Under T+1, the ex-date equals the record date (Thursday). To be an owner of record the trade must settle by the record date. Buying Wednesday settles Thursday (T+1) — owner of record, gets the dividend. Buying on Thursday (the ex/record date) settles Friday, one day too late. The trap 'Tuesday' over-corrects as if the old T+2 ex-date (one business day before record) still applied.",
+     "explanation": "Under T+1 settlement, the ex-dividend date is the same day as the record date. A purchase on Wednesday settles on Thursday, the record date, so the buyer is an owner of record and receives the dividend; a purchase on Thursday settles on Friday, one day too late. Tuesday reflects the former T+2 cycle, in which the ex-date preceded the record date by one business day.",
      "topic": "Ex-date T+1",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "A company declares a 1-for-4 reverse stock split. An investor previously held 800 shares with a total cost basis of $6,400 when the stock traded at $9. Immediately after the split, which of the following is TRUE?",
+     "q": "A customer owns 800 shares of a common stock purchased for a total of $6,400.00 and currently trading at $9.00. Immediately after the issuer effects a 1-for-4 reverse split, the customer's position is:",
      "choices": [
-      "The investor holds 200 shares, per-share cost basis is $32, and approximate market price is $36",
-      "The investor holds 3,200 shares, per-share cost basis is $2, and approximate market price is $2.25",
-      "The investor holds 200 shares, per-share cost basis is $8, and approximate market price is $36",
-      "The investor holds 200 shares, total cost basis becomes $1,600, and market price is $36"
+      "200 shares with a cost basis of $32.00 per share, trading near $36.00.",
+      "3,200 shares with a cost basis of $2.00 per share, trading near $2.25.",
+      "200 shares with a cost basis of $8.00 per share, trading near $36.00.",
+      "200 shares with a total cost basis of $1,600.00, trading near $36.00."
      ],
      "answer": 0,
-     "explanation": "A 1-for-4 reverse split divides shares by 4 (800/4 = 200) and multiplies price by 4 ($9 x 4 = $36); aggregate cost stays $6,400, so per-share basis = $6,400/200 = $32. Total dollar value and total basis are unchanged. The choice claiming basis drops to $1,600 wrongly divides total basis; reverse splits never change aggregate cost.",
+     "explanation": "A 1-for-4 reverse split divides the share count by 4 (800 / 4 = 200) and multiplies the price by 4 ($9.00 x 4 = $36.00). Total cost basis is unchanged at $6,400.00, so the per-share basis is $6,400.00 / 200 = $32.00. The distractor showing a $1,600.00 total basis incorrectly divides the aggregate cost; a split never changes total cost basis.",
      "topic": "Reverse split",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "Which of the following correctly orders the four standard dividend dates from earliest to latest, as tested on the SIE?",
+     "q": "Which of the following sequences lists the dividend dates in the order in which they normally occur?",
      "choices": [
-      "Declaration, record, ex-date, payable",
-      "Declaration, ex-date, record, payable",
-      "Record, declaration, ex-date, payable",
-      "Declaration, ex-date, payable, record"
+      "Declaration, record, ex-dividend, payable",
+      "Declaration, ex-dividend, record, payable",
+      "Record, declaration, ex-dividend, payable",
+      "Declaration, ex-dividend, payable, record"
      ],
      "answer": 1,
-     "explanation": "The board first declares the dividend, then the ex-date, then the record date, and finally the payable date. Under T+1 the ex-date and record date fall on the same day, but the standard sequence still lists declaration, ex-date, record, payable. Placing record before ex-date or payable before record is incorrect.",
+     "explanation": "The board first declares the dividend; the ex-dividend date follows, then the record date, then the payable date. Under T+1 settlement the ex-date and record date fall on the same day, but the standard sequence remains declaration, ex-dividend, record, payable. Placing record before ex-dividend or payable before record is incorrect.",
      "topic": "Dividend dates",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "A preferred stock is described as '5% convertible preferred, $100 par, convertible into common at $25.' The common stock currently trades at $30. What is the parity price of the preferred (the price at which preferred and common are equivalent in value)?",
+     "q": "A 5% convertible preferred stock ($100 par) is convertible into common stock at $25.00 per share. If the common stock trades at $30.00, what is the parity price of the preferred?",
      "choices": [
-      "$100",
-      "$120",
-      "$125",
-      "$150"
+      "$100.00",
+      "$120.00",
+      "$125.00",
+      "$150.00"
      ],
      "answer": 1,
-     "explanation": "Conversion ratio = par / conversion price = $100/$25 = 4 shares. Parity price of the preferred = common price x conversion ratio = $30 x 4 = $120. The trap $125 misuses the $25 conversion price as a divisor; parity always multiplies the common's market price by the number of shares received on conversion.",
+     "explanation": "The conversion ratio equals par divided by the conversion price: $100 / $25.00 = 4 shares. Parity price of the preferred equals the common price multiplied by the ratio: $30.00 x 4 = $120.00. The $125.00 distractor misuses the conversion price as a divisor; parity multiplies the common's market price by the number of shares received on conversion.",
      "topic": "Convertible preferred",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "An investor seeks current income, wants the dividend to keep pace if the issuer prospers, but also wants protection if the issuer skips payments in a lean year. Which single preferred feature set BEST meets both goals?",
+     "q": "An investor wants a preferred stock whose dividend may increase when the issuer prospers and whose omitted dividends must be paid before any common dividend. Which of the following combinations of features best meets these objectives?",
      "choices": [
       "Callable and convertible",
       "Participating and cumulative",
@@ -6808,69 +6808,69 @@ window.SIE_DATA = {
       "Adjustable-rate and participating"
      ],
      "answer": 1,
-     "explanation": "Participating preferred shares in extra dividends when the company does well (upside), and cumulative preferred guarantees that skipped dividends accrue and must be paid before any common dividend (downside protection). Callable and adjustable-rate features benefit the issuer or float with rates rather than guaranteeing arrears, so any pairing including them is a distractor.",
+     "explanation": "A participating feature allows the holder to share in additional dividends when earnings permit, and a cumulative feature requires that omitted dividends accrue and be paid before any common dividend. Callable and adjustable-rate features benefit the issuer or merely reset the rate; they provide neither upside participation nor protection for missed dividends.",
      "topic": "Preferred types",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Each of the following is generally true of a callable preferred stock EXCEPT:",
+     "q": "Each of the following statements regarding a callable preferred stock is normally true EXCEPT:",
      "choices": [
-      "It usually carries a higher stated dividend rate than a comparable noncallable preferred issue",
-      "Its call feature assures the investor of capital appreciation above the stated call price",
-      "It is most likely to be called by the issuer when prevailing interest rates have declined",
-      "Its call price is typically set at or above par value, often including a call premium"
+      "it pays a higher stated dividend rate than a comparable noncallable issue.",
+      "its call feature assures the holder of capital appreciation above the call price.",
+      "it is most likely to be called after prevailing interest rates have declined.",
+      "its call price is set at or above par value, often including a call premium."
      ],
      "answer": 1,
-     "explanation": "A call feature caps upside — the market price tends not to rise much above the call price because investors know the issue can be redeemed — so it assures nothing about appreciation; that statement is false. The other three are accurate: the higher rate compensates for call risk, issuers call when rates fall, and the call price sits at or above par.",
+     "explanation": "Because the issue may be redeemed at the call price, its market price tends not to rise far above that level; a call feature caps appreciation rather than assuring it. The remaining statements are true: the higher stated rate compensates for call risk, issuers call when rates decline, and the call price is set at or above par.",
      "topic": "Callable preferred",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "Consider the following statements about par value of common stock: I. Par value is an arbitrary accounting value with little relationship to market price. II. Par value determines the amount of the dividend a common shareholder receives. III. Amounts paid in by investors above par are recorded as additional paid-in capital. IV. Par value represents the price at which the company must repurchase shares. Which are correct?",
+     "q": "Which of the following statements regarding the par value of common stock is true?",
      "choices": [
-      "I and II only",
-      "I and III only",
-      "II and IV only",
-      "I, III, and IV only"
+      "It determines the amount of the annual dividend paid to each common stockholder.",
+      "It is an arbitrary value; amounts received above it are additional paid-in capital.",
+      "It represents the price at which the issuer is obligated to repurchase its shares.",
+      "It closely approximates the current market price of the outstanding common stock."
      ],
      "answer": 1,
-     "explanation": "Common par is an arbitrary bookkeeping figure (I), and amounts above it are recorded as additional paid-in capital (III). Par does NOT set common dividends — those are declared in dollars, not as a rate on common par — and the company has no obligation to repurchase at par, so II and IV are false.",
+     "explanation": "Par value of common stock is an arbitrary bookkeeping figure; amounts investors pay above it are recorded as additional paid-in capital. Par does not determine common dividends, which are declared in dollar amounts, does not obligate the issuer to repurchase shares, and bears little relationship to market price.",
      "topic": "Par/book value",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "A rights offering's terms are: 10 rights plus $40 are needed to buy one new share. The stock currently trades at $46 cum-rights (with the right still attached). What is the theoretical value of one right while trading cum-rights?",
+     "q": "Under the terms of a rights offering, 10 rights plus $40.00 are required to purchase one new share. If the stock trades at $46.00 with the right still attached (cum-rights), what is the theoretical value of one right?",
      "choices": [
+      "$0.50",
       "$0.55",
       "$0.60",
-      "$6.00",
-      "$0.50"
+      "$6.00"
      ],
-     "answer": 0,
-     "explanation": "Cum-rights value = (Market price - Subscription price) / (Rights needed for one share + 1) = ($46 - $40) / (10 + 1) = $6/11 = $0.545, about $0.55. The trap $0.60 uses the ex-rights formula (dividing by 10 instead of 11); the +1 is included because, cum-rights, the stock price still carries the value of one right.",
+     "answer": 1,
+     "explanation": "Cum-rights value = (market price - subscription price) / (rights required + 1) = ($46.00 - $40.00) / (10 + 1) = $6.00 / 11, or about $0.55. The $0.60 distractor applies the ex-rights formula, dividing by 10; the additional 1 is required because a cum-rights price still includes the value of one right.",
      "topic": "Rights valuation",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "Which statement about statutory versus cumulative voting is TRUE?",
+     "q": "Which of the following statements regarding statutory and cumulative voting is true?",
      "choices": [
-      "Statutory voting tends to benefit minority shareholders by letting them concentrate votes",
-      "Under both methods, a shareholder with 100 shares voting for 3 directors casts a maximum of 300 votes for any one nominee",
-      "Under statutory voting, a 100-share holder voting on 3 board seats may cast no more than 100 votes for any one nominee",
-      "Cumulative voting prohibits a shareholder from splitting votes among multiple nominees"
+      "Statutory voting benefits minority shareholders by permitting them to concentrate all of their votes on one nominee.",
+      "Under either method, a holder of 100 shares voting for three directors may cast 300 votes for a single nominee.",
+      "Under statutory voting, a 100-share holder voting for three directors may cast at most 100 votes for one nominee.",
+      "Cumulative voting prohibits a shareholder from splitting votes among two or more nominees in the same election."
      ],
      "answer": 2,
-     "explanation": "Statutory voting caps votes for any single nominee at the number of shares owned (one vote per share per seat), so 100 shares = 100 votes max per candidate. Cumulative voting (100 x 3 = 300 on one nominee) is what helps minorities concentrate votes — the opposite of the first choice — and it permits, not prohibits, splitting votes.",
+     "explanation": "Statutory voting permits one vote per share for each open seat, so 100 shares support a maximum of 100 votes for any single nominee. Concentrating 300 votes on one nominee (100 shares x 3 seats) is permitted only under cumulative voting, which is the method that benefits minority shareholders and which allows, rather than prohibits, splitting votes.",
      "topic": "Statutory vs cumulative",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "A company's balance sheet shows: common stock at par $2,000,000; additional paid-in capital $8,000,000; retained earnings $15,000,000; and 1,000,000 shares outstanding. There is no preferred stock. What is the approximate book value per common share?",
+     "q": "A corporation's balance sheet shows common stock at par of $2,000,000, additional paid-in capital of $8,000,000, and retained earnings of $15,000,000, with 1,000,000 common shares outstanding and no preferred stock. What is the approximate book value per common share?",
      "choices": [
       "$2.00",
       "$10.00",
@@ -6878,111 +6878,111 @@ window.SIE_DATA = {
       "$25.00"
      ],
      "answer": 3,
-     "explanation": "Book value per share = total common stockholders' equity / shares outstanding = ($2,000,000 + $8,000,000 + $15,000,000) / 1,000,000 = $25,000,000 / 1,000,000 = $25. The trap $10 stops at par plus paid-in capital and omits retained earnings, which is part of stockholders' equity.",
+     "explanation": "Book value per share equals total common stockholders' equity divided by shares outstanding: ($2,000,000 + $8,000,000 + $15,000,000) / 1,000,000 = $25.00. The $10.00 distractor omits retained earnings, which is a component of stockholders' equity.",
      "topic": "Book value",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "A U.S. investor buys an ADR of a company domiciled in a country whose currency weakens 8% against the U.S. dollar over the holding period, while the underlying ordinary shares rise 8% in local-currency terms. Ignoring fees and dividends, the approximate effect on the ADR's U.S.-dollar value is:",
+     "q": "The ordinary shares underlying an American Depositary Receipt (ADR) rise 8% in local-currency terms while the issuer's home currency depreciates 8% against the U.S. dollar. Excluding fees and dividends, the U.S.-dollar value of the ADR is:",
      "choices": [
-      "A gain of roughly 16%",
-      "Approximately unchanged",
-      "A loss of roughly 8%",
-      "A gain of roughly 8%"
+      "up approximately 16%.",
+      "up approximately 8%.",
+      "approximately unchanged.",
+      "down approximately 8%."
      ],
-     "answer": 1,
-     "explanation": "ADR value in USD reflects both the local share price and the exchange rate: an 8% local gain offset by an 8% currency depreciation roughly cancels (1.08 x 0.92 = 0.9936, near flat). The +16% trap adds the two moves instead of recognizing the weaker currency erodes the local gain, and +8% ignores the currency move entirely.",
+     "answer": 2,
+     "explanation": "The ADR's dollar value reflects both the local share price and the exchange rate. An 8% local gain offset by an 8% currency decline roughly cancels: 1.08 x 0.92 = 0.9936, or nearly unchanged. Adding the moves to reach 16% ignores that the weaker currency erodes the local gain, and 8% ignores the currency move entirely.",
      "topic": "ADRs",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "A 4% noncumulative preferred stock ($100 par) skipped its dividend entirely last year. This year the board declares dividends. Which of the following is TRUE about what must be paid before common shareholders receive a dividend?",
+     "q": "A 4% noncumulative preferred stock ($100 par) paid no dividend last year. If the board of directors declares dividends this year, what must the preferred stockholder receive per share before any dividend may be paid on the common stock?",
      "choices": [
-      "Only the current year's $4 per share; the skipped dividend from last year is lost",
-      "A total of $8 per share, covering both last year's omission and the current year",
-      "Last year's omitted $4 per share first, after which the current year's may be skipped",
-      "Nothing — noncumulative preferred has no dividend priority over the common stock"
+      "Nothing, because noncumulative preferred stock carries no dividend priority over common stock.",
+      "Only the current year's $4.00, because the dividend omitted last year is permanently lost.",
+      "Last year's omitted $4.00, after which the current year's dividend may be skipped.",
+      "A total of $8.00, covering both last year's omission and the current year's dividend."
      ],
-     "answer": 0,
-     "explanation": "Skipped dividends on noncumulative preferred do NOT accumulate — last year's $4 is permanently lost, so the issuer need only pay the current year's $4 before paying common. The $8 answer mistakenly applies cumulative treatment, the classic trap; and preferred still retains priority for the current year's dividend, so 'no priority' is also wrong.",
+     "answer": 1,
+     "explanation": "Omitted dividends on noncumulative preferred stock do not accumulate; last year's $4.00 is permanently lost, and only the current year's $4.00 must be paid before any common dividend. The $8.00 distractor applies cumulative treatment, and the preferred still retains priority for the current year's dividend, so the no-priority choice is also wrong.",
      "topic": "Noncumulative preferred",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A common stock trades at $48. The company declares a 25% stock dividend. What is the approximate adjusted market price per share after the ex-date, and what happens to the investor's total position value?",
+     "q": "A common stock trades at $48.00 when the issuer declares a 25% stock dividend. On the ex-date, the approximate adjusted price per share and the effect on a stockholder's total position value are:",
      "choices": [
-      "$38.40 per share; total value unchanged",
-      "$60.00 per share; total value increases 25%",
-      "$38.40 per share; total value decreases 20%",
-      "$36.00 per share; total value unchanged"
+      "$38.40 per share; total value unchanged.",
+      "$60.00 per share; total value increased 25%.",
+      "$38.40 per share; total value decreased 20%.",
+      "$36.00 per share; total value unchanged."
      ],
      "answer": 0,
-     "explanation": "A 25% stock dividend multiplies shares by 1.25, so price adjusts to $48 / 1.25 = $38.40; total position value is unchanged because the investor owns proportionally more shares at a lower price. The trap claiming value rises 25% ignores that stock dividends are not income — they merely divide the same pie into more slices.",
+     "explanation": "A 25% stock dividend increases the share count by a factor of 1.25, so the price adjusts to $48.00 / 1.25 = $38.40. Total position value is unchanged because the stockholder owns proportionally more shares at a lower price; a stock dividend is not income and merely divides the same value among more shares.",
      "topic": "Stock dividend/split math",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "An investor wants a 'bond-like' equity with a senior claim and a fixed return but is worried about being forced out if rates drop. Comparing two preferreds, which feature most directly creates that 'forced out' reinvestment risk, and how does it differ from a conversion feature?",
+     "q": "A preferred stockholder is concerned about being forced to reinvest at lower yields if interest rates decline. Which of the following features creates this risk, and how does it differ from a conversion feature?",
      "choices": [
-      "The participating feature; it lets holders share extra dividends, while conversion is mandatory at maturity",
-      "The adjustable-rate feature; its dividend resets with market yields, while conversion occurs at the issuer's election",
-      "The callable feature; it lets the issuer redeem at its own option, while conversion is exercised at the holder's option",
-      "The cumulative feature; it lets arrears accrue to the holder, while conversion primarily benefits the issuer"
+      "Participating; the holder shares in additional dividends, whereas conversion is mandatory at maturity.",
+      "Adjustable-rate; the dividend resets with market yields, whereas conversion occurs at the issuer's election.",
+      "Callable; the issuer may redeem at its option, whereas conversion is exercised at the holder's option.",
+      "Cumulative; dividend arrears accrue to the holder, whereas conversion primarily benefits the issuer."
      ],
      "answer": 2,
-     "explanation": "The callable feature creates reinvestment risk because the issuer can redeem when rates fall, forcing the holder to reinvest at lower yields; a conversion feature is the opposite — the holder's option, exercised for upside. Cumulative and participating features concern arrears and dividend sharing, and an adjustable rate merely resets the dividend — none of them forces the holder out.",
+     "explanation": "A call feature creates reinvestment risk: when rates decline, the issuer may redeem the issue at its option, forcing the holder to reinvest at lower yields. A conversion feature is the opposite — an option exercised by the holder for upside. Cumulative, participating, and adjustable-rate features address arrears, dividend sharing, and rate resets; none forces the holder out.",
      "topic": "Callable vs convertible",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "Consider these statements about warrants: I. A warrant typically has a longer life than a right. II. At issuance, a warrant's exercise price is usually below the current market price of the stock. III. Warrants are often attached to a bond or preferred offering as a sweetener. IV. Like a right, a warrant gives the holder a guaranteed dividend. Which are correct?",
+     "q": "Which of the following statements regarding a warrant is true?",
      "choices": [
-      "I and III only",
-      "I, II, and III only",
-      "II and IV only",
-      "I, III, and IV only"
+      "Its exercise price is normally set below the market price of the stock at the time of issuance.",
+      "It normally expires within 30 to 45 days of issuance, sooner than a subscription right.",
+      "It has a longer life than a right and often accompanies a bond offering as a sweetener.",
+      "It entitles the holder to receive any cash dividends paid on the underlying common stock."
      ],
-     "answer": 0,
-     "explanation": "Warrants are long-term (I) and are frequently attached as sweeteners to make a debt or preferred offering more attractive (III). Statement II is false because a warrant's strike is set ABOVE market at issuance (out of the money), and IV is false because neither warrants nor rights pay dividends. Only I and III are correct.",
+     "answer": 2,
+     "explanation": "Warrants are long-term instruments and are frequently attached to bond or preferred offerings as sweeteners. The exercise price is set above the market price at issuance, not below, and neither warrants nor rights entitle the holder to dividends.",
      "topic": "Warrants",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "All of the following describe differences between rights and warrants EXCEPT:",
+     "q": "Which of the following statements regarding rights and warrants is true?",
      "choices": [
-      "Rights are issued only to existing shareholders; warrants may be issued to anyone, often bundled with another security",
-      "Rights have a short life; warrants are long-term",
-      "Rights are typically issued at a subscription price below market; warrants are issued with an exercise price above market",
-      "Rights and warrants both obligate the holder to purchase the underlying shares at expiration"
+      "Both instruments are issued only to the issuer's existing shareholders.",
+      "Rights typically remain exercisable for a longer period than warrants.",
+      "Neither instrument obligates its holder to purchase the underlying shares.",
+      "Both instruments are issued with an exercise price above the current market price."
      ],
-     "answer": 3,
-     "explanation": "Neither rights nor warrants obligate the holder to buy — both are options the holder may let expire worthless; that statement is the false one (the EXCEPT). The other three correctly distinguish them: shareholder-only vs bundled issuance, short vs long life, and below-market vs above-market pricing.",
+     "answer": 2,
+     "explanation": "Both rights and warrants are options that the holder may allow to expire worthless; neither obligates a purchase. The remaining statements are false: warrants may be issued to anyone and are typically bundled with another security, warrants outlast rights, and rights carry a subscription price below the market.",
      "topic": "Rights vs warrants",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "A 7% preferred stock ($100 par) currently trades at $87.50 in the secondary market. What is its current yield, and why might the market price have fallen below par?",
+     "q": "A 7% preferred stock ($100 par) trades at $87.50 in the secondary market. What is the current yield, and what is the most likely reason the price is below par?",
      "choices": [
-      "7.0%; because the stated rate equals current yield at any price",
-      "8.0%; likely because market interest rates have risen since issuance",
-      "6.125%; likely because interest rates have fallen",
-      "8.0%; likely because the company raised its dividend"
+      "7.0%; the stated rate equals the current yield at any market price",
+      "8.0%; market interest rates have risen since the stock was issued",
+      "6.125%; market interest rates have fallen since the stock was issued",
+      "8.0%; the issuer has increased its dividend since the stock was issued"
      ],
      "answer": 1,
-     "explanation": "Current yield = annual dividend / market price = $7 / $87.50 = 8.0%. The price fell below par because prevailing rates rose, pushing the fixed-rate preferred's yield up to stay competitive (the inverse price-yield relationship). The 7% answer ignores that current yield equals the stated rate only when price equals par.",
+     "explanation": "Current yield equals the annual dividend divided by the market price: $7.00 / $87.50 = 8.0%. The price fell below par because prevailing interest rates rose after issuance, pushing the fixed-rate issue's yield up to remain competitive (the inverse price-yield relationship). The stated rate equals current yield only when the stock trades at par.",
      "topic": "Preferred current yield",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "An investor owns common stock in a company being liquidated in bankruptcy. The order of claims on the company's assets, from FIRST to be paid to LAST, is:",
+     "q": "In the event of a corporate liquidation, claims against the issuer's assets are paid in which of the following orders, from first to last?",
      "choices": [
       "Common stockholders, preferred stockholders, general creditors, secured creditors",
       "Secured creditors, general creditors, preferred stockholders, common stockholders",
@@ -6990,21 +6990,21 @@ window.SIE_DATA = {
       "Preferred stockholders, secured creditors, general creditors, common stockholders"
      ],
      "answer": 1,
-     "explanation": "Liquidation priority runs: secured creditors first, then unsecured/general creditors (including debenture holders), then preferred stockholders, and common stockholders last as residual claimants. Any ordering placing equity ahead of creditors is wrong; equity is always subordinate to debt.",
+     "explanation": "Liquidation priority runs from secured creditors to general (unsecured) creditors, then to preferred stockholders, with common stockholders last as residual claimants. Any order placing equity holders ahead of creditors is incorrect; equity is always subordinate to debt.",
      "topic": "Liquidation priority",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "A company effects a 5-for-2 forward stock split. An investor held 200 shares at a market price of $75. Which of the following correctly states the post-split share count and approximate per-share price?",
+     "q": "A customer owns 200 shares of a common stock trading at $75.00. After the issuer effects a 5-for-2 stock split, the customer's position is approximately:",
      "choices": [
-      "500 shares at $30",
-      "500 shares at $187.50",
-      "80 shares at $187.50",
-      "400 shares at $37.50"
+      "80 shares at $187.50.",
+      "400 shares at $37.50.",
+      "500 shares at $30.00.",
+      "500 shares at $187.50."
      ],
-     "answer": 0,
-     "explanation": "A 5-for-2 split multiplies shares by 5/2 (200 x 5/2 = 500) and divides price by the same ratio ($75 x 2/5 = $30). Total value is unchanged at $15,000. The trap '80 shares at $187.50' inverts the ratio (treating it like a reverse split), but a forward split always increases share count and lowers price.",
+     "answer": 2,
+     "explanation": "A 5-for-2 split multiplies the share count by 5/2 (200 x 5/2 = 500) and divides the price by the same ratio ($75.00 x 2/5 = $30.00), leaving total value unchanged at $15,000.00. The 80-share distractor inverts the ratio as if the split were a reverse split; a forward split always increases shares and reduces the price.",
      "topic": "Forward split",
      "difficulty": "hard",
      "style": "calc"
@@ -8030,21 +8030,21 @@ window.SIE_DATA = {
    ],
    "questions": [
     {
-     "q": "A corporate bond carries a 5% coupon and is currently quoted at 80. An investor calculates the current yield. Which of the following statements correctly describes both the current yield and how it ranks against the bond's nominal yield and yield to maturity?",
+     "q": "A corporate bond with a 5% coupon is quoted at 80. Which of the following states the bond's current yield and its rank relative to the nominal yield and yield to maturity (YTM)?",
      "choices": [
-      "Current yield is 6.25%, and it is higher than the nominal yield but lower than the YTM",
-      "Current yield is 4.00%, and it is lower than the nominal yield but higher than the YTM",
-      "Current yield is 6.25%, and it is lower than the nominal yield but higher than the YTM",
-      "Current yield is 5.00%, and all three yields are equal because the coupon is fixed"
+      "6.25%, above the nominal yield and below the YTM",
+      "4.00%, below the nominal yield and above the YTM",
+      "6.25%, below the nominal yield and above the YTM",
+      "5.00%, equal to both the nominal yield and the YTM"
      ],
      "answer": 0,
-     "explanation": "Current yield = annual coupon / market price = $50 / $800 = 6.25%. The bond trades at a discount, so the yield ranking from low to high is nominal (5%) < current (6.25%) < YTM, because at a discount the investor also captures the gain from purchase price to par at maturity. Choice C inverts the ranking; choice B wrongly divides by par.",
+     "explanation": "Current yield equals the annual coupon divided by the market price: $50 / $800 = 6.25%. Because the bond trades at a discount, the yields rank nominal (5%) < current (6.25%) < YTM, since YTM also captures the gain from the discounted price to par at maturity. The 4.00% figure results from dividing by par rather than the market price.",
      "topic": "current yield / yield ranking",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "An investor buys a bond with a 6% coupon at a price of 120, callable in 5 years at 103 and maturing in 20 years. Which yield will be the LOWEST and therefore the figure a conservative investor should focus on?",
+     "q": "A 6% bond is purchased at 120, is callable in 5 years at 103, and matures in 20 years. Which of the following yields is normally the lowest for this investor?",
      "choices": [
       "Nominal yield",
       "Current yield",
@@ -8052,27 +8052,27 @@ window.SIE_DATA = {
       "Yield to call"
      ],
      "answer": 3,
-     "explanation": "For a premium bond the ranking from highest to lowest is nominal > current > YTM > YTC. The premium was paid above par, and an early call forces that premium to be amortized over fewer years, so yield to call is the lowest and is the conservative measure. YTM is the lowest only for a discount bond.",
+     "explanation": "For a bond purchased at a premium, the yields rank nominal > current > yield to maturity > yield to call. An early call forces the premium to be amortized over fewer years, so yield to call is the lowest figure and the conservative measure. Yield to maturity is the lowest only for a discount bond.",
      "topic": "yield to call ranking",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "A bond is quoted at a price that produces a current yield exactly equal to its yield to maturity. Which of the following must be TRUE?",
+     "q": "A bond's current yield is exactly equal to its yield to maturity (YTM). The bond is trading:",
      "choices": [
-      "The bond is trading at a discount to its par value",
-      "The bond is trading at exactly its stated par value",
-      "The bond is trading at a premium to its par value",
-      "The bond is a perpetual issue with no fixed maturity"
+      "at a discount below its par value.",
+      "at exactly its stated par value.",
+      "at a premium above its par value.",
+      "as a perpetual issue with no maturity."
      ],
      "answer": 1,
-     "explanation": "Current yield equals YTM only when there is no capital gain or loss to maturity, which occurs only at par — where the nominal yield also equals both, so all three coincide. At a discount, YTM exceeds current yield; at a premium, YTM is below current yield; and a perpetual bond has no maturity from which to compute a YTM at all, so none of those situations can produce the stated equality.",
+     "explanation": "Current yield equals YTM only when there is no capital gain or loss at maturity, which occurs only at par, where the nominal yield, current yield, and YTM all coincide. At a discount, YTM exceeds current yield; at a premium, YTM is below current yield; and a perpetual issue has no maturity from which to compute a YTM.",
      "topic": "par pricing / yield equality",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "Which of the following bonds, all purchased at the same yield to maturity, would experience the GREATEST percentage price decline if market interest rates rise sharply?",
+     "q": "Which of the following bonds normally experiences the greatest percentage price decline when market interest rates rise sharply?",
      "choices": [
       "A 30-year zero-coupon bond",
       "A 30-year bond with a 9% coupon",
@@ -8080,27 +8080,27 @@ window.SIE_DATA = {
       "A 5-year bond with a 9% coupon"
      ],
      "answer": 0,
-     "explanation": "Price volatility rises with longer maturity and lower coupon, both of which lengthen duration. A 30-year zero combines the longest maturity with the lowest possible coupon, giving the highest duration and the largest percentage price move. The 30-year 9% bond's high coupon shortens its duration relative to the zero.",
+     "explanation": "Price volatility increases with longer maturity and lower coupon, both of which lengthen duration. A 30-year zero-coupon bond combines the longest maturity with the lowest possible coupon, producing the largest percentage price move. The 30-year 9% bond's high coupon shortens its duration relative to the zero.",
      "topic": "price volatility / duration",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "An investor sells a $100,000 face value Treasury note that pays interest on January 1 and July 1. The trade is executed on Tuesday, March 18. Treasuries settle T+1, and accrued interest on government bonds is computed on an actual/actual basis. Which party receives the accrued interest, and from which date does it accrue?",
+     "q": "A customer sells a Treasury note that pays interest on January 1 and July 1. The trade is executed on Tuesday, March 18. Accrued interest on this transaction is:",
      "choices": [
-      "The buyer pays accrued interest to the seller, accruing from January 1 up to but not including the March 19 settlement date",
-      "The seller pays accrued interest to the buyer, accruing from January 1 through March 18 inclusive",
-      "The buyer pays accrued interest to the seller, accruing from January 1 through and including the March 19 settlement date",
-      "No accrued interest changes hands because Treasuries settle on the next business day"
+      "paid by the buyer to the seller, accruing from January 1 up to but not including March 19.",
+      "paid by the seller to the buyer, accruing from January 1 through March 18.",
+      "paid by the buyer to the seller, accruing from January 1 through and including March 19.",
+      "not owed by either party, because Treasury securities settle on the next business day."
      ],
      "answer": 0,
-     "explanation": "The buyer compensates the seller for interest earned since the last coupon date because the buyer will collect the full next coupon. Accrued interest runs from the last payment date (January 1) up to but NOT including settlement, and Treasuries use actual/actual day count with T+1 settlement (March 19). Choice C wrongly includes settlement day; choice B reverses who pays.",
+     "explanation": "The buyer pays accrued interest to the seller because the buyer will collect the full next coupon. Interest accrues from the last payment date (January 1) up to but not including settlement; Treasuries settle T+1 (Wednesday, March 19) and use actual/actual day count. Including the settlement day or reversing the direction of payment is incorrect.",
      "topic": "accrued interest / settlement",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "A municipal bond pays interest on February 1 and August 1. A customer buys the bond in a regular-way transaction executed Thursday, May 1. Municipal bonds accrue interest on a 30/360 basis. How many days of accrued interest does the buyer owe?",
+     "q": "A municipal bond pays interest on February 1 and August 1. A customer purchases the bond in a regular way transaction on Thursday, May 1. On a 30-day-month (30/360) basis, how many days of accrued interest does the buyer owe?",
      "choices": [
       "89 days",
       "90 days",
@@ -8108,69 +8108,69 @@ window.SIE_DATA = {
       "120 days"
      ],
      "answer": 2,
-     "explanation": "Under T+1, a Thursday May 1 trade settles Friday, May 2. On a 30/360 basis, accrued interest runs from the last coupon (February 1) up to but not including settlement (May 2): Feb (30) + Mar (30) + Apr (30) + May 1 (1) = 91 days. Counting only to May 1 would give 90; ignoring T+1 entirely would understate the count. 30/360 fixes each month at 30 days, eliminating 89 and 120.",
+     "explanation": "A regular way trade on Thursday, May 1 settles the next business day, Friday, May 2. Accrued interest runs from the last coupon date (February 1) up to but not including settlement: February (30) + March (30) + April (30) + May (1) = 91 days. Counting only through May 1 gives 90, and ignoring next-day settlement understates the count; 30/360 fixes each month at 30 days.",
      "topic": "accrued interest / 30/360",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "An investor in the 32% federal tax bracket is comparing a corporate bond yielding 6.5% to a municipal bond. What is the minimum municipal yield that would make the muni at least as attractive on an after-tax basis (assume no state tax considerations)?",
+     "q": "An investor in the 32% federal tax bracket can purchase a corporate bond yielding 6.5%. What is the minimum yield a municipal bond must offer to provide an equivalent after-tax return?",
      "choices": [
+      "2.08%",
       "4.42%",
       "6.50%",
-      "9.56%",
-      "2.08%"
+      "9.56%"
      ],
-     "answer": 0,
-     "explanation": "The corporate bond's after-tax yield is 6.5% x (1 - 0.32) = 4.42%, the correct comparison point; the muni must yield at least 4.42% to match it. Choice C (9.56%) grosses up the muni by dividing 6.5% by (1 - 0.32), which answers the reverse question (the taxable-equivalent yield of a 6.5% muni).",
+     "answer": 1,
+     "explanation": "The corporate bond's after-tax yield is 6.5% x (1 - 0.32) = 4.42%, so the municipal bond must yield at least 4.42% to be equally attractive. Dividing 6.5% by (1 - 0.32) produces 9.56%, which answers the reverse question — the taxable-equivalent yield of a 6.5% municipal bond.",
      "topic": "tax-equivalent yield",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "A bond has a 4% coupon, was issued at par, and now trades at 92. Over the next year, market rates fall and the bond rises to 98. Which combination correctly describes the bond's status and the investor's reinvestment risk during this period?",
+     "q": "A 4% bond issued at par trades at 92, then rises to 98 as market interest rates fall. Which of the following describes the bond and its reinvestment risk over this period?",
      "choices": [
-      "It moved from a discount toward par; reinvestment risk on the coupons fell as rates fell",
-      "It moved from a premium toward par; reinvestment risk rose as rates fell",
-      "It moved from a discount toward par; reinvestment risk rose as rates fell",
-      "It moved from a premium toward par; reinvestment risk fell as rates fell"
+      "A discount bond moving toward par; reinvestment risk decreased",
+      "A premium bond moving toward par; reinvestment risk increased",
+      "A discount bond moving toward par; reinvestment risk increased",
+      "A premium bond moving toward par; reinvestment risk decreased"
      ],
      "answer": 2,
-     "explanation": "At 92 and 98 the bond is below par throughout, so it remains a discount bond moving toward par. Reinvestment risk is the risk of reinvesting coupons at lower rates, so when rates fall, reinvestment risk RISES. Choice A correctly identifies the discount but wrongly claims reinvestment risk fell.",
+     "explanation": "At both 92 and 98 the bond is below par, so it remains a discount bond moving toward par. Reinvestment risk is the risk of reinvesting coupon income at lower rates, so falling rates increase reinvestment risk.",
      "topic": "discount pricing / reinvestment risk",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Which of the following statements about a bond's maturity structures is TRUE?",
+     "q": "Which of the following statements about bond maturity structures is TRUE?",
      "choices": [
-      "In a serial maturity, the entire principal is repaid on one final date",
-      "In a term maturity, principal is retired in installments over the issue's life",
-      "In a series issue, principal is repaid on the same schedule as a serial issue",
-      "In a balloon maturity, the largest block of principal is due at the final date"
+      "In a serial maturity, the entire principal is repaid on a single final date.",
+      "In a term maturity, principal is retired in installments over the life of the issue.",
+      "In a series issue, principal is repaid on the same schedule as a serial issue.",
+      "In a balloon maturity, the largest portion of principal is due on the final date."
      ],
      "answer": 3,
-     "explanation": "A balloon maturity blends serial and term features: some principal is retired periodically, with the bulk (the 'balloon') due at final maturity. The serial-maturity statement actually describes a term issue (one date) and the term-maturity statement describes a serial issue (staggered maturities) — the definitions are swapped; a series issue refers to staggered issuance dates, not to how principal is repaid.",
+     "explanation": "A balloon maturity combines serial and term features: some principal is retired periodically, with the largest portion due at final maturity. A serial maturity retires principal in installments, a term maturity repays principal on one date — the first two statements swap these definitions — and a series issue refers to staggered issuance dates, not repayment.",
      "topic": "term / serial / balloon",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "An investor holds a long-term bond and is concerned about credit risk specifically. Which event would MOST directly reflect that risk materializing?",
+     "q": "An investor holding a long-term corporate bond is concerned about credit risk. Which of the following events most directly reflects that risk?",
      "choices": [
-      "Market interest rates rise, causing the bond's price to fall",
-      "A rating agency downgrades the issuer from A to BBB",
-      "The bond is called early because rates dropped, forcing reinvestment at lower yields",
-      "The investor must reinvest semiannual coupons at a lower rate than the coupon"
+      "Market interest rates rise and the bond's price declines.",
+      "A rating agency downgrades the issuer from A to BBB.",
+      "The bond is called and proceeds are reinvested at lower rates.",
+      "Coupon income is reinvested at rates below the coupon rate."
      ],
      "answer": 1,
-     "explanation": "Credit (default) risk is the risk that the issuer's ability to pay deteriorates; a rating downgrade is the direct market signal of increased credit risk. Choice A is interest-rate risk, choice C is call/reinvestment risk, and choice D is pure reinvestment risk, none of which concern creditworthiness.",
+     "explanation": "Credit (default) risk concerns the issuer's ability to pay; a rating downgrade is the direct signal that credit risk has increased. Rising rates reflect interest-rate risk, an early call reflects call risk, and reinvesting coupons at lower rates reflects reinvestment risk — none concerns creditworthiness.",
      "topic": "credit risk identification",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "Each of the following is generally considered an investment-grade rating EXCEPT:",
+     "q": "Which of the following bond ratings is considered below investment grade?",
      "choices": [
       "Standard & Poor's BBB",
       "Moody's Baa",
@@ -8178,189 +8178,189 @@ window.SIE_DATA = {
       "Moody's A"
      ],
      "answer": 2,
-     "explanation": "Investment grade extends down to BBB (S&P) and Baa (Moody's). BB (S&P) / Ba (Moody's) is the highest speculative ('junk') tier and is NOT investment grade. BBB, Baa, and A all fall within the investment-grade range, making BB the exception.",
+     "explanation": "Investment grade extends down to BBB (Standard & Poor's) and Baa (Moody's). BB is the highest speculative ('junk') tier and falls below investment grade; BBB, Baa, and A are all within the investment-grade range.",
      "topic": "ratings",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "Consider two bonds bought to yield the same YTM: Bond X is a 20-year 8% bond and Bond Y is a 20-year 3% bond. If interest rates fall by 1%, which statement about price appreciation is TRUE?",
+     "q": "Two 20-year bonds are priced to the same yield to maturity: Bond X carries an 8% coupon and Bond Y carries a 3% coupon. If interest rates fall, which of the following statements is TRUE?",
      "choices": [
-      "Bond X appreciates more because its higher coupon increases its sensitivity to rate changes",
-      "Bond Y appreciates more because its lower coupon gives it a longer duration",
-      "Both appreciate by the same percentage because they share the same maturity",
-      "Bond X appreciates more because premium bonds are always more volatile"
+      "Bond X appreciates more because its higher coupon increases price sensitivity.",
+      "Bond Y appreciates more because its lower coupon lengthens its duration.",
+      "Both bonds appreciate by the same percentage because their maturities are equal.",
+      "Bond X appreciates more because bonds trading at a premium are more volatile."
      ],
      "answer": 1,
-     "explanation": "For equal maturities, the lower-coupon bond has the longer duration and greater price sensitivity, so Bond Y (3%) appreciates more when rates fall. Choice A reverses the coupon-duration relationship, and choice C ignores that coupon, not just maturity, drives volatility.",
+     "explanation": "At equal maturities, the lower-coupon bond has the longer duration and greater price sensitivity, so Bond Y (3%) appreciates more when rates fall. A higher coupon shortens duration, and equal maturities alone do not equalize volatility — coupon size also drives it.",
      "topic": "price volatility / coupon effect",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "A callable bond is trading at a premium. As the first call date approaches and the bond remains likely to be called, which of the following best describes the behavior of its market price?",
+     "q": "As the first call date of a callable bond trading at a premium approaches and a call remains likely, the bond's market price normally:",
      "choices": [
-      "The price rises well above the call price as investors bid for the high coupon",
-      "The price is compressed toward the call price, a phenomenon called price compression",
-      "The price falls toward par regardless of the call premium",
-      "The price becomes more volatile because call risk increases duration"
+      "rises well above the call price as buyers pursue the high coupon.",
+      "compresses toward the call price rather than rising freely.",
+      "declines toward par value regardless of the stated call price.",
+      "grows more volatile because the call feature lengthens duration."
      ],
      "answer": 1,
-     "explanation": "Call protection caps the upside of a premium callable bond: as a call becomes likely, the price gravitates toward the call price rather than rising freely, known as price compression. Choice A ignores that no rational buyer pays far above the price they expect to receive, and choice D is backward because the embedded call shortens, not lengthens, effective duration.",
+     "explanation": "No rational buyer pays much more than the price expected to be received in a call, so the price of a premium callable bond gravitates toward the call price as a call becomes likely — a pattern known as price compression. The embedded call shortens, not lengthens, effective duration.",
      "topic": "call risk / price compression",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "A bond with a 7% coupon is purchased at 108 and matures in exactly 8 years. Using the straightforward approximation method, which value is closest to its yield to maturity?",
+     "q": "A bond with a 7% coupon is purchased at 108 and matures in 8 years. Which of the following is closest to the bond's approximate yield to maturity?",
      "choices": [
       "5.77%",
-      "7.00%",
       "6.48%",
+      "7.00%",
       "8.40%"
      ],
      "answer": 0,
-     "explanation": "Annual coupon = $70; the $80 premium is amortized over 8 years = $10/year, so adjusted annual income is approximately $70 - $10 = $60. Dividing by the average of price and par, ($1,080 + $1,000)/2 = $1,040, gives $60/$1,040 ≈ 5.77%. YTM must sit below the 6.48% current yield because the bond is at a premium; choice C uses price alone without averaging.",
+     "explanation": "The annual coupon is $70, and the $80 premium amortized over 8 years reduces annual income by $10, to $60. Dividing $60 by the average of price and par, ($1,080 + $1,000) / 2 = $1,040, gives approximately 5.77%. The yield to maturity must fall below the 6.48% current yield because the bond trades at a premium.",
      "topic": "yield to maturity / calc",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "An investor wants to eliminate reinvestment risk on the periodic interest of a bond held to maturity. Which security accomplishes this, and why?",
+     "q": "Which of the following securities eliminates reinvestment risk for an investor who holds it to maturity?",
      "choices": [
-      "A long-term high-coupon corporate bond, because large coupons compound faster",
-      "A zero-coupon bond, because it makes no periodic interest payments to reinvest",
-      "A floating-rate note, because its coupon resets with the market",
-      "A callable premium bond, because the call returns principal early"
+      "A high-coupon corporate bond",
+      "A zero-coupon corporate bond",
+      "A floating-rate corporate note",
+      "A callable corporate bond"
      ],
      "answer": 1,
-     "explanation": "Reinvestment risk arises from having to reinvest coupon payments at uncertain future rates; a zero-coupon bond pays no coupons, so there is nothing to reinvest and the risk is eliminated if held to maturity. Choice A actually carries high reinvestment risk from its large, frequent coupons, and a floater introduces income variability rather than removing reinvestment risk.",
+     "explanation": "Reinvestment risk arises from reinvesting periodic interest at uncertain future rates. A zero-coupon bond pays no periodic interest, so there is nothing to reinvest and the risk is eliminated if the bond is held to maturity. A high-coupon bond carries substantial reinvestment risk, a floating-rate note introduces income variability, and a callable bond adds the risk of early redemption and reinvestment at lower rates.",
      "topic": "reinvestment risk / zero-coupon",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "All of the following are TRUE of a bond purchased at a discount EXCEPT:",
+     "q": "Each of the following statements describes a bond purchased at a discount EXCEPT:",
      "choices": [
-      "Its yield to maturity exceeds its current yield",
-      "Its current yield exceeds its nominal yield",
-      "Its yield to call exceeds its yield to maturity",
-      "Its yield to maturity is less than its current yield"
+      "its yield to maturity exceeds its current yield.",
+      "its current yield exceeds its nominal yield.",
+      "its yield to call exceeds its yield to maturity.",
+      "its yield to maturity is less than its current yield."
      ],
      "answer": 3,
-     "explanation": "For a discount bond the ranking is nominal < current < YTM < YTC, so YTM exceeds current yield, making the statement that YTM is LESS than current yield false (the exception). Choices A, B, and C all correctly state discount-bond relationships.",
+     "explanation": "For a discount bond, the yields rank nominal < current < yield to maturity (YTM) < yield to call, so YTM exceeds current yield. The statement that YTM is less than current yield is false and therefore the exception; the other three statements correctly describe discount-bond relationships.",
      "topic": "discount yield ranking",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "An investor purchases a new-issue 20-year bond at par with a 5% coupon. Five years later, prevailing rates on comparable new issues are 8%. Which statements are TRUE? I. The investor's bond now trades at a discount. II. The investor is exposed to interest-rate risk that has reduced the bond's market value. III. If the investor holds to maturity, the loss in market value is realized as a cash loss. IV. The bond's nominal yield is still 5%.",
+     "q": "An investor purchases a 20-year, 5% bond at par. Five years later, yields on comparable new issues have risen to 8%. Which of the following statements is TRUE?",
      "choices": [
-      "I and IV only",
-      "I, II, and IV only",
-      "II and III only",
-      "I, II, III, and IV"
+      "The bond's nominal yield rises to match the 8% rate on comparable new issues.",
+      "The bond trades at a discount, but no loss is realized if it is held to maturity.",
+      "The investor realizes a cash loss at maturity equal to the decline in market value.",
+      "The bond's market price is unchanged because its coupon is fixed at issuance."
      ],
      "answer": 1,
-     "explanation": "Rising rates push the 5% bond below par (I), and that decline is interest-rate risk reducing market value (II); the coupon is fixed, so nominal yield remains 5% (IV). Statement III is false because holding to maturity returns full par, so the interim price decline is never realized as a cash loss. The correct set is I, II, and IV.",
+     "explanation": "Rising rates push the 5% bond's price below par, but the decline is only a paper loss: the bond returns full par at maturity, so no cash loss is realized unless the bond is sold. The nominal yield is fixed at issuance and remains 5% regardless of market rates, and the price of an outstanding fixed-rate bond does adjust to rate movements.",
      "topic": "interest-rate risk / roman",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "Which of the following statements correctly distinguishes yield to maturity from yield to call for a bond bought at a DISCOUNT?",
+     "q": "For a bond purchased at a discount, which of the following statements correctly compares its yield to call (YTC) with its yield to maturity (YTM)?",
      "choices": [
-      "YTC is lower than YTM because an early call cuts off years of coupon income",
-      "YTC equals YTM because both are computed to the same par redemption price",
-      "YTC is higher than YTM because the gain to par is earned over a shorter period",
-      "YTC is lower than YTM because the call would accelerate the loss of premium"
+      "YTC is lower because an early call eliminates years of coupon income.",
+      "YTC equals YTM because both assume redemption at the same par price.",
+      "YTC is higher because the gain to par is earned over a shorter period.",
+      "YTC is lower because an early call accelerates the loss of the premium."
      ],
      "answer": 2,
-     "explanation": "On a discount bond, an earlier call means the discount (the built-in gain to par) is realized over fewer years, which raises the annualized return, so YTC exceeds YTM. The accelerated-loss-of-premium logic applies only to bonds bought above par, and losing future coupons does not lower the yield when the discount gain is compressed into a shorter period; the two yields are not forced to be equal merely because both assume redemption at par.",
+     "explanation": "On a discount bond, an early call means the built-in gain from the discounted price to par is earned over fewer years, which raises the annualized return, so YTC exceeds YTM. The accelerated-loss-of-premium reasoning applies only to bonds bought above par, and the two yields are not equal merely because both assume redemption at par.",
      "topic": "YTM vs YTC distinction",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A bond is quoted 'Treasury 4 1/2 of 2034 at 101.16'. What is the dollar price for $50,000 face value, and what does the quote convention tell you?",
+     "q": "A Treasury bond is quoted at 101.16. What is the dollar price for $50,000 face value?",
      "choices": [
-      "$50,500.00, because corporate-style decimal pricing applies",
-      "$50,725.00, because the .16 is sixteen 32nds of a point",
-      "$50,800.00, because the .16 means sixteen 16ths of a point",
-      "$50,160.00, because the quote is read directly as a decimal"
+      "$50,160.00",
+      "$50,500.00",
+      "$50,725.00",
+      "$50,800.00"
      ],
-     "answer": 1,
-     "explanation": "Treasuries are quoted in 32nds, so 101.16 = 101 + 16/32 = 101.50% of par. For $50,000 face: 1.0150 x $50,000 = $50,725. Choice A treats the .16 as a decimal (corporate style), and choice C wrongly uses 16ths rather than the 32nds convention for government notes and bonds.",
+     "answer": 2,
+     "explanation": "Treasury securities are quoted in 32nds, so 101.16 equals 101 + 16/32 = 101.50% of par. For $50,000 face value: 1.0150 x $50,000 = $50,725.00. The distractors misread the quote as a corporate-style decimal price or as 16ths rather than 32nds.",
      "topic": "Treasury pricing convention",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "Each of the following describes a feature or risk accurately EXCEPT:",
+     "q": "Each of the following statements is TRUE EXCEPT:",
      "choices": [
-      "A bond's nominal yield is fixed at issuance and printed on the certificate",
-      "Interest-rate risk and price are inversely related for an outstanding fixed-rate bond",
-      "A higher credit rating generally allows an issuer to pay a lower coupon",
-      "Reinvestment risk is greatest for a long-term zero-coupon bond held to maturity"
+      "a bond's nominal yield is fixed at the time the bond is issued.",
+      "a bond's price and market interest rates are inversely related.",
+      "a higher credit rating generally permits an issuer to pay a lower coupon.",
+      "reinvestment risk is greatest for a zero-coupon bond held to maturity."
      ],
      "answer": 3,
-     "explanation": "A zero-coupon bond held to maturity has essentially NO reinvestment risk because it pays no coupons to reinvest, so the claim that it has the greatest reinvestment risk is false (the exception). Choices A, B, and C are all true: the coupon is fixed, prices move inversely to rates, and stronger credit lets issuers borrow more cheaply.",
+     "explanation": "A zero-coupon bond held to maturity has essentially no reinvestment risk because it makes no interest payments to reinvest, so that statement is false and is the exception. The nominal yield is fixed at issuance, prices and rates move inversely, and stronger credit ratings allow issuers to borrow at lower coupons.",
      "topic": "risk features / trap",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "An investor compares two A-rated 10-year corporate bonds. Bond 1 has a 6% coupon priced at par; Bond 2 has a 2% coupon priced at a deep discount. Which statement about their relative risks is TRUE?",
+     "q": "An investor compares two A-rated, 10-year corporate bonds: Bond 1 has a 6% coupon priced at par, and Bond 2 has a 2% coupon priced at a discount. Which of the following statements is TRUE?",
      "choices": [
-      "Bond 1 has greater interest-rate risk because its higher coupon means larger payments",
-      "Bond 2 has greater interest-rate risk because its lower coupon lengthens its duration",
-      "Both have identical interest-rate risk because they share the same maturity and rating",
-      "Bond 1 has greater reinvestment risk and therefore greater interest-rate risk"
+      "Bond 1 has greater interest-rate risk because its coupon payments are larger.",
+      "Bond 2 has greater interest-rate risk because its lower coupon lengthens duration.",
+      "The bonds have identical interest-rate risk because maturities and ratings match.",
+      "Bond 1 has greater reinvestment risk and therefore greater interest-rate risk."
      ],
      "answer": 1,
-     "explanation": "With the same maturity, the lower-coupon bond (Bond 2) has the longer duration and thus greater interest-rate (price) risk. Choice A confuses payment size with volatility, choice C ignores that coupon differences change duration even at equal maturity and rating, and choice D conflates reinvestment risk with interest-rate risk.",
+     "explanation": "With equal maturities, the lower-coupon bond has the longer duration, so Bond 2 has the greater interest-rate (price) risk. Larger coupon payments reduce, not increase, price sensitivity; matching maturities and ratings alone do not equalize duration; and reinvestment risk is distinct from interest-rate risk.",
      "topic": "interest-rate risk / coupon",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "A municipality issues bonds where $2 million matures each year from 2030 through 2039, with a final $20 million due in 2040. Which maturity structure is this, and what is its key characteristic?",
+     "q": "A municipality issues bonds with $2 million maturing in each year from 2030 through 2039 and a final $20 million maturing in 2040. This maturity structure is known as:",
      "choices": [
-      "A pure term issue, because all bonds carry the same final maturity year",
-      "A pure serial issue, because equal amounts mature every year with nothing concentrated at the end",
-      "A balloon issue, because regular serial-style maturities are combined with a large final payment",
-      "A series issue, because the bonds were sold in successive offerings"
+      "a term issue.",
+      "a serial issue.",
+      "a balloon issue.",
+      "a series issue."
      ],
      "answer": 2,
-     "explanation": "Regular annual retirements ($2 million/year) plus a disproportionately large final maturity ($20 million) define a balloon structure, blending serial and term features. A pure serial would not concentrate a large amount at the end, and a pure term would have a single maturity date rather than the staggered schedule shown.",
+     "explanation": "Regular annual maturities combined with a disproportionately large final maturity define a balloon issue, which blends serial and term features. A pure serial issue would not concentrate principal at the end, a term issue has a single maturity date, and a series issue refers to bonds offered on successive issuance dates.",
      "topic": "balloon maturity / scenario",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Which of the following statements about accrued interest and bond trading is TRUE?",
+     "q": "Which of the following statements about accrued interest is TRUE?",
      "choices": [
-      "Income (adjustment) bonds and bonds in default trade flat, meaning without accrued interest",
-      "All corporate bonds trade flat because interest is paid only at maturity",
-      "Accrued interest is paid by the seller to the buyer at settlement on a regular interest-paying bond",
-      "Zero-coupon bonds trade with accrued interest based on their imputed coupon"
+      "Income (adjustment) bonds and bonds currently in default trade flat.",
+      "All corporate bonds trade flat because interest is paid only at maturity.",
+      "The seller pays accrued interest to the buyer at settlement of the trade.",
+      "Zero-coupon bonds trade with accrued interest based on an imputed coupon."
      ],
      "answer": 0,
-     "explanation": "Bonds that trade 'flat' (without accrued interest) include income/adjustment bonds and bonds in default, because their interest payment is not assured. Choice C reverses the flow (the buyer pays accrued interest to the seller), and zero-coupon bonds trade flat because they make no periodic interest payments, contradicting choice D.",
+     "explanation": "Income (adjustment) bonds and bonds in default trade flat — without accrued interest — because their interest payments are not assured. On a regular interest-paying bond, the buyer pays accrued interest to the seller, and zero-coupon bonds trade flat because they make no periodic interest payments.",
      "topic": "trading flat / accrued interest",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "A 4% bond is purchased at 95.50 and held to maturity in 10 years. Considering the components of total return, which statement most precisely distinguishes current yield from yield to maturity for this investor?",
+     "q": "A 4% bond is purchased at 95.50 and held to maturity. Which of the following statements correctly distinguishes current yield from yield to maturity (YTM)?",
      "choices": [
-      "Current yield counts only the coupon; YTM also annualizes accretion of the discount",
-      "YTM counts only the coupon; current yield adds in the accretion of the discount",
-      "Current yield and YTM are equal because the bond is held all the way to maturity",
-      "Current yield exceeds YTM because the purchase price is below the bond's par value"
+      "Current yield reflects only the coupon; YTM also annualizes accretion of the discount.",
+      "YTM reflects only the coupon; current yield also includes accretion of the discount.",
+      "The two measures are equal because the bond is held all the way to maturity.",
+      "Current yield exceeds YTM because the purchase price is below the par value."
      ],
      "answer": 0,
-     "explanation": "Current yield = annual coupon divided by price and captures only the income component, whereas YTM additionally annualizes accretion of the $45-per-bond discount to par over the 10 years, making YTM the higher figure. The choice that swaps the definitions assigns accretion to current yield, and holding to maturity does not equate the two measures — they match only for a bond purchased at par; for a discount bond YTM exceeds current yield, not the reverse.",
+     "explanation": "Current yield is the annual coupon divided by the market price and captures only the income component. YTM additionally annualizes accretion of the discount to par over the remaining life, so YTM is the higher figure for a discount bond. The two measures are equal only for a bond purchased at par — holding to maturity does not equate them.",
      "topic": "current yield vs YTM distinction",
      "difficulty": "hard",
      "style": "distinction"
@@ -9376,77 +9376,77 @@ window.SIE_DATA = {
    ],
    "questions": [
     {
-     "q": "A corporation issues bonds backed by the pledge of stocks and bonds it holds in a wholly owned subsidiary, with the securities deposited with a trustee. If the issuer defaults, the trustee sells the deposited securities to satisfy bondholders. This bond is BEST classified as which of the following?",
+     "q": "A corporation issues bonds secured by stocks and bonds of a wholly owned subsidiary, which are deposited with a trustee. This type of bond is known as:",
      "choices": [
-      "A collateral trust bond",
-      "An equipment trust certificate",
-      "A mortgage bond",
-      "A debenture"
+      "a mortgage bond.",
+      "an equipment trust certificate.",
+      "a debenture.",
+      "a collateral trust bond."
      ],
-     "answer": 0,
-     "explanation": "A collateral trust bond is secured by other securities (stocks/bonds) deposited with a trustee, exactly the fact pattern here. An equipment trust certificate is secured by physical rolling stock/equipment, a mortgage bond is secured by real property, and a debenture has no specific collateral.",
+     "answer": 3,
+     "explanation": "A bond secured by securities deposited with a trustee is a collateral trust bond. An equipment trust certificate is secured by physical equipment, a mortgage bond by real property, and a debenture only by the issuer's general credit.",
      "topic": "Secured debt classification",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A debenture is convertible into common stock at $40 per share. The bond trades at $1,150 and the underlying common trades at $44. Ignoring transaction costs, which statement is TRUE about the relationship and the profitable arbitrage?",
+     "q": "A debenture is convertible into common stock at $40 per share. If the bond trades at $1,150 and the common stock trades at $44, which of the following statements is true?",
      "choices": [
-      "The stock trades above its parity price, so buying shares and converting is profitable",
-      "The bond trades above its parity value, so selling the bond outright beats converting",
-      "The stock trades exactly at its parity price, so no profitable arbitrage opportunity exists",
-      "The bond trades below its parity value, so buying the bond and converting is profitable"
+      "The stock is trading above parity, so converting the bond is profitable.",
+      "The bond is trading above parity, so selling the bond is better than converting.",
+      "The stock is trading at parity, so no profitable arbitrage exists.",
+      "The bond is trading below parity, so buying the bond and converting is profitable."
      ],
      "answer": 1,
-     "explanation": "Conversion ratio = $1,000 / $40 = 25 shares, so the bond's parity is 25 × $44 = $1,100 — $50 below the $1,150 market price. The bond trades above parity, so selling it outright beats converting into only $1,100 of stock. Parity for the stock would be $1,150 / 25 = $46, so at $44 the stock is below parity, not at or above it; the reversed claims either flip the direction of the mispricing or misstate the parity math.",
+     "explanation": "The conversion ratio is $1,000 / $40 = 25 shares, so the bond's parity is 25 × $44 = $1,100 — $50 below the $1,150 market price. The bond trades above parity, so selling it outright beats converting into only $1,100 of stock. Parity for the stock would be $1,150 / 25 = $46, so at $44 the stock is below, not at or above, its parity price.",
      "topic": "Convertible parity",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "All of the following money market instruments are typically issued at a discount and pay no stated coupon EXCEPT:",
+     "q": "Which of the following money market instruments is issued as an interest-bearing obligation rather than at a discount?",
      "choices": [
-      "A negotiable jumbo CD",
-      "A 13-week Treasury bill",
+      "13-week Treasury bill",
       "Prime commercial paper",
-      "A banker's acceptance"
+      "Negotiable certificate of deposit",
+      "Banker's acceptance"
      ],
-     "answer": 0,
-     "explanation": "Negotiable jumbo CDs ($100,000+) are interest-bearing and pay a stated rate, trading near face plus accrued interest rather than at a pure discount. T-bills, commercial paper, and bankers' acceptances are all classic discount instruments issued below face and redeemed at par.",
+     "answer": 2,
+     "explanation": "Negotiable certificates of deposit pay a stated rate of interest and trade near face value plus accrued interest. Treasury bills, commercial paper, and bankers' acceptances are issued at a discount and redeemed at par with no stated coupon.",
      "topic": "Money market discount instruments",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "In the liquidation of a corporation, rank these same-issuer claims from FIRST (highest priority) to LAST: I. Mortgage bond  II. Subordinated debenture  III. Debenture  IV. Preferred stock",
+     "q": "In the liquidation of a corporation, which of the following correctly ranks claims from highest to lowest priority?",
      "choices": [
-      "I, III, II, IV",
-      "III, I, II, IV",
-      "I, II, III, IV",
-      "II, III, I, IV"
+      "Mortgage bond, debenture, subordinated debenture, preferred stock",
+      "Mortgage bond, subordinated debenture, debenture, preferred stock",
+      "Debenture, mortgage bond, subordinated debenture, preferred stock",
+      "Mortgage bond, debenture, preferred stock, subordinated debenture"
      ],
      "answer": 0,
-     "explanation": "Secured creditors are paid first from their pledged assets (mortgage bond, I), then general unsecured creditors (debenture, III), then subordinated debt (II), then equity holders such as preferred stock (IV). A subordinated debenture is junior to a plain debenture but still senior to all equity, so the order is I, III, II, IV.",
+     "explanation": "Secured creditors (the mortgage bond) are paid first from the pledged property, followed by general unsecured creditors (the debenture), then subordinated debt, and finally equity holders such as preferred stock. A subordinated debenture is junior to a straight debenture but senior to all stock.",
      "topic": "Liquidation priority",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "A 20-year zero-coupon corporate bond is purchased at a deep discount in a taxable account. Which statement about the investor's taxation is TRUE?",
+     "q": "An investor holds a 20-year corporate zero-coupon bond in a taxable account. Which of the following describes the federal tax treatment of the bond's discount?",
      "choices": [
-      "The full discount is taxed as a long-term capital gain only when the bond reaches maturity",
-      "No tax is due until the bond is sold or matures, because no cash coupon is ever received",
-      "The annual accretion is taxed as ordinary interest income even though no cash is received",
-      "The annual accretion is treated as a nontaxable return of the investor's original capital"
+      "The entire discount is taxed as a long-term capital gain at maturity.",
+      "No tax is due until the bond is sold or reaches final maturity.",
+      "The accretion is treated as a nontaxable return of the investor's capital.",
+      "The annual accretion is taxed as ordinary interest income each year."
      ],
-     "answer": 2,
-     "explanation": "A taxable zero-coupon bond generates phantom income: each year's accretion of the discount toward par is taxed as ordinary interest income despite no cash payment, and that accretion also raises the cost basis. The strongest trap is assuming no coupon means no tax until sale or maturity — that deferral does not apply to original issue discount, which is neither a capital gain collected at maturity nor a return of capital.",
+     "answer": 3,
+     "explanation": "A taxable zero-coupon bond produces phantom income: each year's accretion of the discount is taxed as ordinary interest income even though no cash is received, and the accretion also increases the holder's cost basis. The discount is neither deferred until sale or maturity, a capital gain, nor a return of capital.",
      "topic": "Zero-coupon taxation",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "Which choice correctly ranks these instruments from SHORTEST to LONGEST typical maximum original maturity?",
+     "q": "An investor compares bankers' acceptances, commercial paper, Treasury bills, and negotiable certificates of deposit (CDs). Which of the following ranks these instruments from shortest to longest maximum original maturity?",
      "choices": [
       "Banker's acceptance, commercial paper, Treasury bill, negotiable CD",
       "Treasury bill, banker's acceptance, commercial paper, negotiable CD",
@@ -9454,259 +9454,259 @@ window.SIE_DATA = {
       "Banker's acceptance, Treasury bill, commercial paper, negotiable CD"
      ],
      "answer": 0,
-     "explanation": "Bankers' acceptances generally run up to ~180 days, commercial paper up to 270 days, Treasury bills are issued up to 52 weeks (about 1 year), and negotiable CDs can run a year or more, so BA < CP < T-bill < CD. The distractors shuffle commercial paper's 270-day ceiling and the T-bill's 52-week max.",
+     "explanation": "Bankers' acceptances generally run up to 180 days, commercial paper up to 270 days, Treasury bills up to 52 weeks, and negotiable CDs a year or more. The distractors shuffle the 270-day commercial paper ceiling and the 52-week Treasury bill maximum.",
      "topic": "Money market maturities",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A corporation in reorganization issues bonds that promise to repay principal at maturity but pay interest only if the company has sufficient earnings and the board declares it. An investor buys these bonds at 60. Which statement is TRUE?",
+     "q": "A corporation in reorganization issues bonds that pay interest only if earnings are sufficient and the board declares the payment. These bonds normally:",
      "choices": [
-      "The bonds trade flat, without accrued interest, because the interest is not a fixed obligation",
-      "Missed payments accumulate and must be paid before any common dividend, as with cumulative preferred",
-      "Interest is assured to holders, because bonds issued in reorganization carry a third-party guarantee",
-      "Any skipped interest payment is an act of default that permits holders to force a bankruptcy filing"
+      "trade flat, without accrued interest.",
+      "accumulate any missed interest payments.",
+      "carry a guarantee of interest payments.",
+      "are in default if a payment is skipped."
      ],
      "answer": 0,
-     "explanation": "Income (adjustment) bonds pay interest only when earnings are sufficient and the board declares it, so interest is contingent — the bonds trade flat (without accrued interest) and skipping a payment is not a default. The cumulative-preferred analogy is the strongest trap: income-bond interest generally does not accumulate as an enforceable claim, and no third-party guarantee attaches to reorganization debt.",
+     "explanation": "Income (adjustment) bonds pay interest only when earnings permit and the board declares it, so they trade flat — without accrued interest. Because the interest is contingent, missed payments do not accumulate, are not guaranteed, and do not constitute a default.",
      "topic": "Income bonds",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "An investor delivers cash to a dealer and receives securities under an overnight agreement, with the dealer obligated to buy them back the next day at a slightly higher price. From the cash-providing investor's standpoint, which statement BEST describes the position?",
+     "q": "An investor delivers cash to a dealer and receives securities that the dealer must repurchase the next business day at a higher price. From the investor's standpoint, this transaction is:",
      "choices": [
-      "The investor has purchased the securities outright, with no obligation to resell them the next day",
-      "The investor has borrowed the securities and must pass any coupon received back to the dealer",
-      "The investor bears no credit risk, because the Federal Reserve stands behind overnight repos",
-      "The investor has entered a reverse repurchase agreement, in effect a collateralized overnight loan"
+      "a repurchase agreement.",
+      "a reverse repurchase agreement.",
+      "a loan of securities to the dealer.",
+      "an outright purchase of securities."
      ],
-     "answer": 3,
-     "explanation": "The party supplying cash in a repo is doing a reverse repo: a short-term loan collateralized by the securities, earning the difference between the sale and buy-back prices. The purchase is not outright because the buy-back is contractual; the investor receives securities rather than borrowing them; and repos carry counterparty credit risk — the Fed does not guarantee them.",
+     "answer": 1,
+     "explanation": "The party supplying cash and receiving securities has entered a reverse repurchase agreement — in effect a collateralized loan earning the difference between the two prices. The dealer's side is the repurchase agreement; the contractual buy-back means the trade is not an outright purchase, and no securities are being loaned.",
      "topic": "Repurchase agreements",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "A corporate bond carries a 6% nominal coupon, pays interest semi-annually, and is quoted at 80. What is the current yield, and how does it compare to the nominal yield?",
+     "q": "A corporate bond pays a 6% coupon in semiannual installments and is quoted at 80. Which of the following describes the bond's current yield?",
      "choices": [
-      "7.5%, which is higher than the nominal yield because the bond trades at a discount",
-      "6.0%, which equals the nominal yield regardless of price",
-      "4.8%, which is lower than the nominal yield because the bond trades at a premium",
-      "7.5%, which is lower than the nominal yield because the bond trades at a discount"
+      "4.8%, which is lower than the nominal yield",
+      "6.0%, which is equal to the nominal yield",
+      "7.5%, which is higher than the nominal yield",
+      "7.5%, which is lower than the nominal yield"
      ],
-     "answer": 0,
-     "explanation": "Current yield = annual coupon / market price = $60 / $800 = 7.5%. Because the bond is at a discount (80 = $800), current yield exceeds the 6% nominal coupon; the semi-annual detail is a distractor since the total annual coupon is still $60. B ignores price, C treats the discount as a premium, and D reverses the discount relationship.",
+     "answer": 2,
+     "explanation": "Current yield equals the annual coupon divided by the market price: $60 / $800 = 7.5%. Because the bond trades at a discount, current yield exceeds the 6% nominal yield; the semiannual payment schedule does not change the $60 annual total.",
      "topic": "Current yield",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "Which of the following statements regarding Eurodollar instruments is TRUE?",
+     "q": "Which of the following statements regarding Eurodollar deposits is true?",
      "choices": [
-      "Eurodollar deposits must be denominated in euros and held only at banks within the eurozone",
-      "Eurodollar deposits are U.S. dollar deposits held at banks located outside the United States",
-      "Eurodollar deposits are subject to Federal Reserve reserve requirements, like domestic CDs",
-      "Eurodollar deposits carry FDIC insurance up to $250,000, like domestic bank time deposits"
+      "They are denominated in euros and held only at banks in the eurozone.",
+      "They are U.S. dollar deposits held at banks outside the United States.",
+      "They are subject to Federal Reserve reserve requirements.",
+      "They are insured by the Federal Deposit Insurance Corporation (FDIC)."
      ],
      "answer": 1,
-     "explanation": "Eurodollars are U.S. dollar-denominated deposits at banks located outside the United States — despite the name, the bank can be anywhere outside the U.S., not just Europe. The euro-denomination claim confuses the currency with the location; offshore Eurodollar deposits also sit outside Fed reserve requirements and FDIC coverage, which is partly why they can yield more.",
+     "explanation": "Eurodollars are U.S. dollar-denominated deposits at banks located outside the United States — despite the name, the bank can be anywhere outside the U.S. Because the deposits are offshore, they sit outside Federal Reserve reserve requirements and FDIC coverage, which is partly why they can yield more.",
      "topic": "Eurodollar",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "A convertible bond is convertible at $25 and the issuer announces a forced call at 102. The common stock trades at $26.50. Ignoring transaction costs, which action maximizes the holder's value per bond?",
+     "q": "A convertible bond, convertible at $25 per share, is called at 102 while the common stock trades at $26.50. To realize the greatest value, the bondholder should:",
      "choices": [
-      "Accept the call at 102, because the $1,020 in proceeds exceeds the converted stock value",
-      "Hold the bond beyond the call date, because interest keeps accruing until final maturity",
-      "Convert into 40 shares, because the $1,060 stock value exceeds the $1,020 call proceeds",
-      "Sell the bond at $1,000 parity, because parity equals the conversion price times the ratio"
+      "tender the bond at the call price.",
+      "convert the bond into common stock.",
+      "hold the bond to final maturity.",
+      "sell the bond at its conversion price."
      ],
-     "answer": 2,
-     "explanation": "Conversion ratio = $1,000 / $25 = 40 shares, so converting yields 40 × $26.50 = $1,060, beating the $1,020 call proceeds — the holder should convert. Accepting the call is the strongest trap but surrenders $40 per bond; interest stops accruing after the call date, and true parity is $1,060 (ratio × market price), not the conversion price times the ratio.",
+     "answer": 1,
+     "explanation": "The conversion ratio is $1,000 / $25 = 40 shares, so conversion yields 40 × $26.50 = $1,060, which exceeds the $1,020 call proceeds. Tendering at the call surrenders $40 per bond, interest stops accruing after the call date, and parity is $1,060, not the conversion price times the ratio.",
      "topic": "Forced conversion",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "All of the following are characteristics that distinguish a banker's acceptance from commercial paper EXCEPT:",
+     "q": "Bankers' acceptances and commercial paper share which of the following features?",
      "choices": [
-      "Both are short-term obligations that can trade in the secondary market at a discount",
-      "A banker's acceptance is used to finance international trade, while commercial paper finances general short-term corporate needs",
-      "A banker's acceptance carries a bank's guarantee (acceptance), while commercial paper is typically unsecured corporate debt",
-      "Commercial paper may be exempt from SEC registration when its maturity is 270 days or less"
+      "Trading at a discount in the secondary market",
+      "A guarantee of payment by a commercial bank",
+      "Use primarily to finance international trade",
+      "Issuance directly by the borrowing corporation"
      ],
      "answer": 0,
-     "explanation": "The question asks for the item that does NOT distinguish the two; both being short-term discount instruments that can trade secondary is a shared trait, not a distinction, so it is the exception. The other choices each state genuine distinctions (trade financing vs general use, bank acceptance vs unsecured, and the 270-day registration exemption for commercial paper).",
+     "explanation": "Both instruments are short-term obligations issued at a discount that trade in the secondary market — a shared feature, not a distinction. The bank guarantee and trade-financing role belong to bankers' acceptances, while direct issuance by the borrowing corporation describes commercial paper.",
      "topic": "BA vs commercial paper",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "Two bonds are issued by the same airline: Bond A is an equipment trust certificate secured by the airline's aircraft, and Bond B is a debenture. Assuming identical maturities, which statement is TRUE about their relative yields and risk?",
+     "q": "An airline issues an equipment trust certificate secured by its aircraft and a debenture with the same maturity. Which of the following statements is true?",
      "choices": [
-      "Bond B yields more than Bond A, because the debenture is an unsecured general obligation",
-      "Bond A yields more than Bond B, because aircraft collateral depreciates over the bond's life",
-      "Both bonds yield about the same, because credit risk follows the issuer, not the collateral",
-      "Bond B yields less than Bond A, because a debenture holds first claim on corporate assets"
+      "The equipment trust certificate yields more, because its collateral depreciates.",
+      "The two bonds yield about the same, because the issuer is identical.",
+      "The debenture yields more, because it is an unsecured general obligation.",
+      "The debenture yields less, because it has a first claim on corporate assets."
      ],
-     "answer": 0,
-     "explanation": "The debenture (Bond B) is an unsecured general obligation, while the equipment trust certificate (Bond A) is backed by the aircraft, so investors demand a higher yield on the debenture. The strongest trap is assuming a common issuer and maturity equalize yields — collateral still reduces credit risk — and a debenture is a general creditor claim, never a first lien.",
+     "answer": 2,
+     "explanation": "The debenture is backed only by the issuer's general credit, while the equipment trust certificate is secured by the aircraft, so investors demand a higher yield on the unsecured issue. A common issuer does not equalize the yields, and a debenture never holds a first claim on assets.",
      "topic": "Secured vs unsecured yield",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Which of the following are considered money market instruments? I. Newly issued Treasury bills  II. Treasury bonds issued 29 years ago with 11 months left to maturity  III. Commercial paper  IV. Common stock of a money-center bank",
+     "q": "Which of the following securities is considered a money market instrument?",
      "choices": [
-      "I, II, and III",
-      "I and III only",
-      "I, III, and IV",
-      "I, II, III, and IV"
+      "A newly issued Treasury note with a 2-year maturity",
+      "A Treasury bond issued 29 years ago that matures in 11 months",
+      "Common stock issued by a money-center bank",
+      "A corporate bond with 3 years remaining to maturity"
      ],
-     "answer": 0,
-     "explanation": "Money market instruments are debt with one year or less remaining to maturity, so newly issued T-bills (I), commercial paper (III), and a long Treasury bond now within 11 months of maturity (II) all qualify by remaining maturity. Common stock (IV) is equity and is never a money market instrument.",
+     "answer": 1,
+     "explanation": "Money market instruments are debt securities with one year or less remaining to maturity, so a long-term Treasury bond now within 11 months of maturity qualifies. The 2-year note and the 3-year corporate bond exceed the one-year limit, and common stock is equity, never a money market instrument.",
      "topic": "Money market scope",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "A negotiable jumbo certificate of deposit and a non-negotiable retail CD differ in several respects. Which statement is the most precise distinction?",
+     "q": "A negotiable certificate of deposit (CD) differs from a nonnegotiable retail CD in that the negotiable CD:",
      "choices": [
-      "Both CDs carry full FDIC insurance regardless of size, so neither exposes principal to risk",
-      "The jumbo CD requires a $1,000,000 minimum purchase, while the retail CD requires $100,000",
-      "The retail CD trades freely in the secondary market, while the jumbo CD cannot be resold",
-      "The jumbo CD can be resold in a secondary market, while the retail CD is redeemed at the bank"
+      "can be resold in the secondary market before maturity.",
+      "is fully insured regardless of the amount deposited.",
+      "requires a minimum purchase of $1,000,000.",
+      "can be redeemed only at the issuing bank."
      ],
-     "answer": 3,
-     "explanation": "Negotiable jumbo CDs (typically $100,000+ minimums) are transferable and trade in a secondary market; non-negotiable retail CDs are cashed in at the issuing bank, often with an early-withdrawal penalty. FDIC coverage is capped at $250,000, so large jumbos carry uninsured principal risk; the tradability reversal and the $1,000,000 minimum both misstate the facts.",
+     "answer": 0,
+     "explanation": "A negotiable (jumbo) CD is transferable and trades in a secondary market, while a nonnegotiable retail CD must be redeemed at the issuing bank, often with an early-withdrawal penalty. Deposit insurance is capped at $250,000, and negotiable CDs typically carry $100,000 minimums, not $1,000,000.",
      "topic": "Negotiable vs retail CD",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A bond is issued by a subsidiary and the timely payment of principal and interest is backed by the subsidiary's parent corporation. During a credit review, which statement is TRUE?",
+     "q": "A bond issued by a subsidiary is guaranteed as to principal and interest by its parent corporation. Which of the following statements about the bond is true?",
      "choices": [
-      "Only the subsidiary's own financials matter, because the subsidiary remains the legal issuer",
-      "The bond automatically merits a AAA rating, because the guarantee eliminates default risk",
-      "The parent's creditworthiness, as guarantor, is central to evaluating the bond's safety",
-      "The guarantee must be secured by specific pledged collateral of the parent corporation"
+      "Its safety depends only on the financial condition of the subsidiary issuer.",
+      "It is automatically rated AAA because the guarantee eliminates default risk.",
+      "Its safety depends largely on the creditworthiness of the parent guarantor.",
+      "It must be secured by specific collateral pledged by the parent corporation."
      ],
      "answer": 2,
-     "explanation": "A bond whose payments are backed by a company other than the issuer — here the parent — is a guaranteed bond, so the guarantor's financial strength is a key part of the credit review. Looking only at the subsidiary because it is the legal issuer is the strongest trap; and a guarantee is only as strong as the guarantor, so it neither earns an automatic AAA nor requires pledged collateral.",
+     "explanation": "A bond backed by a company other than its issuer is a guaranteed bond, so the guarantor parent's financial strength is central to the credit review. The guarantee is only as strong as the guarantor: it does not confer an automatic AAA rating, and no collateral pledge is required.",
      "topic": "Guaranteed bonds",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "An investor buys a 13-week Treasury bill at a price reflecting a 4% discount yield. All of the following are true about this position EXCEPT:",
+     "q": "An investor purchases a 13-week Treasury bill at a discount. All of the following statements are true EXCEPT:",
      "choices": [
-      "Interest on the T-bill is exempt from federal income tax",
-      "The investor's return is the difference between the discounted purchase price and the par value received at maturity",
-      "T-bills are backed by the full faith and credit of the U.S. government",
-      "The discount yield understates the investor's true bond-equivalent (investment) yield because it is figured on par, not the lower purchase price"
+      "the interest is exempt from federal income tax.",
+      "the return is the difference between the purchase price and the par value.",
+      "the bill is backed by the full faith and credit of the U.S. government.",
+      "the discount yield understates the investor's true investment yield."
      ],
      "answer": 0,
-     "explanation": "The exception is the federal-tax claim: T-bill interest IS subject to federal income tax (though exempt from state and local tax). The other statements are accurate: return equals par minus discounted price, T-bills carry full faith and credit, and the discount-basis quote understates the true yield because it is figured on par rather than the lower amount actually invested.",
+     "explanation": "Treasury bill interest is subject to federal income tax; the exemption applies to state and local tax. The remaining statements are true: the return is the discount earned to par, the bills carry the full faith and credit of the U.S. government, and the discount yield understates the true yield because it is computed on par rather than the lower purchase price.",
      "topic": "Treasury bills",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "A federal funds transaction and a repurchase agreement are both short-term financing tools. Which statement most precisely distinguishes them?",
+     "q": "Which of the following distinguishes a federal funds transaction from a repurchase agreement?",
      "choices": [
-      "Fed funds are loans collateralized by Treasuries, while repos are unsecured loans between dealers",
-      "Fed funds are unsecured interbank loans of reserves, while repos are collateralized by securities",
-      "Fed funds are advances from the Fed's discount window, while repos are trades limited to dealers",
-      "Fed funds are term loans of one week or longer, while repos must be overnight-only transactions"
+      "Federal funds loans are collateralized by Treasuries, while repurchase agreements are unsecured.",
+      "Federal funds loans are unsecured, while repurchase agreements are collateralized by securities.",
+      "Federal funds loans come from the Federal Reserve's discount window, while repurchase agreements do not.",
+      "Federal funds loans are made for a week or longer, while repurchase agreements are overnight only."
      ],
      "answer": 1,
-     "explanation": "Fed funds are typically unsecured overnight loans of reserve balances between depository institutions, while a repo is a collateralized sale-and-repurchase of securities. The reversed version — fed funds collateralized, repos unsecured — is the strongest trap; the discount window is direct borrowing from the Fed, distinct from fed funds, and both markets include term as well as overnight deals.",
+     "explanation": "Federal funds are unsecured loans of reserve balances between depository institutions, while a repurchase agreement is collateralized by the underlying securities. The discount window is direct borrowing from the Federal Reserve, distinct from federal funds, and both markets include term as well as overnight transactions.",
      "topic": "Fed funds vs repo",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A subordinated debenture and a senior (unsubordinated) debenture are both unsecured obligations of the same issuer. In a liquidation, which statements are TRUE? I. The senior debenture is paid before the subordinated debenture  II. Both rank ahead of general creditors  III. The subordinated debenture ranks ahead of preferred and common stock  IV. The subordinated debenture has a prior claim over secured bondholders",
+     "q": "In a corporate liquidation, a holder of a subordinated debenture is paid:",
      "choices": [
-      "I and III",
-      "I, II, and III",
-      "II and IV",
-      "I, III, and IV"
+      "before general creditors but after mortgage bondholders.",
+      "after preferred stockholders but before common stockholders.",
+      "before secured bondholders but after general creditors.",
+      "after senior debenture holders but before preferred stockholders."
      ],
-     "answer": 0,
-     "explanation": "In liquidation the senior debenture is paid before the subordinated one (I), and the subordinated debenture, though junior among debt, still outranks equity such as preferred and common stock (III). II is false because debentures rank WITH general creditors, not ahead of them, and IV is false because no debenture outranks secured bondholders, who hold a specific lien.",
+     "answer": 3,
+     "explanation": "Among unsecured debt, the senior debenture is paid before the subordinated debenture, but the subordinated debenture still ranks ahead of preferred and common stock. Debentures rank with, not ahead of, general creditors, and no debenture outranks secured bondholders, who hold a specific lien.",
      "topic": "Subordination priority",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "An investor compares a domestic corporate bond yielding 5.0% to a Eurodollar CD of similar maturity and credit quality. Which statement about Eurodollar instruments and their yields is TRUE relative to comparable domestic instruments?",
+     "q": "Compared with a domestic certificate of deposit (CD) of similar maturity and credit quality, a Eurodollar CD normally:",
      "choices": [
-      "Eurodollar CDs always yield less than domestic CDs, because offshore dollar deposits are risk-free",
-      "Eurodollar CDs carry no credit risk, because foreign central banks stand behind offshore deposits",
-      "Eurodollar CD interest is exempt from U.S. federal income tax, so lower stated yields can compete",
-      "Eurodollar CDs often yield more, sitting outside U.S. reserve requirements and FDIC coverage"
+      "yields less, because offshore dollar deposits are considered risk free.",
+      "yields less, because the interest is exempt from U.S. federal income tax.",
+      "yields the same, because a foreign central bank guarantees the deposit.",
+      "yields more, because it is outside U.S. reserve requirements and deposit insurance."
      ],
      "answer": 3,
-     "explanation": "Because Eurodollar deposits sit outside U.S. reserve requirements and FDIC coverage and carry the credit risk of offshore banks, they frequently offer somewhat higher yields than comparable domestic deposits. They are neither risk-free nor centrally guaranteed, and the tax-exemption claim is the strongest trap — U.S. taxpayers owe full federal tax on Eurodollar interest, unlike municipal interest.",
+     "explanation": "Eurodollar deposits sit outside U.S. reserve requirements and Federal Deposit Insurance Corporation (FDIC) coverage and carry the credit risk of offshore banks, so they normally yield somewhat more than comparable domestic deposits. They are neither risk free nor centrally guaranteed, and the interest is fully taxable to U.S. investors.",
      "topic": "Eurodollar yields",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "A corporation has outstanding: a first mortgage bond, an equipment trust certificate (fully secured by its specific equipment), a debenture, and a subordinated debenture. In a liquidation, which ordering of claim priority (highest to lowest) is correct?",
+     "q": "A corporation in liquidation has outstanding a mortgage bond, an equipment trust certificate, a debenture, and a subordinated debenture. Which of the following correctly ranks the claims from highest to lowest priority?",
      "choices": [
-      "Secured bonds (mortgage bond, equipment trust certificate) → debenture → subordinated debenture",
-      "First mortgage bond → debenture → subordinated debenture → equipment trust certificate",
-      "Debenture → subordinated debenture → first mortgage bond → equipment trust certificate",
-      "Equipment trust certificate → first mortgage bond → subordinated debenture → debenture"
+      "Mortgage bond, debenture, subordinated debenture, equipment trust certificate",
+      "Mortgage bond, equipment trust certificate, debenture, subordinated debenture",
+      "Equipment trust certificate, mortgage bond, subordinated debenture, debenture",
+      "Debenture, subordinated debenture, mortgage bond, equipment trust certificate"
      ],
-     "answer": 0,
-     "explanation": "Secured creditors are paid first from their own pledged collateral — the mortgage bond from the real property and the equipment trust certificate from the equipment — followed by unsecured debentures, with subordinated debentures last among debt. Any ordering that ranks a debenture ahead of a secured claim, or the subordinated ahead of the straight debenture, violates secured-before-unsecured and senior-before-subordinated.",
+     "answer": 1,
+     "explanation": "Secured creditors are paid first from their pledged collateral — the mortgage bond from real property and the equipment trust certificate from the equipment — followed by the straight debenture and, last among debt, the subordinated debenture. Any ordering that places an unsecured claim ahead of a secured one, or subordinated debt ahead of senior debt, is incorrect.",
      "topic": "Liquidation hierarchy",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "A convertible bond is convertible into 25 shares of common stock. The stock pays a $1.20 annual dividend and trades at $48; the bond pays $55 annual interest and trades at parity. An investor considering converting should recognize which TRUE statement?",
+     "q": "A bond convertible into 25 shares of common stock pays $55 in annual interest and trades at parity with the stock, which pays a $1.20 annual dividend. If the bondholder converts, annual income will:",
      "choices": [
-      "Conversion raises annual income, because 25 shares pay more in dividends than the bond's coupon",
-      "Conversion lowers annual income from $55 of interest to $30 of dividends, a $25 annual drop",
-      "Conversion leaves annual income unchanged, because the bond currently trades right at parity",
-      "Conversion lowers annual income by $30, from the $55 coupon down to $25 paid in dividends"
+      "increase by $25.",
+      "remain unchanged.",
+      "decrease by $25.",
+      "decrease by $30."
      ],
-     "answer": 1,
-     "explanation": "After converting, the investor holds 25 shares paying 25 × $1.20 = $30 in dividends versus $55 in bond interest — a $25 annual decrease, a classic reason holders delay voluntary conversion. Watch the number swap: the dividends are $30 and the drop is $25, not the reverse; and trading at parity equalizes value, not income.",
+     "answer": 2,
+     "explanation": "After conversion the investor holds 25 shares paying 25 × $1.20 = $30 in dividends, versus $55 in bond interest — a $25 annual decrease, a classic reason holders delay voluntary conversion. Trading at parity equalizes market value, not income, and $30 is the new dividend income, not the size of the drop.",
      "topic": "Conversion income analysis",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "Which of the following statements correctly distinguishes a mortgage bond from an equipment trust certificate?",
+     "q": "Which of the following distinguishes a mortgage bond from an equipment trust certificate?",
      "choices": [
-      "A mortgage bond is backed by equipment held in trust; an equipment trust certificate, by real estate",
-      "A mortgage bond is backed by a pledge of securities; an equipment trust certificate, by inventory",
-      "A mortgage bond is backed by specific collateral; an equipment trust certificate is unsecured",
-      "A mortgage bond is backed by real property; an equipment trust certificate, by movable equipment"
+      "A mortgage bond is secured by movable equipment; an equipment trust certificate, by real property.",
+      "A mortgage bond is secured by a portfolio of securities; an equipment trust certificate, by inventory.",
+      "A mortgage bond is secured by specific collateral; an equipment trust certificate is unsecured.",
+      "A mortgage bond is secured by real property; an equipment trust certificate, by movable equipment."
      ],
      "answer": 3,
-     "explanation": "A mortgage bond pledges real property (land and buildings), while an equipment trust certificate is secured by movable equipment such as railcars or aircraft, typically held by a trustee until the debt is retired. The swapped-collateral version is the classic trap; a pledge of securities describes a collateral trust bond, and an equipment trust certificate is secured, not unsecured.",
+     "explanation": "A mortgage bond pledges real property (land and buildings), while an equipment trust certificate is secured by movable equipment such as railcars or aircraft held by a trustee until the debt is retired. The reversed pairing swaps the collateral, a pledge of securities describes a collateral trust bond, and an equipment trust certificate is secured, not unsecured.",
      "topic": "Mortgage bond vs ETC",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A corporate bond is quoted at 92 and pays an 8% coupon semi-annually with exactly 5 years to maturity. Without a financial calculator, which statement about its yield to maturity (YTM) is correct?",
+     "q": "A corporate bond with an 8% coupon, paid semiannually, is quoted at 92 with 5 years to maturity. The bond's yield to maturity (YTM) is:",
      "choices": [
-      "YTM equals 8%, because the fixed coupon rate defines the yield regardless of market price",
-      "YTM is below 8%, because the below-par purchase price reduces the return earned to maturity",
-      "YTM is above 8%, because the annualized gain from 92 toward par adds to the coupon return",
-      "YTM equals the 8.7% current yield, because both measures capture the discount at maturity"
+      "equal to 8%, because the coupon rate determines the yield.",
+      "below 8%, because the purchase price reduces the total return.",
+      "above 8%, because the discount is earned in addition to the coupon.",
+      "equal to the current yield, because both measures reflect the discount."
      ],
      "answer": 2,
-     "explanation": "At 92, the investor collects the $80 annual coupon plus the $80 pull-to-par gain spread over five years, so for a discount bond YTM > current yield > the 8% nominal rate. The current-yield trap is the strongest: current yield ($80 / $920 ≈ 8.7%) omits the amortized discount that YTM captures, so the two are not equal; and a discount raises, never lowers, yield relative to the coupon.",
+     "explanation": "At 92, the investor earns the $80 annual coupon plus the accretion from $920 toward par, so for a discount bond YTM exceeds both the current yield (about 8.7%) and the 8% nominal yield. Current yield ignores the discount earned at maturity, so the two measures are not equal, and a discount raises, never lowers, yield relative to the coupon.",
      "topic": "Yield to maturity",
      "difficulty": "hard",
      "style": "calc"
@@ -17543,421 +17543,421 @@ window.SIE_DATA = {
    ],
    "questions": [
     {
-     "q": "An investor writes 1 ABC Oct 50 put and receives a premium of 4. ABC is currently trading at 53. Which statement BEST describes this position?",
+     "q": "An investor writes 1 ABC Oct 50 put at a premium of 4 when ABC is trading at 53. Which of the following best describes the position?",
      "choices": [
-      "In-the-money by 3 points; $300 of the premium is intrinsic value; the writer must sell ABC at 50 if assigned",
-      "Out-of-the-money; the entire $400 premium is intrinsic value; the writer must sell ABC at 50 if assigned",
-      "Out-of-the-money; the entire $400 premium is time value; the writer must buy ABC at 50 if assigned",
-      "In-the-money by 3 points; $100 of the premium is time value; the writer must buy ABC at 50 if assigned"
+      "In-the-money by 3 points; $300 of intrinsic value; obligated to sell the stock at 50 if assigned",
+      "Out-of-the-money; $400 of intrinsic value; obligated to sell the stock at 50 if assigned",
+      "Out-of-the-money; $400 of time value; obligated to buy the stock at 50 if assigned",
+      "In-the-money by 3 points; $100 of time value; obligated to buy the stock at 50 if assigned"
      ],
      "answer": 2,
-     "explanation": "A put is in-the-money only when the stock is below the strike. With ABC at 53 versus a 50 strike, the put is out-of-the-money, so intrinsic value is zero and all $400 of the premium is time value; a short put obligates the writer to BUY at 50 if assigned. The strongest trap applies call logic — treating 53 minus 50 as 3 points in-the-money — but that measure would describe a 50 call, not a 50 put, and a put writer never sells stock on assignment.",
+     "explanation": "A put has intrinsic value only when the stock trades below the strike. With ABC at 53 against a 50 strike, the put is out-of-the-money, intrinsic value is zero, and the entire $400 premium is time value; a put writer who is assigned is obligated to buy at 50. The in-the-money distractors apply call logic, treating 53 minus 50 as intrinsic value, and a put writer never sells stock upon assignment.",
      "topic": "short put obligation / intrinsic vs time",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "A customer is long 100 shares of XYZ purchased at $42 and simultaneously buys 1 XYZ Jan 40 put for a premium of 2. What is the customer's maximum loss and breakeven on the combined position?",
+     "q": "A customer buys 100 shares of XYZ at $42.00 per share and buys 1 XYZ Jan 40 put at a premium of 2. What are the maximum loss and the breakeven point on the combined position?",
      "choices": [
-      "Maximum loss $400; breakeven $44",
-      "Maximum loss $200; breakeven $42",
-      "Maximum loss $4,400; breakeven $44",
-      "Maximum loss $400; breakeven $40"
+      "Maximum loss $200; breakeven $42.00",
+      "Maximum loss $400; breakeven $40.00",
+      "Maximum loss $400; breakeven $44.00",
+      "Maximum loss $4,400; breakeven $44.00"
      ],
-     "answer": 0,
-     "explanation": "This is a protective put. Breakeven is stock cost plus premium = 42 + 2 = $44. Maximum loss is capped because the put lets the holder sell at 40: loss = (42 - 40) on the stock plus the 2 premium = 4 points, or $400. Choice 3 ignores the put's protection and treats the full stock value as at risk.",
+     "answer": 2,
+     "explanation": "Breakeven on a protective put is the stock cost plus the premium: 42 + 2 = $44.00. The put permits a sale at 40, so the maximum loss is the 2-point decline from cost to the strike plus the 2-point premium, or $400. The $4,400 figure ignores the put's protection and treats the entire stock cost as at risk.",
      "topic": "protective put / breakeven / max loss",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "All of the following are TRUE regarding the Options Clearing Corporation (OCC) EXCEPT:",
+     "q": "Which of the following functions is the responsibility of a broker-dealer rather than the Options Clearing Corporation (OCC)?",
      "choices": [
-      "The OCC issues and guarantees performance of all standardized listed options contracts",
-      "The OCC delivers the Options Disclosure Document to each customer at account approval",
-      "The OCC acts as buyer to every seller and seller to every buyer of listed options",
-      "The OCC assigns exercise notices randomly among member firms holding short positions"
+      "Issuing and guaranteeing performance of standardized listed options contracts",
+      "Delivering the options disclosure document to a customer at account approval",
+      "Acting as buyer to every seller and seller to every buyer of listed options",
+      "Assigning exercise notices randomly among member firms with short positions"
      ],
      "answer": 1,
-     "explanation": "The OCC publishes the Options Disclosure Document (Characteristics and Risks of Standardized Options), but DELIVERING it to the customer at or before account approval is the broker-dealer's duty, not the OCC's — that is the false (EXCEPT) statement. The other three are genuine OCC functions: issuer and guarantor of listed contracts, central counterparty to every trade, and random assignment of exercise notices among member firms carrying short positions.",
+     "explanation": "The OCC publishes the options disclosure document, but delivering it to the customer at or before account approval is the broker-dealer's obligation. Issuing and guaranteeing listed contracts, serving as central counterparty to every trade, and randomly assigning exercise notices among member firms are all OCC functions.",
      "topic": "OCC / ODD",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "A writer is short 1 DEF Jun 70 call sold at a premium of 5. At expiration DEF is trading at 78 and the call is exercised against the writer, who does NOT own the stock. Ignoring commissions, what is the writer's result?",
+     "q": "A customer writes 1 DEF Jun 70 call at a premium of 5 but does not own the underlying stock. If the call is exercised when DEF is trading at 78, what is the result, excluding commissions?",
      "choices": [
-      "A loss of $300",
       "A gain of $500",
+      "A loss of $300",
       "A loss of $800",
       "A loss of $1,300"
      ],
-     "answer": 0,
-     "explanation": "The naked call writer must deliver stock at 70, buying it in the market at 78 for an 8-point ($800) loss, offset by the 5-point ($500) premium received, for a net $300 loss. Breakeven was 75 (70 + 5); at 78 the writer is 3 points past breakeven. Choice 3 forgets to credit the premium received.",
+     "answer": 1,
+     "explanation": "The uncovered writer must deliver at 70 after buying the stock in the market at 78, an 8-point ($800) loss, offset by the $500 premium received, for a net loss of $300. Breakeven was 75 (70 + 5), and the stock finished 3 points beyond it. The $1,300 figure adds the premium instead of crediting it.",
      "topic": "short call assignment / breakeven",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "A customer establishes four separate positions on a $50 stock, each for a single contract or 100 shares. Which one carries theoretically UNLIMITED maximum loss?",
+     "q": "Which of the following option positions exposes an investor to a theoretically unlimited loss?",
      "choices": [
-      "Writing an uncovered (naked) 55 call at a premium of 2",
-      "Writing a cash-secured 45 put at a premium of 2",
-      "Buying a 45 put at a premium of 2",
-      "Writing a 55 covered call against 100 shares owned at $50"
+      "Purchasing a put option",
+      "Writing a covered call",
+      "Writing a cash-secured put",
+      "Writing an uncovered call"
      ],
-     "answer": 0,
-     "explanation": "The uncovered call writer must deliver stock at 55 no matter how high the market climbs, so the loss is theoretically unlimited. The cash-secured put writer's loss is large but capped because the stock can only fall to zero (max loss = 45 - 2 = $4,300); the long put loses at most the $200 premium; and the covered call writer already owns the shares, so above 55 there is only opportunity cost, not unlimited loss.",
+     "answer": 3,
+     "explanation": "The uncovered call writer must deliver stock at the strike regardless of how high the market rises, so the potential loss is unlimited. A cash-secured put writer's loss is large but capped because the stock cannot fall below zero; a put buyer can lose only the premium; and a covered call writer holds the underlying shares, so a rise above the strike costs only forgone appreciation.",
      "topic": "risk profiles / naked call",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "An investor owns 100 shares of GHI bought at $61 and writes 1 GHI Sep 65 call for a premium of 3. Which statement is TRUE?",
+     "q": "A customer buys 100 shares of GHI at $61.00 per share and writes 1 GHI Sep 65 call at a premium of 3. What are the breakeven point and the maximum gain?",
      "choices": [
-      "Breakeven is $58 and maximum gain is $700 if the stock is called away at 65",
-      "Breakeven is $64 and maximum gain is $300, limited to the premium",
-      "Breakeven is $58 and maximum gain is unlimited as the stock rises",
-      "Breakeven is $64 and maximum gain is $400 if the stock is called away at 65"
+      "Breakeven $58.00; maximum gain $700",
+      "Breakeven $58.00; maximum gain unlimited",
+      "Breakeven $64.00; maximum gain $300",
+      "Breakeven $64.00; maximum gain $400"
      ],
      "answer": 0,
-     "explanation": "For a covered call, breakeven is stock cost minus premium = 61 - 3 = $58. Maximum gain occurs if assigned at 65: the 4-point stock appreciation (65 - 61) plus the 3-point premium = 7 points, or $700. Choice 4 omits the premium, and choice 3 wrongly treats the upside as unlimited even though the written call caps it at the strike.",
+     "explanation": "On a covered call, breakeven is the stock cost minus the premium received: 61 - 3 = $58.00. Maximum gain occurs if the stock is called away at 65: 4 points of appreciation plus the 3-point premium equals $700. The $400 figure omits the premium, and the written call caps the upside at the strike, so the gain is never unlimited.",
      "topic": "covered call / breakeven / max gain",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "Two customers each have a position in JKL when it is trading at 48. Customer A is long 1 JKL Mar 45 call; Customer B is short 1 JKL Mar 45 call. Which statement correctly distinguishes their intrinsic value and obligations?",
+     "q": "A customer is long 1 JKL Mar 45 call, and a second customer is short 1 JKL Mar 45 call, with JKL trading at 48. Which of the following statements is TRUE?",
      "choices": [
-      "Both contracts have $300 of intrinsic value; A holds the right to buy at 45, while B is obligated to sell at 45 if assigned",
-      "Both contracts have $300 of time value; A is obligated to buy at 45, while B has the right to sell at 45",
-      "A's contract has intrinsic value but B's does not, because intrinsic value accrues only to the long",
-      "Both contracts are out-of-the-money, so neither has intrinsic value and both can let it expire"
+      "Each contract has $300 of time value; the long is obligated to buy at 45, and the short may elect to sell at 45.",
+      "Only the long contract has intrinsic value, because intrinsic value accrues solely to the holder of an option.",
+      "Both contracts are out-of-the-money, and neither premium contains any intrinsic value at the current price.",
+      "Each contract has $300 of intrinsic value; the long may buy at 45, and the short is obligated to sell at 45."
      ],
-     "answer": 0,
-     "explanation": "A 45 call with the stock at 48 is in-the-money by 3 points, so the contract carries $300 of intrinsic value regardless of which side a customer holds. The long (A) has the right to buy at 45; the short (B) is obligated to sell at 45 if assigned. Choice 3 wrongly claims intrinsic value belongs only to the long, when it is a property of the contract itself.",
+     "answer": 3,
+     "explanation": "A 45 call with the stock at 48 is in-the-money by 3 points, so the contract itself carries $300 of intrinsic value on both sides of the trade. The holder has the right to buy at 45; the writer is obligated to sell at 45 if assigned. Intrinsic value is a property of the contract, not something that accrues only to the long.",
      "topic": "long vs short / intrinsic value",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A customer buys 1 MNO Apr 30 call at 2 while the stock is at 29. Regarding this single long call, which are TRUE? I. The contract is out-of-the-money. II. The $200 premium consists entirely of time value. III. Breakeven is 32. IV. The maximum loss is $200.",
+     "q": "A customer buys 1 MNO Apr 30 call at a premium of 2 when MNO is trading at 29. Which of the following best describes the position?",
      "choices": [
-      "I, II, III and IV",
-      "I and IV only",
-      "II and III only",
-      "I, III and IV only"
+      "In-the-money; premium entirely intrinsic value; breakeven 32; maximum loss $200",
+      "Out-of-the-money; premium entirely time value; breakeven 32; maximum loss $200",
+      "Out-of-the-money; premium entirely time value; breakeven 28; maximum loss $200",
+      "Out-of-the-money; premium entirely time value; breakeven 32; maximum loss unlimited"
      ],
-     "answer": 0,
-     "explanation": "With the stock at 29 versus a 30 call, the option is out-of-the-money (I), so it has no intrinsic value and the entire $200 premium is time value (II). Breakeven on a long call is strike plus premium = 30 + 2 = 32 (III), and a long option's maximum loss is the premium paid, $200 (IV). All four statements are correct.",
+     "answer": 1,
+     "explanation": "With the stock at 29 against a 30 strike, the call is out-of-the-money, so the entire $200 premium is time value. Breakeven on a long call is the strike plus the premium, 30 + 2 = 32, and the maximum loss on any long option is the premium paid, $200. Each distractor alters one element: moneyness, breakeven, or maximum loss.",
      "topic": "long call / roman",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "All of the following correctly describe a difference between a short call and a short put EXCEPT:",
+     "q": "The writer of an uncovered put profits if the price of the underlying stock:",
      "choices": [
-      "A short put writer profits when the underlying stock declines below the breakeven",
-      "A short call obligates the writer to sell stock; a short put obligates the writer to buy stock",
-      "A short call has a bullish/neutral bias; a short put has a bearish/neutral bias on direction of profit",
-      "A short call has unlimited risk; a short put has limited (though large) risk"
+      "declines below the breakeven point.",
+      "remains above the breakeven point.",
+      "declines to zero before expiration.",
+      "moves sharply in either direction."
      ],
-     "answer": 0,
-     "explanation": "A short put writer profits when the stock stays at or ABOVE the breakeven, so the put expires worthless or is repurchased cheaper; the writer does NOT profit by the stock declining below breakeven, making choice 1 false and the EXCEPT answer. The others are accurate: the call obligates a sale and the put a purchase; the call writer is bearish/neutral while the put writer is bullish/neutral; and only the naked call carries unlimited risk.",
+     "answer": 1,
+     "explanation": "A short put writer keeps the premium when the put expires worthless or can be closed for less than the premium received, which occurs when the stock stays above the breakeven point. A decline below breakeven produces a loss — the writer is bullish to neutral, not bearish — and a fall to zero is the maximum-loss scenario, not a profit.",
      "topic": "short call vs short put",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "PQR is trading at 26.50. Considering listed PQR options, which one position is at-the-money under the stated condition?",
+     "q": "Which of the following listed options is at-the-money?",
      "choices": [
-      "The 27.50 put at the moment PQR trades at 26.50",
-      "The 30 call at the moment PQR trades at 26.50",
-      "The 25 put at the moment PQR trades at 26.50",
-      "The 25 call at the moment PQR trades at exactly 25"
+      "A 27.50 put with the underlying stock at 26.50",
+      "A 30 call with the underlying stock at 26.50",
+      "A 25 put with the underlying stock at 26.50",
+      "A 25 call with the underlying stock at 25"
      ],
      "answer": 3,
-     "explanation": "An option is at-the-money only when its strike exactly equals the current market price, and only the 25 call at the instant the stock is exactly 25 meets that test. The 27.50 put with the stock at 26.50 is the tempting trap because it is closest to the money — but it is in-the-money by one point, not at-the-money — while the 30 call and the 25 put at 26.50 are both out-of-the-money.",
+     "explanation": "An option is at-the-money only when the strike equals the current market price, which only the 25 call with the stock at exactly 25 satisfies. The 27.50 put with the stock at 26.50 is the closest trap, but it is in-the-money by 1 point; the 30 call and the 25 put at 26.50 are both out-of-the-money.",
      "topic": "ITM/ATM/OTM",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A customer wrote 1 STU Nov 80 put for a premium of 6 when the stock was at 81. At expiration STU is at 71 and the put is exercised. The customer then immediately sells the acquired shares in the market. Ignoring commissions, what is the total result?",
+     "q": "A customer writes 1 STU Nov 80 put at a premium of 6. At expiration, with STU trading at 71, the put is exercised, and the customer immediately sells the shares received. Excluding commissions, what is the result?",
      "choices": [
+      "A gain of $600",
       "A loss of $300",
       "A loss of $900",
-      "A gain of $600",
       "A loss of $1,500"
      ],
-     "answer": 0,
-     "explanation": "The short put writer is assigned and must buy at 80; selling immediately at 71 produces a 9-point ($900) loss, offset by the 6-point ($600) premium received, for a net $300 loss. Breakeven was 74 (80 - 6); at 71 the writer is 3 points below breakeven, confirming the $300 loss. Choice 2 forgets to subtract the premium received.",
+     "answer": 1,
+     "explanation": "The assigned writer buys at 80 and sells at 71, a 9-point ($900) loss, offset by the $600 premium received, for a net loss of $300. Breakeven was 74 (80 - 6), and the stock finished 3 points below it. The $900 figure ignores the premium received.",
      "topic": "short put assignment / breakeven",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "Which statement regarding the Options Disclosure Document (ODD) is TRUE?",
+     "q": "The options disclosure document (ODD) must be provided to a customer:",
      "choices": [
-      "It must be furnished to a customer at or before the time the options account is approved for trading",
-      "It must be signed and returned by the customer within 15 days of account approval or trading is frozen",
-      "It is the same document as the customer options account agreement (OAA) that establishes the customer's trading authority",
-      "It is delivered only after the customer's first options trade is executed"
+      "within 15 days after the account is approved for options trading.",
+      "at or before the time the account is approved for options trading.",
+      "promptly after the customer's first options trade is executed.",
+      "when the signed options account agreement is returned to the firm."
      ],
-     "answer": 0,
-     "explanation": "The ODD, 'Characteristics and Risks of Standardized Options,' must be delivered at or before the time the account is approved for options trading. The 15-day signature requirement applies to the options account agreement, not the ODD; the OAA is a separate document; and delivery must precede, not follow, the first trade, so the other choices are false.",
+     "answer": 1,
+     "explanation": "The ODD, Characteristics and Risks of Standardized Options, must be delivered at or before approval of the account for options trading. The 15-day requirement applies to the customer's signature on the options account agreement, a separate document, and delivery must precede rather than follow the first trade.",
      "topic": "ODD",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "An investor buys 1 VWX Feb 55 put at 7 when VWX is at 50. Regarding this long put at the moment of purchase, which statement is TRUE?",
+     "q": "An investor buys 1 VWX Feb 55 put at a premium of 7 when VWX is trading at 50. The premium consists of:",
      "choices": [
-      "The put has $500 of intrinsic value and $200 of time value",
-      "The put has $700 of intrinsic value and no time value",
-      "The put has $500 of time value and $200 of intrinsic value",
-      "The put is out-of-the-money, so the entire premium is time value"
+      "$700 of intrinsic value and no time value.",
+      "$200 of intrinsic value and $500 of time value.",
+      "$500 of intrinsic value and $200 of time value.",
+      "no intrinsic value and $700 of time value."
      ],
-     "answer": 0,
-     "explanation": "A 55 put with the stock at 50 is in-the-money by 5 points, giving $500 of intrinsic value; since the total premium is 7 ($700), the remaining $200 is time value. Premium always equals intrinsic plus time value, so a 7 premium containing 5 of intrinsic must hold 2 of time value; choice 3 reverses the two components.",
+     "answer": 2,
+     "explanation": "A 55 put with the stock at 50 is in-the-money by 5 points, or $500 of intrinsic value. Because premium always equals intrinsic value plus time value, the remaining $200 of the $700 premium is time value. The reversed split and the all-time-value choice both misstate the put's moneyness.",
      "topic": "intrinsic vs time value",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "A registered representative is comparing a covered call and a protective put for a client who owns 100 shares of a stock. Which statement is TRUE?",
+     "q": "Which of the following statements correctly compares writing a covered call with buying a protective put on a long stock position?",
      "choices": [
-      "The covered call brings in premium and caps upside; the protective put costs premium and limits downside",
-      "The covered call costs premium and limits downside; the protective put brings in premium and caps upside",
-      "The covered call limits downside to the premium received; the protective put caps upside at the strike",
-      "Both positions require paying a premium up front, and both eliminate the downside risk of the stock"
+      "The covered call requires a premium payment and limits downside risk; the protective put generates premium income and caps upside potential.",
+      "The covered call limits the maximum loss to the premium received; the protective put caps the maximum gain at the exercise price.",
+      "The covered call generates premium income and caps upside potential; the protective put requires a premium payment and limits downside risk.",
+      "Both strategies require an up-front premium payment, and both fully eliminate the downside risk of the long stock position."
      ],
-     "answer": 0,
-     "explanation": "Writing a covered call brings in premium income, which lowers breakeven but caps upside at the strike; buying a protective put requires paying premium, which raises breakeven but floors the downside. The strongest trap simply reverses the cash flows — remember the call WRITER receives premium and the put BUYER pays it — and a covered call's premium only cushions a decline; it never limits the loss to the premium or eliminates downside risk.",
+     "answer": 2,
+     "explanation": "The call writer receives premium income, which lowers breakeven but caps the upside at the strike; the put buyer pays a premium, which raises breakeven but establishes a floor under the stock. The leading trap reverses the cash flows, and a covered call's premium only cushions a decline — it neither limits the loss to the premium nor eliminates downside risk.",
      "topic": "covered call vs protective put",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A customer is long 1 YZA Aug 65 call purchased at 4. The stock rises to 72 and the customer exercises the call, then sells the stock at 72. Ignoring commissions, what is the gain, and what was the breakeven?",
+     "q": "A customer buys 1 YZA Aug 65 call at a premium of 4. With the stock trading at 72, the customer exercises the call and sells the stock at the market price. Excluding commissions, what are the gain and the breakeven point?",
      "choices": [
-      "Gain $300; breakeven 69",
-      "Gain $700; breakeven 65",
-      "Gain $300; breakeven 61",
-      "Gain $700; breakeven 69"
+      "A gain of $300; breakeven 61",
+      "A gain of $700; breakeven 65",
+      "A gain of $700; breakeven 69",
+      "A gain of $300; breakeven 69"
      ],
-     "answer": 0,
-     "explanation": "The long call holder exercises to buy at 65 and sells at 72, a 7-point ($700) gross gain, less the 4-point ($400) premium paid, for a net $300 gain. Breakeven on a long call is strike plus premium = 65 + 4 = 69; the 3-point gain above breakeven (72 - 69) confirms the $300. Choice 2 ignores the premium cost.",
+     "answer": 3,
+     "explanation": "Exercising at 65 and selling at 72 produces a 7-point ($700) gross gain; subtracting the $400 premium paid leaves a net gain of $300. Breakeven on a long call is the strike plus the premium, 65 + 4 = 69, and the 3 points above breakeven confirm the $300 result. The $700 choices ignore the premium cost.",
      "topic": "long call exercise / breakeven",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "Which of the following statements about exercise and assignment of listed equity options are TRUE? I. American-style options may be exercised by the holder any time before expiration. II. When a holder exercises, the OCC assigns the exercise notice to a short position. III. Assignment may be made on a random basis or by another fair method such as FIFO. IV. The short position chooses whether to accept the assignment.",
+     "q": "A holder exercises an American-style listed equity option, and the Options Clearing Corporation (OCC) assigns the exercise notice to a member firm carrying a short position. The writer receiving the assignment:",
      "choices": [
-      "I, II and III only",
-      "I and IV only",
-      "II, III and IV only",
-      "I, II, III and IV"
+      "may decline the assignment and close the position instead.",
+      "may postpone performance until the expiration date.",
+      "must perform according to the terms of the contract.",
+      "may transfer the obligation to another writer at the firm."
      ],
-     "answer": 0,
-     "explanation": "American-style options can be exercised any time prior to expiration (I); the OCC assigns the exercise to a member with a short position (II); the member then assigns to a customer randomly or by another fair, documented method such as FIFO (III). Statement IV is false: assignment is an obligation, not a choice; once assigned, the short MUST perform.",
+     "answer": 2,
+     "explanation": "An American-style option may be exercised at any time before expiration; the OCC assigns the notice to a member firm with a short position, which allocates it to a customer randomly or by another fair method such as first-in, first-out (FIFO). Assignment is an obligation, not an election — once assigned, the writer must perform.",
      "topic": "exercise / assignment / roman",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "An investor sells 1 BCD Dec 40 call at 3 and the stock later trades at 38 at expiration. Separately, the investor sells 1 BCD Dec 40 put at 3 with the stock at 38 at expiration. Comparing only these two short positions at that 38 price, which statement is TRUE?",
+     "q": "A customer writes 1 BCD Dec 40 call at a premium of 3 and writes 1 BCD Dec 40 put at a premium of 3. If BCD is trading at 38 at expiration, which of the following outcomes should be expected?",
      "choices": [
-      "The short call expires worthless for a $300 gain; the short put is in-the-money and likely assigned",
-      "Both expire worthless because the stock is below 40",
-      "The short put expires worthless for a $300 gain; the short call is in-the-money and likely assigned",
-      "Both are in-the-money and both will be assigned at 40"
+      "The call expires worthless, and the put is likely to be exercised.",
+      "The put expires worthless, and the call is likely to be exercised.",
+      "Both contracts expire worthless because the stock is below the strike.",
+      "Both contracts are exercised at the 40 strike price at expiration."
      ],
      "answer": 0,
-     "explanation": "With the stock at 38, the 40 call is out-of-the-money and expires worthless, so the writer keeps the full $300 premium; the 40 put is in-the-money by 2 and will likely be exercised, obligating the writer to buy at 40. Choice 3 reverses the moneyness: a call is OTM below its strike, while a put is ITM below its strike.",
+     "explanation": "With the stock at 38, the 40 call is out-of-the-money and expires worthless, so the writer keeps the full $300 call premium; the 40 put is in-the-money by 2 points and will likely be exercised, obligating the writer to buy at 40. A call is out-of-the-money below its strike, while a put is in-the-money below its strike.",
      "topic": "short call vs short put / moneyness",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "All of the following are characteristics of standardized listed options guaranteed by the OCC EXCEPT:",
+     "q": "Which of the following terms of a standardized listed equity option is determined by supply and demand rather than by the exchange and the Options Clearing Corporation (OCC)?",
      "choices": [
-      "The premium and the specific expiration date are individually negotiated between the two contra parties",
-      "The contract size is standardized at 100 shares of the underlying for equity options",
-      "Strike prices and expiration cycles are set by the listing exchange and the OCC",
-      "The OCC interposes itself as the guarantor so counterparties need not know each other's identity"
+      "The option premium",
+      "The contract size",
+      "The exercise price",
+      "The expiration date"
      ],
      "answer": 0,
-     "explanation": "Standardization is the defining feature of listed options: contract size, strike intervals, and expiration cycles are fixed by the exchange and OCC, not negotiated. The premium is determined by market supply and demand, and expiration dates are NOT individually negotiated, making choice 1 the false statement and the EXCEPT answer; the other three accurately describe standardized, OCC-guaranteed contracts.",
+     "explanation": "Standardization fixes the contract size (100 shares), the exercise price intervals, and the expiration cycle; only the premium is set by trading in the marketplace. Because terms are standardized and the OCC guarantees performance, counterparties need not know each other's identity.",
      "topic": "OCC / standardization",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "A customer writes 1 EFG Mar 45 put at 2.50 with EFG at 46. Which of the following statements regarding this single position are TRUE? I. The customer is bullish to neutral on EFG. II. The maximum gain is $250. III. The maximum loss is $4,250. IV. The breakeven is 42.50.",
+     "q": "A customer writes 1 EFG Mar 45 put at a premium of 2.50 when EFG is trading at 46. Which of the following best describes the position?",
      "choices": [
-      "I, II, III and IV",
-      "I and II only",
-      "II, III and IV only",
-      "I, II and IV only"
+      "Maximum gain $250; maximum loss unlimited; breakeven 42.50",
+      "Maximum gain $250; maximum loss $4,250; breakeven 42.50",
+      "Maximum gain $250; maximum loss $4,500; breakeven 42.50",
+      "Maximum gain $250; maximum loss $4,250; breakeven 47.50"
      ],
-     "answer": 0,
-     "explanation": "A short put writer profits if the stock stays flat or rises (I) and keeps the full $250 premium as maximum gain if the put expires worthless (II). Breakeven is strike minus premium = 45 - 2.50 = 42.50 (IV). Maximum loss occurs if the stock goes to zero: the writer buys worthless stock at 45 and loses 45 points minus the 2.50 received = 42.50 points, or $4,250 (III). All four are correct.",
+     "answer": 1,
+     "explanation": "The writer's maximum gain is the $250 premium, kept if the put expires worthless; the writer is bullish to neutral. Breakeven is the strike minus the premium, 45 - 2.50 = 42.50. If the stock falls to zero, the writer buys worthless stock at 45 and loses 42.50 points net of the premium, or $4,250. The $4,500 figure forgets the premium received, 47.50 adds it instead of subtracting, and only a short call carries unlimited loss.",
      "topic": "short put / roman / max loss",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "A customer owns 100 shares of HIJ at a cost of $70 and is worried about a near-term decline but does not want to sell. The RR recommends a protective put with a 65 strike at a premium of 2. Which statement is TRUE about the result if HIJ falls to 60 and the customer exercises?",
+     "q": "A customer buys 100 shares of HIJ at $70.00 per share and buys 1 HIJ 65 put at a premium of 2. If HIJ declines to 60 and the customer exercises the put, what is the loss, excluding commissions?",
      "choices": [
-      "A loss of $200, because the position's risk is limited to the put premium paid",
-      "A loss of $500, the decline from the $70 cost down to the $65 strike price",
-      "A loss of $700, the decline from cost to the strike plus the premium paid",
-      "A loss of $1,000, the full decline in the stock from $70 down to $60"
+      "A loss of $200",
+      "A loss of $500",
+      "A loss of $700",
+      "A loss of $1,000"
      ],
      "answer": 2,
-     "explanation": "The protective put lets the customer sell at 65 even though the market is 60, so the realized loss is the 5-point drop from the $70 cost to the $65 strike plus the 2-point premium = 7 points, or $700; breakeven was 72 (70 + 2). The $500 figure is the strongest trap because it correctly stops the loss at the strike but forgets the premium paid, while $1,000 ignores the put's floor at 65 entirely.",
+     "explanation": "The put permits a sale at 65 even with the market at 60, so the realized loss is the 5-point decline from the $70 cost to the strike plus the $200 premium, or $700; breakeven was 72 (70 + 2). The $500 figure correctly stops the loss at the strike but omits the premium, and $1,000 ignores the floor the put provides.",
      "topic": "protective put / max loss",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Which statement BEST distinguishes intrinsic value from time value for a listed option?",
+     "q": "Which of the following statements correctly distinguishes the intrinsic value of a listed option from its time value?",
      "choices": [
-      "Intrinsic value is the in-the-money amount, never less than zero; time value is any premium above that amount",
-      "Intrinsic value can be negative when an option is out-of-the-money; time value is what offsets the shortfall",
-      "Intrinsic value equals the full premium of an in-the-money option; time value applies only out-of-the-money",
-      "Intrinsic value erodes to zero as expiration approaches; time value rises as the option nears expiration"
+      "Intrinsic value may be negative when an option is out-of-the-money; time value offsets the negative amount.",
+      "Intrinsic value equals the entire premium of an in-the-money option; time value exists only out-of-the-money.",
+      "Intrinsic value declines to zero as expiration approaches; time value increases as expiration approaches.",
+      "Intrinsic value is the in-the-money amount, never less than zero; time value is any premium above that amount."
      ],
-     "answer": 0,
-     "explanation": "Intrinsic value equals the in-the-money amount and is floored at zero — it can never be negative — and any premium beyond intrinsic value is time value. The decay trap reverses reality: it is TIME value that erodes toward zero as expiration nears while intrinsic value persists; and an in-the-money option's premium usually contains both components, so intrinsic value rarely equals the full premium.",
+     "answer": 3,
+     "explanation": "Intrinsic value equals the in-the-money amount and has a floor of zero — it is never negative — while any premium beyond intrinsic value is time value. Time value, not intrinsic value, erodes as expiration approaches, and an in-the-money option's premium ordinarily contains both components.",
      "topic": "intrinsic vs time value",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A bullish customer wants leveraged upside on KLM, currently at 88, but the RR notes the customer could also generate income on shares the customer already owns. Which TWO single-option strategies match 'leveraged bullish speculation' and 'income on a long stock position,' respectively?",
+     "q": "Which of the following pairs of strategies provides leveraged bullish speculation and income on a long stock position, respectively?",
      "choices": [
-      "Buy a call; write a covered call",
-      "Write a put; buy a protective put",
-      "Buy a put; write a covered call",
-      "Write a call; buy a call"
+      "Buying a call; writing a covered call",
+      "Writing a put; buying a protective put",
+      "Buying a put; writing a covered call",
+      "Writing an uncovered call; buying a call"
      ],
      "answer": 0,
-     "explanation": "Buying a call gives leveraged bullish exposure for a limited premium, matching the speculation goal, while writing a covered call against owned shares generates premium income, matching the income goal. Choice 2's protective put costs money rather than generating income, and choice 3's long put is bearish, opposite of the bullish speculation requested.",
+     "explanation": "A long call offers leveraged upside exposure for a limited premium, matching the speculative objective, while writing a covered call against shares already owned generates premium income. A protective put costs premium rather than producing income, and a long put is a bearish position.",
      "topic": "strategy selection / covered call",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "All of the following statements about a long call versus a short call are accurate EXCEPT:",
+     "q": "Which of the following parties determines whether a listed equity option is exercised?",
      "choices": [
-      "Both the long and the short call holder have the right to choose whether the contract is exercised",
-      "The long call holder pays a premium; the short call writer receives a premium",
-      "The long call has a limited loss but theoretically unlimited gain; the naked short call has limited gain but theoretically unlimited loss",
-      "Exercise by the long results in assignment to a short, obligating the short to deliver stock at the strike"
+      "The writer of the option contract",
+      "The holder of the option contract",
+      "The Options Clearing Corporation (OCC)",
+      "The exchange where the option is listed"
      ],
-     "answer": 0,
-     "explanation": "Only the LONG holds the right to exercise; the short writer has an obligation and must perform if assigned, so the claim that 'both' may choose is false and is the EXCEPT answer. The other statements correctly describe the premium flow, the mirror-image risk/reward of long versus naked short calls, and the exercise/assignment mechanics.",
+     "answer": 1,
+     "explanation": "Only the holder has the right to exercise; the writer has an obligation and, once assigned through the OCC, must deliver or purchase the stock at the strike price. Neither the OCC nor the listing exchange decides whether a contract is exercised.",
      "topic": "long vs short call / rights vs obligations",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "A customer buys 1 NOP Jul 50 call at 5 and the stock is at 53 at the moment of purchase. Which statement correctly identifies the contract's components and breakeven?",
+     "q": "A customer buys 1 NOP Jul 50 call at a premium of 5 when NOP is trading at 53. Which of the following correctly states the premium components and the breakeven point?",
      "choices": [
-      "$300 intrinsic value, $200 time value, breakeven 55",
-      "$500 intrinsic value, no time value, breakeven 50",
-      "$300 time value, $200 intrinsic value, breakeven 55",
-      "$300 intrinsic value, $200 time value, breakeven 53"
+      "Intrinsic value $500; time value none; breakeven 50",
+      "Intrinsic value $300; time value $200; breakeven 53",
+      "Intrinsic value $200; time value $300; breakeven 55",
+      "Intrinsic value $300; time value $200; breakeven 55"
      ],
-     "answer": 0,
-     "explanation": "A 50 call with the stock at 53 is in-the-money by 3, so intrinsic value is $300; with a 5 premium, the remaining $200 is time value. Breakeven on a long call is strike plus full premium = 50 + 5 = 55, not 53. Choice 3 swaps the intrinsic and time components, and choice 4 wrongly uses the current price as the breakeven instead of strike plus premium.",
+     "answer": 3,
+     "explanation": "A 50 call with the stock at 53 is in-the-money by 3 points, or $300 of intrinsic value; the remaining $200 of the 5-point premium is time value. Breakeven on a long call is the strike plus the full premium, 50 + 5 = 55 — not the current market price of 53.",
      "topic": "intrinsic/time/breakeven",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "A speculator who expects a sharp move in Vornexa stock — but is unsure of the direction — ahead of a pending FDA decision establishes a long straddle: buys 1 Vornexa Jan 50 call at $4 and buys 1 Vornexa Jan 50 put at $3, with the stock at $50. At expiration the stock is trading at $61. What is the investor's gain or loss per share, and what are the two breakeven points?",
+     "q": "A customer buys 1 QRS Jan 50 call at a premium of 4 and buys 1 QRS Jan 50 put at a premium of 3. If QRS is trading at 61 at expiration, what are the result per share and the breakeven points?",
      "choices": [
-      "Gain of $4; breakevens at $43 and $57",
-      "Gain of $11; breakevens at $46 and $54",
-      "Gain of $4; breakevens at $46 and $54",
-      "Loss of $7; breakevens at $43 and $57"
+      "A gain of $4 per share; breakeven points 43 and 57",
+      "A gain of $4 per share; breakeven points 46 and 54",
+      "A gain of $11 per share; breakeven points 46 and 54",
+      "A loss of $7 per share; breakeven points 43 and 57"
      ],
      "answer": 0,
-     "explanation": "Total premium paid = $4 + $3 = $7. For a long straddle the breakevens are the strike plus/minus the TOTAL premium: 50 + 7 = $57 (upside) and 50 − 7 = $43 (downside). At $61 only the call is in the money, worth $61 − $50 = $11 intrinsic; the put expires worthless. Net result = $11 − $7 total premium paid = $4 gain. The trap answer ($11) forgets to subtract the put premium, and the $46/$54 breakevens wrongly use only one leg's premium instead of the combined $7.",
+     "explanation": "A long straddle's breakeven points are the strike plus and minus the combined premium of 7: 57 and 43. At 61, the call has 11 points of intrinsic value and the put expires worthless, so the net result is 11 - 7 = a $4-per-share gain. The $11 figure omits the premiums paid, and the 46/54 breakevens use only one leg's premium instead of the combined 7.",
      "topic": "Long straddle — breakeven and P/L",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "An investor writes a short straddle on Caldera Inc., selling 1 Caldera 70 call for $5 and selling 1 Caldera 70 put for $4 with the stock at $70. Which of the following statements about this position is TRUE?",
+     "q": "A customer writes 1 TUV 70 call at a premium of 5 and writes 1 TUV 70 put at a premium of 4. Which of the following statements is TRUE?",
      "choices": [
-      "Maximum gain is $9 per share and maximum loss is unlimited",
-      "Maximum gain is $900 total and the position profits if the stock stays between $61 and $79",
-      "Maximum gain is the $9 net premium and maximum loss is limited to $70 per share",
-      "The investor is betting on rising volatility and profits if the stock makes a large move"
+      "The maximum gain is unlimited, and the maximum loss is the $900 premium.",
+      "The position is profitable if the stock moves sharply in either direction.",
+      "The maximum gain is $900, and the position is profitable between 61 and 79.",
+      "The maximum gain is $900, and the maximum loss is limited to $7,000."
      ],
-     "answer": 1,
-     "explanation": "A short straddle collects both premiums: $5 + $4 = $9 per share = $900 total, which is the maximum gain, realized only if the stock closes exactly at $70 (both options expire worthless). The breakevens are 70 + 9 = $79 and 70 − 9 = $61, so the writer profits while the stock stays between $61 and $79. The seller wants LOW volatility (a flat market), so the volatility statement is wrong. Maximum loss is not capped at $70 — the short call leg exposes the writer to theoretically unlimited loss if the stock soars, so the 'limited to $70' choice is false (that figure relates only to the put side).",
+     "answer": 2,
+     "explanation": "A short straddle collects both premiums, 5 + 4 = 9 points ($900), the maximum gain, earned in full only if the stock closes exactly at 70. Breakevens are 70 plus and minus 9, so the writer profits between 61 and 79 and wants low volatility. The loss is not capped at $7,000 — the short call leg carries theoretically unlimited risk; only the put side is limited by the stock's floor at zero.",
      "topic": "Short straddle — max gain/loss and volatility outlook",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "An investor is bullish on Themis Corp (trading at $52) but wants to reduce the cost of a long call. She buys 1 Themis 50 call at $5 and sells 1 Themis 55 call at $2 — a debit call spread. What are the maximum gain and maximum loss on this position?",
+     "q": "A customer buys 1 CDE 50 call at a premium of 5 and writes 1 CDE 55 call at a premium of 2. What are the maximum gain and the maximum loss?",
      "choices": [
-      "Max gain $2; max loss $3",
-      "Max gain $3; max loss $2",
-      "Max gain $2 (unlimited above $55); max loss $3",
-      "Max gain unlimited; max loss $3"
+      "Maximum gain $200; maximum loss $300",
+      "Maximum gain $300; maximum loss $200",
+      "Maximum gain $200; maximum loss unlimited",
+      "Maximum gain unlimited; maximum loss $300"
      ],
-     "answer": 1,
-     "explanation": "This is a bull (debit) call spread. Net debit = $5 paid − $2 received = $3, which is the MAXIMUM LOSS (occurs if both legs expire worthless below $50). Maximum gain = difference in strikes minus net debit = ($55 − $50) − $3 = $5 − $3 = $2, achieved when the stock is at or above $55 and both legs are exercised. Gain is NOT unlimited because the short 55 call caps the upside. The reversed answer ($2 gain/$3 loss swapped) is the classic trap — in a debit spread you pay the net debit, so that is your loss, and the spread between strikes less the debit is your gain.",
+     "answer": 0,
+     "explanation": "This is a debit (bull) call spread with a net debit of 5 - 2 = 3 points, which is the maximum loss if both legs expire worthless below 50. Maximum gain is the difference in strikes minus the net debit: 5 - 3 = 2 points, or $200, reached at or above 55. The short 55 call caps the upside, and the reversed figures are the classic trap — the net debit is the loss, not the gain.",
      "topic": "Debit (bull) call spread — max gain/loss",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "A bearish investor establishes a bear call spread on Halcyon Ltd: she sells 1 Halcyon 40 call for $6 and buys 1 Halcyon 45 call for $2. Which statements are CORRECT? I. This is a credit spread. II. Maximum gain is $4 per share. III. Breakeven is $44. IV. Maximum loss is $5 per share.",
+     "q": "A customer writes 1 FGH 40 call at a premium of 6 and buys 1 FGH 45 call at a premium of 2. Which of the following best describes the position?",
      "choices": [
-      "I and II only",
-      "I, II, and III only",
-      "II, III, and IV only",
-      "I, II, III, and IV"
+      "A debit spread; maximum gain $100; breakeven 44",
+      "A credit spread; maximum gain $500; breakeven 45",
+      "A credit spread; maximum gain $400; breakeven 46",
+      "A credit spread; maximum gain $400; breakeven 44"
      ],
-     "answer": 1,
-     "explanation": "Selling the more expensive (lower-strike) call and buying the cheaper one produces a NET CREDIT of $6 − $2 = $4, so it is a credit spread (I true). Maximum gain = net credit = $4, realized if both expire worthless with the stock below $40 (II true). Breakeven = lower strike + net credit = $40 + $4 = $44 (III true). Maximum loss = difference in strikes − net credit = ($45 − $40) − $4 = $5 − $4 = $1, NOT $5 (IV false — $5 is the strike spread before subtracting the credit). So I, II, and III are correct.",
+     "answer": 3,
+     "explanation": "Selling the more expensive lower-strike call produces a net credit of 6 - 2 = 4 points, making this a credit (bear call) spread with a $400 maximum gain if both legs expire worthless below 40. Breakeven is the lower strike plus the net credit, 40 + 4 = 44. Maximum loss is the 5-point strike difference minus the credit, only $100; the $500 figure is the strike spread before subtracting the credit, and 46 wrongly adds the full 6-point premium.",
      "topic": "Credit (bear) call spread — Roman-style",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "An investor sells short 100 shares of Ardent Mining at $80 and, fearing a takeover rumor could spike the price, buys 1 Ardent 85 call for a premium of $3. Which of the following correctly describes this protective-call position?",
+     "q": "A customer sells short 100 shares of IJK at $80.00 per share and buys 1 IJK 85 call at a premium of 3. What are the maximum loss and the breakeven point?",
      "choices": [
-      "Maximum loss is $8 per share and the breakeven is $77",
-      "Maximum gain is unlimited and the breakeven is $83",
-      "Maximum loss is $3 per share and the breakeven is $85",
-      "The long call caps the gain on the short stock at the $85 strike"
+      "Maximum loss $300; breakeven 85",
+      "Maximum loss $500; breakeven 83",
+      "Maximum loss $800; breakeven 77",
+      "Maximum loss unlimited; breakeven 77"
      ],
-     "answer": 0,
-     "explanation": "Shorting at $80 with a long 85 call (insurance against a price rise) caps the upside risk. If the stock soars, the investor can exercise the call to buy at $85 to cover, but she already received $80 from the short sale and paid $3 premium, so the worst case is losing ($85 − $80) + $3 = $8 per share — that is the MAXIMUM LOSS. Breakeven = short-sale price − premium = $80 − $3 = $77 (the stock must fall to $77 to cover the premium). Maximum gain is NOT unlimited — it is capped because the stock can only fall to $0 (max gain = $80 − $3 = $77). The long call protects the SHORT position; it does not cap the gain — it caps the loss.",
+     "answer": 2,
+     "explanation": "If the stock rises, the call permits covering the short at 85, so the worst case is the 5-point rise from 80 to 85 plus the 3-point premium, an $800 maximum loss. Breakeven is the short-sale price minus the premium, 80 - 3 = 77. The long call caps the loss, not the gain, and the $500 figure omits the premium paid.",
      "topic": "Protective call on short stock — max loss/breakeven",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "An investor is short 100 shares of Borealis Foods at $60 and holds a long Borealis 65 call purchased for $2. All of the following statements about this combined position are TRUE EXCEPT:",
+     "q": "A customer sells short 100 shares of LMN at $60.00 per share and buys 1 LMN 65 call at a premium of 2. All of the following statements about the position are true EXCEPT:",
      "choices": [
-      "The long call protects against unlimited loss on the short stock",
-      "If the stock falls to $50 at expiration, the profit is $8 per share",
-      "The maximum possible loss on the combined position is $7 per share",
-      "A long 65 put would have hedged the rise in the stock equally well"
+      "the long call protects the short stock position against an unlimited loss.",
+      "the maximum potential loss on the entire combined position is $700.",
+      "a long LMN 65 put would protect equally well against a rise in the stock.",
+      "a profit of $800 results if the stock is trading at 50 at expiration."
      ],
-     "answer": 3,
-     "explanation": "To hedge SHORT stock against a rising price, the correct insurance is a long CALL; a long put profits when the stock falls — the direction the short seller already benefits from — so it provides no protection against a rise, making that statement false (the EXCEPT answer). The others are true: the call caps the otherwise-unlimited loss; at $50 the profit is the $10 short-stock gain minus the $2 premium = $8; and the maximum loss is (65 − 60) + 2 = $7 per share.",
+     "answer": 2,
+     "explanation": "A long call is the correct hedge for short stock because it caps the cost of covering; a long put gains when the stock falls — the direction the short seller already profits from — and provides no protection against a rise, making that statement false. The others are true: the maximum loss is (65 - 60) + 2 = $700, and at 50 the profit is the 10-point short-stock gain minus the 2-point premium, or $800.",
      "topic": "Protective call on short stock — EXCEPT",
      "difficulty": "hard",
      "style": "except"
@@ -18955,365 +18955,365 @@ window.SIE_DATA = {
    ],
    "questions": [
     {
-     "q": "A REIT reports total assets of $500 million, of which $360 million are real estate assets, cash, and U.S. government securities. Gross income totals $40 million. Setting aside whether the asset test is met, which additional fact must ALSO be true to maintain tax-advantaged status under Subchapter M?",
+     "q": "A real estate investment trust (REIT) reports gross income of $40 million. To maintain its tax-advantaged status under Subchapter M, which of the following requirements must the REIT satisfy?",
      "choices": [
-      "At least $30 million of gross income derives from real estate sources",
-      "At least $30 million of net income is retained for reinvestment",
-      "At least $36 million of net income is distributed to shareholders",
-      "At least $40 million of assets are invested in mortgages rather than equity"
+      "At least $30 million of gross income from real estate sources",
+      "At least $30 million of net income retained for reinvestment",
+      "At least $36 million of net income distributed to shareholders",
+      "At least $40 million of assets invested in mortgages rather than equity"
      ],
      "answer": 0,
-     "explanation": "The REIT income test independently requires at least 75% of gross income from real estate sources: 75% x $40M = $30M. (Note the $360M asset figure is only 72% of assets, below the 75% asset test, but the income test is a separate requirement.) Choice C confuses the 90% distribution test, which applies to taxable income, not gross income. The 75% asset and 75% income tests are distinct from the 90% distribution requirement.",
+     "explanation": "The Subchapter M income test requires at least 75% of a REIT's gross income to derive from real estate sources: 75% x $40 million = $30 million. The $36 million figure misapplies the 90% distribution test, which is based on taxable income, not gross income. The 75% income test and the 90% distribution requirement are separate tests.",
      "topic": "REIT 75% tests",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "Which statement about the REIT distribution requirement is TRUE?",
+     "q": "Which of the following statements is true regarding the distribution requirement of a real estate investment trust (REIT) under Subchapter M?",
      "choices": [
-      "A REIT must distribute 100% of its net income each year to preserve its pass-through tax treatment",
-      "A REIT must distribute at least 90% of its gross income derived from qualifying real estate sources",
-      "A REIT must distribute at least 90% of taxable income; only the distributed portion escapes corporate tax",
-      "A REIT must distribute at least 90% of taxable income, after which all of its income escapes corporate tax"
+      "A REIT must distribute 100% of its net income to shareholders each year to retain pass-through tax treatment.",
+      "A REIT must distribute at least 90% of the gross income it derives from qualifying real estate sources.",
+      "A REIT must distribute at least 90% of taxable income, and only the distributed portion escapes corporate tax.",
+      "A REIT must distribute at least 90% of taxable income, after which all of its income escapes corporate tax."
      ],
      "answer": 2,
-     "explanation": "Under Subchapter M, a REIT must distribute at least 90% of taxable income, and only the distributed portion escapes corporate-level tax — any retained income (up to 10%) is still taxed to the REIT. The strongest distractor claims all income escapes tax once the 90% is paid out; undistributed income remains taxable. The 90% test applies to taxable income, not gross real estate income (that confuses it with the income-source test), and 100% overstates the threshold.",
+     "explanation": "Under Subchapter M, a REIT must distribute at least 90% of its taxable income, and only the distributed portion escapes corporate-level tax; any retained income remains taxable to the REIT. The near-twin distractor claims all income escapes tax once the 90% is paid out. The 90% test applies to taxable income, not gross real estate income, and 100% overstates the threshold.",
      "topic": "REIT 90% distribution",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "An investor wants real estate exposure with intraday liquidity and a readily ascertainable market price, and is concerned about high upfront commissions reducing principal. Which product BEST fits and why?",
+     "q": "An investor seeks real estate exposure with intraday liquidity, a readily available market price, and low upfront sales charges. Which of the following products best meets these objectives?",
      "choices": [
-      "A listed REIT, because it trades on an exchange without the heavy upfront sales loads of non-traded programs",
-      "A non-traded REIT, because its sponsor calculates and publishes a fresh NAV each trading day",
-      "A real estate limited partnership, because its units change hands continuously in the secondary market",
-      "A non-traded REIT, because avoiding an exchange listing shields the investor from commission costs"
+      "A REIT listed on a stock exchange",
+      "A non-traded (non-listed) REIT",
+      "A real estate limited partnership",
+      "A private real estate equity fund"
      ],
      "answer": 0,
-     "explanation": "A listed REIT trades intraday on an exchange at a transparent market price and avoids the steep upfront commissions typical of non-traded REITs. The strongest distractor inverts the cost story: non-traded REITs actually carry high upfront sales loads that reduce invested principal, and their sponsor-estimated NAV is not a continuous market price. LP units are illiquid, not continuously traded.",
+     "explanation": "An exchange-listed real estate investment trust (REIT) trades intraday at a transparent market price and avoids the steep upfront sales loads typical of non-traded REITs. A non-traded REIT carries high upfront fees and has no exchange market, and real estate limited partnership interests and private real estate funds are illiquid.",
      "topic": "Listed vs non-traded REIT",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "All of the following are characteristics of a non-traded REIT EXCEPT:",
+     "q": "Each of the following is a characteristic of a non-traded real estate investment trust (REIT) EXCEPT:",
      "choices": [
-      "Shares are typically illiquid with limited or no secondary market",
-      "It must register with the SEC and make regular disclosure filings",
-      "Upfront fees and commissions are generally low relative to listed REITs",
-      "Distributions may at times be funded partly from offering proceeds or borrowings"
+      "shares that are highly illiquid, with limited or no secondary-market trading.",
+      "registration with the Securities and Exchange Commission (SEC) and periodic filings.",
+      "upfront fees and commissions that are generally low relative to listed REITs.",
+      "distributions that may be funded partly from offering proceeds or borrowings."
      ],
      "answer": 2,
-     "explanation": "Non-traded REITs are SEC-registered and report regularly but are illiquid and frequently carry HIGH upfront fees; their distributions can be funded partly from new investor capital or debt rather than operations. Choice C is the exception because non-traded REITs carry HIGH, not low, upfront costs.",
+     "explanation": "Non-traded REITs are SEC-registered and file regular disclosures, are illiquid, and may fund distributions partly from offering proceeds or borrowings. Their upfront fees are HIGH, not low, relative to listed REITs, making that statement the exception.",
      "topic": "Non-traded REIT features",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "A direct participation program is being dissolved. In what order are the following claimants satisfied? I. General creditors II. Secured lenders III. Limited partners IV. General partners",
+     "q": "Upon the liquidation of a direct participation program (DPP), which of the following lists the priority of claims from first to last?",
      "choices": [
-      "II, I, III, IV",
-      "I, II, IV, III",
-      "II, III, I, IV",
-      "I, II, III, IV"
+      "Secured lenders, general creditors, limited partners, general partners",
+      "General creditors, secured lenders, general partners, limited partners",
+      "Secured lenders, limited partners, general creditors, general partners",
+      "General creditors, secured lenders, limited partners, general partners"
      ],
      "answer": 0,
-     "explanation": "On DPP liquidation the order is secured lenders, then general (unsecured) creditors, then limited partners, then general partners last. Choice D inverts the first two by placing general creditors ahead of secured lenders. Secured creditors always have priority over unsecured creditors.",
+     "explanation": "On liquidation of a DPP, secured lenders are paid first, followed by general (unsecured) creditors, then limited partners, with general partners last. Secured creditors always rank ahead of unsecured creditors.",
      "topic": "DPP liquidation order",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "A limited partner in an oil-and-gas DPP has $20,000 of passive losses allocated this year, plus $7,000 of passive income from a separate real estate limited partnership and $90,000 of salary. How much of the passive loss may the investor deduct this year?",
+     "q": "A limited partner is allocated $20,000 of passive losses from an oil and gas direct participation program (DPP) and receives $7,000 of passive income from a real estate limited partnership plus $90,000 in salary. What amount of the passive loss is deductible in the current year?",
      "choices": [
-      "$20,000, against any income source",
-      "$7,000, limited to the passive income",
-      "$0, because DPP losses are never deductible",
-      "$27,000, combining passive and earned income"
+      "$0",
+      "$7,000",
+      "$20,000",
+      "$27,000"
      ],
      "answer": 1,
-     "explanation": "Passive losses may only offset passive income; with $7,000 of passive income available, only $7,000 of the $20,000 loss is deductible, and the remaining $13,000 carries forward. Choice A is wrong because passive losses cannot offset earned (salary) income. Choice C is wrong because the losses are usable against passive income.",
+     "explanation": "Passive losses may offset only passive income. With $7,000 of passive income available, $7,000 of the $20,000 loss is deductible this year, and the remaining $13,000 carries forward. Passive losses cannot offset salary, so the $20,000 and $27,000 figures ignore the passive-activity limitation.",
      "topic": "Passive loss flow-through",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "Which statement comparing a general partner and a limited partner in a DPP is TRUE?",
+     "q": "Which of the following statements is true regarding the roles of a general partner (GP) and a limited partner (LP) in a direct participation program (DPP)?",
      "choices": [
-      "The limited partner manages daily operations, while the general partner supplies capital as a passive investor",
-      "Both the general partner and the limited partners enjoy liability capped at their capital contributions",
-      "The general partner's personal liability is capped at the value of the partnership's assets under management",
-      "The general partner manages with unlimited liability; the limited partner's risk is generally limited to the investment"
+      "The LP manages the program's daily operations, while the GP supplies capital as a passive investor.",
+      "Both the GP and the LP have personal liability that is limited to their capital contributions.",
+      "The GP's personal liability is limited to the value of the partnership's assets under management.",
+      "The GP manages with unlimited personal liability, while the LP generally risks only the amount invested."
      ],
      "answer": 3,
-     "explanation": "The GP manages the program and bears unlimited personal liability, while the passive LP generally risks only the amount invested (plus any recourse debt assumed). The role-reversal distractor fails because an LP who runs day-to-day operations jeopardizes limited-liability status, and the GP's liability is personal and unlimited — not capped at contributions or at partnership assets.",
+     "explanation": "The GP manages the program and bears unlimited personal liability, while the passive LP generally risks only the amount invested. An LP who manages daily operations jeopardizes limited-liability status, and the GP's liability is personal and unlimited, not capped at contributions or partnership assets.",
      "topic": "GP vs LP liability",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "An investor subscribes to a real estate DPP, contributing $50,000 cash plus signing a $30,000 share of recourse financing. In year one the partnership passes through a $70,000 loss to this investor. Ignoring at-risk timing nuances beyond basis, what is the maximum loss the investor can generally claim, and why?",
+     "q": "A limited partner contributes $50,000 in cash to a real estate direct participation program (DPP) and assumes personal liability for $30,000 of recourse debt. If the program allocates the partner a $70,000 loss in the first year, what is the maximum loss the partner may generally claim?",
      "choices": [
-      "$50,000, because only cash contributions count toward basis",
-      "$70,000, because the full allocated loss is always deductible regardless of basis",
-      "$80,000, because recourse debt the investor is personally liable for adds to the at-risk amount",
-      "$70,000, because the $80,000 at-risk basis exceeds the loss"
+      "$30,000",
+      "$50,000",
+      "$70,000",
+      "$80,000"
      ],
-     "answer": 3,
-     "explanation": "At-risk basis is $80,000 ($50,000 cash + $30,000 recourse debt, since recourse debt the LP is personally liable for adds to basis), so the entire $70,000 loss is within basis and deductible (subject to passive-income limits). Choice A wrongly excludes recourse debt. Choice B ignores the basis limit, and Choice C states the basis but not the deductible loss.",
+     "answer": 2,
+     "explanation": "At-risk basis is $80,000 ($50,000 cash plus $30,000 of recourse debt for which the partner is personally liable), so the full $70,000 allocated loss is within basis and deductible, subject to passive-activity limits. $50,000 wrongly excludes the recourse debt, $80,000 is the basis rather than the loss, and $30,000 is only the assumed debt.",
      "topic": "DPP basis/at-risk",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "A hedge fund is structured as a limited partnership and charges '2 and 20.' Which statement about this arrangement is TRUE?",
+     "q": "A hedge fund organized as a limited partnership charges a \"2 and 20\" fee. Which of the following statements is true regarding this arrangement?",
      "choices": [
-      "The '20' is the annual management fee and the '2' is the incentive fee charged on realized profits",
-      "The '2' is an annual fee on assets and the '20' is an incentive fee on profits, often above a high-water mark",
-      "The combined fees may not exceed 5% of assets under FINRA's 5% markup policy applicable to member firms",
-      "The fund must register the partnership units under the Investment Company Act of 1940 before charging fees"
+      "The 2% is an incentive fee charged on profits, and the 20% is an annual fee on assets.",
+      "The 2% is an annual fee on assets, and the 20% is an incentive fee charged on profits.",
+      "The combined fees may not exceed 5% of assets under FINRA's 5% markup policy.",
+      "The fund must register under the Investment Company Act of 1940 before charging fees."
      ],
      "answer": 1,
-     "explanation": "'2 and 20' means a 2% annual asset-based management fee plus a 20% performance fee on profits, commonly applied above a high-water mark so incentive fees accrue only on new net gains. The strongest distractor simply swaps the two numbers. FINRA's 5% policy governs markups and commissions on secondary-market trades, not fund fees, and hedge funds rely on 3(c)(1)/3(c)(7) exemptions rather than 1940-Act registration.",
+     "explanation": "The \"2\" is a 2% annual management fee on assets, and the \"20\" is a 20% incentive fee on profits, commonly applied above a high-water mark so incentive fees accrue only on new net gains. The strongest distractor swaps the two figures. FINRA's 5% policy governs secondary-market markups and commissions, not fund fees, and hedge funds rely on private-fund exemptions rather than Investment Company Act of 1940 registration.",
      "topic": "Hedge fund fees",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "All of the following are typically TRUE of hedge funds EXCEPT:",
+     "q": "Each of the following is a typical characteristic of a hedge fund EXCEPT:",
      "choices": [
-      "They may use leverage, short selling, and derivatives",
-      "They are generally limited to accredited investors or qualified purchasers",
-      "They offer daily redemption at NAV like an open-end mutual fund",
-      "They commonly impose lock-up periods restricting redemptions"
+      "the use of leverage, short selling, and derivatives in pursuing returns.",
+      "sales generally limited to accredited investors or qualified purchasers.",
+      "daily redemption at net asset value (NAV), as with an open-end mutual fund.",
+      "lock-up periods that restrict investors from redeeming their interests."
      ],
      "answer": 2,
-     "explanation": "Hedge funds use aggressive strategies, are sold to sophisticated investors, and frequently impose lock-ups and redemption gates; they do NOT offer the daily NAV redemption that open-end mutual funds provide. Choice C is the exception.",
+     "explanation": "Hedge funds use leverage, short selling, and derivatives, are generally limited to accredited investors or qualified purchasers, and commonly impose lock-up periods. They do not offer daily NAV redemption; that feature belongs to open-end mutual funds.",
      "topic": "Hedge fund liquidity",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "Under Regulation D Rule 506(b), which combination of facts is permissible for a private placement? I. Up to 35 non-accredited but sophisticated investors II. Unlimited accredited investors III. General solicitation and advertising IV. No general solicitation",
+     "q": "Under Regulation D Rule 506(b), which of the following describes a permissible offering?",
      "choices": [
-      "I, II, and III",
-      "I, II, and IV",
-      "II and III only",
-      "I and IV only"
+      "Unlimited accredited investors, up to 35 sophisticated non-accredited investors, and no general solicitation",
+      "Unlimited accredited investors, up to 35 sophisticated non-accredited investors, and general solicitation permitted",
+      "Up to 35 accredited investors, unlimited sophisticated non-accredited investors, and no general solicitation",
+      "Unlimited accredited investors only, with general solicitation permitted to verified purchasers"
      ],
-     "answer": 1,
-     "explanation": "Rule 506(b) permits unlimited accredited investors plus up to 35 non-accredited (but sophisticated) investors, and prohibits general solicitation/advertising. Choice A wrongly includes general solicitation (III), which is allowed only under 506(c), where all purchasers must be verified accredited investors.",
+     "answer": 0,
+     "explanation": "Rule 506(b) permits an unlimited number of accredited investors plus up to 35 sophisticated non-accredited investors and prohibits general solicitation and advertising. General solicitation is permitted only under Rule 506(c), where every purchaser must be a verified accredited investor.",
      "topic": "Reg D 506(b)",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "An individual has a net worth of $1.4 million, which includes $600,000 of equity in a primary residence, and earned $180,000 last year and $195,000 the year before. Does this person qualify as an accredited investor, and why?",
+     "q": "An investor has a net worth of $1.4 million, including $600,000 of equity in a primary residence, and earned $180,000 and $195,000 in the two most recent years. Does the investor qualify as an accredited investor?",
      "choices": [
-      "Yes, because total net worth of $1.4 million comfortably exceeds the $1 million threshold",
-      "Yes, because two consecutive years of income near $200,000 satisfy the individual income test",
-      "No, because net worth excluding the residence is only $800,000 and income never reached $200,000",
+      "Yes, because total net worth of $1.4 million comfortably exceeds the $1 million minimum",
+      "Yes, because income approached $200,000 in each of the two most recent calendar years",
+      "No, because net worth excluding the residence is $800,000 and income never reached $200,000",
       "No, because the income test requires at least $300,000 in each of the two most recent years"
      ],
      "answer": 2,
-     "explanation": "The net-worth test excludes primary-residence equity, leaving $1.4M − $600,000 = $800,000, below $1 million; the income test requires $200,000+ in each of the two most recent years, and $180,000/$195,000 falls short. Counting home equity is the classic trap, near-misses do not satisfy the income test, and $300,000 is the joint-income figure, not the individual standard.",
+     "explanation": "The net worth test excludes primary-residence equity, leaving $1.4 million - $600,000 = $800,000, below the $1 million threshold, and the income test requires more than $200,000 in each of the two most recent years, which $180,000 and $195,000 do not meet. Counting home equity is the classic trap, and $300,000 is the joint-income standard, not the individual standard.",
      "topic": "Accredited investor test",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "Which is the most precise distinction between an equity REIT and a mortgage REIT?",
+     "q": "Which of the following best distinguishes an equity real estate investment trust (REIT) from a mortgage REIT?",
      "choices": [
-      "Equity REITs own and operate income property; mortgage REITs hold real estate debt and are rate-sensitive",
-      "Equity REITs hold portfolios of mortgages; mortgage REITs own and manage the underlying buildings",
-      "Equity REITs must satisfy the 90% distribution test; mortgage REITs are exempt from that requirement",
-      "Equity REITs may only be sold as non-traded programs; mortgage REITs must list on a national exchange"
+      "Equity REITs own and operate income-producing property, while mortgage REITs hold real estate debt.",
+      "Equity REITs hold portfolios of mortgages, while mortgage REITs own and manage the underlying properties.",
+      "Equity REITs are subject to the 90% distribution test, while mortgage REITs are exempt from it.",
+      "Equity REITs may be sold only as non-traded programs, while mortgage REITs must list on an exchange."
      ],
      "answer": 0,
-     "explanation": "Equity REITs earn rents from owning and operating property, while mortgage REITs earn the spread on real estate loans and MBS, making them highly sensitive to interest-rate movements. The strongest distractor simply reverses the two definitions. Both types must meet the same Subchapter M tests, and either type may be listed or non-traded.",
+     "explanation": "Equity REITs earn rents from owning and operating income-producing property, while mortgage REITs earn the spread on real estate loans and mortgage-backed securities, making them highly sensitive to interest rates. The strongest distractor reverses the two definitions; both types face the same Subchapter M tests, and either may be listed or non-traded.",
      "topic": "Equity vs mortgage REIT",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A customer purchases a non-traded REIT and two years later needs cash urgently, but the sponsor's share-repurchase program is currently suspended. Which statement BEST describes the customer's situation?",
+     "q": "A customer holds shares of a non-traded real estate investment trust (REIT) whose share-repurchase program has been suspended. Which of the following statements best describes the customer's position?",
      "choices": [
-      "The customer may sell the shares intraday on an exchange at the prevailing market price",
-      "The customer may demand redemption from the REIT at the original $10-per-share offering price",
-      "The customer may file a SIPC claim to recover the cash value of the unredeemable shares",
-      "The customer may be unable to exit and could have to hold the shares until a liquidity event"
+      "The shares may be sold intraday on an exchange at the prevailing market price.",
+      "The shares may be redeemed by the sponsor on demand at the original public offering price.",
+      "The loss may be recovered through a Securities Investor Protection Corporation (SIPC) claim.",
+      "The shares may have to be held until a liquidity event such as a listing or merger."
      ],
      "answer": 3,
-     "explanation": "Non-traded REITs are illiquid; when the sponsor's share-repurchase program is limited or suspended, the investor may be locked in until a liquidity event such as a listing, merger, or asset sale. There is no exchange market for the shares and no right to redeem at the offering price, and SIPC covers missing securities at a failed member firm — not investment illiquidity.",
+     "explanation": "Non-traded REIT shares are illiquid; when the share-repurchase program is limited or suspended, the investor may be locked in until a liquidity event such as a listing, merger, or asset sale. There is no exchange market for the shares, no right to redeem at the offering price, and SIPC covers missing securities at a failed member firm, not investment illiquidity.",
      "topic": "Non-traded REIT liquidity",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "An oil-and-gas exploratory (wildcat) program and a developmental drilling program are compared. Which statement is TRUE?",
+     "q": "Which of the following statements is true regarding oil and gas direct participation programs (DPPs)?",
      "choices": [
-      "The developmental program carries the highest risk and the greatest potential for intangible drilling cost deductions",
-      "The exploratory program carries the highest risk and the greatest potential reward, drilling in unproven areas",
-      "Income programs drill new wells in unproven areas for maximum write-offs",
-      "Developmental programs purchase producing wells and therefore generate the largest IDC deductions"
+      "Developmental programs carry the highest risk and the greatest intangible drilling cost (IDC) deductions.",
+      "Exploratory programs carry the highest risk and the greatest potential reward by drilling in unproven areas.",
+      "Income programs drill new wells in unproven areas in order to generate maximum tax write-offs.",
+      "Developmental programs purchase producing wells and therefore generate the largest IDC deductions."
      ],
      "answer": 1,
-     "explanation": "Exploratory (wildcat) programs drill in unproven areas, carrying the highest risk and reward; developmental programs drill near existing production (lower risk), and income programs buy producing wells (lowest risk, current income). Choice A mislabels developmental as highest risk. Choice D is wrong because buying producing wells yields depletion/income, not large IDC write-offs.",
+     "explanation": "Exploratory (wildcat) programs drill in unproven areas and carry the highest risk and greatest potential reward. Developmental programs drill near existing production, and income programs purchase producing wells for current income; purchased producing wells generate depletion, not large IDC write-offs.",
      "topic": "Oil & gas DPP types",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "Which statements correctly distinguish a recourse loan from a non-recourse loan for a limited partner's basis? I. Recourse debt increases the LP's at-risk basis II. Non-recourse debt generally does NOT increase a real estate LP's at-risk basis except for qualified real-property financing III. The lender can pursue the LP personally on recourse debt IV. Non-recourse debt always increases basis",
+     "q": "Which of the following statements is true regarding the effect of partnership debt on a limited partner's at-risk basis?",
      "choices": [
-      "I, II, and III",
-      "I, III, and IV",
-      "II and IV only",
-      "I and IV only"
+      "Recourse debt increases at-risk basis because the lender may pursue the partner personally.",
+      "Recourse debt does not affect at-risk basis because only cash contributions are counted.",
+      "Nonrecourse debt always increases at-risk basis because it is secured by partnership assets.",
+      "Recourse and nonrecourse debt increase at-risk basis equally for all limited partners."
      ],
      "answer": 0,
-     "explanation": "Recourse debt adds to at-risk basis and exposes the borrower personally (I and III); non-recourse debt generally does not increase at-risk basis except for qualified nonrecourse real-property financing (II). Statement IV is false because non-recourse debt does NOT always increase basis. The key feature is the personal-liability nature of recourse debt.",
+     "explanation": "Recourse debt increases a limited partner's at-risk basis because the partner is personally liable to the lender. Nonrecourse debt generally does not increase at-risk basis, with a limited exception for qualified nonrecourse real-property financing.",
      "topic": "Recourse vs non-recourse",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "A REIT pays a $3.20 annual dividend and trades at $40. A municipal bond fund yields 4.0% federally tax-exempt. An investor in the 32% federal bracket compares the two on an after-tax basis, treating the REIT dividend as ordinary income. Which is the better after-tax yield, approximately?",
+     "q": "A real estate investment trust (REIT) pays a $3.20 annual dividend and trades at $40.00 per share, while a municipal bond fund yields 4.00% free of federal tax. If an investor in the 32% federal bracket treats the REIT dividend as ordinary income, which investment provides the higher after-tax yield?",
      "choices": [
-      "The REIT, because its 8% pre-tax yield exceeds the muni's 4% regardless of tax treatment",
-      "The muni, because its 5.88% taxable-equivalent yield beats the REIT's roughly 5.44% after tax",
-      "The REIT, because after tax it still yields about 6.4%, comfortably above the muni's 4.0%",
-      "Neither, because the two investments produce essentially identical yields on an after-tax basis"
+      "The REIT, because its 8.00% pre-tax yield exceeds the municipal fund's 4.00% yield",
+      "The REIT, because its after-tax yield is approximately 6.40%, above the municipal fund's 4.00%",
+      "The municipal fund, because its 5.88% taxable-equivalent yield beats the REIT's 5.44% after tax",
+      "Neither, because the two investments produce essentially identical after-tax yields"
      ],
-     "answer": 1,
-     "explanation": "The REIT yields $3.20/$40 = 8% pre-tax; taxed as ordinary income at 32%, that is 8% × 0.68 = 5.44% after tax, while the muni's taxable-equivalent yield is 4.0% / 0.68 = 5.88%, so the muni wins. The 6.4% figure is the strongest trap — it applies a 20% qualified-dividend rate, but most REIT dividends are taxed as ordinary income. Comparing pre-tax yields alone ignores taxes entirely.",
+     "answer": 2,
+     "explanation": "The REIT yields $3.20 / $40.00 = 8.00% pre-tax; taxed as ordinary income at 32%, that is 8.00% x 0.68 = 5.44% after tax, while the municipal fund's taxable-equivalent yield is 4.00% / 0.68 = 5.88%, so the municipal fund wins. The 6.40% figure is the strongest trap because it applies the 20% qualified-dividend rate, but most REIT dividends are taxed as ordinary income; comparing pre-tax yields ignores taxes entirely.",
      "topic": "Tax-equivalent yield",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "All of the following are accurate regarding private placements under Regulation D EXCEPT:",
+     "q": "Each of the following is true of a private placement under Regulation D EXCEPT:",
      "choices": [
-      "Securities sold are restricted and generally subject to resale limitations",
-      "Issuers file a Form D notice with the SEC",
-      "The offering must be accompanied by a full S-1 registration statement and prospectus",
-      "A private placement memorandum is typically provided when non-accredited investors participate"
+      "the securities sold are restricted and generally subject to limitations on resale.",
+      "the issuer files a Form D notice with the Securities and Exchange Commission (SEC).",
+      "the offering must include a full registration statement and statutory prospectus.",
+      "a private placement memorandum is typically given to non-accredited purchasers."
      ],
      "answer": 2,
-     "explanation": "Reg D offerings are exempt from full registration, so no S-1/prospectus is required; instead a Form D notice is filed, a PPM is provided (especially when non-accredited investors participate), and the securities are restricted. Choice C is the exception because requiring full registration would defeat the private-placement exemption.",
+     "explanation": "Regulation D offerings are exempt from full registration, so no registration statement or statutory prospectus is required; requiring one would defeat the exemption. The issuer files a Form D notice, the securities are restricted, and a private placement memorandum is typically provided when non-accredited investors participate.",
      "topic": "Private placement Reg D",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "A general partner wishes to engage in a transaction that competes with the partnership and to borrow money from the partnership. Under a standard limited partnership agreement and fiduciary principles, which statement is TRUE?",
+     "q": "Under a standard limited partnership agreement, a general partner (GP) proposes to compete with the partnership and to borrow money from it. Which of the following statements is true?",
      "choices": [
-      "Both acts generally breach the GP's duty of loyalty unless the partnership specifically consents",
-      "Both acts are permitted because management control gives the GP discretion over its own conflicts",
-      "Only borrowing is prohibited; competing with the partnership is ordinary business risk the LPs accept",
-      "Only competing is prohibited; the GP may borrow because partnership cash is under its management"
+      "Both actions generally breach the GP's fiduciary duty unless the partnership specifically consents.",
+      "Both actions are permitted because the GP holds management control of the partnership.",
+      "Only the borrowing is prohibited; competing with the partnership is an ordinary business risk.",
+      "Only the competing is prohibited; the GP may borrow because it manages the partnership's cash."
      ],
      "answer": 0,
-     "explanation": "A GP owes fiduciary duties to the partnership and generally may neither compete with it nor borrow its funds without specific authorization — both are classic self-dealing conflicts of interest. Management control does not waive the duty of loyalty, and neither act is singly permitted: absent consent in the partnership agreement, competing and borrowing each breach the GP's obligations.",
+     "explanation": "A GP owes fiduciary duties to the partnership and generally may neither compete with it nor borrow its funds without specific authorization; both are classic self-dealing conflicts of interest. Management control does not waive the duty of loyalty, and absent consent each action breaches the GP's obligations.",
      "topic": "GP fiduciary duty",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Which statement most precisely distinguishes a hedge fund from a private-equity fund?",
+     "q": "Which of the following best distinguishes a hedge fund from a private equity fund?",
      "choices": [
-      "Private-equity funds offer daily redemptions, while hedge funds typically lock capital for ten years",
-      "Hedge funds invest only in listed equities, while private-equity funds invest only in corporate debt",
-      "Hedge funds trade liquid strategies with periodic redemptions; private-equity capital is locked for years",
-      "Both are registered under the 1940 Act and must therefore offer investors identical redemption rights"
+      "Private equity funds offer daily redemptions, while hedge funds lock up capital for ten years.",
+      "Hedge funds invest only in listed equities, while private equity funds invest only in corporate debt.",
+      "Hedge funds offer periodic redemptions of liquid strategies, while private equity funds commit capital for years.",
+      "Both funds are registered under the Investment Company Act of 1940 and offer identical redemption rights."
      ],
      "answer": 2,
-     "explanation": "Hedge funds generally run more-liquid, often long/short or market-neutral strategies with periodic redemption windows, while private-equity funds commit capital to illiquid private-company stakes with multi-year lock-ups and capital calls. The strongest distractor reverses the two liquidity profiles. Both vehicles typically rely on private-fund exemptions rather than 1940-Act registration.",
+     "explanation": "Hedge funds generally run more-liquid strategies with periodic redemption windows, while private equity funds commit capital to illiquid private-company stakes with multi-year lock-ups and capital calls. The strongest distractor reverses the two liquidity profiles; both vehicles typically rely on private-fund exemptions rather than Investment Company Act of 1940 registration.",
      "topic": "Hedge fund vs PE",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A DPP allocates a $90,000 first-year loss equally among three equal limited partners, each of whom invested $40,000 cash with no debt assumed. Partner A has $25,000 of passive income from other sources; Partners B and C have none. How much of his/her share can Partner A deduct against passive income this year?",
+     "q": "A direct participation program (DPP) allocates a $90,000 first-year loss equally among three limited partners, each of whom contributed $40,000 in cash. If one partner has $25,000 of passive income from other sources, what amount of the loss may that partner deduct this year?",
      "choices": [
-      "$0, because passive losses may never pass through to a limited partner in the year incurred",
-      "$40,000, because losses are deductible up to each partner's full cash investment in the program",
-      "$30,000, because the full allocated share is deductible whenever it falls within the partner's basis",
-      "$25,000, because the deduction is capped at passive income, with the extra $5,000 carried forward"
+      "$0",
+      "$25,000",
+      "$30,000",
+      "$40,000"
      ],
-     "answer": 3,
-     "explanation": "Each partner's share is $90,000 / 3 = $30,000, which is within Partner A's $40,000 basis, but passive losses can offset only passive income — so $25,000 is deductible this year and $5,000 carries forward. The $30,000 option is the strongest trap: sufficient basis is necessary but not sufficient when passive income is the binding constraint.",
+     "answer": 1,
+     "explanation": "Each partner's share is $90,000 / 3 = $30,000, which is within the $40,000 basis, but passive losses may offset only passive income, so $25,000 is deductible this year and $5,000 carries forward. The $30,000 figure is the strongest trap because sufficient basis is necessary but not sufficient when passive income is the binding constraint.",
      "topic": "Passive loss limitation",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "Which statement comparing the liquidity and risk profile of a listed REIT versus a non-traded BDC (business development company) is the most accurate disambiguation?",
+     "q": "Which of the following statements is true regarding a listed real estate investment trust (REIT) and a non-traded business development company (BDC)?",
      "choices": [
-      "The non-traded BDC is the more liquid, because sponsors stand ready to redeem its shares daily",
-      "The listed REIT offers exchange liquidity; the non-traded BDC is an illiquid lender to small private firms",
-      "The listed REIT and the non-traded BDC both trade intraday with continuous exchange pricing",
-      "The listed REIT invests in private operating companies; the non-traded BDC holds only real estate"
+      "The non-traded BDC is the more liquid because its sponsor stands ready to redeem shares daily.",
+      "The listed REIT trades on an exchange, while the non-traded BDC is an illiquid lender to private companies.",
+      "The listed REIT and the non-traded BDC both trade intraday with continuous exchange pricing.",
+      "The listed REIT invests in private operating companies, while the non-traded BDC holds only real estate."
      ],
      "answer": 1,
-     "explanation": "A listed REIT trades on an exchange with continuous pricing and real estate exposure, while a non-traded BDC is an illiquid pooled vehicle that lends to or invests in small and mid-sized private companies, carrying credit and liquidity risk. The mandate-swap distractor reverses the two, and non-traded BDCs offer at most limited periodic repurchases — not daily sponsor redemptions.",
+     "explanation": "A listed REIT trades on an exchange with continuous pricing and real estate exposure, while a non-traded BDC is an illiquid pooled vehicle that lends to or invests in small and mid-sized private companies, carrying credit and liquidity risk. Non-traded BDCs offer at most limited periodic repurchases, not daily redemptions, and the mandate-swap distractor reverses the two.",
      "topic": "REIT vs BDC",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "An accredited investor is solicited for a Rule 506(c) private placement that was generally advertised online. Which requirement applies that would NOT apply under Rule 506(b)?",
+     "q": "An issuer uses general solicitation to conduct a private placement under Regulation D Rule 506(c). Which of the following is required under Rule 506(c) but not under Rule 506(b)?",
      "choices": [
-      "The issuer must take reasonable steps to verify each purchaser's accredited status",
-      "The issuer must limit the offering to no more than 35 sophisticated non-accredited purchasers",
-      "The issuer must file a registration statement and deliver a final prospectus to purchasers",
-      "The issuer must remove the resale restriction so the securities trade freely at purchase"
+      "Taking reasonable steps to verify the accredited status of every purchaser",
+      "Limiting the offering to no more than 35 sophisticated non-accredited purchasers",
+      "Filing a registration statement and delivering a final prospectus to purchasers",
+      "Removing resale restrictions so the securities may trade freely at purchase"
      ],
      "answer": 0,
-     "explanation": "Rule 506(c) permits general solicitation, but in exchange the issuer must take reasonable steps to verify that every purchaser is accredited — the self-certification that suffices under 506(b) is not enough, and no non-accredited investors are allowed. The 35 sophisticated non-accredited purchasers belong to 506(b), the offering remains exempt from registration, and the securities are still restricted.",
+     "explanation": "Rule 506(c) permits general solicitation, but in exchange the issuer must take reasonable steps to verify that every purchaser is accredited; the self-certification that suffices under Rule 506(b) is not enough. The 35 sophisticated non-accredited purchasers belong to Rule 506(b), the offering remains exempt from registration, and the securities are still restricted.",
      "topic": "Reg D 506(c) verification",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "A new-construction real estate DPP and a raw-land DPP are compared. Which statement is TRUE regarding their economics?",
+     "q": "Which of the following statements is true regarding a new-construction real estate direct participation program (DPP) and a raw-land DPP?",
      "choices": [
-      "The raw-land program is bought chiefly for its current cash flow and depreciation write-offs",
-      "The two programs claim identical depreciation because each one holds title to real property",
-      "The construction program offers depreciation and rental income; raw land offers only appreciation",
-      "The raw-land program produces the largest depreciation deductions of any real estate DPP"
+      "The raw-land program is purchased chiefly for current cash flow and depreciation deductions.",
+      "The two programs generate identical depreciation because each holds title to real property.",
+      "The construction program offers depreciation and rental income, while raw land offers only appreciation.",
+      "The raw-land program produces the largest depreciation deductions of any real estate DPP."
      ],
      "answer": 2,
-     "explanation": "Improved property (new construction or existing buildings) creates depreciable basis and rental income, whereas raw land cannot be depreciated and is held speculatively for price appreciation. Every distractor attributes depreciation or current cash flow to raw land — only the improvements (buildings) generate depreciation, never the land itself.",
+     "explanation": "Improved property such as new construction creates depreciable basis and rental income, whereas raw land cannot be depreciated and is held speculatively for price appreciation. Each distractor wrongly attributes depreciation or current cash flow to raw land; only improvements generate depreciation, never the land itself.",
      "topic": "Real estate DPP types",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "A registered representative is comparing a publicly traded business development company (BDC) with a typical hedge fund for an income-oriented retail client who is NOT an accredited investor. Which statement correctly distinguishes the BDC from the hedge fund?",
+     "q": "Which of the following statements correctly distinguishes a publicly traded business development company (BDC) from a typical hedge fund?",
      "choices": [
-      "The BDC passes its losses through to investors each year on a Schedule K-1; the hedge fund cannot",
-      "The BDC, exactly like the hedge fund, may be sold only to investors meeting the accredited standard",
-      "The BDC and the hedge fund are both private placements exempt from the 1940 Act's registration",
-      "The BDC is a registered closed-end fund with listed shares the retail client may buy; the hedge fund is not"
+      "The BDC passes losses through to investors each year on Schedule K-1, while the hedge fund cannot.",
+      "The BDC, exactly like the hedge fund, may be sold only to investors who meet the accredited standard.",
+      "The BDC and the hedge fund are both private placements exempt from Investment Company Act of 1940 registration.",
+      "The BDC is a registered closed-end fund available to retail investors, while the hedge fund is a private placement."
      ],
      "answer": 3,
-     "explanation": "A publicly traded BDC is a closed-end investment company registered under the Investment Company Act of 1940, so its exchange-listed shares are available to ordinary retail investors — unlike the hedge fund, an unregistered Reg D private placement limited to accredited investors. The K-1 distractor describes a DPP: a BDC is a corporation/RIC and does not pass losses through to shareholders.",
+     "explanation": "A publicly traded BDC is a closed-end investment company registered under the Investment Company Act of 1940, so its exchange-listed shares are available to ordinary retail investors, while a hedge fund is an unregistered Regulation D private placement limited to accredited investors. The Schedule K-1 distractor describes a direct participation program; a BDC does not pass losses through to shareholders.",
      "topic": "Business Development Companies (BDCs)",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Regarding business development companies (BDCs), all of the following are TRUE EXCEPT:",
+     "q": "Each of the following statements regarding business development companies (BDCs) is true EXCEPT:",
      "choices": [
-      "A BDC must generally have at least 70% of its assets invested in qualifying assets, such as securities of private or thinly traded U.S. developmental-stage or financially troubled companies",
-      "A BDC must offer to make significant managerial assistance available to its portfolio companies",
-      "By distributing at least 90% of its taxable income, a BDC can qualify as a regulated investment company (RIC) and avoid tax at the entity level",
-      "A BDC is prohibited from using any leverage and may not issue senior securities such as debt"
+      "at least 70% of assets must generally consist of qualifying assets, such as securities of private or thinly traded U.S. companies.",
+      "a BDC must offer to make significant managerial assistance available to the portfolio companies in which it invests.",
+      "a BDC distributing at least 90% of taxable income may qualify as a regulated investment company (RIC) and avoid entity-level tax.",
+      "a BDC is prohibited from using leverage of any kind and may not issue senior securities such as debt obligations."
      ],
      "answer": 3,
-     "explanation": "BDCs are actually permitted MORE leverage than ordinary registered funds: historically a 200% asset-coverage requirement (1:1 debt-to-equity), and since the 2018 Small Business Credit Availability Act a BDC may elect a reduced 150% asset-coverage ratio (roughly 2:1), so choice D is false and is the EXCEPT answer. The true statements: a BDC must hold at least 70% of assets in qualifying assets (eligible portfolio companies), must offer significant managerial assistance to those companies, and qualifies for pass-through RIC treatment under Subchapter M by distributing at least 90% of its taxable income.",
+     "explanation": "BDCs are actually permitted MORE leverage than ordinary registered funds: historically a 200% asset-coverage requirement (1:1 debt-to-equity), reduced to an elective 150% asset-coverage ratio (roughly 2:1) under the 2018 Small Business Credit Availability Act, so the leverage prohibition is the false statement. BDCs must hold at least 70% of assets in qualifying assets, must offer significant managerial assistance to portfolio companies, and qualify for pass-through RIC treatment by distributing at least 90% of taxable income.",
      "topic": "Business Development Companies (BDCs)",
      "difficulty": "hard",
      "style": "except"
@@ -20379,337 +20379,337 @@ window.SIE_DATA = {
    ],
    "questions": [
     {
-     "q": "A portfolio manager holds a diversified basket of 80 large-cap equities across every S&P 500 sector. Despite the broad spread of holdings, the portfolio still declined 18% during a Federal Reserve tightening cycle. Which risk is the manager UNABLE to diversify away, and best explains this loss?",
+     "q": "A broadly diversified portfolio of large-capitalization equities declines during a general market downturn. The loss is best explained by:",
      "choices": [
-      "Business risk, because individual company earnings fell",
-      "Systematic risk, because broad market movements affect all equities",
-      "Liquidity risk, because the shares became hard to sell",
-      "Credit risk, because the issuers' debt was downgraded"
+      "business risk.",
+      "systematic risk.",
+      "liquidity risk.",
+      "credit risk."
      ],
      "answer": 1,
-     "explanation": "Systematic (market) risk affects the entire market and cannot be removed by diversification, which is exactly why a broadly diversified 80-name portfolio still fell with the market. Business and credit risk are unsystematic and would have been largely diversified away, and liquidity is not the issue for large-cap S&P names.",
+     "explanation": "Systematic (market) risk affects all equities and cannot be eliminated through diversification, so even a broadly diversified portfolio declines with the overall market. Business and credit risk are unsystematic and are largely diversified away, and liquidity is not a concern for actively traded large-capitalization shares.",
      "topic": "Systematic vs unsystematic",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "An investor buys a 6% bond at par with 10 years to maturity. Interest rates subsequently fall sharply. Which TWO risks is this investor MOST exposed to as a result of the rate decline? I. Call risk II. Reinvestment risk III. Interest-rate (price) risk IV. Purchasing-power risk",
+     "q": "An investor purchases a 6% bond at par. If interest rates then decline sharply, the investor is most exposed to which of the following pairs of risks?",
      "choices": [
-      "I and II only",
-      "II and III only",
-      "I and IV only",
-      "III and IV only"
+      "Interest-rate risk and purchasing-power risk",
+      "Interest-rate risk and reinvestment risk",
+      "Call risk and reinvestment risk",
+      "Call risk and purchasing-power risk"
      ],
-     "answer": 0,
-     "explanation": "When rates fall, issuers are more likely to call high-coupon bonds (call risk), and coupons/principal must then be reinvested at the new lower rates (reinvestment risk). Interest-rate price risk hurts a bondholder when rates RISE, and purchasing-power risk is tied to inflation, not a rate decline, so III and IV are wrong.",
+     "answer": 2,
+     "explanation": "When rates fall, issuers are more likely to call higher-coupon bonds (call risk), and coupon and principal payments must then be reinvested at lower prevailing rates (reinvestment risk). Interest-rate risk harms a bondholder when rates rise, and purchasing-power risk stems from inflation, not a rate decline.",
      "topic": "Call and reinvestment risk",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "A 4% corporate bond is purchased at a price of 80. The bond pays interest semi-annually. What is the current yield, and which statement about it is TRUE?",
+     "q": "A 4% corporate bond is purchased at a price of 80. What is the bond's current yield?",
      "choices": [
-      "5.0%; current yield exceeds the nominal yield because the bond trades at a discount",
-      "4.0%; current yield always equals the coupon rate regardless of price",
-      "3.2%; current yield is below the coupon because the bond is discounted",
-      "5.0%; but yield to maturity will be lower than the current yield"
+      "3.20%, which is below the nominal yield",
+      "4.00%, which equals the nominal yield",
+      "5.00%, which is above the nominal yield",
+      "5.00%, which is above the yield to maturity"
      ],
-     "answer": 0,
-     "explanation": "Current yield = annual interest / market price = $40 / $800 = 5.0%, and because the bond is at a discount, current yield exceeds the 4% nominal yield. Current yield equals coupon only at par, and on a discount bond YTM is HIGHER than current yield, not lower, ruling out the other choices.",
+     "answer": 2,
+     "explanation": "Current yield equals annual interest divided by market price: $40 / $800 = 5.00%. Because the bond trades at a discount, current yield exceeds the 4% nominal yield, and yield to maturity on a discount bond is higher than current yield, not lower.",
      "topic": "Current yield calculation",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "An investor concentrated in a single emerging-market sovereign bond suffers losses when that country's new government imposes capital controls and nationalizes a key industry. This is BEST classified as which combination of risks?",
+     "q": "A foreign government imposes capital controls and nationalizes a major industry, causing losses for holders of that country's bonds. The losses best illustrate:",
      "choices": [
-      "Currency and liquidity risk, both of them unsystematic",
-      "Business and financial risk, both of them unsystematic",
-      "Reinvestment and call risk, both of them systematic",
-      "Political and legislative (sovereign) risk, both systematic"
+      "currency risk, which is unsystematic.",
+      "business risk, which is unsystematic.",
+      "reinvestment risk, which is systematic.",
+      "political risk, which is systematic."
      ],
      "answer": 3,
-     "explanation": "Capital controls and nationalization are adverse government actions — political/legislative (sovereign) risk, which is systematic because it strikes every investment tied to that country and cannot be diversified away. Currency and liquidity risks describe exchange-rate moves and resale difficulty, not state seizure; business/financial risk is company-specific; and call/reinvestment risks stem from falling interest rates, not government policy.",
+     "explanation": "Capital controls and nationalization are adverse government actions — political (sovereign) risk, which is systematic because it affects every investment tied to the country and cannot be diversified away. Currency risk involves exchange-rate movements, business risk is company-specific, and reinvestment risk arises from falling interest rates.",
      "topic": "Political risk classification",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "All of the following are examples of unsystematic risk EXCEPT:",
+     "q": "Which of the following events exposes an investor to systematic risk?",
      "choices": [
-      "A pharmaceutical firm's lead drug fails FDA approval",
-      "A company defaults on its bond interest payments",
-      "A nationwide rise in inflation erodes the real return on all fixed-income assets",
-      "Thinly traded shares of a small issuer cannot be sold without a large price concession"
+      "A pharmaceutical issuer's leading drug fails to obtain regulatory approval.",
+      "A corporate issuer defaults on a scheduled interest payment.",
+      "Rising inflation reduces the real return on all fixed-income securities.",
+      "Thinly traded shares cannot be sold without a significant price concession."
      ],
      "answer": 2,
-     "explanation": "Inflation (purchasing-power) risk is systematic because it affects the entire market and cannot be diversified away. The drug failure (business risk), the default (credit risk), and the inability to sell thin shares (liquidity risk) are all unsystematic risks specific to individual issuers.",
+     "explanation": "Inflation (purchasing-power) risk is systematic because it affects the entire market and cannot be diversified away. A failed drug approval (business risk), an issuer default (credit risk), and difficulty selling thin shares (liquidity risk) are unsystematic risks specific to individual issuers.",
      "topic": "Systematic vs unsystematic",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "A stock has a beta of 1.4. If the overall market rises by 10% and then in a separate period falls by 10%, which statement about the stock's expected behavior is TRUE?",
+     "q": "A stock has a beta of 1.4. If the overall market rises 10% in one period and falls 10% in a later period, the stock is expected to:",
      "choices": [
-      "It is expected to rise about 14% and fall about 14%, so it is more volatile than the market",
-      "It is expected to rise 14% and fall 7%, because high-beta stocks resist downturns",
-      "It is expected to rise and fall only 10%, because beta measures unsystematic risk",
-      "Its movements cannot be estimated because beta measures total risk"
+      "rise approximately 7% and fall approximately 14%.",
+      "rise approximately 10% and fall approximately 10%.",
+      "rise approximately 14% and fall approximately 7%.",
+      "rise approximately 14% and fall approximately 14%."
      ],
-     "answer": 0,
-     "explanation": "Beta measures sensitivity to market (systematic) movements, so a beta of 1.4 implies roughly 14% moves in both directions for a 10% market move, making the stock more volatile than the market. Beta is symmetric and measures systematic, not unsystematic or total, risk, ruling out the other choices.",
+     "answer": 3,
+     "explanation": "Beta measures a stock's sensitivity to market (systematic) movements. A beta of 1.4 implies moves of approximately 14% in each direction when the market moves 10%, making the stock more volatile than the market; beta is symmetric and does not dampen declines.",
      "topic": "Beta",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "Which statement BEST distinguishes reinvestment risk from interest-rate risk?",
+     "q": "Which of the following statements best distinguishes interest-rate risk from reinvestment risk?",
      "choices": [
-      "Interest-rate risk is the change in a bond's price as market rates move; reinvestment risk is the rate earned on cash flows received",
-      "Interest-rate risk is the rate earned on coupon payments received; reinvestment risk is the change in a bond's price as market rates move",
-      "Interest-rate risk is greatest in short-term coupon bonds; reinvestment risk is greatest in zero-coupon bonds held to their maturity",
-      "Both risks increase together whenever market interest rates rise, so a bondholder cannot use one exposure to offset the other"
+      "Interest-rate risk concerns the rate earned on cash flows received; reinvestment risk concerns a bond's price as market rates change.",
+      "Interest-rate risk concerns a bond's price as market rates change; reinvestment risk concerns the rate earned on cash flows received.",
+      "Interest-rate risk is greatest for short-term coupon bonds; reinvestment risk is greatest for zero-coupon bonds held to maturity.",
+      "Interest-rate risk and reinvestment risk both increase for a bondholder whenever market interest rates rise."
      ],
-     "answer": 0,
-     "explanation": "Interest-rate risk is price fluctuation as market rates change, while reinvestment risk is the risk that coupons and maturing principal must be reinvested at less favorable rates. The strongest distractor simply swaps the two definitions. The risks also move in OPPOSITE directions (rising rates hurt price but help reinvestment), and zero-coupon bonds held to maturity have NO reinvestment risk while long-term bonds carry the most price risk.",
+     "answer": 1,
+     "explanation": "Interest-rate risk is the fluctuation in a bond's price as market rates change; reinvestment risk is the risk that coupons and maturing principal must be reinvested at lower rates. The strongest distractor swaps the two definitions. The risks move in opposite directions — rising rates hurt price but help reinvestment — and zero-coupon bonds held to maturity have no reinvestment risk.",
      "topic": "Reinvestment vs interest-rate risk",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A customer opens a long margin account and wishes to purchase stock with a current market value of $3,200. Under the minimum-equity rules, what is the customer's required deposit?",
+     "q": "A customer opens a long margin account and purchases stock with a market value of $3,200. What minimum deposit is required?",
      "choices": [
-      "$1,600, which is Reg T 50% of the purchase",
-      "$2,000, the FINRA minimum-equity requirement",
-      "$3,200, the full market value",
-      "$1,000, the maintenance requirement of 25%"
+      "$1,000",
+      "$1,600",
+      "$2,000",
+      "$3,200"
      ],
-     "answer": 1,
-     "explanation": "Reg T 50% would be $1,600, but FINRA requires minimum equity of $2,000 to establish a long margin position, so the customer must deposit the greater amount, $2,000. Because the $3,200 purchase exceeds $2,000, the $2,000 floor (not the full price) applies. Depositing only the $1,600 Reg T amount is the trap.",
+     "answer": 2,
+     "explanation": "Regulation T (Reg T) would require 50%, or $1,600, but the Financial Industry Regulatory Authority (FINRA) requires minimum equity of $2,000 to establish a long margin position, so the customer must deposit the greater amount, $2,000. Because the purchase exceeds $2,000, full payment is not required; depositing only the Reg T amount is the trap.",
      "topic": "Margin minimum equity",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "Which of the following pairs correctly matches an investor situation to its PRIMARY risk?",
+     "q": "An investor holds shares of a small issuer that trade infrequently. If the shares must be sold quickly, the investor is primarily exposed to:",
      "choices": [
-      "A long-term Treasury bondholder facing rising rates — credit risk",
-      "A holder of a single small-cap stock in a thinly traded market — liquidity risk",
-      "A diversified equity index investor in a recession — business risk",
-      "A high-coupon callable bondholder when rates fall — interest-rate price risk"
+      "credit risk.",
+      "business risk.",
+      "liquidity risk.",
+      "market risk."
      ],
-     "answer": 1,
-     "explanation": "Holding a single thinly traded small-cap exposes the investor primarily to liquidity risk (difficulty selling without a price concession). The Treasury bondholder faces interest-rate risk not credit risk, the index investor faces systematic/market risk not business risk, and the callable bondholder faces call risk, not price risk, when rates fall.",
+     "answer": 2,
+     "explanation": "Liquidity risk is the risk that a security cannot be sold quickly at a price near its market value — the primary exposure for thinly traded shares. Credit risk concerns an issuer's ability to pay its debts, business risk concerns company operations, and market risk affects all securities regardless of trading volume.",
      "topic": "Risk matching",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "An investor is comparing two portfolios with identical expected returns. Portfolio A holds 5 technology stocks; Portfolio B holds 30 stocks spread across 9 different industries. Which statement is TRUE regarding their risk profiles?",
+     "q": "Compared with a portfolio of five stocks in a single industry, a portfolio of 30 stocks spread across nine industries normally carries:",
      "choices": [
-      "Portfolio B carries less systematic risk but about the same unsystematic risk as Portfolio A",
-      "The two portfolios carry identical total risk because their expected returns are identical",
-      "Portfolio B carries less unsystematic risk but about the same systematic risk as Portfolio A",
-      "Portfolio B has diversified away nearly all risk, both systematic and unsystematic alike"
+      "less systematic risk and similar unsystematic risk.",
+      "less unsystematic risk and similar systematic risk.",
+      "less systematic risk and less unsystematic risk.",
+      "similar systematic risk and similar unsystematic risk."
      ],
-     "answer": 2,
-     "explanation": "Spreading 30 stocks across nine industries reduces unsystematic (company- and industry-specific) risk, while systematic market risk remains essentially the same for any broad equity portfolio. The strongest distractor gets the two risk types backwards — diversification cannot reduce systematic risk — and equal expected returns say nothing about equal total risk.",
+     "answer": 1,
+     "explanation": "Diversifying across many issuers and industries reduces unsystematic (company- and industry-specific) risk, while systematic market risk remains essentially unchanged for any broad equity portfolio. Diversification cannot reduce systematic risk; the strongest distractor reverses the two risk types.",
      "topic": "Diversification",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "A municipal bond yields 3.5% and is fully tax-exempt. A corporate bond of similar quality yields 4.8%. For an investor in the 32% federal tax bracket, which statement is TRUE?",
+     "q": "A municipal bond of quality comparable to a 4.8% corporate bond offers a 3.5% tax-exempt yield. For a customer in the 32% federal tax bracket, the municipal bond's tax-equivalent yield is:",
      "choices": [
-      "The corporate bond is better because 4.8% exceeds 3.5%",
-      "The municipal bond's tax-equivalent yield is about 5.15%, making it the better choice",
-      "The municipal bond's tax-equivalent yield is about 3.5% since munis have no tax benefit",
-      "The two bonds are equivalent on an after-tax basis"
+      "2.38%, making the corporate bond more attractive.",
+      "3.50%, making the corporate bond more attractive.",
+      "4.62%, making the corporate bond more attractive.",
+      "5.15%, making the municipal bond more attractive."
      ],
-     "answer": 1,
-     "explanation": "Tax-equivalent yield = 3.5% / (1 - 0.32) = 3.5% / 0.68 = about 5.15%, which exceeds the corporate's 4.8%, so the muni is the better after-tax choice. Comparing the raw 4.8% to 3.5% ignores the tax exemption, the classic trap that makes the corporate look superior.",
+     "answer": 3,
+     "explanation": "Tax-equivalent yield equals the tax-exempt yield divided by (1 - tax rate): 3.5% / 0.68 = approximately 5.15%, which exceeds the corporate bond's 4.8%. Comparing the raw 3.5% with 4.8% ignores the tax exemption, and multiplying by 0.68 rather than dividing produces the 2.38% trap.",
      "topic": "Tax-equivalent yield",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "Which of the following statements about capital risk is the MOST precise?",
+     "q": "Which of the following best describes capital risk?",
      "choices": [
-      "The possibility that rising market interest rates depress the resale price of a bond",
-      "The possibility that an investor loses some or all of the original principal invested",
-      "The possibility that inflation erodes the purchasing power of an investment's payments",
-      "The possibility that a security cannot be sold quickly at a price near its market value"
+      "The risk that rising interest rates depress a bond's resale price",
+      "The risk that an investor loses some or all of the principal invested",
+      "The risk that inflation erodes the purchasing power of investment income",
+      "The risk that a security cannot be sold quickly at its market value"
      ],
      "answer": 1,
-     "explanation": "Capital risk is the possibility of losing part or all of the principal originally invested, and it applies to equities and fixed income alike. The distractors define adjacent risks — interest-rate risk (price decline as rates rise), purchasing-power risk (inflation), and liquidity risk (inability to sell near market value) — none of which is the definition of capital risk.",
+     "explanation": "Capital risk is the possibility of losing part or all of the principal originally invested, and it applies to equity and debt securities alike. The other choices define interest-rate risk, purchasing-power risk, and liquidity risk, respectively.",
      "topic": "Capital risk",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "Consider the following risks: I. The risk that new legislation changes the tax treatment of an investment II. The risk that an issuer cannot make timely interest payments III. The risk that rising prices reduce real purchasing power IV. The risk that a security cannot be quickly converted to cash at fair value. Which are classified as SYSTEMATIC risks?",
+     "q": "Which of the following pairs of risks are both classified as systematic?",
      "choices": [
-      "I and III only",
-      "II and IV only",
-      "I, II, and III only",
-      "I, III, and IV only"
+      "Legislative risk and purchasing-power risk",
+      "Credit risk and liquidity risk",
+      "Legislative risk and credit risk",
+      "Purchasing-power risk and liquidity risk"
      ],
      "answer": 0,
-     "explanation": "Regulatory/legislative risk (I) and inflation/purchasing-power risk (III) are systematic, affecting markets broadly and not diversifiable. Credit/default risk (II) and liquidity risk (IV) are unsystematic, specific to individual issuers, so they are excluded.",
+     "explanation": "Legislative (regulatory) risk and purchasing-power (inflation) risk affect the market as a whole and cannot be diversified away, so both are systematic. Credit risk and liquidity risk are unsystematic risks specific to individual issuers or securities.",
      "topic": "Systematic classification",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "An investor buys 1 XYZ Nov 50 call for a premium of 4 while the stock trades at $52. Disregarding commissions, what is the breakeven point, and what is the position's result at expiration if the stock stays at $52?",
+     "q": "An investor buys 1 XYZ Nov 50 call at a premium of 4 when XYZ is trading at $52. Disregarding commissions, if XYZ remains at $52 at expiration, the position shows:",
      "choices": [
-      "Breakeven $54; the position loses $2 per share at $52",
-      "Breakeven $46; the position gains $2 per share at $52",
-      "Breakeven $54; the position breaks even at $52",
-      "Breakeven $50; the position gains $4 per share at $52"
+      "a breakeven of $46 and a gain of $2 per share.",
+      "a breakeven of $50 and a gain of $4 per share.",
+      "a breakeven of $54 and neither a gain nor a loss.",
+      "a breakeven of $54 and a loss of $2 per share."
      ],
-     "answer": 0,
-     "explanation": "Long call breakeven = strike + premium = 50 + 4 = $54. At $52 the call holds $2 of intrinsic value against the $4 premium paid, a $2 per-share loss. The trap is assuming an in-the-money $52 price means profit; the premium must be recovered, so the stock must exceed $54 to profit.",
+     "answer": 3,
+     "explanation": "Breakeven for a long call equals the strike price plus the premium: 50 + 4 = $54. At $52 the call has $2 of intrinsic value against the $4 premium paid, a loss of $2 per share; assuming an in-the-money price means profit is the trap, because the stock must exceed $54 to profit.",
      "topic": "Options breakeven",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "All of the following risks can be reduced through portfolio diversification EXCEPT:",
+     "q": "Which of the following risks cannot be eliminated through portfolio diversification?",
      "choices": [
-      "The risk that one company's management makes poor strategic decisions",
-      "The risk that a single corporate issuer defaults on its debt obligations",
-      "The risk that a particular firm loses a major product-liability lawsuit",
-      "The risk that a broad market downturn lowers most asset prices at once"
+      "Poor strategic decisions by a company's management",
+      "A default by a single corporate issuer",
+      "A product-liability lawsuit against a particular company",
+      "A market downturn that lowers most securities prices"
      ],
      "answer": 3,
-     "explanation": "A broad market downturn is systematic (market) risk, which diversification cannot eliminate. Poor management, a single issuer's default, and a firm-specific lawsuit are all unsystematic risks tied to individual companies — exactly the exposures that spreading holdings across issuers and industries reduces.",
+     "explanation": "A broad market downturn is systematic (market) risk, which diversification cannot eliminate. Poor management, a single issuer's default, and a firm-specific lawsuit are unsystematic risks — exactly the exposures that spreading holdings across issuers and industries reduces.",
      "topic": "Diversification limits",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "A customer buys stock for regular-way settlement, with the trade executing on Tuesday. Under current T+1 settlement, on which day does the trade settle, and by when must payment be made under Reg T?",
+     "q": "A customer purchases stock in a regular way trade executed on Tuesday. When does the trade settle, and when is payment due under Regulation T (Reg T)?",
      "choices": [
-      "Settles Thursday; Reg T payment is due no later than the following Monday, two business days after settlement",
-      "Settles Wednesday; Reg T payment is due that same Wednesday, no later than the settlement date itself",
-      "Settles Wednesday; Reg T payment is due no later than Friday, two business days after settlement",
-      "Settles Friday; Reg T payment is due no later than the following Tuesday, two business days after settlement"
+      "Settlement on Wednesday; payment due Wednesday",
+      "Settlement on Wednesday; payment due Friday",
+      "Settlement on Thursday; payment due the following Monday",
+      "Settlement on Friday; payment due the following Tuesday"
      ],
-     "answer": 2,
-     "explanation": "Under T+1, a Tuesday trade settles Wednesday (one business day later), and Reg T requires payment promptly but no later than two business days after settlement (S+2) — here, Friday. Thursday and Friday settlement dates apply the outdated T+2 and T+3 cycles, and requiring payment on settlement day itself is stricter than Reg T's actual S+2 deadline.",
+     "answer": 1,
+     "explanation": "Under T+1, a Tuesday trade settles the next business day, Wednesday, and Reg T requires payment no later than two business days after settlement — here, Friday. Thursday and Friday settlement reflect the outdated T+2 and T+3 cycles, and Reg T does not require payment on the settlement date itself.",
      "topic": "T+1 settlement",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "Which statement BEST distinguishes credit risk from interest-rate risk for a bond investor?",
+     "q": "Which of the following statements correctly distinguishes credit risk from interest-rate risk?",
      "choices": [
-      "Credit risk concerns price movement as market rates change; interest-rate risk concerns the issuer's ability to pay",
-      "Credit risk concerns the issuer's ability to pay; interest-rate risk concerns price movement as market rates change",
-      "Credit risk applies mainly to Treasury securities; interest-rate risk applies mainly to lower-rated corporate issues",
-      "Credit risk is a systematic exposure; interest-rate risk is unsystematic and diversifiable across many bond issuers"
+      "Credit risk concerns a bond's price as market rates change; interest-rate risk concerns the issuer's ability to pay.",
+      "Credit risk concerns the issuer's ability to pay; interest-rate risk concerns a bond's price as market rates change.",
+      "Credit risk applies primarily to Treasury securities; interest-rate risk applies primarily to corporate securities.",
+      "Credit risk is a systematic risk; interest-rate risk is unsystematic and can be diversified away."
      ],
      "answer": 1,
-     "explanation": "Credit (default) risk is about the issuer's ability to meet its payment obligations; interest-rate risk is about market-price changes as prevailing rates move. The strongest distractor simply swaps those two definitions. The classifications are also reversed in the last option — credit risk is unsystematic and diversifiable while interest-rate risk is systematic — and Treasuries carry essentially no credit risk while every bond carries rate risk.",
+     "explanation": "Credit (default) risk concerns the issuer's ability to meet its payment obligations; interest-rate risk concerns price changes as prevailing rates move. The strongest distractor swaps the definitions. Treasuries carry essentially no credit risk while all bonds carry rate risk, and the classifications in the final choice are reversed — credit risk is unsystematic and interest-rate risk is systematic.",
      "topic": "Credit vs interest-rate risk",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A 5% bond is trading at a premium price of 125. Disregarding maturity effects, what is its current yield, and what is the relationship of current yield to nominal yield?",
+     "q": "A 5% corporate bond is trading at a price of 125. What is the bond's current yield?",
      "choices": [
-      "4.0%; below the 5% nominal yield because the premium price raises the divisor",
-      "6.25%; above the 5% nominal yield because the premium magnifies coupon income",
-      "5.0%; equal to the 5% nominal yield because current yield matches the stated coupon",
-      "4.0%; above the 5% nominal yield because premium bonds compensate with extra yield"
+      "4.00%, which is below the nominal yield",
+      "4.00%, which is above the nominal yield",
+      "5.00%, which equals the nominal yield",
+      "6.25%, which is above the nominal yield"
      ],
      "answer": 0,
-     "explanation": "Current yield = annual interest / market price = $50 / $1,250 = 4.0%, which sits below the 5% nominal yield because a premium price lowers the yield. The 6.25% trap comes from scaling the coupon by the premium instead of dividing $50 by the $1,250 market price, and current yield equals the coupon only for a bond trading exactly at par.",
+     "explanation": "Current yield equals annual interest divided by market price: $50 / $1,250 = 4.00%, below the 5% nominal yield because the premium price raises the divisor. The 6.25% figure comes from scaling the coupon by the premium instead of dividing by market price, and current yield equals the coupon only for a bond trading at par.",
      "topic": "Current yield premium",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "An investor holding only long-term, high-grade bonds is MOST concerned that the fixed interest payments will buy fewer goods over the 20-year holding period. Which risk dominates, and why is it NOT mitigated by the bonds' high credit quality?",
+     "q": "An investor holding only long-term, high-grade bonds is most concerned that the fixed interest payments will buy fewer goods over time. This concern describes:",
      "choices": [
-      "Default risk, because even the highest-rated issuers can fail over a 20-year period",
-      "Liquidity risk, because long-maturity bonds trade thinly and are costly to sell early",
-      "Inflation (purchasing-power) risk, because credit quality cannot protect real value",
-      "Reinvestment risk, because coupons received must be reinvested at prevailing rates"
+      "default risk.",
+      "liquidity risk.",
+      "purchasing-power risk.",
+      "reinvestment risk."
      ],
      "answer": 2,
-     "explanation": "Fixed payments buying fewer goods over time is purchasing-power (inflation) risk, a systematic risk that a high credit rating does nothing to offset. Default risk is precisely what the high-grade rating already addresses, and the scenario describes erosion of real value, not difficulty selling the bonds or reinvesting coupons.",
+     "explanation": "Fixed payments buying fewer goods over time is purchasing-power (inflation) risk, a systematic risk that high credit quality does nothing to offset. Default risk is what a high-grade rating already addresses, and the concern involves the real value of payments received, not resale of the bonds or the rate earned on reinvested coupons.",
      "topic": "Inflation risk",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "A company declares a 5-for-4 stock split. An investor owns 400 shares purchased at $60 per share. After the split, which statement is TRUE about the investor's position?",
+     "q": "A customer owns 400 shares of a stock purchased at $60.00 per share. If the company declares a 5-for-4 stock split, the customer's position after the split is:",
      "choices": [
-      "The investor owns 500 shares at the original $60 basis, total value now $30,000",
-      "The investor owns 500 shares at a $48 adjusted basis, total value still $24,000",
-      "The investor owns 320 shares at a $75 adjusted basis, total value still $24,000",
-      "The investor owns 500 shares at a $75 adjusted basis, total value now $37,500"
+      "320 shares at $75.00.",
+      "400 shares at $60.00.",
+      "500 shares at $48.00.",
+      "500 shares at $60.00."
      ],
-     "answer": 1,
-     "explanation": "A 5-for-4 split multiplies shares by 5/4 (400 x 5/4 = 500) and adjusts the per-share basis by 4/5 ($60 x 4/5 = $48), leaving total value unchanged at $24,000. Keeping the $60 basis would wrongly raise total value to $30,000 — a split never changes market value — and 320 shares at $75 describes a 4-for-5 reverse split, not a 5-for-4 forward split.",
+     "answer": 2,
+     "explanation": "A 5-for-4 split multiplies shares by 5/4 (400 x 5/4 = 500) and adjusts the cost basis by 4/5 ($60.00 x 4/5 = $48.00), leaving total value unchanged at $24,000. Retaining the $60.00 basis would wrongly increase total value — a split never changes market value — and 320 shares at $75.00 reflects a reverse split.",
      "topic": "Stock split math",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "Which of the following is NOT a characteristic that distinguishes systematic risk from unsystematic risk?",
+     "q": "All of the following statements correctly distinguish systematic risk from unsystematic risk EXCEPT:",
      "choices": [
-      "Systematic risk cannot be eliminated through diversification",
-      "Unsystematic risk is specific to a particular company or industry",
-      "Systematic risk is compensated by a higher expected market return (risk premium)",
-      "Unsystematic risk is the only risk reflected in a stock's beta"
+      "systematic risk cannot be eliminated through diversification.",
+      "unsystematic risk is specific to a particular company or industry.",
+      "investors are compensated for bearing systematic risk through a market risk premium.",
+      "a stock's beta measures its exposure to unsystematic risk."
      ],
      "answer": 3,
-     "explanation": "Beta measures SYSTEMATIC risk (market sensitivity), not unsystematic risk, so the claim that beta reflects only unsystematic risk is false and is the EXCEPT answer. The other three statements correctly describe the systematic/unsystematic distinction.",
+     "explanation": "Beta measures sensitivity to market movements — systematic risk — so the statement that it measures unsystematic risk is false and is the exception. The remaining statements correctly describe the systematic/unsystematic distinction.",
      "topic": "Beta and systematic risk",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "Two stocks each returned 9% last year. Stock M has a beta of 0.6; Stock N has a beta of 1.5. On a risk-adjusted basis, which statement is TRUE?",
+     "q": "Stock M has a beta of 0.6 and Stock N has a beta of 1.5. If both stocks returned 9% over the same period, the more attractive holding on a risk-adjusted basis was:",
      "choices": [
-      "Stock N was the better holding, since taking on higher beta earns a superior return",
-      "The stocks were equally attractive, since their realized returns were identical",
-      "Stock M was the weaker holding, since low-beta stocks lag the market in rallies",
-      "Stock M was more attractive, earning the same return with less systematic risk"
+      "Stock M, because it produced the return with less systematic risk.",
+      "Stock N, because higher beta earns a superior expected return.",
+      "either stock, because their realized returns were identical.",
+      "neither stock, because beta does not measure systematic risk."
      ],
-     "answer": 3,
-     "explanation": "Both stocks returned 9%, but Stock M did so with far less systematic risk (beta 0.6 versus 1.5), so it wins on a risk-adjusted basis. Identical nominal returns are not equally attractive once risk differs — that is the point of risk adjustment — and higher beta only raises expected volatility; it guarantees no extra realized return.",
+     "answer": 0,
+     "explanation": "Both stocks returned 9%, but Stock M assumed far less systematic risk (beta 0.6 versus 1.5), so it performed better on a risk-adjusted basis. Identical nominal returns are not equally attractive once risk differs, and higher beta raises expected volatility without guaranteeing additional realized return.",
      "topic": "Risk/return and beta",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "An investor in a callable municipal bond bought at a premium is informed the bond is being called at par on the next call date. Which TWO consequences does the investor face? I. Loss of the premium paid above par II. Reinvestment of proceeds at potentially lower current rates III. An increase in the bond's remaining duration IV. Continued receipt of the original coupon until stated maturity",
+     "q": "A callable municipal bond purchased at a premium is called at par on its next call date. The bondholder faces which of the following pairs of consequences?",
      "choices": [
-      "I and II only",
-      "I and III only",
-      "II and IV only",
-      "III and IV only"
+      "Loss of the premium paid and reinvestment at lower prevailing rates",
+      "Loss of the premium paid and continued coupon payments until maturity",
+      "An increase in duration and reinvestment at lower prevailing rates",
+      "An increase in duration and continued coupon payments until maturity"
      ],
      "answer": 0,
-     "explanation": "A premium bond called at par means the investor loses the premium paid above par (I), and the returned principal must be reinvested, likely at lower prevailing rates since calls occur when rates fall (II). A call shortens, not lengthens, duration (III is false), and interest payments STOP at the call date rather than continuing to maturity (IV is false).",
+     "explanation": "A premium bond called at par returns only par, so the premium paid above par is lost, and the proceeds must be reinvested at the lower rates that typically prompt a call. A call shortens rather than lengthens the holding, and interest payments stop at the call date rather than continuing to maturity.",
      "topic": "Call risk consequences",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "Which statement correctly distinguishes regulatory (legislative) risk from political risk as tested on the SIE?",
+     "q": "Which of the following correctly describes regulatory (legislative) risk and political risk?",
      "choices": [
-      "Regulatory risk stems from changes in laws or rules; political risk stems from instability or adverse government action",
-      "Regulatory risk stems from instability or adverse government action; political risk stems from changes in laws or rules",
-      "Regulatory risk arises only with domestic issues; political risk arises only with securities of foreign governments",
-      "Regulatory risk is a systematic exposure; political risk is unsystematic and diversifiable across many world markets"
+      "Regulatory risk arises from changes in laws or rules; political risk arises from instability or adverse government action.",
+      "Regulatory risk arises from instability or adverse government action; political risk arises from changes in laws or rules.",
+      "Regulatory risk applies only to domestic securities; political risk applies only to foreign securities.",
+      "Regulatory risk is systematic; political risk is unsystematic and can be diversified away."
      ],
      "answer": 0,
-     "explanation": "Regulatory (legislative) risk is the risk that new laws or rule changes — such as tax-law revisions — reduce an investment's value, while political risk is broader instability or adverse government action, often associated with foreign markets. The strongest distractor simply swaps the two definitions; neither risk is confined to domestic or foreign securities, and both are systematic and non-diversifiable.",
+     "explanation": "Regulatory (legislative) risk is the risk that changes in laws or rules, such as tax-law revisions, reduce an investment's value; political risk is instability or adverse government action, often associated with foreign markets. The strongest distractor swaps the definitions; neither risk is confined to domestic or foreign securities, and both are systematic and nondiversifiable.",
      "topic": "Regulatory vs political risk",
      "difficulty": "hard",
      "style": "distinction"
@@ -23182,147 +23182,147 @@ window.SIE_DATA = {
    ],
    "questions": [
     {
-     "q": "An investor enters a market order to buy 500 shares of a thinly traded stock. At the moment the order reaches the floor, the inside quote is 18.40 bid / 18.95 ask, sized 200 x 100. Which statement BEST describes the investor's execution risk?",
+     "q": "A customer enters a market order to buy 500 shares of a thinly traded stock when the inside quote is 18.40 bid, 18.95 ask, sized 200 x 100. Which of the following BEST describes the order's treatment?",
      "choices": [
-      "It is guaranteed to fill at 18.95 or better because that is the displayed inside ask",
-      "It rests on the book until at least 500 shares are offered together at a single price",
-      "It is assured a prompt execution, but the average fill price may be well above 18.95",
-      "It converts any unfilled balance to a limit order priced at the 18.95 displayed ask"
+      "The order is guaranteed an execution at a price of 18.95 or better.",
+      "The order remains on the book until 500 shares are offered at a single price.",
+      "The order executes promptly, but the average price may exceed 18.95.",
+      "Any unfilled balance is converted to a limit order priced at 18.95."
      ],
      "answer": 2,
-     "explanation": "A market order guarantees execution but not price; with only 100 shares displayed at 18.95, the remaining 400 shares fill against higher offers, so the average price can exceed 18.95. The displayed ask never caps a market order, and a market order neither waits for size nor converts itself into a limit order.",
+     "explanation": "A market order guarantees execution but not price; only 100 shares are displayed at 18.95, so the remaining 400 shares fill against higher offers and the average price can exceed 18.95. The displayed ask does not cap a market order, and a market order neither waits for size nor converts into a limit order.",
      "topic": "Market orders",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Stock of XYZ last traded at 50. A customer wants to buy only if the stock weakens but is unwilling to pay more than 47. Which single order type accomplishes BOTH conditions?",
+     "q": "Stock of Company XYZ is trading at 50. A customer wants to buy the stock only if it declines and is unwilling to pay more than 47. Which of the following orders should be entered?",
      "choices": [
       "Buy stop at 47",
       "Buy limit at 47",
-      "Buy stop-limit, stop 47 limit 47",
+      "Buy stop-limit at 47",
       "Sell stop-limit at 47"
      ],
      "answer": 1,
-     "explanation": "A buy limit at 47, placed below the current 50, only fills at 47 or lower, satisfying 'only if it weakens' and 'no more than 47.' A buy stop is placed above the market and is illogical here; placing a buy stop at 47 (below market) would trigger immediately. A sell order is the wrong side of the market.",
+     "explanation": "A buy limit at 47, placed below the current 50 market, fills only at 47 or lower, satisfying both conditions. Buy stops belong above the market and provide no price ceiling; entered at 47 below the market, a stop would trigger immediately. A sell order is the wrong side of the market.",
      "topic": "Limit vs stop",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A buy stop-limit order is entered: stop 62, limit 62. The stock, trading at 58, gaps up overnight and opens at 64 on news, then trades down to 61.50 before recovering. What happens?",
+     "q": "A buy stop-limit order is entered with a stop of 62 and a limit of 62 while the stock trades at 58. The stock opens the next day at 64 and later declines to 61.50. Which of the following BEST describes the result?",
      "choices": [
-      "The order becomes a live buy limit at the open and fills when the stock trades at 62 or lower",
-      "The order fills at the 64 opening print because the gap opening elected the 62 stop",
-      "The order is rejected at the open because the market price is already above the 62 limit",
-      "The order executes at exactly 62 at the open because the stop and limit prices are equal"
+      "The opening elects the stop, and the order fills when the stock trades at 62 or lower.",
+      "The order fills at the 64 opening price because the opening elects the stop.",
+      "The order is canceled because the opening price exceeds the stated limit price.",
+      "The order executes at exactly 62 because the stop and limit prices are equal."
      ],
      "answer": 0,
-     "explanation": "The 64 gap opening elects the 62 stop, converting the order into a buy limit at 62; it cannot execute at the 64 open because that price is above the limit, so it rests and fills when the stock trades down to 62 or lower (near 61.50). The strongest distractor — a fill at the opening print — ignores the limit's price ceiling; the order is neither rejected nor promised an exact-62 print.",
+     "explanation": "The 64 opening elects the 62 stop, converting the order into a buy limit at 62. It cannot execute at 64, which is above the limit, so it rests on the book and fills when the stock trades at 62 or lower. A fill at the opening print ignores the limit's ceiling; the order is neither canceled nor assured an exact-62 execution.",
      "topic": "Stop-limit",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Which of the following is TRUE regarding a sell stop order versus a sell limit order placed by a long stockholder seeking to protect a gain?",
+     "q": "Which of the following statements regarding sell stop orders and sell limit orders is true?",
      "choices": [
-      "Both orders are placed below the current market and elect market orders when touched",
-      "Both orders guarantee the customer a minimum execution price once the stock reaches them",
-      "The sell limit is placed below the market and becomes a market order once reached",
-      "The sell stop is placed below the market and the sell limit is placed above it"
+      "Both a sell stop order and a sell limit order are placed below the market.",
+      "Both orders guarantee a minimum execution price once the stock reaches them.",
+      "A sell limit is placed below the market, and a sell stop is placed above it.",
+      "A sell stop is placed below the market, and a sell limit is placed above it."
      ],
      "answer": 3,
-     "explanation": "A protective sell stop sits below the market so it elects if the stock falls, while a sell limit sits above the market to capture a target price or better. The both-below distractor misplaces the limit, and no minimum price is assured by a stop — an elected stop becomes a market order with no price floor; only the limit guarantees its stated price.",
+     "explanation": "A protective sell stop is entered below the market and elects if the stock falls; a sell limit is entered above the market to capture a target price or better. An elected stop becomes a market order with no price floor, so only the limit guarantees its stated price.",
      "topic": "Stop vs limit placement",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "A GTC sell stop order for 100 shares at 40 is on the book when the stock pays a $1 ordinary cash dividend. Under standard exchange procedures, what happens to the order on the ex-date if the customer has NOT marked it 'do not reduce'?",
+     "q": "A good-til-canceled (GTC) sell stop order at 40 is on the book when the stock goes ex-dividend by $1.00. If the order is not marked do not reduce (DNR), which of the following occurs on the ex-date?",
      "choices": [
-      "The stop price is reduced to 39",
-      "The stop price is increased to 41",
-      "The order is canceled and must be re-entered",
-      "The stop price stays at 40 because reductions apply only to buy orders"
+      "The stop price is reduced by $1.00 to 39.",
+      "The stop price is increased by $1.00 to 41.",
+      "The order is canceled and must be re-entered.",
+      "The stop price remains unchanged at 40."
      ],
      "answer": 0,
-     "explanation": "On the ex-date, open orders placed BELOW the market—buy limits, sell stops, and sell stop-limits—are reduced by the dividend unless marked DNR; a sell stop at 40 is reduced to 39. Sell limits sit ABOVE the market and are not reduced. The adjustment moves the price down, never up (choice 1), and the order is not canceled (choice 2).",
+     "explanation": "On the ex-date, open orders placed below the market—buy limits, sell stops, and sell stop-limits—are reduced by the dividend amount unless marked DNR, so the stop moves from 40 to 39. Sell limits sit above the market and are not reduced; the adjustment is downward, never upward, and the order is not canceled.",
      "topic": "Ex-date order adjustment",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "An investor sells short 300 shares of DEF at 70 and simultaneously wants to cap the loss if the stock rises. Which order, and at what relative placement, accomplishes this?",
+     "q": "An investor sells short 300 shares of DEF at 70. Which of the following orders BEST protects the investor against a rise in the stock's price?",
      "choices": [
-      "A buy limit placed above 70",
-      "A buy stop placed above 70",
-      "A sell stop placed below 70",
-      "A buy limit placed below 70"
+      "Buy limit placed above 70",
+      "Buy stop placed above 70",
+      "Sell stop placed below 70",
+      "Buy limit placed below 70"
      ],
      "answer": 1,
-     "explanation": "To cover a short and limit upside loss, the investor uses a buy stop placed ABOVE the current price, which elects a market buy if the stock rises to the trigger. A buy limit above the market would fill immediately at the lower available price (defeating the protective purpose), and a sell stop is for protecting long positions.",
+     "explanation": "A buy stop placed above the current price elects a market order to cover the short if the stock rises to the trigger, capping the loss. A buy limit above the market would execute immediately, and a sell stop protects long positions, not short positions.",
      "topic": "Short sale protection",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Which statement about a regular-way equity trade executed on Tuesday, June 16, is TRUE under current settlement rules (assume no holidays)?",
+     "q": "Regular way settlement on a corporate stock trade occurs on the:",
      "choices": [
-      "It settles Thursday, June 18 (T+2)",
-      "It settles Wednesday, June 17 (T+1)",
-      "It settles the same day if paid in full",
-      "Regulation T payment is due Wednesday, June 17 (settlement date)"
+      "same business day as the trade date.",
+      "first business day after the trade date.",
+      "second business day after the trade date.",
+      "third business day after the trade date."
      ],
      "answer": 1,
-     "explanation": "Regular-way equity settlement is T+1, so a Tuesday trade settles Wednesday. Choice 0 reflects the old T+2 cycle; Reg T payment is due no later than two business days after settlement (S+2), not on settlement date, so choice 3 is wrong.",
+     "explanation": "Regular way settlement for equities is T+1, the first business day after the trade date. The second business day reflects the outdated T+2 cycle, and Regulation T payment is due no later than two business days after settlement, not on the settlement date.",
      "topic": "Regular-way T+1",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A customer needs the proceeds available the same day a sale is made and asks for a cash settlement. The trade is entered on Monday. When does a cash trade settle, and how does it differ from regular way?",
+     "q": "Which of the following statements correctly compares cash settlement with regular way settlement for an equity trade?",
      "choices": [
-      "Cash settles on the trade date; regular way settles T+2",
-      "Cash settles on the trade date; regular way settles T+1",
-      "Cash settles T+1, one day faster than regular way's T+2",
-      "Cash settles T+1; regular way settles on the trade date"
+      "Cash settles on the trade date; regular way settles on the second business day after.",
+      "Cash settles on the trade date; regular way settles on the first business day after.",
+      "Cash settles on the first business day after; regular way settles on the second.",
+      "Cash settles on the first business day after; regular way settles on the trade date."
      ],
      "answer": 1,
-     "explanation": "A cash-settlement trade settles the same business day it is executed, while regular-way equity trades settle T+1. The strongest distractor pairs the correct same-day cash cycle with T+2 — the outdated regular-way cycle that was shortened to T+1 in 2024.",
+     "explanation": "A cash settlement trade settles the same business day it is executed, while regular way equity trades settle T+1. The strongest distractor pairs same-day cash settlement with T+2, the outdated regular way cycle shortened to T+1 in 2024.",
      "topic": "Cash vs regular way",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A customer opens a new margin account and buys 100 shares at $18 per share. Under Regulation T and the FINRA minimum-equity rule, how much must the customer deposit?",
+     "q": "A customer's first purchase in a new margin account is 100 shares of stock at $18.00 per share. What amount must the customer deposit?",
      "choices": [
-      "$450, meeting the 25% long maintenance requirement",
-      "$900, meeting the 50% Regulation T initial requirement",
-      "$1,800, the full purchase price of the securities",
-      "$2,000, meeting the FINRA minimum equity requirement"
+      "$450.00",
+      "$900.00",
+      "$1,800.00",
+      "$2,000.00"
      ],
      "answer": 2,
-     "explanation": "Reg T alone would call for 50% ($900), but a new margin account must also satisfy FINRA's $2,000 minimum equity — capped at the full cost of the securities when the purchase is under $2,000. The customer therefore deposits the entire $1,800. The $900 answer ignores the minimum-equity floor, and a $2,000 deposit would wrongly exceed the total cost of the position.",
+     "explanation": "Regulation T alone would require 50% ($900), but a new margin account must also meet FINRA's $2,000 minimum equity, capped at the full cost of the securities when the purchase is under $2,000. The customer therefore deposits the entire $1,800; $900 ignores the minimum-equity floor, and $2,000 would exceed the total cost of the position.",
      "topic": "Reg T minimum-equity trap",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "In a new margin account a customer purchases $6,000 of marginable stock. Reg T is 50%. What is the required deposit?",
+     "q": "A customer's initial transaction in a new margin account is a purchase of $6,000 of marginable stock. Under Regulation T, what amount must the customer deposit?",
      "choices": [
+      "$1,500",
       "$2,000",
       "$3,000",
-      "$6,000",
-      "$1,500"
+      "$6,000"
      ],
-     "answer": 1,
-     "explanation": "50% of $6,000 is $3,000, which exceeds the $2,000 minimum-equity floor, so the Reg T call governs and the deposit is $3,000. The required deposit is the GREATER of the Reg T amount or the $2,000 minimum, here $3,000. Choice 0 mistakenly uses the $2,000 minimum even though the higher 50% requirement applies.",
+     "answer": 2,
+     "explanation": "The required deposit is the greater of the Regulation T amount or the $2,000 minimum equity. Here 50% of $6,000 is $3,000, which exceeds the $2,000 floor, so the Regulation T call of $3,000 governs.",
      "topic": "Reg T calculation",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "A customer's first transaction in a new margin account is a $3,000 stock purchase when Reg T is 50%. Several days later, before settlement, the stock falls so that 50% of current value is $1,400. How much was the customer required to deposit at the time of purchase?",
+     "q": "A customer's first transaction in a new margin account is a $3,000 stock purchase. Before settlement, the stock declines so that 50% of its current market value is $1,400. What amount was required to be deposited at the time of purchase?",
      "choices": [
       "$1,400",
       "$1,500",
@@ -23330,245 +23330,245 @@ window.SIE_DATA = {
       "$3,000"
      ],
      "answer": 2,
-     "explanation": "The initial requirement is the GREATER of 50% of the purchase ($1,500) or the $2,000 minimum equity, so $2,000 is required at purchase; later price moves do not retroactively change the initial call. Choice 1 uses only the 50% figure and ignores the $2,000 floor that applies because the purchase exceeds $2,000.",
+     "explanation": "The initial requirement is the greater of 50% of the purchase price ($1,500) or the $2,000 minimum equity, so $2,000 was required; later price movements do not change the initial call. The $1,500 figure ignores the $2,000 floor, which applies because the purchase exceeds $2,000.",
      "topic": "Reg T minimum equity",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "A 6% corporate bond pays interest semi-annually and is currently quoted at 80. What is the bond's current yield?",
+     "q": "A 6% corporate bond is quoted at 80. What is the bond's current yield?",
      "choices": [
-      "6.00%",
-      "7.50%",
+      "3.75%",
       "4.80%",
-      "3.75%"
+      "6.00%",
+      "7.50%"
      ],
-     "answer": 1,
-     "explanation": "Current yield = annual interest / market price = $60 / $800 = 7.50%. The two $30 semi-annual coupons total $60 per year. Choice 0 is the nominal (coupon) rate, which equals current yield only at par; choice 2 mistakenly multiplies coupon by price instead of dividing.",
+     "answer": 3,
+     "explanation": "Current yield equals annual interest divided by market price: $60 / $800 = 7.50%. The 6.00% figure is the coupon rate, which equals current yield only at par; 4.80% results from multiplying the coupon by the price rather than dividing.",
      "topic": "Current yield",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "An institutional customer instructs that its custodian bank will pay for securities only upon delivery, and the broker-dealer must deliver the securities against simultaneous payment. This arrangement is BEST described as, and primarily serves to reduce, which of the following?",
+     "q": "An institutional customer instructs its custodian bank to release payment only upon simultaneous delivery of the securities. This arrangement is BEST described as:",
      "choices": [
-      "RVP; it ensures a selling institution is paid at the moment its securities are delivered out",
-      "Prime brokerage; it consolidates executions from multiple brokers for settlement at a single firm",
-      "DVP; it exempts the transaction from NSCC netting and the central counterparty guarantee",
-      "DVP/COD; it protects the buying institution from paying for securities it never receives"
+      "receive versus payment (RVP).",
+      "delivery versus payment (DVP).",
+      "free delivery of securities.",
+      "a prime brokerage arrangement."
      ],
-     "answer": 3,
-     "explanation": "Payment released only against simultaneous delivery is delivery versus payment (DVP), also called COD, and it protects the buying institution from paying without receiving the securities. DVP trades still clear and settle normally — the label grants no exemption from NSCC netting or the CCP guarantee — and RVP is the mirror arrangement used when the institution is the one delivering securities out.",
+     "answer": 1,
+     "explanation": "Payment released only against simultaneous delivery is delivery versus payment (DVP), also called cash on delivery (COD); it protects the buying institution from paying for securities it never receives. RVP is the mirror arrangement used when the institution is delivering securities out, and prime brokerage merely consolidates executions from multiple brokers at a single firm.",
      "topic": "DVP",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Which of the following statements about NSCC and DTC (both DTCC subsidiaries) is TRUE?",
+     "q": "Which of the following statements correctly describes the National Securities Clearing Corporation (NSCC) and the Depository Trust Company (DTC)?",
      "choices": [
-      "NSCC nets trades as central counterparty; DTC holds securities and settles by book entry",
-      "NSCC holds securities and settles by book entry; DTC nets trades as central counterparty",
-      "NSCC and DTC are both SROs that examine and discipline their broker-dealer member firms",
-      "NSCC provides custody for physical certificates; DTC guarantees each counterparty in netted trades"
+      "NSCC nets trades as central counterparty; DTC holds securities and settles by book entry.",
+      "NSCC holds securities and settles by book entry; DTC nets trades as central counterparty.",
+      "NSCC and DTC both examine and discipline the broker-dealer firms that are their members.",
+      "NSCC provides custody of physical certificates; DTC guarantees each side of netted trades."
      ],
      "answer": 0,
-     "explanation": "NSCC performs multilateral netting and acts as central counterparty for equity trades, while DTC is the depository that holds securities and settles by book entry. The strongest distractor simply reverses the two roles; neither subsidiary is an SRO that examines member firms, and the trade guarantee belongs to NSCC, not DTC.",
+     "explanation": "NSCC performs multilateral netting and acts as central counterparty for equity trades; DTC is the depository that holds securities and settles by book entry. The strongest distractor reverses the two roles; examining and disciplining broker-dealers is FINRA's function, not the clearinghouses', and the trade guarantee belongs to NSCC, not DTC.",
      "topic": "NSCC/DTCC",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "Under FINRA and SEC rules, when must a trade confirmation be delivered to the customer?",
+     "q": "A trade confirmation must be delivered to a customer no later than:",
      "choices": [
-      "Within 24 hours of the time the trade is executed",
-      "By the close of business on the day of the trade",
-      "At or before the completion of the transaction",
-      "Within five business days after the settlement date"
+      "24 hours after the time the trade is executed.",
+      "the close of business on the trade date.",
+      "the completion of the securities transaction.",
+      "five business days after the settlement date."
      ],
      "answer": 2,
-     "explanation": "Under SEC Rule 10b-10 the written confirmation is due at or before completion of the transaction, which means the settlement date. The 24-hour and trade-date answers impose deadlines stricter than the actual rule, while five business days after settlement would be later than the rule allows.",
+     "explanation": "Under SEC Rule 10b-10, the written confirmation is due at or before completion of the transaction, meaning the settlement date. The 24-hour and trade-date deadlines are stricter than the rule requires, and five business days after settlement is later than the rule allows.",
      "topic": "Confirmation timing",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "All of the following orders are placed BELOW the current market price EXCEPT:",
+     "q": "All of the following orders are placed below the current market price EXCEPT:",
      "choices": [
-      "A buy limit order",
-      "A sell stop order",
-      "A sell limit order",
-      "A sell stop-limit order"
+      "a buy limit order.",
+      "a sell stop order.",
+      "a sell limit order.",
+      "a sell stop-limit order."
      ],
      "answer": 2,
-     "explanation": "Buy limits, sell stops, and sell stop-limits are all entered below the current market (and are reduced on ex-date absent DNR). A sell limit is placed ABOVE the market to capture a higher price, making it the exception.",
+     "explanation": "Buy limits, sell stops, and sell stop-limits are all entered below the current market and are reduced on the ex-date absent DNR instructions. A sell limit is placed above the market to capture a higher price, making it the exception.",
      "topic": "Order placement EXCEPT",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "Which of the following statements regarding a day order versus a GTC order is TRUE?",
+     "q": "Which of the following statements correctly compares a day order with a good-til-canceled (GTC) order?",
      "choices": [
-      "The day order remains working until the customer cancels it; the GTC order expires at the close",
-      "The day order expires at the close if unexecuted; the GTC order works until filled or canceled",
-      "Both the day order and the GTC order are canceled automatically at the end of each session",
-      "The day order carries into the next session; the GTC order expires after 24 hours if unfilled"
+      "A day order remains working until canceled; a GTC order expires at the close.",
+      "A day order expires at the close if unexecuted; a GTC order works until filled or canceled.",
+      "Both orders are canceled automatically at the end of each trading session.",
+      "A day order carries into the next session; a GTC order expires after 24 hours."
      ],
      "answer": 1,
-     "explanation": "An unexecuted day order dies at the close of that session, while a good-til-canceled order stays on the book until it is filled or canceled (subject to periodic firm reconfirmation). The strongest distractor simply reverses the two behaviors; no rule cancels GTC orders daily or after 24 hours.",
+     "explanation": "An unexecuted day order expires at the close of the session, while a GTC order remains on the book until filled or canceled, subject to periodic firm reconfirmation. The strongest distractor reverses the two behaviors; no rule cancels GTC orders daily or after 24 hours.",
      "topic": "Day vs GTC",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "An investor buys 1 XYZ Oct 50 call for a premium of 4. Ignoring commissions, what is the breakeven price at expiration, and is the position bullish or bearish?",
+     "q": "An investor buys 1 XYZ Oct 50 call at a premium of 4. What is the breakeven point at expiration, and what is the investor's market outlook?",
      "choices": [
-      "$46, bearish",
-      "$54, bullish",
-      "$54, bearish",
-      "$46, bullish"
+      "$46; bearish",
+      "$54; bullish",
+      "$54; bearish",
+      "$46; bullish"
      ],
      "answer": 1,
-     "explanation": "For a long call, breakeven = strike + premium = 50 + 4 = 54, and buying a call is a bullish strategy (call-up: add the premium to the strike). Choice 0 subtracts the premium (the put breakeven method) and mislabels the directional bias.",
+     "explanation": "For a long call, breakeven equals strike plus premium: 50 + 4 = 54, and buying a call is a bullish strategy. Subtracting the premium from the strike is the breakeven method for puts.",
      "topic": "Options breakeven",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "A customer in the 32% federal tax bracket holds a corporate bond yielding 6.0% and is comparing it to a tax-free municipal bond. Using the corporate's after-tax yield as the benchmark, what muni yield matches it, and what is the correct comparison?",
+     "q": "A customer in the 32% federal tax bracket holds a corporate bond yielding 6.00%. What tax-free municipal yield provides an equivalent after-tax return?",
      "choices": [
-      "A muni yielding 8.82% is needed, since the 6.0% corporate yield is divided by (1 − 0.32)",
-      "A muni yielding 6.00% is needed, since tax-free and taxable coupon rates compare directly",
-      "A muni yielding 1.92% is enough, since it equals the 32% tax the corporate investor saves",
-      "A muni yielding 4.08% is enough, since the corporate nets 6.0% × (1 − 0.32) after tax"
+      "1.92%",
+      "4.08%",
+      "6.00%",
+      "8.82%"
      ],
-     "answer": 3,
-     "explanation": "The corporate's after-tax yield is 6.0% × (1 − 0.32) = 4.08%, so any tax-free muni paying at least 4.08% matches or beats it. The 8.82% figure comes from dividing by (1 − 0.32), which computes a muni's tax-equivalent yield — the inverse calculation and the wrong direction here — while 1.92% is merely the tax paid, not a comparable yield.",
+     "answer": 1,
+     "explanation": "The corporate bond's after-tax yield is 6.00% x (1 - 0.32) = 4.08%, so a municipal yield of 4.08% matches it. Dividing by (1 - 0.32) produces 8.82%, the tax-equivalent-yield calculation that runs in the opposite direction, while 1.92% is merely the tax paid, not a yield.",
      "topic": "Tax-equivalent yield",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "A company declares a 5-for-4 stock split. A customer who owned 400 shares with a total cost basis of $20,000 will, after the split, own how many shares at what adjusted cost basis per share?",
+     "q": "A company declares a 5-for-4 stock split. If a customer owns 400 shares with a total cost basis of $20,000, what is the resulting position?",
      "choices": [
-      "500 shares at $40 per share",
-      "500 shares at $50 per share",
       "320 shares at $62.50 per share",
+      "500 shares at $40.00 per share",
+      "500 shares at $50.00 per share",
       "500 shares at $62.50 per share"
      ],
-     "answer": 0,
-     "explanation": "A 5-for-4 split multiplies shares by 5/4: 400 x 5/4 = 500 shares; total basis is unchanged at $20,000, so per-share basis = $20,000 / 500 = $40. Choice 1 keeps the original $50 per-share basis without adjusting for the new share count.",
+     "answer": 1,
+     "explanation": "A 5-for-4 split multiplies shares by 5/4: 400 x 5/4 = 500 shares. Total basis is unchanged at $20,000, so the adjusted basis is $20,000 / 500 = $40.00 per share. Keeping the original $50.00 basis fails to adjust for the additional shares.",
      "topic": "Split math",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "Consider the following statements about a 'not held' (NH) market order. I. The customer gives the floor broker discretion over the time and price of execution. II. It guarantees execution at the price displayed when entered. III. The broker is not held to a missed market if a better price slips away. Choose the correct combination.",
+     "q": "A customer enters a market order marked not held (NH). Which of the following statements is true?",
      "choices": [
-      "I only",
-      "I and III",
-      "II and III",
-      "I, II, and III"
+      "The broker has discretion over the time and price of execution.",
+      "The order is guaranteed the price displayed when it is entered.",
+      "The order must be executed immediately at the best available price.",
+      "The broker is liable to the customer if a better price is missed."
      ],
-     "answer": 1,
-     "explanation": "A not-held order grants the broker discretion over the time and price of execution (I) and relieves the broker of liability if the market moves away (III). Statement II is false—NH orders do not guarantee any displayed price; granting discretion is the whole point.",
+     "answer": 0,
+     "explanation": "A not-held order grants the executing broker discretion over the time and price of execution and relieves the broker of liability if the market moves away. No displayed price is guaranteed, and immediate execution would defeat the purpose of granting discretion.",
      "topic": "Not-held orders",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "Which of the following statements correctly distinguishes the roles in clearing and settlement? I. The transfer agent issues and cancels certificates and maintains the holder of record. II. The registrar audits that issued shares do not exceed authorized shares. III. DTC acts as the central counterparty guaranteeing equity trades. Select the combination of TRUE statements.",
+     "q": "Which of the following statements correctly describes a party involved in the transfer and settlement of securities?",
      "choices": [
-      "I and II",
-      "I and III",
-      "II and III",
-      "I, II, and III"
+      "The transfer agent issues and cancels certificates and maintains the record of holders.",
+      "The registrar nets compared trades and guarantees each side as central counterparty.",
+      "The Depository Trust Company (DTC) acts as central counterparty for netted equity trades.",
+      "The National Securities Clearing Corporation (NSCC) holds securities and settles by book entry."
      ],
      "answer": 0,
-     "explanation": "The transfer agent handles issuance/cancellation and record holders (I), and the registrar ensures issued shares do not exceed authorized shares (II), both true. Statement III is false—NSCC (not DTC) is the central counterparty that nets and guarantees equity trades; DTC is the depository.",
+     "explanation": "The transfer agent issues and cancels certificates and maintains the holders of record, while the registrar ensures that issued shares do not exceed authorized shares. NSCC—not DTC or the registrar—is the central counterparty that nets and guarantees equity trades; DTC is the depository that provides custody and book-entry settlement.",
      "topic": "Clearing roles",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "All of the following are accurate statements about trade confirmations EXCEPT:",
+     "q": "All of the following statements regarding trade confirmations are accurate EXCEPT:",
      "choices": [
-      "A confirmation must disclose whether the firm acted as agent (broker) or principal (dealer)",
-      "For an agency trade, the commission must be shown",
-      "For a principal trade, the firm may omit any markup or markdown in all cases",
-      "The confirmation must be sent at or before completion of the transaction"
+      "the confirmation must disclose whether the firm acted as agent or as principal.",
+      "an agency confirmation must disclose the amount of commission charged to the customer.",
+      "a principal confirmation may omit the markup or markdown in all circumstances.",
+      "the confirmation must be delivered at or before completion of the transaction."
      ],
      "answer": 2,
-     "explanation": "Confirmations must show capacity, the commission on agency trades, and be delivered at or before completion (settlement)—all true. The exception is choice 2: for many principal transactions (notably riskless principal and certain debt and equity trades with a contemporaneous offsetting trade), the markup/markdown must be disclosed, so claiming it may be omitted 'in all cases' is false.",
+     "explanation": "Confirmations must disclose the firm's capacity, show the commission on agency trades, and be delivered at or before completion (settlement). The exception is the markup claim: for many principal transactions—notably riskless principal trades and certain debt trades with a contemporaneous offsetting trade—the markup or markdown must be disclosed, so it may not be omitted in all circumstances.",
      "topic": "Confirmation contents EXCEPT",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "A customer enters a sell short order. Which statement is TRUE regarding the order ticket and execution requirements that distinguish it from a long sale?",
+     "q": "Under Regulation SHO, which of the following is required when a customer enters an order to sell short?",
      "choices": [
-      "The order needs no marking because the clearing firm identifies short positions at settlement",
-      "The order must be marked 'short' and the firm must first obtain a locate on the shares",
-      "The order must settle regular-way T+3, two days later than a comparable long sale",
-      "The order must be marked 'short' only if the customer's shares are held in street name"
+      "No marking is required because the clearing firm identifies short positions at settlement.",
+      "The order must be marked short, and the firm must obtain a locate for the shares.",
+      "The order must settle two business days later than an otherwise comparable long sale.",
+      "The order must be marked short only if the customer's shares are held in street name."
      ],
      "answer": 1,
-     "explanation": "Reg SHO requires every short-sale order to be marked 'short' and the firm to have a locate — reasonable grounds to believe the security can be borrowed and delivered by settlement. Marking is required regardless of how the customer's shares are held, and short sales settle regular-way T+1, the same as long sales.",
+     "explanation": "Regulation SHO requires every short sale order to be marked short and requires the firm to have a locate—reasonable grounds to believe the security can be borrowed and delivered by settlement. Marking is required regardless of how shares are held, and short sales settle regular way T+1, the same as long sales.",
      "topic": "Long vs short sale",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A broker-dealer holds 800 shares of an issuer in street name for several customers ahead of the annual meeting. Under FINRA and SEC rules, what is the firm's obligation regarding proxy materials, and what may it do if a customer does not return voting instructions?",
+     "q": "A broker-dealer holds customer shares in street name ahead of an issuer's annual meeting. Which of the following actions satisfies the firm's obligation regarding proxy materials?",
      "choices": [
-      "Forward the issuer's materials to the beneficial owners and vote uninstructed shares only on routine matters",
-      "Forward the materials to beneficial owners and vote uninstructed shares on any matter, routine or not",
-      "Retain the materials and vote all 800 shares as management recommends unless a customer objects",
-      "Forward the materials and collect a signed proxy from every customer before the record date to vote"
+      "Forwarding the materials to beneficial owners and voting uninstructed shares only on routine matters",
+      "Forwarding the materials to beneficial owners and voting uninstructed shares on any matter",
+      "Retaining the materials and voting all shares as management recommends unless a customer objects",
+      "Forwarding the materials and obtaining a signed proxy from each customer before the record date"
      ],
      "answer": 0,
-     "explanation": "Street-name customers are the beneficial owners, so the firm must forward the issuer's proxy materials to them (the issuer reimburses reasonable costs). Without instructions, the firm may vote only on routine matters such as ratifying auditors; non-routine items like director elections go unvoted — a broker non-vote. The strongest distractor extends discretionary voting to all matters, and no rule requires a signed proxy before the record date.",
+     "explanation": "Street-name customers are the beneficial owners, so the firm must forward the issuer's proxy materials to them, with the issuer reimbursing reasonable costs. Without instructions, the firm may vote only on routine matters such as ratifying auditors; non-routine items go unvoted as broker non-votes, and no rule requires a signed proxy before the record date.",
      "topic": "Proxies and proxy voting (street name)",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "A registered representative tells a customer: 'A proxy works just like attending the meeting in person.' Which statement about proxies is TRUE, making the rep's blanket comparison an oversimplification?",
+     "q": "Which of the following statements BEST describes a proxy?",
      "choices": [
-      "A proxy is irrevocable once signed and binds the shareholder's vote until the next annual meeting",
-      "A proxy transfers record ownership of the shares to the holder until the meeting is adjourned",
-      "A proxy is a revocable, limited power of attorney to vote shares held as of the record date",
-      "A proxy may be submitted up to the payable date, which controls eligibility to vote the shares"
+      "It is irrevocable once signed and binds the shareholder until the next annual meeting.",
+      "It transfers record ownership of the shares until the meeting is adjourned.",
+      "It is a revocable, limited power of attorney to vote shares held as of the record date.",
+      "It may be submitted until the payable date, which determines eligibility to vote."
      ],
      "answer": 2,
-     "explanation": "A proxy is a limited power of attorney authorizing another party to cast the shareholder's vote; it is generally revocable — by a later-dated proxy or by voting in person — and conveys no ownership of the shares. Eligibility to vote is fixed by the board-set record date, not any payable date, and irrevocability is the opposite of the general rule.",
+     "explanation": "A proxy is a limited power of attorney authorizing another party to cast the shareholder's vote; it is generally revocable by a later-dated proxy or by voting in person, and it conveys no ownership of the shares. Eligibility to vote is fixed by the board-set record date, not a payable date.",
      "topic": "Proxies and proxy voting (nature/revocability)",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "A buying firm and a selling firm submit a 1,000-share trade to NSCC, but the trade fails to compare because the two sides report different prices. The selling firm has delivered securities the buyer never agreed to. Which document does the receiving firm send, and what is its effect?",
+     "q": "Two firms submit a trade for comparison, but each side reports different terms and the trade fails to compare. The receiving firm rejects the delivery by sending:",
      "choices": [
-      "A reclamation notice, which returns a delivery the receiving firm had previously accepted",
-      "A DK notice, which rejects a delivery whose terms the receiving firm does not recognize",
-      "A good-delivery certificate, which certifies the securities are in proper transferable form",
-      "A buy-in notice, which requires the seller to repurchase the securities in the open market"
+      "a reclamation notice.",
+      "a Don't Know (DK) notice.",
+      "a due bill.",
+      "a buy-in notice."
      ],
      "answer": 1,
-     "explanation": "When a trade fails to compare because the two sides report different terms, the receiving firm sends a DK ('Don't Know') notice, rejecting the unrecognized delivery until the discrepancy is resolved. A reclamation — the strongest distractor — applies only to a delivery already accepted and later found defective, and a buy-in remedies a failure to deliver, not a terms mismatch.",
+     "explanation": "When a trade fails to compare because the two sides report different terms, the receiving firm sends a Don't Know (DK) notice rejecting the unrecognized delivery until the discrepancy is resolved. A reclamation applies to a delivery already accepted and later found defective, a due bill accompanies a distribution owed to the buyer, and a buy-in remedies a failure to deliver.",
      "topic": "DK (Don't Know) notices / uncompared trades",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Which of the following would render a delivery of a stock certificate NOT in good deliverable form? (Choose the EXCEPTION — i.e., the one that IS still good delivery.)",
+     "q": "All of the following deliveries of a stock certificate would fail to constitute good delivery EXCEPT:",
      "choices": [
-      "A certificate accompanied by a properly executed stock power bearing a signature guarantee",
-      "A certificate endorsed by only one of the two joint tenants (JTWROS) registered as owners",
-      "A certificate mutilated so badly that the transfer agent cannot validate or authenticate it",
-      "A certificate for 30 shares of a stock whose normal unit of trading is 100 shares"
+      "a certificate accompanied by a properly executed stock power bearing a signature guarantee.",
+      "a certificate endorsed by only one of the two joint tenants registered as its owners.",
+      "a certificate mutilated so badly that the transfer agent cannot validate or authenticate it.",
+      "a certificate for 30 shares of a stock whose normal unit of trading is 100 shares."
      ],
      "answer": 0,
-     "explanation": "Good delivery requires endorsement by all registered owners or a properly executed stock power, an acceptable signature guarantee, an intact certificate, and round-lot denominations. A certificate with a guaranteed, properly executed stock power meets those requirements, so it IS good delivery — the exception. A single JTWROS signature is insufficient, a mutilated certificate cannot be validated, and 30 shares is an odd lot when the trading unit is 100.",
+     "explanation": "Good delivery requires endorsement by all registered owners or a properly executed stock power with an acceptable signature guarantee, an intact certificate, and round-lot denominations. A certificate with a guaranteed, properly executed stock power meets those requirements—the exception. One joint tenant's signature is insufficient, an unverifiable mutilated certificate is rejected, and 30 shares is an odd lot.",
      "topic": "Good delivery (deliverable form) — EXCEPT",
      "difficulty": "hard",
      "style": "except"
@@ -24850,323 +24850,323 @@ window.SIE_DATA = {
    ],
    "questions": [
     {
-     "q": "A 45-year-old single investor with no employer-sponsored retirement plan earns $90,000 of W-2 wages and contributes the annual maximum to a Traditional IRA. Two years later she also opens and funds a Roth IRA. Which statement about the deductibility of these contributions is TRUE?",
+     "q": "A customer who is not an active participant in an employer-sponsored retirement plan contributes to a traditional individual retirement account (IRA) and to a Roth IRA. Which of the following statements about the deductibility of the contributions is TRUE?",
      "choices": [
-      "The Traditional IRA contribution is fully deductible; the Roth contribution is never deductible",
-      "Both contributions are fully deductible because she has no workplace plan",
-      "Neither is deductible because she exceeds the income limit",
-      "The Roth contribution is deductible but the Traditional is not, since she is an active participant"
+      "Both contributions are fully deductible because the customer is not covered by an employer plan.",
+      "Neither contribution is deductible because the customer's income exceeds the phase-out limit.",
+      "The traditional IRA contribution is fully deductible, and the Roth IRA contribution is not deductible.",
+      "The Roth IRA contribution is deductible, and the traditional IRA contribution is not deductible."
      ],
-     "answer": 0,
-     "explanation": "Because she is NOT an active participant in an employer plan, her Traditional IRA deduction is not subject to any income phase-out and is fully deductible. Roth contributions are always made with after-tax dollars and are never deductible. 'Both deductible' is wrong because Roth is never deductible; the income-limit and active-participant choices are wrong because the deduction phase-out applies only to active participants, which she is not.",
+     "answer": 2,
+     "explanation": "Because the customer is not an active participant in an employer plan, the traditional IRA deduction is not subject to an income phase-out and is fully deductible; Roth IRA contributions are made with after-tax dollars and are never deductible. The phase-out and active-participant choices fail because the deduction limits apply only to active participants.",
      "topic": "Traditional vs Roth deductibility",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "An investor opened and first funded her only Roth IRA seven years ago. She is now 60. She withdraws $30,000, of which $18,000 is cumulative contributions and $12,000 is earnings. What is the tax consequence of the distribution?",
+     "q": "A customer, age 60, opened and funded a Roth individual retirement account (IRA) seven years ago and now withdraws $30,000, consisting of $18,000 of contributions and $12,000 of earnings. What is the tax treatment of the distribution?",
      "choices": [
-      "The $18,000 of contributions is tax-free, but the $12,000 of earnings is taxable plus a 10% penalty",
-      "The entire $30,000 is tax- and penalty-free",
-      "The $18,000 is tax-free; the $12,000 is taxable but not penalized",
-      "The entire $30,000 is taxable as ordinary income"
+      "The entire $30,000 is taxable as ordinary income in the year received.",
+      "The $18,000 is tax-free; the $12,000 is taxable and subject to a 10% penalty.",
+      "The $18,000 is tax-free; the $12,000 is taxable but not subject to a penalty.",
+      "The entire $30,000 is received free of both income tax and any penalty."
      ],
-     "answer": 1,
-     "explanation": "This is a QUALIFIED distribution: the 5-year holding period is met AND she is over 59½. Both the returned contributions and the earnings come out completely tax-free and penalty-free, so the entire $30,000 is untaxed. The trap choices treat the earnings as taxable or penalized, which would only apply to a non-qualified distribution (under 59½ or under 5 years).",
+     "answer": 3,
+     "explanation": "The distribution is qualified: the five-year holding period is met and the customer is over age 59½, so contributions and earnings are both entirely tax- and penalty-free. Treating the earnings as taxable or penalized applies only to nonqualified distributions (under age 59½ or under five years).",
      "topic": "Roth qualified distribution",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "Which of the following accurately distinguishes a defined benefit plan from a defined contribution plan?",
+     "q": "Which of the following statements correctly distinguishes a defined benefit plan from a defined contribution plan?",
      "choices": [
-      "In a DB plan the employee bears the investment risk; in a DC plan the employer bears it",
-      "In a DB plan the employer bears the investment risk; in a DC plan the employee bears it",
-      "In a DB plan the contribution is fixed by formula; in a DC plan the benefit is fixed by formula",
-      "In a DB plan like a 401(k) the payout varies; in a DC plan like a pension it is fixed"
+      "In a defined benefit plan, the employee bears the investment risk; in a defined contribution plan, the employer bears it.",
+      "In a defined benefit plan, the employer bears the investment risk; in a defined contribution plan, the employee bears it.",
+      "In a defined benefit plan, the contribution is fixed by formula; in a defined contribution plan, the benefit is fixed by formula.",
+      "In a defined benefit plan such as a 401(k), the benefit varies; in a defined contribution plan such as a pension, it is fixed."
      ],
      "answer": 1,
-     "explanation": "A defined benefit plan promises a formula-based benefit, so the employer must fund it and absorbs the investment risk; a defined contribution plan defines only the contribution, and the employee bears market risk with an uncertain final balance. The reversed-risk choice is the classic trap, and a 401(k) is a DC plan while a traditional pension is DB — not the other way around.",
+     "explanation": "A defined benefit plan promises a formula-based benefit, so the employer must fund any shortfall and bears the investment risk; a defined contribution plan fixes only the contribution, leaving the employee with market risk and an uncertain final balance. A 401(k) is a defined contribution plan and a traditional pension is a defined benefit plan, not the reverse.",
      "topic": "DB vs DC plans",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "All of the following are true regarding 403(b) plans EXCEPT:",
+     "q": "All of the following statements regarding 403(b) plans are true EXCEPT:",
      "choices": [
-      "They are available to employees of public schools and certain 501(c)(3) tax-exempt organizations",
-      "Pre-tax contributions reduce the participant's current taxable income",
-      "Distributions before age 59½ are generally subject to a 10% penalty plus ordinary income tax",
-      "The participant may direct the plan to buy individual common stocks of his own choosing"
+      "They are available to employees of public schools and certain 501(c)(3) organizations.",
+      "Contributions made on a pre-tax basis reduce the participant's current taxable income.",
+      "Distributions before age 59½ are generally subject to a 10% penalty plus ordinary income tax.",
+      "Participants may direct the plan to purchase individual common stocks of their choosing."
      ],
      "answer": 3,
-     "explanation": "403(b) (TSA) plans are statutorily limited to annuity contracts and mutual funds; they may NOT invest in individual common stocks, so that is the exception. The other statements correctly describe eligible employers, the pre-tax treatment, and the early-distribution penalty shared with other tax-qualified arrangements.",
+     "explanation": "403(b) plans (tax-sheltered annuities) are limited to annuity contracts and mutual funds and may not hold individual common stocks, making that statement the exception. The statements on eligible employers, pre-tax treatment, and the 10% early-distribution penalty are accurate.",
      "topic": "403(b)",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "A SEP-IRA and a SIMPLE IRA are both employer arrangements. Which statement correctly distinguishes them?",
+     "q": "Which of the following statements correctly distinguishes a simplified employee pension (SEP) IRA from a savings incentive match plan for employees (SIMPLE) IRA?",
      "choices": [
-      "A SIMPLE is funded only by the employer, while a SEP accepts employee deferrals plus employer money",
-      "A SEP is limited to employers with 100 or fewer employees, while a SIMPLE has no employee-count cap",
-      "A SEP is funded only by the employer, while a SIMPLE accepts employee deferrals plus employer money",
-      "A SEP requires a mandatory employer match every year, while a SIMPLE makes employer money optional"
+      "A SIMPLE IRA is funded only by employer contributions, while a SEP IRA also accepts employee salary deferrals.",
+      "A SEP IRA is funded only by employer contributions, while a SIMPLE IRA also accepts employee salary deferrals.",
+      "A SEP IRA is limited to employers with 100 or fewer employees, while a SIMPLE IRA has no employee-count limit.",
+      "A SEP IRA requires an employer contribution every year, while a SIMPLE IRA makes employer contributions optional."
      ],
-     "answer": 2,
-     "explanation": "A SEP-IRA is funded exclusively by discretionary employer contributions, while a SIMPLE IRA adds employee salary deferrals to a required employer match or nonelective contribution. The mirror-image choice simply reverses the two plans, and the 100-employee ceiling belongs to the SIMPLE, not the SEP.",
+     "answer": 1,
+     "explanation": "A SEP IRA is funded exclusively by discretionary employer contributions; a SIMPLE IRA combines employee salary deferrals with a required employer match or nonelective contribution. The reversed choice swaps the two plans, and the 100-employee limit applies to the SIMPLE, not the SEP.",
      "topic": "SEP vs SIMPLE",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A registered rep is reviewing four retirement arrangements. Under ERISA, which is generally NOT covered?",
+     "q": "Which of the following retirement plans is generally NOT subject to the Employee Retirement Income Security Act of 1974 (ERISA)?",
      "choices": [
-      "A federal government employees' retirement plan",
-      "A corporate 401(k) plan offered by a private employer",
+      "A 401(k) plan sponsored by a private corporation",
       "A defined benefit pension plan of a manufacturing company",
-      "A profit-sharing plan sponsored by a private-sector company"
+      "A retirement plan for federal government employees",
+      "A profit-sharing plan of a private-sector employer"
      ],
-     "answer": 0,
-     "explanation": "ERISA governs private-sector retirement plans but generally does NOT cover federal, state, or municipal government plans, so the federal plan is excluded. The 401(k), private corporate pension, and private profit-sharing plans are all private-sector plans subject to ERISA's fiduciary, vesting, and reporting standards.",
+     "answer": 2,
+     "explanation": "ERISA governs private-sector retirement plans and generally does not cover federal, state, or municipal government plans. The 401(k), corporate pension, and profit-sharing plans are private-sector arrangements subject to ERISA's vesting, fiduciary, and reporting standards.",
      "topic": "ERISA coverage",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "An investor buys 100 shares of XYZ at $40 (trade date March 10). She sells all 100 shares at $58 (trade date March 10 of the following year — exactly 12 months later). How is the gain treated for tax purposes?",
+     "q": "An investor purchases 100 shares of XYZ stock with a trade date of March 10 and sells all 100 shares at a gain with a trade date of March 10 of the following year. For tax purposes, the gain is:",
      "choices": [
-      "Short-term capital gain at ordinary income rates, because the holding period did not exceed one year",
-      "Long-term capital gain at preferential rates, because she held the shares for exactly a full 12 months",
-      "Long-term capital gain at preferential rates, because holding periods run from settlement to settlement",
-      "Short-term capital gain at the qualified-dividend rate, because common stock earns qualified treatment"
+      "long-term, because the shares were held for a full 12 months.",
+      "long-term, because holding periods run from settlement to settlement.",
+      "short-term, because the holding period did not exceed one year.",
+      "short-term, but taxed at the rate that applies to qualified dividends."
      ],
-     "answer": 0,
-     "explanation": "Long-term treatment requires holding MORE than one year; the period begins the day after the trade-date purchase, so selling on the same calendar date 12 months later is exactly one year — still short-term, taxed at ordinary rates. The 'full 12 months' option is the trap; holding periods run trade date to trade date, not settlement to settlement, and the qualified-dividend rate applies to dividends, never to capital gains.",
+     "answer": 2,
+     "explanation": "Long-term treatment requires a holding period of more than one year, measured trade date to trade date and beginning the day after purchase; selling on the same calendar date one year later is exactly one year, so the gain is short-term and taxed at ordinary income rates. Settlement dates do not control, and the qualified-dividend rate applies to dividends, not capital gains.",
      "topic": "Short vs long-term gains",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "To be taxed at the favorable qualified-dividend rate, a common-stock dividend must satisfy a holding-period test. Which statement is TRUE?",
+     "q": "For a common stock dividend to be taxed at the qualified-dividend rate, the investor must hold the stock:",
      "choices": [
-      "The investor must hold the stock more than 45 days during the 91-day period beginning 45 days before the ex-date",
-      "The investor must hold the stock more than 90 days during the 181-day period beginning 90 days before the ex-date",
-      "The investor must hold the stock more than one year before the ex-date, matching the long-term gain period",
-      "The investor must hold the stock more than 60 days during the 121-day period beginning 60 days before the ex-date"
+      "more than 45 days during the 91-day period beginning 45 days before the ex-dividend date.",
+      "more than 60 days during the 121-day period beginning 60 days before the ex-dividend date.",
+      "more than 90 days during the 181-day period beginning 90 days before the ex-dividend date.",
+      "more than one year, the same period required for long-term capital gain treatment."
      ],
-     "answer": 3,
-     "explanation": "For common stock, qualified-dividend treatment requires holding more than 60 days within the 121-day window that begins 60 days before the ex-dividend date. The 90-day/181-day test is the rule for preferred-stock dividends, not common stock, and the one-year choice confuses dividend rules with the long-term capital-gain holding period.",
+     "answer": 1,
+     "explanation": "Common stock dividends are qualified only if the stock is held more than 60 days during the 121-day period beginning 60 days before the ex-dividend date. The 90-day/181-day test applies to preferred stock dividends, and the one-year period is the long-term capital gain rule, not a dividend rule.",
      "topic": "Qualified dividends",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "An investor sells 200 shares of ABC at a $1,400 loss on November 3. Which action would trigger the wash sale rule and disallow the loss?",
+     "q": "An investor sells 200 shares of ABC stock at a loss on November 3. Which of the following purchases would cause the loss to be disallowed under the wash sale rule?",
      "choices": [
-      "Buying a call option on ABC on November 20",
-      "Buying 200 shares of a different company in the same industry on November 10",
-      "Buying an ABC corporate bond on November 5",
-      "Buying 200 shares of ABC on January 10 of the following year"
+      "Buying $10,000 face amount of ABC corporate bonds on November 5",
+      "Buying 200 shares of a competitor in the same industry on November 10",
+      "Buying a listed call option on ABC common stock on November 20",
+      "Buying 200 shares of ABC stock on January 10 of the following year"
      ],
-     "answer": 0,
-     "explanation": "The wash sale rule disallows a loss if the investor acquires substantially identical securities — INCLUDING options or contracts to acquire the same stock — within 30 days before or after the sale. A call to buy ABC on November 20 is within the window and is treated as acquiring substantially identical stock. A different company's stock and an ABC bond are not substantially identical, and a January 10 purchase falls outside the 61-day window.",
+     "answer": 2,
+     "explanation": "The wash sale rule disallows a loss when the investor acquires substantially identical securities — including a call option on the same stock — within 30 days before or after the sale, so the November 20 call purchase falls inside the window. Stock of a different company and a corporate bond are not substantially identical, and the January 10 purchase is outside the 61-day window.",
      "topic": "Wash sale",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "An investor made three purchases of GHI: 100 shares at $20, 100 shares at $30, and 100 shares at $50. She sells 100 shares at $45 and wants to MINIMIZE her reported gain using specific identification. What does she report?",
+     "q": "An investor purchases 100 shares of GHI stock at $20.00, 100 shares at $30.00, and 100 shares at $50.00. If the investor sells 100 shares at $45.00 and uses specific identification to minimize the taxable result, the investor reports:",
      "choices": [
-      "A $500 loss, by identifying the $50 lot",
-      "A $2,500 gain, by identifying the $20 lot",
-      "A $1,000 gain, using the $33.33 average cost",
-      "A $1,500 gain, by identifying the $30 lot"
+      "a $500 loss.",
+      "a $1,000 gain.",
+      "a $1,500 gain.",
+      "a $2,500 gain."
      ],
      "answer": 0,
-     "explanation": "Specific identification lets her designate the highest-cost $50 lot: $45 − $50 = −$5 per share × 100 = a $500 loss, which minimizes taxable gain. The average-cost and lowest-cost choices produce gains; average cost is generally only the default for mutual fund shares, not individual equities where specific ID is permitted.",
+     "explanation": "Specific identification permits designating the $50.00 lot: ($45.00 − $50.00) × 100 shares = a $500 loss, which minimizes the taxable result. Identifying the $20.00 lot instead would produce a $2,500 gain and the $30.00 lot a $1,500 gain; without specific identification, FIFO would apply and force the $20.00 lot's $2,500 gain.",
      "topic": "Cost basis / specific ID",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "A Coverdell Education Savings Account (ESA) and a 529 plan differ in several ways. Which statement is TRUE?",
+     "q": "Which of the following statements correctly distinguishes a Coverdell Education Savings Account (ESA) from a 529 plan?",
      "choices": [
-      "A 529 caps contributions at $2,000 per beneficiary each year, while a Coverdell has no federal annual cap",
-      "A Coverdell may fund only postsecondary tuition, while a 529 alone may pay qualified K-12 expenses",
-      "A Coverdell caps contributions at $2,000 per beneficiary each year, while a 529 has no federal annual cap",
-      "A Coverdell has no contributor income limit, while a 529 phases out for higher-income contributors"
+      "A 529 plan limits contributions to $2,000 per beneficiary per year, while a Coverdell ESA has no federal annual limit.",
+      "A Coverdell ESA may fund only postsecondary expenses, while only a 529 plan may pay qualified K-12 expenses.",
+      "A Coverdell ESA limits contributions to $2,000 per beneficiary per year, while a 529 plan has no federal annual limit.",
+      "A Coverdell ESA has no contributor income limit, while a 529 plan phases out for higher-income contributors."
      ],
      "answer": 2,
-     "explanation": "The Coverdell ESA is limited to $2,000 per beneficiary per year and phases out for higher-income contributors; a 529 has no federal annual contribution cap (large gifts are governed by gift-tax rules) and no contributor income limit. The mirror-image choice reverses the caps, and Coverdells have long covered qualified K-12 expenses — not college only.",
+     "explanation": "A Coverdell ESA is limited to $2,000 per beneficiary per year and phases out for higher-income contributors; a 529 plan has no federal annual contribution limit (large contributions are governed by gift-tax rules) and no contributor income limit. Coverdell ESAs also cover qualified K-12 expenses, not postsecondary costs only.",
      "topic": "529 vs Coverdell",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "Regarding Required Minimum Distributions (RMDs), which statement correctly distinguishes a Traditional IRA from a Roth IRA?",
+     "q": "Which of the following statements correctly describes required minimum distributions (RMDs) for a traditional IRA and a Roth IRA?",
      "choices": [
-      "A Traditional IRA requires lifetime RMDs, while a Roth IRA has none during the owner's lifetime",
-      "A Roth IRA requires lifetime RMDs, while a Traditional IRA has none during the owner's lifetime",
-      "Both IRAs require RMDs starting at the same age, though the Roth's distributions come out tax-free",
-      "Neither IRA requires RMDs during the owner's life; the rules apply only to employer plans like 401(k)s"
+      "A traditional IRA requires lifetime RMDs, while a Roth IRA requires none during the owner's lifetime.",
+      "A Roth IRA requires lifetime RMDs, while a traditional IRA requires none during the owner's lifetime.",
+      "Both IRAs require RMDs beginning at the same age, but Roth IRA distributions are received tax-free.",
+      "Neither IRA requires RMDs during the owner's lifetime; RMD rules apply only to employer-sponsored plans."
      ],
      "answer": 0,
-     "explanation": "Traditional IRAs force minimum distributions beginning at the statutory age so the IRS can collect the deferred tax; Roth IRAs have no RMDs during the original owner's lifetime because contributions were already taxed. The 'both at the same age' choice is tempting because its tax-free-Roth clause is true, but Roth IRAs are exempt from lifetime RMDs entirely.",
+     "explanation": "Traditional IRAs require minimum distributions beginning at the statutory age so the deferred tax is collected; Roth IRAs impose no RMDs during the original owner's lifetime because contributions were made after tax. The same-age choice is tempting because Roth distributions are tax-free, but Roth IRAs are exempt from lifetime RMDs entirely.",
      "topic": "RMDs Traditional vs Roth",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A 35-year-old takes a $20,000 distribution from his Traditional IRA — funded entirely with deductible (pre-tax) contributions — to pay off credit-card debt. No exception applies. In a 24% ordinary bracket, what is the total tax impact?",
+     "q": "A customer, age 35, withdraws $20,000 from a traditional individual retirement account (IRA) funded entirely with deductible contributions, and no penalty exception applies. If the customer is in the 24% marginal tax bracket, what is the total tax and penalty due?",
      "choices": [
-      "$4,800 — ordinary income tax applies, but the 10% penalty is waived when paying down personal debt",
-      "$2,000 — only the 10% penalty applies, because IRA principal is always returned free of ordinary tax",
-      "$3,000 — the distribution is taxed at the 15% capital-gains rate, with no penalty on amounts this small",
-      "$6,800 — $4,800 of ordinary income tax on the distribution plus a $2,000 early-withdrawal penalty"
+      "$2,000",
+      "$3,000",
+      "$4,800",
+      "$6,800"
      ],
      "answer": 3,
-     "explanation": "The entire pre-tax $20,000 is ordinary income ($20,000 × 24% = $4,800), and because he is under 59½ with no qualifying exception, the 10% penalty adds $2,000, for $6,800 total. Paying off credit-card debt is not a penalty exception, deductible contributions are fully taxable when withdrawn, and IRA distributions are never taxed as capital gains.",
+     "explanation": "The entire pre-tax distribution is ordinary income: $20,000 × 24% = $4,800, plus a 10% early-withdrawal penalty of $2,000 because the customer is under age 59½ with no exception, for a $6,800 total. The $2,000 figure is the penalty alone, $4,800 is the tax alone, and $3,000 wrongly applies a 15% capital-gains rate — IRA distributions are never taxed as capital gains.",
      "topic": "Pre-59½ penalty calc",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "Which of the following statements about 401(k) plans is NOT true?",
+     "q": "Which of the following statements regarding 401(k) plans is NOT true?",
      "choices": [
-      "A 401(k) guarantees a specific monthly benefit at retirement regardless of investment performance",
-      "Employee elective deferrals reduce current taxable income in a traditional 401(k)",
-      "Employer matching contributions are subject to a vesting schedule under ERISA",
-      "Roth 401(k) contributions are after-tax, and qualified distributions are tax-free"
+      "Elective deferrals to a traditional 401(k) reduce the participant's current taxable income.",
+      "The plan guarantees a specific retirement benefit regardless of investment performance.",
+      "Employer matching contributions may be subject to a vesting schedule under the plan.",
+      "Roth 401(k) contributions are made after tax, and qualified distributions are tax-free."
      ],
-     "answer": 0,
-     "explanation": "A 401(k) is a defined contribution plan whose final value depends on contributions and investment returns, so it guarantees no specific benefit — that is the false statement. Pre-tax deferrals, ERISA vesting of employer matches, and after-tax Roth 401(k) treatment are all accurate.",
+     "answer": 1,
+     "explanation": "A 401(k) is a defined contribution plan; the account value depends on contributions and investment performance, so no specific benefit is guaranteed — that statement is false. Pre-tax deferrals, vesting of employer matches, and after-tax Roth 401(k) treatment are all accurately described.",
      "topic": "401(k)",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "An investor sells stock at a loss, then repurchases within the wash-sale window. Consider: I. Rebuying the identical security 20 days after the loss sale disallows the loss. II. The disallowed loss is added to the cost basis of the replacement shares. III. The replacement shares' holding period includes the holding period of the originally sold shares. Which are correct?",
+     "q": "An investor sells 200 shares of a stock at a loss and purchases 200 shares of the same stock 20 days later. Which of the following statements describes the tax treatment?",
      "choices": [
-      "I, II, and III",
-      "I only",
-      "I and II only",
-      "II and III only"
+      "The loss is allowed, and the basis of the replacement shares equals the repurchase price.",
+      "The loss is allowed, and the basis of the replacement shares is reduced by the amount of the loss.",
+      "The loss is disallowed, and the basis of the replacement shares equals the repurchase price.",
+      "The loss is disallowed, and the disallowed amount is added to the basis of the replacement shares."
      ],
-     "answer": 0,
-     "explanation": "All three are correct. I: rebuying within 30 days triggers the wash sale and disallows the loss. II: the disallowed loss is added to the replacement shares' basis, deferring (not destroying) it. III: the holding period of the sold shares tacks onto the replacement shares, so the deferred loss can still be long-term. (Note: the wash-sale rule applies only to losses, never to gains.)",
+     "answer": 3,
+     "explanation": "Repurchasing the identical security within 30 days triggers the wash sale rule: the loss is disallowed, and the disallowed amount is added to the basis of the replacement shares, deferring rather than eliminating the loss. The original holding period also carries over to the replacement shares. The rule applies only to losses, never to gains.",
      "topic": "Wash sale roman",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "Consider these statements about capital gains taxation: I. Long-term treatment requires holding the asset MORE than one year. II. Short-term capital gains are taxed at the same rates as ordinary income. III. For tax purposes the holding period begins the day AFTER the trade date, not the settlement date. Which are correct?",
+     "q": "Which of the following statements about the taxation of capital gains is TRUE?",
      "choices": [
-      "I, II, and III",
-      "I and II only",
-      "II and III only",
-      "I and III only"
+      "Long-term treatment requires holding for at least one year, measured from the settlement date.",
+      "Long-term treatment requires holding for more than one year, measured from the day after the trade date.",
+      "Short-term gains are taxed at the preferential rates that apply to qualified dividends.",
+      "Short-term gains are taxed at ordinary income rates only to the extent they exceed $3,000."
      ],
-     "answer": 0,
-     "explanation": "All three are correct: long-term status requires a holding period exceeding one year; short-term gains are taxed at ordinary rates; and the holding period starts the day after the trade date (acquisition is on the trade date, and the next day is day one), not the settlement date. The distractor choices each wrongly drop a true statement.",
+     "answer": 1,
+     "explanation": "Long-term treatment requires holding more than one year, and the holding period begins the day after the trade date, not the settlement date. Short-term gains are taxed in full at ordinary income rates; the qualified-dividend rate applies only to dividends, and $3,000 is the annual limit on deducting net capital losses against ordinary income, not a threshold for taxing gains.",
      "topic": "Capital gains roman",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "A married couple both work. The husband is an active participant in his employer's 401(k); the wife has no workplace plan. Their combined income fully phases out the husband's own IRA deduction. Which statement about the WIFE's Traditional IRA deduction is TRUE?",
+     "q": "One spouse is an active participant in an employer-sponsored plan, and the couple's joint income fully phases out that spouse's traditional IRA deduction. Which of the following statements describes the deduction available to the nonparticipant spouse?",
      "choices": [
-      "She gets no deduction, because her spouse's active-participant status is attributed to her as well",
-      "She may still get a full or partial deduction under a separate, higher spousal MAGI phase-out range",
-      "She may deduct the contribution only if the couple files separately to keep her income isolated",
-      "She may deduct the contribution in full at any income, because she has no workplace plan of her own"
+      "It is disallowed because the participant spouse's active status is attributed to both spouses.",
+      "It is allowed only if the couple files separate returns to isolate the nonparticipant's income.",
+      "It is allowed in full at any income level because that spouse has no workplace plan.",
+      "It is subject to a separate, higher income phase-out range and may be fully or partially allowed."
      ],
-     "answer": 1,
-     "explanation": "A spouse who is not an active participant but is married to one gets her own, much higher MAGI phase-out range, so she may still claim a full or partial deduction even though her husband's is fully phased out. Active-participant status is not attributed to the other spouse — but her deduction is not unlimited either, since the higher spousal range can still phase it out, and filing separately actually imposes a near-zero phase-out range.",
+     "answer": 3,
+     "explanation": "A spouse who is not an active participant but is married to one is subject to a separate, much higher modified adjusted gross income (MAGI) phase-out range and may still claim a full or partial deduction. Active-participant status is not attributed to the other spouse, the deduction is not unlimited, and married-filing-separately imposes a near-zero phase-out range.",
      "topic": "Spousal IRA deduction",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "An investor in a 35% marginal bracket compares a corporate bond yielding 6.0% with a municipal bond. What muni yield makes the investor indifferent, and which is better if the muni offers exactly 4.0%?",
+     "q": "An investor in the 35% marginal tax bracket compares a corporate bond yielding 6.00% with a municipal bond yielding 4.00%. What municipal yield would equal the corporate bond's after-tax yield, and which bond provides the greater after-tax return?",
      "choices": [
-      "The muni need only yield 3.90% to match; at 4.0% the muni is better",
-      "The muni must yield 3.90% to match; the corporate is better",
-      "The muni must yield 4.20% to match; the corporate is better",
-      "The muni must yield 9.23% to match; the muni is better"
+      "3.90%; the municipal bond",
+      "3.90%; the corporate bond",
+      "4.20%; the corporate bond",
+      "9.23%; the municipal bond"
      ],
      "answer": 0,
-     "explanation": "Convert the corporate to its after-tax (tax-free-equivalent) yield: 6.0% × (1 − 0.35) = 3.90%. A muni yielding more than 3.90% beats it, so at 4.0% the muni wins. The 9.23% figure wrongly grosses up the corporate (6%/0.65) instead of taxing it down for an apples-to-apples comparison with a tax-free muni.",
+     "explanation": "The corporate bond's after-tax yield is 6.00% × (1 − 0.35) = 3.90%, so a municipal bond yielding more than 3.90% is more favorable — and 4.00% exceeds it. The 9.23% figure incorrectly grosses up the corporate yield (6.00% ÷ 0.65) rather than reducing it for taxes to make an apples-to-apples comparison.",
      "topic": "Tax-equivalent yield",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "A grandparent contributes $90,000 in one year to a 529 plan for a grandchild and elects 5-year gift-tax averaging. Which statement about the federal tax treatment is TRUE?",
+     "q": "In a single year, a customer contributes $90,000 to a 529 plan for a grandchild and elects five-year gift-tax averaging. Which of the following statements describes the federal gift-tax treatment?",
      "choices": [
-      "The gift may be treated as made evenly over five years, applying five annual gift-tax exclusions to it",
-      "The amount above one annual exclusion is taxed now, because averaging elections apply only to trusts",
-      "The gift is deductible on his federal return, spread evenly across five years of itemized deductions",
-      "The gift escapes gift tax entirely, because education payments enjoy an unlimited gift-tax exclusion"
+      "The amount above one annual exclusion is subject to gift tax now, because the election applies only to trusts.",
+      "The contribution may be treated as made ratably over five years, applying five annual gift-tax exclusions.",
+      "The contribution is deductible on the contributor's federal return ratably over five years.",
+      "The contribution is entirely exempt from gift tax under the unlimited exclusion for education payments."
      ],
-     "answer": 0,
-     "explanation": "529 plans uniquely allow 'superfunding': a lump-sum contribution may be elected as if made ratably over five years, applying five annual gift-tax exclusions to shelter it from current gift tax. The unlimited educational exclusion covers only tuition paid directly to a school — not 529 contributions — and 529 contributions are never federally deductible.",
+     "answer": 1,
+     "explanation": "A 529 plan contribution may be elected as if made ratably over five years, applying five annual gift-tax exclusions to shelter the lump sum from current gift tax. The unlimited education exclusion applies only to tuition paid directly to a school, and 529 contributions are never deductible on the federal return.",
      "topic": "529 gift averaging",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Which of the following is the BEST distinction between a qualified and a non-qualified retirement plan?",
+     "q": "Which of the following statements BEST distinguishes a qualified retirement plan from a nonqualified retirement plan?",
      "choices": [
-      "A qualified plan is funded with after-tax dollars, while a non-qualified plan gives a current deduction",
-      "A qualified plan may cover select executives only, while a non-qualified plan must cover all employees",
-      "A qualified plan's earnings are taxed each year as earned, while a non-qualified plan's growth is deferred",
-      "A qualified plan takes pre-tax money and cannot discriminate, while a non-qualified plan may favor executives"
+      "A qualified plan is funded with after-tax dollars, while a nonqualified plan provides a current tax deduction.",
+      "A qualified plan may cover select executives only, while a nonqualified plan must cover all eligible employees.",
+      "A qualified plan takes pre-tax contributions and may not discriminate, while a nonqualified plan may favor executives.",
+      "A qualified plan's earnings are taxed annually as earned, while a nonqualified plan's earnings grow tax-deferred."
      ],
-     "answer": 3,
-     "explanation": "A qualified plan receives pre-tax (deductible) contributions and tax-deferred growth in exchange for meeting ERISA nondiscrimination and coverage rules; a non-qualified plan is funded after-tax and may be offered selectively to executives. The reversed-funding choice is the strongest trap — it is the non-qualified plan that lacks a current deduction, and qualified-plan earnings grow tax-deferred rather than being taxed annually.",
+     "answer": 2,
+     "explanation": "A qualified plan receives pre-tax contributions and tax-deferred growth in exchange for meeting nondiscrimination and coverage requirements; a nonqualified plan is funded after tax and may be offered selectively to executives. The reversed-funding choice is the trap — the nonqualified plan lacks the current deduction, and qualified-plan earnings grow tax-deferred, not taxed annually.",
      "topic": "Qualified vs non-qualified",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "In a single tax year an investor realizes a $5,000 capital loss, $1,000 of capital gains, and has substantial ordinary income. How are the losses treated for that year?",
+     "q": "During a single tax year, an investor realizes $1,000 of capital gains and $5,000 of capital losses and has substantial ordinary income. How are the losses applied for that year?",
      "choices": [
-      "$1,000 offsets the gains, $4,000 offsets ordinary income, and no amount carries forward",
-      "$1,000 offsets the gains, $3,000 offsets ordinary income, and $1,000 carries forward",
-      "$1,000 offsets the gains, no amount offsets ordinary income, and $4,000 carries forward",
-      "$3,000 offsets the gains, $2,000 offsets ordinary income, and no amount carries forward"
+      "$1,000 offsets the gains; nothing offsets ordinary income; $4,000 carries forward",
+      "$1,000 offsets the gains; $3,000 offsets ordinary income; $1,000 carries forward",
+      "$1,000 offsets the gains; $4,000 offsets ordinary income; nothing carries forward",
+      "$3,000 offsets the gains; $2,000 offsets ordinary income; nothing carries forward"
      ],
      "answer": 1,
-     "explanation": "Capital losses first net against capital gains ($5,000 − $1,000 = $4,000 net loss); up to $3,000 of the net loss may then offset ordinary income, and the remaining $1,000 carries forward to future years. Taking $4,000 against ordinary income ignores the annual $3,000 cap, and the excess is carried forward rather than lost.",
+     "explanation": "Capital losses first offset capital gains ($5,000 − $1,000 = $4,000 net loss); up to $3,000 of the net loss then offsets ordinary income, and the remaining $1,000 carries forward to future years. Deducting $4,000 against ordinary income ignores the $3,000 annual limit, and the excess carries forward rather than being lost.",
      "topic": "Capital loss deduction",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "An employee may elect a traditional pre-tax 401(k), a Roth 401(k), or split between them. Which statement correctly disambiguates the two?",
+     "q": "Which of the following statements correctly distinguishes traditional 401(k) deferrals from Roth 401(k) deferrals?",
      "choices": [
-      "Each account has its own separate deferral limit, so splitting lets an employee defer twice the maximum",
-      "The two share one elective deferral limit, but traditional deferrals are after-tax and Roth deferrals pre-tax",
-      "The two share one elective deferral limit, but the traditional is pre-tax and qualified Roth payouts are tax-free",
-      "The Roth 401(k) carries the lower Roth IRA contribution cap rather than the 401(k) elective deferral limit"
+      "They share a single elective deferral limit; traditional deferrals are pre-tax, and qualified Roth distributions are tax-free.",
+      "They share a single elective deferral limit; traditional deferrals are after-tax, and Roth deferrals are pre-tax.",
+      "Each type has its own separate elective deferral limit, so splitting contributions doubles the allowable deferral.",
+      "Roth 401(k) deferrals are subject to the Roth IRA contribution limit rather than the 401(k) deferral limit."
      ],
-     "answer": 2,
-     "explanation": "Traditional and Roth 401(k) deferrals share a single combined elective deferral limit — splitting never doubles it. Traditional deferrals reduce current taxable income and are taxed at withdrawal; Roth deferrals are made after-tax and qualified withdrawals are tax-free. The choice that reverses the pre-tax/after-tax treatment is the classic trap, and a Roth 401(k) follows the full 401(k) limit, not the much lower Roth IRA cap.",
+     "answer": 0,
+     "explanation": "Traditional and Roth 401(k) deferrals share a single elective deferral limit, so splitting never increases the maximum. Traditional deferrals are pre-tax and taxable at withdrawal; Roth deferrals are after-tax with tax-free qualified distributions. The reversed tax-treatment choice is the trap, and a Roth 401(k) follows the 401(k) limit, not the lower Roth IRA cap.",
      "topic": "Traditional vs Roth 401(k)",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "Consider these statements about education savings vehicles: I. 529 plan earnings used for qualified higher-education expenses are federally tax-free. II. Coverdell ESA contributions generally must stop once the beneficiary reaches 18, and the account must be used by age 30. III. Contributions to both 529 plans and Coverdell ESAs are deductible on the federal return. Which are correct?",
+     "q": "Which of the following statements regarding 529 plans and Coverdell Education Savings Accounts (ESAs) is NOT true?",
      "choices": [
-      "I and II only",
-      "I and III only",
-      "II and III only",
-      "I, II, and III"
+      "Earnings in a 529 plan are federally tax-free when used for qualified higher-education expenses.",
+      "Contributions to a Coverdell ESA generally must stop when the beneficiary reaches age 18.",
+      "Coverdell ESA funds generally must be used by the time the beneficiary reaches age 30.",
+      "Contributions to 529 plans and Coverdell ESAs are deductible on the contributor's federal return."
      ],
-     "answer": 0,
-     "explanation": "I is correct: 529 earnings are federally tax-free for qualified higher-education expenses. II is correct: Coverdell contributions generally must cease at beneficiary age 18, and remaining funds must be used by age 30 (special-needs exceptions aside). III is false: neither 529 nor Coverdell contributions are deductible on the federal return — so I and II is the answer.",
+     "answer": 3,
+     "explanation": "Contributions to 529 plans and Coverdell ESAs are never deductible on the federal return, making that statement false. The others are true: 529 earnings are federally tax-free when used for qualified higher-education expenses, and Coverdell contributions generally must stop at beneficiary age 18, with funds used by age 30 (special-needs exceptions aside).",
      "topic": "Education plans roman",
      "difficulty": "hard",
      "style": "roman"
@@ -26164,119 +26164,119 @@ window.SIE_DATA = {
    ],
    "questions": [
     {
-     "q": "A registered representative learns from her brother, a corporate controller, that his company will report a surprise earnings miss tomorrow morning. Before the announcement she sells short the stock in her personal account and also calls three clients suggesting they sell their long positions. Which violation BEST describes her own short sale?",
+     "q": "A registered representative (RR) learns material nonpublic information about an issuer from a corporate officer and sells the issuer's stock short before the information is made public. The RR's short sale is best described as:",
      "choices": [
-      "Front running, because she traded before her clients' orders were entered",
-      "Selling away, because she executed the short sale outside her firm's oversight",
-      "Insider trading, because she traded on material nonpublic information",
-      "Marking the close, because her short sale pressured the stock's price"
+      "front running.",
+      "selling away.",
+      "insider trading.",
+      "marking the close."
      ],
      "answer": 2,
-     "explanation": "Trading on material nonpublic information (the unannounced earnings miss) obtained through a relationship of trust is insider trading under the tipper-tippee/misappropriation theory. Front running requires trading ahead of a known pending customer or block order to exploit its market impact; advising clients after her own trade does not convert inside-information trading into front running.",
+     "explanation": "Trading on material nonpublic information obtained through a relationship of trust is insider trading. Front running requires trading ahead of a known pending customer or block order to exploit its market impact, which is not present here; selling away and marking the close involve outside securities transactions and closing-price manipulation, respectively.",
      "topic": "Insider trading vs front running",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A research analyst overhears that the firm's trading desk is about to work a 500,000-share institutional buy order likely to move the price. Moments before the block is executed, he buys call options in his personal account. This is BEST characterized as:",
+     "q": "Shortly before a firm executes an institutional customer's large block order, a trader purchases call options on the underlying security for a personal account. The trader has engaged in:",
      "choices": [
-      "Insider trading on material nonpublic corporate information",
-      "Front running",
-      "Interpositioning",
-      "Painting the tape"
+      "insider trading.",
+      "front running.",
+      "interpositioning.",
+      "painting the tape."
      ],
      "answer": 1,
-     "explanation": "Front running is trading (including in options) ahead of a known, imminent customer block order to profit from its anticipated market impact. It is not insider trading because no material nonpublic corporate information is involved; the edge comes from advance knowledge of order flow, not company fundamentals.",
+     "explanation": "Front running is trading, including in options, ahead of a known imminent customer block order to profit from its anticipated market impact. It is not insider trading because the advantage comes from advance knowledge of order flow rather than material nonpublic corporate information.",
      "topic": "Front running",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A broker-dealer routes a customer order through an affiliated dealer that buys at the inside price and resells to the customer at a markup, even though the firm could have dealt directly with the best market maker at the better price. This prohibited practice is:",
+     "q": "A broker-dealer inserts an affiliated dealer between a customer's order and the best available market, causing the customer to receive an inferior price. This prohibited practice is known as:",
      "choices": [
-      "Interpositioning",
-      "Churning",
-      "Freeriding",
-      "Commingling"
+      "interpositioning.",
+      "churning.",
+      "freeriding.",
+      "commingling."
      ],
      "answer": 0,
-     "explanation": "Interpositioning is inserting a third party between the customer and the best available market when doing so provides no benefit to the customer and produces a worse price or added cost. Churning is excessive trading to generate commissions, not the needless insertion of a middleman.",
+     "explanation": "Interpositioning is inserting a third party between a customer and the best available market when doing so provides no benefit to the customer and produces a worse price or added cost. Churning is excessive trading to generate commissions, not the needless insertion of a middleman.",
      "topic": "Interpositioning",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A representative effects 140 transactions over six months in a conservative retiree's account, generating roughly 9% of account value in commissions while the account's value stays flat. To establish churning, a regulator must show all of the following EXCEPT:",
+     "q": "To establish churning, a regulator must show each of the following elements EXCEPT:",
      "choices": [
-      "The representative exercised control over the account",
-      "The level of trading was excessive in light of the customer's objectives",
-      "The customer suffered a net realized loss on the positions",
-      "The representative acted with intent (scienter) to generate commissions"
+      "control over the account by the representative.",
+      "excessive trading for the customer's objectives.",
+      "a net realized loss on the account's positions.",
+      "an intent (scienter) to generate commissions."
      ],
      "answer": 2,
-     "explanation": "Churning requires control over the account, trading excessive relative to the customer's objectives, and intent (scienter). A net realized loss is NOT an element; churning can occur even if the account breaks even or makes money, because the violation is the commission-driven excessive activity, not the trading outcome.",
+     "explanation": "Churning requires control over the account, trading excessive relative to the customer's objectives, and intent (scienter) to generate commissions. A net realized loss is not an element; churning can occur even if the account breaks even or gains, because the violation is the commission-driven excessive activity, not the trading outcome.",
      "topic": "Churning elements",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "In a cash account, a customer buys $20,000 of stock Monday without sufficient funds on deposit, then sells the same shares Tuesday for $21,000 intending to use those proceeds to pay for the original purchase. The firm never received payment. Under Regulation T this is:",
+     "q": "In a cash account, a customer purchases stock without depositing payment and sells the shares before paying, using the sale proceeds to cover the purchase. Under Regulation T, this practice is known as:",
      "choices": [
-      "Marking the close, requiring a SAR filing within 30 days",
-      "Selling away, requiring prior written notice to the firm",
-      "Commingling, requiring segregation of customer shares",
-      "Freeriding, generally requiring a 90-day account freeze"
+      "marking the close.",
+      "selling away.",
+      "commingling.",
+      "freeriding."
      ],
      "answer": 3,
-     "explanation": "Freeriding is buying a security in a cash account and selling it before paying for the purchase, effectively using the sale proceeds to cover the buy without ever depositing funds. The Reg T remedy is a 90-day freeze, during which the customer must pay in advance for purchases. Selling away and commingling involve outside transactions and asset mixing, not unpaid purchases.",
+     "explanation": "Freeriding is buying a security in a cash account and selling it before paying for the purchase, using the sale proceeds to cover the buy. The general remedy under Regulation T is a 90-day freeze requiring payment in advance for purchases. Selling away and commingling involve outside transactions and improper mixing of assets, not unpaid purchases.",
      "topic": "Freeriding / Reg T",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "A representative arranges for a wealthy client to invest $250,000 in a private real estate partnership, receives compensation, but never gives written notice to her firm or obtains approval, and the transaction never appears on the firm's books. The PRIMARY violation is:",
+     "q": "A registered representative (RR) receives compensation for participating in a private securities transaction without providing prior written notice to, or receiving approval from, the firm. Which of the following violations has the RR committed?",
      "choices": [
-      "Front running of the orders placed for the partnership",
-      "Selling away, an unapproved private securities transaction",
-      "Commingling of the customer's funds with firm assets",
-      "Freeriding on the customer's $250,000 partnership purchase"
+      "Commingling",
+      "Freeriding",
+      "Front running",
+      "Selling away"
      ],
-     "answer": 1,
-     "explanation": "Selling away (FINRA Rule 3280) occurs when an associated person participates for compensation in a private securities transaction outside the regular scope of employment without prior written notice to, and approval from, the firm. Commingling — the strongest distractor — is mixing customer assets with firm or other assets, which is not what happened here.",
+     "answer": 3,
+     "explanation": "Selling away (FINRA Rule 3280) occurs when an associated person participates, for compensation, in a private securities transaction outside the regular scope of employment without prior written notice to, and approval from, the firm. Commingling — the strongest distractor — is mixing customer assets with firm assets, which did not occur here.",
      "topic": "Selling away",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Which of the following BEST distinguishes commingling from selling away?",
+     "q": "Which of the following statements best distinguishes commingling from selling away?",
      "choices": [
-      "Commingling mixes customer assets with firm assets; selling away is an unapproved outside securities transaction",
-      "Commingling is pledging firm assets to customers; selling away is trading ahead of a customer's pending block order",
-      "Commingling is excessive trading to generate commissions; selling away is using sale proceeds to pay for a purchase",
-      "Commingling applies only to cash accounts; selling away applies only to trades executed in margin accounts"
+      "Commingling is mixing customer assets with firm assets; selling away is an unapproved outside securities transaction.",
+      "Commingling is pledging firm assets to customers; selling away is trading ahead of a customer's block order.",
+      "Commingling is excessive trading to generate commissions; selling away is selling shares before paying for them.",
+      "Commingling occurs only in customer cash accounts; selling away occurs only in customer margin accounts."
      ],
      "answer": 0,
-     "explanation": "Commingling is improperly mixing customer securities or funds with firm assets (or pledging customer securities for the firm's benefit); selling away is participating in a securities transaction outside the firm without required notice and approval. Trading ahead of a customer order is front running, excessive trading is churning, and neither violation is confined to a particular account type.",
+     "explanation": "Commingling is improperly mixing customer securities or funds with firm assets; selling away is participating in a securities transaction outside the firm without required notice and approval. Trading ahead of a customer order is front running, excessive trading is churning, selling before paying is freeriding, and neither violation is limited to one account type.",
      "topic": "Commingling vs selling away",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "Just before the 4:00 PM close, a trader holding a large long position enters a series of small aggressive buy orders specifically to push the closing print higher so that month-end portfolio valuations and his performance fee look better. This manipulative practice is:",
+     "q": "Just before the close of trading, a trader with a large long position enters a series of aggressive buy orders to raise a security's closing price. This manipulative practice is known as:",
      "choices": [
-      "Painting the tape",
-      "Marking the close",
-      "Spoofing",
-      "Interpositioning"
+      "painting the tape.",
+      "marking the close.",
+      "spoofing.",
+      "interpositioning."
      ],
      "answer": 1,
-     "explanation": "Marking the close is entering orders at or near the close to manipulate the closing price, often to influence valuations, NAVs, or compensation tied to closing marks. Painting the tape instead creates false activity through wash or matched trades to feign volume, not specifically to set the closing price.",
+     "explanation": "Marking the close is entering orders at or near the close to manipulate a security's closing price, often to influence valuations or compensation tied to closing marks. Painting the tape instead creates the appearance of activity through wash or matched trades and does not specifically target the closing print.",
      "topic": "Marking the close vs painting the tape",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "Two traders coordinate to buy and sell the same thinly traded security back and forth between their accounts, creating the illusion of active trading and rising volume to lure other investors. No real change in beneficial ownership occurs. This is BEST described as:",
+     "q": "To create the appearance of active trading, two traders repeatedly buy and sell a security between their own accounts with no change in beneficial ownership. Which of the following terms describes this activity?",
      "choices": [
       "Spoofing",
       "Front running",
@@ -26284,217 +26284,217 @@ window.SIE_DATA = {
       "Marking the close"
      ],
      "answer": 2,
-     "explanation": "Painting the tape creates the appearance of active trading or volume through wash trades and matched orders with no genuine change in beneficial ownership, to mislead other investors. Spoofing — the closest distractor — relies on orders the trader intends to cancel before execution rather than executed wash trades, and marking the close targets only the closing price at the end of the session.",
+     "explanation": "Painting the tape creates the appearance of active trading through wash trades and matched orders with no genuine change in beneficial ownership. Spoofing — the closest distractor — relies on orders intended to be canceled before execution rather than executed wash trades, and marking the close targets only the closing price.",
      "topic": "Painting the tape vs spoofing",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A high-frequency trader repeatedly posts large visible sell orders he never intends to execute, cancels them within milliseconds once the displayed pressure pushes the price down, and simultaneously buys at the depressed price with hidden orders. Which statement is TRUE?",
+     "q": "A trader enters large displayed orders with the intent to cancel them before execution, creating false price pressure in order to trade at more favorable prices. This prohibited practice is known as:",
      "choices": [
-      "It is churning, because the rapid order entry generates excessive activity",
-      "It is interpositioning, because hidden orders sit between displayed quotes",
-      "It is permitted, because the large visible sell orders were genuine quotes",
-      "It is spoofing, because the orders were entered with intent to cancel"
+      "churning.",
+      "interpositioning.",
+      "painting the tape.",
+      "spoofing."
      ],
      "answer": 3,
-     "explanation": "Spoofing is bidding or offering with the intent to cancel before execution to create false price pressure; it is expressly prohibited under the Securities Exchange Act and reinforced by the Dodd-Frank Act. The displayed orders were not genuine quotes because he never intended to execute them, and churning concerns excessive trading in a customer account to generate commissions.",
+     "explanation": "Spoofing is bidding or offering with the intent to cancel before execution to create false price pressure; it is expressly prohibited under the Securities Exchange Act of 1934 and reinforced by the Dodd-Frank Act. Painting the tape uses executed wash trades, churning is excessive trading in a customer account, and interpositioning inserts a needless middleman.",
      "topic": "Spoofing",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "At one branch, a customer deposits $9,500 cash Monday and $9,000 cash Tuesday, appearing to deliberately stay under the reporting threshold. Which statement is TRUE about the institution's obligations?",
+     "q": "A customer deposits $9,500 in cash on Monday and $9,000 in cash on Tuesday, appearing to deliberately remain below the reporting threshold. Which of the following statements about the firm's obligations is accurate?",
      "choices": [
-      "No report of any kind is required because each day's deposits stayed under $10,000",
-      "A SAR may be warranted because the deposits suggest structuring to evade a CTR",
-      "A CTR must be filed because the two days' deposits aggregate to over $10,000",
-      "An OFAC blocking report is required because the customer is evading BSA reporting"
+      "No report of any kind is required, because each day's total is below $10,000.",
+      "A suspicious activity report (SAR) may be warranted for apparent structuring.",
+      "A currency transaction report (CTR) is required for the aggregated deposits.",
+      "A blocking report to the Office of Foreign Assets Control (OFAC) is required."
      ],
      "answer": 1,
-     "explanation": "CTR aggregation applies to more than $10,000 in cash by or on behalf of one person in a single business day, so deposits made on different days do not aggregate into a CTR here — the strongest distractor. But deliberately keeping each deposit just under the threshold is structuring, which is itself illegal and warrants a SAR, so 'no report of any kind' is also wrong.",
+     "explanation": "CTR aggregation applies to more than $10,000 in cash by or on behalf of one person in a single business day, so deposits made on different days do not trigger a CTR here. Deliberately keeping each deposit under the threshold is structuring, which is itself illegal and may warrant a SAR, so no report of any kind is also wrong; OFAC blocking applies to sanctions matches, not structuring.",
      "topic": "AML structuring / CTR / SAR",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "A customer withdraws $11,500 in cash from a brokerage account in one business day and the firm files a Currency Transaction Report. By when must the CTR generally be filed with FinCEN, and what threshold triggered it?",
+     "q": "A firm files a currency transaction report (CTR) after a customer withdraws $11,500 in cash in a single business day. Which of the following filing deadlines and thresholds applies to a CTR?",
      "choices": [
-      "Within 30 calendar days; cash transactions of $5,000 or more",
+      "Within 10 business days; any wire transfer over $3,000",
       "Within 15 calendar days; cash transactions exceeding $10,000",
-      "Within 90 calendar days; cash transactions of $25,000 or more",
-      "Within 10 business days; any wire transfer over $3,000"
+      "Within 30 calendar days; cash transactions of $5,000 or more",
+      "Within 90 calendar days; cash transactions of $25,000 or more"
      ],
      "answer": 1,
-     "explanation": "A CTR is required for cash transactions exceeding $10,000 in a single business day and must be filed with FinCEN within 15 calendar days. The $5,000 figure is the general SAR threshold, $3,000 relates to the funds-transfer recordkeeping/travel rule, and none of the other timeframes apply to a CTR.",
+     "explanation": "A CTR is required for cash transactions exceeding $10,000 in a single business day and must be filed with the Financial Crimes Enforcement Network (FinCEN) within 15 calendar days. The $5,000 figure is the general SAR threshold, $3,000 relates to the funds-transfer recordkeeping rule, and the other timeframes do not apply to a CTR.",
      "topic": "CTR threshold and timing",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "A compliance officer concludes that a series of transactions totaling $7,500 appears designed to disguise the source of funds with no apparent business purpose. Regarding the resulting Suspicious Activity Report, which statement is TRUE?",
+     "q": "A firm identifies transactions totaling $7,500 that appear designed to disguise the source of funds. Which of the following statements about the resulting suspicious activity report (SAR) is accurate?",
      "choices": [
-      "The SAR must be filed within 30 days and kept confidential from the customer",
-      "The SAR must be filed within 15 days and disclosed to the customer on request",
-      "No SAR is required because the transactions total less than the $10,000 threshold",
-      "The SAR must be filed with FINRA, which then notifies the customer of the filing"
+      "It must be filed within 30 calendar days and kept confidential from the customer.",
+      "It must be filed within 15 calendar days and disclosed to the customer on request.",
+      "It is not required, because the transactions total less than the $10,000 threshold.",
+      "It must be filed with FINRA, which then notifies the customer of the filing."
      ],
      "answer": 0,
-     "explanation": "A SAR generally must be filed with FinCEN within 30 calendar days of initial detection, and firms are strictly prohibited from disclosing the filing to the customer or anyone involved. The SAR threshold is $5,000 (not $10,000), so the $7,500 pattern qualifies; the 15-day deadline belongs to CTRs, and SARs are never routed through FINRA or revealed to the customer.",
+     "explanation": "A SAR generally must be filed with FinCEN within 30 calendar days of initial detection, and firms are strictly prohibited from disclosing the filing to the customer or anyone involved. The SAR threshold is $5,000 — not $10,000 — so the $7,500 pattern qualifies; the 15-day deadline applies to CTRs, and SARs are not filed with FINRA.",
      "topic": "SAR confidentiality and timing",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "Place the three stages of money laundering in correct chronological sequence: I. Layering  II. Integration  III. Placement",
+     "q": "Which of the following sequences places the three stages of money laundering in the correct order?",
      "choices": [
-      "I, II, III",
-      "III, I, II",
-      "II, III, I",
-      "III, II, I"
+      "Layering, integration, placement",
+      "Integration, placement, layering",
+      "Placement, layering, integration",
+      "Placement, integration, layering"
      ],
-     "answer": 1,
-     "explanation": "The stages are Placement (introducing illicit cash into the financial system), then Layering (moving funds through complex transactions to obscure their origin), then Integration (reintroducing the now-clean funds as apparently legitimate wealth). The correct order is therefore III, I, II.",
+     "answer": 2,
+     "explanation": "Money laundering proceeds from placement (introducing illicit cash into the financial system) to layering (complex transactions that obscure the origin of the funds) to integration (returning the funds as apparently legitimate wealth).",
      "topic": "Money laundering stages",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "A wire is initiated from a new client whose name closely matches an individual on the Specially Designated Nationals (SDN) list. Which agency administers that list, and what action is required?",
+     "q": "A wire transfer involves a party whose name matches an entry on the Specially Designated Nationals (SDN) list. Which of the following statements identifies the administering agency and the required action?",
      "choices": [
-      "FinCEN administers it; the firm must file a CTR within 15 calendar days",
-      "FINRA administers it; the firm may proceed after giving FINRA prior notice",
-      "OFAC administers it; the firm must block the transaction and report to OFAC",
-      "The SEC administers it; the firm must suspend the account and amend Form U4"
+      "FinCEN administers the list; the firm must file a currency transaction report within 15 days.",
+      "FINRA administers the list; the firm may proceed after providing FINRA with prior notice.",
+      "OFAC administers the list; the firm must block the transaction and report to OFAC.",
+      "The SEC administers the list; the firm must suspend the account and amend Form U4."
      ],
      "answer": 2,
-     "explanation": "The Office of Foreign Assets Control (OFAC), part of the Treasury, administers the SDN list, and firms must block or reject prohibited transactions involving listed parties and report to OFAC. FinCEN — the strongest distractor — administers BSA reporting (CTRs and SARs) but does not maintain the sanctions list, and FINRA and the SEC play no role in it.",
+     "explanation": "The Office of Foreign Assets Control (OFAC), part of the Treasury Department, administers the SDN list; firms must block or reject prohibited transactions involving listed parties and report to OFAC. FinCEN — the strongest distractor — administers Bank Secrecy Act reporting but does not maintain the sanctions list, and FINRA and the SEC play no role in it.",
      "topic": "OFAC / SDN list",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Under a firm's Customer Identification Program (CIP), which set of items must be obtained and verified at a minimum before opening an account for an individual?",
+     "q": "A firm's customer identification program (CIP) requires which of the following sets of information, at a minimum, before an account is opened for an individual?",
      "choices": [
-      "Occupation, employer name, annual income, and a current credit report",
-      "Name, date of birth, address, and a taxpayer or Social Security number",
+      "Occupation, employer name, annual income, and credit history",
+      "Name, date of birth, address, and taxpayer identification number",
       "Net worth, liquidity needs, risk tolerance, and investment objectives",
-      "Citizenship, marital status, beneficiaries, and source of deposited funds"
+      "Citizenship, marital status, beneficiaries, and source of funds"
      ],
      "answer": 1,
-     "explanation": "The CIP minimum requires obtaining and verifying the customer's name, date of birth, a residential or business address, and an identification number (SSN/TIN for U.S. persons). Net worth, objectives, and risk tolerance are suitability/KYC items — the strongest distractor — and occupation, income, and credit information are not CIP identity elements.",
+     "explanation": "At a minimum, a CIP requires obtaining and verifying the customer's name, date of birth, address, and an identification number, such as a Social Security or taxpayer identification number. Net worth, objectives, and risk tolerance are suitability items — the strongest distractor — and occupation, income, and credit history are not CIP identity elements.",
      "topic": "CIP requirements",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "Which statement about the Bank Secrecy Act (BSA) framework is TRUE?",
+     "q": "Which of the following statements about the Bank Secrecy Act (BSA) is accurate?",
      "choices": [
-      "FinCEN, a bureau of the Treasury, administers the BSA and receives CTRs and SARs",
-      "The BSA is administered by the SEC and applies only to publicly traded broker-dealers",
-      "CTRs are filed with OFAC and SARs are filed with the SEC",
-      "The BSA requires firms to obtain customer suitability information before any trade"
+      "The Financial Crimes Enforcement Network (FinCEN), a Treasury bureau, administers the BSA and receives CTR and SAR filings.",
+      "The Securities and Exchange Commission (SEC) administers the BSA, which applies only to publicly traded broker-dealers.",
+      "CTRs are filed with the Office of Foreign Assets Control (OFAC), and SARs are filed directly with the SEC.",
+      "The BSA requires firms to obtain customer suitability information before executing any securities transaction."
      ],
      "answer": 0,
-     "explanation": "FinCEN (Financial Crimes Enforcement Network), a bureau of the U.S. Treasury, administers the BSA and is the destination for both CTR and SAR filings. The SEC does not administer the BSA, CTRs and SARs both go to FinCEN (not OFAC or the SEC), and the BSA concerns AML rather than suitability.",
+     "explanation": "FinCEN, a bureau of the U.S. Treasury, administers the BSA and is the destination for both CTR and SAR filings. The SEC does not administer the BSA, CTRs and SARs do not go to OFAC or the SEC, and the BSA addresses money laundering rather than suitability.",
      "topic": "BSA / FinCEN",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "A firm wants to share a customer's nonpublic personal information with a nonaffiliated third party for marketing. Under Regulation S-P, which statement is TRUE?",
+     "q": "Before sharing customers' nonpublic personal information with a nonaffiliated third party for marketing purposes, a firm subject to Regulation S-P must:",
      "choices": [
-      "The customer must opt in before the firm shares any data with third parties",
-      "No notice is needed because existing customers consent when opening the account",
-      "Reg S-P bars sharing nonpublic personal information with any outside party",
-      "The firm must give privacy notices and an opt-out before sharing the data"
+      "obtain each customer's affirmative opt-in consent before sharing.",
+      "take no further action, because customers consent at account opening.",
+      "decline to share, because such disclosure is generally prohibited.",
+      "provide privacy notices and a reasonable opportunity to opt out."
      ],
      "answer": 3,
-     "explanation": "Regulation S-P requires initial and annual privacy notices and an opt-out opportunity before disclosing nonpublic personal information to nonaffiliated third parties (subject to exceptions). It is an opt-out regime, not opt-in — the strongest distractor — and it does not ban all information sharing.",
+     "explanation": "Regulation S-P requires initial and annual privacy notices and a reasonable opportunity to opt out before nonpublic personal information is disclosed to nonaffiliated third parties, subject to exceptions. It is an opt-out regime, not opt-in — the strongest distractor — and it does not prohibit all information sharing.",
      "topic": "Reg S-P privacy",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "An associated person wants to thank an employee of an institutional client for their business with year-end gifts. Under FINRA Rule 3220, which of the following may be given without violating the limit?",
+     "q": "Under FINRA Rule 3220, which of the following gifts from an associated person to an employee of a customer is permissible in a calendar year?",
      "choices": [
-      "A single $100 gift to an employee who received no others that year",
-      "Two separate $60 gift baskets to the same employee in one calendar year",
-      "A $90 gift followed by a $30 gift to the same employee that year",
-      "A $150 gift offset by the employee's return of a $50 item that year"
+      "A single $100.00 gift, with no other gifts that year",
+      "Two $60.00 gifts to the same recipient during the year",
+      "A $90.00 gift followed by a $30.00 gift during the year",
+      "A $150.00 gift offset by the return of a $50.00 item"
      ],
      "answer": 0,
-     "explanation": "FINRA Rule 3220 caps gifts in relation to a person's business at $100 per recipient per calendar year, measured in aggregate. A single $100 gift with no others is exactly at the limit and permissible. Two $60 gifts ($120) and a $90 plus $30 gift ($120) each aggregate over the cap, and a partial return does not net a $150 gift down below $100.",
+     "explanation": "FINRA Rule 3220 limits gifts given in relation to the recipient's employer's business to $100.00 per recipient per calendar year, measured in aggregate. A single $100.00 gift is exactly at the limit. Two $60.00 gifts and a $90.00 plus $30.00 combination each aggregate to $120.00, and a partial return does not reduce a $150.00 gift below the cap.",
      "topic": "Gift limit aggregation",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "A registered representative borrows $5,000 from a customer who is NOT a family member and NOT a financial institution in the lending business, with no firm policy permitting such loans and no notice to the firm. Which statement is TRUE?",
+     "q": "A registered representative (RR) borrows $5,000 from a customer who is neither an immediate family member nor a financial institution in the business of lending. Under FINRA Rule 3240, the loan is:",
      "choices": [
-      "The loan is permitted because it falls below the $10,000 disclosure threshold",
-      "The loan is prohibited in all cases; no exception ever permits customer loans",
-      "The loan is prohibited unless an exception applies and firm procedures allow it",
-      "The loan is permitted if the representative repays it within 30 calendar days"
+      "permitted, because the amount is below a $10,000 threshold.",
+      "prohibited under all circumstances, with no available exceptions.",
+      "prohibited unless an exception applies and firm procedures permit it.",
+      "permitted, provided the loan is repaid within 30 calendar days."
      ],
      "answer": 2,
-     "explanation": "FINRA Rule 3240 generally prohibits borrowing from or lending to customers unless the firm has written procedures permitting it AND the arrangement fits a recognized exception (immediate family, a financial institution in the lending business, or a qualifying personal/business relationship), with any required notice and approval. There is no dollar safe harbor and no repayment-window cure, but the ban is not absolute — the strongest distractor overstates it.",
+     "explanation": "FINRA Rule 3240 generally prohibits borrowing from or lending to customers unless the firm has written procedures permitting such arrangements and a recognized exception applies, such as immediate family, a financial institution in the lending business, or a qualifying personal or business relationship. There is no dollar safe harbor and no repayment-window cure, but the prohibition is not absolute — the strongest distractor overstates it.",
      "topic": "Borrowing from customers",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "A new client deposits $9,800 cash on each of three consecutive days at a broker-dealer ($29,400 total), structured as separate same-amount deposits. Which combination of responses is appropriate?  I. File a CTR for each day in which cash exceeds $10,000  II. Consider filing a SAR for apparent structuring  III. Notify the customer in writing that a SAR was filed",
+     "q": "A customer deposits $9,800 in cash on each of three consecutive business days. Which of the following actions by the firm is most appropriate?",
      "choices": [
-      "I and II only",
-      "II only",
-      "I and III only",
-      "I, II, and III"
+      "File a currency transaction report (CTR) for each day's deposit",
+      "File a single CTR that aggregates the three days' cash deposits",
+      "Notify the customer that a suspicious activity report (SAR) was filed",
+      "File a SAR reporting the apparent structuring of the deposits"
      ],
-     "answer": 1,
-     "explanation": "Each individual day's cash is $9,800, which does not exceed the $10,000 single-business-day CTR threshold, so Item I is wrong as stated. The just-under-threshold pattern strongly suggests structuring that may warrant a SAR (II). Item III is prohibited, as firms must never tell a customer a SAR was filed; therefore only II applies.",
+     "answer": 3,
+     "explanation": "Each day's cash remains below the $10,000 single-business-day CTR threshold, and amounts on different days do not aggregate, so no CTR is required. The just-under-threshold pattern strongly suggests structuring, which warrants a SAR; disclosing a SAR filing to the customer is strictly prohibited.",
      "topic": "Structuring / CTR / SAR confidentiality",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "Which of the following is NOT, by itself, a prohibited or reportable event requiring action under AML or anti-fraud rules?",
+     "q": "Which of the following activities, by itself, is permissible and requires no report or other action under anti-money laundering (AML) or anti-fraud rules?",
      "choices": [
-      "A customer asks detailed questions about the firm's AML reporting thresholds and then restructures a planned deposit",
-      "A representative executes an unsolicited sell order at the customer's own request during regular hours",
-      "A trader cancels large displayed orders within milliseconds of entry to move the price",
-      "A single $12,000 cash deposit is made into a brokerage account in one business day"
+      "A customer restructures a planned deposit after asking about the firm's reporting thresholds.",
+      "A trader cancels large displayed orders moments after entry to move a security's price.",
+      "A representative executes an unsolicited sell order at a customer's request during regular hours.",
+      "A customer makes a single $12,000 cash deposit into a brokerage account in one business day."
      ],
-     "answer": 1,
-     "explanation": "Executing an unsolicited, customer-directed sell order during normal hours is ordinary, permissible activity. The others are red flags or violations: probing thresholds then restructuring suggests structuring (possible SAR), rapid cancellation of displayed orders is spoofing, and a $12,000 single-day cash deposit exceeds the $10,000 CTR threshold.",
+     "answer": 2,
+     "explanation": "Executing an unsolicited, customer-directed sell order during regular hours is ordinary, permissible activity. Probing reporting thresholds and then restructuring a deposit suggests structuring and a possible SAR, rapidly canceling displayed orders to move a price is spoofing, and a $12,000 single-day cash deposit exceeds the $10,000 CTR threshold.",
      "topic": "AML red flags / prohibited activities",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "Which statement BEST disambiguates marking the close from spoofing?",
+     "q": "Which of the following statements best distinguishes marking the close from spoofing?",
      "choices": [
-      "Marking the close uses canceled orders at the open, whereas spoofing uses executed wash trades between accounts",
-      "Marking the close uses executed trades near the close, whereas spoofing uses orders intended to be canceled",
-      "Marking the close applies only to equity securities, whereas spoofing applies only to futures under Dodd-Frank",
-      "Marking the close is permitted when used to hedge, whereas spoofing is merely a recordkeeping violation"
+      "Marking the close uses canceled orders at the open; spoofing uses executed wash trades between accounts.",
+      "Marking the close uses executed trades near the close; spoofing uses orders intended to be canceled.",
+      "Marking the close applies only to equity securities; spoofing applies only to futures trading.",
+      "Marking the close is permitted when used as a hedge; spoofing is merely a recordkeeping violation."
      ],
      "answer": 1,
-     "explanation": "Marking the close relies on actual executions concentrated at or near the close to push the closing price, while spoofing relies on non-bona-fide orders entered with intent to cancel to generate misleading price pressure. The reversed description is exactly backwards, neither practice is limited to a single product class, and neither is a permitted hedge or a mere recordkeeping issue.",
+     "explanation": "Marking the close relies on actual executions concentrated at or near the close to move the closing price, while spoofing relies on non-bona-fide orders entered with the intent to cancel. The reversed description is exactly backwards, neither practice is limited to one product class, and neither is permitted as a hedge or treated as a recordkeeping matter.",
      "topic": "Marking the close vs spoofing",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A firm receives an OFAC alert that an existing customer now matches an updated SDN listing. Which sequence of obligations is correct?  I. Block (freeze) the customer's assets/transactions as required  II. Report the blocked property/transaction to OFAC  III. Immediately return the funds to the customer to close the relationship",
+     "q": "A firm identifies an existing customer as a match to the Specially Designated Nationals (SDN) list administered by the Office of Foreign Assets Control (OFAC). Which of the following actions must the firm take?",
      "choices": [
-      "I and II only",
-      "I and III only",
-      "II and III only",
-      "I, II, and III"
+      "Block the customer's assets and report the blocked property to OFAC",
+      "Return the customer's funds and promptly terminate the relationship",
+      "File a currency transaction report (CTR) and continue to monitor the account",
+      "Suspend the account and await further instructions from the customer"
      ],
      "answer": 0,
-     "explanation": "When a customer matches an SDN listing, the firm must block (freeze) the assets or reject the prohibited transaction and report to OFAC; blocked property must be held in a blocked account. Item III is wrong because returning funds to a sanctioned party would itself violate OFAC sanctions, so only I and II are correct.",
+     "explanation": "A firm must block (freeze) the assets of a customer matching the SDN list, hold them in a blocked account, and report the blocked property to OFAC. Returning the funds would itself violate the sanctions, and a CTR or customer instructions have no bearing on a sanctions match.",
      "topic": "OFAC blocking obligations",
      "difficulty": "hard",
      "style": "roman"
@@ -27437,421 +27437,421 @@ window.SIE_DATA = {
    ],
    "questions": [
     {
-     "q": "A registered representative is convicted of a misdemeanor involving the misappropriation of customer funds. Under the federal securities laws and FINRA rules, this conviction triggers a statutory disqualification:",
+     "q": "A registered representative (RR) is convicted of a misdemeanor involving the misappropriation of customer funds. This conviction results in statutory disqualification:",
      "choices": [
-      "Only if the conviction occurred within the past 5 years",
-      "If the conviction occurred within the past 10 years",
-      "Permanently, regardless of when the conviction occurred",
-      "Never, because it is a misdemeanor rather than a felony"
+      "only if the conviction occurred within the past 5 years.",
+      "only if the conviction occurred within the past 10 years.",
+      "permanently, regardless of when the conviction occurred.",
+      "never, because the offense is a misdemeanor rather than a felony."
      ],
      "answer": 1,
-     "explanation": "A securities- or money-related misdemeanor (including theft, fraud, bribery, or misappropriation) is statutorily disqualifying if the conviction occurred within the prior 10 years; any felony is likewise disqualifying for 10 years. The trap is the 'never' choice: while non-investment-related misdemeanors are not disqualifying, money- and securities-related misdemeanors are, so the 10-year window is the operative rule.",
+     "explanation": "A misdemeanor involving securities or money — theft, fraud, bribery, or misappropriation — is statutorily disqualifying if the conviction occurred within the prior 10 years, the same window that applies to any felony. Non-investment-related misdemeanors are not disqualifying, which is the lure of the 'never' choice, but money- and securities-related misdemeanors are, so the 10-year window controls.",
      "topic": "Statutory disqualification",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Which of the following statements regarding the MSRB is TRUE?",
+     "q": "Which of the following statements regarding the Municipal Securities Rulemaking Board (MSRB) is TRUE?",
      "choices": [
-      "The MSRB writes rules for municipal securities dealers and examines bank dealers for compliance",
-      "The MSRB writes rules governing municipal securities firms but does not itself enforce them against member firms",
-      "The MSRB has direct enforcement authority over both broker-dealers and bank municipal dealers",
-      "The MSRB regulates the issuance of new municipal bonds by state and local governments"
+      "The MSRB writes rules for municipal securities dealers and examines bank dealers for compliance.",
+      "The MSRB writes rules for municipal securities dealers but does not enforce them.",
+      "The MSRB has direct enforcement authority over both broker-dealers and bank dealers.",
+      "The MSRB regulates the issuance of new municipal bonds by state and local governments."
      ],
      "answer": 1,
-     "explanation": "The MSRB is a rulemaking body only; it writes rules but has NO enforcement authority. Enforcement against securities firms is carried out by FINRA and the SEC, and against bank dealers by the bank regulators (e.g., the Fed, OCC, FDIC). The choice pairing MSRB rulemaking with examinations/enforcement is the classic trap, as is regulating issuers, who are largely shielded by the Tower Amendment.",
+     "explanation": "The MSRB is a rulemaking body only; it has no enforcement authority. Its rules are enforced against securities firms by FINRA and the SEC and against bank dealers by the federal bank regulators. Pairing MSRB rulemaking with examination authority is the classic trap, as is issuer regulation — municipal issuers are largely shielded by the Tower Amendment.",
      "topic": "MSRB",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "A customer's brokerage account holds $400,000 in securities and $300,000 in cash when the broker-dealer fails and is liquidated. Assuming the missing assets cannot be recovered from the firm, what is the maximum amount SIPC will cover for this single customer?",
+     "q": "A customer's account at a broker-dealer holds $400,000 in securities and $300,000 in cash when the firm fails, and none of the missing assets can be recovered. What is the maximum Securities Investor Protection Corporation (SIPC) coverage for this customer?",
      "choices": [
       "$500,000",
-      "$650,000",
       "$550,000",
+      "$650,000",
       "$700,000"
      ],
-     "answer": 1,
-     "explanation": "SIPC covers up to $500,000 total per separate customer, of which no more than $250,000 may be cash. The securities ($400,000) are fully covered, but the cash is capped at $250,000, so coverage is $400,000 + $250,000 = $650,000. The $700,000 choice ignores the $250,000 cash sub-limit, and $500,000 wrongly applies the aggregate cap to the securities alone. The uncovered $50,000 of cash becomes a general creditor claim.",
+     "answer": 2,
+     "explanation": "SIPC covers up to $500,000 per separate customer, of which no more than $250,000 may be cash. The $400,000 in securities is fully covered; the cash is capped at $250,000, so coverage totals $650,000. The $700,000 choice ignores the cash sub-limit, and $500,000 wrongly applies the aggregate cap. The uncovered $50,000 of cash becomes a general creditor claim.",
      "topic": "SIPC",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "All of the following are functions of the SEC EXCEPT:",
+     "q": "All of the following are functions of the Securities and Exchange Commission (SEC) EXCEPT:",
      "choices": [
-      "Delivering the regulatory element of continuing education to registered persons",
-      "Reviewing registration statements filed under the Securities Act of 1933",
-      "Overseeing self-regulatory organizations such as FINRA and the exchanges",
-      "Hearing appeals of FINRA disciplinary and statutory-disqualification decisions"
+      "delivering the Regulatory Element of continuing education to registered persons.",
+      "reviewing registration statements filed under the Securities Act of 1933.",
+      "overseeing self-regulatory organizations such as FINRA and the exchanges.",
+      "serving as the appellate body for appeals of FINRA disciplinary decisions."
      ],
      "answer": 0,
-     "explanation": "The SEC reviews '33 Act registration statements, oversees the SROs, and serves as the appellate body for FINRA disciplinary and eligibility matters. It does NOT administer or deliver the regulatory element of continuing education; that is a FINRA/SRO function delivered through the CE Online platform. The appellate role is the strongest distractor because it sounds like an SRO function, but it is a genuine SEC responsibility.",
+     "explanation": "The SEC reviews Securities Act of 1933 registration statements, oversees the self-regulatory organizations, and hears appeals of FINRA disciplinary decisions. Delivering the Regulatory Element of continuing education is a FINRA function. The appellate role is the strongest distractor because it sounds like a self-regulatory function, but it is a genuine SEC responsibility.",
      "topic": "SEC vs SRO",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "Under the FINRA continuing education framework effective in 2023, a registered person must satisfy the Regulatory Element:",
+     "q": "A registered person must complete the Regulatory Element of continuing education:",
      "choices": [
-      "On the second anniversary of registration and every three years thereafter",
-      "Annually, by December 31 of each calendar year, for each registration category held",
-      "Once, two years after initial registration, with no further requirement",
-      "Only when the person changes member firms or adds a registration"
+      "by the second anniversary of registration and every three years thereafter.",
+      "annually, by December 31 of each year, for each registration category held.",
+      "once, within two years of initial registration, with no further requirement.",
+      "only upon changing member firms or adding a new registration category."
      ],
      "answer": 1,
-     "explanation": "Under the current (2023) framework, the Regulatory Element must be completed ANNUALLY by December 31 for each representative or principal registration category the person holds. The 'second-anniversary-then-every-three-years' choice describes the legacy pre-2023 cycle and is now the trap. The Firm Element is separate and is the firm's own annual training obligation.",
+     "explanation": "The Regulatory Element must be completed annually by December 31 for each representative or principal registration category held. The second-anniversary-then-every-three-years choice describes the legacy pre-2023 cycle and is the trap. The Firm Element is the firm's separate annual training obligation.",
      "topic": "CE regulatory element",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A firm distributes a market commentary to 30 existing retail clients in one month and the same piece to 15 prospective retail investors that same month. How is this communication classified for principal-approval and filing purposes?",
+     "q": "Within a 30-calendar-day period, a member firm distributes a market commentary to 30 existing retail customers and 15 retail prospects. The commentary is classified as:",
      "choices": [
-      "Correspondence, because existing customers are excluded from the 25-recipient count",
-      "Correspondence, because the prospect group alone totals fewer than 25 recipients",
-      "Retail communication, because more than 25 retail investors received it within 30 days",
-      "Institutional communication, because distribution was limited to the firm's own contacts"
+      "correspondence, because existing customers are excluded from the count.",
+      "correspondence, because fewer than 25 prospective customers received the piece.",
+      "a retail communication, because more than 25 retail investors received it.",
+      "an institutional communication, because it went only to the firm's own contacts."
      ],
      "answer": 2,
-     "explanation": "A retail communication is any written communication distributed to more than 25 retail investors within any 30-calendar-day period; here 30 existing clients plus 15 prospects equals 45 retail recipients, exceeding the threshold. All retail recipients aggregate — existing customers are not excluded from the count, and the prospect group is never counted alone. Institutional status depends on institutional recipients, not on whether recipients are the firm's own contacts.",
+     "explanation": "A retail communication is any written communication distributed to more than 25 retail investors within any 30-calendar-day period. All retail recipients aggregate — 30 customers plus 15 prospects is 45 — so the threshold is exceeded. Existing customers are not excluded, prospects are never counted alone, and institutional status depends on institutional recipients, not on the firm's contact list.",
      "topic": "Communications",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "A registered representative wishes to give year-end items to a client who is also a registered person at another member firm. Which of the following would NOT violate FINRA's gift rule?",
+     "q": "During one calendar year, a registered representative (RR) gives items to an employee of another member firm. Which of the following is permitted under FINRA's gift rule?",
      "choices": [
-      "A $150 watch, because it is for personal rather than business use",
+      "A $150 watch intended for personal rather than business use",
       "Two separate $75 gift cards given in the same calendar year",
-      "A $90 bottle of wine, plus an $85 business meal at which the rep is present",
-      "A $120 gift, on the theory that the recipient reimburses the firm $25"
+      "A $90 gift plus an $85 business meal the RR attends",
+      "A $120 gift for which the recipient reimburses $25"
      ],
      "answer": 2,
-     "explanation": "The gift limit is $100 per person per year, but bona fide business entertainment (a meal at which the giver is present) is excluded from that limit. So the $90 gift plus the separately categorized $85 hosted meal is permissible. The two $75 cards aggregate to $150, exceeding the cap; the $150 watch exceeds $100; and the partially reimbursed gift still has a $95 net value over... no, a $120 gift less $25 is $95, but the trap is that the $120 stated value and lack of a valid exclusion make it impermissible as framed, leaving the hosted-meal answer as the clean compliant choice.",
+     "explanation": "The gift limit is $100 per recipient per year, but bona fide business entertainment — a meal the giver attends — is excluded from the limit. The $90 gift plus the hosted $85 meal is therefore permitted. Two $75 gift cards aggregate to $150; the $150 watch exceeds the limit regardless of personal use; and partial reimbursement does not bring an over-limit gift into compliance.",
      "topic": "$100 gift limit",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Which of the following best distinguishes an outside business activity (OBA) from a private securities transaction (PST)?",
+     "q": "Which of the following statements correctly distinguishes a private securities transaction (PST) from an outside business activity (OBA)?",
      "choices": [
-      "An OBA always requires prior written approval, while a PST requires only prior notice",
-      "An OBA can never involve compensation, while a PST must always involve compensation",
-      "An OBA must be recorded on the firm's books, while a PST needs only notice to the firm",
-      "A PST is a securities transaction away from the firm, while an OBA is other outside business"
+      "An OBA requires prior written approval, while a PST requires only prior notice.",
+      "An OBA can never involve compensation, while a PST always involves compensation.",
+      "An OBA must be recorded on the firm's books, while a PST requires only notice.",
+      "A PST is a securities transaction away from the firm, while an OBA is other outside business."
      ],
      "answer": 3,
-     "explanation": "A PST is a securities transaction conducted away from the rep's firm ('selling away'), while an OBA is any other business activity outside the firm. The strongest distractor reverses the compliance steps: an OBA requires prior written NOTICE, while a compensated PST requires prior written APPROVAL plus recording on the firm's books and supervision — not the other way around.",
+     "explanation": "A PST is a securities transaction conducted away from the representative's firm (selling away); an OBA is any other business activity outside the firm. The strongest distractor reverses the compliance steps: an OBA requires prior written notice, while a compensated PST requires prior written approval plus recording and supervision by the firm — not the other way around.",
      "topic": "OBA vs PST",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A customer signs a new account agreement containing a predispute arbitration clause. Which statement regarding FINRA arbitration is TRUE?",
+     "q": "A customer opens an account under an agreement containing a predispute arbitration clause. Which of the following statements is TRUE?",
      "choices": [
-      "The customer waives the right to litigate, and the resulting award is generally binding with very limited grounds to vacate",
-      "Either party may appeal the arbitrators' decision to the SEC for de novo review of the facts",
-      "Arbitration is required for both monetary disputes and customer claims alleging employment discrimination",
-      "The customer may still file in court if the disputed amount exceeds the simplified-arbitration threshold"
+      "The customer waives the right to sue in court, and the award is generally binding.",
+      "Either party may appeal the arbitration award to the SEC for review of the facts.",
+      "Claims alleging statutory employment discrimination must also be arbitrated.",
+      "The customer may still sue if the amount exceeds the simplified arbitration threshold."
      ],
      "answer": 0,
-     "explanation": "A predispute arbitration agreement binds the customer to arbitrate eligible disputes, and arbitration awards are final and binding with extremely narrow statutory grounds for court vacatur, not appeal on the merits. There is no de novo SEC review of arbitration facts, and statutory employment-discrimination claims are generally not subject to mandatory arbitration. The dollar amount affects whether simplified procedures apply, not whether the customer may opt into court.",
+     "explanation": "A predispute arbitration agreement binds the customer to arbitrate eligible disputes, and awards are final and binding with only narrow statutory grounds for a court to vacate — there is no appeal on the merits. The SEC does not review arbitration facts, statutory employment-discrimination claims are generally not subject to mandatory arbitration, and the dollar amount affects only whether simplified procedures apply.",
      "topic": "Arbitration",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "Under FINRA Rule 4530, a member firm must report to FINRA all of the following EXCEPT:",
+     "q": "Under FINRA Rule 4530, a member firm must report all of the following events EXCEPT:",
      "choices": [
-      "The firm has concluded that an associated person violated securities laws or FINRA rules",
-      "An associated person is the subject of a written customer complaint alleging theft or forgery",
-      "An associated person is named in an investment-related civil suit that is settled for $20,000",
-      "The firm hires a new representative who has passed the SIE and Series 7"
+      "an internal conclusion that an associated person violated securities laws.",
+      "a written customer complaint alleging theft, forgery, or misappropriation.",
+      "an investment-related civil suit against a representative settled for $20,000.",
+      "the hiring of a representative who has passed the qualification examinations."
      ],
      "answer": 3,
-     "explanation": "Rule 4530 requires reporting specified events: internal conclusions of rule violations, certain customer complaints alleging theft/forgery/misappropriation, and investment-related civil suits or settlements meeting the reporting thresholds. Routine hiring of a rep who passed qualification exams is handled through Form U4 registration, not a 4530 disclosure event, so it is the exception.",
+     "explanation": "Rule 4530 requires reporting of internal conclusions of rule violations, written customer complaints alleging theft, forgery, or misappropriation, and investment-related civil suits or settlements meeting the reporting thresholds. Routine hiring is handled through Form U4 registration and is not a Rule 4530 disclosure event.",
      "topic": "Rule 4530",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "A registered representative voluntarily resigns. Three months later, the firm discovers she had made unauthorized trades before leaving. What must the firm do regarding Form U5?",
+     "q": "Three months after a registered representative (RR) resigns, the member firm learns that the RR made unauthorized trades before leaving. The firm must:",
      "choices": [
-      "Nothing further; the original U5 filed at termination is final once 30 days pass",
-      "File an amended U5 within 30 days of learning the new information",
-      "File a new Form U4 disclosing the conduct, since she is no longer registered",
-      "Report the conduct only on the firm's next Rule 4530 statistical filing, not on the U5"
+      "take no further action, because the original Form U5 is final after 30 days.",
+      "file an amended Form U5 within 30 days of learning the information.",
+      "file a new Form U4 for the RR disclosing the unauthorized trading conduct.",
+      "report the conduct only on the firm's next quarterly Rule 4530 filing."
      ],
      "answer": 1,
-     "explanation": "A firm must file an amended Form U5 within 30 days of learning of facts that would have been disclosable on the original U5, even after the rep has left. The U5 is not final; the duty to amend continues. A U4 governs registration, not termination disclosure, and the amended-U5 duty is independent of any Rule 4530 reporting.",
+     "explanation": "A firm must file an amended Form U5 within 30 days of learning facts that would have been disclosable on the original filing, even after the representative has left. The U5 is never final in that sense. Form U4 governs registration, not termination disclosure, and the duty to amend is independent of any Rule 4530 reporting.",
      "topic": "Form U4/U5",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Consider whether fingerprinting is generally required for: I. A registered representative handling customer orders; II. A clerical employee with access to cash and original securities certificates; III. A software contractor with no access to funds, securities, or the books and records. Which require fingerprinting?",
+     "q": "Which of the following associated persons of a broker-dealer is generally exempt from the fingerprinting requirement?",
      "choices": [
-      "I only",
-      "I and II",
-      "II and III",
-      "I, II, and III"
+      "A registered representative who handles customer orders",
+      "A clerical employee with access to cash and securities certificates",
+      "An operations employee with access to the books and records",
+      "A contractor with no access to funds, securities, or records"
      ],
-     "answer": 1,
-     "explanation": "Fingerprinting is required for associated persons who are registered, who handle or have access to cash or securities, or who have access to the books and records. The registered rep (I) and the clerk with access to cash and certificates (II) both qualify; the contractor with no such access (III) is generally exempt. The answer is I and II.",
+     "answer": 3,
+     "explanation": "Fingerprinting is required for associated persons who are registered, who handle or have access to cash or securities, or who have access to the firm's books and records. A contractor with none of that access is generally exempt; the registered representative, the clerk with access to certificates, and the operations employee all must be fingerprinted.",
      "topic": "Fingerprinting",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "A registered representative holds a stock in her account at her broker-dealer. The stock drops, costing her $40,000 in market value, and shortly afterward the broker-dealer becomes insolvent. The securities themselves are present and recoverable. What does SIPC cover here?",
+     "q": "A customer's securities decline $40,000 in market value shortly before the broker-dealer holding them is liquidated. The securities are present and recoverable. Securities Investor Protection Corporation (SIPC) coverage of the loss is:",
      "choices": [
-      "The full $40,000, because the loss occurred at a firm that subsequently failed",
-      "Nothing of the $40,000, because SIPC never covers declines in market value",
-      "Up to $500,000, because securities at a failed firm are covered to that limit",
-      "Up to $250,000, because the market loss is treated under the cash sub-limit"
+      "the full $40,000, because the loss occurred at a firm that failed.",
+      "zero, because SIPC does not cover declines in market value.",
+      "up to $500,000, the limit for securities at a failed firm.",
+      "up to $250,000, under the sub-limit that applies to cash claims."
      ],
      "answer": 1,
-     "explanation": "SIPC protects customers against missing cash and securities when a broker-dealer fails; it never reimburses losses caused by market price declines. Because the securities are present and recoverable, there is no missing-asset claim, and the $40,000 market-driven decline is uncovered. The $500,000 (and $250,000 cash) limits apply only to missing assets, not to price declines at a failed firm.",
+     "explanation": "SIPC protects customers against missing cash and securities when a broker-dealer fails; it never reimburses market-price declines. Because the securities are present and recoverable, there is no missing-asset claim, and the $40,000 decline is uncovered. The $500,000 and $250,000 limits apply only to missing assets, not to price declines.",
      "topic": "SIPC",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A piece of sales material is sent exclusively to 12 banks, 8 registered investment advisers, and 5 insurance companies, with no retail recipients. For supervisory purposes this communication is:",
+     "q": "A member firm sends sales material to 12 banks, 8 registered investment advisers, and 5 insurance companies, with no retail recipients. The material is classified as:",
      "choices": [
-      "Institutional communication, supervised and retained but not pre-approved by a principal",
-      "Retail communication, because the 25-recipient threshold counts all investor types",
-      "Correspondence, because the piece reached no more than 25 recipients in the period",
-      "Institutional communication, exempt from all supervision and recordkeeping duties"
+      "an institutional communication, supervised and retained but not pre-approved by a principal.",
+      "a retail communication, because the 25-recipient threshold counts all recipient types.",
+      "correspondence, because no more than 25 total persons received it during the 30-day period.",
+      "an institutional communication, exempt from all supervision and recordkeeping."
      ],
      "answer": 0,
-     "explanation": "Communications distributed only to institutional investors (banks, RIAs, insurance companies) are institutional communications: no principal approval is required BEFORE use, but they must still be supervised, reviewed, and retained, with policies reasonably designed to prevent forwarding to retail investors. The 25-recipient threshold applies only to retail investors, so neither the retail nor the correspondence label fits — and institutional status is never a total exemption from supervision.",
+     "explanation": "Communications distributed only to institutional investors are institutional communications: principal approval is not required before use, but the firm must still supervise, review, and retain them and maintain policies to prevent forwarding to retail investors. The 25-recipient threshold applies only to retail investors, so neither the retail nor the correspondence label fits — and institutional status is never a total exemption.",
      "topic": "Communications",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "Which of the following statements comparing FINRA and the SEC is TRUE?",
+     "q": "Which of the following statements regarding FINRA and the Securities and Exchange Commission (SEC) is TRUE?",
      "choices": [
-      "FINRA is a government agency created by the Securities Exchange Act of 1934 to regulate broker-dealers",
-      "The SEC must approve FINRA's proposed rule changes before they take effect",
-      "FINRA's disciplinary decisions are final and cannot be reviewed by the SEC",
-      "The SEC regulates broker-dealer conduct directly and FINRA only handles arbitration"
+      "FINRA is a government agency created by the Securities Exchange Act of 1934.",
+      "FINRA rule changes must be filed with and approved by the SEC before taking effect.",
+      "FINRA disciplinary decisions are final and are not reviewable by the SEC on appeal.",
+      "The SEC regulates broker-dealer conduct directly, and FINRA handles only arbitration."
      ],
      "answer": 1,
-     "explanation": "The SEC is the federal agency with statutory oversight of the SROs, and FINRA's proposed rules must be filed with and approved by the SEC before becoming effective. FINRA is a non-governmental SRO, not a government agency; its disciplinary actions ARE appealable to the SEC; and FINRA performs rulemaking, examinations, and enforcement, not only arbitration.",
+     "explanation": "The SEC has statutory oversight of the self-regulatory organizations, and FINRA's proposed rules must be filed with and approved by the SEC before becoming effective. FINRA is a nongovernmental self-regulatory organization, its disciplinary decisions are appealable to the SEC, and it performs rulemaking, examinations, and enforcement — not only arbitration.",
      "topic": "SEC vs SRO",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "An applicant answers 'no' to the U4 question about prior felony convictions, but a background check reveals a felony conviction 8 years ago for which she was sentenced. Regarding her registration:",
+     "q": "A background investigation reveals that an applicant for registration was convicted of a felony 8 years ago. The applicant:",
      "choices": [
-      "She is eligible to register because felony disqualification lapses five years after conviction",
-      "She is permanently barred and may never associate with a member firm in any capacity",
-      "She is statutorily disqualified but registrable through a FINRA eligibility proceeding",
-      "She is eligible to register because only investment-related felonies trigger disqualification"
+      "is eligible, because disqualification lapses five years after conviction.",
+      "is permanently barred from associating with any member firm in any capacity.",
+      "is statutorily disqualified but may register through an eligibility proceeding.",
+      "is eligible, because only investment-related felonies are disqualifying."
      ],
      "answer": 2,
-     "explanation": "Any felony conviction within the prior 10 years triggers statutory disqualification, whether or not it is investment-related; the 8-year-old felony is inside the window. Disqualification is not a permanent bar — the firm may seek approval to register her through FINRA's eligibility (Form MC-400) process. The five-year and investment-related-only choices misstate the 10-year, any-felony rule, and the permanent-bar choice overstates the consequence.",
+     "explanation": "Any felony conviction within the prior 10 years triggers statutory disqualification, whether or not it is investment related; an 8-year-old felony is inside the window. Disqualification is not a permanent bar — the firm may seek approval to register the person through FINRA's eligibility proceeding (Form MC-400). The five-year and investment-related-only choices misstate the 10-year, any-felony rule.",
      "topic": "Statutory disqualification",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "A representative engages in a private securities transaction for which he WILL be compensated. Which of the following must occur? I. Prior written notice to his firm; II. Prior written approval by his firm; III. The firm records the transaction on its books and supervises it as its own.",
+     "q": "A registered representative (RR) will receive selling compensation for a private securities transaction. Which of the following is required before the RR may participate?",
      "choices": [
-      "I only",
-      "I and II only",
-      "II and III only",
-      "I, II, and III"
+      "Prior written notice to the employing member firm, with no further requirement",
+      "Prior written approval from the employing member firm, with no further requirement",
+      "Prior written notice and prior written approval, but no recording on the books",
+      "Prior written notice, prior written approval, and recording on the firm's books"
      ],
      "answer": 3,
-     "explanation": "For a compensated private securities transaction, the rep must give prior written notice, the firm must approve it in writing, and the firm must record it on its books and supervise it as if it were the firm's own. (For an UNcompensated PST, the firm need only acknowledge the notice and may impose conditions.) Because compensation is involved, all three requirements apply.",
+     "explanation": "For a compensated private securities transaction, the representative must give prior written notice, the firm must approve the transaction in writing, and the firm must record it on its books and supervise it as if it were the firm's own. For an uncompensated transaction, the firm need only acknowledge the notice and may impose conditions.",
      "topic": "OBA vs PST",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "A firm sends an educational piece to 20 retail clients on March 5 and the identical piece to 10 additional retail clients on March 28. How is this treated?",
+     "q": "A member firm sends the same educational piece to 20 retail customers on March 5 and to 10 additional retail customers on March 28. The piece is treated as:",
      "choices": [
-      "Each mailing is separate correspondence because neither alone exceeds 25 recipients",
-      "It is a retail communication because the two mailings total more than 25 retail recipients within 30 days",
-      "It is correspondence because the mailings occurred in two separate transmissions",
-      "It is institutional communication because educational pieces are exempt from retail rules"
+      "correspondence, because neither mailing alone exceeded 25 recipients.",
+      "a retail communication, because recipients exceeded 25 within 30 days.",
+      "correspondence, because the mailings were separate transmissions.",
+      "an institutional communication, because educational material is exempt."
      ],
      "answer": 1,
-     "explanation": "The 25-recipient threshold is measured cumulatively over any 30 calendar-day period, not per mailing. March 5 to March 28 is within 30 days, so 20 + 10 = 30 retail recipients exceeds 25, making it a retail communication subject to principal pre-use approval. Splitting a distribution into separate transmissions does not avoid aggregation, defeating the 'separate correspondence' trap.",
+     "explanation": "The more-than-25-retail-investor threshold is measured cumulatively over any 30-calendar-day period, not per mailing. March 5 to March 28 falls within 30 days, so the 30 total retail recipients make the piece a retail communication subject to principal approval before use. Splitting a distribution into separate transmissions does not avoid aggregation.",
      "topic": "Communications",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "All of the following would generally require a member firm to amend a registered person's Form U4 EXCEPT:",
+     "q": "A member firm must amend a registered person's Form U4 upon all of the following events EXCEPT:",
      "choices": [
-      "The associated person is charged with a felony",
-      "The associated person changes their residential address",
-      "The associated person completes the firm's annual Firm Element continuing education",
-      "The associated person becomes the subject of an investment-related, securities customer complaint alleging $6,000 in damages"
+      "a felony charge filed in state court against the associated person.",
+      "a change in the associated person's primary residential address.",
+      "completion of the firm's annual Firm Element training program.",
+      "an investment-related customer complaint alleging $6,000 in damages."
      ],
      "answer": 2,
-     "explanation": "Form U4 must be kept current for disclosable events such as felony charges, residential address changes, and reportable customer complaints. Completing the Firm Element of continuing education is internal training and is not a U4 disclosure event, so it is the exception. The other three are amendable U4 conditions.",
+     "explanation": "Form U4 must be kept current for disclosable events such as felony charges, residential address changes, and reportable customer complaints. Completion of the Firm Element of continuing education is internal training and is not a Form U4 disclosure event; the other three events require an amendment.",
      "topic": "Form U4/U5",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "A representative gives one client a holiday gift valued at $90 and, two months later, a separate $30 thank-you gift for a referral. No business-entertainment exclusion applies. Under the gift rule, the representative has:",
+     "q": "During one calendar year, a registered representative (RR) gives the same client a $90 holiday gift and a $30 referral gift; no business entertainment exclusion applies. The RR has:",
      "choices": [
-      "Complied, because no single gift exceeded the $100 annual limit",
-      "Complied, because referral gifts are excluded from the $100 limit",
-      "Violated the rule, because a second gift in one year is prohibited",
-      "Violated the rule, because the gifts aggregate to $120 in one year"
+      "complied, because no single gift exceeded the $100 annual limit.",
+      "complied, because referral gifts are excluded from the limit.",
+      "violated the rule, because a second gift in one year is prohibited.",
+      "violated the rule, because the gifts aggregate to $120 for the year."
      ],
      "answer": 3,
-     "explanation": "The $100 limit is per recipient, per year, in the AGGREGATE; $90 + $30 = $120 to the same client in one year exceeds the cap. The strongest distractor reasons that no single gift topped $100, but aggregation controls. There is no general exclusion for referral gifts, and a second gift is permissible only when the annual total stays at or under $100 — it is not prohibited per se.",
+     "explanation": "The $100 limit applies per recipient, per year, in the aggregate; $90 plus $30 is $120 and exceeds the cap. The strongest distractor notes that no single gift topped $100, but aggregation controls. There is no exclusion for referral gifts, and a second gift is permissible only when the annual total stays at or below $100 — it is not prohibited per se.",
      "topic": "$100 gift limit",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "Which statement correctly describes the roles of the SEC, FINRA, and the MSRB in regulating a broker-dealer that sells municipal bonds?",
+     "q": "A broker-dealer sells municipal securities. Which of the following correctly describes the roles of the Municipal Securities Rulemaking Board (MSRB), FINRA, and the Securities and Exchange Commission (SEC)?",
      "choices": [
-      "The MSRB writes the municipal rules, FINRA enforces them against the broker-dealer, and the SEC oversees both",
-      "FINRA writes municipal rules, the MSRB enforces them, and the SEC issues the bonds",
-      "The SEC writes municipal dealer rules, the MSRB enforces them, and FINRA only arbitrates disputes",
-      "The MSRB both writes and enforces municipal rules against all dealers, including banks"
+      "The MSRB writes the municipal rules, FINRA enforces them against the firm, and the SEC oversees both.",
+      "FINRA writes the municipal rules, the MSRB enforces them, and the SEC oversees both.",
+      "The SEC writes the municipal rules, the MSRB enforces them, and FINRA arbitrates disputes.",
+      "The MSRB writes and enforces the municipal rules against all dealers, including bank dealers."
      ],
      "answer": 0,
-     "explanation": "The MSRB writes rules for the municipal securities market but does not enforce them; FINRA enforces those rules against securities broker-dealers, bank regulators enforce against bank dealers, and the SEC has overarching oversight of all three layers. The choices giving the MSRB enforcement power or FINRA the rulemaking power invert the actual structure.",
+     "explanation": "The MSRB writes the rules for the municipal securities market but does not enforce them; FINRA enforces those rules against securities broker-dealers, bank regulators enforce them against bank dealers, and the SEC oversees the entire structure. The choices giving the MSRB enforcement power or FINRA rulemaking power invert the actual structure.",
      "topic": "SEC vs SRO",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A rep wants to teach a paid evening real-estate licensing course unrelated to securities. Separately, he wants to sell limited partnership interests to friends for a commission away from his firm. Which compliance steps are correct?",
+     "q": "A registered representative (RR) plans to teach a paid real estate course and, separately, to sell limited partnership interests for commissions away from the firm. Which of the following is required?",
      "choices": [
-      "The course requires prior written notice; the LP sales require prior written approval",
-      "The course requires prior written approval; the LP sales require prior written notice",
-      "Both activities require only prior written notice to the employing member firm",
-      "Both activities require prior written approval and recording on the firm's books"
+      "Written notice for the course; written approval for the partnership sales",
+      "Written approval for the course; written notice for the partnership sales",
+      "Written notice to the employing member firm for both of the activities",
+      "Written approval and recording on the firm's books for both activities"
      ],
      "answer": 0,
-     "explanation": "Teaching a paid non-securities course is an outside business activity requiring prior written NOTICE to the firm. Selling limited partnership interests for commissions away from the firm is a compensated private securities transaction requiring prior written APPROVAL, plus recording on the firm's books and supervision. The reversed notice/approval pairing is the strongest trap; treating both activities identically is also wrong.",
+     "explanation": "Teaching a paid nonsecurities course is an outside business activity requiring prior written notice to the firm. Selling limited partnership interests for commissions away from the firm is a compensated private securities transaction requiring prior written approval, plus recording on the firm's books and supervision. The reversed notice/approval pairing is the strongest trap; treating both activities identically is also wrong.",
      "topic": "OBA vs PST",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "A customer and a member firm have a dispute. Which statement about the FINRA dispute-resolution forum is TRUE?",
+     "q": "Which of the following statements regarding FINRA's dispute resolution forum is TRUE?",
      "choices": [
-      "A customer can be compelled to arbitrate only when the claim exceeds $50,000",
-      "Arbitration awards may be appealed to FINRA's National Adjudicatory Council",
-      "A member firm must arbitrate an industry dispute with another member firm",
-      "Mediation concludes with a binding decision imposed by the neutral mediator"
+      "A customer can be compelled to arbitrate only claims exceeding $50,000.",
+      "Arbitration awards may be appealed to the National Adjudicatory Council (NAC).",
+      "A dispute between two member firms must be resolved through arbitration.",
+      "Mediation concludes with a binding decision imposed by the mediator."
      ],
      "answer": 2,
-     "explanation": "Industry disputes between member firms (and between firms and their associated persons) are subject to mandatory FINRA arbitration; customer disputes are arbitrated when a predispute arbitration agreement exists. There is no $50,000 minimum to compel arbitration — that figure relates to simplified arbitration procedures. Awards are final and binding, not appealable to the NAC (which hears disciplinary appeals), and mediation is non-binding because the mediator only facilitates a voluntary settlement.",
+     "explanation": "Industry disputes between member firms, and between firms and their associated persons, are subject to mandatory FINRA arbitration; customers arbitrate when a predispute arbitration agreement exists. There is no $50,000 minimum — that figure relates to simplified arbitration procedures. Awards are final and binding, not appealable to the NAC (which hears disciplinary appeals), and mediation is nonbinding because the mediator only facilitates settlement.",
      "topic": "Arbitration",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "A firm reviews a written customer complaint alleging that a representative forged a signature on a withdrawal form, misappropriating $3,000. Which reporting obligation applies?",
+     "q": "A member firm receives a written customer complaint alleging that a registered representative (RR) forged a signature and misappropriated $3,000. The firm:",
      "choices": [
-      "No report is required because the alleged misappropriation is below $5,000",
-      "The firm must report the complaint under Rule 4530 regardless of the amount",
-      "A Form U5 amendment is the only filing required while the rep remains employed",
-      "The complaint becomes reportable only if the customer files an arbitration claim"
+      "need not report, because the alleged amount is below the $5,000 threshold.",
+      "must report the complaint under FINRA Rule 4530 regardless of the amount.",
+      "need only amend the RR's Form U5 while the RR remains employed.",
+      "must report the complaint only if the customer files an arbitration claim."
      ],
      "answer": 1,
-     "explanation": "Rule 4530 requires firms to report written customer complaints alleging theft, forgery, or misappropriation of funds or securities regardless of dollar amount; dollar thresholds apply to certain settlement and judgment categories, not to these allegations. Form U5 relates to termination, not a currently employed rep, and reportability does not depend on whether the customer later files an arbitration claim.",
+     "explanation": "Rule 4530 requires firms to report written customer complaints alleging theft, forgery, or misappropriation of funds or securities regardless of dollar amount; dollar thresholds apply to certain settlements and judgments, not to these allegations. Form U5 relates to termination, not a currently employed representative, and reportability does not depend on a later arbitration claim.",
      "topic": "Rule 4530",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "A registered representative based in Denver (Mountain Time) builds a cold-call list. At 8:30 p.m. Mountain Time she begins dialing prospects, none of whom she has done business with. One prospect is in Boston (Eastern Time), one is in Denver (Mountain Time), and one is in Los Angeles (Pacific Time). Under the federal telemarketing rules, which of these calls is PROHIBITED at that moment?",
+     "q": "At 8:30 p.m. Mountain Time, a registered representative (RR) in Denver places cold calls to prospects located in Boston, Denver, and Los Angeles. Under the telemarketing rules, which of the following calls is prohibited?",
      "choices": [
       "The call to the Los Angeles prospect only",
       "The call to the Boston prospect only",
-      "The calls to both the Boston and Los Angeles prospects",
-      "All three calls, because cold calls may never be placed after 8:00 p.m."
+      "The calls to both Boston and Los Angeles",
+      "All three of the cold calls placed"
      ],
      "answer": 1,
-     "explanation": "The permitted cold-calling window is 8:00 a.m. to 9:00 p.m. in the TIME ZONE OF THE PERSON BEING CALLED, not the caller's. At 8:30 p.m. Mountain, it is 10:30 p.m. in Boston (Eastern) — past 9:00 p.m., so that call is prohibited. In Denver it is 8:30 p.m. (allowed) and in Los Angeles it is only 7:30 p.m. Pacific (allowed). The trap in choice A reverses the direction of the time-zone shift, and choice D wrongly states an 8:00 p.m. cutoff instead of 9:00 p.m.",
+     "explanation": "Cold calls are permitted only between 8:00 a.m. and 9:00 p.m. in the time zone of the person being called, not the caller's. At 8:30 p.m. Mountain Time it is 10:30 p.m. in Boston, so that call is prohibited; it is 8:30 p.m. in Denver and 7:30 p.m. in Los Angeles, so those calls are permitted. The Los Angeles choice reverses the direction of the time-zone shift.",
      "topic": "Telemarketing permitted hours (recipient time zone)",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Under the FINRA/Telemarketing Sales Rule do-not-call requirements, all of the following are TRUE EXCEPT:",
+     "q": "Under the do-not-call (DNC) rules governing member firms, all of the following statements are TRUE EXCEPT:",
      "choices": [
-      "A firm may call a person whose number is on the national DNC registry if that person has an established business relationship with the firm and has not asked the firm to stop calling",
-      "When a customer asks to be placed on the firm's internal do-not-call list, the firm must honor that request within a reasonable time not to exceed 30 days",
-      "A firm must maintain a written do-not-call policy and train personnel who engage in telemarketing on its existence and use",
-      "Once a number is on the national DNC registry, the firm may call that person freely for up to 90 days because registry data is only updated quarterly"
+      "An established business relationship permits calls to a number on the national DNC registry.",
+      "A request to join a firm's internal do-not-call list must be honored within 30 days.",
+      "A firm must maintain a written do-not-call policy and train its telemarketing personnel.",
+      "A firm may call a newly registered number freely for 90 days after registration."
      ],
      "answer": 3,
-     "explanation": "Choice D is the false statement (the EXCEPT answer): a firm must scrub its calling lists against the national DNC registry and may not treat registry numbers as fair game — there is no 90-day free-call grace period. Choices A, B, and C are all true: an established business relationship is a recognized exception that lets a firm call a registered number absent a stop request (choice A); a customer's request to be added to the firm's internal DNC list must be honored within a reasonable time not exceeding 30 days (choice B); and firms must maintain a written DNC policy and train telemarketing staff (choice C).",
+     "explanation": "There is no 90-day grace period — firms must scrub calling lists against the national DNC registry and may not call registered numbers absent an exception. The other statements are true: an established business relationship permits calls to a registered number unless the person asks the firm to stop, internal DNC requests must be honored within a reasonable time not exceeding 30 days, and firms must maintain a written DNC policy and train telemarketing personnel.",
      "topic": "Do-not-call rules and exceptions",
      "difficulty": "hard",
      "style": "except"
     },
     {
-     "q": "Under FINRA Rule 4370, a member firm's business continuity plan (BCP) must designate emergency contact persons reported to FINRA. Which statement about these required contacts is correct?",
+     "q": "Under FINRA Rule 4370, a member firm must report emergency contact persons to FINRA. Which of the following is required?",
      "choices": [
-      "A firm must designate two emergency contact persons, both of whom must be members of senior management and registered principals",
-      "A firm must designate two emergency contact persons; at least one must be a member of senior management who is also a registered principal",
-      "A firm must designate one emergency contact person, who may be any registered representative of the firm",
-      "A firm must designate two emergency contact persons, neither of whom may be associated with the firm so as to ensure independence"
+      "Two contacts, both of whom must be members of senior management and registered principals",
+      "Two contacts, at least one a member of senior management and a registered principal",
+      "One contact only, who may be any registered representative employed by the firm",
+      "Two contacts, neither of whom may be associated with the member firm, to ensure independence"
      ],
      "answer": 1,
-     "explanation": "FINRA Rule 4370 requires each member to provide FINRA with the names of TWO emergency contact persons. At least one of the two must be a member of senior management AND a registered principal; the second contact must also be either a member of senior management who is a registered principal or, if the firm has only one such person, a member of senior management who has knowledge of the firm's operations. Choice A overstates the rule by demanding both be senior-management principals, choice C understates it (one contact / any rep), and choice D is fabricated — the contacts are firm insiders, not independent outsiders.",
+     "explanation": "Rule 4370 requires each member to provide FINRA with two emergency contact persons, at least one of whom must be a member of senior management and a registered principal. Requiring both contacts to be senior-management principals overstates the rule, a single any-representative contact understates it, and the contacts are firm insiders — independence is not required.",
      "topic": "Business continuity plan emergency contacts (Rule 4370)",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "A FINRA member firm is drafting its business continuity plan (BCP) under Rule 4370. Each of the following is an element the rule requires the plan to address EXCEPT:",
+     "q": "Under FINRA Rule 4370, a member firm's business continuity plan (BCP) must address all of the following EXCEPT:",
      "choices": [
-      "Procedures giving customers prompt access to their funds and securities in the event of a significant business disruption",
-      "Data backup and recovery of both hard-copy and electronic records",
-      "A guarantee that the firm will reimburse customers for any market losses incurred during the disruption",
-      "Alternate communications between the firm and its customers, employees, and regulators"
+      "prompt customer access to funds and securities during a business disruption.",
+      "data backup and recovery procedures for hard-copy and electronic records.",
+      "reimbursement of customer market losses incurred during a disruption.",
+      "alternate communications with customers, employees, and regulators."
      ],
      "answer": 2,
-     "explanation": "Rule 4370 lists minimum elements a BCP must address, including data backup and recovery (choice B), alternate means of communication with customers, employees, and regulators (choice D), and — most importantly for the exam — procedures to ensure customers have PROMPT ACCESS to their funds and securities if the firm cannot continue business (choice A). The plan is about operational continuity and protecting customer access, NOT about indemnifying customers against market losses; choice C is the fabricated requirement and therefore the EXCEPT answer. The firm must also disclose to customers how the BCP addresses the possibility of a disruption.",
+     "explanation": "Rule 4370's minimum elements include data backup and recovery, alternate means of communication with customers, employees, and regulators, and procedures ensuring customers have prompt access to their funds and securities if the firm cannot continue in business. The plan addresses operational continuity; it does not indemnify customers against market losses. Firms must also disclose to customers how the BCP addresses a potential disruption.",
      "topic": "Required BCP elements (Rule 4370)",
      "difficulty": "hard",
      "style": "except"
     },
     {
-     "q": "A municipal finance professional (MFP) at a broker-dealer lives in and is registered to vote in City A. During an election year she contributes $250 to the campaign of a City A council member for whom she is entitled to vote, and separately contributes $200 to the campaign of the mayor of City B, where she is NOT entitled to vote. Under MSRB Rule G-37, what is the consequence for her firm?",
+     "q": "A municipal finance professional (MFP) contributes $250 to a City A candidate for whom she is entitled to vote and $200 to a City B candidate for whom she is not entitled to vote. Under Municipal Securities Rulemaking Board (MSRB) Rule G-37, a two-year ban on negotiated municipal securities business applies to:",
      "choices": [
-      "No ban results from either contribution",
-      "The firm is banned from negotiated municipal securities business with City A for two years, but not with City B",
-      "The firm is banned from negotiated municipal securities business with City B for two years, but not with City A",
-      "The firm is banned from negotiated municipal securities business with both City A and City B for two years"
+      "neither city.",
+      "City A only.",
+      "City B only.",
+      "both cities."
      ],
      "answer": 2,
-     "explanation": "MSRB Rule G-37 provides a de minimis exception of up to $250 per election to an official for whom the MFP is ENTITLED TO VOTE. The $250 City A contribution is to an official she can vote for and is exactly at the $250 limit, so it is permitted and triggers no ban. The $200 City B contribution, although smaller in dollars, is to an official for whom she is NOT entitled to vote, so the de minimis exception does not apply at all — that contribution triggers the two-year ban on engaging in NEGOTIATED municipal securities business with City B. The trap is assuming the smaller dollar amount is safer; what matters is voter eligibility, not size.",
+     "explanation": "Rule G-37's de minimis exception permits contributions of up to $250 per election to an official for whom the MFP is entitled to vote, so the City A contribution — exactly at the limit — triggers no ban. The exception is unavailable for the City B official, so the $200 contribution, despite its smaller size, triggers the two-year ban on negotiated municipal securities business with City B. Voter eligibility, not dollar amount, controls.",
      "topic": "MSRB G-37 political contributions / de minimis",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Which of the following statements about MSRB Rule G-37 are accurate? I. An above-de-minimis contribution by a municipal finance professional triggers a two-year ban on the dealer engaging in negotiated municipal securities business with the issuer. II. The de minimis exception permits a contribution of up to $250 per election to an official for whom the MFP is entitled to vote. III. The two-year ban prohibits the dealer from purchasing the issuer's bonds in a competitive bid as well as from negotiated underwritings. IV. Dealers must publicly disclose their political contributions and municipal business on MSRB Form G-37 each calendar quarter.",
+     "q": "An above-de-minimis political contribution by a municipal finance professional (MFP) triggers a two-year ban under Municipal Securities Rulemaking Board (MSRB) Rule G-37. The ban prohibits the dealer from:",
      "choices": [
-      "I and II only",
-      "I, II, and IV only",
-      "I, III, and IV only",
-      "I, II, III, and IV"
+      "engaging in negotiated municipal securities business with the issuer.",
+      "purchasing the issuer's bonds in competitive bid underwritings.",
+      "conducting any municipal securities business with any municipal issuer.",
+      "making further political contributions of any amount to any official."
      ],
-     "answer": 1,
-     "explanation": "Statements I, II, and IV are correct: an above-de-minimis contribution triggers a two-year ban on NEGOTIATED municipal securities business with that issuer (I); the de minimis amount is up to $250 per election to an official the MFP can vote for (II); and dealers must file MSRB Form G-37 publicly each calendar quarter disclosing contributions and municipal business (IV). Statement III is FALSE — the G-37 ban applies to NEGOTIATED business, not to competitive (sealed) bid underwritings, which is precisely why the ban is described as covering negotiated business. Because III is wrong, the answer is I, II, and IV only.",
+     "answer": 0,
+     "explanation": "The G-37 ban applies to negotiated municipal securities business with the affected issuer; competitive (sealed) bid underwritings remain permitted, which is the strongest trap. The de minimis exception allows up to $250 per election to an official for whom the MFP is entitled to vote, and dealers must publicly disclose contributions and municipal business on Form G-37 each calendar quarter.",
      "topic": "MSRB G-37 ban scope and disclosure",
      "difficulty": "hard",
      "style": "roman"
