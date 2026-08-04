@@ -259,7 +259,8 @@
       "20 chapters of clear lessons, visual breakdowns, memory aids, and " + (tq || "300+") +
       " practice questions. Built for the full 100–150 hour prep journey.</p>" +
       '<div class="hero-cta">' +
-      '<a class="btn btn-primary" href="#/chapter/1">▶ Start Chapter 1</a>' +
+      '<a class="btn btn-primary" href="#/retake">⤴ Retake Plan</a>' +
+      '<a class="btn" href="#/chapter/1">▶ Start Chapter 1</a>' +
       '<a class="btn" href="#/fullexam">◉ Full Practice Exam</a>' +
       '<a class="btn" href="#/cards">⊞ Flashcards</a>' +
       '<a class="btn" href="#/exam">◎ Quick Mock Exam</a>' +
@@ -876,6 +877,73 @@
     setView(html);
   }
 
+  // ============================================================ RETAKE PLAN
+  // Diagnostic from the official FINRA score report (attempt 1, Aug 3 2026 — 62%).
+  const DIAG = {
+    score: 62, pass: 70, date: "August 3, 2026",
+    sections: [
+      { key: "Overview of Regulatory Framework", short: "Regulatory Framework", weight: 9,  q: 7,  perf: "Very Low", chapters: [20], rank: 1 },
+      { key: "Knowledge of Capital Markets",     short: "Capital Markets",     weight: 16, q: 12, perf: "Low",      chapters: [1,2,3,4], rank: 2 },
+      { key: "Understanding Products and Their Risks", short: "Products & Risks", weight: 44, q: 33, perf: "Low",  chapters: [5,6,7,8,9,10,11,12,13,14,15], rank: 3 },
+      { key: "Trading, Customer Accounts & Prohibited Activities", short: "Trading & Accounts", weight: 31, q: 23, perf: "Low", chapters: [16,17,18,19], rank: 4 },
+    ],
+  };
+  function perfClass(p) { return p === "Very Low" ? "hard" : "medium"; }
+
+  function renderRetake() {
+    const d = daysToExam();
+    const gap = DIAG.pass - DIAG.score;
+    const qNeeded = Math.ceil((gap / 100) * EXAM.scored);
+    let html = countdownBanner() +
+      '<div class="ch-header"><h1>Retake Plan ⤴</h1>' +
+      '<p class="ch-lead">Built from your official FINRA score report. You scored <strong>' + DIAG.score +
+      '%</strong> on ' + DIAG.date + ' — passing is ' + DIAG.pass + '%. That gap is about <strong>' + qNeeded +
+      ' more correct answers</strong> out of ' + EXAM.scored + '. This page puts your weakest content first.</p></div>';
+
+    // honesty callout
+    html += renderBlock({ type: "callout", style: "warning", title: "Read this first",
+      text: "Every question and lesson on this site is AI-written and AI-checked — not professionally vetted. All four of your sections came back Low, which means recall under pressure was the problem, not one blind spot. For the retake, make a real course (Kaplan, STC, or Achievable) your primary source and use this site for drilling and spaced review." });
+
+    // priority order
+    html += '<div class="section-title">Your sections, worst first</div><div class="blueprint">';
+    DIAG.sections.forEach((s, i) => {
+      html += '<div class="bp-row sec-' + (i + 1) + '"><div class="bp-top"><b>' + esc(s.short) +
+        '</b><span><span class="q-pill ' + perfClass(s.perf) + '">' + s.perf + '</span> &nbsp;' +
+        s.weight + '% · ~' + s.q + ' questions</span></div>' +
+        '<div class="bp-bar"><div class="bp-fill" style="width:' + s.weight + '%"></div></div>' +
+        '<div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap">' +
+        s.chapters.map((c) => '<a class="q-pill" href="#/chapter/' + c + '">Ch ' + c + '</a>').join("") +
+        '</div></div>';
+    });
+    html += "</div>";
+
+    html += renderBlock({ type: "callout", style: "exam", title: "Where your cheapest points are",
+      text: "Regulatory Framework is your worst section AND the most memorizable one on the exam — registration forms, CE timing, communication categories, the $100 gift limit, arbitration, SIPC limits. It is only ~7 questions, but they are nearly free once memorized. Fix this section first." });
+
+    html += renderBlock({ type: "steps", title: "The 30-day rebuild", steps: [
+      { label: "Days 1–7 · Regulatory Framework + Capital Markets", desc: "Chapter 20 first, then Chapters 1–4. These are your two weakest-but-smallest areas (25% of the exam combined). Read each lesson, then say the rule out loud without looking before answering its questions." },
+      { label: "Days 8–16 · Products & Risks", desc: "Chapters 5–15. This is 44% of the exam — the single biggest block. Spend the most days here. Focus on the comparisons: GO vs revenue, common vs preferred, A/B/C shares, calls vs puts, ETF vs mutual fund." },
+      { label: "Days 17–23 · Trading, Accounts & Prohibited Activities", desc: "Chapters 16–19. Account types, T+1 settlement, Reg T, retirement plans and taxation, AML thresholds, and the prohibited-practice names." },
+      { label: "Days 24–29 · Full mocks + weak areas", desc: "One full 75-question exam every other day. After each, clear your entire Weak Areas list before the next. Alternate with Chapter Sweep to check breadth." },
+      { label: "Day 30 · Light review only", desc: "Final Review tables in the morning. Nothing new. Stop studying by early evening." },
+    ]});
+
+    html += renderBlock({ type: "key", title: "What to change about HOW you study", items: [
+      "<strong>Explain it out loud.</strong> Recognizing an answer is not knowing it. If you cannot teach a rule to an empty room, it will not survive exam pressure.",
+      "<strong>Answer before you read the options.</strong> Cover the choices, answer from the stem, then look. This is the single best defense against FINRA's near-identical distractors.",
+      "<strong>Write the numbers by hand daily.</strong> T+1, $2,000, $25,000, 50%, $100, over $10,000, $5,000, $500k/$250k, 59½, 73, 30 days, 10 years, annual CE by Dec 31.",
+      "<strong>Do not re-read chapters you have already read.</strong> Re-reading feels productive and teaches almost nothing. Drill instead, then read only what you miss.",
+      "<strong>Track it.</strong> If your Weak Areas list is not shrinking week over week, change what you are doing rather than doing more of it.",
+    ]});
+
+    html += '<div class="hero-cta" style="margin-top:22px">' +
+      '<a class="btn btn-primary" href="#/chapter/20">▶ Start with Chapter 20</a>' +
+      '<a class="btn" href="#/weak">⟳ Weak Areas (' + missedList().length + ')</a>' +
+      '<a class="btn" href="#/exam">◎ Chapter Sweep</a>' +
+      '<a class="btn" href="#/final">⚑ Final Review</a></div>';
+    setView(html);
+  }
+
   // ============================================================ SEARCH
   let searchIndex = null;
   function buildSearchIndex() {
@@ -911,6 +979,7 @@
     else if (parts[0] === "cards") { if (parts[1]) renderFlashSession(parts[1]); else renderFlashcards(); }
     else if (parts[0] === "weak") renderWeak();
     else if (parts[0] === "final") renderFinal();
+    else if (parts[0] === "retake") renderRetake();
     else if (parts[0] === "resume") resumeExam();
     else if (parts[0] === "guide") renderGuide();
     else renderDashboard();
@@ -923,7 +992,10 @@
 
   // ============================================================ INIT
   // ============================================================ EXAM COUNTDOWN
-  var EXAM_DATE = new Date(2026, 7, 3); // August 3, 2026 (month is 0-indexed)
+  // Retake target. FINRA requires a 30-day wait after a failed attempt
+  // (first attempt was Aug 3, 2026 → earliest retake Sept 2, 2026).
+  // Change this date once the real retake is booked.
+  var EXAM_DATE = new Date(2026, 8, 2); // September 2, 2026 (month is 0-indexed)
   function daysToExam() {
     var now = new Date();
     var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -933,15 +1005,15 @@
     var el = document.getElementById("examCountdown");
     if (!el) return;
     var d = daysToExam();
-    if (d > 1) el.innerHTML = '<div class="cd-num">' + d + '</div><div class="cd-lbl">days until your SIE exam</div><div class="cd-date">August 3, 2026</div>';
-    else if (d === 1) el.innerHTML = '<div class="cd-num">1</div><div class="cd-lbl">day until your SIE exam — final review!</div><div class="cd-date">August 3, 2026</div>';
+    if (d > 1) el.innerHTML = '<div class="cd-num">' + d + '</div><div class="cd-lbl">days until your SIE retake</div><div class="cd-date">September 2, 2026</div>';
+    else if (d === 1) el.innerHTML = '<div class="cd-num">1</div><div class="cd-lbl">day until your SIE retake — final review!</div><div class="cd-date">September 2, 2026</div>';
     else if (d === 0) el.innerHTML = '<div class="cd-num">Today</div><div class="cd-lbl">is exam day — you\'ve got this 💪</div>';
     else el.innerHTML = '<div class="cd-lbl">Hope your SIE exam went great! 🎉</div>';
   }
   function countdownBanner() {
     var d = daysToExam();
-    if (d > 1) return '<div class="exam-banner">🎯 <b>' + d + ' days</b> until your SIE exam &nbsp;·&nbsp; <span>August 3, 2026</span></div>';
-    if (d === 1) return '<div class="exam-banner urgent">🎯 <b>1 day</b> until your SIE exam &nbsp;·&nbsp; <span>final review!</span></div>';
+    if (d > 1) return '<div class="exam-banner">🎯 <b>' + d + ' days</b> until your SIE retake &nbsp;·&nbsp; <span>September 2, 2026</span></div>';
+    if (d === 1) return '<div class="exam-banner urgent">🎯 <b>1 day</b> until your SIE retake &nbsp;·&nbsp; <span>final review!</span></div>';
     if (d === 0) return '<div class="exam-banner urgent">🎯 <b>Exam day is today</b> — you\'ve got this 💪</div>';
     return "";
   }

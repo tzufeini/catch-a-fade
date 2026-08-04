@@ -1,9 +1,4 @@
-/* ============================================================
-   SIE Mastery — course content
-   20 chapters · 200 lessons (chunked for readability)
-   · 503 hard practice questions · 367 glossary terms
-   Coverage-researched vs FINRA outline + Achievable/Kaplan/STC.
-   ============================================================ */
+/* SIE Mastery — content · 20 chapters · 200 lessons · 503 questions (all FINRA-voice restyled) */
 window.SIE_DATA = {
  "generatedAt": "2026-07-26",
  "chapters": [
@@ -10645,337 +10640,337 @@ window.SIE_DATA = {
    ],
    "questions": [
     {
-     "q": "A customer buys a newly issued 26-week Treasury bill with a face value of $100,000 at a discount price that produces a 5% discount yield. Which of the following statements about this purchase is TRUE?",
+     "q": "A customer purchases a newly issued 26-week Treasury bill at a price producing a 5% discount yield. Which of the following statements about the bill is true?",
      "choices": [
-      "The customer will receive semi-annual interest payments of $2,500 over the life of the bill",
-      "The customer's actual investment return (bond-equivalent yield) is slightly higher than the 5% discount yield",
-      "Interest earned on the bill is exempt from federal income tax but subject to state income tax",
-      "The bill is quoted as a percentage of par in 32nds, like Treasury notes and bonds"
+      "The customer receives semi-annual interest payments until maturity.",
+      "The bond-equivalent yield is slightly higher than the 5% discount yield.",
+      "The interest earned is subject to state but not federal income tax.",
+      "The bill is quoted as a percentage of par in 32nds."
      ],
      "answer": 1,
-     "explanation": "T-bills pay no coupon; return is the discount captured at maturity. The bond-equivalent (investment) yield exceeds the stated discount yield because the discount-yield convention bases the gain on face value and a 360-day year, understating the true return on the smaller amount actually invested. Choice 0 is wrong (bills pay no interim interest); choice 2 reverses taxation (T-bill interest is federally taxable, state-exempt); choice 3 describes notes/bonds, while bills are quoted on a discount-yield basis.",
+     "explanation": "Treasury bills pay no coupon; the return is the discount captured at maturity. The bond-equivalent yield exceeds the discount yield because the discount-yield convention divides the gain by face value over a 360-day year, understating the true return on the smaller amount actually invested. Bills pay no interim interest, their interest is federally taxable and state-exempt (not the reverse), and bills are quoted on a discount-yield basis, not in 32nds.",
      "topic": "T-bills",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "An investor holds a 10-year TIPS with a $10,000 par value and a 2% fixed coupon. Over the first year the CPI rises 4%. What semi-annual interest payment will the investor receive at the END of that first year (the second payment)?",
+     "q": "An investor holds a 10-year Treasury Inflation-Protected Security (TIPS) with a $10,000 par value and a 2% coupon. If the Consumer Price Index (CPI) rises 4% during the first year, what is the semi-annual interest payment made at the end of that year?",
      "choices": [
       "$100.00",
-      "$104.00",
       "$102.00",
+      "$104.00",
       "$200.00"
      ],
-     "answer": 1,
-     "explanation": "TIPS adjust principal for inflation, then apply half the fixed coupon to the adjusted principal. After a 4% annual rise the principal is $10,400; the second semi-annual payment is 1% x $10,400 = $104. Choice 0 uses unadjusted principal (1% x $10,000), the classic trap; choice 2 applies 1% to a half-adjusted figure; choice 3 wrongly uses the full 2% annual coupon.",
+     "answer": 2,
+     "explanation": "TIPS adjust principal for inflation and then apply half the fixed coupon rate to the adjusted principal. After a 4% rise the principal is $10,400, so the payment is 1% x $10,400 = $104.00. Using the unadjusted $10,000 principal produces $100.00, applying 1% to a half-adjusted figure produces $102.00, and applying the full 2% annual rate produces $200.00.",
      "topic": "TIPS",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "Each of the following is true regarding Treasury STRIPS EXCEPT:",
+     "q": "All of the following statements about Treasury STRIPS (Separate Trading of Registered Interest and Principal of Securities) are true EXCEPT:",
      "choices": [
-      "They are created by separating the coupon and principal payments of a Treasury security into individually tradable zero-coupon instruments",
-      "They are backed by the full faith and credit of the U.S. government",
-      "The accreted (imputed) interest is taxed annually as ordinary income even though no cash is received",
-      "Interest received on STRIPS is fully exempt from both federal and state income tax"
+      "they are created by separating a Treasury security's coupon and principal payments into zero-coupon instruments.",
+      "they are backed by the full faith and credit of the U.S. government.",
+      "imputed interest is taxed annually as ordinary income even though no cash is received.",
+      "imputed interest is fully exempt from both federal and state income tax."
      ],
      "answer": 3,
-     "explanation": "STRIPS are zero-coupon Treasuries; their imputed interest is exempt from STATE tax but federally TAXABLE annually (phantom income), so choice 3 is false. Choices 0, 1, and 2 are accurate: STRIPS are stripped Treasuries carrying full faith and credit, and holders owe annual federal tax on accretion despite receiving no cash until maturity.",
+     "explanation": "STRIPS imputed interest is exempt from state tax but federally taxable each year as it accretes (phantom income), so the full-exemption statement is false. The remaining statements are accurate: STRIPS are stripped Treasury securities carrying full faith and credit, and holders report annual accretion despite receiving no cash until maturity.",
      "topic": "STRIPS",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "A registered representative is comparing the backing of mortgage-backed securities. Which statement correctly distinguishes Ginnie Mae from Fannie Mae and Freddie Mac?",
+     "q": "Which of the following statements correctly distinguishes Government National Mortgage Association (GNMA) securities from Federal National Mortgage Association (FNMA) and Federal Home Loan Mortgage Corporation (FHLMC) securities?",
      "choices": [
-      "Fannie Mae and Freddie Mac carry the explicit backing of the U.S. government, while Ginnie Mae carries only an implied guarantee",
-      "Ginnie Mae carries the explicit backing of the U.S. government, while Fannie Mae and Freddie Mac carry only an implied guarantee",
-      "All three carry the explicit full faith and credit of the U.S. Treasury because each was chartered by an act of Congress",
-      "None of the three carries any government backing; each relies solely on the credit of its underlying mortgage pools"
+      "GNMA securities carry the explicit backing of the U.S. government; FNMA and FHLMC securities carry only an implied guarantee.",
+      "FNMA and FHLMC securities carry the explicit backing of the U.S. government; GNMA securities carry only an implied guarantee.",
+      "All three carry the explicit full faith and credit of the U.S. Treasury because each is federally chartered.",
+      "None of the three carries government backing; each relies solely on the credit of its underlying mortgage pools."
      ],
-     "answer": 1,
-     "explanation": "Ginnie Mae (GNMA) is a wholly owned government corporation whose pass-throughs carry the explicit full faith and credit of the U.S. government, while Fannie Mae and Freddie Mac are GSEs with only an implied guarantee. The strongest distractor simply inverts the two structures; the remaining options either extend explicit Treasury backing to all three (a federal charter alone does not confer it) or strip backing from all three (GNMA is explicitly backed).",
+     "answer": 0,
+     "explanation": "GNMA is a wholly owned government corporation whose pass-throughs carry the explicit full faith and credit of the U.S. government; FNMA and FHLMC are government-sponsored enterprises with only an implied guarantee. The strongest distractor inverts the two structures; a federal charter alone does not confer Treasury backing, and GNMA securities are explicitly backed.",
      "topic": "Agency backing",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "An investor owns a GNMA pass-through certificate. Interest rates in the market drop sharply. Which combination best describes the consequences for this investor?\n\nI. Homeowners are more likely to prepay (refinance) their mortgages\nII. The investor faces reinvestment risk on returned principal\nIII. The average life of the security is likely to extend\nIV. Returned principal will be reinvested at lower prevailing rates",
+     "q": "Market interest rates decline sharply. Which of the following best describes the effect on an investor holding a Government National Mortgage Association (GNMA) pass-through certificate?",
      "choices": [
-      "I and III only",
-      "I, II, and IV only",
-      "II, III, and IV only",
-      "I, II, III, and IV"
+      "Prepayments slow, and the certificate's average life extends.",
+      "Prepayments accelerate, and returned principal is reinvested at lower rates.",
+      "Prepayments accelerate, and the certificate's average life extends.",
+      "Prepayments slow, and returned principal is reinvested at higher rates."
      ],
      "answer": 1,
-     "explanation": "Falling rates trigger prepayment (contraction) risk: homeowners refinance (I), principal returns early and must be reinvested at the lower rates (II and IV). Average life CONTRACTS, not extends, when prepayments accelerate, so III is false; extension risk is the opposite scenario, occurring when rates RISE. Answer: I, II, and IV only.",
+     "explanation": "Falling rates lead homeowners to refinance, so prepayments accelerate, principal is returned early, and the investor faces reinvestment risk at the new lower rates. Average life contracts rather than extends when prepayments accelerate; extension risk is the opposite scenario, occurring when rates rise.",
      "topic": "MBS pass-through",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "A customer in the 32% federal bracket residing in a state with NO income tax is choosing between a Treasury note yielding 4.5% and a corporate bond yielding 6.0%, with similar maturity and risk. Ignoring any state tax (the state has none), which security offers the higher after-tax yield?",
+     "q": "A customer subject to a 32% federal income tax rate resides in a state with no income tax. Comparing a Treasury note yielding 4.5% with a corporate bond of similar maturity and quality yielding 6.0%, the security with the higher after-tax yield is:",
      "choices": [
-      "The corporate bond, because its after-tax yield of about 4.08% exceeds the Treasury's after-tax 3.06%",
-      "The Treasury note, because its after-tax yield of about 3.06% beats the corporate's 4.08%",
-      "The Treasury note, because its state exemption boosts its 4.5% above the corporate's 6.0%",
-      "Both yield the same after tax because Treasury and corporate interest are taxed identically at the federal level"
+      "the corporate bond, because its 4.08% after-tax yield exceeds the note's 3.06%.",
+      "the Treasury note, because its 3.06% after-tax yield exceeds the bond's 4.08%.",
+      "the Treasury note, because its state tax exemption lifts its yield above the bond's.",
+      "neither, because interest on both securities is taxed identically at the federal level."
      ],
      "answer": 0,
-     "explanation": "In a no-state-tax state, the Treasury's state exemption is worthless, so both are reduced only by the 32% federal bracket. Corporate after-tax = 6.0% x (1 - 0.32) = 4.08%; Treasury after-tax = 4.5% x (1 - 0.32) = 3.06%. The corporate bond wins (4.08% > 3.06%) — answer 0. The trap is choice 2: the state exemption provides no edge where there is no state tax, leaving the higher-coupon corporate ahead. Choice 1 reverses the result; choice 4 ignores the different pre-tax yields.",
+     "explanation": "With no state tax, the Treasury's state exemption is worthless, and both yields are reduced only by the 32% federal rate: 6.0% x 0.68 = 4.08% for the corporate bond versus 4.5% x 0.68 = 3.06% for the note. The state-exemption distractor is the trap — the exemption provides no advantage where there is no state tax — and identical federal treatment does not equalize two different pre-tax yields.",
      "topic": "Taxation",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "Which of the following statements regarding the taxation of U.S. government and agency securities is TRUE?",
+     "q": "Which of the following statements regarding the taxation of U.S. government and agency securities is true?",
      "choices": [
-      "Interest on Treasury bonds is exempt from federal income tax but taxable at the state level",
-      "Interest on Ginnie Mae pass-through securities is exempt from state income tax just like direct Treasury obligations",
-      "Interest on Treasury securities is subject to federal income tax but exempt from state and local income tax",
-      "Interest on all federal agency securities, including Fannie Mae and Freddie Mac, is exempt from state income tax"
+      "Interest on Treasury bonds is exempt from federal income tax but taxable at the state level.",
+      "Interest on Government National Mortgage Association (GNMA) certificates is exempt from state income tax.",
+      "Interest on Treasury securities is subject to federal income tax but exempt from state and local income tax.",
+      "Interest on all federal agency securities, including those of government-sponsored enterprises, is exempt from state income tax."
      ],
      "answer": 2,
-     "explanation": "Direct U.S. Treasury obligations are taxable federally but exempt from state and local income tax — choice 2. Choice 0 inverts this; choice 1 is wrong because GNMA (and other agency MBS) interest is fully state-taxable; choice 3 incorrectly extends Treasury's state exemption to GSE securities, which do not share it.",
+     "explanation": "Interest on direct Treasury obligations is federally taxable but exempt from state and local income tax. The first option inverts that treatment, GNMA interest is fully taxable at both the federal and state levels, and the Treasury state exemption does not extend to government-sponsored enterprise securities.",
      "topic": "Taxation",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "A CMO is structured with sequential-pay tranches A, B, C, and a Z-tranche. Which statement about this structure is correct?",
+     "q": "A collateralized mortgage obligation (CMO) is structured with sequential-pay tranches A, B, and C plus a Z-tranche. Which of the following statements about the structure is true?",
      "choices": [
-      "The Z-tranche receives principal payments first and is therefore the shortest-maturity tranche",
-      "Tranche A receives all principal payments until it is retired, before any principal flows to B or C",
-      "All tranches receive principal simultaneously on a pro-rata basis",
-      "The Z-tranche pays current interest in cash to its holders throughout the life of the CMO"
+      "The Z-tranche receives principal first and has the shortest average life.",
+      "Tranche A receives all principal payments until it is fully retired.",
+      "All tranches receive principal simultaneously on a pro-rata basis.",
+      "The Z-tranche pays current interest in cash throughout the life of the CMO."
      ],
      "answer": 1,
-     "explanation": "In a sequential (plain-vanilla) CMO, principal is paid to tranche A until fully retired, then B, then C — choice 1. The Z-tranche is LAST to receive principal and accrues (rather than pays) interest, with that interest added to its principal until the earlier tranches retire, so choices 0 and 3 are wrong; choice 2 describes a pass-through, not a sequential CMO.",
+     "explanation": "In a sequential-pay CMO, all principal flows to tranche A until it is retired, then to B, then to C. The Z-tranche is last to receive principal and accrues rather than pays interest until the earlier tranches retire; simultaneous pro-rata principal describes a pass-through, not a sequential CMO.",
      "topic": "CMO tranches",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "An investor is concerned about prepayment risk and extension risk in CMOs. Which tranche type is specifically designed to provide the most stable, predictable cash flows by shifting prepayment variability to a companion tranche?",
+     "q": "Which of the following collateralized mortgage obligation (CMO) tranches is designed to provide the most predictable cash flows by shifting prepayment variability to a companion tranche?",
      "choices": [
-      "Z-tranche (accrual tranche)",
-      "PAC (Planned Amortization Class) tranche",
-      "TAC (Targeted Amortization Class) tranche",
-      "Support (companion) tranche"
+      "Z-tranche",
+      "Planned amortization class (PAC) tranche",
+      "Targeted amortization class (TAC) tranche",
+      "Support tranche"
      ],
      "answer": 1,
-     "explanation": "A PAC tranche delivers the most predictable cash flows because it has a defined principal-payment schedule maintained across a band of prepayment speeds, with the companion/support tranche absorbing the variability. A TAC (choice 2) protects against contraction but offers LESS extension protection than a PAC; the support tranche (choice 3) ABSORBS variability (the opposite of stable); the Z-tranche (choice 0) accrues interest and is highly variable.",
+     "explanation": "A PAC tranche maintains a defined principal-payment schedule across a band of prepayment speeds, with the companion (support) tranche absorbing the variability. A TAC protects against contraction but offers less extension protection than a PAC, the support tranche absorbs variability rather than avoiding it, and the Z-tranche accrues interest with highly variable timing.",
      "topic": "CMO tranches",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "All of the following are direct obligations of the U.S. Treasury carrying full faith and credit backing EXCEPT:",
+     "q": "All of the following are direct obligations of the U.S. Treasury backed by its full faith and credit EXCEPT:",
      "choices": [
-      "Treasury Inflation-Protected Securities (TIPS)",
-      "Series EE savings bonds",
-      "Fannie Mae mortgage-backed securities",
-      "Treasury STRIPS"
+      "Treasury Inflation-Protected Securities (TIPS).",
+      "Series EE savings bonds.",
+      "Fannie Mae (FNMA) mortgage-backed securities.",
+      "Treasury STRIPS."
      ],
      "answer": 2,
-     "explanation": "Fannie Mae is a government-sponsored enterprise; its MBS carry only an implied federal backing, not the explicit full faith and credit of the Treasury — the EXCEPT. TIPS, Series EE savings bonds, and STRIPS are all direct Treasury obligations backed by full faith and credit.",
+     "explanation": "FNMA is a government-sponsored enterprise, so its mortgage-backed securities carry only an implied federal backing rather than the explicit full faith and credit of the Treasury. TIPS, Series EE savings bonds, and Treasury STRIPS are all direct Treasury obligations.",
      "topic": "Agency backing",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "A 4% Treasury note with a $1,000 par value is quoted at 98.16 (98 and 16/32). A customer buys 10 of these notes. Disregarding accrued interest and commissions, what is the total dollar principal cost?",
+     "q": "A 4% Treasury note with a $1,000 par value is quoted at 98.16. If a customer purchases 10 notes at this price, what is the total principal cost, disregarding accrued interest and commissions?",
      "choices": [
+      "$9,805.00",
       "$9,816.00",
-      "$9,850.00",
       "$9,816.40",
-      "$9,805.00"
+      "$9,850.00"
      ],
-     "answer": 1,
-     "explanation": "Treasury notes are quoted in 32nds, so 98.16 = 98 + 16/32 = 98.50% of par; per bond that is $985.00, and 10 bonds cost $9,850.00. Choice 0 is the trap of reading '.16' as decimal cents ($981.60 x 10); choices 2 and 3 misconvert the 32nds fraction.",
+     "answer": 3,
+     "explanation": "Treasury notes are quoted in 32nds, so 98.16 equals 98 16/32, or 98.50% of par; each note costs $985.00 and 10 notes cost $9,850.00. Reading .16 as decimal cents produces $9,816.00, and the remaining figures misconvert the 32nds fraction.",
      "topic": "T-notes",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "Which statement comparing Series EE and Series I savings bonds is TRUE?",
+     "q": "Which of the following statements comparing Series EE and Series I savings bonds is true?",
      "choices": [
-      "Both bonds pay interest semi-annually in cash, and interest on both is fully exempt from federal income tax",
-      "Both bonds carry an inflation-adjusted component, and interest on both is exempt from state but not federal tax",
-      "Only Series EE bonds are sold at a deep discount to face value, and both bonds mature at par like Treasury bills",
-      "Only Series I bonds carry an inflation adjustment, and interest on both can be federally tax-free for education expenses"
+      "Both bonds pay semi-annual cash interest that is fully exempt from federal income tax.",
+      "Both bonds carry an inflation-adjusted component and are exempt from state but not federal tax.",
+      "Only Series EE bonds are sold at a deep discount, and both bonds mature at face value.",
+      "Only Series I bonds carry an inflation adjustment, and both may be federally tax-free for education."
      ],
      "answer": 3,
-     "explanation": "Only Series I bonds add an inflation-adjusted rate on top of a fixed rate, and interest on both EE and I bonds may be excluded from federal tax when used for qualified higher-education expenses (subject to income limits). The strongest distractor pairs the true state-exempt/federally-taxable treatment with the false claim that both bonds adjust for inflation; savings-bond interest also accrues until redemption rather than being paid semi-annually in cash, and modern electronic EE bonds are sold at face value, not at a discount.",
+     "explanation": "Only Series I bonds add an inflation-adjusted rate to a fixed rate, and interest on both EE and I bonds may be excluded from federal tax when used for qualified higher-education expenses, subject to income limits. Savings-bond interest accrues until redemption rather than being paid in cash, modern electronic EE bonds are sold at face value, and the inflation adjustment does not apply to both series.",
      "topic": "Savings bonds",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "An investor buys a 30-year Treasury bond paying a 3% annual coupon. Two years later, market interest rates have fallen and the bond now trades at 112. What is the current yield of the bond at this price?",
+     "q": "A 30-year Treasury bond with a 3% coupon trades at 112 after market interest rates decline. What is the bond's current yield at this price?",
      "choices": [
-      "3.00%",
+      "2.50%",
       "2.68%",
-      "3.36%",
-      "2.50%"
+      "3.00%",
+      "3.36%"
      ],
      "answer": 1,
-     "explanation": "Current yield = annual coupon income / market price = $30 / $1,120 = 2.68%. Choice 0 is the nominal coupon (confusing coupon with current yield); choice 2 wrongly divides by a discount price; at a premium, current yield must be LOWER than the coupon, eliminating choice 2.",
+     "explanation": "Current yield equals annual coupon income divided by market price: $30.00 / $1,120.00 = 2.68%. The 3.00% figure is the nominal coupon rate, and 3.36% results from dividing by a discount price; a bond trading at a premium must have a current yield below its coupon rate.",
      "topic": "T-bonds",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "A registered representative tells a client that GNMA, FNMA, and FHLMC securities are 'all equally guaranteed by the U.S. government and therefore equally free of credit risk.' This statement is:",
+     "q": "A registered representative (RR) tells a customer that Ginnie Mae (GNMA), Fannie Mae (FNMA), and Freddie Mac (FHLMC) securities are equally guaranteed by the U.S. government. This statement is:",
      "choices": [
-      "Accurate, because all three operate under federal charters and carry the full faith and credit of the U.S. Treasury",
-      "Inaccurate, because none of the three carries any form of government backing, whether explicit or merely implied",
-      "Inaccurate, because only GNMA carries explicit full faith and credit while FNMA and FHLMC have only implied backing",
-      "Accurate, because the Federal Reserve stands behind every security issued by a federally chartered housing agency"
+      "accurate, because all three are federally chartered and carry full faith and credit backing.",
+      "accurate, because the Federal Reserve stands behind securities of federally chartered housing agencies.",
+      "inaccurate, because only GNMA carries explicit backing while FNMA and FHLMC have implied backing.",
+      "inaccurate, because none of the three carries any form of government backing."
      ],
      "answer": 2,
-     "explanation": "The statement is inaccurate because only Ginnie Mae carries the explicit full faith and credit of the U.S. government; Fannie Mae and Freddie Mac, as GSEs, have only implied backing, so the three are not equally free of credit risk. The strongest distractor strips backing from all three, but GNMA is explicitly backed; a federal charter does not by itself create Treasury backing, and the Federal Reserve stands behind none of these securities.",
+     "explanation": "Only GNMA securities carry the explicit full faith and credit of the U.S. government; FNMA and FHLMC, as government-sponsored enterprises, have only implied backing, so the three are not equally guaranteed. A federal charter alone does not create Treasury backing, the Federal Reserve stands behind none of these securities, and stripping backing from all three ignores GNMA's explicit guarantee.",
      "topic": "Agency backing",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "A customer buys a Treasury bond on Wednesday. Under current regulations, on what day does regular-way settlement occur, and how does this affect the seller's entitlement to accrued interest?",
+     "q": "A customer purchases a Treasury bond on a Wednesday. Which of the following correctly states the regular way settlement date and the treatment of accrued interest?",
      "choices": [
-      "Settlement is Friday (T+2); the seller is entitled to accrued interest up to but not including settlement date",
-      "Settlement is Thursday (T+1); the seller is entitled to accrued interest up to but not including settlement date",
-      "Settlement is the same day (T+0); accrued interest does not apply to Treasuries",
-      "Settlement is Thursday (T+1); the buyer keeps all accrued interest because Treasuries settle in same-day funds"
+      "Settlement occurs the same day, and accrued interest does not apply to Treasury securities.",
+      "Settlement occurs Thursday, and the seller receives accrued interest up to but not including settlement.",
+      "Settlement occurs Thursday, and the buyer retains all accrued interest earned before settlement.",
+      "Settlement occurs Friday, and the seller receives accrued interest up to but not including settlement."
      ],
      "answer": 1,
-     "explanation": "Regular-way settlement for Treasuries is T+1, so a Wednesday trade settles Thursday, and accrued interest is calculated up to (but not including) settlement date, compensating the seller for interest earned while holding. Choice 0 uses the outdated T+2 cycle; choice 2 wrongly claims same-day settlement with no accrued interest; choice 3 incorrectly awards accrued interest to the buyer.",
+     "explanation": "Regular way settlement for Treasury securities is the next business day (T+1), so a Wednesday trade settles Thursday, and the seller is entitled to accrued interest calculated up to but not including the settlement date. Friday reflects an outdated two-day cycle, Treasuries do not settle same day, and accrued interest compensates the seller, not the buyer.",
      "topic": "Settlement",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Which of the following best distinguishes a TAC tranche from a PAC tranche in a CMO?",
+     "q": "Which of the following best distinguishes a targeted amortization class (TAC) tranche from a planned amortization class (PAC) tranche in a collateralized mortgage obligation (CMO)?",
      "choices": [
-      "A PAC protects against both prepayment and extension risk, while a TAC protects primarily against prepayment risk",
-      "A TAC protects against both prepayment and extension risk, while a PAC protects primarily against prepayment risk",
-      "A PAC targets a single prepayment speed, while a TAC maintains its schedule across a band of prepayment speeds",
-      "A PAC protects primarily against extension risk, while a TAC guards mainly against contraction from refinancing"
+      "A PAC protects against both prepayment and extension risk; a TAC protects primarily against prepayment risk.",
+      "A TAC protects against both prepayment and extension risk; a PAC protects primarily against prepayment risk.",
+      "A PAC targets a single prepayment speed; a TAC maintains its schedule across a band of speeds.",
+      "A PAC protects primarily against extension risk; a TAC guards mainly against contraction from refinancing."
      ],
      "answer": 0,
-     "explanation": "A PAC maintains its payment schedule across a band of prepayment speeds, protecting against BOTH contraction (prepayment) and extension risk, while a TAC targets a single speed and primarily protects against prepayment risk, leaving more extension exposure. The strongest distractor simply swaps the two structures; another reverses which tranche targets a single speed versus a band, and the half-right option correctly gives the TAC prepayment protection but wrongly limits the PAC to extension protection only.",
+     "explanation": "A PAC maintains its schedule across a band of prepayment speeds, protecting against both contraction (prepayment) and extension risk, while a TAC targets a single speed and primarily protects against prepayment risk, leaving greater extension exposure. The strongest distractor swaps the two structures, another reverses which tranche uses a band versus a single speed, and the last wrongly limits the PAC to extension protection.",
      "topic": "CMO tranches",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "An investor purchases a Treasury STRIP with a face value of $20,000 maturing in 8 years at a price of $13,600. Assuming the imputed interest accretes evenly (straight-line approximation), approximately how much phantom income must the investor report as federal taxable income in the first year, and what is its tax character?",
+     "q": "A customer pays $13,600 for a Treasury STRIP with a $20,000 face value maturing in 8 years. Assuming straight-line accretion, approximately how much interest income must the customer report in the first year?",
      "choices": [
       "$0, because no cash interest is received until maturity",
-      "$800, reported as ordinary income, even though no cash is received",
-      "$800, but taxed only at the state level since Treasuries are state-exempt",
-      "$6,400, the full discount, reported in the first year"
+      "$800, reported as ordinary income even though no cash is received",
+      "$800, taxed only at the state level because Treasury interest is federally exempt",
+      "$6,400, because the full discount is reported in the first year"
      ],
      "answer": 1,
-     "explanation": "Total accretion = $20,000 - $13,600 = $6,400 over 8 years, roughly $800 per year, reported annually as ordinary (interest) income at the FEDERAL level despite no cash being received (phantom income). Choice 0 ignores the annual accretion rule for zeros; choice 2 reverses the tax treatment (Treasuries are federally taxable, state-exempt); choice 3 wrongly front-loads the entire discount into year one.",
+     "explanation": "Total accretion is $20,000 - $13,600 = $6,400 over 8 years, or approximately $800 per year, reported annually as ordinary interest income at the federal level even though no cash is received (phantom income). Zero-coupon holders may not defer the income until maturity, the state-level option reverses the actual treatment (Treasury interest is federally taxable, state-exempt), and the discount is not reported entirely in year one.",
      "topic": "STRIPS",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "A client wants a Treasury security that protects purchasing power against inflation. The registered representative explains the mechanics of TIPS. Which of the following statements is TRUE in a deflationary environment?",
+     "q": "In a deflationary environment, which of the following statements about Treasury Inflation-Protected Securities (TIPS) is true?",
      "choices": [
-      "The fixed coupon rate itself is reduced below its stated level until the price index recovers",
-      "At maturity the investor receives the lowest inflation-adjusted principal reached during the bond's life",
-      "The principal is adjusted downward, but the investor receives no less than original par at maturity",
-      "The principal is frozen at its most recent high and cannot be adjusted downward during the bond's life"
+      "The fixed coupon rate is reduced below its stated level until the index recovers.",
+      "At maturity the investor receives the lowest adjusted principal reached during the bond's life.",
+      "The principal adjusts downward, but no less than original par is paid at maturity.",
+      "The principal is frozen at its most recent high and cannot be adjusted downward."
      ],
      "answer": 2,
-     "explanation": "During deflation, TIPS principal IS adjusted downward — which lowers the dollar amount of each coupon payment — but at maturity the Treasury guarantees the investor receives no less than original par. The fixed coupon RATE never changes (only the dollar amount moves with principal), the principal is not frozen and can fall during the bond's life, and the par floor means the investor never receives the lowest adjusted principal at maturity.",
+     "explanation": "During deflation, TIPS principal is adjusted downward, which lowers the dollar amount of each coupon payment, but at maturity the investor receives no less than original par. The fixed coupon rate itself never changes, the principal is not frozen and can fall during the bond's life, and the par floor prevents the investor from receiving the lowest adjusted principal at maturity.",
      "topic": "TIPS",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "A CMO investor holds a support (companion) tranche. Market interest rates rise significantly. Which of the following best describes the impact?",
+     "q": "Market interest rates rise significantly. Which of the following best describes the effect on the holder of a collateralized mortgage obligation (CMO) support tranche?",
      "choices": [
-      "Prepayments accelerate, and the support tranche's average life shortens as principal is returned faster",
-      "Prepayments slow, and the support tranche's average life extends, exposing the holder to extension risk",
-      "Prepayments slow, but the PAC tranche absorbs the change and the support tranche remains on schedule",
-      "Prepayments slow, and the support tranche's coupon resets upward to keep pace with market interest rates"
+      "Prepayments accelerate, and the tranche's average life shortens.",
+      "Prepayments slow, and the tranche's average life extends.",
+      "Prepayments slow, and the planned amortization class (PAC) tranche absorbs the change.",
+      "Prepayments slow, and the tranche's coupon resets upward with market rates."
      ],
      "answer": 1,
-     "explanation": "When rates rise, prepayments slow because homeowners keep their low-rate mortgages, so principal returns more slowly; the support (companion) tranche absorbs that variability, so its average life EXTENDS and the holder faces extension risk. The strongest distractor reverses the roles — it is the support tranche that absorbs the change so the PAC stays on schedule, not the other way around; accelerating prepayments describe a falling-rate scenario, and a fixed CMO coupon does not reset with market rates.",
+     "explanation": "Rising rates slow prepayments because homeowners keep their low-rate mortgages, and the support (companion) tranche absorbs that variability, so its average life extends and the holder faces extension risk. The support tranche absorbs changes so the PAC stays on schedule — not the reverse; accelerating prepayments describe falling rates, and a fixed CMO coupon does not reset with the market.",
      "topic": "CMO tranches",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Which of the following statements about Treasury notes and Treasury bonds is TRUE?",
+     "q": "Which of the following statements about Treasury notes and Treasury bonds is true?",
      "choices": [
-      "Treasury notes have maturities greater than 10 years; Treasury bonds have maturities of 2 to 10 years",
-      "Treasury notes and bonds both pay interest semi-annually and are quoted as a percentage of par in 32nds",
-      "Treasury notes are issued at a discount and pay no coupon; Treasury bonds pay semi-annual coupons",
-      "Treasury bonds are callable in their final five years by statute, while Treasury notes never carry call features"
+      "Treasury notes mature in more than 10 years, while Treasury bonds mature in 2 to 10 years.",
+      "Both securities pay interest semi-annually and are quoted as a percentage of par in 32nds.",
+      "Treasury notes are issued at a discount and pay no coupon, while Treasury bonds pay semi-annual coupons.",
+      "Treasury bonds are callable by statute in their final five years, while Treasury notes carry no call features."
      ],
      "answer": 1,
-     "explanation": "Both Treasury notes (maturities of 2 to 10 years) and Treasury bonds (maturities over 10 years, up to 30) pay semi-annual interest and are quoted as a percentage of par in 32nds — choice 1. Choice 0 reverses the maturity ranges; choice 2 wrongly describes notes as zero-coupon (that is a bill); choice 3 invents a statutory call feature.",
+     "explanation": "Treasury notes (maturities of 2 to 10 years) and Treasury bonds (maturities over 10 years) both pay semi-annual interest and are quoted as a percentage of par in 32nds. The first option reverses the maturity ranges, the zero-coupon description fits a Treasury bill rather than a note, and no statute makes Treasury bonds callable.",
      "topic": "T-notes",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "A portfolio manager is worried specifically about EXTENSION RISK in a mortgage-backed portfolio. Which scenario would cause this risk to materialize?",
+     "q": "An investor holding mortgage-backed securities is concerned about extension risk. This risk is most likely to materialize under which of the following scenarios?",
      "choices": [
-      "Interest rates fall, homeowners refinance their mortgages, and principal is returned faster than expected",
-      "Interest rates fall, homeowners keep their existing mortgages, and principal is returned slower than expected",
-      "Interest rates rise, homeowners refinance into new mortgages, and principal is returned faster than expected",
-      "Interest rates rise, homeowners keep their existing mortgages, and principal is returned slower than expected"
+      "Interest rates fall, and principal is returned faster than expected.",
+      "Interest rates fall, and principal is returned slower than expected.",
+      "Interest rates rise, and principal is returned faster than expected.",
+      "Interest rates rise, and principal is returned slower than expected."
      ],
      "answer": 3,
-     "explanation": "Extension risk materializes when RISING rates lead homeowners to hold on to their existing low-rate mortgages, slowing prepayments so principal is returned more slowly and the security's average life extends, locking the investor into a below-market yield longer. The falling-rate/faster-principal scenario is contraction (prepayment) risk — the opposite; the other two options mismatch the rate move and homeowner behavior, since homeowners refinance when rates fall, not when they rise.",
+     "explanation": "Extension risk materializes when rising rates lead homeowners to keep their existing low-rate mortgages, slowing prepayments so principal is returned more slowly and the security's average life extends, locking the investor into a below-market yield longer. Falling rates with faster principal return describe contraction (prepayment) risk, and the remaining combinations mismatch the rate move with homeowner behavior.",
      "topic": "MBS pass-through",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "All of the following statements about Ginnie Mae pass-through certificates are correct EXCEPT:",
+     "q": "All of the following statements about Government National Mortgage Association (GNMA) pass-through certificates are true EXCEPT:",
      "choices": [
-      "Investors receive a monthly check representing both interest and a return of principal",
-      "The interest portion is fully taxable at the federal level",
-      "The interest portion is exempt from state income tax, just like direct Treasury obligations",
-      "They carry the explicit full faith and credit guarantee of the U.S. government"
+      "investors receive monthly payments representing both interest and a return of principal.",
+      "the interest portion is fully taxable at the federal level.",
+      "the interest portion is exempt from state income tax, like direct Treasury obligations.",
+      "the certificates carry the explicit full faith and credit of the U.S. government."
      ],
      "answer": 2,
-     "explanation": "GNMA interest is fully taxable at BOTH the federal and state levels; it does NOT share the state-tax exemption of direct Treasury obligations, so choice 2 is the false (EXCEPT) statement. Choices 0, 1, and 3 are correct: GNMA pass-throughs pay monthly interest-plus-principal, the interest is federally taxable, and they carry explicit full faith and credit backing.",
+     "explanation": "GNMA interest is fully taxable at both the federal and state levels; it does not share the state-tax exemption of direct Treasury obligations, making that the false statement. GNMA pass-throughs do pay monthly interest and principal, the interest is federally taxable, and the certificates carry explicit full faith and credit backing.",
      "topic": "Taxation",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "A customer compares a direct Treasury STRIP to a GNMA pass-through. Which statement correctly disambiguates the two?",
+     "q": "Which of the following correctly compares a Treasury STRIP with a Government National Mortgage Association (GNMA) pass-through certificate?",
      "choices": [
-      "The STRIP pays no cash until maturity and has no prepayment risk, while the GNMA pays monthly and carries prepayment risk",
-      "The STRIP pays semi-annual interest and has no prepayment risk, while the GNMA pays no cash until its final maturity",
-      "The STRIP carries prepayment risk because its holdings can be refinanced, while the GNMA's monthly payments are fixed",
-      "The STRIP is exempt from federal but not state taxation, while the GNMA is exempt from state but not federal taxation"
+      "The STRIP pays no cash until maturity and has no prepayment risk; the GNMA pays monthly and carries prepayment risk.",
+      "The STRIP pays semi-annual interest and has no prepayment risk; the GNMA pays no cash until final maturity.",
+      "The STRIP carries prepayment risk because its holdings can be refinanced; the GNMA's monthly payments are fixed.",
+      "The STRIP is exempt from federal but not state tax; the GNMA is exempt from state but not federal tax."
      ],
      "answer": 0,
-     "explanation": "A Treasury STRIP is a zero-coupon security that pays no cash until maturity and, with no underlying mortgages, has no prepayment risk; a GNMA pass-through distributes monthly interest and principal and is exposed to prepayment risk from refinancing. The strongest distractor reverses the exposure — nothing in a STRIP can be refinanced, and GNMA cash flows are anything but fixed; the tax option inverts actual treatment (both are federally taxable, with the STRIP state-exempt and the GNMA fully taxable).",
+     "explanation": "A Treasury STRIP is a zero-coupon security that pays no cash until maturity and, with no underlying mortgages, carries no prepayment risk; a GNMA pass-through distributes monthly interest and principal and is exposed to prepayment risk from refinancing. Nothing in a STRIP can be refinanced, GNMA cash flows are not fixed, and the tax option inverts the actual treatment of both securities.",
      "topic": "STRIPS",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "An investor in a state with a 7% state income tax and a 24% federal bracket is comparing a Treasury note yielding 4.0% to an FDIC-insured CD yielding 4.0% with identical maturity. Considering only the difference in state taxation, which statement is TRUE?",
+     "q": "A customer subject to a 7% state income tax is comparing a Treasury note yielding 4.0% with a bank certificate of deposit (CD) yielding 4.0% of identical maturity. Considering state taxation only, which of the following statements is true?",
      "choices": [
-      "The CD provides the higher after-tax return, because Treasury interest is state-taxable while CD interest is exempt",
-      "The two provide identical after-tax returns, because both instruments are fully exempt from the 7% state income tax",
-      "The Treasury note provides the higher after-tax return, because its interest is exempt from state tax while the CD's is not",
-      "The two provide identical after-tax returns, because interest from both instruments is equally subject to the 7% state tax"
+      "The CD provides the higher after-tax return, because Treasury interest is state-taxable.",
+      "The Treasury note provides the higher after-tax return, because its interest is state-exempt.",
+      "The after-tax returns are identical, because both instruments are exempt from state income tax.",
+      "The after-tax returns are identical, because both instruments are fully subject to state income tax."
      ],
-     "answer": 2,
-     "explanation": "Treasury interest is exempt from state and local income tax, so the note's 4.0% escapes the 7% state tax while the fully state-taxable CD's 4.0% does not, giving the Treasury the higher after-tax return despite the identical stated yields. The strongest distractor reverses the treatment — it is the CD, not the Treasury, whose interest is state-taxable; neither 'identical' option works, because the exemption applies to the Treasury only and the two are not taxed equally at the state level.",
+     "answer": 1,
+     "explanation": "Treasury interest is exempt from state and local income tax, so the note's 4.0% escapes the 7% state tax while the fully state-taxable CD's 4.0% does not, giving the Treasury note the higher after-tax return despite identical stated yields. The strongest distractor reverses the treatment — it is the CD whose interest is state-taxable — and neither identical-return option works because the exemption applies to the Treasury note only.",
      "topic": "Taxation",
      "difficulty": "hard",
      "style": "calc"
@@ -12166,113 +12161,113 @@ window.SIE_DATA = {
    ],
    "questions": [
     {
-     "q": "An investor in the 32% federal tax bracket is comparing a corporate bond yielding 5.40% to a general obligation municipal bond. Ignoring state taxes, what is the minimum yield the municipal bond must offer to be at least as attractive as the corporate on an after-tax basis?",
+     "q": "An investor in the 32% federal tax bracket is considering a corporate bond yielding 5.40%. What is the minimum yield a municipal bond must offer to be equally attractive after tax?",
      "choices": [
       "3.67%",
-      "5.40%",
       "3.97%",
+      "5.40%",
       "7.94%"
      ],
      "answer": 0,
-     "explanation": "The corporate's after-tax yield is 5.40% x (1 - 0.32) = 3.672%, the muni's tax-free equivalent, so the muni need only yield 3.67% to match. 7.94% wrongly grosses the corporate UP via 5.40/(1-0.32) (that finds the taxable-equivalent of a 5.40% MUNI, not the threshold asked). 5.40% ignores the muni's exemption.",
+     "explanation": "The corporate bond's after-tax yield is 5.40% x (1 - 0.32) = 3.67%, which is the tax-free yield a municipal bond must match. 7.94% incorrectly grosses the 5.40% up by dividing by (1 - 0.32), which produces the taxable equivalent yield of a 5.40% municipal bond rather than the threshold asked for. 5.40% ignores the municipal exemption entirely.",
      "topic": "Tax-equivalent yield",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "A municipality issues bonds to finance a new sports stadium operated by a private professional team under a long-term lease, with more than 10% of proceeds benefiting the private user. For a high-income investor subject to the alternative minimum tax, which statement about this bond's interest is TRUE?",
+     "q": "A municipality issues bonds for a stadium leased to a private professional team, with more than 10% of proceeds benefiting the private user. For an investor subject to the alternative minimum tax (AMT), the interest on these bonds is:",
      "choices": [
-      "The interest is fully taxable as ordinary income at the federal level",
-      "The interest is exempt for regular federal tax but added back as a preference item for AMT",
-      "The interest is exempt for both regular federal tax and AMT because all municipal interest is tax-free",
-      "The interest is subject to federal tax only if the bond is sold before maturity"
+      "fully taxable as ordinary income for federal income tax purposes.",
+      "exempt from regular federal tax but a preference item for the AMT.",
+      "exempt from regular federal tax and also exempt from the AMT.",
+      "taxable at the federal level only if the bond is sold before maturity."
      ],
      "answer": 1,
-     "explanation": "Private use exceeding 10% makes this a private activity bond: interest is exempt from regular federal tax but IS a tax-preference item added back for AMT. Calling it fully taxable confuses a PAB with a taxable Build America-type bond. 'All municipal interest is AMT-exempt' is exactly the trap PABs defeat.",
+     "explanation": "Private use exceeding 10% makes this a private activity bond. Its interest is exempt from regular federal income tax but is added back as a tax preference item in the alternative minimum tax calculation. Calling the interest fully taxable confuses a private activity bond with a taxable municipal issue, and the claim that all municipal interest escapes the AMT is precisely the assumption private activity bonds defeat.",
      "topic": "Private activity bonds / AMT",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "All of the following are characteristics of revenue bonds rather than general obligation bonds EXCEPT:",
+     "q": "All of the following are characteristics of revenue bonds EXCEPT:",
      "choices": [
-      "Debt service is paid from the earnings of a specific facility or project",
-      "They are typically NOT subject to a statutory debt limit",
-      "Issuance generally does not require voter approval",
-      "They are backed by the full faith, credit, and taxing power of the issuer"
+      "debt service paid from the earnings of a specific facility.",
+      "exemption from statutory debt limits in most states.",
+      "issuance without a voter referendum in most cases.",
+      "backing by the full faith and credit of the issuer."
      ],
      "answer": 3,
-     "explanation": "Full faith, credit, and ad valorem taxing power back GO bonds, not revenue bonds, so this is the exception. Revenue bonds are self-supporting from project earnings, escape statutory debt limits, and usually skip voter referendums, all true revenue-bond traits.",
+     "explanation": "Full faith, credit, and ad valorem taxing power back general obligation bonds, not revenue bonds, making that the exception. Revenue bonds are self-supporting from project earnings, are not counted against statutory debt limits, and generally do not require voter approval.",
      "topic": "GO vs revenue bonds",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "A municipal bond carries a 4% coupon paid semi-annually and is quoted at a dollar price of 80. What is the bond's current yield?",
+     "q": "A municipal bond with a 4% coupon paid semi-annually is quoted at a dollar price of 80. The bond's current yield is:",
      "choices": [
-      "4.00%",
-      "5.00%",
       "2.50%",
-      "3.20%"
+      "3.20%",
+      "4.00%",
+      "5.00%"
      ],
-     "answer": 1,
-     "explanation": "Current yield = annual coupon / market price = $40 / $800 = 5.00%; the semi-annual detail is a distractor since current yield uses the full $40 annual coupon. 4.00% is the nominal coupon (price ignored); 2.50% wrongly halves the coupon as if one semi-annual payment counted.",
+     "answer": 3,
+     "explanation": "Current yield equals annual coupon divided by market price: $40 / $800 = 5.00%. The semi-annual payment detail is a distractor because current yield always uses the full annual coupon. 4.00% is the nominal coupon rate, which ignores the discount price, and 2.50% incorrectly counts only one semi-annual payment.",
      "topic": "Current yield",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "A Texas resident (a state with no state income tax) is choosing between an in-state GO bond and an out-of-state revenue bond of equal credit quality and identical yield. Regarding the 'triple-tax-free' concept, which statement is TRUE?",
+     "q": "A customer resides in a state that imposes no state income tax. Regarding an in-state municipal bond and an out-of-state issue of equal quality and yield, which statement is TRUE?",
      "choices": [
-      "The in-state bond gives this investor a meaningful triple-tax-free edge over the out-of-state issue",
-      "The out-of-state bond is triple-tax-free under the federal reciprocity exemption for interstate issues",
-      "With no Texas income tax, the in-state bond offers this investor no incremental state-level exemption",
-      "Both bonds are fully triple-tax-free to this investor because municipal interest always escapes every tax"
+      "The in-state bond provides the customer a meaningful triple-tax-free advantage.",
+      "The out-of-state bond is triple-tax-free under a federal reciprocity exemption.",
+      "The in-state bond provides the customer no incremental state-level exemption.",
+      "Both bonds are triple-tax-free because municipal interest escapes every tax."
      ],
      "answer": 2,
-     "explanation": "Triple-tax-free (federal, state, AND local) only adds value when the investor actually owes state/local income tax; with no Texas income tax, in-state residency confers no extra exemption, so other factors should govern the choice. The 'meaningful edge' choice ignores the absent state tax, and no federal reciprocity exemption exists for out-of-state municipal bonds.",
+     "explanation": "Triple-tax-free status adds value only when the investor actually owes state and local income tax. Because the customer's state levies no income tax, in-state residency confers no additional exemption, so other factors should govern the selection. No federal reciprocity exemption exists for out-of-state municipal issues, and municipal interest does not escape every tax.",
      "topic": "Triple-tax-free / in-state",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "A school district needs cash now to meet payroll but expects a large property-tax collection in three months. Which short-term municipal instrument is the MOST appropriate financing tool?",
+     "q": "A school district must meet payroll before an expected property tax collection is received. Which of the following short-term municipal notes is MOST appropriate?",
      "choices": [
-      "Bond Anticipation Note (BAN)",
-      "Revenue Anticipation Note (RAN)",
-      "Tax Anticipation Note (TAN)",
-      "Construction Loan Note (CLN)"
+      "Bond anticipation note (BAN)",
+      "Construction loan note (CLN)",
+      "Revenue anticipation note (RAN)",
+      "Tax anticipation note (TAN)"
      ],
-     "answer": 2,
-     "explanation": "A Tax Anticipation Note bridges a timing gap repaid from expected tax receipts, exactly property-tax collections. A RAN is repaid from anticipated non-tax revenues (e.g., federal/state aid); a BAN is interim financing repaid by a future long-term bond issue, neither of which matches a pending tax collection.",
+     "answer": 3,
+     "explanation": "A tax anticipation note bridges a timing gap and is repaid from expected tax receipts, which matches a pending property tax collection. A revenue anticipation note is repaid from anticipated non-tax revenues such as state or federal aid, and a bond anticipation note is interim financing repaid by a later long-term bond issue.",
      "topic": "Municipal notes",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Regarding the differences between a 529 college savings plan and an ABLE account, which statement is TRUE?",
+     "q": "Which of the following statements distinguishes an ABLE account from a 529 college savings plan?",
      "choices": [
-      "An ABLE beneficiary's disability must have begun before age 46, while a 529 imposes no onset requirement",
-      "Both accounts restrict qualified withdrawals solely to postsecondary higher-education expenses",
-      "Contributions to both accounts are deductible on the contributor's federal income tax return each year",
-      "Both accounts share a hard federal annual contribution cap of $18,000 tied to the gift-tax exclusion"
+      "Qualified withdrawals from both accounts are limited to college expenses.",
+      "Contributions to both accounts are federally deductible by the contributor.",
+      "An ABLE beneficiary's qualifying disability must have begun before age 46.",
+      "Both accounts cap annual contributions at the federal gift tax exclusion."
      ],
-     "answer": 0,
-     "explanation": "ABLE accounts require the beneficiary's qualifying disability to have begun before age 46 (raised from 26, effective 2026), whereas 529s have no disability-onset condition. ABLE funds cover broad disability expenses and 529s reach K-12 and apprenticeships, so 'higher-education only' is false; neither contribution is federally deductible, and only the ABLE account carries an annual cap tied to the gift-tax exclusion — 529s have no federal annual limit.",
+     "answer": 2,
+     "explanation": "An ABLE account requires that the beneficiary's qualifying disability began before age 46, while a 529 plan imposes no disability onset condition. ABLE funds cover a broad range of qualified disability expenses and 529 funds reach K-12 tuition and apprenticeships, so the college-only statement is false. Neither contribution is deductible federally, and only the ABLE account carries an annual limit tied to the gift tax exclusion.",
      "topic": "529 vs ABLE",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "An investor in a 24% federal bracket and a 6% state bracket holds an in-state municipal bond yielding 3.5%, fully exempt from both federal and state tax. What taxable-equivalent yield must a fully taxable corporate bond offer to match it, assuming state tax is NOT deductible against federal?",
+     "q": "An investor in a 24% federal bracket and a 6% state bracket owns an in-state municipal bond yielding 3.50%. The taxable equivalent yield is:",
      "choices": [
-      "4.61%",
-      "5.00%",
+      "3.94%",
       "4.04%",
-      "3.94%"
+      "4.61%",
+      "5.00%"
      ],
-     "answer": 1,
-     "explanation": "With a combined 30% rate, TEY = 3.5% / (1 - 0.30) = 5.00%. 4.61% uses only the 24% federal rate, ignoring the in-state exemption's state value. 4.04% multiplies 3.5% x 1.30 rather than dividing by (1 - rate).",
+     "answer": 3,
+     "explanation": "With a combined 30% rate, the taxable equivalent yield is 3.50% / (1 - 0.30) = 5.00%. 4.61% applies only the 24% federal rate and ignores the value of the in-state exemption, and 4.04% multiplies 3.50% by 1.30 instead of dividing by (1 - the tax rate).",
      "topic": "Tax-equivalent yield",
      "difficulty": "hard",
      "style": "calc"
@@ -12280,251 +12275,251 @@ window.SIE_DATA = {
     {
      "q": "Which of the following statements about the Municipal Securities Rulemaking Board (MSRB) is TRUE?",
      "choices": [
-      "The MSRB examines municipal dealers for compliance and levies fines directly for rule violations",
-      "The MSRB regulates municipal issuers directly, including the content of their primary-market disclosures",
-      "The MSRB's rulemaking extends to U.S. Treasury and federal agency securities as well as municipals",
-      "The MSRB writes rules for municipal dealers but leaves enforcement to FINRA, the SEC, and bank regulators"
+      "The MSRB writes rules for dealers but does not enforce them itself.",
+      "The MSRB examines municipal dealers and fines them for rule violations.",
+      "The MSRB regulates municipal issuers and their primary market disclosures.",
+      "The MSRB writes rules for municipal, Treasury, and agency securities."
      ],
-     "answer": 3,
-     "explanation": "The MSRB is a rule-writing SRO with NO enforcement arm of its own; FINRA, the SEC, and bank regulators enforce its rules against dealers. The examine-and-fine choice describes the enforcers, not the MSRB. The Tower Amendment bars direct regulation of issuers, and the MSRB's scope is municipals only, not Treasuries or agencies.",
+     "answer": 0,
+     "explanation": "The MSRB is a rulemaking self-regulatory organization with no enforcement arm of its own; FINRA, the SEC, and the bank regulators examine dealers and enforce MSRB rules. The Tower Amendment bars direct regulation of municipal issuers, and the MSRB's jurisdiction covers municipal securities only, not Treasury or federal agency issues.",
      "topic": "MSRB",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "An investor purchases a new-issue municipal revenue bond. To evaluate the project's ability to service the debt, which document and item should the investor focus on, and what does it represent?",
+     "q": "An investor wants to determine whether a new revenue bond project will generate enough money to cover debt service. Which of the following BEST addresses that question?",
      "choices": [
-      "The trust indenture's flow-of-funds, which fixes the priority order for applying collected revenues",
-      "The official statement's coverage ratio and feasibility study, which test revenues against debt service",
-      "The bond counsel legal opinion, which validates the issue and assures investors against any default",
-      "The notice of sale, which establishes the issue's tax-exempt status and the pledged revenue terms"
+      "The flow of funds set out in the bond's trust indenture",
+      "The debt service coverage ratio in the official statement",
+      "The legal opinion rendered by the issuer's bond counsel",
+      "The notice of sale published by the issuer before bidding"
      ],
      "answer": 1,
-     "explanation": "The debt service coverage ratio and feasibility study in the official statement gauge whether projected revenues will cover principal and interest — the core credit question for a revenue bond. Flow-of-funds is the strongest distractor, but it only describes the priority in which revenues are applied, not their adequacy; a legal opinion attests to validity and tax exemption and never assures against default.",
+     "explanation": "The debt service coverage ratio and the feasibility study in the official statement measure whether projected revenues will cover principal and interest, which is the central credit question for a revenue bond. The flow of funds is the strongest distractor, but it establishes only the priority in which collected revenues are applied, not their adequacy. A legal opinion attests to validity and tax exemption and never assures against default.",
      "topic": "Official statement",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "A municipal issuer sells short-term notes today and intends to repay them from the proceeds of a long-term bond issue it plans to float once interest rates decline. Which note has been issued, and what is the chief risk to investors if the long-term sale is delayed?",
+     "q": "A municipal issuer sells short-term notes that it plans to repay from the proceeds of a long-term bond issue once interest rates decline. Which of the following identifies the note and the principal risk to its holders?",
      "choices": [
-      "BAN; the risk that the take-out bond sale cannot be completed on acceptable terms",
-      "TAN; the risk that the coming period's property tax collections fall short of budget",
-      "RAN; the risk that anticipated state or federal aid revenue never arrives as projected",
-      "TRAN; the risk that pledged taxes and other revenues both decline simultaneously"
+      "Tax anticipation note; property tax collections may fall short of budget.",
+      "Bond anticipation note; the planned bond sale may not be completed.",
+      "Revenue anticipation note; anticipated state or federal aid may not arrive.",
+      "Tax and revenue anticipation note; taxes and revenues may both decline."
      ],
-     "answer": 0,
-     "explanation": "A Bond Anticipation Note is interim financing whose repayment depends on a later long-term bond sale (the 'take-out'); the key risk is that permanent financing cannot be completed, e.g., if rates stay high or the market closes. RANs, TANs, and TRANs are repaid from revenues or taxes, not from a future bond issue.",
+     "answer": 1,
+     "explanation": "A bond anticipation note is interim financing whose repayment depends on a later long-term bond sale, so the principal risk is that the take-out financing cannot be completed on acceptable terms if rates remain high or the market closes. Revenue, tax, and tax and revenue anticipation notes are repaid from collections rather than from a future bond issue.",
      "topic": "Municipal notes",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Consider these sources potentially backing a municipal bond: I. Ad valorem property taxes. II. Tolls collected from a specific bridge. III. A special assessment levied only on benefited property owners. Which source(s) support a general obligation (GO) bond?",
+     "q": "A general obligation bond is supported by which of the following sources of repayment?",
      "choices": [
-      "I only",
-      "I and III",
-      "II and III",
-      "I, II, and III"
+      "Ad valorem taxes levied on real property",
+      "Tolls collected from drivers using a bridge",
+      "Special assessments on benefited property",
+      "Net revenues of a municipal water system"
      ],
      "answer": 0,
-     "explanation": "Only ad valorem (property) taxes back a true GO bond pledging the issuer's general taxing power. Bridge tolls back a revenue bond, and special-assessment bonds are paid solely by benefited property owners, a separate category, not full-faith-and-credit GO. Only I qualifies.",
+     "explanation": "Ad valorem property taxes back a general obligation bond, which pledges the issuer's general taxing power. Bridge tolls and water system net revenues support revenue bonds, and special assessment bonds are paid solely by the benefited property owners, a separate category that does not carry a full faith and credit pledge.",
      "topic": "GO vs revenue bonds",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "An investor is told a municipal bond is 'bank-qualified' and another is a 'private activity bond.' Which statement BEST distinguishes the federal tax treatment for a typical high-income individual investor?",
+     "q": "For a high-income individual subject to the alternative minimum tax (AMT), which of the following distinguishes a bank-qualified municipal bond from a private activity bond?",
      "choices": [
-      "Both bonds are fully federally tax-exempt, and neither one creates any AMT consequence for the investor",
-      "The private activity bond's interest is fully federally taxable, while the bank-qualified bond's is tax-free",
-      "Bank-qualified status controls the bond's state tax treatment; private activity status controls its federal treatment",
-      "The bank-qualified bond's interest has no AMT add-back; the private activity bond's may be an AMT preference item"
+      "Both bonds are federally tax-exempt with no AMT consequence at all.",
+      "The private activity bond's interest is fully taxable at the federal level.",
+      "Bank-qualified status governs state tax treatment, not federal treatment.",
+      "Only the private activity bond's interest may be an AMT preference item."
      ],
      "answer": 3,
-     "explanation": "A bank-qualified bond is a public-purpose (non-PAB) issue whose interest is federally exempt without any AMT add-back, while a private activity bond's interest can be an AMT tax-preference item. Calling the PAB fully taxable confuses it with a taxable municipal — PABs are exempt for regular tax but can trip the AMT. Bank-qualified status is a federal feature benefiting bank buyers, not a state-tax determinant.",
+     "explanation": "A bank-qualified bond is a public-purpose issue whose interest is federally exempt with no AMT add-back, whereas a private activity bond's interest can be an alternative minimum tax preference item. Calling the private activity bond fully taxable confuses it with a taxable municipal issue, and bank-qualified status is a federal designation benefiting bank purchasers rather than a state tax determinant.",
      "topic": "Private activity bonds / AMT",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A customer in the 35% federal bracket buys a municipal bond at par with a 4% coupon, then sells it two years later at a price that produces a capital gain. Which statement about the federal taxation of this investment is TRUE?",
+     "q": "A customer purchases a municipal bond at par and sells it two years later at a gain. Which statement about the federal tax treatment is TRUE?",
      "choices": [
-      "The coupon interest and the capital gain are both fully exempt from federal tax",
-      "The capital gain is exempt from federal tax, but the coupon interest is taxable",
-      "The coupon interest is exempt from federal tax, but the capital gain is taxable",
-      "The coupon interest and the capital gain are both taxed as ordinary income"
+      "Both the interest and the capital gain are exempt from federal tax.",
+      "The interest is taxable, but the capital gain is exempt from federal tax.",
+      "The interest is exempt from federal tax, but the capital gain is taxable.",
+      "Both the interest and the capital gain are taxed as ordinary income."
      ],
      "answer": 2,
-     "explanation": "Municipal bond interest is federally tax-exempt, but a gain from selling above the investor's cost basis is a taxable capital gain; the exemption never shelters market appreciation. 'Both exempt' overextends the interest exemption to price gains, and the reversed choice taxes the wrong component.",
+     "explanation": "Municipal bond interest is exempt from federal income tax, but a sale above the customer's cost basis produces a taxable capital gain; the exemption never shelters market appreciation. The all-exempt choice overextends the interest exemption to price gains, and the reversed choice taxes the wrong component.",
      "topic": "Tax-exempt interest",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "All of the following are typically found in a new municipal issue's official statement EXCEPT:",
+     "q": "All of the following are found in a new municipal issue's official statement EXCEPT:",
      "choices": [
-      "A description of the project and the intended use of proceeds",
-      "A dealer's suitability determination for each retail buyer",
-      "A summary of the issuer's finances and local economic data",
-      "A bond counsel opinion on validity and federal tax exemption"
+      "a description of the project and the use of proceeds.",
+      "a summary of the issuer's finances and economic data.",
+      "a suitability determination for each retail purchaser.",
+      "a bond counsel opinion on validity and tax exemption."
      ],
-     "answer": 1,
-     "explanation": "An official statement discloses the use of proceeds, the issuer's financial and economic condition, and a legal opinion, but never a per-buyer suitability determination — that is a sales-practice obligation the dealer meets at the point of recommendation, separate from the disclosure document. That makes it the exception.",
+     "answer": 2,
+     "explanation": "An official statement discloses the use of proceeds, the issuer's financial and economic condition, and the legal opinion of bond counsel. A suitability determination for an individual purchaser is a sales practice obligation the dealer satisfies at the point of recommendation, not a component of the disclosure document, which makes it the exception.",
      "topic": "Official statement",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "Two municipal bonds are identical except for backing. Bond A is a GO bond of a city; Bond B is a revenue bond financing the same city's water utility. In an economic downturn that cuts both tax receipts and water usage, which statement is TRUE about relative default-risk drivers?",
+     "q": "A city issues a general obligation bond and a revenue bond financing its water system. Which of the following statements is TRUE?",
      "choices": [
-      "Bond A relies on the city's tax base and taxing power, while Bond B relies on net water-system revenues",
-      "Bond A relies on net water-system revenues, while Bond B relies on the city's tax base and taxing power",
-      "Bond A and Bond B both rely equally on the city's general fund and its overall tax collections",
-      "Bond B is the safer credit because revenue bonds also carry the city's full faith and credit pledge"
+      "The general obligation bond relies on system revenues; the revenue bond on taxes.",
+      "The general obligation bond relies on taxes; the revenue bond on system revenues.",
+      "Both bonds rely on the city's general fund and its overall tax collections.",
+      "Both bonds carry the city's full faith, credit, and unlimited taxing power."
      ],
-     "answer": 0,
-     "explanation": "The GO bond (A) is repaid from the city's general taxing power and tax base; the revenue bond (B) is repaid solely from the water system's net revenues — distinct credit drivers. Swapping the two sources is the trap, and revenue bonds do NOT carry full faith and credit, so 'safer' on that basis is false.",
+     "answer": 1,
+     "explanation": "The general obligation bond is repaid from the city's tax base and taxing power, while the revenue bond is repaid solely from the net revenues of the water system, so the two carry distinct credit drivers even in the same downturn. Reversing the sources is the trap, and revenue bonds do not carry a full faith and credit pledge.",
      "topic": "GO vs revenue bonds",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "An investor in the 22% federal bracket is offered a corporate bond yielding 4.8% and a municipal bond yielding 3.9%. On an after-tax basis, which is more attractive and by approximately how much?",
+     "q": "An investor in the 22% federal tax bracket compares a corporate bond yielding 4.80% with a municipal bond yielding 3.90%. On an after-tax basis:",
      "choices": [
-      "The municipal, by about 0.16%",
-      "The corporate, by about 0.90%",
-      "The corporate, by about 0.16%",
-      "They are exactly equal"
+      "the corporate bond yields approximately 0.16% more.",
+      "the corporate bond yields approximately 0.90% more.",
+      "the municipal bond yields approximately 0.16% more.",
+      "the municipal bond yields approximately 0.90% more."
      ],
-     "answer": 0,
-     "explanation": "After-tax corporate yield = 4.8% x (1 - 0.22) = 3.744%; the muni's 3.9% is already tax-free, beating the corporate by about 0.156% (~0.16%). 'Corporate by 0.90%' compares gross yields without taxing the corporate. The muni wins after the 22% tax drag.",
+     "answer": 2,
+     "explanation": "The corporate bond's after-tax yield is 4.80% x (1 - 0.22) = 3.74%, so the municipal bond's tax-free 3.90% is greater by approximately 0.16%. The 0.90% figure compares the gross yields without applying the 22% tax to the corporate bond.",
      "topic": "Tax-equivalent yield",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "Which of the following statements correctly distinguishes a Tax Anticipation Note (TAN) from a Tax and Revenue Anticipation Note (TRAN)?",
+     "q": "Which of the following distinguishes a tax anticipation note (TAN) from a tax and revenue anticipation note (TRAN)?",
      "choices": [
-      "A TAN's interest is federally taxable, while a TRAN's interest is federally tax-exempt",
-      "A TAN is repaid from a coming bond issue's proceeds, while a TRAN is repaid from grant revenue",
-      "A TAN is repaid only from expected tax receipts, while a TRAN adds other anticipated revenues",
-      "A TAN is a long-term municipal bond, while a TRAN is a short-term money-market instrument"
+      "A TAN's interest is federally taxable, while a TRAN's is exempt.",
+      "A TAN is repaid from a future bond issue, while a TRAN is not.",
+      "A TAN is repaid from taxes only; a TRAN also from other revenues.",
+      "A TAN is a long-term bond, while a TRAN is a short-term note."
      ],
      "answer": 2,
-     "explanation": "A TAN is serviced solely from anticipated tax collections, whereas a TRAN draws on BOTH anticipated taxes and other revenues — the defining distinction. Both are short-term notes rather than bonds, both are generally tax-exempt, and neither is repaid from a future bond issue (that describes a BAN) or from grants (a RAN).",
+     "explanation": "A tax anticipation note is serviced solely from anticipated tax collections, while a tax and revenue anticipation note draws on both anticipated taxes and other anticipated revenues. Both are short-term notes and both are generally tax-exempt, and repayment from a future bond issue describes a bond anticipation note.",
      "topic": "Municipal notes",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "Regarding 529 plans, consider: I. Earnings grow tax-deferred and qualified distributions are federally tax-free. II. The account owner, not the beneficiary, generally controls the assets. III. Contributions are eligible for a federal income tax deduction. Which are TRUE?",
+     "q": "Which of the following statements about a 529 college savings plan is TRUE?",
      "choices": [
-      "I and II",
-      "I and III",
-      "II and III",
-      "I, II, and III"
+      "The account owner, rather than the beneficiary, controls the assets.",
+      "Contributions are deductible on the donor's federal income tax return.",
+      "Earnings are taxable to the beneficiary in the year they are realized.",
+      "Qualified distributions are taxed federally at the beneficiary's own rate."
      ],
      "answer": 0,
-     "explanation": "529 earnings grow tax-deferred with federally tax-free qualified withdrawals (I), and the account owner, not the beneficiary, retains control (II). III is false: contributions are NOT federally deductible (though some states offer a state deduction), so I and II are the correct pair.",
+     "explanation": "The account owner retains control of a 529 plan's assets, including the right to change the beneficiary. Earnings accumulate on a tax-deferred basis and qualified distributions are free of federal income tax, so both taxation choices are false. Contributions are not deductible for federal purposes, although some states permit a state deduction.",
      "topic": "529 vs ABLE",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "A registered representative recommends a private activity bond to a client. Which client circumstance makes this recommendation MOST likely unsuitable?",
+     "q": "A registered representative recommends a private activity bond. The recommendation is LEAST suitable for a customer who:",
      "choices": [
-      "The client is in a high federal income tax bracket seeking tax-free income",
-      "The client is regularly subject to the alternative minimum tax",
-      "The client is a long-term investor comfortable holding to maturity",
-      "The client lives in the state where the bond is issued"
+      "is in a high federal tax bracket seeking tax-free income.",
+      "intends to hold the bond to maturity in a taxable account.",
+      "is regularly subject to the alternative minimum tax (AMT).",
+      "resides in the state whose agency issued the bond."
      ],
-     "answer": 1,
-     "explanation": "Because a private activity bond's interest is an AMT preference item, recommending it to a client who routinely owes AMT undermines the tax advantage, the least suitable scenario. A high-bracket investor not subject to AMT is a natural buyer, in-state residency adds tax value, and a buy-and-hold horizon is irrelevant to the AMT problem.",
+     "answer": 2,
+     "explanation": "Interest on a private activity bond is an AMT preference item, so recommending it to a customer who routinely owes the alternative minimum tax defeats the tax advantage that justifies the purchase. A high-bracket customer not subject to the AMT is a natural buyer, in-state residency adds state tax value, and holding period is irrelevant to the AMT issue.",
      "topic": "Private activity bonds / AMT",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "A municipal bond's interest is exempt from federal income tax. Which additional statement is TRUE for an investor who buys this out-of-state bond and holds it in a taxable account?",
+     "q": "A customer whose home state imposes an income tax holds an out-of-state municipal bond in a taxable account. Which statement about the bond's interest is TRUE?",
      "choices": [
-      "The interest is automatically exempt from the investor's home-state income tax as well as federal tax",
-      "The interest is a federal AMT preference item whether or not the bond is a private activity issue",
-      "The interest escapes state tax, but the principal repaid at maturity is federally taxable income",
-      "The interest is generally subject to the investor's home-state income tax as an out-of-state issue"
+      "It is automatically exempt from the customer's home state income tax.",
+      "It is generally subject to the customer's home state income tax.",
+      "It is an alternative minimum tax preference item in every case.",
+      "It is state tax-exempt, but principal repaid at maturity is taxable."
      ],
-     "answer": 3,
-     "explanation": "Out-of-state municipal interest is generally TAXABLE by the investor's home state; only in-state issues typically earn the home-state exemption. 'Automatically exempt' reverses the in-state/out-of-state treatment, AMT applies only to private activity bonds rather than all munis, and return of principal at maturity is not taxable income.",
+     "answer": 1,
+     "explanation": "Interest on an out-of-state municipal bond is generally taxable by the investor's home state; only in-state issues typically earn the home state exemption. The AMT preference treatment applies to private activity bonds rather than to all municipal issues, and the return of principal at maturity is not taxable income.",
      "topic": "Tax-exempt interest",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "An ABLE account beneficiary works and has no employer-sponsored retirement plan. Which statement about ABLE contributions and benefits is TRUE?",
+     "q": "An ABLE account beneficiary is employed and has no employer-sponsored retirement plan. Which of the following statements is TRUE?",
      "choices": [
-      "ABLE contributions are limited strictly to the annual gift-tax exclusion amount with no exception for working beneficiaries",
-      "A working beneficiary may contribute an additional amount above the annual gift-tax exclusion under the ABLE-to-Work provision",
-      "ABLE account balances of any size never affect means-tested benefits such as SSI",
-      "Distributions for non-qualified disability expenses are tax-free if the beneficiary is under age 59 1/2"
+      "The beneficiary may contribute above the annual gift tax exclusion amount.",
+      "The beneficiary's contributions are capped at the annual gift tax exclusion.",
+      "An ABLE balance of any size never affects Supplemental Security Income.",
+      "Non-qualified distributions are tax-free for a beneficiary under age 59 1/2."
      ],
-     "answer": 1,
-     "explanation": "Under the ABLE-to-Work provision, an employed beneficiary without an employer retirement plan may contribute beyond the base annual gift-exclusion limit, an exception the first choice wrongly denies. ABLE balances above a threshold CAN affect SSI eligibility, and non-qualified distributions are taxable on earnings plus a penalty, with no 59 1/2 exemption (that belongs to retirement accounts).",
+     "answer": 0,
+     "explanation": "Under the ABLE-to-Work provision, an employed beneficiary who is not covered by an employer retirement plan may contribute an additional amount above the base annual gift tax exclusion limit. ABLE balances above a stated threshold can affect Supplemental Security Income eligibility, and non-qualified distributions are taxed on the earnings portion plus a penalty, with no age 59 1/2 exception.",
      "topic": "529 vs ABLE",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "Consider these statements about MSRB rules: I. The MSRB sets standards for fair dealing, gifts, and recordkeeping by municipal dealers. II. The MSRB's rules apply to municipal securities dealers, including bank dealers. III. The MSRB has the statutory authority to regulate the issuers of municipal bonds. Which are TRUE?",
+     "q": "Which of the following is outside the rulemaking authority of the Municipal Securities Rulemaking Board (MSRB)?",
      "choices": [
-      "I and II",
-      "I and III",
-      "II and III",
-      "I, II, and III"
+      "Fair dealing standards for municipal securities dealers",
+      "Gift and gratuity limits for municipal dealer personnel",
+      "Recordkeeping requirements applicable to bank dealers",
+      "Disclosure requirements imposed directly on municipal issuers"
      ],
-     "answer": 0,
-     "explanation": "The MSRB writes fair-dealing, gift, and recordkeeping rules (I) binding all municipal securities dealers, including bank dealers (II). III is false: the Tower Amendment bars the MSRB and SEC from directly regulating municipal issuers, so only I and II are correct.",
+     "answer": 3,
+     "explanation": "The Tower Amendment bars the MSRB and the SEC from regulating municipal issuers directly, so issuer disclosure requirements fall outside MSRB authority. The MSRB does write fair dealing, gift, and recordkeeping rules, and those rules apply to all municipal securities dealers, including bank dealers.",
      "topic": "MSRB",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "A municipal underwriter delivers a 'preliminary official statement' to prospective investors before a new issue is priced. Which statement BEST distinguishes the preliminary official statement (POS) from the final official statement?",
+     "q": "Which of the following distinguishes a preliminary official statement from a final official statement?",
      "choices": [
-      "The POS is a legally binding contract of sale, while the final official statement is merely informational",
-      "The POS omits the final offering price and interest rate, which are set at pricing and appear in the final official statement",
-      "The POS is prepared by the MSRB, while the final official statement is prepared by the issuer",
-      "The POS is required only for GO bonds, while the final official statement is required only for revenue bonds"
+      "The preliminary statement is a binding contract of sale to investors.",
+      "The preliminary statement is prepared by the MSRB rather than the issuer.",
+      "The preliminary statement omits the final offering price and coupon rate.",
+      "The preliminary statement is required only for general obligation issues."
      ],
-     "answer": 1,
-     "explanation": "A preliminary official statement contains most disclosures but OMITS the final price and coupon, which are set at pricing and then appear in the final OS, the precise distinction. The POS is not a binding contract; it solicits indications of interest. Both documents are issuer-prepared (not MSRB) and apply regardless of GO vs revenue type.",
+     "answer": 2,
+     "explanation": "A preliminary official statement contains substantially all of the disclosure but omits the final offering price and interest rate, which are set at pricing and then appear in the final official statement. The preliminary statement solicits indications of interest and is not a binding contract, both documents are prepared for the issuer rather than by the MSRB, and both apply whether the issue is a general obligation or a revenue bond.",
      "topic": "Official statement",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A state treasurer's office wants to pool the short-term operating cash of several school districts and county agencies into a single professionally managed account that offers same-day liquidity and a stable share value. The treasurer is considering a local government investment pool (LGIP). Which statement about the LGIP is CORRECT?",
+     "q": "A state treasurer pools the short-term operating cash of school districts and county agencies in a local government investment pool (LGIP). Which statement is TRUE?",
      "choices": [
-      "The LGIP is a municipal fund security regulated by the MSRB, and the participating government entities are the eligible investors",
-      "The LGIP is registered with the SEC as an open-end investment company under the Investment Company Act of 1940",
-      "Individual retail investors in the participating districts may buy into the LGIP to earn the same yield as the government participants",
-      "Deposits in the LGIP are insured by the FDIC up to $250,000 per participating government entity"
+      "It is a municipal fund security regulated under the rules of the MSRB.",
+      "It is registered with the SEC as an open-end investment company.",
+      "It is open to individual retail investors in the participating districts.",
+      "It is insured by the FDIC up to $250,000 per government participant."
      ],
      "answer": 0,
-     "explanation": "An LGIP is a municipal fund security (the same broad category as 529 plans and ABLE accounts) and therefore falls under MSRB rules. Its purpose is to let state and local government entities pool short-term operating cash for professional management, diversification, and liquidity, so the eligible investors are the government participants — not individual retail investors. LGIPs are NOT registered investment companies under the 1940 Act (they are government-sponsored and rely on a securities-law exemption), and they are NOT FDIC-insured; FDIC insurance covers bank deposits, not pooled securities accounts.",
+     "explanation": "An LGIP is a municipal fund security, the same broad category as 529 plans and ABLE accounts, and is therefore subject to Municipal Securities Rulemaking Board rules. It exists so that state and local government entities can pool short-term operating cash for professional management and liquidity, so the eligible investors are the government participants rather than individuals. An LGIP is not a registered investment company under the Investment Company Act of 1940 and is not insured by the Federal Deposit Insurance Corporation, because that insurance covers bank deposits rather than pooled securities accounts.",
      "topic": "LGIPs",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "A registered representative is comparing a local government investment pool (LGIP) with a 529 savings plan and a retail SEC-registered money market fund. Which of the following statements is NOT correct? I. Both the LGIP and the 529 plan are municipal fund securities regulated by the MSRB. II. Unlike a retail money market fund, an LGIP is registered under the Investment Company Act of 1940 and is subject to SEC Rule 2a-7. III. The typical investor in an LGIP is a state or local government entity, whereas the typical investor in a 529 plan is an individual saving for a beneficiary's education.",
+     "q": "Which of the following statements about a local government investment pool (LGIP) is NOT correct?",
      "choices": [
-      "I only",
-      "II only",
-      "III only",
-      "I and III only"
+      "An LGIP and a 529 plan are both municipal fund securities under MSRB rules.",
+      "An LGIP is registered under the Investment Company Act of 1940.",
+      "An LGIP's typical investors are state and local government entities.",
+      "An LGIP is used to manage short-term operating cash with daily liquidity."
      ],
      "answer": 1,
-     "explanation": "Statements I and III are correct: LGIPs and 529 plans are both municipal fund securities under MSRB jurisdiction, and the investors differ — government entities use LGIPs to manage operating cash, while individuals use 529 plans to save for education. Statement II is the false one: an LGIP is generally NOT registered under the Investment Company Act of 1940 and is not legally bound by SEC Rule 2a-7 (the rule governing registered money market funds). Many LGIPs voluntarily mirror 2a-7-style standards to maintain a stable value, but they are exempt government-sponsored vehicles, not registered money market funds. The question asks which is NOT correct, so II only is the answer.",
+     "explanation": "An LGIP is generally not registered under the Investment Company Act of 1940 and is not legally bound by SEC Rule 2a-7, the rule governing registered money market funds; many pools voluntarily mirror 2a-7 standards to maintain a stable value, but they remain exempt government-sponsored vehicles. The remaining statements are correct: LGIPs and 529 plans are both municipal fund securities under Municipal Securities Rulemaking Board jurisdiction, and government entities use LGIPs to manage operating cash with daily liquidity.",
      "topic": "LGIPs vs municipal fund securities",
      "difficulty": "hard",
      "style": "roman"
@@ -13604,7 +13599,7 @@ window.SIE_DATA = {
    ],
    "questions": [
     {
-     "q": "A customer invests $11,500 into the Class A shares of the Meridian Growth Fund, which carries the following breakpoint schedule: $0–$9,999 = 5.0%; $10,000–$24,999 = 4.0%; $25,000–$49,999 = 3.0%. The fund's NAV is $19.20. How many shares does the customer acquire?",
+     "q": "A customer invests $11,500 in the Class A shares of a fund with the following breakpoint schedule: $0–$9,999, 5.00%; $10,000–$24,999, 4.00%; $25,000–$49,999, 3.00%. The net asset value (NAV) is $19.20. How many shares are purchased?",
      "choices": [
       "569.01 shares",
       "575.00 shares",
@@ -13612,147 +13607,147 @@ window.SIE_DATA = {
       "598.96 shares"
      ],
      "answer": 1,
-     "explanation": "At $11,500 the investment reaches the $10,000 breakpoint, so the 4.0% load applies: POP = NAV / (1 - 0.04) = 19.20 / 0.96 = $20.00. Shares = $11,500 / $20.00 = exactly 575.00. The 569.01 trap applies the 5.0% rate (POP $20.21) the customer is NOT charged because the $10,000 breakpoint is reached; 580.99 wrongly uses the 3.0% rate, which requires $25,000.",
+     "explanation": "At $11,500 the investment reaches the $10,000 breakpoint, so the 4.00% load applies: POP = NAV / (1 - 0.04) = $19.20 / 0.96 = $20.00. Shares = $11,500 / $20.00 = 575.00. The 569.01 figure applies the 5.00% rate (POP $20.21) the customer is not charged because the $10,000 breakpoint is reached; 580.99 wrongly uses the 3.00% rate, which requires $25,000.",
      "topic": "Breakpoints / POP calc",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "Under the Investment Company Act of 1940, which of the following is NOT classified as a type of investment company?",
+     "q": "Under the Investment Company Act of 1940, each of the following is a type of investment company EXCEPT:",
      "choices": [
       "Face-amount certificate company",
       "Open-end management company",
       "Real estate investment trust",
-      "Unit investment trust"
+      "Unit investment trust (UIT)"
      ],
      "answer": 2,
-     "explanation": "The 1940 Act defines exactly three types of investment companies: face-amount certificate companies, unit investment trusts, and management companies — an open-end management company is simply a subtype of the management-company category, so it still qualifies. A REIT is a real-estate pass-through entity organized under separate Internal Revenue Code provisions and is not an investment company under the 1940 Act, making it the correct EXCEPT answer.",
+     "explanation": "The 1940 Act defines three types of investment companies: face-amount certificate companies, unit investment trusts, and management companies. An open-end management company is a subtype of the management-company category, so it qualifies. A real estate investment trust is a real-estate pass-through entity organized under separate Internal Revenue Code provisions and is not an investment company under the 1940 Act.",
      "topic": "1940 Act classification",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "A registered representative recommends that a client purchase $19,400 of Class A shares in a fund whose first breakpoint is at $20,000. The RR does not mention the breakpoint, the client invests $19,400, and the difference is intentionally left below the threshold so the firm earns a higher sales charge. This practice is BEST described as:",
+     "q": "A registered representative sells a customer $19,400 of Class A shares and does not disclose that a purchase of $20,000 qualifies for a reduced sales charge. This practice is:",
      "choices": [
-      "A permissible sale because the client did not reach the breakpoint",
-      "A breakpoint sale, which is a prohibited practice",
-      "A rights of accumulation calculation error",
-      "A lawful application of the conduct rules on suitability"
+      "a permissible sale below the breakpoint.",
+      "a prohibited breakpoint sale by the firm.",
+      "a rights of accumulation (ROA) error.",
+      "a suitable transaction under FINRA rules."
      ],
      "answer": 1,
-     "explanation": "Selling a dollar amount just below a breakpoint to generate a higher sales charge, without disclosing that a slightly larger purchase qualifies for a reduced charge, is a prohibited breakpoint sale. The client's failure to reach the threshold does not excuse it; the violation lies in the RR's failure to inform and the intent to maximize the load.",
+     "explanation": "Selling a dollar amount just below a breakpoint to generate a higher sales charge, without disclosing that a slightly larger purchase qualifies for a reduced charge, is a prohibited breakpoint sale. The customer's failure to reach the threshold does not excuse it; the violation lies in the failure to inform and the intent to maximize the sales charge.",
      "topic": "Breakpoint sale violation",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "An investor wants to buy shares of an investment company that (1) trades intraday on an exchange at a price set by supply and demand, (2) may trade at a discount or premium to NAV, and (3) issues a fixed number of shares in an IPO. Which security matches ALL three features?",
+     "q": "An investment company issues a fixed number of shares in a single offering, trades intraday on an exchange, and may sell at a premium or discount to net asset value (NAV). This describes:",
      "choices": [
-      "Open-end mutual fund",
-      "Closed-end fund",
-      "Unit investment trust",
-      "Face-amount certificate"
+      "an open-end management company.",
+      "a unit investment trust (UIT).",
+      "a closed-end management company.",
+      "a face-amount certificate company."
      ],
-     "answer": 1,
-     "explanation": "A closed-end fund issues a fixed number of shares once, then trades on the secondary market intraday at a market-determined price that can be above (premium) or below (discount) NAV. An open-end fund is wrong because it continuously issues/redeems redeemable shares priced by forward pricing at NAV, never trading at a market discount/premium on an exchange.",
+     "answer": 2,
+     "explanation": "A closed-end management company issues a fixed number of shares once, then trades in the secondary market intraday at a price set by supply and demand, which may be above (premium) or below (discount) NAV. An open-end company continuously issues and redeems redeemable shares priced at the next computed NAV and never trades at a secondary-market premium or discount.",
      "topic": "Closed-end vs open-end",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A customer enters an order to purchase open-end mutual fund shares at 2:15 p.m. ET on Tuesday. The fund computes NAV once daily at the 4:00 p.m. ET market close. Under the forward pricing rule, the customer's purchase price will be based on:",
+     "q": "A customer's order to purchase open-end fund shares is received at 2:15 p.m. ET on Tuesday, and the fund computes net asset value (NAV) once daily at the 4:00 p.m. ET close. Under forward pricing, the purchase price is based on:",
      "choices": [
-      "The NAV last computed at Monday's 4:00 p.m. close",
-      "The NAV computed at Tuesday's 4:00 p.m. close",
-      "The NAV computed at Wednesday's 4:00 p.m. close",
-      "The average of Monday's and Tuesday's closing NAVs"
+      "Monday's 4:00 p.m. close.",
+      "Tuesday's 4:00 p.m. close.",
+      "Wednesday's 4:00 p.m. close.",
+      "An average of recent closes."
      ],
      "answer": 1,
-     "explanation": "Forward pricing requires that an order received before the next NAV calculation be executed at that next computed NAV. An order at 2:15 p.m. is received before the 4:00 p.m. Tuesday calculation, so it gets Tuesday's closing NAV. Using Monday's already-computed NAV is precisely what forward pricing prohibits (it would invite backward pricing/late trading).",
+     "explanation": "Forward pricing requires an order received before the next NAV calculation to be executed at that next computed NAV. An order at 2:15 p.m. precedes the 4:00 p.m. Tuesday calculation, so it receives Tuesday's closing NAV. Using Monday's already-computed NAV is precisely what forward pricing prohibits, because it would permit backward pricing and late trading.",
      "topic": "Forward pricing",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "An investor compares two share classes of the same fund for a $40,000 investment intended to be held 8 years. Class A charges a 4.25% front-end load and 0.25% annual 12b-1; Class C charges no front-end load, a 1.00% annual 12b-1, and a 1% CDSC only in year one. Which statement is TRUE?",
+     "q": "A customer will hold a $40,000 investment for eight years. Class A shares carry a 4.25% front-end load and a 0.25% annual 12b-1 fee; Class C shares carry no front-end load, a 1.00% annual 12b-1 fee, and a 1% contingent deferred sales charge (CDSC) in year one. Which statement is TRUE?",
      "choices": [
-      "Class A is cheaper over this horizon because its lower annual 12b-1 fee outweighs the one-time load",
-      "Class C is cheaper over this horizon because the full $40,000 goes to work with no front-end deduction",
-      "Class C is cheaper over this horizon because its CDSC lapses after year one, ending its extra charges",
-      "The classes cost the same over this horizon because FINRA caps the total charges of every share class"
+      "Class C costs less, because no front-end load is deducted.",
+      "Class C costs less, because the CDSC lapses after year one.",
+      "Class A costs less, because its 12b-1 fee is far lower.",
+      "The classes cost the same, because FINRA caps total charges."
      ],
-     "answer": 0,
-     "explanation": "Class A's roughly $1,700 up-front load is more than offset over 8 years by its 0.25% annual 12b-1 versus Class C's 1.00%: the 0.75% yearly drag on about $40,000 exceeds $2,400 over the period. The lapse of Class C's one-year CDSC does not end its higher costs — the 1.00% 12b-1 continues every year — so Class C is preferable only for short holding periods.",
+     "answer": 2,
+     "explanation": "Class A's roughly $1,700 up-front load is more than offset over eight years by its 0.25% annual 12b-1 fee versus Class C's 1.00%: the 0.75% yearly drag on about $40,000 exceeds $2,400 over the period. The lapse of the one-year CDSC does not end Class C's higher costs, because the 1.00% 12b-1 fee continues annually, so Class C is preferable only for short holding periods.",
      "topic": "A vs C share selection",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "A fund's portfolio holds securities with a total market value of $880 million, plus $20 million in cash and $5 million in receivables, against $25 million in liabilities. The fund has 50 million shares outstanding and a maximum sales charge of 5%. What is the public offering price (POP) per share?",
+     "q": "A fund holds securities valued at $880 million, cash of $20 million, and receivables of $5 million, against liabilities of $25 million. With 50 million shares outstanding and a 5.00% maximum sales charge, what is the public offering price (POP) per share?",
      "choices": [
+      "$17.00",
       "$17.60",
       "$18.53",
-      "$18.95",
-      "$17.00"
+      "$18.95"
      ],
-     "answer": 1,
-     "explanation": "NAV per share = (880 + 20 + 5 - 25) / 50 = 880 / 50 = $17.60. POP = NAV / (1 - sales charge) = 17.60 / 0.95 = $18.53. The $17.60 trap is the NAV itself, ignoring that the question asks for POP, which is grossed up for the 5% load.",
+     "answer": 2,
+     "explanation": "Net asset value per share = ($880 + $20 + $5 - $25) million / 50 million = $880 million / 50 million = $17.60. POP = NAV / (1 - sales charge) = $17.60 / 0.95 = $18.53. The $17.60 figure is the NAV itself and ignores that the question asks for the POP, which is grossed up for the 5.00% load.",
      "topic": "NAV and POP calc",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "Regarding a 12b-1 fee, which of the following is TRUE?",
+     "q": "Which of the following statements regarding a 12b-1 fee is TRUE?",
      "choices": [
-      "A fund charging a 12b-1 fee of 0.25% or less may still be marketed as a 'no-load' fund",
-      "A 12b-1 fee is deducted as a one-time charge at the time of purchase, like a front-end load",
-      "The maximum permitted 12b-1 fee under FINRA rules is 5.75% annually",
-      "12b-1 fees are paid directly by the fund's investment adviser, not from fund assets"
+      "A fund charging 0.25% or less may be marketed as no-load.",
+      "The fee is deducted once, at the time of purchase.",
+      "The maximum annual fee permitted by FINRA is 5.75%.",
+      "The fee is paid by the adviser, not from fund assets."
      ],
      "answer": 0,
-     "explanation": "FINRA permits a fund to call itself 'no-load' only if its annual 12b-1/service fees do not exceed 0.25% of average net assets. The fee is an ongoing asset-based charge deducted from fund assets (reducing return), not a one-time front-end charge, and the FINRA cap on asset-based 12b-1 distribution fees is 0.75% (plus a 0.25% service fee), not 5.75%.",
+     "explanation": "FINRA permits a fund to describe itself as no-load only if its annual 12b-1 and service fees do not exceed 0.25% of average net assets. The fee is an ongoing asset-based charge deducted from fund assets, reducing return, rather than a one-time front-end charge, and the FINRA cap on asset-based distribution fees is 0.75% plus a 0.25% service fee, not 5.75%.",
      "topic": "12b-1 fees",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "A customer signs a Letter of Intent (LOI) for $50,000 to obtain a breakpoint, depositing $30,000 initially. The fund escrows shares to cover the additional sales charge. If after 13 months the customer has invested only $30,000 total, what happens?",
+     "q": "A customer signs a letter of intent (LOI) for $50,000 and deposits $30,000, with shares held in escrow. Thirteen months later, no additional purchase has been made. What happens?",
      "choices": [
-      "The breakpoint is honored on the $30,000 because the customer made a good-faith effort to complete it",
-      "The customer receives an automatic 90-day extension to deposit the remaining $20,000 under the LOI",
-      "The fund redeems the customer's entire $30,000 position and returns the proceeds at the current NAV",
-      "The escrowed shares are liquidated to collect the additional sales charge owed on the $30,000 invested"
+      "The breakpoint is honored on the amount actually invested.",
+      "The customer receives an automatic 90-day extension to invest.",
+      "The entire position is redeemed at the current net asset value.",
+      "The escrowed shares are liquidated to collect the charge owed."
      ],
      "answer": 3,
-     "explanation": "An LOI gives the customer 13 months to reach the stated amount; if it goes unfulfilled, the higher sales charge applies to the amount actually invested, and the fund liquidates the escrowed shares to collect the difference. There is no automatic extension — the 90-day figure refers only to backdating prior purchases into an LOI — and the underlying investment itself is not redeemed or returned.",
+     "explanation": "An LOI gives the customer 13 months to reach the stated amount. If it goes unfulfilled, the higher sales charge applies to the amount actually invested, and the fund liquidates the escrowed shares to collect the difference. There is no automatic extension; the 90-day figure refers only to backdating prior purchases into an LOI, and the underlying investment is not redeemed.",
      "topic": "Letter of intent",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Which statements correctly distinguish Rights of Accumulation (ROA) from a Letter of Intent (LOI)? I. ROA uses the current value (or amount invested) of existing holdings plus the new purchase to qualify for a breakpoint. II. An LOI may be backdated up to 90 days to include a prior purchase. III. An LOI requires shares to be held in escrow; ROA does not. IV. ROA is subject to a 13-month time limit, while an LOI has no time limit.",
+     "q": "Which of the following applies to a letter of intent (LOI) but not to rights of accumulation (ROA)?",
      "choices": [
-      "I and II only",
-      "I, II, and III only",
-      "I and III only",
-      "II, III, and IV only"
+      "Use of existing holdings to reach a breakpoint",
+      "A reduced sales charge at each breakpoint level",
+      "Shares held in escrow for a 13-month period",
+      "Backdating of prior purchases by 12 months"
      ],
-     "answer": 1,
-     "explanation": "ROA aggregates existing holdings with new purchases to reach a breakpoint (I); an LOI can be backdated up to 90 days (II) and requires escrowed shares to secure the potential additional charge (III). Statement IV reverses the rule: the 13-month limit applies to the LOI, while ROA has no time limit, so IV is false.",
+     "answer": 2,
+     "explanation": "An LOI runs 13 months and requires the fund to hold shares in escrow to secure the additional sales charge owed if the stated amount is not reached; ROA has no time limit and no escrow. ROA is the arrangement that adds the current value of existing holdings to a new purchase, a reduced charge at each breakpoint level is available under both, and LOI backdating is limited to 90 days, not 12 months.",
      "topic": "ROA vs LOI",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "An investor redeems open-end mutual fund shares. Which of the following is TRUE about the redemption?",
+     "q": "An investor redeems open-end fund shares that are subject to a contingent deferred sales charge (CDSC). Which statement about the redemption is TRUE?",
      "choices": [
-      "The fund must send payment within seven calendar days of the redemption request",
-      "The investor receives the next computed NAV minus any applicable redemption fee or CDSC, under forward pricing",
-      "Redemption proceeds are based on the NAV at the time the order was placed, not the next computed NAV",
-      "The investor sells the shares back into the secondary market at the current bid price"
+      "The next computed net asset value (NAV) applies, less the CDSC.",
+      "Payment must be made within two business days of the request.",
+      "Proceeds are priced at the NAV last computed before the order.",
+      "The shares are sold in the secondary market at the bid price."
      ],
-     "answer": 1,
-     "explanation": "Mutual fund redemptions are forward priced at the NEXT computed NAV, less any redemption fee or contingent deferred sales charge. The 1940 Act's seven-day payment requirement governs timing, not pricing; using the order-time price is what forward pricing forbids, and open-end shares are redeemed by the fund, not sold in a secondary market.",
+     "answer": 0,
+     "explanation": "Redemptions of open-end fund shares are forward priced at the next computed NAV, less any redemption fee or contingent deferred sales charge. The Investment Company Act of 1940 requires payment within seven calendar days, not two business days; pricing at the last computed NAV is what forward pricing forbids; and redeemable shares are returned to the fund rather than sold in a secondary market.",
      "topic": "Redemption / 7-day rule",
      "difficulty": "hard",
      "style": "true"
@@ -13760,181 +13755,181 @@ window.SIE_DATA = {
     {
      "q": "A unit investment trust (UIT) differs from a closed-end management company in that the UIT:",
      "choices": [
-      "Has a board of directors and an investment adviser actively managing the portfolio",
-      "Holds a fixed, unmanaged portfolio and issues redeemable units representing an undivided interest",
-      "Trades continuously on an exchange at a premium or discount to NAV",
-      "Issues a fixed number of common shares in an IPO that then trade in the secondary market"
+      "employs an investment adviser and a board of directors.",
+      "trades on an exchange at a market-determined price.",
+      "issues a fixed number of shares in a single offering.",
+      "holds a fixed portfolio and issues redeemable units."
      ],
-     "answer": 1,
-     "explanation": "A UIT holds a fixed, unmanaged portfolio (no investment adviser, no board of directors) and issues redeemable units. A closed-end management company is actively managed with a board and issues non-redeemable shares that trade on an exchange at a premium/discount, which is what the wrong choices describe.",
+     "answer": 3,
+     "explanation": "A UIT holds a fixed, unmanaged portfolio, has no investment adviser and no board of directors, and issues redeemable units representing an undivided interest in that portfolio. A closed-end management company is actively managed under a board, and its non-redeemable shares are issued once and then trade on an exchange at a premium or discount, which is what the other choices describe.",
      "topic": "UIT vs closed-end",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A customer holds $80,000 in the Class A shares of the Ardent Equity Fund (current value $92,000) and wants to invest an additional $15,000. The breakpoint schedule reduces the sales charge at $100,000. Using rights of accumulation, the new purchase will be charged at:",
+     "q": "A customer's Class A shares cost $80,000 and are now worth $92,000. The customer invests an additional $15,000 in the same fund, whose schedule reduces the sales charge at $100,000. Under rights of accumulation (ROA), the new purchase is charged:",
      "choices": [
-      "The full sales charge, because the new purchase alone is only $15,000",
-      "The reduced sales charge, because $92,000 + $15,000 = $107,000 reaches the $100,000 breakpoint",
-      "The reduced sales charge, but only on the $7,000 above $100,000",
-      "The full sales charge, because rights of accumulation use original cost, and $80,000 + $15,000 = $95,000"
+      "the full sales charge, because the purchase is only $15,000.",
+      "the reduced sales charge on the entire $15,000 purchase.",
+      "the reduced sales charge on $7,000 of the purchase only.",
+      "the full sales charge, because cost basis totals $95,000."
      ],
      "answer": 1,
-     "explanation": "Rights of accumulation let the customer add the current value of existing holdings ($92,000) to the new $15,000 to reach $107,000, qualifying the entire new purchase for the reduced charge at the $100,000 breakpoint. The reduced charge applies to the whole new purchase, not just the excess above the breakpoint, and ROA may use current value rather than original cost.",
+     "explanation": "Rights of accumulation permit the current value of existing holdings ($92,000) to be added to the new $15,000, reaching $107,000 and qualifying the purchase for the reduced charge at the $100,000 breakpoint. The reduced charge applies to the entire new purchase rather than only the excess above the breakpoint, and ROA may use current value instead of original cost.",
      "topic": "Rights of accumulation",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Each of the following describes a feature of Class B (back-end load) shares EXCEPT:",
+     "q": "Each of the following describes Class B shares EXCEPT:",
      "choices": [
-      "A contingent deferred sales charge that typically declines to zero over a holding period of several years",
-      "Higher annual 12b-1 fees than comparable Class A shares of the same fund",
-      "Automatic conversion to Class A shares after the CDSC period expires",
-      "A front-end sales charge deducted at the time of purchase that reduces the amount invested"
+      "A contingent deferred sales charge that declines to zero",
+      "Annual 12b-1 fees higher than those on Class A shares",
+      "Conversion to Class A shares when the charge expires",
+      "A sales charge deducted at the time of the purchase"
      ],
      "answer": 3,
-     "explanation": "Class B shares charge NO front-end load; instead they impose a declining CDSC on redemption, carry higher 12b-1 fees than Class A, and typically convert to Class A once the CDSC schedule ends. The front-end sales charge deducted at purchase describes Class A shares, making it the correct EXCEPT answer.",
+     "explanation": "Class B shares impose no front-end load. They carry a contingent deferred sales charge that declines to zero over several years, higher 12b-1 fees than Class A shares of the same fund, and typically convert to Class A once the CDSC schedule ends. A sales charge deducted at the time of the purchase describes Class A shares.",
      "topic": "B-share features",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "An investor buys Class B shares with a CDSC schedule of 5% in year 1, declining 1% per year to 0% after year 5. The investor invests $25,000 and redeems the entire position in year 3 when it is worth $30,000. The CDSC is applied to the lesser of cost or current value. What is the CDSC charged?",
+     "q": "A customer invests $25,000 in Class B shares carrying a contingent deferred sales charge (CDSC) of 5% in year one, declining 1% per year to zero after year five. The position, then worth $30,000, is redeemed in year three. What is the CDSC?",
      "choices": [
-      "$900",
-      "$750",
-      "$1,500",
-      "$1,250"
+      "$500.00",
+      "$600.00",
+      "$750.00",
+      "$900.00"
      ],
-     "answer": 1,
-     "explanation": "The schedule runs 5%/4%/3%/2%/1% for years 1–5, so a year-3 redemption carries a 3% CDSC. The charge applies to the lesser of original cost ($25,000) or current value ($30,000): $25,000 × 3% = $750. The $900 trap wrongly applies 3% to the $30,000 current value instead of the lesser cost basis.",
+     "answer": 2,
+     "explanation": "The schedule runs 5%, 4%, 3%, 2%, and 1% for years one through five, so a year-three redemption carries a 3% charge. The CDSC applies to the lesser of original cost ($25,000) or current value ($30,000): $25,000 x 3% = $750.00. The $900.00 figure wrongly applies the 3% rate to the $30,000 current value, and $500.00 applies the year-four rate of 2%.",
      "topic": "CDSC calculation",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "A fund advertises a 'maximum sales charge of 5.5%.' Which statement about how that charge is calculated is TRUE?",
+     "q": "A fund discloses a maximum sales charge of 5.50%. Which statement regarding that charge is TRUE?",
      "choices": [
-      "The 5.5% is computed on the net amount invested (NAV), so the actual reduction in NAV is smaller than 5.5%",
-      "The 5.5% is a percentage of the POP, so the dollar load on a $10,000 POP investment is exactly $550",
-      "The 5.5% is added on top of the NAV to derive the POP using NAV × 1.055",
-      "The 5.5% maximum is set by the SEC and may never be reduced through breakpoints"
+      "It is computed on the net amount invested, not the price paid.",
+      "It is added to net asset value (NAV) as NAV multiplied by 1.055.",
+      "It equals $550.00 on a $10,000.00 public offering price (POP).",
+      "It is set by the SEC and may not be reduced by breakpoints."
      ],
-     "answer": 1,
-     "explanation": "Mutual fund sales charges are quoted as a percentage of the POP (the total the customer pays), so a 5.5% load on a $10,000 POP investment equals exactly $550. POP is derived as NAV/(1 − 0.055), not NAV × 1.055; the percentage is on the POP, and the FINRA 8.5% ceiling can be reduced via breakpoints.",
+     "answer": 2,
+     "explanation": "Mutual fund sales charges are stated as a percentage of the public offering price, the total amount the customer pays, so a 5.50% load on a $10,000.00 investment equals exactly $550.00. POP is derived as NAV / (1 - 0.055) rather than NAV x 1.055, and the FINRA 8.5% ceiling may be reduced through breakpoints.",
      "topic": "Sales charge basis",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "Under FINRA rules, the maximum sales charge on an open-end mutual fund is 8.5% of the POP, but to charge the full 8.5% a fund must offer all of the following EXCEPT:",
+     "q": "To impose the maximum 8.50% sales charge, an open-end fund must offer each of the following EXCEPT:",
      "choices": [
       "Breakpoint quantity discounts on larger purchases",
-      "An 18-month Letter of Intent backdating provision",
       "Rights of accumulation on subsequent purchases",
-      "Reinvestment of dividends at net asset value"
+      "Reinvestment of dividends at net asset value",
+      "An 18-month letter of intent backdating provision"
      ],
-     "answer": 1,
-     "explanation": "To impose the maximum 8.5% sales charge, FINRA requires the fund to offer breakpoints, rights of accumulation, and dividend reinvestment at NAV. There is no 18-month backdating requirement: a Letter of Intent runs 13 months forward and may be backdated no more than 90 days, making that option the EXCEPT answer.",
+     "answer": 3,
+     "explanation": "To charge the maximum 8.5% sales charge, FINRA requires a fund to offer breakpoints, rights of accumulation, and reinvestment of dividends at net asset value. No 18-month backdating requirement exists: a letter of intent runs 13 months forward and may be backdated no more than 90 days.",
      "topic": "8.5% maximum conditions",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "Two funds are identical except: Fund X is open-end and Fund Y is closed-end. An investor notices Fund Y is trading at $18.50 while its NAV is $20.00. Which statement is TRUE?",
+     "q": "A closed-end fund's shares trade at $18.50 while the fund's net asset value (NAV) is $20.00. Which statement is TRUE?",
      "choices": [
-      "Fund Y is trading at a 7.5% premium and its shares can be redeemed with the fund at the $20.00 NAV",
-      "Fund X could likewise trade below NAV because both funds' shares change hands on the secondary market",
-      "Fund Y is trading at a 7.5% discount and is bought on the secondary market, with a commission charged",
-      "Fund Y's $18.50 price reflects forward pricing at the next NAV calculated after the order is received"
+      "The shares trade at a 7.50% discount and carry a commission.",
+      "The shares trade at a 7.50% premium and are redeemable at NAV.",
+      "The $18.50 price is the next NAV computed after the order.",
+      "Open-end shares may likewise trade below NAV on an exchange."
      ],
-     "answer": 2,
-     "explanation": "($20.00 − $18.50) / $20.00 = 7.5%, a discount to NAV, and closed-end shares are bought and sold on the secondary market with a commission. Open-end (Fund X) shares are purchased and redeemed with the fund at NAV under forward pricing, so they never trade at a secondary-market discount; forward pricing never determines a closed-end fund's market price, and closed-end shares are not redeemable with the fund.",
+     "answer": 0,
+     "explanation": "($20.00 - $18.50) / $20.00 = 7.50%, a discount to NAV, and closed-end shares are bought and sold in the secondary market with a commission. Open-end shares are purchased from and redeemed by the fund at NAV under forward pricing and never trade at a secondary-market discount; forward pricing does not set a closed-end fund's market price, and closed-end shares are not redeemable.",
      "topic": "Premium/discount",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "A registered representative is comparing the dividend-distribution mechanics of an open-end fund with those of listed common stock under the current T+1 settlement regime. Which statement correctly distinguishes the 'ex-dividend date' for mutual funds?",
+     "q": "The ex-dividend date for an open-end fund is normally set by:",
      "choices": [
-      "It is set by the fund's board of directors, typically the business day after the record date",
-      "It is set one business day before the record date, exactly as for listed stock settling at T+1",
-      "It is set by FINRA's Uniform Practice Code to fall on the record date, the same as listed stock",
-      "It does not exist, because redeemable shares are always purchased at the next computed offering price"
+      "the fund's board, on the business day after the record date.",
+      "the fund's board, on the business day before the record date.",
+      "FINRA's Uniform Practice Code, on the record date itself.",
+      "the exchange, two business days before the record date."
      ],
      "answer": 0,
-     "explanation": "Because open-end fund shares do not trade in a continuous auction market, the fund's board sets the ex-dividend date — commonly the business day after the record date — rather than any settlement-based rule. The FINRA/exchange convention that places the ex-date on the record date applies to listed stock under T+1, not to mutual funds, and redeemable shares still have an ex-date for distributions.",
+     "explanation": "Because open-end fund shares do not trade in a continuous auction market, the fund's board sets the ex-dividend date, commonly the business day after the record date, rather than any settlement-based convention. The rule placing the ex-date on the record date applies to listed stock settling on a T+1 basis, and redeemable shares still have an ex-date for distributions.",
      "topic": "Fund ex-date distinction",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "An investor places a single $9,800 purchase into a fund with a first breakpoint at $10,000. The registered representative, knowing the customer has $400 of uninvested cash in the account, fails to inform the customer that adding $200 would qualify for a lower sales charge. Which characterization is correct?",
+     "q": "A customer with $400 of uninvested cash purchases $9,800 of Class A shares in a fund whose first breakpoint is $10,000. The registered representative does not mention the breakpoint. This is:",
      "choices": [
-      "A suitable transaction, because purchases below a breakpoint properly incur the higher sales charge",
-      "No violation, because the duty to disclose breakpoints applies only to trades the RR recommended",
-      "Permissible conduct, because breakpoint disclosure obligations begin at purchases of $50,000 or more",
-      "A prohibited breakpoint sale, because the RR failed to disclose the breakpoint just above the purchase"
+      "permitted, because the purchase was not recommended.",
+      "permitted, because disclosure begins at $50,000.",
+      "suitable, because the breakpoint was not reached.",
+      "a prohibited breakpoint sale by the representative."
      ],
      "answer": 3,
-     "explanation": "Allowing a purchase just below a breakpoint without telling the customer that a slightly larger investment earns a reduced sales charge is a prohibited breakpoint sale. The obligation is not limited to recommended trades and has no dollar threshold such as $50,000 — the RR knew of the nearby breakpoint and the available cash, and the failure to inform is itself the violation.",
+     "explanation": "Allowing a purchase just below a breakpoint without informing the customer that a slightly larger investment earns a reduced sales charge is a prohibited breakpoint sale. The obligation is not limited to recommended transactions and carries no dollar threshold such as $50,000; the representative knew of the nearby breakpoint and the available cash, and the failure to inform is itself the violation.",
      "topic": "Breakpoint sale violation",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Which of the following is/are characteristics that an open-end management company shares with a closed-end management company, but NOT with a unit investment trust? I. A board of directors. II. An investment adviser actively managing the portfolio. III. Redeemable securities. IV. A fixed portfolio that is not actively traded.",
+     "q": "Which of the following is common to open-end and closed-end management companies, but not to unit investment trusts (UITs)?",
      "choices": [
-      "I and II only",
-      "III only",
-      "I, II, and III only",
-      "II and IV only"
+      "Securities that are redeemable at net asset value",
+      "A board of directors and an investment adviser",
+      "A fixed portfolio that is not actively traded",
+      "Shares that trade at a discount to net asset value"
      ],
-     "answer": 0,
-     "explanation": "Both open- and closed-end management companies have a board of directors (I) and an investment adviser actively managing the portfolio (II); a UIT has neither. Redeemability (III) is NOT shared, because closed-end shares are not redeemable, and a fixed, unmanaged portfolio (IV) describes only the UIT, so only I and II are correct.",
+     "answer": 1,
+     "explanation": "Both open-end and closed-end management companies have a board of directors and an investment adviser managing the portfolio; a UIT has neither. Redeemability is not shared, because closed-end shares are not redeemable while UIT units are; a fixed, unmanaged portfolio describes only the UIT; and trading at a discount describes only the closed-end fund.",
      "topic": "Management co. vs UIT",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "A fund's prospectus shows a Class A breakpoint schedule and notes that purchases by the customer, spouse, and dependent children may be combined to reach a breakpoint. A customer who is NOT informed of this and pays a higher sales charge has most likely been subjected to:",
+     "q": "A fund permits purchases by a customer, spouse, and dependent children to be combined to reach a breakpoint. A customer who is not informed of this and pays the higher sales charge has been subjected to:",
      "choices": [
-      "A legitimate full sales charge, because accounts of separate family members cannot be aggregated",
-      "A breakpoint sale violation, because eligible related accounts were not combined for the discount",
-      "A 12b-1 disclosure failure, because ongoing distribution fees were never itemized for the customer",
-      "A forward pricing error, because the order was priced before household holdings were aggregated"
+      "a permissible charge, since family accounts are separate.",
+      "a 12b-1 disclosure failure by the fund's distributor.",
+      "a breakpoint sale violation by the selling member firm.",
+      "a forward pricing error made when the order was entered."
      ],
-     "answer": 1,
-     "explanation": "The fund's rules expressly permit combining purchases by the customer, spouse, and dependent children to reach a breakpoint, so failing to inform the customer and collecting the higher charge is a breakpoint sale violation. The issue concerns sales-charge breakpoints, not 12b-1 fee disclosure or pricing mechanics — the shares were still correctly priced at the next computed NAV.",
+     "answer": 2,
+     "explanation": "The fund's rules expressly permit combining purchases by the customer, spouse, and dependent children to reach a breakpoint, so failing to inform the customer and collecting the higher charge is a breakpoint sale violation. The issue concerns sales-charge breakpoints rather than 12b-1 fee disclosure or pricing mechanics, because the shares were still priced at the next computed NAV.",
      "topic": "Breakpoint aggregation",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "An analyst evaluates the capital structure permitted to a closed-end management company versus an open-end management company under the Investment Company Act of 1940. Which statement is TRUE?",
+     "q": "Under the Investment Company Act of 1940, which statement regarding the issuance of senior securities is TRUE?",
      "choices": [
-      "Both types may issue preferred stock and bonds freely, because the 1940 Act sets no leverage limits",
-      "An open-end fund may issue bonds but not preferred; a closed-end fund may issue only preferred stock",
-      "A closed-end fund may issue preferred stock and bonds within coverage limits; an open-end fund may not",
-      "Neither type may employ leverage of any kind, because the 1940 Act bars all senior securities"
+      "An open-end fund may issue bonds, but not preferred stock.",
+      "Both fund types may issue senior securities without limit.",
+      "Neither type of fund may issue any senior security.",
+      "A closed-end fund may issue bonds and preferred stock."
      ],
-     "answer": 2,
-     "explanation": "Closed-end funds may issue senior securities — generally one class of debt and one class of preferred stock — subject to the 1940 Act's asset-coverage tests (300% for debt, 200% for preferred), giving them leverage. Open-end funds generally may not issue traditional senior securities (their only permitted leverage is bank borrowing with 300% coverage), so neither the 'no limits' claim nor the 'no leverage at all' claim is accurate.",
+     "answer": 3,
+     "explanation": "Closed-end funds may issue senior securities, generally one class of debt and one class of preferred stock, subject to the asset-coverage tests of the Investment Company Act of 1940 (300% for debt and 200% for preferred), which permits leverage. Open-end funds generally may not issue traditional senior securities, their only permitted leverage being bank borrowing with 300% coverage.",
      "topic": "Closed-end leverage",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "A customer is deciding between Class A shares (4.5% front load, 0.25% 12b-1) and Class C shares (no front load, 1.00% 12b-1, 1% CDSC in year 1) for a $200,000 investment. At $200,000, the Class A front load drops to 1.0% via breakpoint. The customer plans to hold for 10 years. Which recommendation is BEST and why?",
+     "q": "A customer will invest $200,000 for 10 years. At that amount a breakpoint reduces the Class A front-end load to 1.00%, with a 0.25% annual 12b-1 fee; Class C shares carry no front-end load, a 1.00% annual 12b-1 fee, and a 1% contingent deferred sales charge (CDSC) in year one. Which recommendation is most suitable?",
      "choices": [
-      "Class A, because the 1.0% breakpoint load plus the far lower 12b-1 fee costs less over ten years",
-      "Class C, because paying no front-end load puts the entire $200,000 to work from the very first day",
-      "Class B, because a purchase of this size qualifies for the shortest CDSC schedule and lowest fees",
-      "Either class, because the FINRA 8.5% cap equalizes what any share class can charge the investor"
+      "Class A, because the reduced load and lower annual fee cost less.",
+      "Class C, because the full $200,000 is invested from the first day.",
+      "Class B, because a purchase this large receives the shortest CDSC.",
+      "Either class, because FINRA caps all sales charges at 8.50%."
      ],
      "answer": 0,
-     "explanation": "At $200,000 the breakpoint cuts the Class A load to 1.0% (about $2,000), while Class C's extra 0.75% annual 12b-1 compounds against a $200,000 balance for 10 years — well over $10,000 of drag — so Class A is clearly cheaper. Large purchases in Class B or C shares forfeit breakpoint benefits, and FINRA's 8.5% cap is a ceiling on sales charges, not a guarantee that every class costs the same.",
+     "explanation": "At $200,000 the breakpoint cuts the Class A load to 1.00%, roughly $2,000, while Class C's additional 0.75% annual 12b-1 fee compounds against a $200,000 balance for 10 years, exceeding $10,000 of drag, so Class A costs less. Large purchases of Class B or Class C shares forfeit breakpoint benefits, and the 8.5% cap is a ceiling on sales charges rather than a guarantee that classes cost the same.",
      "topic": "Share class suitability",
      "difficulty": "hard",
      "style": "scenario"
@@ -14870,309 +14865,309 @@ window.SIE_DATA = {
    ],
    "questions": [
     {
-     "q": "An investor compares two funds tracking the same index. Fund A is a traditional open-end index mutual fund; Fund B is an ETF. The investor places an order at 11:00 a.m. on a day when the index is falling sharply through the afternoon. Which statement BEST describes the execution price each investor receives?",
+     "q": "A customer places buy orders at 11:00 a.m. for an index mutual fund and an index exchange-traded fund (ETF) on a day when the index falls sharply after noon. Which statement about the two executions is correct?",
      "choices": [
-      "Fund A fills at the 11:00 a.m. NAV; Fund B fills at the 4:00 p.m. closing price",
-      "Fund A and Fund B both fill at the 4:00 p.m. NAV as pooled index products",
-      "Fund A fills at the 4:00 p.m. NAV; Fund B fills near the 11:00 a.m. market price",
-      "Fund A and Fund B both fill near the 11:00 a.m. price under intraday pricing"
+      "The fund fills at the 11:00 a.m. net asset value; the ETF fills at the closing price.",
+      "The fund fills at the closing net asset value; the ETF fills at the 11:00 a.m. price.",
+      "The fund and the ETF both fill at the closing net asset value of the day.",
+      "The fund and the ETF both fill near the market price at 11:00 a.m. that day."
      ],
-     "answer": 2,
-     "explanation": "Open-end mutual fund orders execute only at the next forward-priced NAV computed after the order (here, the 4:00 p.m. close), so the mutual fund investor absorbs the afternoon decline; the ETF trades continuously and fills near the prevailing 11:00 a.m. market price. Mutual funds never price intraday, so any choice giving Fund A an 11:00 a.m. fill is wrong.",
+     "answer": 1,
+     "explanation": "Open-end mutual fund orders are forward priced and execute at the next net asset value computed after the order is received, so the fund investor absorbs the afternoon decline. An ETF trades continuously in the secondary market and fills near the price prevailing when the order is entered. Mutual fund shares are never priced intraday.",
      "topic": "ETF vs mutual fund pricing",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "A client holds an exchange-traded note (ETN) linked to a commodity index. The index rises 18% over the holding period, yet the client suffers a loss when the position is closed. Which explanation is MOST consistent with the structure of an ETN?",
+     "q": "A customer holds an exchange-traded note (ETN) linked to a commodity index. The index rises 18%, yet the customer closes the position at a loss. What is the most likely cause?",
      "choices": [
-      "The issuing bank's credit weakened, widening the note's discount to the index",
-      "The note's NAV is struck only once daily, so intraday index gains were erased",
-      "The note's SIPC coverage lapsed, reducing its redemption value at closeout",
-      "The note's coupon distributions were clawed back by the issuer at maturity"
+      "Decline in the value of the note's portfolio holdings",
+      "Clawback of the note's coupon payments at maturity",
+      "Deterioration in the issuing bank's credit quality",
+      "Reduction of the note's principal by the index sponsor"
      ],
-     "answer": 0,
-     "explanation": "An ETN is an unsecured debt obligation of the issuer, so its market value reflects both the referenced index AND the issuer's creditworthiness; deteriorating credit can push the note to a discount even as the index rises 18%. An ETN holds no portfolio and strikes no daily fund NAV, so once-daily pricing cannot explain the loss, and no clawback of distributions occurs at maturity.",
+     "answer": 2,
+     "explanation": "An ETN is an unsecured debt obligation, so its market value reflects both the referenced index and the creditworthiness of the issuer. Weakening issuer credit can drive the note to a discount even while the index advances. An ETN holds no portfolio, and the index sponsor has no claim on the note's principal.",
      "topic": "ETN issuer credit risk",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Which of the following is TRUE regarding how an ETF and a closed-end fund (CEF) trade relative to their net asset value?",
+     "q": "Which statement accurately compares how an exchange-traded fund (ETF) and a closed-end fund trade relative to net asset value (NAV)?",
      "choices": [
-      "The CEF trades near NAV through creation-unit arbitrage; the ETF often holds a wide discount",
-      "Both the ETF and the CEF must trade exactly at NAV because each is exchange-listed",
-      "Both the ETF and the CEF are redeemable at NAV from the issuer on any trading day",
-      "The ETF trades near NAV through creation-unit arbitrage; the CEF can hold a lasting discount"
+      "Arbitrage keeps the ETF near NAV; the closed-end fund may trade at a discount.",
+      "Arbitrage keeps the closed-end fund near NAV; the ETF may trade at a discount.",
+      "Both trade at NAV at all times, because each is listed on a stock exchange.",
+      "Both are redeemable at NAV directly from the issuer on any business day."
      ],
-     "answer": 3,
-     "explanation": "ETFs rely on authorized participants creating and redeeming shares in kind, an arbitrage loop that tethers market price to NAV; CEFs issue a fixed share count with no continuous creation or redemption, so supply and demand can push them to lasting premiums or discounts. The choice swapping the two mechanisms is the trap, and neither product lets retail investors redeem individual shares at NAV from the issuer.",
+     "answer": 0,
+     "explanation": "Creation and redemption of ETF shares in kind by authorized participants is an arbitrage mechanism that keeps market price close to NAV. A closed-end fund issues a fixed number of shares with no continuous creation or redemption, so supply and demand can sustain a lasting premium or discount. Neither product permits a retail investor to redeem shares at NAV from the issuer.",
      "topic": "ETF vs closed-end NAV",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "A 2x leveraged ETF seeks 200% of the DAILY return of an index. Over two days the index moves -10% then +11.11% (returning roughly to its start). Ignoring fees, which is closest to the leveraged ETF's two-day cumulative result starting from $100?",
+     "q": "A 2x leveraged exchange-traded fund (ETF) seeks 200% of an index's daily return. The index falls 10% and then gains 11.11%. Ignoring fees, what is a $100.00 investment worth after the two days?",
      "choices": [
-      "It returns to about $100, matching the index round-trip",
-      "It rises to about $104, beating the index",
-      "It falls to about $97.78, lagging the index round-trip",
-      "It falls to about $80, double the index's worst point"
+      "$80.00",
+      "$97.78",
+      "$100.00",
+      "$104.00"
      ],
-     "answer": 2,
-     "explanation": "Day 1: 2 x (-10%) = -20%, so $100 to $80. Day 2: 2 x (+11.11%) = +22.22%, so $80 x 1.2222 = $97.78, BELOW $100 even though the index round-tripped. This decay from daily compounding/reset is why the fund lags despite the index returning to start; the choices showing $100 or a gain ignore volatility drag.",
+     "answer": 1,
+     "explanation": "Day one: 200% of -10% is -20%, reducing $100.00 to $80.00. Day two: 200% of +11.11% is +22.22%, raising $80.00 to $97.78. The daily reset compounds losses, so the fund finishes below its starting value even though the index round-trips.",
      "topic": "Leveraged ETF daily reset",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "All of the following are accurate distinctions between ETFs and traditional open-end mutual funds EXCEPT:",
+     "q": "All of the following are differences between exchange-traded funds (ETFs) and open-end mutual funds EXCEPT:",
      "choices": [
-      "ETFs can be bought on margin and sold short, whereas mutual fund shares cannot",
-      "ETFs typically generate fewer taxable capital-gains distributions due to in-kind redemption",
-      "Mutual funds are forward-priced once daily, whereas ETFs trade intraday at market prices",
-      "ETFs charge investors a front-end sales load (Class A shares) collected at purchase"
+      "ETFs may be purchased on margin and sold short.",
+      "ETFs generally distribute fewer taxable capital gains.",
+      "ETFs trade intraday at negotiated market prices.",
+      "ETFs impose a front-end sales load at purchase."
      ],
      "answer": 3,
-     "explanation": "ETFs trade like stocks through a broker and carry commissions/spreads, not mutual-fund-style front-end sales loads or share classes, so the load statement is the false one and the correct EXCEPT answer. The other three are genuine differences: margin/shorting eligibility, tax efficiency from in-kind creation/redemption, and forward vs intraday pricing.",
+     "explanation": "ETFs are bought through a broker-dealer and carry commissions and spreads, not mutual fund sales loads or share classes, so the load statement is false and is the correct answer to an EXCEPT item. Margin and short-sale eligibility, tax efficiency from in-kind redemption, and intraday versus forward pricing are genuine differences.",
      "topic": "ETF vs mutual fund features",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "In the ETF creation process, an authorized participant (AP) does which of the following?",
+     "q": "In the creation of exchange-traded fund (ETF) shares, an authorized participant normally does which of the following?",
      "choices": [
-      "Delivers cash to the sponsor and receives individual ETF shares to sell one at a time",
-      "Delivers a basket of the underlying securities in kind and receives a creation unit",
-      "Borrows newly issued ETF shares and posts the underlying index basket as collateral",
-      "Redeems shares from retail investors at NAV and remits the proceeds to the sponsor"
+      "Delivers cash to the sponsor and receives individual shares to resell",
+      "Delivers a basket of securities in kind and receives a creation unit",
+      "Borrows new shares and pledges the index basket as collateral",
+      "Redeems customer shares at net asset value and remits the proceeds"
      ],
      "answer": 1,
-     "explanation": "Creation is an in-kind transaction: the AP delivers the specified basket of underlying securities to the fund and receives a large block (a creation unit) of new ETF shares, which it breaks up and sells in the secondary market. This in-kind exchange, not a cash purchase of individual shares, underpins ETF tax efficiency and the arbitrage that keeps price near NAV.",
+     "explanation": "Creation is an in-kind transaction in which the authorized participant delivers the specified basket of portfolio securities and receives a large block of new shares called a creation unit, which is then broken up and sold in the secondary market. That in-kind exchange supports both the tax efficiency of the product and the arbitrage that holds price near NAV.",
      "topic": "Creation/redemption",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "An investor buys 100 shares of an ETF at $50 in a margin account. Regulation T requires 50% initial margin. The ETF then falls to $30. Considering FINRA's 25% minimum maintenance and the brokerage minimum-equity floor, which statement is TRUE about the position after the decline?",
+     "q": "A customer buys 100 shares of an exchange-traded fund (ETF) at $50.00 in a margin account, meeting the 50% Regulation T requirement. The price then falls to $30.00. Which statement is correct?",
      "choices": [
-      "No call is possible because ETFs are exempt from maintenance margin requirements",
-      "Equity is $500, which is below the $2,000 minimum equity requirement, so the account is deficient",
-      "The 25% maintenance test is met, so the account is fully compliant with no concerns",
-      "Equity is $1,500 and exceeds both the 25% maintenance and the $2,000 minimum requirement"
+      "Equity is $2,500.00, because the debit balance absorbs the decline.",
+      "Equity is $1,500.00, which satisfies the maintenance requirement.",
+      "Equity is $500.00, which is below the $750.00 maintenance requirement.",
+      "No maintenance requirement applies, because ETFs are exempt from it."
      ],
-     "answer": 1,
-     "explanation": "Purchase: $5,000 value, $2,500 borrowed under Reg T. After the drop, market value is $3,000 and the debit stays $2,500, leaving equity of $500. Although $500 exceeds the 25% maintenance figure of $750? No: 25% of $3,000 is $750, so equity is also below maintenance, but the binding floor is the $2,000 minimum-equity requirement, which $500 fails, so the account is deficient. ETFs are NOT exempt from margin rules, defeating the first distractor.",
+     "answer": 2,
+     "explanation": "The purchase creates $5,000.00 of market value against a $2,500.00 debit balance. After the decline, market value is $3,000.00 and the debit is unchanged, leaving equity of $500.00. Because 25% of $3,000.00 is $750.00, the account is deficient; the equity also sits below the $2,000.00 minimum equity figure. ETFs are not exempt from margin rules.",
      "topic": "Margin minimum-equity trap",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "Consider the following statements about ETNs: I. They carry the credit risk of the issuing institution. II. They hold a portfolio of the underlying securities. III. They are senior unsecured debt obligations. IV. They are guaranteed by SIPC against issuer default. Which are correct?",
+     "q": "Which of the following best describes an exchange-traded note (ETN)?",
      "choices": [
-      "I and II only",
-      "I and III only",
-      "II and IV only",
-      "I, III, and IV only"
+      "An equity interest in a portfolio of the index's securities",
+      "A secured obligation collateralized by the referenced index",
+      "A pooled investment insured by SIPC against the issuer's default",
+      "A senior unsecured debt obligation of the issuing institution"
      ],
-     "answer": 1,
-     "explanation": "An ETN is a senior unsecured debt note whose return is linked to an index but which holds no underlying portfolio, so I and III are correct while II is false. SIPC protects against broker-dealer failure, not issuer default or market decline, so IV is wrong, eliminating any combination containing II or IV.",
+     "answer": 3,
+     "explanation": "An ETN is senior unsecured debt whose return is linked to the performance of an index; it holds no underlying portfolio, so it conveys no equity interest, and no collateral secures it. The Securities Investor Protection Corporation covers the failure of a broker-dealer, not the default of a note's issuer.",
      "topic": "ETN structure",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "A municipal-bond ETF and a directly held individual municipal bond are compared for a high-bracket investor. Which statement correctly distinguishes their tax treatment?",
+     "q": "Which statement correctly compares the tax treatment of a municipal bond exchange-traded fund (ETF) with that of a directly held municipal bond?",
      "choices": [
-      "Both pay federally tax-exempt interest, but the ETF may distribute taxable capital gains",
-      "The ETF's interest is federally taxable, while the individual bond's interest is exempt",
-      "The ETF's distributions are entirely tax-free, including any capital-gain distributions",
-      "Neither investment produces any taxable event until the position is finally sold"
+      "Both pay federally tax-exempt interest, but the ETF may distribute taxable gains.",
+      "The ETF's interest is federally taxable, while the bond's interest is exempt.",
+      "All ETF distributions are tax-exempt, including capital gain distributions.",
+      "Neither investment produces a taxable event until the position is finally sold."
      ],
      "answer": 0,
-     "explanation": "A municipal ETF passes through the federally tax-exempt interest of its holdings, so the income keeps its exempt character just like a directly held muni; however, the fund can realize and distribute taxable capital gains from selling bonds inside the portfolio, a tax event a buy-and-hold bondholder avoids. The claim that all ETF distributions are tax-free overlooks exactly those capital-gain distributions.",
+     "explanation": "Interest passed through by a municipal bond fund retains its federally tax-exempt character, as it does for a bond held directly. The fund may also sell bonds within the portfolio and distribute realized capital gains, which are taxable and which a buy-and-hold bondholder avoids.",
      "topic": "ETF vs bond tax",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "Which statement about an inverse (-1x) ETF held for one year in a flat-but-volatile market is TRUE?",
+     "q": "An inverse (-1x) exchange-traded fund (ETF) is held for one year in a volatile market that ends unchanged. Which statement is correct?",
      "choices": [
-      "It will return approximately 0% because the index finished the year unchanged",
-      "It will return approximately +100% as the exact mirror image of the index",
-      "It will track -1x the index's annual return regardless of the daily path taken",
-      "It will likely lose value from the compounding of its daily inverse resets"
+      "The fund returns approximately 0%, because the index ended unchanged.",
+      "The fund normally loses value, because its daily returns compound.",
+      "The fund returns approximately +100%, mirroring the index exactly.",
+      "The fund delivers -1x the annual return regardless of the daily path."
      ],
-     "answer": 3,
-     "explanation": "Inverse ETFs reset to the inverse of the DAILY return, so in a choppy market daily compounding produces decay (volatility drag) that typically erodes value even when the index round-trips to flat. The idea that the fund delivers -1x the ANNUAL return regardless of path is precisely the misconception the daily-reset mechanic disproves.",
+     "answer": 1,
+     "explanation": "An inverse fund is reset to the inverse of the index's daily return, so results over longer periods are path dependent. In a choppy market, compounding of those daily resets normally erodes value even when the index returns to its starting level, which is why the fund does not deliver -1x the annual return.",
      "topic": "Inverse ETF daily reset",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "An ETF closes the day with a market price of $40.20 while its NAV is calculated at $40.00. An authorized participant seeking arbitrage profit would MOST likely:",
+     "q": "An exchange-traded fund (ETF) closes at a market price of $40.20 while its net asset value (NAV) is $40.00. An authorized participant would most likely take which action?",
      "choices": [
-      "Buy ETF shares in the market and redeem them in kind for the underlying basket",
-      "Short the underlying basket and buy ETF shares to hold as a long-term hedge",
-      "Buy the underlying basket, create new ETF shares, and sell them at the market price",
-      "Take no action, because a premium of half a percent is too small to arbitrage"
+      "Buy shares in the market and redeem them in kind for the basket",
+      "Sell the underlying basket short and hold the shares as a hedge",
+      "Buy the underlying basket, create shares, and sell them at market",
+      "Take no action, because a premium of that size cannot be arbitraged"
      ],
      "answer": 2,
-     "explanation": "With the ETF at a premium ($40.20 vs. $40.00 NAV), the AP buys the cheaper underlying basket, creates new ETF shares worth the basket's value, and sells them at the higher market price, pocketing the spread and pushing the ETF back toward NAV. Buying shares and redeeming them for the basket is the play for a discount, not a premium — the reversed-logic trap.",
+     "explanation": "With the shares at a premium to NAV, the authorized participant buys the cheaper basket of portfolio securities, creates new shares, and sells them at the higher market price, capturing the spread and pushing price back toward NAV. Buying shares and redeeming them for the basket is the response to a discount, not a premium.",
      "topic": "Creation/redemption arbitrage",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "A registered rep is recommending a leveraged ETF. Which of the following is the rep MOST obligated to disclose given the product's design?",
+     "q": "A registered representative recommends a leveraged exchange-traded fund (ETF). Which of the following must be disclosed to the customer?",
      "choices": [
-      "That the fund guarantees twice the index's return over any holding period chosen",
-      "That daily resets can make multi-day returns diverge from the stated multiple",
-      "That the sponsor provides principal protection against declines in the index",
-      "That reinvested dividends amplify the fund's compounding gains over long holds"
+      "Daily resets may cause multi-day returns to differ from the multiple",
+      "The fund guarantees the stated multiple over any holding period chosen",
+      "The sponsor protects principal against declines in the tracked index",
+      "The fund is designed as a long-term buy-and-hold core investment"
      ],
-     "answer": 1,
-     "explanation": "Leveraged ETFs deliver the stated multiple of the index's DAILY return; over longer periods, daily rebalancing and compounding make results depart materially from the multiple of the index's cumulative move, which is the core suitability disclosure. Guarantees of the multiple over any period and sponsor principal protection are false claims that contradict the daily-reset design.",
+     "answer": 0,
+     "explanation": "A leveraged fund delivers the stated multiple of the index's daily return. Over longer periods, daily rebalancing and compounding cause results to depart materially from that multiple of the index's cumulative move, which is the central suitability disclosure. The product is built for short holding periods, and neither a guaranteed multiple nor sponsor principal protection exists.",
      "topic": "Leveraged ETF suitability",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "All of the following are accurate regarding closed-end funds EXCEPT:",
+     "q": "All of the following are true of closed-end funds EXCEPT:",
      "choices": [
-      "They issue a fixed number of shares through an IPO and then trade on an exchange",
-      "Investors buy and sell CEF shares from other investors in the secondary market",
-      "The fund continuously redeems shares directly from investors at NAV upon request",
-      "CEF shares may trade at a premium or discount to NAV"
+      "A fixed number of shares is issued through a public offering.",
+      "Shares are bought and sold among investors in the secondary market.",
+      "Shares are continuously redeemable at net asset value on request.",
+      "Shares may trade at a premium or a discount to net asset value."
      ],
      "answer": 2,
-     "explanation": "A closed-end fund issues a fixed share count and does NOT continuously redeem shares at NAV; that continuous redemption-at-NAV feature belongs to open-end mutual funds, making it the false EXCEPT statement. The other three correctly describe a CEF's fixed-IPO origin, secondary-market trading, and premium/discount behavior.",
+     "explanation": "Continuous redemption at net asset value is a feature of open-end investment companies, not closed-end funds, so that statement is false and is the correct answer to an EXCEPT item. A closed-end fund issues a fixed number of shares in a public offering, after which the shares trade among investors and may carry a premium or discount.",
      "topic": "Closed-end fund mechanics",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "An investor wants the lowest likelihood of receiving an unexpected taxable capital-gains distribution in a year when they did NOT sell their shares. Which product structure best achieves this and why?",
+     "q": "A customer wants to minimize the likelihood of receiving taxable capital gain distributions. Which structure is most suitable, and why?",
      "choices": [
-      "An actively managed mutual fund, because managers harvest losses for shareholders",
-      "An ETF, because in-kind redemptions let it shed low-basis securities without realizing gains",
-      "A closed-end fund, because its fixed share count prevents any portfolio sales",
-      "A leveraged ETF, because daily resets eliminate embedded capital gains"
+      "A mutual fund, because managers routinely harvest losses for shareholders",
+      "A closed-end fund, because its fixed share count prevents portfolio sales",
+      "A leveraged fund, because its daily resets eliminate embedded gains",
+      "An exchange-traded fund, because in-kind redemptions avoid realized gains"
      ],
-     "answer": 1,
-     "explanation": "ETFs use in-kind creation/redemption to deliver appreciated, low-cost-basis securities out to APs, which is generally not a taxable sale for the fund, minimizing capital-gains distributions to remaining shareholders. Actively managed mutual funds often distribute realized gains from turnover, and a CEF's fixed share count does not stop the manager from trading the portfolio, so those are weaker structures.",
+     "answer": 3,
+     "explanation": "In-kind redemption allows an exchange-traded fund to deliver appreciated, low-basis securities to authorized participants without a taxable sale at the fund level, which limits capital gain distributions to remaining shareholders. Mutual funds distribute gains realized through portfolio turnover, and a closed-end fund's fixed share count does not prevent the manager from trading the portfolio.",
      "topic": "ETF tax efficiency",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Which statement is TRUE when comparing an ETN to an ETF that track the same commodity index?",
+     "q": "An exchange-traded note (ETN) and an exchange-traded fund (ETF) track the same commodity index. Which statement is correct?",
      "choices": [
-      "The ETF carries issuer credit risk, while the ETN's debt structure eliminates it",
-      "Both represent equity ownership in a pooled portfolio of commodity futures",
-      "Both are covered by SIPC against a decline in the underlying commodity index",
-      "The ETN carries issuer credit risk, while the ETF instead risks tracking error"
+      "The ETF carries issuer credit risk, while the ETN eliminates that risk.",
+      "Both represent equity ownership in a portfolio of commodity futures.",
+      "Both are protected against a decline in the value of the tracked index.",
+      "The ETN carries issuer credit risk, while the ETF may show tracking error."
      ],
      "answer": 3,
-     "explanation": "An ETN is a debt promise to pay the index return less fees, so it has essentially no tracking error but exposes the holder to the issuer's credit risk; an ETF actually holds assets, so it carries no issuer credit risk but can show tracking error from sampling and costs. The choice assigning credit risk to the ETF reverses the two structures, and SIPC never insures against index declines.",
+     "explanation": "An ETN is a promise by the issuer to pay the index return less fees, so it exhibits little tracking error but exposes the holder to issuer credit risk. An ETF holds actual assets, so it carries no issuer credit risk but may diverge from the index because of sampling and costs. No product is protected against a decline in the index.",
      "topic": "ETN vs ETF comparison",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "An ETF tracking a foreign index consistently underperforms that index by about 0.65% per year. Which combination of factors MOST plausibly explains this tracking error? I. The fund's expense ratio. II. Cash drag from holding uninvested cash for redemptions. III. The bid-ask spread paid by individual buyers on the exchange. IV. Sampling/optimization rather than full replication.",
+     "q": "An exchange-traded fund (ETF) trails its index by approximately 0.65% per year. Which of the following adds to an investor's cost but does not contribute to that shortfall?",
      "choices": [
-      "I and III only",
-      "I, II, and IV only",
-      "II and III only",
-      "I, II, III, and IV"
+      "The fund's annual expense ratio",
+      "Cash drag inside the portfolio",
+      "Sampling of index constituents",
+      "The bid-ask spread on shares"
      ],
-     "answer": 1,
-     "explanation": "Tracking error stems from fund-level frictions: the expense ratio (I), cash drag (II), and using a sampled subset of securities instead of full replication (IV) all cause the fund's return to lag the index. The bid-ask spread (III) is a transaction cost borne by the investor when trading shares, not a source of the fund's internal return divergence, so combinations including III are wrong.",
+     "answer": 3,
+     "explanation": "The expense ratio, cash held to meet redemptions, and sampling rather than full replication all cause the fund's return to lag the index. The bid-ask spread is a trading cost the investor pays in the secondary market and has no effect on the fund's internal return.",
      "topic": "Tracking error sources",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "A client says, 'I bought a -2x inverse ETF on a sector because I expect that sector to drift down all year.' What is the MOST accurate professional response?",
+     "q": "A customer buys a -2x inverse exchange-traded fund (ETF), intending to hold it for one year. Which response is most accurate?",
      "choices": [
-      "These are daily-reset trading tools; a year's result can differ sharply from -2x",
-      "The -2x multiple is locked in for the year no matter what path the sector takes",
-      "It is an ideal long-term hedge because inverse returns compound in your favor",
-      "Hold it for several years, since tracking error favors the holder over time"
+      "The -2x multiple applies to the annual return, regardless of path.",
+      "The fund resets daily, so a one-year result may differ sharply from -2x.",
+      "The fund is well suited to hedging over multiyear holding periods.",
+      "Tracking error normally works in favor of the customer over a long hold."
      ],
-     "answer": 0,
-     "explanation": "A -2x ETF resets daily and is engineered for short holding periods; over a year, path-dependent compounding can leave the holder far from -2x the sector's cumulative decline, sometimes losing money even if the sector falls. Claiming the multiple is locked in for the year — or that compounding reliably helps a long-term holder — contradicts the daily-reset design.",
+     "answer": 1,
+     "explanation": "A -2x fund is engineered for short holding periods because it resets to the inverse multiple of the index's daily return. Over a year, path-dependent compounding can leave the holder far from -2x the cumulative move, and the position may lose money even when the sector declines.",
      "topic": "Inverse ETF holding period",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Which of the following statements about ETF redemption is TRUE?",
+     "q": "Which of the following statements about the redemption of exchange-traded fund (ETF) shares is correct?",
      "choices": [
-      "A retail investor redeems individual ETF shares directly from the sponsor at the next NAV",
-      "Only authorized participants can redeem shares, doing so in large creation-unit blocks in kind",
-      "ETF shares are non-redeemable and can only be sold to other investors, exactly like a closed-end fund",
-      "The sponsor must redeem at least once weekly at a price set by an independent valuation agent"
+      "A customer may redeem individual shares at the next net asset value.",
+      "Shares are not redeemable and may only be sold to other investors.",
+      "Only authorized participants may redeem, in creation-unit blocks.",
+      "The sponsor must redeem shares weekly at an independently set price."
      ],
-     "answer": 1,
-     "explanation": "Redemption at the fund level is restricted to authorized participants transacting in large creation-unit blocks, typically in kind, not to retail investors share-by-share. A retail holder simply sells shares on the exchange; this is why the 'retail redeems at NAV' option (a mutual-fund feature) and the 'wholly non-redeemable like a CEF' option are both wrong.",
+     "answer": 2,
+     "explanation": "Redemption at the fund level is limited to authorized participants transacting in large creation-unit blocks, normally in kind. A retail customer exits by selling shares on the exchange rather than redeeming at net asset value, which distinguishes an ETF from an open-end mutual fund without making its shares wholly non-redeemable.",
      "topic": "ETF redemption mechanics",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "An open-end mutual fund Class A share has a 5% front-end sales load. An investor sends $10,000. Compared with buying an equivalent index ETF for a $5 commission, how much MORE of the investor's principal is immediately put to work in the ETF (approximately)?",
+     "q": "A customer invests $10,000.00 in Class A shares carrying a 5% front-end sales load instead of an index exchange-traded fund (ETF) charging a $5.00 commission. How much more of the principal is invested in the ETF?",
      "choices": [
-      "About $5, since both deduct roughly the same amount up front",
-      "About $495, because the fund's load removes $500 while the ETF removes only $5",
-      "About $1,000, because ETFs never charge any transaction cost",
-      "About $50, because the load applies only to the first $1,000 invested"
+      "$5.00",
+      "$50.00",
+      "$495.00",
+      "$500.00"
      ],
-     "answer": 1,
-     "explanation": "The 5% load on $10,000 deducts $500, leaving $9,500 invested in the fund, while the ETF deducts only the $5 commission, leaving $9,995 invested. The difference of roughly $495 is the extra principal working immediately in the ETF; the load applies to the entire purchase amount, not just the first $1,000.",
+     "answer": 2,
+     "explanation": "The 5% load deducts $500.00, leaving $9,500.00 invested in the fund, while the ETF purchase leaves $9,995.00 invested after the $5.00 commission. The difference is $495.00. The $500.00 figure is the load alone and ignores the commission charged on the ETF purchase.",
      "topic": "Sales load vs commission",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "A 3x leveraged ETF starts at $50. The index gains 5% on Day 1 and loses 5% on Day 2. Ignoring fees, what is the ETF's approximate value at the end of Day 2?",
+     "q": "A 3x leveraged exchange-traded fund (ETF) is priced at $50.00. The index gains 5% on day one and loses 5% on day two. Ignoring fees, what is the fund's approximate value?",
      "choices": [
-      "$50.00, since the index's two-day net change is approximately zero",
-      "$48.88, since the 3x daily resets compound to a loss over the two days",
-      "$51.13, since leverage amplifies the Day 1 gain more than the Day 2 loss",
-      "$42.50, since the fund delivers 3x the index's worst single-day move"
+      "$42.50",
+      "$48.88",
+      "$50.00",
+      "$51.13"
      ],
      "answer": 1,
-     "explanation": "Day 1: 3 x 5% = +15%, so $50 x 1.15 = $57.50. Day 2: 3 x -5% = -15%, so $57.50 x 0.85 = $48.875, about $48.88 — a loss despite a nearly flat index. The $50.00 answer ignores the volatility drag created by daily resetting, the very effect 3x leverage magnifies.",
+     "explanation": "Day one: 300% of +5% is +15%, raising $50.00 to $57.50. Day two: 300% of -5% is -15%, reducing $57.50 to $48.88. The fund loses value even though the index is nearly unchanged, because leverage magnifies the drag created by the daily reset.",
      "topic": "Leveraged ETF compounding calc",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "An ETF buyer places a market order. Which combination of costs and risks is UNIQUE to or amplified for the ETF investor relative to a no-load index mutual fund holder? I. Bid-ask spread. II. Trading at a premium/discount to NAV. III. Brokerage commission. IV. A 12b-1 fee charged on every secondary-market trade.",
+     "q": "A customer buys exchange-traded fund (ETF) shares with a market order. Which cost applies to that purchase but not to the purchase of a no-load index mutual fund?",
      "choices": [
-      "I, II, and III only",
-      "I and IV only",
-      "II and III only",
-      "I, II, III, and IV"
+      "The bid-ask spread paid on the trade",
+      "The fund's 12b-1 distribution fee",
+      "The annual management fee charged",
+      "A front-end sales load at purchase"
      ],
      "answer": 0,
-     "explanation": "Because ETFs trade on an exchange, buyers face a bid-ask spread (I), possible premium/discount to NAV (II), and a brokerage commission where applicable (III), frictions a no-load mutual fund bought at NAV avoids. A 12b-1 fee is an annual fund-level distribution fee, not a per-trade secondary-market charge, so IV is false and any combination with IV is wrong.",
+     "explanation": "Because ETF shares trade on an exchange, the buyer pays the spread between the bid and the offer, a friction absent when a no-load fund is purchased at net asset value. A 12b-1 fee is an annual fund-level distribution charge rather than a per-trade cost, management fees apply to both structures, and neither product here imposes a front-end load.",
      "topic": "ETF trading costs",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "Two products are linked to the same index: Product X is an ETF, Product Y is an ETN issued by a bank. If that bank files for bankruptcy, what happens to each holder, all else equal?",
+     "q": "A bank issues an exchange-traded note (ETN) linked to the index tracked by an exchange-traded fund (ETF). If the bank files for bankruptcy, what happens to each holder?",
      "choices": [
-      "The ETN holder is made whole by SIPC; the ETF holder absorbs the full loss",
-      "Both holders lose their investment because each product depends on the bank",
-      "The ETF's fund assets are unaffected; the ETN holder becomes an unsecured creditor",
-      "Both holders are made whole by the index sponsor under its licensing agreement"
+      "Both holders lose everything, because each depends on the failed bank.",
+      "The ETF's portfolio is unaffected; the ETN holder is an unsecured creditor.",
+      "The ETN holder is repaid ahead of the bank's other general creditors.",
+      "Both holders are made whole by the sponsor of the underlying index."
      ],
-     "answer": 2,
-     "explanation": "An ETF holds a segregated portfolio of securities, so the bank's failure does not erase the assets backing the shares; an ETN is unsecured senior debt, so its holder stands in line as a general creditor and may recover little. SIPC covers broker-dealer failure, not issuer default, so it does not rescue the ETN holder.",
+     "answer": 1,
+     "explanation": "An ETF holds a segregated portfolio of securities, so the failure of an unrelated bank does not impair the assets backing its shares. An ETN is senior unsecured debt of that bank, leaving its holder a general creditor who ranks with, not ahead of, the bank's other unsecured creditors and may recover little.",
      "topic": "ETN vs ETF issuer default",
      "difficulty": "hard",
      "style": "scenario"
@@ -16110,323 +16105,323 @@ window.SIE_DATA = {
    ],
    "questions": [
     {
-     "q": "A 52-year-old client invested $90,000 in a non-qualified variable annuity that has grown to $150,000. She takes a $40,000 lump-sum withdrawal during the accumulation phase. Which statement correctly describes the tax treatment of this withdrawal?",
+     "q": "A customer age 52 withdraws $40,000 from a non-qualified variable annuity with a cost basis of $90,000 and a current value of $150,000. The withdrawal is:",
      "choices": [
-      "Only the gain attributable on a pro-rata basis ($16,000) is taxable; the rest is a tax-free return of basis, and the 10% penalty applies only to the taxable $16,000",
-      "The entire $40,000 is taxed as ordinary income, plus a 10% penalty on the full $40,000, because earnings are deemed withdrawn first",
-      "Only $24,000 is taxed as ordinary income and subject to the 10% penalty; the remaining $16,000 is a tax-free return of cost basis",
-      "The entire $40,000 is taxed as ordinary income, but no penalty applies because withdrawals in the accumulation phase are penalty-exempt"
+      "taxable on $16,000 of gain, with a 10% penalty on that amount.",
+      "fully taxable as ordinary income, plus a 10% penalty on $40,000.",
+      "taxable on $24,000 of gain, with a 10% penalty on that amount.",
+      "fully taxable as ordinary income, with no penalty before annuitization."
      ],
      "answer": 1,
-     "explanation": "Non-qualified annuity withdrawals are LIFO, so earnings (the $60,000 of gain) come out first. The entire $40,000 falls within that earnings layer, making it fully ordinary income, and because the owner is under 59 1/2 with no exception, the full $40,000 also carries the 10% penalty. Choice 0 wrongly applies pro-rata/FIFO basis recovery, and choice 3 wrongly exempts pre-annuitization withdrawals from the penalty.",
+     "explanation": "Withdrawals taken from a non-qualified annuity during the accumulation phase are taxed on a last in, first out (LIFO) basis, so the $60,000 of earnings is deemed distributed first. The entire $40,000 is ordinary income, and because the customer is under age 59 1/2 with no exception available, the full $40,000 is also subject to the 10% penalty. Pro-rata or first in, first out basis recovery does not apply, and withdrawals before annuitization are not exempt from the penalty.",
      "topic": "annuity taxation / LIFO",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "An investor's variable annuity has an assumed interest rate (AIR) of 4%. In a month when the separate account's annualized net return was exactly 4%, followed by a month with a 6% return, then a month with a 3% return, the annuity payment will:",
+     "q": "A variable annuity has an assumed interest rate (AIR) of 4%. The separate account's annualized net return is 4%, then 6%, then 3% in three consecutive months. The payments will:",
      "choices": [
-      "Stay the same after month one, increase after month two, then decrease after month three",
-      "Increase after month one, increase again after month two, then decrease after month three",
-      "Stay the same after month one, increase after month two, then increase again after month three",
-      "Decrease after month one, increase after month two, then stay the same after month three"
+      "remain level, then increase, then decrease.",
+      "increase, then increase again, then decrease.",
+      "remain level, then increase, then increase again.",
+      "decrease, then increase, then remain level."
      ],
      "answer": 0,
-     "explanation": "During annuitization each period's actual return is compared to the AIR: a return equal to the AIR holds the payment level, above the AIR raises it, and below the AIR lowers it. With 4% (=AIR, unchanged), 6% (>AIR, up), and 3% (<AIR, down), the sequence is same/up/down. The distractors wrongly treat a return equal to the AIR as an increase or decrease.",
+     "explanation": "Each period's actual separate account return is measured against the AIR. A return equal to the AIR holds the payment level, a return above the AIR raises it, and a return below the AIR lowers it. Returns of 4% (equal), 6% (above), and 3% (below) produce level, up, then down. Treating a return equal to the AIR as an increase or a decrease is the common error.",
      "topic": "AIR / variable payout",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "All of the following are TRUE regarding the separate account of a variable annuity EXCEPT:",
+     "q": "Each of the following statements regarding the separate account of a variable annuity is true EXCEPT:",
      "choices": [
-      "When operated under a management investment company structure, it must register as an investment company under the Investment Company Act of 1940",
-      "Investment risk during the accumulation phase is borne by the contract holder, not the insurer",
-      "Sales charges deducted from variable annuity purchase payments are capped at 8.5% under FINRA rules",
-      "It is held separately from the insurer's general account, which backs the insurer's guaranteed fixed obligations"
+      "The account is held apart from the insurer's general account.",
+      "Investment risk during accumulation is borne by the contract owner.",
+      "Sales charges are limited to 8.5% of each purchase payment.",
+      "The account registers under the Investment Company Act of 1940."
      ],
      "answer": 2,
-     "explanation": "The 8.5% maximum sales-charge cap applies to mutual funds and contractual plans, not to variable annuities, which have no statutory FINRA sales-charge ceiling but must be priced so charges are reasonable in relation to the services rendered. The other three statements correctly describe the separate account's registration, risk allocation, and segregation from the general account.",
+     "explanation": "The 8.5% maximum sales charge applies to mutual funds and contractual plans, not to variable annuities, which have no fixed statutory ceiling but must impose charges that are reasonable in relation to the services rendered. A separate account operated as a management investment company registers under the Investment Company Act of 1940, is segregated from the general account that backs the insurer's guaranteed obligations, and exposes the contract owner to investment risk.",
      "topic": "separate account",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "A registered representative is comparing payout options for a 67-year-old client who wants the largest possible monthly check and has no dependents. Which option produces the highest monthly payment, and why?",
+     "q": "Which of the following annuity payout options normally provides the largest monthly payment to an annuitant with no dependents?",
      "choices": [
-      "Joint-and-last-survivor, because covering two lives lengthens the expected payout period",
-      "Life annuity with 20-year period certain, because the guarantee period adds payment value",
-      "Straight life (life-only), because the insurer's obligation ends entirely at the annuitant's death",
-      "Unit refund life annuity, because any undistributed balance passes to a named beneficiary"
+      "Life annuity with a 20-year certain period",
+      "Joint and last survivor life annuity",
+      "Straight life annuity, or life only",
+      "Life annuity with a unit refund feature"
      ],
      "answer": 2,
-     "explanation": "A straight life annuity pays the most per period because the insurer's obligation ends at the annuitant's death with no survivor or guaranteed-period payments, allowing the largest payment computed over a single life expectancy. The joint-and-survivor, period-certain, and unit-refund options all add obligations that reduce each monthly payment.",
+     "explanation": "A straight life annuity produces the largest payment because the insurer's obligation ends at the annuitant's death, with no survivor benefit and no guaranteed period, so the payment is computed over a single life expectancy alone. The joint and last survivor, period certain, and unit refund options each add an obligation that reduces the amount of every payment.",
      "topic": "payout options",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Which statement comparing accumulation units and annuity units is TRUE?",
+     "q": "Which of the following statements regarding accumulation units and annuity units is true?",
      "choices": [
-      "During the accumulation phase the number of accumulation units is fixed and their value is fixed",
-      "At annuitization the number of annuity units is fixed and their value fluctuates with separate-account performance",
-      "During the accumulation phase the number of accumulation units is fixed and their value fluctuates",
-      "At annuitization the number of annuity units fluctuates while their value remains fixed"
+      "The number of annuity units is fixed and their value fluctuates.",
+      "The number of accumulation units is fixed and their value is fixed.",
+      "The number of accumulation units is fixed and their value fluctuates.",
+      "The number of annuity units fluctuates and their value is fixed."
      ],
-     "answer": 1,
-     "explanation": "The number of accumulation units varies (purchases add units) while their value fluctuates; at annuitization the holding converts to a fixed number of annuity units whose value then fluctuates with the separate account, which is what makes each variable payment differ. Choice 2 wrongly freezes the number of accumulation units, and choice 0 wrongly freezes both number and value.",
+     "answer": 0,
+     "explanation": "During accumulation the number of accumulation units varies as purchase payments are made, and the unit value fluctuates. At annuitization the contract value converts into a fixed number of annuity units whose value fluctuates with separate account performance, which is what causes each variable payment to differ from the last.",
      "topic": "accumulation vs annuity units",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "A client purchased a variable annuity with a 7-year declining surrender charge schedule (7% in year 1, declining 1% per year). In year 3 the account is valued at $120,000, of which $40,000 represents earnings. The client surrenders the entire contract. The surrender charge is applied to:",
+     "q": "A customer surrenders a deferred variable annuity during the contract's surrender charge period. The surrender charge is normally assessed against:",
      "choices": [
-      "The base defined in the contract, commonly the lesser of the amount withdrawn or the premiums paid",
-      "The entire $120,000 account value regardless of contract terms, producing a $6,000 charge",
-      "Only the $40,000 of accumulated earnings, producing a $2,000 charge on the taxable portion",
-      "Only the $80,000 of original premium, with the gain escaping tax as a return of principal"
+      "the lesser of the amount withdrawn or the premiums paid.",
+      "the entire account value at the time of the surrender.",
+      "only the accumulated earnings credited to the contract.",
+      "the original premiums paid, excluding all contract earnings."
      ],
      "answer": 0,
-     "explanation": "The surrender charge is a contractual deduction — commonly computed on the lesser of the amount withdrawn or the premiums paid — and is entirely separate from taxation: the $40,000 gain is still taxed as ordinary income and, if the owner is under 59 1/2, also subject to the 10% penalty. The charge does not automatically apply to the full account value, and neither the earnings-only base nor the tax-free-principal theory is correct.",
+     "explanation": "The surrender charge is a contractual deduction, commonly computed on the lesser of the amount withdrawn or the premiums paid. It is separate from taxation: the gain in the contract remains taxable as ordinary income and, if the owner is under age 59 1/2, is also subject to the 10% penalty. The charge is not automatically applied to the full account value, and gain is never recovered tax-free as principal.",
      "topic": "surrender charges",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "Regarding a 1035 exchange, which of the following statements is TRUE?",
+     "q": "Under Section 1035 of the Internal Revenue Code, which of the following exchanges may be made without current taxation?",
      "choices": [
-      "An annuity may be exchanged tax-free into a life policy, but not a life policy into an annuity",
-      "Either direction qualifies as tax-free, provided both contracts come from the same insurer",
-      "A 1035 exchange also waives any remaining surrender charge on the contract being replaced",
-      "A life policy may be exchanged tax-free into an annuity, but not an annuity into a life policy"
+      "An annuity contract exchanged for a life insurance policy.",
+      "Either exchange, if both contracts are issued by the same insurer.",
+      "A life insurance policy exchanged for an annuity contract.",
+      "Either exchange, if the old contract's surrender charge is waived."
      ],
-     "answer": 3,
-     "explanation": "Section 1035 permits a life policy to be exchanged for an annuity, but not the reverse, because annuity-to-life would convert tax-deferred annuity gains into potentially income-tax-free death proceeds. The reversed direction is the classic trap; the exchange does not require the same insurer, and surrender charges on the old contract are not waived.",
+     "answer": 2,
+     "explanation": "Section 1035 permits a life insurance policy to be exchanged for an annuity, but not the reverse, because an annuity-to-life exchange would convert tax-deferred annuity gain into potentially income-tax-free death proceeds. The exchange does not require that both contracts be issued by the same insurer, and it does not waive any surrender charge remaining on the contract being replaced.",
      "topic": "1035 exchange",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "A representative recommends that a 73-year-old retiree, whose only liquid savings is $80,000 in a bank account she may need for medical costs, move $70,000 into a deferred variable annuity with an 8-year surrender period. The MOST significant suitability problem is:",
+     "q": "A representative recommends that a 73-year-old customer place $70,000 of her $80,000 in liquid savings into a deferred variable annuity with an eight-year surrender period. The primary suitability concern is:",
      "choices": [
-      "Variable annuities are categorically unsuitable for any investor older than age 70",
-      "The 8-year surrender period would lock up nearly all of her liquid, medically needed funds",
-      "Tax deferral adds no value because a retiree in her bracket owes no tax on annuity gains",
-      "FINRA rules cap deferred-annuity purchases at 50% of a retiree's liquid net worth"
+      "the surrender period restricts access to funds the customer may need.",
+      "variable annuities are unsuitable for any customer over age 70.",
+      "tax deferral has no value because retirees owe no tax on annuity gains.",
+      "FINRA limits annuity purchases to 50% of a customer's liquid net worth."
      ],
-     "answer": 1,
-     "explanation": "The core problem is the mismatch: locking up $70,000 of the client's only $80,000 in liquid savings inside an 8-year surrender-charge product conflicts with her short horizon and foreseeable medical liquidity needs. Age alone does not bar a variable annuity, retirees still pay ordinary income tax on annuity gains, and FINRA imposes no fixed percentage cap on annuity concentration.",
+     "answer": 0,
+     "explanation": "The recommendation locks nearly all of the customer's liquid savings into an eight-year surrender charge period, which conflicts with her short time horizon and foreseeable need for those funds. Age alone does not make a variable annuity unsuitable, retirees still pay ordinary income tax on annuity earnings, and FINRA imposes no fixed percentage cap on annuity concentration.",
      "topic": "suitability",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Which of the following are characteristics that a fixed annuity and a variable annuity have in common? I. Tax-deferred growth of earnings II. Investment risk borne by the contract holder III. Payments guaranteed by the insurer's general account IV. Salesperson must hold a securities registration to sell",
+     "q": "Which of the following is a characteristic of both a fixed annuity and a variable annuity?",
      "choices": [
-      "I and II only",
-      "I only",
-      "I, II, and IV only",
-      "II and III only"
+      "Investment risk borne by the owner of the contract",
+      "Payments guaranteed by the insurer's general account",
+      "A securities registration requirement for the seller",
+      "Tax-deferred accumulation of earnings in the contract"
      ],
-     "answer": 1,
-     "explanation": "Both products share tax-deferred accumulation (I). In a fixed annuity the insurer bears investment risk and guarantees payments from the general account, while in a variable annuity the holder bears the risk via the separate account, so II and III are not common to both; only a variable annuity requires securities registration to sell, so IV is not shared. Only I is common.",
+     "answer": 3,
+     "explanation": "Both contracts accumulate earnings on a tax-deferred basis. In a fixed annuity the insurer bears investment risk and guarantees payments from its general account, while in a variable annuity the contract owner bears investment risk through the separate account. Only a variable annuity is a security, so only its seller must hold a securities registration.",
      "topic": "fixed vs variable",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "A variable life insurance policyowner wants to know what is guaranteed. Which statement is TRUE?",
+     "q": "Which of the following statements regarding a variable life insurance policy is true?",
      "choices": [
-      "The death benefit has a guaranteed minimum, but the cash value carries no guarantee",
-      "The cash value has a guaranteed minimum, but the death benefit carries no guarantee",
-      "Both the cash value and the death benefit are guaranteed never to fall below minimums",
-      "Neither the cash value nor the death benefit is guaranteed at any minimum level"
+      "The cash value has a guaranteed minimum; the death benefit does not.",
+      "The death benefit has a guaranteed minimum; the cash value does not.",
+      "Both the death benefit and the cash value have guaranteed minimums.",
+      "Neither the death benefit nor the cash value has a guaranteed minimum."
      ],
-     "answer": 0,
-     "explanation": "In variable life the cash value fluctuates with separate-account performance and is never guaranteed, but the death benefit cannot fall below the contractual minimum (the face amount) as long as required premiums are paid, though it can rise above it with good performance. The reversed claim — a guaranteed cash value with an unguaranteed death benefit — flips the actual treatment.",
+     "answer": 1,
+     "explanation": "Cash value in a variable life policy fluctuates with separate account performance and is never guaranteed. The death benefit may rise above the face amount with favorable performance but cannot fall below the contractual minimum so long as required premiums are paid. Reversing the two treatments is the classic error.",
      "topic": "variable life",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "An investor annuitized a variable annuity. The first monthly payment was $1,000, calculated using an AIR of 5%. In the month that determined the second payment, the separate account had an annualized net return of 5%. In the month determining the third payment, the account returned 8%. The third payment, compared to the second, will be:",
+     "q": "A variable annuity has an assumed interest rate (AIR) of 5%. The separate account returned 5% in the period determining the second payment and 8% in the period determining the third payment. The third payment will be:",
      "choices": [
-      "Lower, because 8% is less than the cumulative required return",
-      "Higher, because the 8% return exceeded the 5% AIR",
-      "The same, because the first two payments were both $1,000",
-      "Higher, because each payment automatically grows by the AIR"
+      "lower than the second, because 8% did not exceed the required return.",
+      "higher than the second, because the 8% return exceeded the 5% AIR.",
+      "equal to the second, because both are computed using the same AIR.",
+      "higher than the second, because payments rise by the AIR each period."
      ],
      "answer": 1,
-     "explanation": "Each payment is compared against the AIR for the relevant period. Because the second-payment period earned exactly the 5% AIR, the second payment equaled the first ($1,000); because the third-payment period earned 8% (above the AIR), the third payment rises above the second. Payments are not automatic AIR increases (choice 3), and a return above the AIR drives an increase, not a decrease (choice 0).",
+     "explanation": "Each payment is set by comparing the period's actual return with the AIR. The second period earned exactly the 5% AIR, so the second payment equaled the first; the third period earned 8%, above the AIR, so the third payment rises above the second. Payments do not grow automatically by the AIR, and a return above the AIR produces an increase, not a decrease.",
      "topic": "AIR / variable payout",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "A client adds a guaranteed minimum income benefit (GMIB) rider and a stepped-up death benefit rider to a variable annuity. Which statement about these riders is TRUE?",
+     "q": "A customer adds a guaranteed minimum income benefit (GMIB) rider and a stepped-up death benefit rider to a variable annuity. Which of the following statements is true?",
      "choices": [
-      "Riders increase the contract's guarantees at no additional cost because they are part of the insurer's general obligation",
-      "Riders provide added guarantees but increase the contract's overall fees, which reduces net separate-account returns",
-      "The stepped-up death benefit guarantees the beneficiary receives the highest daily account value ever reached, tax-free",
-      "A GMIB rider guarantees a minimum account value that can be withdrawn as a lump sum at any time"
+      "The riders are provided by the insurer at no additional cost to the owner.",
+      "The GMIB rider guarantees a lump sum available for withdrawal at any time.",
+      "The stepped-up death benefit passes to the beneficiary free of income tax.",
+      "The riders add guarantees and increase the contract's annual charges."
      ],
-     "answer": 1,
-     "explanation": "Riders add insurer guarantees but always carry extra charges that lower the net return credited to the separate account. The GMIB guarantees a minimum income stream upon annuitization (not a lump-sum withdrawal value), and death-benefit proceeds above cost basis are taxable ordinary income to the beneficiary, not tax-free, so choices 2 and 3 are wrong.",
+     "answer": 3,
+     "explanation": "Riders provide additional insurer guarantees but always carry extra charges, which reduce the net return credited to the separate account. A GMIB guarantees a minimum income stream at annuitization rather than a lump sum available on demand, and death benefit proceeds in excess of cost basis are taxed to the beneficiary as ordinary income.",
      "topic": "riders",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "All of the following statements about the tax treatment of a non-qualified variable annuity are correct EXCEPT:",
+     "q": "Each of the following statements regarding the taxation of a non-qualified variable annuity is true EXCEPT:",
      "choices": [
-      "Growth in the separate account is tax-deferred until distribution",
-      "Distributions of earnings are taxed as ordinary income, not at long-term capital gains rates",
-      "Because the contract is funded with after-tax dollars, the cost basis is recovered tax-free",
-      "Annuitized payments are fully taxable as ordinary income with no portion treated as return of basis"
+      "Growth in the separate account is tax-deferred until distribution.",
+      "Earnings are taxed as ordinary income when they are distributed.",
+      "Each annuitized payment is taxable in full as ordinary income.",
+      "Cost basis is recovered tax-free because contributions are after tax."
      ],
-     "answer": 3,
-     "explanation": "Under annuitization each payment is split via an exclusion ratio into a tax-free return of cost basis and a taxable ordinary-income portion, so it is false that the entire payment is taxable. The other three statements correctly describe tax deferral, ordinary-income (not capital-gains) treatment of earnings, and tax-free recovery of the after-tax basis.",
+     "answer": 2,
+     "explanation": "Annuitized payments are divided by an exclusion ratio into a tax-free return of cost basis and a taxable ordinary income portion, so it is false that each payment is fully taxable. The contract does accumulate tax-deferred, earnings are taxed as ordinary income rather than at long-term capital gains rates, and the after-tax basis is recovered tax-free.",
      "topic": "annuity taxation",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "Which of the following best distinguishes a variable annuity's accumulation phase from its annuitization (payout) phase?",
+     "q": "Which of the following distinguishes the annuitization phase of a variable annuity from the accumulation phase?",
      "choices": [
-      "Investment risk passes from the contract holder to the insurer once annuitization begins",
-      "Tax-deferred growth is available in the payout phase but not in the accumulation phase",
-      "The separate account funds accumulation, while the general account funds annuitized payouts",
-      "Accumulation is reversible, while annuitization irrevocably converts the value into income"
+      "Investment risk shifts from the contract owner to the insurer.",
+      "Tax-deferred growth becomes available only after annuitization.",
+      "The contract value is irrevocably converted into an income stream.",
+      "Payments are funded by the general account, not the separate account."
      ],
-     "answer": 3,
-     "explanation": "The defining difference is that the accumulation phase is flexible and reversible, while annuitization is an irrevocable election that converts accumulation units into a lifetime income stream that cannot be undone for a lump sum. In a variable annuity the holder bears investment risk in both phases — the strongest distractor — tax deferral applies during accumulation, and the separate account is used throughout.",
+     "answer": 2,
+     "explanation": "Annuitization is an irrevocable election that converts accumulation units into a lifetime income stream and cannot be undone for a lump sum, while the accumulation phase remains flexible. The contract owner bears investment risk in both phases, tax deferral applies during accumulation, and the separate account funds variable payments throughout.",
      "topic": "accumulation vs annuitization",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "An agent tells a prospect that a variable annuity is 'just like a mutual fund but with a guarantee that you can never lose money.' This statement is problematic primarily because:",
+     "q": "A representative tells a customer that a variable annuity is like a mutual fund except that the customer cannot lose money. This statement is:",
      "choices": [
-      "Comparing an annuity to a mutual fund is itself prohibited in all retail communications",
-      "The statement is accurate but incomplete without disclosing the surrender-charge schedule",
-      "Subaccount values carry market risk, so the claim that money cannot be lost is untrue",
-      "Mutual funds carry SIPC protection against loss, so the comparison understates annuity risk"
+      "prohibited, because separate account values are subject to market risk.",
+      "prohibited, because annuities may never be compared to mutual funds.",
+      "permitted, if the surrender charge schedule is disclosed at the same time.",
+      "permitted, because SIPC coverage protects the customer against market loss."
      ],
-     "answer": 2,
-     "explanation": "The statement is a prohibited misrepresentation: variable annuity subaccounts are subject to market risk and the account value can decline, so a blanket no-loss promise is false; only specific, paid-for insurer features (such as a guaranteed death benefit or living-benefit rider) provide limited guarantees. Fair and balanced comparisons to mutual funds are permitted, and SIPC never protects investors against market losses.",
+     "answer": 0,
+     "explanation": "The statement is a misrepresentation. Subaccount values fluctuate and the account value can decline, so a blanket promise against loss is untrue; only specific insurer features paid for by the customer, such as a guaranteed death benefit or living benefit rider, provide limited guarantees. Fair and balanced comparisons with mutual funds are permitted, and SIPC never protects against market losses.",
      "topic": "suitability / misrepresentation",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "A client funds a non-qualified deferred variable annuity with $50,000. At age 58 the contract is worth $86,000, and the client withdraws $20,000. Which combination correctly states the consequences? I. $20,000 is ordinary income II. $16,000 is ordinary income and $4,000 is return of basis III. A 10% penalty applies to the taxable portion IV. No penalty applies",
+     "q": "A customer age 58 withdraws $20,000 from a non-qualified variable annuity funded with $50,000 that has grown to $86,000. Which of the following describes the tax treatment?",
      "choices": [
-      "II and IV",
-      "I and III",
-      "II and III",
-      "I and IV"
+      "$16,000 ordinary income, $4,000 return of basis, no penalty",
+      "$20,000 ordinary income, plus a 10% penalty on that amount",
+      "$16,000 ordinary income, $4,000 return of basis, plus a penalty",
+      "$20,000 ordinary income, with no premature distribution penalty"
      ],
      "answer": 1,
-     "explanation": "LIFO means earnings ($36,000) are withdrawn first, so the entire $20,000 is taxable ordinary income (I), not split with basis (II is wrong). Because the client is under 59 1/2 and no exception applies, the 10% penalty applies to the taxable amount (III). I and III are correct.",
+     "explanation": "Last in, first out (LIFO) treatment causes the $36,000 of earnings to be distributed first, so the entire $20,000 is ordinary income and none of it is a return of basis. Because the customer is under age 59 1/2 and no exception applies, the 10% premature distribution penalty applies to the full taxable amount.",
      "topic": "annuity taxation / penalty",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "Which statement most precisely distinguishes the assumed interest rate (AIR) from the actual return of the separate account?",
+     "q": "The assumed interest rate (AIR) used in a variable annuity is best described as:",
      "choices": [
-      "The AIR is a benchmark that sets the first payment and the hurdle for later payment changes",
-      "The AIR is the minimum return the insurer guarantees to credit the contract every period",
-      "The AIR is the net rate the separate account actually earned in the latest valuation period",
-      "The AIR is the maximum sales charge that may be assessed against each annuity payment"
+      "the benchmark for setting the initial payment and later changes.",
+      "the minimum return the insurer guarantees to credit each period.",
+      "the net return actually earned by the separate account each period.",
+      "the maximum sales charge that may be deducted from each payment."
      ],
      "answer": 0,
-     "explanation": "The AIR is a conservative assumption used to compute the initial annuity payment and then serves as the hurdle each period: actual separate-account return above the AIR raises the next payment, below it lowers it, and equal to it holds it level. It is not a guaranteed credited rate — the strongest distractor — nor the account's actual earned rate or any form of sales charge.",
+     "explanation": "The AIR is a conservative assumption used to compute the initial annuity payment and then serves as the hurdle for each subsequent period: actual return above the AIR raises the next payment, below it lowers the payment, and equal to it holds the payment level. It is not a guaranteed credited rate, not the account's actual earned return, and not a sales charge.",
      "topic": "AIR / separate account",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "An investor exchanges an existing variable annuity for a new variable annuity under Section 1035. During a suitability review, the principal should be MOST concerned if:",
+     "q": "A customer exchanges an existing variable annuity for a new variable annuity. Which of the following would be of greatest concern to a principal reviewing the transaction?",
      "choices": [
-      "The new contract carries a lower expense ratio and an unchanged remaining surrender timetable",
-      "The transaction qualifies as tax-free under Section 1035 rather than as a taxable surrender",
-      "The new annuity offers a wider menu of subaccounts at costs comparable to the old contract",
-      "A fresh surrender period begins and the client gives up a valuable guaranteed living benefit"
+      "The new contract carries a lower expense ratio than the one replaced.",
+      "A new surrender period begins and an existing living benefit is lost.",
+      "The exchange is tax-free under Section 1035 of the Internal Revenue Code.",
+      "The new contract offers more subaccounts at a comparable annual cost."
      ],
-     "answer": 3,
-     "explanation": "Restarting a multi-year surrender-charge clock while stripping the client of an existing valuable guarantee are the classic red flags of an abusive (churning) replacement, typically accompanied by a fresh commission to the representative. Tax-free treatment, lower expenses, and broader investment choice are potential benefits of an exchange, not concerns.",
+     "answer": 1,
+     "explanation": "Restarting a multi-year surrender charge period while surrendering a valuable existing guarantee, generally accompanied by a new commission to the representative, is the classic indicator of an abusive replacement. Tax-free treatment, lower expenses, and a broader selection of subaccounts are potential benefits of an exchange rather than supervisory concerns.",
      "topic": "1035 exchange / suitability",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Which of the following correctly identifies who bears investment risk and who bears mortality (longevity) risk in a variable annuity that has been annuitized under a straight life option?",
+     "q": "A variable annuity is annuitized under a life-only option. Which of the following correctly identifies the party bearing investment risk and the party bearing mortality risk?",
      "choices": [
-      "The insurer bears both investment risk and mortality risk",
-      "The contract holder bears investment risk; the insurer bears mortality risk",
-      "The contract holder bears both investment risk and mortality risk",
-      "The insurer bears investment risk; the contract holder bears mortality risk"
+      "The insurer bears both the investment risk and the mortality risk.",
+      "The contract owner bears both the investment risk and mortality risk.",
+      "The contract owner bears investment risk; the insurer bears mortality risk.",
+      "The insurer bears investment risk; the contract owner bears mortality risk."
      ],
-     "answer": 1,
-     "explanation": "In a variable annuity the contract holder always bears investment risk because payments fluctuate with the separate account, while the insurer bears mortality/longevity risk, since it must keep paying a life annuitant who outlives life expectancy. Choice 2 wrongly assigns mortality risk to the holder, and choice 0 wrongly relieves the holder of investment risk.",
+     "answer": 2,
+     "explanation": "The contract owner always bears investment risk in a variable annuity because payments fluctuate with separate account performance. The insurer bears mortality, or longevity, risk under a life payout because it must continue paying an annuitant who lives beyond life expectancy.",
      "topic": "fixed vs variable / risk",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A 45-year-old client annuitizes a non-qualified variable annuity and elects a life annuity. The first payment includes a portion calculated under an exclusion ratio. Which statement about the 10% premature-distribution penalty is TRUE?",
+     "q": "A customer age 45 annuitizes a non-qualified variable annuity under a life-only option. The 10% premature distribution penalty:",
      "choices": [
-      "The 10% penalty applies to the taxable portion of every payment until the client turns 59 1/2",
-      "The 10% penalty applies only to the excluded basis-recovery portion of each monthly payment",
-      "The payments escape the 10% penalty under the life-annuity substantially-equal-payment exception",
-      "No federal income tax of any kind is due on the payments until the client reaches 59 1/2"
+      "applies to the taxable portion of each payment until age 59 1/2.",
+      "applies only to the excluded basis recovery portion of each payment.",
+      "does not apply, because payments are substantially equal for life.",
+      "does not apply, and no income tax is due before age 59 1/2."
      ],
      "answer": 2,
-     "explanation": "Payments received as a true life annuity — substantially equal periodic payments over the annuitant's life — fall under an exception to the 10% premature-distribution penalty, so even a 45-year-old annuitant generally avoids it. Ordinary income tax still applies to the taxable portion under the exclusion ratio — the strongest distractor wrongly keeps the penalty running until 59 1/2 — and the penalty never attaches to the tax-free basis-recovery portion.",
+     "explanation": "Substantially equal periodic payments received over the annuitant's life qualify for an exception to the 10% premature distribution penalty, so an annuitant age 45 generally avoids it. Ordinary income tax still applies to the taxable portion determined by the exclusion ratio, and the penalty never attaches to the tax-free basis recovery portion.",
      "topic": "annuity taxation / penalty exception",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "All of the following are TRUE of variable life insurance EXCEPT:",
+     "q": "Each of the following statements regarding variable life insurance is true EXCEPT:",
      "choices": [
-      "The policyowner may direct cash value among subaccounts within the separate account",
-      "A contingent deferred sales charge or surrender charge may apply to early policy surrender",
-      "Loans against cash value are typically permitted, though a percentage of cash value may be restricted from borrowing",
-      "The minimum guaranteed death benefit is supported by the separate account rather than the insurer's general account"
+      "The policyowner may allocate cash value among the available subaccounts.",
+      "A surrender charge may apply if the policy is surrendered in early years.",
+      "Policy loans are permitted, though part of the cash value may be restricted.",
+      "The minimum guaranteed death benefit is supported by the separate account."
      ],
      "answer": 3,
-     "explanation": "The guaranteed minimum death benefit in variable life is an insurer obligation backed by the general account, not the separate account, which only supports the variable (non-guaranteed) portion. The other statements correctly describe subaccount allocation, surrender charges, and partial loan availability against cash value.",
+     "explanation": "The guaranteed minimum death benefit is an obligation of the insurer backed by its general account; the separate account supports only the variable, non-guaranteed portion of the policy. Subaccount allocation, contingent deferred sales charges on early surrender, and partial loans against cash value are all correctly stated.",
      "topic": "variable life",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "A representative is choosing between recommending a variable annuity and a variable life insurance policy for a 40-year-old client whose stated priority is leaving a guaranteed, income-tax-efficient legacy to her children. Which product feature most directly supports the variable life recommendation over the variable annuity?",
+     "q": "A customer's stated objective is leaving an income-tax-efficient death benefit to her children. Which of the following supports recommending variable life insurance rather than a variable annuity?",
      "choices": [
-      "The variable life death benefit generally passes to beneficiaries free of income tax",
-      "The variable life cash value grows tax-deferred, while annuity growth is taxed annually",
-      "Variable life contracts impose no surrender charges, unlike deferred variable annuities",
-      "Variable life subaccounts carry a guaranteed floor, unlike variable annuity subaccounts"
+      "Cash value grows tax-deferred, while annuity earnings are taxed annually.",
+      "The death benefit generally passes to beneficiaries free of income tax.",
+      "Variable life policies are issued without any surrender charge schedule.",
+      "Variable life subaccounts carry a guaranteed floor against market loss."
      ],
-     "answer": 0,
-     "explanation": "The decisive distinction for a legacy goal is that life insurance death benefits generally pass income-tax-free to beneficiaries, while a variable annuity's death benefit is taxed as ordinary income to the beneficiary on the gain above basis. Both products grow tax-deferred — the strongest distractor wrongly claims annuity growth is taxed annually — both can carry surrender charges, and neither product's subaccounts are guaranteed against loss.",
+     "answer": 1,
+     "explanation": "Life insurance death benefits generally pass to beneficiaries free of income tax, while the gain above cost basis in a variable annuity death benefit is taxed to the beneficiary as ordinary income. Both products accumulate on a tax-deferred basis, both may impose surrender charges, and neither product's subaccounts are guaranteed against loss.",
      "topic": "variable life vs annuity / suitability",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "An investor makes a single $100,000 purchase into a deferred variable annuity. The contract assesses a 1.25% mortality and expense (M&E) risk charge, a 0.15% administrative fee, and the underlying subaccount has 0.70% in operating expenses, all annually. Which statement is TRUE about these charges?",
+     "q": "A deferred variable annuity assesses a 1.25% mortality and expense (M&E) risk charge, a 0.15% administrative fee, and 0.70% in subaccount operating expenses annually. Which of the following is true?",
      "choices": [
-      "Only the 0.70% subaccount expense reduces returns; the insurer absorbs the M&E and admin fees",
-      "The M&E charge pays for insurer guarantees, and all three (about 2.10%) reduce net return yearly",
-      "The 1.25% M&E charge is a one-time front-end sales load deducted from the $100,000 at purchase",
-      "All three charges are deductible by the investor as investment expenses on the federal return"
+      "The M&E charge is a one-time front-end load deducted at purchase.",
+      "Only the subaccount expenses reduce return; the insurer absorbs the rest.",
+      "All three charges are deductible by the customer as investment expenses.",
+      "The three charges total 2.10% and reduce the contract's return annually."
      ],
-     "answer": 1,
-     "explanation": "The M&E charge compensates the insurer for the mortality (death-benefit) guarantee and the expense/annuitization-rate guarantees, and it stacks with the 0.15% administrative fee and 0.70% subaccount operating expenses (1.25 + 0.15 + 0.70 = 2.10%) as an annual drag on the return credited to the contract. M&E is an ongoing annual charge, not a one-time front-end load, and none of these internal charges are separately tax-deductible to the investor.",
+     "answer": 3,
+     "explanation": "The M&E charge compensates the insurer for the death benefit guarantee and for the expense and annuitization rate guarantees, and it is an ongoing annual charge rather than a front-end load. It stacks with the 0.15% administrative fee and the 0.70% subaccount operating expenses for a total annual drag of 2.10% on the return credited to the contract, and none of these internal charges are separately deductible by the customer.",
      "topic": "variable annuity fees / M&E",
      "difficulty": "hard",
      "style": "calc"
@@ -21748,365 +21743,365 @@ window.SIE_DATA = {
    ],
    "questions": [
     {
-     "q": "Marcus and his sister Lena open a JTWROS account funded 70% by Marcus and 30% by Lena. Marcus dies, and at the time of death the account holds 1,000 shares of a stock. Lena's attorney asks the firm how the shares should be handled. Which statement is correct?",
+     "q": "Two siblings open a joint tenants with right of survivorship (JTWROS) account, with one owner contributing 70% of the funds and the other 30%. If the owner who contributed 70% dies, which of the following outcomes is correct?",
      "choices": [
-      "The 1,000 shares pass to Marcus's estate in proportion to his 70% contribution, and Lena retains only 300 shares",
-      "All 1,000 shares pass automatically to Lena outside of probate, regardless of the original contribution percentages",
-      "The account is frozen and the entire balance is distributed according to Marcus's will",
-      "Half the shares (500) go to Lena and half go to Marcus's estate, because joint accounts are split equally at death"
+      "Seventy percent of the assets pass to the decedent's estate, reflecting the original contribution.",
+      "The entire account passes to the surviving owner outside of probate.",
+      "The account is frozen and distributed according to the decedent's will.",
+      "The account is divided equally between the survivor and the decedent's estate."
      ],
      "answer": 1,
-     "explanation": "JTWROS gives the surviving tenant the entire account outside probate, irrespective of contribution. The 70/30 split is irrelevant at death; proportional/estate treatment describes tenants in common, so the contribution-based and estate-distribution choices are wrong.",
+     "explanation": "In a JTWROS account, the entire account passes to the surviving tenant outside of probate, regardless of each owner's original contribution. Distribution in proportion to ownership or through the estate describes tenants in common, not JTWROS.",
      "topic": "JTWROS survivorship",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Which of the following statements correctly distinguishes tenants in common (TIC) from tenancy by the entirety (TBE)?",
+     "q": "Which of the following statements correctly distinguishes a tenants in common (TIC) account from a tenancy by the entirety (TBE) account?",
      "choices": [
-      "TIC carries an automatic right of survivorship, while TBE passes a decedent's share to the estate",
-      "In TIC a deceased owner's share passes to that owner's estate, while TBE carries a right of survivorship",
-      "TIC is restricted to married couples only, while TBE is available to any two or more adult co-owners",
-      "TIC requires equal ownership percentages, while TBE permits owners to hold unequal fractional shares"
+      "TIC carries an automatic right of survivorship, while a deceased TBE owner's interest passes to the estate.",
+      "A deceased TIC owner's share passes to that owner's estate, while TBE carries a right of survivorship.",
+      "TIC is available only to married couples, while TBE is available to any two or more adult co-owners.",
+      "TIC requires equal ownership interests, while TBE permits owners to hold unequal fractional shares."
      ],
      "answer": 1,
-     "explanation": "TIC has no survivorship — a decedent's fractional interest goes to the estate, and percentages may be unequal — while TBE (married couples only) carries survivorship and cannot be unilaterally severed. The other choices simply swap the two forms' features: survivorship belongs to TBE, the marriage restriction belongs to TBE, and neither form works the way the equal-percentage claim describes.",
+     "explanation": "TIC has no survivorship — a deceased owner's fractional interest passes to that owner's estate, and interests may be unequal — while TBE is limited to married couples and carries a right of survivorship. The other choices swap the two forms' features.",
      "topic": "TIC vs TBE",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A UTMA account is established for a 9-year-old in State X (age of majority 21), with the child's aunt as custodian and the child's father as donor. Which statement is TRUE?",
+     "q": "Which of the following statements regarding an account established under the Uniform Transfers to Minors Act (UTMA) is TRUE?",
      "choices": [
-      "The account is registered under the custodian's Social Security number because the custodian controls it",
-      "Gifts to the account remain revocable by the donor at any time until the minor reaches the age of 21",
-      "The custodian may purchase securities on margin in the account if doing so is prudent for the minor",
-      "The account is registered under the minor's Social Security number, and earnings are taxed to the minor"
+      "The account is registered under the Social Security number of the custodian.",
+      "Gifts to the account remain revocable by the donor until the minor reaches the age of majority.",
+      "The custodian may purchase securities on margin if the purchase is prudent for the minor.",
+      "The account is registered under the minor's Social Security number, with earnings taxed to the minor."
      ],
      "answer": 3,
-     "explanation": "UGMA/UTMA accounts use the minor's SSN, and the minor is the tax owner (kiddie-tax rules may apply). The custodian's control does not shift registration or tax ownership, gifts into the account are irrevocable once made, and custodial accounts must be cash accounts — margin is prohibited no matter how prudent.",
+     "explanation": "A UTMA account is registered under the minor's Social Security number, and the minor is the tax owner of the earnings. Gifts to the account are irrevocable once made, and custodial accounts must be cash accounts — margin purchases are prohibited regardless of prudence.",
      "topic": "UTMA SSN/taxation",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "A registered rep, without speaking to the client that day, decides to buy 500 shares of a stock and chooses the price and time of execution, then enters the order before lunch. The client previously signed limited trading authorization. For this to be a properly handled DISCRETIONARY order rather than time/price discretion, which element is essential?",
+     "q": "A registered representative (RR), without consulting the customer, decides to purchase 500 shares of a security in the customer's account. Which of the following is required before the order may be entered?",
      "choices": [
-      "The order must be marked discretionary and approved by a principal, and written discretionary authority must be on file",
-      "Only verbal authorization for the specific trade is required since the client already signed a new-account form",
-      "Time and price discretion always requires written authority, but choosing the security does not",
-      "The trade is permissible as non-discretionary because the rep did not change the account's investment objective"
+      "Prior written authorization, an order marked discretionary, and principal review",
+      "Verbal authorization from the customer for the specific transaction",
+      "Written authorization covering only the time and price of execution",
+      "No authorization, because the account's investment objective is unchanged"
      ],
      "answer": 0,
-     "explanation": "Choosing the security, the amount, or the buy/sell action is full discretion, requiring prior WRITTEN authorization, the order marked discretionary, and prompt principal review. Time/price-only discretion (deciding just when/at what price for a client-specified security and amount) is the limited exception needing no written authority, so the conflating choices are wrong.",
+     "explanation": "Selecting the security, the amount, or the action is full discretion, which requires prior written authorization from the customer, an order ticket marked discretionary, and prompt principal review. Time and price discretion is a limited exception that does not extend to choosing the security.",
      "topic": "Discretion",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "A customer buys 200 shares of a $40 stock in a new margin account on the trade date. Regulation T initial requirement is 50%. What is the customer's required initial deposit, considering the minimum equity rule?",
+     "q": "A customer purchases 200 shares of a $40.00 stock in a new margin account. Under Regulation T, what is the customer's required initial deposit?",
      "choices": [
-      "$2,000, because the $4,000 Reg T call is below the $2,000 floor and the floor controls",
-      "$4,000, the Reg T requirement, because it exceeds the $2,000 minimum-equity figure",
-      "$8,000, the full purchase price, because new accounts must be fully paid",
-      "$1,000, which is 25% maintenance margin on the purchase"
+      "$1,000",
+      "$2,000",
+      "$4,000",
+      "$8,000"
      ],
-     "answer": 1,
-     "explanation": "Reg T 50% of $8,000 = $4,000. The $2,000 minimum-equity rule is a floor but never forces a deposit larger than the purchase price; here Reg T ($4,000) exceeds $2,000, so $4,000 controls. The $2,000 floor only binds when 50% of the purchase is below $2,000.",
+     "answer": 2,
+     "explanation": "Regulation T requires 50% of the $8,000 purchase price, or $4,000. The $2,000 minimum equity requirement is a floor that controls only when 50% of the purchase is less than $2,000; $8,000 is full payment, and $1,000 reflects the 25% maintenance level, not the initial requirement.",
      "topic": "Margin minimum equity",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "In a margin account, a customer buys securities and the broker-dealer pledges those securities to a bank as collateral for a loan to finance the purchase. This describes:",
+     "q": "A broker-dealer pledges securities purchased on margin by a customer to a bank as collateral for a loan. This practice is known as:",
      "choices": [
-      "Rehypothecation, in which the customer pledges securities to the broker-dealer",
-      "Hypothecation, in which the customer pledges securities to the broker-dealer to secure the margin loan",
-      "Rehypothecation, in which the broker-dealer re-pledges customer securities to a bank",
-      "Commingling, which is the permitted pooling of customer and firm securities"
+      "hypothecation.",
+      "rehypothecation.",
+      "commingling.",
+      "segregation."
      ],
-     "answer": 2,
-     "explanation": "The customer pledging to the broker-dealer is hypothecation; the broker-dealer re-pledging those securities to a bank is rehypothecation. The scenario describes the BD pledging to a bank, so plain hypothecation is wrong, and commingling firm/customer securities is prohibited.",
+     "answer": 1,
+     "explanation": "The customer pledging margin securities to the broker-dealer is hypothecation; the broker-dealer re-pledging those securities to a bank is rehypothecation. Commingling customer and firm securities is prohibited, and segregation applies to fully paid customer securities.",
      "topic": "Hypothecation",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "Under the Customer Identification Program (CIP), which item is NOT among the minimum information a firm must collect to open an account for a natural person?",
+     "q": "To open an account for a natural person, a firm's Customer Identification Program (CIP) must obtain all of the following information EXCEPT:",
      "choices": [
-      "Name",
-      "Date of birth",
-      "Physical residential or business street address (not solely a P.O. box)",
-      "The customer's annual income and net worth"
+      "name.",
+      "date of birth.",
+      "a residential or business street address.",
+      "annual income and net worth."
      ],
      "answer": 3,
-     "explanation": "CIP minimum data are name, date of birth, address (a P.O. box alone is insufficient), and a taxpayer ID/SSN. Income and net worth are suitability/financial-profile items, not CIP identity elements, so they are the exception.",
+     "explanation": "CIP minimum identifying information is the customer's name, date of birth, street address (a P.O. box alone is insufficient), and taxpayer identification number. Annual income and net worth are suitability items, not CIP identity elements.",
      "topic": "CIP",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "Regarding the trusted contact person under FINRA rules, which statement is TRUE?",
+     "q": "Which of the following statements regarding a trusted contact person is TRUE?",
      "choices": [
-      "The firm may contact that person about suspected exploitation, but the person has no authority over the account",
-      "The firm may not open the account until the customer has provided the name of a trusted contact person",
-      "The trusted contact receives limited trading authority to act if the customer becomes incapacitated",
-      "Naming a trusted contact automatically converts the account into a discretionary relationship with the firm"
+      "The firm may contact the person about suspected exploitation, but the person has no authority over the account.",
+      "The firm may not open the account until the customer has named a trusted contact person.",
+      "The trusted contact person receives limited trading authority if the customer becomes incapacitated.",
+      "Naming a trusted contact person establishes a discretionary relationship with the firm."
      ],
      "answer": 0,
-     "explanation": "A trusted contact is someone the firm may reach about suspected financial exploitation or to confirm the customer's health or whereabouts; the contact gains no trading authority, power of attorney, or discretion. Firms must make reasonable efforts to obtain one, but the account may still be opened if the customer declines, so obtaining a contact is not a precondition.",
+     "explanation": "A trusted contact person is someone the firm may contact about suspected financial exploitation or to confirm the customer's health or whereabouts; the person receives no trading authority, power of attorney, or discretion. Firms must make reasonable efforts to obtain a trusted contact, but the account may be opened if the customer declines.",
      "topic": "Trusted contact",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "A widow holds a brokerage account registered TOD (transfer on death) naming her two adult children as 50/50 beneficiaries. She later marries and wants her new spouse to receive everything, but never updates the TOD designation before she dies. Which outcome is correct?",
+     "q": "A customer's account is registered transfer on death (TOD) with her two adult children named as equal beneficiaries. If the customer remarries and dies without updating the designation, the account:",
      "choices": [
-      "The new spouse inherits the entire account because a surviving spouse supersedes a TOD beneficiary",
-      "The account passes 50/50 to the two children per the TOD designation, outside of probate",
-      "The account is split three ways equally among the spouse and two children",
-      "The TOD is voided by the marriage and the account passes through probate under intestacy"
+      "passes entirely to the surviving spouse, who supersedes the TOD beneficiaries.",
+      "passes equally to the two children outside of probate.",
+      "is divided equally among the surviving spouse and the two children.",
+      "passes through probate because the marriage voided the TOD designation."
      ],
      "answer": 1,
-     "explanation": "A TOD designation controls disposition at death and passes the account outside probate to the named beneficiaries regardless of later marriage or a conflicting will. Marriage does not automatically override or void a TOD, so the assets pass 50/50 to the children as named.",
+     "explanation": "A TOD designation controls disposition at death and passes the account outside of probate to the named beneficiaries. A later marriage does not override or void the designation, so the account passes equally to the two children as named.",
      "topic": "TOD",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "Consider the following authorizations: I. A durable power of attorney. II. An ordinary (non-durable) power of attorney. III. A discretionary authorization granted directly to the registered representative. Which remain valid after the principal/customer is declared mentally incompetent?",
+     "q": "Which of the following authorizations remains in effect after a customer is declared mentally incompetent?",
      "choices": [
-      "I only",
-      "I and III only",
-      "II and III only",
-      "I, II, and III"
+      "A durable power of attorney",
+      "An ordinary power of attorney",
+      "A limited trading authorization",
+      "A discretionary authorization"
      ],
      "answer": 0,
-     "explanation": "A durable POA survives the principal's incapacity, which is its defining feature. A non-durable POA terminates on incapacity, and ordinary discretionary trading authority likewise ends if the customer becomes incompetent (or dies), so only I remains valid.",
+     "explanation": "A durable power of attorney survives the principal's incapacity, which is its defining feature. An ordinary power of attorney and any trading or discretionary authorization terminate when the customer is declared incompetent or dies.",
      "topic": "POA durability",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "Under Regulation Best Interest (Reg BI) compared with the prior FINRA suitability standard, which statement is TRUE?",
+     "q": "Which of the following statements regarding Regulation Best Interest (Reg BI) is TRUE?",
      "choices": [
-      "Reg BI applies to investment advisers, replacing the Advisers Act fiduciary standard for their advice",
-      "Reg BI removes the duty to disclose conflicts of interest because best-interest conduct is presumed",
-      "Reg BI requires a broker-dealer to act in a retail customer's best interest when it makes a recommendation",
-      "Reg BI applies only to recommendations of variable annuities, leaving other products under suitability"
+      "It replaces the fiduciary standard that applies to investment advisers.",
+      "It eliminates a broker-dealer's obligation to disclose conflicts of interest.",
+      "It requires a broker-dealer making a recommendation to act in a retail customer's best interest.",
+      "It applies only to recommendations involving variable annuity contracts."
      ],
      "answer": 2,
-     "explanation": "Reg BI raises the bar above suitability: at the time of a recommendation to a retail customer, the broker-dealer may not place its own interest ahead of the customer's. Its four obligations — Disclosure, Care, Conflict, and Compliance — mean conflicts must still be disclosed, it covers securities recommendations broadly rather than one product type, and investment advisers remain under the Advisers Act fiduciary duty, not Reg BI.",
+     "explanation": "Reg BI requires that a broker-dealer making a recommendation to a retail customer not place its own interest ahead of the customer's. Its disclosure, care, conflict, and compliance obligations mean conflicts must still be disclosed, the rule covers securities recommendations broadly, and investment advisers remain subject to the Investment Advisers Act fiduciary standard.",
      "topic": "Reg BI vs suitability",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "A customer deposits $6,500 in cash on Monday and $5,200 in cash on Tuesday at the same branch, both into the same brokerage account. The firm's BSA/AML obligation is to:",
+     "q": "A customer deposits $6,500 in cash on Monday and $5,200 in cash on Tuesday into the same brokerage account. Under the Bank Secrecy Act (BSA), the firm must:",
      "choices": [
-      "File a CTR, because related cash deposits by one person aggregating over $10,000 trigger the report",
-      "File no CTR, because neither individual cash deposit exceeded the $10,000 reporting threshold",
-      "File a CTR covering only Tuesday's deposit, the transaction that pushed the total past $10,000",
-      "File a SAR instead of a CTR, because deposits split across days are presumed to be structuring"
+      "file a currency transaction report (CTR), because the related deposits aggregate to more than $10,000.",
+      "file no report, because neither individual deposit exceeded the $10,000 threshold.",
+      "file a CTR covering only the deposit that pushed the total past $10,000.",
+      "file a suspicious activity report (SAR), because split deposits are presumed to be structuring."
      ],
      "answer": 0,
-     "explanation": "Cash transactions by or on behalf of the same person that aggregate to more than $10,000 require a CTR, and $6,500 + $5,200 = $11,700 crosses that threshold — the test is not applied deposit by deposit, nor does the report attach only to the final deposit. A SAR for structuring requires indicia of intent to evade reporting; split deposits are not automatically presumed to be structuring.",
+     "explanation": "Cash transactions by or on behalf of the same person that aggregate to more than $10,000 require a CTR; $6,500 plus $5,200 equals $11,700. The test is not applied deposit by deposit, the report is not limited to the final deposit, and a SAR for structuring requires indicia of intent to evade reporting.",
      "topic": "CTR aggregation",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "A non-married couple, Dev and Priya, open a tenants-in-common account with a 60/40 ownership split. Which statement about this account is TRUE?",
+     "q": "Two unrelated individuals open a tenants in common (TIC) account with a 60/40 ownership split. Which of the following statements is TRUE?",
      "choices": [
-      "On the death of either owner, the surviving owner automatically takes the entire account by survivorship",
-      "The account must be carried as equal 50/50 interests, because joint owners cannot hold unequal shares",
-      "Either owner acting alone may retitle the full account into individual name without the other's consent",
-      "On the death of either owner, that owner's fractional share passes to that owner's estate, not the survivor"
+      "At the death of either owner, the survivor automatically receives the entire account.",
+      "The interests must be carried as equal 50/50 shares regardless of contribution.",
+      "Either owner acting alone may retitle the account into individual name.",
+      "At the death of either owner, that owner's fractional share passes to the owner's estate."
      ],
      "answer": 3,
-     "explanation": "TIC permits unequal interests (60/40 here) and carries no right of survivorship — each owner's fractional share passes to that owner's estate at death. Automatic survivorship describes JTWROS, not TIC; joint accounts do not require equal interests; and retitling the account generally requires both owners' consent.",
+     "explanation": "TIC permits unequal interests and carries no right of survivorship — each owner's fractional share passes to that owner's estate at death. Automatic survivorship describes JTWROS, and retitling the account generally requires the consent of both owners.",
      "topic": "TIC ownership",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "A customer is long 5 ABC Jan 50 calls purchased at a premium of 4. To compute the breakeven the customer must reach for the position to be profitable at expiration, the breakeven is:",
+     "q": "A customer buys 5 ABC Jan 50 calls at a premium of 4. What is the breakeven point at expiration?",
      "choices": [
-      "$46, the strike minus the premium",
-      "$54, the strike plus the premium",
-      "$50, the strike price, since premiums are sunk costs",
-      "$58, the strike plus twice the premium"
+      "$46.00",
+      "$50.00",
+      "$54.00",
+      "$58.00"
      ],
-     "answer": 1,
-     "explanation": "For a long call, breakeven = strike + premium = 50 + 4 = $54; the stock must rise above this for intrinsic value to exceed the premium paid. Strike minus premium ($46) is the long-PUT breakeven (the call/put trap), and the strike alone ignores the premium.",
+     "answer": 2,
+     "explanation": "The breakeven for a long call is the strike price plus the premium: 50 + 4 = $54.00. Strike minus premium ($46.00) is the breakeven for a long put, and the strike alone ignores the premium paid.",
      "topic": "Options breakeven",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "A customer wants to buy a corporate bond regular-way and remain a holder of record for a record date of Wednesday, June 17. Under the current standard settlement cycle for corporate securities, which is correct?",
+     "q": "A customer wishes to purchase a corporate bond regular way and be a holder of record on the record date of Wednesday, June 17. The trade must be executed no later than:",
      "choices": [
-      "Settlement is T+2; the trade must occur by Monday, June 15 to settle by the record date",
-      "Settlement is T+1; the trade must occur by Tuesday, June 16 to settle by the record date",
-      "Settlement is T+1; the trade may occur as late as Wednesday, June 17 and settle that same day",
-      "Settlement is T+3; the trade must occur by Friday, June 12 to settle by the record date"
+      "Friday, June 12.",
+      "Monday, June 15.",
+      "Tuesday, June 16.",
+      "Wednesday, June 17."
      ],
-     "answer": 1,
-     "explanation": "Corporate securities now settle T+1, so a trade on Tuesday, June 16 settles Wednesday, June 17, making the buyer a holder of record. A trade on June 17 would settle June 18 — one day too late, since regular-way trades never settle same day — and T+2 and T+3 are prior settlement cycles.",
+     "answer": 2,
+     "explanation": "Corporate securities settle regular way on the first business day after the trade date (T+1), so a trade on Tuesday, June 16 settles Wednesday, June 17, making the buyer a holder of record. Monday, June 15 reflects the former T+2 cycle, Friday, June 12 reflects T+3, and regular way trades never settle the same day.",
      "topic": "T+1 record date",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "Which of the following actions in a customer account would NOT, by itself, require prior written discretionary authority?",
+     "q": "Which of the following actions by a registered representative (RR) requires NO prior written discretionary authorization?",
      "choices": [
-      "The rep decides to sell 300 shares of a stock the customer never mentioned selling",
-      "The rep changes the customer's buy order into a sell order based on changing market conditions",
-      "The rep picks the time and price to execute the customer's order to buy 300 XYZ shares today",
-      "The rep selects which of two stocks to purchase with cash the customer has deposited"
+      "Selling 300 shares of a stock the customer never mentioned",
+      "Changing a customer's buy order into a sell order",
+      "Choosing the time and price for a customer's order to buy 300 XYZ shares",
+      "Selecting which of two stocks to purchase with the customer's deposited cash"
      ],
      "answer": 2,
-     "explanation": "When the customer names the action, the security, and the amount (buy 300 XYZ today), choosing only the execution time and price is time/price discretion, valid for that trading day without written authority. Choosing the security, the amount, or whether to buy or sell — including flipping a buy to a sell — is full discretion and requires prior written authorization.",
+     "explanation": "When the customer names the action, the security, and the amount, choosing only the time and price of execution is time and price discretion, valid for that trading day without written authority. Choosing the security, the amount, or whether to buy or sell — including changing a buy order to a sell — is full discretion requiring prior written authorization.",
      "topic": "Time/price discretion",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "Which of the following are FALSE about a cash account versus a margin account? I. Securities in a fully paid cash account may be rehypothecated by the firm to finance other customers. II. A margin account requires a signed hypothecation agreement and credit agreement. III. Short selling may be conducted in a cash account. Choose the combination of FALSE statements.",
+     "q": "Which of the following statements regarding cash and margin accounts is TRUE?",
      "choices": [
-      "I and III only",
-      "II only",
-      "I, II, and III",
-      "II and III only"
+      "Fully paid securities held in a cash account may be rehypothecated by the firm.",
+      "A margin account requires a signed hypothecation agreement and a credit agreement.",
+      "Short sales may be executed in either a cash account or a margin account.",
+      "The purchase of options may be effected only in a margin account."
      ],
-     "answer": 0,
-     "explanation": "I is false: fully paid cash-account securities must be segregated and cannot be hypothecated/rehypothecated. III is false: short selling requires a margin account, never a cash account. II is TRUE (margin accounts do require hypothecation and credit agreements), so the FALSE set is I and III.",
+     "answer": 1,
+     "explanation": "A margin account requires the customer to sign a hypothecation agreement and a credit agreement. Fully paid securities in a cash account must be segregated and may not be rehypothecated, short sales may be executed only in a margin account, and long option purchases may be made in a cash account.",
      "topic": "Cash vs margin",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "An investor wants the firm to be able to alert someone if it suspects she is being financially exploited, but she does NOT want that person to be able to trade or see her balances. The firm should:",
+     "q": "A customer wants the firm to be able to alert a third party to suspected financial exploitation without granting that person trading authority or access to account information. The firm should:",
      "choices": [
-      "Recommend a full durable power of attorney naming that person",
-      "Add the person as a JTWROS co-owner so the firm can contact them",
-      "Designate the person as the account's trusted contact",
-      "Establish a discretionary authorization for that person limited to protective transactions"
+      "recommend a durable power of attorney naming the person.",
+      "add the person to the account as a joint tenant with right of survivorship (JTWROS).",
+      "designate the person as the account's trusted contact person.",
+      "establish a limited discretionary authorization for the person."
      ],
      "answer": 2,
-     "explanation": "A trusted contact fits exactly: the firm may reach out about suspected exploitation, health, or whereabouts, but the contact gets no trading authority or account access. A POA, joint ownership, or discretionary authorization would each improperly grant control or access, exceeding the client's stated wishes.",
+     "explanation": "A trusted contact person may be contacted by the firm about suspected exploitation or to confirm the customer's health or whereabouts but receives no trading authority or account access. A power of attorney, joint ownership, or discretionary authorization would each grant control or access beyond the customer's stated wishes.",
      "topic": "Trusted contact vs POA",
      "difficulty": "hard",
      "style": "scenario"
     },
     {
-     "q": "A customer's cash account holds securities and cash when the brokerage firm fails financially. The account holds $480,000 in securities and $90,000 in cash. Under SIPC, what is the coverage outcome?",
+     "q": "A brokerage firm fails, and a customer's account holds $480,000 in securities and $90,000 in cash. Securities Investor Protection Corporation (SIPC) coverage protects:",
      "choices": [
-      "$500,000 is covered — $480,000 in securities plus $20,000 of the cash — leaving $70,000 of cash unprotected",
-      "The full $570,000 is covered, because the limits are $500,000 for securities plus $250,000 for cash",
-      "Only $250,000 is covered in total, because cash and securities share a single $250,000 customer limit",
-      "$500,000 is covered — $90,000 cash first, then $410,000 of securities — leaving $70,000 of securities exposed"
+      "$500,000, consisting of $480,000 in securities and $20,000 in cash.",
+      "$570,000, because securities and cash are subject to separate limits.",
+      "$250,000, because securities and cash share a single customer limit.",
+      "$500,000, consisting of $90,000 in cash and $410,000 in securities."
      ],
      "answer": 0,
-     "explanation": "SIPC protects up to $500,000 per separate customer, of which no more than $250,000 may be cash — the cash figure is a sub-limit inside the $500,000 aggregate, not an addition to it. Here $480,000 of securities plus $20,000 of cash exhausts the $500,000 cap, so $70,000 of cash is unprotected; there is no rule prioritizing cash claims ahead of securities.",
+     "explanation": "SIPC protects up to $500,000 per separate customer, of which no more than $250,000 may be cash — the cash limit is a sublimit within the $500,000 aggregate, not an addition to it. The $480,000 in securities is fully covered plus $20,000 of cash, leaving $70,000 of cash unprotected; cash claims are not paid ahead of securities.",
      "topic": "SIPC coverage",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "A registered rep wants to give a gift to a key contact at a mutual fund wholesaler to maintain the business relationship. Under FINRA's gift rule, which gift is permissible without violating the limit?",
+     "q": "Under FINRA's gift rule, which of the following gifts to an employee of a mutual fund wholesaler is permissible?",
      "choices": [
-      "A $150 watch given once per year",
-      "An $85 gift basket, plus separately a $40 bottle of wine to the same person in the same year",
-      "A single $100 engraved pen given once in the calendar year",
-      "A $250 gift offset by the recipient reimbursing $160"
+      "A $150.00 watch given once during the calendar year",
+      "An $85.00 gift basket and a $40.00 bottle of wine given in the same year",
+      "A $100.00 engraved pen given once during the calendar year",
+      "A $250.00 gift for which the recipient reimburses $160.00"
      ],
      "answer": 2,
-     "explanation": "FINRA caps non-cash gifts at $100 per person per year in connection with the recipient's business. A single $100 pen is at the limit and permissible; the $150 watch exceeds it, and $85 + $40 = $125 to the same person aggregates over $100. Reimbursement schemes do not cure an over-limit gift.",
+     "explanation": "FINRA limits gifts related to the recipient's business to $100 per person per year. A single $100.00 gift is at the limit and permissible; the $150.00 watch exceeds it, the $85.00 basket plus the $40.00 wine aggregates to $125.00 to the same person, and partial reimbursement does not cure an over-limit gift.",
      "topic": "Gift limit $100",
      "difficulty": "hard",
      "style": "calc"
     },
     {
-     "q": "An investor claims accredited-investor status. He earned $190,000 last year and expects the same this year (below the $200,000 individual income test). He states his net worth is $1.4 million, which includes $600,000 of equity in his primary residence. Does he qualify on the net-worth test?",
+     "q": "An investor reports annual income of $190,000 and a net worth of $1.4 million that includes $600,000 of equity in a primary residence. Under the accredited investor net worth test, the investor:",
      "choices": [
-      "Yes, his $1.4 million net worth exceeds $1 million regardless of what it includes",
-      "No, excluding the $600,000 primary-residence equity leaves $800,000, below the $1 million threshold",
-      "Yes, because primary-residence equity is specifically counted toward the net-worth test",
-      "No, because accredited status requires both the income test and the net-worth test to be met"
+      "qualifies, because total net worth of $1.4 million exceeds the $1 million threshold.",
+      "does not qualify, because excluding the primary residence leaves a net worth of $800,000.",
+      "qualifies, because equity in a primary residence is counted toward net worth.",
+      "does not qualify, because the income test and the net worth test must both be met."
      ],
      "answer": 1,
-     "explanation": "The $1 million net-worth test excludes equity in the primary residence; removing $600,000 leaves $800,000, which fails. He also misses the $200,000 income test. Accredited status can be met by EITHER test (not both), so the 'both required' rationale is wrong even though the outcome here is non-qualification.",
+     "explanation": "The $1 million net worth test excludes equity in the investor's primary residence; removing $600,000 leaves $800,000, which fails the test. The investor also falls short of the $200,000 income test, but accredited status may be achieved under either test — both are not required.",
      "topic": "Accredited investor",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "Which of the following is NOT a characteristic that distinguishes a fee-based advisory account governed by the Investment Advisers Act from a commission-based brokerage account under Reg BI?",
+     "q": "Each of the following distinguishes a fee-based advisory account from a commission-based brokerage account EXCEPT:",
      "choices": [
-      "The advisory account relationship carries an ongoing fiduciary duty to the client",
-      "The brokerage account is charged transaction-based compensation per trade rather than an asset-based fee",
-      "Reg BI's best-interest obligation applies at the time of each recommendation in the brokerage account",
-      "Both account types require the firm to deliver Form CRS, so Form CRS delivery is a distinguishing feature"
+      "the ongoing fiduciary duty owed to advisory clients.",
+      "the transaction-based compensation charged in the brokerage account.",
+      "the application of Regulation Best Interest (Reg BI) to brokerage recommendations.",
+      "the requirement to deliver Form CRS to retail investors."
      ],
      "answer": 3,
-     "explanation": "Form CRS (the relationship summary) must be delivered by both broker-dealers and investment advisers serving retail investors, so it does NOT distinguish the two, making it the correct 'NOT' answer. The fiduciary duty (adviser), transaction-based pay (brokerage), and point-of-recommendation Reg BI standard (brokerage) are genuine distinctions.",
+     "explanation": "Form CRS must be delivered to retail investors by both broker-dealers and investment advisers, so it does not distinguish the two account types. The adviser's ongoing fiduciary duty, the brokerage account's transaction-based compensation, and Reg BI's application at the time of each brokerage recommendation are genuine distinctions.",
      "topic": "Advisory vs brokerage",
      "difficulty": "hard",
      "style": "trap"
     },
     {
-     "q": "A married couple opens a tenancy-by-the-entirety account in a state that permits it. The husband individually incurs a large personal judgment from a creditor unrelated to the wife. Which statement is TRUE regarding this TBE account?",
+     "q": "A married couple holds an account as tenants by the entirety (TBE). If a creditor obtains a judgment against one spouse individually, which of the following statements is TRUE?",
      "choices": [
-      "The creditor may immediately attach the husband's one-half interest, since TBE splits ownership equally",
-      "TBE carries a right of survivorship but provides no creditor protection beyond that of a JTWROS account",
-      "Either spouse acting alone may close the account and withdraw all assets without the other's consent",
-      "The creditor of the husband alone generally cannot reach property the couple holds by the entirety"
+      "The creditor may immediately attach the debtor spouse's one-half interest in the account.",
+      "TBE provides no creditor protection beyond that of a joint tenants with right of survivorship (JTWROS) account.",
+      "Either spouse acting alone may close the account and withdraw all of the assets.",
+      "The creditor of one spouse alone generally cannot reach property held by the entirety."
      ],
      "answer": 3,
-     "explanation": "Entireties property is generally shielded from creditors of only one spouse, and neither spouse can unilaterally sever, transfer, or close the interest. That creditor protection and indivisibility is precisely what distinguishes TBE from JTWROS, so the immediate-attachment, no-extra-protection, and unilateral-closure choices are all wrong.",
+     "explanation": "Property held by the entirety is generally shielded from creditors of only one spouse, and neither spouse may unilaterally sever, transfer, or close the interest. That creditor protection and indivisibility distinguish TBE from JTWROS.",
      "topic": "TBE creditor protection",
      "difficulty": "hard",
      "style": "true"
     },
     {
-     "q": "A registered representative receives a market order from a customer to 'buy 1,000 shares of QRS at the market today.' Before entering it, the rep notices the price spiking and, on his own judgment, waits two hours and buys at a better price the same day. Separately, in another account, the rep decided on his own to buy 1,000 shares of a stock the customer never mentioned. Which characterization is correct?",
+     "q": "A registered representative (RR) delays a customer's market order to buy 1,000 shares of QRS for two hours to obtain a better price the same day and, in a second account, purchases a stock that customer never discussed. Which of the following statements is correct?",
      "choices": [
-      "Both trades exercise full discretion, and each required prior written authorization from the customer",
-      "The first is valid time/price discretion for the day; the second required prior written authority",
-      "Neither trade is discretionary, because the customer funded and maintained control of both accounts",
-      "The first required prior written discretion, while the second raises only a suitability question"
+      "Both purchases involved full discretion and required prior written authorization from each customer.",
+      "The QRS order involved permissible time and price discretion; the second purchase required prior written authorization.",
+      "Neither purchase was discretionary, because each customer funded and maintains control of the account.",
+      "The QRS order required prior written authorization; the second purchase raises only a suitability issue."
      ],
      "answer": 1,
-     "explanation": "In the first account the customer specified the security, amount, and action, leaving only timing and price to the rep — time/price discretion, valid for that trading day without written authority. In the second account the rep chose the security itself, which is full discretion; entering that trade without prior written authorization is a violation, not merely a suitability issue.",
+     "explanation": "For the QRS order the customer specified the security, the amount, and the action, leaving only timing and price to the RR — time and price discretion, valid for that trading day without written authority. In the second account the RR selected the security, which is full discretion; entering that order without prior written authorization is a violation, not merely a suitability issue.",
      "topic": "Discretion disambiguation",
      "difficulty": "hard",
      "style": "distinction"
     },
     {
-     "q": "A customer about to leave on an extended overseas trip instructs her broker-dealer to hold her account mail. Under FINRA Rule 3150, which of the following is the firm REQUIRED to obtain or do before holding the mail? I. Written instructions from the customer specifying the time period during which mail is to be held. II. Verbal confirmation from the customer's spouse that the request is genuine. III. Disclosure to the customer, in writing, of alternate methods (such as email or website access) to receive or monitor account activity. IV. Verification at reasonable intervals that the customer's instructions still apply.",
+     "q": "Under FINRA Rule 3150, a firm that holds a customer's mail must comply with each of the following requirements EXCEPT:",
      "choices": [
-      "I and III only",
-      "I, III, and IV only",
-      "I, II, and IV only",
-      "I, II, III, and IV"
+      "obtaining the customer's written instructions, including the time period of the hold.",
+      "obtaining verbal confirmation of the request from the customer's spouse.",
+      "disclosing in writing alternate methods the customer may use to monitor account activity.",
+      "verifying at reasonable intervals that the customer's instructions remain in effect."
      ],
      "answer": 1,
-     "explanation": "FINRA Rule 3150 requires (I) WRITTEN instructions from the customer that include the time period for the hold, (III) written disclosure of alternate methods such as email or website access to monitor the account, and (IV) verification at reasonable intervals that the instructions still apply. (II) is the trap — the rule never requires confirmation from a spouse or any third party; the instruction comes from the customer. The firm must also be able to communicate important account information to the customer in a timely manner during the hold.",
+     "explanation": "Rule 3150 requires written instructions from the customer that include the time period of the hold, written disclosure of alternate methods (such as email or website access) to monitor the account, and verification at reasonable intervals that the instructions still apply. Confirmation from a spouse or any other third party is never required.",
      "topic": "Holding of Customer Mail",
      "difficulty": "hard",
      "style": "roman"
     },
     {
-     "q": "A registered representative receives written requests from four customers to hold their mail. Under FINRA Rule 3150, which request may the firm honor as written WITHOUT obtaining any further reason from the customer? I. \"Hold my mail for 10 weeks while I am traveling for work.\" II. \"Hold my mail for 5 months for my convenience while I am at my summer home.\" III. \"Hold my mail for 6 months because I have safety and security concerns and asked to keep my address confidential.\" IV. \"Hold my mail indefinitely; I simply find paper statements annoying.\"",
+     "q": "Under FINRA Rule 3150, which of the following mail-hold periods may a firm honor without the customer stating any reason?",
      "choices": [
-      "I only",
-      "I and III only",
-      "I, II, and III only",
-      "III only"
+      "10 weeks",
+      "Five months",
+      "Six months",
+      "An indefinite period"
      ],
      "answer": 0,
-     "explanation": "Rule 3150 lets a firm hold mail up to three CONSECUTIVE months for convenience or travel with no stated reason. Request I (10 weeks, traveling) is under three months and is acceptable as written. Request II (5 months) exceeds three months, so convenience is NOT an acceptable reason — it cannot be honored as written. Request III (6 months) exceeds three months but states an acceptable reason (safety/security), so it is permissible — but the question asks which may be honored WITHOUT obtaining a reason; because III's validity depends on the stated safety reason, it is excluded here, making 'I only' correct. Request IV asks to hold mail beyond three months for mere convenience/annoyance, which is expressly not acceptable. The trap is choosing III: it is allowed, but only BECAUSE a reason was given, so it fails the 'without any further reason' condition.",
+     "explanation": "Rule 3150 permits a firm to hold a customer's mail for up to three consecutive months with no reason stated, so a 10-week hold is acceptable as written. A hold longer than three months requires an acceptable reason, such as safety or security concerns; convenience alone never supports a hold beyond three months, and an indefinite hold is expressly not acceptable.",
      "topic": "Holding of Customer Mail",
      "difficulty": "hard",
      "style": "roman"

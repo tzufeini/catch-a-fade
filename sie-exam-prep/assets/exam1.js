@@ -1,7 +1,4 @@
-/* ============================================================
-   SIE Mastery — full-length practice exams
-   Auto-generated: original 75-question exam, answer-key verified.
-   ============================================================ */
+/* SIE Mastery — full practice exam (FINRA-voice restyled) */
 window.SIE_EXAMS = [
  {
   "id": "exam1",
