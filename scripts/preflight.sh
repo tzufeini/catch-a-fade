@@ -109,6 +109,22 @@ for p in privacy terms support; do
   [ "$C" = "200" ] && ok "/$p ($C)" || bad "/$p ($C)" "Apple checks these"
 done
 
+# 7. iPad layout guard.
+# Apple rejected 1.0(5) under Guideline 4 after reviewing on an iPad Air 11".
+# This ships iPhone-only, but iPadOS runs it anyway and App Review tests it
+# there. Only 20 of 42 screens have an inner scroll container, so on a wider
+# window the rest were clipped by .phone{overflow:hidden} with no way to scroll.
+# These two rules are what make an oversized window safe — never ship without them.
+echo
+echo "iPad layout guard"
+SRC="$(dirname "$0")/../index.html"
+grep -q "min-width:480px" "$SRC" \
+  && ok "phone-width column for large windows" \
+  || bad "iPad column rule MISSING" "content will stretch full-width on iPad"
+grep -q "html.native .screen{ overflow-y:auto" "$SRC" \
+  && ok "screens can always scroll" \
+  || bad "screen scroll net MISSING" "content can be clipped with no way to reach it"
+
 echo
 echo "───────────────────────────────────────────────────────"
 printf "%d passed, %d failed\n" "$pass" "$fail"
