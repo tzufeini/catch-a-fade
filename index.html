@@ -1113,6 +1113,42 @@ html.native .screen{ transform:none !important; transition:opacity .26s ease !im
 /* nudge the onboarding progress bar / skip button into the safe area */
 html.native #obProg{ top:max(54px, env(safe-area-inset-top)); }
 html.native .ob-skip{ top:max(62px, calc(env(safe-area-inset-top) + 8px)); }
+
+/* ===================================================================
+ *  iPad / large windows  — App Review, Guideline 4 (Aug 2026)
+ *  This ships as an iPhone-only binary, but iPadOS runs it anyway and
+ *  App Review tests it there. On an iPad Air 11" the 390px-wide phone
+ *  layout stretched to 820px: the CTA spanned the full width, the art
+ *  floated in a void, and the bottom of the screen was cut off. Only 20
+ *  of 42 screens have an inner .body scroll container, so on the other
+ *  22 the overflow was simply clipped by .phone{overflow:hidden} with no
+ *  way to reach it — exactly the "non-visible sections (unable to scroll
+ *  down)" the reviewer hit, which blocked them from finishing the review.
+ *
+ *  Two defences:
+ *   1. keep the UI in a phone-width column, centred, so every screen is
+ *      laid out at the dimensions it was designed for;
+ *   2. let any screen that still outgrows the window scroll, so content
+ *      can never be silently cropped again.
+ * =================================================================== */
+@media (min-width:480px){
+  html.native body{ display:flex; align-items:center; justify-content:center; }
+  html.native .stage{
+    width:100%; height:100%;
+    display:flex; align-items:center; justify-content:center;
+  }
+  html.native .phone{
+    width:min(100vw, 430px) !important;
+    height:100dvh !important;
+    max-height:100dvh !important;
+    margin:0 auto !important;
+  }
+}
+/* Safety net on every device: a screen may never hide content behind an
+   edge with no way to scroll to it. Screens that already have an inner
+   .body scroller fit exactly, so this stays inert for them. */
+html.native .screen{ overflow-y:auto; -webkit-overflow-scrolling:touch; }
+html.native .screen::-webkit-scrollbar{ display:none; }
 /* ================================================================
  * iOS proportional scale (~1.28x). Titles already grow via vw units;
  * everything else is fixed px, so scale it ALL together — not just
