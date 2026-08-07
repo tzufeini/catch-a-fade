@@ -1737,6 +1737,7 @@ html.native .ob-tip{ font-size:14px; }
     <div class="ob-nav">
       <button class="ob-cta" style="animation:obUp .38s .18s ease-out both,obPulse 1.8s .8s ease-in-out 2;" onclick="goAuth('signup')">Sign Up Free</button>
       <div class="ob-ghost" style="animation:obUp .38s .32s ease-out both;" onclick="goAuth('login')">Already have an account? <b>Log in</b></div>
+      <div class="ob-ghost" style="animation:obUp .38s .44s ease-out both;" onclick="guestBrowse()">Browse barbers first — <b>no account needed</b></div>
     </div>
   </section>
 
@@ -1768,12 +1769,15 @@ html.native .ob-tip{ font-size:14px; }
       <div class="auth-emailForm" id="authEmailForm">
         <label>Email address</label>
         <input id="authEmailInput" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com"/>
-        <button class="btn grad" style="margin-top:13px" onclick="authEmailSubmit()">Continue</button>
+        <label style="margin-top:11px;display:block">Password</label>
+        <input id="authPassInput" type="password" autocomplete="current-password" placeholder="6+ characters" onkeydown="if(event.key==='Enter')authEmailSubmit()"/>
+        <button class="btn grad" style="margin-top:13px" id="authGoBtn" onclick="authEmailSubmit()">Continue</button>
         <div class="auth-switch" onclick="authEmailBack()">← Other ways to sign in</div>
       </div>
 
       <div class="auth-foot">By continuing you agree to our <b class="auth-link" onclick="nav('termsDoc')">Terms</b> &amp; <b class="auth-link" onclick="nav('privacyDoc')">Privacy Policy</b>.</div>
       <div class="auth-switch" id="authSwitch" onclick="authSwitch()">Already have an account? <b>Log in</b></div>
+      <div class="auth-switch" onclick="guestBrowse()" style="margin-top:10px">Just looking? <b>Browse barbers without an account</b></div>
     </div>
   </section>
 
@@ -4223,6 +4227,13 @@ function closePaySheet(cancelled){
 
 /* ---------- booking confirm — real charge, then dispatch ---------- */
 function confirmBooking(){
+  // 5.1.1: browsing is free; BOOKING is the account-based feature that may
+  // require sign-in. Guests get sent to create an account right here.
+  if(!userProfile.loggedIn){
+    notify('Sign in to book','Create a free account to confirm your booking — browsing stays free.');
+    goAuth('signup');
+    return;
+  }
   const b=BARBERS[current];
   openPayment({
     merchant:'Catch a Fade · '+b.n.split(' ')[0],
@@ -4455,10 +4466,12 @@ function renderWizStep(){
   const next = document.getElementById('wizNext');
 
   const html = (function(){switch(s){
-    case 1: return '<div class="wizTitle">Let\'s verify your email</div>'
-      +'<div class="wizSub">We\'ll email you a 6-digit code to confirm it\'s really you.</div>'
+    case 1: return '<div class="wizTitle">Create your barber account</div>'
+      +'<div class="wizSub">Email and a password — your account is ready instantly.</div>'
       +'<div class="wizFld"><label>Work or personal email</label>'
       +'<input id="wEmail" type="email" placeholder="you@example.com" value="'+(signup.email||'')+'" autocomplete="email"/></div>'
+      +'<div class="wizFld"><label>Password</label>'
+      +'<input id="wPass" type="password" placeholder="6+ characters" autocomplete="new-password"/></div>'
       +'<div class="wizFld" style="font-size:12px;color:var(--faint)">By continuing you agree to Catch a Fade\'s Terms of Service and Privacy Policy.</div>';
     case 2: return '<div class="wizTitle">Enter the code we sent</div>'
       +'<div class="wizSub">Check your inbox at <b>'+escapeHtml(signup.email)+'</b> (and spam).</div>'
@@ -4605,17 +4618,21 @@ function wizVerifyOtp(code){
 function wizNext(){
   var s = signup.step;
   if(s===1){
+    // 2.1a: emailed codes never reached reviewers (sandboxed sender). The
+    // account is now created instantly with a password — no email involved.
     signup.email = (document.getElementById('wEmail').value||'').trim();
+    var pw = (document.getElementById('wPass').value||'');
     if(!signup.email || signup.email.indexOf('@')<0){ notify('Enter your email','We need a valid address.'); return; }
-    wizSendOtp(false).then(function(){ signup.step=2; renderWizStep(); }).catch(function(){});
+    if(!pw || pw.length<6){ notify('Choose a password','At least 6 characters.'); return; }
+    passwordAuth(signup.email, pw, false).then(function(res){
+      if(!res.ok){ notifyErr(res.title||'Couldn\'t create your account', res.msg||'Please try again.'); return; }
+      try{ userProfile.email = res.email || signup.email; userProfile.loggedIn = true; localStorage.setItem('fadex_logged_in','1'); }catch(e){}
+      signup.step=3; renderWizStep();   // step 2 (emailed code) no longer exists
+    }).catch(function(){ notifyErr('Couldn\'t create your account','Check your connection and try again.'); });
     return;
   } else if(s===2){
-    var code=''; for(var i=0;i<6;i++){ var b=document.getElementById('cb'+i); code+=(b&&b.value)||''; }
-    if(code.length<6){ notify('Enter all 6 digits','Check your email for the code.'); return; }
-    wizVerifyOtp(code).then(function(v){
-      if(!v.ok){ notifyErr('Incorrect code', v.msg||'That code doesn\'t match.'); return; }
-      signup.step=3; renderWizStep();
-    });
+    // legacy emailed-code step — unreachable, kept only so old state can't strand
+    signup.step=3; renderWizStep();
     return;
   } else if(s===3){
     signup.phone = (document.getElementById('wPhone').value||'').trim();
@@ -5337,8 +5354,9 @@ function obNext(){
   stack.push('ob'+next); render(); haptic();
 }
 function obSkip(){
-  // Skip the marketing screens and go STRAIGHT to the sign-in process.
-  goAuth('signup');
+  // 5.1.1: skipping the marketing screens lands you IN the app, browsing
+  // freely — never on a forced sign-in wall.
+  guestBrowse();
 }
 function obComplete(){
   sessionStorage.setItem('fadex_seen_ob','1');
@@ -5363,7 +5381,8 @@ function applyAuthMode(){
   var login = _authMode==='login';
   var h=document.getElementById('authH'), s=document.getElementById('authSub'), sw=document.getElementById('authSwitch');
   if(h) h.textContent = login ? 'Welcome back' : 'Create your account';
-  if(s) s.textContent = login ? 'Log in to book your next fade.' : 'Sign up to see barbers near you right now.';
+  // 5.1.1: browsing is free — an account is only for account-based features.
+  if(s) s.textContent = login ? 'Log in to book your next fade.' : 'One account for bookings, favorites and receipts.';
   if(sw) sw.innerHTML = login ? 'New here? <b>Create an account</b>' : 'Already have an account? <b>Log in</b>';
   // always reset to the provider buttons (collapse the email mini-form)
   var sso=document.getElementById('authSso'), ef=document.getElementById('authEmailForm');
@@ -5445,18 +5464,77 @@ function googleAuthPick(){
 }
 function closeGoogleAuth(){ clearTimeout(_gaT); document.getElementById('googleAuth').classList.remove('show'); }
 
-/* ----- Email + 6-digit code verification ----- */
+/* ----- Email + password (App Review 2.1a: emailed codes never arrived for
+ * reviewers — the transactional sender is sandboxed and Supabase's built-in
+ * mailer is rate-limited, so ANY flow that depends on email delivery fails
+ * for everyone but the account owner. Password sign-up needs no email.) ----- */
 let _authEmail='';
+function guestBrowse(){
+  // 5.1.1: browsing barbers is not account-based — let people straight in.
+  sessionStorage.setItem('fadex_seen_ob','1');
+  while(stack.length && (/^ob\d+$/.test(stack[stack.length-1]) || stack[stack.length-1]==='auth' || stack[stack.length-1]==='authCode' || stack[stack.length-1]==='welcome')) stack.pop();
+  stack.push('home');
+  render();
+  initHomeMap();
+  buildList();
+  haptic();
+}
 function authEmailSubmit(){
   var v=(document.getElementById('authEmailInput').value||'').trim();
+  var pw=(document.getElementById('authPassInput').value||'');
   if(!v || v.indexOf('@')<1 || v.indexOf('.')<2){ notify('Enter your email','We need a valid email address.'); return; }
+  if(!pw || pw.length<6){ notify('Choose a password','At least 6 characters.'); return; }
   ensureNotifyPermission();
   _authEmail=v;
-  sendAuthCode();
-  document.getElementById('codeEmail').textContent=v;
-  clearOtp();
-  nav('authCode');
-  setTimeout(function(){ var f=document.getElementById('otp0'); if(f) f.focus(); }, 350);
+  var btn=document.getElementById('authGoBtn'); if(btn){ btn.disabled=true; btn.textContent='One moment…'; }
+  passwordAuth(v, pw, _authMode==='login')
+    .then(function(res){
+      if(btn){ btn.disabled=false; btn.textContent='Continue'; }
+      if(!res.ok){ notifyErr(res.title||'Couldn\'t sign in', res.msg||'Please try again.'); return; }
+      try{ if(res.email) userProfile.email=res.email; userProfile.loggedIn=true; }catch(e){}
+      while(stack.length && (stack[stack.length-1]==='authCode' || stack[stack.length-1]==='auth')) stack.pop();
+      finishAuth('email');
+    })
+    .catch(function(){
+      if(btn){ btn.disabled=false; btn.textContent='Continue'; }
+      notifyErr('Couldn\'t sign in','Check your connection and try again.');
+    });
+}
+// Resolves {ok, email?, title?, msg?}. The App Review demo account verifies
+// against the server's fixed code (its password IS that code), everyone else
+// gets a real Supabase password account — created instantly, no email sent.
+function passwordAuth(email, pw, isLogin){
+  if(typeof isReviewEmail==='function' ? isReviewEmail(email) : /^review@/.test(email)){
+    var seed = function(){ return fetch((window.API_BASE||'')+'/api/send-code', {
+      method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ email:email }) }).then(function(r){ return r.json(); }); };
+    var check = function(){ return fetch((window.API_BASE||'')+'/api/verify-code', {
+      method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ email:email, code:pw }) }).then(function(r){ return r.json(); }); };
+    return seed().then(check).then(function(j){
+      return (j && j.ok) ? { ok:true, email:email }
+                         : { ok:false, title:'Incorrect password', msg:'Use the password from your reviewer notes.' };
+    });
+  }
+  var c = (typeof sbReady==='function') ? sbReady() : null;
+  if(!c) return Promise.resolve({ ok:false, msg:'Check your connection and try again.' });
+  if(isLogin){
+    return c.auth.signInWithPassword({ email:email, password:pw }).then(function(res){
+      if(res && res.error) return { ok:false, title:'Couldn\'t log in', msg:'Wrong email or password. New here? Switch to "Create an account".' };
+      return { ok:true, email:(res.data&&res.data.user&&res.data.user.email)||email };
+    });
+  }
+  return c.auth.signUp({ email:email, password:pw }).then(function(res){
+    if(res && res.error){
+      // Account already exists → just sign them in with the password they typed.
+      if(/already|registered|exists/i.test(res.error.message||'')){
+        return c.auth.signInWithPassword({ email:email, password:pw }).then(function(r2){
+          if(r2 && r2.error) return { ok:false, title:'Account exists', msg:'That email already has an account, but the password didn\'t match. Switch to "Log in".' };
+          return { ok:true, email:(r2.data&&r2.data.user&&r2.data.user.email)||email };
+        });
+      }
+      return { ok:false, msg:res.error.message||'Please try again.' };
+    }
+    return { ok:true, email:(res.data&&res.data.user&&res.data.user.email)||email };
+  });
 }
 // Sends the code via EmailJS v4 — publicKey passed in the send() options arg (no init needed).
 function sendEmailCode(recipientEmail, passcode){
@@ -5473,7 +5551,7 @@ let _useSupabaseAuth = false;   // true when the emailed code is a real Supabase
 // (see server.js REVIEW_EMAIL/REVIEW_CODE). It must ALWAYS verify against the
 // server — never Supabase — or the documented code would be rejected.
 const REVIEW_EMAIL = 'review@catchafade.app';
-function isReviewEmail(){ return (_authEmail||'').trim().toLowerCase() === REVIEW_EMAIL; }
+function isReviewEmail(e){ return ((e!==undefined?e:_authEmail)||'').trim().toLowerCase() === REVIEW_EMAIL; }
 // The backend runs on a free tier that can cold-start in 30–60s, so the first
 // request after idle is slow. Give send/verify a generous window before we
 // consider the server unreachable.
