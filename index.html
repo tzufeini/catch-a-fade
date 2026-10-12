@@ -85,9 +85,16 @@ body{
   position:absolute;inset:0;background:var(--bg);
   display:flex;flex-direction:column;
   opacity:0;transform:translateX(26px) scale(.98);
-  transition:opacity .34s cubic-bezier(.4,0,.2,1),transform .34s cubic-bezier(.4,0,.2,1);
+  transition:opacity .34s cubic-bezier(.4,0,.2,1),transform .34s cubic-bezier(.4,0,.2,1),visibility 0s linear .34s;
   pointer-events:none;z-index:1;
+  /* Off-screen screens must be visibility:hidden, not just opacity:0. Every
+     .screen has a transform, so WebKit composites all 42 of them; on a 3x
+     iPhone that is ~2 GB of layer backing store, which blew past WebContent's
+     2048 MB limit and crash-looped the app on launch (iOS 26.6, Oct 2026).
+     The delayed visibility transition keeps the slide-out animation intact. */
+  visibility:hidden;
 }
+.screen.active,.screen.prev{visibility:visible;transition-delay:0s;}
 .screen.active{opacity:1;transform:translateX(0) scale(1);pointer-events:auto;z-index:5;}
 .screen.prev{opacity:0;transform:translateX(-13%) scale(.96);z-index:2;}
 .body{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;}
