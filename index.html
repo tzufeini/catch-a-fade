@@ -16,6 +16,7 @@
 <style>
 /* leaflet overrides */
 .leaflet-container{background:#0E1118;font-family:inherit;outline:none;touch-action:pan-y;}
+body:not(.light) .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.9) contrast(.9);}
 .leaflet-control-attribution{font-size:9px;background:rgba(0,0,0,.4);color:#666;padding:1px 4px;}
 .leaflet-control-attribution a{color:#777;text-decoration:none;}
 .leaflet-control-zoom{display:none;}
@@ -3875,11 +3876,12 @@ let homeMapInst, trackMapInst, trackBarberMarker, trackRoute;
 const DEFAULT_CENTER = [40.7580, -73.9855]; // Manhattan default
 let userLL = DEFAULT_CENTER.slice();
 const BARBER_OFFSETS = [[0.0095,0.0042],[0.0058,-0.0067],[-0.0074,-0.0033],[-0.0051,0.0078],[0.0036,0.0095]];
-const TILE_DARK = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
-const TILE_LIGHT = 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
+// CARTO basemaps started stamping "API KEY REQUIRED" on keyless tiles (Oct 2026),
+// so the fallback map uses the standard OSM tiles; dark mode darkens them in CSS.
+const TILE_OSM = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
 function isLight(){ return document.body.classList.contains('light'); }
-function curTiles(){ return isLight() ? TILE_LIGHT : TILE_DARK; }
-const TILE_OPTS = {subdomains:'abcd', maxZoom:20, attribution:'© <a href="https://www.openstreetmap.org/copyright">OSM</a> · <a href="https://carto.com/attributions">CARTO</a>'};
+function curTiles(){ return TILE_OSM; }
+const TILE_OPTS = {maxZoom:19, attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'};
 function barberDivIcon(b){
   return L.divIcon({
     className:'',
