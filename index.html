@@ -2750,7 +2750,10 @@ function googleFallback(){
 function watchGoogleMapHealth(elId){
   setTimeout(()=>{
     const el=document.getElementById(elId);
-    if(el && (el.textContent.indexOf('Oops')>=0 || el.textContent.indexOf('not activated')>=0)){
+    // Billing/quota errors render Google's own "can't load Google Maps correctly"
+    // overlay without firing gm_authFailure, so match that text too.
+    const t=el ? el.textContent : '';
+    if(el && (t.indexOf('Oops')>=0 || t.indexOf('not activated')>=0 || t.indexOf("can't load Google Maps")>=0 || t.indexOf('development purposes')>=0)){
       googleFallback();
     }
   },1600);

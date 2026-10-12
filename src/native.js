@@ -61,6 +61,10 @@ if (isNative) {
 if (!isNative) {
   // Plain web / Preview — nothing to do. The page keeps its simulated flows.
 } else {
+  // Swap in CoreLocation before ANY page code runs. Waiting for boot() let early
+  // calls (home map, permissions check) hit WKWebView's own geolocation, which
+  // shows a second "localhost would like to use your location" prompt.
+  installGeolocation();
   document.documentElement.classList.add('native', 'native-ios');
   const markBody = () => document.body && document.body.classList.add('native');
   markBody();
@@ -122,9 +126,6 @@ async function boot() {
 
   // ---- haptics: upgrade the page's haptic() to real Taptic Engine ----
   window.haptic = function () { safe(() => Haptics.impact({ style: ImpactStyle.Light })); };
-
-  // ---- geolocation: route navigator.geolocation through CoreLocation ----
-  installGeolocation();
 
   // ---- real social sign-in ----
   await initSocialLogin();
