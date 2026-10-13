@@ -4594,9 +4594,9 @@ function wizPickPhoto(kind){
     inp.value='';
     signup.docs=signup.docs||{}; signup.docs[kind]=dataUrl;
     notify('Uploading…', kind==='id'?'Sending your ID securely.':'Sending your selfie securely.');
-    var ok=await uploadBarberDoc(kind, dataUrl);
+    var ok=false; try{ ok=await uploadBarberDoc(kind, dataUrl); }catch(e){}
     if(ok) delete signup.docs[kind];          // stored server-side; nothing kept on the phone
-    else if(await mkSession()){ notifyErr('Upload failed','Check your connection and tap the tile again.'); return; }
+    // otherwise it stays in memory and is retried when the application is submitted
     if(kind==='id') signup.idDone=true; else signup.selfieDone=true;
     renderWizStep();
   };
