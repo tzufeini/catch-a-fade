@@ -3987,7 +3987,7 @@ function openPayment(opts, onSuccess){
   .then(function(){ return apiFetch('/api/stripe-config'); })
   .then(function(cfg){
     if(!cfg || !cfg.ok || !cfg.publishableKey) throw new Error('payments-not-configured');
-    if(!_stripe) _stripe = Stripe(cfg.publishableKey);
+    if(!_stripe){ _stripe = Stripe(cfg.publishableKey); _stripePk = cfg.publishableKey; }
     return apiFetch('/api/create-payment-intent', {
       method:'POST', headers:{'Content-Type':'application/json'},
       body: JSON.stringify(opts.barberId
@@ -3997,6 +3997,12 @@ function openPayment(opts, onSuccess){
   })
   .then(function(pi){
     if(!pi || !pi.ok || !pi.clientSecret) throw new Error((pi&&pi.error)||'could not start payment');
+    // The server picks the Stripe account (live for customers, test for Apple's
+    // review account) — re-init Stripe.js if this intent belongs to the other one.
+    if(pi.publishableKey && pi.publishableKey!==_stripePk){
+      _stripe=Stripe(pi.publishableKey); _stripePk=pi.publishableKey;
+      if(_stripeCard){ try{ _stripeCard.destroy(); }catch(e){} _stripeCard=null; }
+    }
     _payClientSecret = pi.clientSecret;
     var bd = pi.breakdown||{};
     // The server computes the real fee — mirror it so every figure the user
@@ -4029,7 +4035,7 @@ function openPayment(opts, onSuccess){
     else notifyErr('Payments unavailable', 'We couldn\'t reach the payment service. Please try again in a few minutes.');
   });
 }
-var _payBtnLabel='Pay';
+var _payBtnLabel='Pay', _stripePk=null;
 function paySubmit(){
   if(_payBusy || !_stripe || !_payClientSecret) return;
   _payBusy=true;

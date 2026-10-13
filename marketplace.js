@@ -31,7 +31,8 @@ function pin4() { return String(1000 + crypto.randomInt(9000)); }
 
 module.exports = function createMarketplace(ctx) {
   const { stripe, supabase, sendJSON, sendHTML, pageHTML, rateLimited, FEE_PERCENT,
-          CANCEL_FEE_CENTS, REVIEW_EMAIL, REVIEW_CODE, ADMIN_EMAILS, push } = ctx;
+          CANCEL_FEE_CENTS, REVIEW_EMAIL, REVIEW_CODE, ADMIN_EMAILS, push,
+          stripeTest, STRIPE_PUBLISHABLE, STRIPE_TEST_PUBLISHABLE } = ctx;
 
   async function authUser(token) {
     if (!supabase || !token) return null;
@@ -106,12 +107,26 @@ module.exports = function createMarketplace(ctx) {
   // and the customer always gets theirs.
   function publicBooking(b) { return b; }
 
+  // Live keys for real customers; Apple's review account stays on TEST keys so
+  // the reviewer can pay with 4242 4242 4242 4242 after we go live.
+  const stripeFor = (u) => (stripeTest && isReviewer(u)) ? stripeTest : stripe;
+  const pkFor = (u) => (stripeTest && isReviewer(u)) ? STRIPE_TEST_PUBLISHABLE : STRIPE_PUBLISHABLE;
+  const piClients = new Map();
+  // Which account (live/test) owns a PaymentIntent — try live, then test.
+  async function piClient(piId) {
+    if (piClients.has(piId)) return piClients.get(piId);
+    for (const c of [stripe, stripeTest].filter(Boolean)) {
+      try { await c.paymentIntents.retrieve(piId); piClients.set(piId, c); return c; } catch (e) {}
+    }
+    return stripe;
+  }
   async function cancelHold(piId) {
     if (!stripe || !piId) return;
     try {
-      const pi = await stripe.paymentIntents.retrieve(piId);
+      const sc = await piClient(piId);
+      const pi = await sc.paymentIntents.retrieve(piId);
       if (pi.status === 'requires_capture' || pi.status === 'requires_payment_method' || pi.status === 'requires_confirmation') {
-        await stripe.paymentIntents.cancel(piId);
+        await sc.paymentIntents.cancel(piId);
       }
     } catch (e) { console.warn('[marketplace] cancel hold failed:', e.message); }
   }
@@ -120,14 +135,15 @@ module.exports = function createMarketplace(ctx) {
   // time was wasted, so the platform's application fee drops to 0.
   async function captureHold(piId, amountCents) {
     if (!stripe || !piId) return null;
-    const pi = await stripe.paymentIntents.retrieve(piId);
+    const sc = await piClient(piId);
+    const pi = await sc.paymentIntents.retrieve(piId);
     if (pi.status !== 'requires_capture') return pi;
     const params = {};
     if (amountCents != null) {
       params.amount_to_capture = Math.min(amountCents, pi.amount);
       if (pi.transfer_data) params.application_fee_amount = 0;
     }
-    return stripe.paymentIntents.capture(piId, params, { idempotencyKey: 'cap_' + piId });
+    return sc.paymentIntents.capture(piId, params, { idempotencyKey: 'cap_' + piId });
   }
 
   // App 1.0.x (live before the marketplace) sends a client-side price and books
@@ -297,7 +313,8 @@ module.exports = function createMarketplace(ctx) {
           metadata: { customer_id: u.id, barber_id: barber.id, service_name: svc.name,
                       servicePrice: String(servicePrice), platformFee: String(fee), feePercent: String(FEE_PERCENT) }
         };
-        if (barber.stripe_account_id) {
+        const sc = stripeFor(u);
+        if (barber.stripe_account_id && sc === stripe) {
           try {
             const acct = await stripe.accounts.retrieve(barber.stripe_account_id);
             if (acct.charges_enabled) {
@@ -308,8 +325,9 @@ module.exports = function createMarketplace(ctx) {
         }
         try {
           const idem = String(d.idempotencyKey || '').slice(0, 200);
-          const pi = idem ? await stripe.paymentIntents.create(params, { idempotencyKey: idem }) : await stripe.paymentIntents.create(params);
-          return sendJSON(res, 200, { ok: true, clientSecret: pi.client_secret, paymentIntentId: pi.id,
+          const pi = idem ? await sc.paymentIntents.create(params, { idempotencyKey: idem }) : await sc.paymentIntents.create(params);
+          piClients.set(pi.id, sc);
+          return sendJSON(res, 200, { ok: true, clientSecret: pi.client_secret, paymentIntentId: pi.id, publishableKey: pkFor(u),
             breakdown: { servicePrice, platformFee: fee, total, feePercent: FEE_PERCENT, serviceName: svc.name } }), true;
         } catch (err) {
           console.error('[create-payment-intent] stripe error:', err.message);
@@ -326,7 +344,7 @@ module.exports = function createMarketplace(ctx) {
         const { data: existing } = await supabase.from('bookings').select('*').eq('payment_intent_id', piId).maybeSingle();
         if (existing) return sendJSON(res, 200, { ok: true, booking: publicBooking(existing) }), true;
         let pi;
-        try { pi = await stripe.paymentIntents.retrieve(piId); } catch (e) { return sendJSON(res, 400, { ok: false, error: 'payment not found' }), true; }
+        try { pi = await (await piClient(piId)).paymentIntents.retrieve(piId); } catch (e) { return sendJSON(res, 400, { ok: false, error: 'payment not found' }), true; }
         if (pi.metadata.customer_id !== u.id) return sendJSON(res, 403, { ok: false, error: 'not your payment' }), true;
         if (pi.status !== 'requires_capture') return sendJSON(res, 400, { ok: false, error: 'Card authorization did not complete.' }), true;
         await supabase.from('profiles').upsert({ id: u.id }, { onConflict: 'id', ignoreDuplicates: true });

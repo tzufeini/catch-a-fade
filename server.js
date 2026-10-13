@@ -54,6 +54,19 @@ try {
     stripe = Stripe(STRIPE_SECRET, stripeOpts);
   }
 } catch (e) { console.warn('stripe lib not loaded:', e.message); }
+// Optional second Stripe account in TEST mode, used only for Apple's review
+// account once the main keys are live (the reviewer pays with a test card).
+const STRIPE_TEST_SECRET = process.env.STRIPE_TEST_SECRET_KEY || LOCAL.STRIPE_TEST_SECRET_KEY || '';
+const STRIPE_TEST_PUBLISHABLE = process.env.STRIPE_TEST_PUBLISHABLE_KEY || LOCAL.STRIPE_TEST_PUBLISHABLE_KEY || '';
+let stripeTest = null;
+try {
+  if (STRIPE_TEST_SECRET && STRIPE_TEST_PUBLISHABLE) {
+    const Stripe = require('stripe');
+    const o = { timeout: 30000, maxNetworkRetries: 2 };
+    if (typeof Stripe.createFetchHttpClient === 'function') o.httpClient = Stripe.createFetchHttpClient();
+    stripeTest = Stripe(STRIPE_TEST_SECRET, o);
+  }
+} catch (e) { console.warn('stripe test client not loaded:', e.message); }
 
 // ---- Supabase (database / auth) --------------------------------------------
 // Admin client (secret key) for privileged server-side work. The app talks to
@@ -240,7 +253,8 @@ const MARKETPLACE_PATHS = new Set([
 marketplace = require('./marketplace')({
   stripe, supabase, sendJSON, sendHTML, pageHTML, rateLimited, FEE_PERCENT, CANCEL_FEE_CENTS,
   REVIEW_EMAIL, REVIEW_CODE, ADMIN_EMAILS, MIN_SERVICE_CENTS, MAX_SERVICE_CENTS,
-  push: require('./push')(Object.assign({}, LOCAL, process.env))
+  push: require('./push')(Object.assign({}, LOCAL, process.env)),
+  stripeTest, STRIPE_PUBLISHABLE, STRIPE_TEST_PUBLISHABLE
 });
 
 const server = http.createServer((req, res) => {

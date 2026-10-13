@@ -41,3 +41,8 @@ services:
         sync: false
       - key: APNS_TEAM_ID
         value: "8P38L363W8"
+      # Test-mode Stripe keys used ONLY for Apple's review account after going live
+      - key: STRIPE_TEST_SECRET_KEY
+        sync: false
+      - key: STRIPE_TEST_PUBLISHABLE_KEY
+        sync: false
