@@ -67,6 +67,11 @@ try {
     supabase = require('@supabase/supabase-js').createClient(SUPABASE_URL, SUPABASE_SECRET, { auth: { persistSession: false } });
   }
 } catch (e) { console.warn('supabase lib not loaded:', e.message); }
+// Real marketplace: bookings lifecycle, payment holds, Stripe Connect payouts,
+// barber approval. See marketplace.js.
+const ADMIN_EMAILS = String(process.env.ADMIN_EMAILS || LOCAL.ADMIN_EMAILS || 'tzufeini@gmail.com')
+  .toLowerCase().split(',').map(s => s.trim()).filter(Boolean);
+let marketplace = null;   // built below, once the helpers it needs exist
 const SUPPORT_SYSTEM = [
   'You are CAF Support, the in-app support assistant for Catch a Fade (CatchAFade), an on-demand mobile barber marketplace — customers book a verified barber who travels to them. Introduce yourself as CAF Support if asked who you are.',
   'Policies you know:',
@@ -227,10 +232,29 @@ const SUPPORT_HTML = pageHTML('Catch a Fade Support',
   + '<p>Need a hand? Email us at <a href="mailto:TZUFEINI@gmail.com">TZUFEINI@gmail.com</a> and we\'ll get back to you.</p>'
   + '<p>For the fastest answers, use the in-app <b>Help &amp; Support</b> chat, available right inside the app.</p>');
 
+const MARKETPLACE_PATHS = new Set([
+  '/api/me', '/api/create-payment-intent', '/api/bookings/request', '/api/bookings/action',
+  '/api/connect/onboard', '/api/connect/status', '/api/connect/dashboard', '/connect/done', '/connect/refresh',
+  '/api/admin/barbers', '/api/admin/verify'
+]);
+marketplace = require('./marketplace')({
+  stripe, supabase, sendJSON, sendHTML, pageHTML, rateLimited, FEE_PERCENT, CANCEL_FEE_CENTS,
+  REVIEW_EMAIL, REVIEW_CODE, ADMIN_EMAILS, MIN_SERVICE_CENTS, MAX_SERVICE_CENTS
+});
+
 const server = http.createServer((req, res) => {
   if (req.method === 'OPTIONS') { res.writeHead(204, CORS); return res.end(); }
 
   const url = new URL(req.url, 'http://localhost');
+  if (MARKETPLACE_PATHS.has(url.pathname)) {
+    marketplace.handle(req, res, url).then((handled) => {
+      if (!handled) sendJSON(res, 404, { ok: false, error: 'not found' });
+    }).catch((err) => {
+      console.error('[marketplace]', url.pathname, err && err.message);
+      if (!res.headersSent) sendJSON(res, 500, { ok: false, error: 'server error' });
+    });
+    return;
+  }
 
   if (req.method === 'GET' && url.pathname === '/api/health') {
     console.log('[health]', (req.headers['user-agent'] || '').slice(0, 60));
@@ -388,60 +412,6 @@ const server = http.createServer((req, res) => {
     });
   }
 
-  // Stripe: create a PaymentIntent for a booking.
-  //   body: { servicePrice: <cents>, barberStripeAccount?: 'acct_...', currency? }
-  // Fee-on-top model: customer pays servicePrice + our fee; the barber keeps their
-  // full listed price; we keep the fee. When a barber connected account is passed,
-  // Stripe auto-routes the split (application_fee_amount + transfer_data.destination).
-  if (req.method === 'POST' && url.pathname === '/api/create-payment-intent') {
-    let body = '';
-    req.on('data', c => { body += c; if (body.length > 10000) req.destroy(); });
-    req.on('end', async () => {
-      if (!stripe) return sendJSON(res, 200, { ok: false, configured: false });
-      if (rateLimited(req, 'pi', 12, 60 * 1000)) {
-        return sendJSON(res, 429, { ok: false, error: 'Too many payment attempts. Please wait a moment and try again.' });
-      }
-      let data; try { data = JSON.parse(body || '{}'); } catch (e) { return sendJSON(res, 400, { ok: false, error: 'bad json' }); }
-      const servicePrice = Math.round(Number(data.servicePrice) || 0); // barber's price, in cents
-      // NOTE: the price still originates on the client. Bounds stop the obvious
-      // tamper; before switching to LIVE keys the amount must be looked up
-      // server-side from the barber's service catalog and the caller authenticated.
-      if (!Number.isFinite(servicePrice) || servicePrice < MIN_SERVICE_CENTS || servicePrice > MAX_SERVICE_CENTS) {
-        return sendJSON(res, 400, { ok: false, error: 'invalid servicePrice (cents)' });
-      }
-      const fee = Math.round(servicePrice * FEE_PERCENT / 100);
-      const total = servicePrice + fee;                                // what the customer pays
-      const currency = (data.currency || 'usd').toLowerCase();
-      try {
-        const params = {
-          amount: total,
-          currency,
-          automatic_payment_methods: { enabled: true },
-          metadata: { servicePrice: String(servicePrice), platformFee: String(fee), feePercent: String(FEE_PERCENT) }
-        };
-        // If we already have the barber's Stripe Connect account, split automatically.
-        if (data.barberStripeAccount) {
-          params.application_fee_amount = fee;
-          params.transfer_data = { destination: String(data.barberStripeAccount) };
-        }
-        // Idempotency: a retry (flaky network / cold start) must not create a
-        // second PaymentIntent for the same booking attempt.
-        const idem = String(data.idempotencyKey || '').slice(0, 200);
-        const pi = idem
-          ? await stripe.paymentIntents.create(params, { idempotencyKey: idem })
-          : await stripe.paymentIntents.create(params);
-        return sendJSON(res, 200, {
-          ok: true, clientSecret: pi.client_secret, paymentIntentId: pi.id,
-          breakdown: { servicePrice, platformFee: fee, total, feePercent: FEE_PERCENT }
-        });
-      } catch (err) {
-        console.error('[create-payment-intent] stripe error:', err && err.message || err);
-        return sendJSON(res, 200, { ok: false, error: String(err && err.message || err) });
-      }
-    });
-    return;
-  }
-
   // Refund a cancelled booking. The app charges up front, so a cancellation has
   // to put the money back: full refund inside the free-cancellation window,
   // otherwise everything except the flat cancellation fee.
@@ -559,4 +529,7 @@ const server = http.createServer((req, res) => {
     res.end(content);
   });
 });
-server.listen(PORT, () => console.log('CatchAFade server (static + Resend) on http://localhost:' + PORT));
+server.listen(PORT, () => {
+  console.log('CatchAFade server on http://localhost:' + PORT);
+  marketplace.ensureReviewAccounts();
+});

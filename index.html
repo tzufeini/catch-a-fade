@@ -1298,11 +1298,28 @@ html.native .ob-tip{ font-size:14px; }
       <div id="stripeCardBox" style="background:#26262E;border:1px solid rgba(255,255,255,.14);border-radius:13px;padding:15px 14px;margin:16px 0 2px"></div>
       <div id="payErr" style="display:none;color:#FF7B7B;font-size:12.5px;font-weight:650;margin-top:9px;line-height:1.4"></div>
       <button class="btn green" id="payBtn" style="width:100%;margin-top:13px" onclick="paySubmit()">Pay</button>
+      <div id="payHoldNote" style="display:none;color:#A6A6B0;font-size:11.5px;line-height:1.45;text-align:center;margin-top:9px">Your card is only authorized now. You're charged when your cut is done — nothing is charged if the barber can't make it.</div>
       <div style="display:flex;gap:6px;align-items:center;justify-content:center;margin-top:10px;color:#8E8E99;font-size:11px">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#46C98B" stroke-width="2.4"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z"/></svg>
         Processed securely by Stripe · we never store card numbers
       </div>
       <button class="apCancel" onclick="closePaySheet(true)">Cancel</button>
+    </div>
+  </div>
+
+  <!-- ===== Incoming job request (barber side) ===== -->
+  <div class="applePay" id="reqSheet">
+    <div class="apSheet">
+      <div class="apHandle"></div>
+      <div class="apTitle" style="color:#46C98B">NEW REQUEST · <span id="rqLeft">3:00</span></div>
+      <div class="apMerchant" id="rqSvc">Fade</div>
+      <div style="text-align:center;font-size:38px;font-weight:800;margin:2px 0 4px" id="rqEarn">$35.00</div>
+      <div style="text-align:center;color:#A6A6B0;font-size:12.5px;margin-bottom:12px">you earn · plus 100% of tips</div>
+      <div class="apLine"><div class="apLabel">Customer</div><div class="apValue" id="rqCust">—</div></div>
+      <div class="apLine"><div class="apLabel">Distance</div><div class="apValue" id="rqDist">—</div></div>
+      <div class="apLine"><div class="apLabel">Address</div><div class="apValue" id="rqAddr" style="max-width:62%;text-align:right;white-space:normal">—</div></div>
+      <button class="btn green" id="rqAccept" style="width:100%;margin-top:16px" onclick="mkAcceptRequest()">Accept</button>
+      <button class="apCancel" onclick="mkDeclineRequest()">Decline</button>
     </div>
   </div>
 
@@ -1408,7 +1425,7 @@ html.native .ob-tip{ font-size:14px; }
   </div>
 
   <div id="tripBar" onclick="nav('tracking')">
-    <div class="tb-av" id="tbAv">MB</div>
+    <div class="tb-av" id="tbAv">✂</div>
     <div class="tb-info">
       <b id="tbState">Your barber is on the way</b>
       <small id="tbSub">Live trip · tap to view</small>
@@ -1583,54 +1600,30 @@ html.native .ob-tip{ font-size:14px; }
     <div class="ob-nav" data-a="4"><button class="ob-cta" onclick="obNext()">Finally. →</button></div>
   </section>
 
-  <!-- OB 8 · Live demo (MOCK DATA — replace with real API call post-auth) -->
+  <!-- OB 8 · How booking works -->
   <section class="screen ob-screen ob-alt ob-noise" id="ob8">
     <span class="ob-skip" onclick="obSkip()">Skip</span>
     <div class="ob-body" style="justify-content:center;">
       <div class="ob-text" style="margin-bottom:16px">
-        <div class="ob-h" data-a="0">See who's near<br/>you right now.</div>
-        <div class="ob-s" data-a="1" style="margin-top:10px">Real barbers in your area. Tap one to see what they offer.</div>
+        <div class="ob-h" data-a="0">Booking takes<br/>under a minute.</div>
+        <div class="ob-s" data-a="1" style="margin-top:10px">Like a ride — but it's a barber.</div>
       </div>
       <div class="ob-blist">
-        <div class="ob-bcard" data-a="2" onclick="ob8Open(0)">
-          <div class="ob-bav" style="background:linear-gradient(135deg,#2A58CC,#C82222)">MB</div>
-          <div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:780;color:var(--ob-cream)">Marcus Brown</div><div style="font-size:11.5px;color:var(--ob-dimm);margin-top:2px">0.4 mi · ⭐ 4.9 · Fades &amp; Tapers</div></div>
-          <div class="ob-bava">Available Now</div>
+        <div class="ob-bcard" data-a="2" style="cursor:default">
+          <div class="ob-bav" style="background:linear-gradient(135deg,#2A58CC,#C82222)">1</div>
+          <div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:780;color:var(--ob-cream)">Pick a verified barber</div><div style="font-size:11.5px;color:var(--ob-dimm);margin-top:2px">See who's online near you, their prices and real reviews.</div></div>
         </div>
-        <div class="ob-bcard" data-a="3" onclick="ob8Open(1)">
-          <div class="ob-bav" style="background:linear-gradient(135deg,#1D40A8,#2A58CC)">DR</div>
-          <div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:780;color:var(--ob-cream)">Devon Reid</div><div style="font-size:11.5px;color:var(--ob-dimm);margin-top:2px">0.8 mi · ⭐ 4.8 · Beard &amp; Lineup</div></div>
-          <div class="ob-bava">Available Now</div>
+        <div class="ob-bcard" data-a="3" style="cursor:default">
+          <div class="ob-bav" style="background:linear-gradient(135deg,#2A58CC,#C82222)">2</div>
+          <div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:780;color:var(--ob-cream)">They come to you</div><div style="font-size:11.5px;color:var(--ob-dimm);margin-top:2px">Track them live on the map. Share your PIN when they arrive.</div></div>
         </div>
-        <div class="ob-bcard" data-a="4" onclick="ob8Open(2)">
-          <div class="ob-bav" style="background:linear-gradient(135deg,#C82222,#7A1515)">JM</div>
-          <div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:780;color:var(--ob-cream)">Jaylen Mills</div><div style="font-size:11.5px;color:var(--ob-dimm);margin-top:2px">1.2 mi · ⭐ 5.0 · Full Cut</div></div>
-          <div class="ob-bava">Available Now</div>
+        <div class="ob-bcard" data-a="4" style="cursor:default">
+          <div class="ob-bav" style="background:linear-gradient(135deg,#2A58CC,#C82222)">3</div>
+          <div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:780;color:var(--ob-cream)">Pay after your cut</div><div style="font-size:11.5px;color:var(--ob-dimm);margin-top:2px">Your card is only charged once the cut is done.</div></div>
         </div>
       </div>
     </div>
     <div class="ob-nav" data-a="5"><button class="ob-cta" onclick="obNext()">I want this →</button></div>
-    <!-- mini profile modal -->
-    <div class="ob-modal" id="ob8Modal">
-      <div class="ob-modal-bg" onclick="ob8Close()"></div>
-      <div class="ob-sheet">
-        <div class="ob-sheet-grab"></div>
-        <div style="display:flex;align-items:center;gap:13px;margin-bottom:14px">
-          <div class="ob-bav" id="ob8mAv" style="width:52px;height:52px;font-size:17px;background:linear-gradient(135deg,#2A58CC,#C82222)">MB</div>
-          <div style="flex:1"><div id="ob8mName" style="font-size:16px;font-weight:800;color:var(--ob-cream)">Marcus Brown</div><div id="ob8mMeta" style="font-size:12px;color:var(--ob-dimm);margin-top:2px">0.4 mi · ⭐ 4.9</div></div>
-          <div class="ob-bava">Available Now</div>
-        </div>
-        <div style="display:flex;gap:8px;margin-bottom:2px">
-          <div class="ob-cutex">💇‍♂️</div><div class="ob-cutex">✂️</div><div class="ob-cutex">🧔</div>
-        </div>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:14px">
-          <span style="font-size:12.5px;color:var(--ob-dimm);font-weight:700">Price range</span>
-          <span id="ob8mPrice" style="font-size:15px;font-weight:850;color:var(--ob-cream)">$28–$45</span>
-        </div>
-        <div class="ob-bookLock">🔒 Book</div>
-        <div class="ob-tip">Sign up to book</div>
-      </div>
-    </div>
   </section>
 
   <!-- OB 9 · Social proof / momentum -->
@@ -1661,14 +1654,14 @@ html.native .ob-tip{ font-size:14px; }
           <div style="display:flex;align-items:center;gap:13px;margin-bottom:13px">
             <div style="width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#1D40A8,#2A58CC);display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:800;color:#fff;flex-shrink:0">DR</div>
             <div style="flex:1">
-              <div style="font-size:15px;font-weight:780;color:var(--ob-cream)">Devon Reid</div>
-              <div style="font-size:12px;color:var(--ob-dimm);margin-top:2px">⭐ 4.8 · 312 cuts</div>
+              <div style="font-size:15px;font-weight:780;color:var(--ob-cream)">Every Catch a Fade barber</div>
+              <div style="font-size:12px;color:var(--ob-dimm);margin-top:2px">Approved before they can take bookings</div>
             </div>
           </div>
           <div class="ob-badges">
             <span class="ob-badge" style="animation:obPop .3s .4s both"><span style="color:#4ADE80">✅</span> ID checked</span>
             <span class="ob-badge" style="animation:obPop .3s .55s both"><span style="color:#4ADE80">✅</span> Portfolio reviewed</span>
-            <span class="ob-badge" style="animation:obPop .3s .7s both">⭐ 4.8 (312)</span>
+            <span class="ob-badge" style="animation:obPop .3s .7s both">⭐ Rated by real customers</span>
           </div>
         </div>
       </div>
@@ -1746,6 +1739,7 @@ html.native .ob-tip{ font-size:14px; }
       <button class="ob-cta" style="animation:obUp .38s .18s ease-out both,obPulse 1.8s .8s ease-in-out 2;" onclick="goAuth('signup')">Sign Up Free</button>
       <div class="ob-ghost" style="animation:obUp .38s .32s ease-out both;" onclick="goAuth('login')">Already have an account? <b>Log in</b></div>
       <div class="ob-ghost" style="animation:obUp .38s .44s ease-out both;" onclick="guestBrowse()">Browse barbers first — <b>no account needed</b></div>
+      <div class="ob-ghost" style="animation:obUp .38s .56s ease-out both;" onclick="goBarberSide()">Are you a barber? <b>Start earning →</b></div>
     </div>
   </section>
 
@@ -2010,7 +2004,7 @@ html.native .ob-tip{ font-size:14px; }
     </div>
     <div class="wBottom">
       <button class="btn grad" onclick="nav('home')">Book a haircut</button>
-      <div class="wlink" onclick="openBarberOnboard()">Are you a barber? <b>Start earning →</b></div>
+      <div class="wlink" onclick="goBarberSide()">Are you a barber? <b>Start earning →</b></div>
     </div>
   </section>
 
@@ -2090,7 +2084,7 @@ html.native .ob-tip{ font-size:14px; }
           </div>
         </div>
         <div class="row" style="gap:16px;align-items:flex-end">
-          <div class="av big" id="bpAv" style="background:var(--grad)">MB</div>
+          <div class="av big" id="bpAv" style="background:var(--grad)">✂</div>
           <div style="padding-bottom:4px">
             <div class="pill verified"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 1.8 3 .2.9 2.9 2.3 1.9-1 2.8 1 2.8-2.3 1.9-.9 2.9-3 .2L12 22l-2.4-1.7-3-.2-.9-2.9-2.3-1.9 1-2.8-1-2.8 2.3-1.9.9-2.9 3-.2z"/><path d="M8.5 12.5l2.5 2.5 4.5-5" stroke="#1A1A20" stroke-width="2" fill="none" stroke-linecap="round"/></svg> Verified Pro</div>
           </div>
@@ -2142,7 +2136,7 @@ html.native .ob-tip{ font-size:14px; }
     </div>
     <div class="body" style="padding:0 20px 20px">
       <div class="bcard" style="margin:0 0 16px;cursor:default">
-        <div class="av" id="bkAv" style="width:54px;height:54px;background:var(--grad);font-size:18px">MB</div>
+        <div class="av" id="bkAv" style="width:54px;height:54px;background:var(--grad);font-size:18px">✂</div>
         <div class="bInfo"><div class="bName" id="bkName">Your barber</div>
           <div class="bMeta"><span class="star">★ 4.97</span><span class="dot"></span>1.2 mi away<span class="dot"></span><span style="color:var(--green)">~12 min</span></div></div>
       </div>
@@ -2217,7 +2211,7 @@ html.native .ob-tip{ font-size:14px; }
     <div class="iconbtn floatBack" onclick="leaveTracking()">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M15 5l-7 7 7 7"/></svg>
     </div>
-    <div class="toast" id="toast"><div class="av" style="width:34px;height:34px;border-radius:10px;background:var(--grad);font-size:12px">MB</div><div><b id="toastT">Marcus accepted!</b><small id="toastS">He's heading your way now.</small></div></div>
+    <div class="toast" id="toast"><div class="av" style="width:34px;height:34px;border-radius:10px;background:var(--grad);font-size:12px">✂</div><div><b id="toastT"></b><small id="toastS"></small></div></div>
     <div class="body" style="padding:0;display:flex;flex-direction:column">
       <div class="map" style="height:380px;flex-shrink:0;position:relative">
         <div id="trackMap" style="position:absolute;inset:0;"></div>
@@ -2236,11 +2230,11 @@ html.native .ob-tip{ font-size:14px; }
           <div class="step" id="stepCut"><div class="d"></div><small>Cutting</small></div>
         </div>
         <div class="bcard" style="margin:14px 20px 10px;cursor:default">
-          <div class="av" style="width:54px;height:54px;background:var(--grad);font-size:18px" id="tcAv">MB</div>
+          <div class="av" style="width:54px;height:54px;background:var(--grad);font-size:18px" id="tcAv">✂</div>
           <div class="bInfo"><div class="bName"><span id="tcName">Your barber</span> <span class="pill verified" style="padding:2px 7px"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 1.8 3 .2.9 2.9 2.3 1.9-1 2.8 1 2.8-2.3 1.9-.9 2.9-3 .2L12 22l-2.4-1.7-3-.2-.9-2.9-2.3-1.9 1-2.8-1-2.8 2.3-1.9.9-2.9 3-.2z"/></svg></span></div>
             <div class="bMeta" id="tcMeta"><span class="star">★ 5.0</span><span class="dot"></span>Verified Pro</div></div>
           <div class="bRight" style="gap:8px;flex-direction:row">
-            <div class="iconbtn" onclick="nav('chat')"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12a8 8 0 0 1-11.5 7.2L4 21l1.8-5.5A8 8 0 1 1 21 12z"/></svg></div>
+            <div class="iconbtn" onclick="mkOpenTripChat()"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12a8 8 0 0 1-11.5 7.2L4 21l1.8-5.5A8 8 0 1 1 21 12z"/></svg></div>
           </div>
         </div>
         <div class="tripExtra good" id="graceBanner" style="display:none">
@@ -2297,9 +2291,9 @@ html.native .ob-tip{ font-size:14px; }
   <section class="screen" id="chat">
     <div class="head" style="padding-bottom:14px">
       <div class="iconbtn" onclick="back()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M15 5l-7 7 7 7"/></svg></div>
-      <div class="av" style="width:38px;height:38px;border-radius:11px;background:var(--grad);font-size:14px" id="chAv">MB</div>
+      <div class="av" style="width:38px;height:38px;border-radius:11px;background:var(--grad);font-size:14px" id="chAv">✂</div>
       <div style="flex:1"><div style="font-weight:720;font-size:15px" id="chName">Your barber</div>
-        <div style="font-size:11.5px;color:var(--green);font-weight:600">● On the way · 8 min</div></div>
+        <div style="font-size:11.5px;color:var(--green);font-weight:600" id="chSub">● Your trip</div></div>
     </div>
     <div class="body">
       <div class="msgs" id="msgs"></div>
@@ -2311,8 +2305,8 @@ html.native .ob-tip{ font-size:14px; }
       <div class="chip" onclick="quickSend('Can you do a beard trim too?')">Add beard trim</div>
     </div>
     <div class="chatInput">
-      <div class="field">Message Marcus…</div>
-      <div class="sendb" onclick="quickSend('See you soon!')">
+      <input class="field" id="chatField" type="text" maxlength="2000" placeholder="Message…" autocomplete="off" onkeydown="if(event.key==='Enter'){mkSendChat();}" style="border:none;outline:none;color:var(--text);font:inherit;min-width:0"/>
+      <div class="sendb" onclick="mkSendChat()">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M3 11l18-8-8 18-2.5-7.5z"/></svg>
       </div>
     </div>
@@ -2345,7 +2339,7 @@ html.native .ob-tip{ font-size:14px; }
       <div class="setRow" onclick="openHelp()"><div class="si"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 0 1 5 0c0 1.7-2.5 2-2.5 4M12 17.5h.01"/></svg></div><div class="st">Help & support</div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></div>
       <div class="setRow" onclick="nav('termsDoc')"><div class="si"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div><div class="st">Terms of Service</div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></div>
       <div class="setRow" onclick="nav('privacyDoc')"><div class="si"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="2.2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div class="st">Privacy Policy</div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></div>
-      <div class="setRow" onclick="goBarberSide()"><div class="si"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.2"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/></svg></div><div class="st" style="color:var(--blue)">Sign up as a barber</div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></div>
+      <div class="setRow" onclick="goBarberSide()"><div class="si"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.2"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/></svg></div><div class="st" style="color:var(--blue)" id="barberRowLabel">Are you a barber? Start earning</div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></div>
       <div class="setRow" onclick="signOut()"><div class="si"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="2.2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><line x1="21" y1="12" x2="9" y2="12"/></svg></div><div class="st">Sign out</div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></div>
       <div class="setRow" onclick="confirmDeleteAccount()"><div class="si"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2.2"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg></div><div class="st" style="color:var(--red)">Delete account</div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></div>
       <div style="padding:18px 20px;color:var(--faint);font-size:12px;text-align:center">Catch a Fade v1.0</div>
@@ -2361,39 +2355,41 @@ html.native .ob-tip{ font-size:14px; }
   <!-- ============ BARBER DASH ============ -->
   <section class="screen" id="barberDash">
     <div class="head">
-      <div class="iconbtn" onclick="navTab('home')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M15 5l-7 7 7 7"/></svg></div>
-      <h2>Dashboard</h2>
-      <div class="av" style="width:38px;height:38px;border-radius:11px;background:var(--gradGreen);font-size:14px">MB</div>
+      <div class="iconbtn" onclick="navTab('profile')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M15 5l-7 7 7 7"/></svg></div>
+      <h2>Barber mode</h2>
+      <div class="av" id="bdAv" style="width:38px;height:38px;border-radius:11px;background:var(--gradGreen);font-size:14px">?</div>
     </div>
     <div class="body">
+      <div id="bdStatus"></div>
       <div class="onlineCard">
-        <div style="flex:1"><div style="font-weight:720;font-size:16px" id="onTitle">You're online</div>
-          <div style="color:var(--dim);font-size:12.5px;margin-top:2px" id="onSub">Accepting jobs within 5 mi · high demand</div></div>
-        <div class="bigSwitch on" id="bigSwitch" onclick="toggleOnline()"></div>
+        <div style="flex:1"><div style="font-weight:720;font-size:16px" id="onTitle">You're offline</div>
+          <div style="color:var(--dim);font-size:12.5px;margin-top:2px" id="onSub">Go online to start receiving requests</div></div>
+        <div class="bigSwitch" id="bigSwitch" role="switch" aria-label="Go online" onclick="toggleOnline()"></div>
       </div>
-
+      <div id="bdJob"></div>
       <div class="earnCard">
         <small>TODAY'S EARNINGS</small>
-        <div class="amt">$0.00</div>
-        <div class="sub">No cuts yet today — go online to start receiving requests</div>
+        <div class="amt" id="bdToday">$0.00</div>
+        <div class="sub" id="bdTodaySub">No cuts yet today</div>
       </div>
-
       <div class="sect" style="margin-top:14px"><h3>This week</h3></div>
       <div class="miniGrid">
-        <div class="mg"><b>$0</b><small>EARNED</small></div>
-        <div class="mg"><b>0</b><small>CUTS COMPLETED</small></div>
-        <div class="mg"><b>—</b><small>ACCEPTANCE RATE</small></div>
-        <div class="mg"><b>—</b><small>AVG RATING</small></div>
+        <div class="mg"><b id="bdWeek">$0</b><small>EARNED</small></div>
+        <div class="mg"><b id="bdCuts">0</b><small>CUTS COMPLETED</small></div>
+        <div class="mg"><b id="bdAcc">—</b><small>ACCEPTANCE RATE</small></div>
+        <div class="mg"><b id="bdRating">—</b><small>AVG RATING</small></div>
       </div>
-
+      <div class="sect" style="margin-top:20px"><h3>Payouts</h3></div>
+      <div id="bdPayouts"></div>
+      <div class="sect" style="margin-top:16px"><h3>My services</h3></div>
+      <div id="bdServices"></div>
       <div class="sect" style="margin-top:20px">
         <h3 style="display:flex;align-items:center;justify-content:space-between">My portfolio <span style="color:var(--blue);font-size:12px;font-weight:660;cursor:pointer;text-transform:none;letter-spacing:0" onclick="addPortfolioPhoto()">+ Upload photo</span></h3>
       </div>
       <div class="dashPortGrid" id="dashPortfolio"></div>
-
       <div class="sect" style="margin-top:16px"><h3>Customer reviews</h3></div>
       <div id="dashReviews"></div>
-
+      <div id="bdAdmin"></div>
       <div style="height:24px"></div>
     </div>
   </section>
@@ -2573,9 +2569,9 @@ html.native .ob-tip{ font-size:14px; }
   <!-- ============ RATING ============ -->
   <section class="screen" id="rating">
     <div style="padding:62px 20px 14px;text-align:center">
-      <div class="av" id="rateAv" style="width:80px;height:80px;border-radius:23px;font-size:28px;margin:0 auto;background:var(--grad)">MB</div>
+      <div class="av" id="rateAv" style="width:80px;height:80px;border-radius:23px;font-size:28px;margin:0 auto;background:var(--grad)">✂</div>
       <div style="font-size:13px;color:var(--dim);font-weight:600;margin-top:14px;letter-spacing:.4px;text-transform:uppercase">Your cut just ended</div>
-      <h2 style="font-size:24px;font-weight:780;margin-top:6px;letter-spacing:-.4px">How was <span id="rateName">Marcus</span>?</h2>
+      <h2 style="font-size:24px;font-weight:780;margin-top:6px;letter-spacing:-.4px">How was <span id="rateName">your cut</span>?</h2>
       <div style="font-size:13px;color:var(--faint);margin-top:5px" id="rateSvc">Skin Fade · 42 min</div>
     </div>
     <div class="body">
@@ -2618,7 +2614,7 @@ html.native .ob-tip{ font-size:14px; }
     <div class="body" style="padding:0 20px 20px">
       <div style="background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px">
         <div class="row" style="gap:13px;padding-bottom:14px;border-bottom:1px solid var(--line)">
-          <div class="av" id="rcpAv" style="width:46px;height:46px;border-radius:13px;font-size:15px;background:var(--grad)">MB</div>
+          <div class="av" id="rcpAv" style="width:46px;height:46px;border-radius:13px;font-size:15px;background:var(--grad)">✂</div>
           <div style="flex:1"><div style="font-weight:720;font-size:14.5px" id="rcpBarber">Your barber</div>
             <div style="font-size:12px;color:var(--dim);margin-top:2px" id="rcpDate">—</div></div>
           <span class="pill verified" style="padding:3px 8px">Skin Fade</span>
@@ -2855,12 +2851,12 @@ function showTripBar(){
 }
 function startTrip(){
   tripActive=true;
-  const b=BARBERS[current];
+  const b=tripBarber();
   const av=document.getElementById('tbAv');
   av.textContent=b.in; av.style.background=b.g;
-  document.getElementById('tbState').textContent=b.n.split(' ')[0]+' is on the way';
-  document.getElementById('tbSub').textContent=BARBERS[current].n+' · live trip';
-  var _tbe=document.getElementById('tbEta'); if(_tbe) _tbe.textContent='8';
+  document.getElementById('tbState').textContent=b.n.split(' ')[0]+' accepted';
+  document.getElementById('tbSub').textContent=b.n+' · live trip';
+  var _tbe=document.getElementById('tbEta'); if(_tbe) _tbe.textContent='–';
   showTripBar();
 }
 function updateTripBar(eta,state,sub){
@@ -2991,30 +2987,19 @@ const BARBER_GRADIENTS=['var(--grad)','var(--gradGreen)','var(--gradWarm)','line
 /* Bundled fallback roster — the same pros seeded in the database. The home screen
  * must NEVER be empty (fresh install + backend unreachable = App Review's view);
  * live DB rows replace these the moment Supabase responds. */
-function FALLBACK_BARBERS(){
-  const F=[
-    ['Marcus Brown', 4.9, 312, 'Skin Fade · Beard Trim · Cut + Beard', {'Skin Fade':{price:'40'},'Beard Trim':{price:'20'},'Cut + Beard':{price:'55'}}, 40.7308, -73.9975],
-    ['Devon Reid',   4.8, 256, 'Taper Fade · Beard Sculpt · Lineup',   {'Lineup':{price:'15'},'Beard Sculpt':{price:'25'},'Taper Fade':{price:'35'}}, 40.7380, -73.9890],
-    ['Jaylen Mills', 5.0, 410, 'Kids Cut · Bald Fade · Full Cut',      {'Kids Cut':{price:'30'},'Bald Fade':{price:'40'},'Full Cut':{price:'45'}}, 40.7250, -74.0030],
-    ['Andre Cole',   4.9, 198, 'Waves Cut · Skin Fade · Hair Design',  {'Waves Cut':{price:'38'},'Skin Fade':{price:'42'},'Hair Design':{price:'50'}}, 40.7420, -73.9850],
-  ];
-  return F.map(function(x,i){
-    const svc=x[4], first=Object.keys(svc)[0];
-    return { id:'fallback-'+i, n:x[0], in:nameInitials(x[0]), g:BARBER_GRADIENTS[i%BARBER_GRADIENTS.length],
-      r:x[1].toFixed(1), cuts:String(x[2]), yr:'', sp:x[3], pr:Number(svc[first].price),
-      services:svc, lat:x[5], lng:x[6], verified:true, fromDB:false };
-  });
-}
 // Safe localStorage JSON reader: a single corrupt key must never halt the
 // top-level script (which would brick the whole app on launch).
 function lsGet(key, fallback){
   try{ var v=localStorage.getItem(key); return v==null ? fallback : JSON.parse(v); }
   catch(e){ try{ localStorage.removeItem(key); }catch(_){ } return fallback; }
 }
-let BARBERS = lsGet('fadex_barbers', []);
-if(!Array.isArray(BARBERS) || !BARBERS.length) BARBERS = FALLBACK_BARBERS();   // never an empty marketplace
+// Only real, approved, online barbers from the database. Older builds cached a
+// made-up demo roster under 'fadex_barbers' — never show it again.
+let BARBERS = lsGet('fadex_barbers_v2', []);
+try{ localStorage.removeItem('fadex_barbers'); }catch(e){}
+if(!Array.isArray(BARBERS)) BARBERS = [];
 let favorites = lsGet('fadex_favorites', []);
-function persistBarbers(){ localStorage.setItem('fadex_barbers', JSON.stringify(BARBERS)); }
+function persistBarbers(){ try{ localStorage.setItem('fadex_barbers_v2', JSON.stringify(BARBERS)); }catch(e){} }
 
 /* ===================================================================
  *  SUPABASE — real barbers + accounts. The publishable key is SAFE in
@@ -3043,7 +3028,7 @@ function mapBarberRow(row, i){
     sp: svc.slice(0,3).map(s=>s.name).join(' · ') || 'Cuts',
     pr: svc.length ? Math.round(svc[0].price_cents/100) : 35,
     services: servicesObj, lat: row.home_lat, lng: row.home_lng,
-    verified: !!row.is_verified, fromDB: true
+    verified: !!row.is_verified, fromDB: true, demo: !!row.is_demo
   };
 }
 // Fetch available barbers from the real database, replacing the demo list.
@@ -3051,10 +3036,13 @@ async function loadBarbersFromSupabase(){
   const c = sbReady(); if(!c) return false;
   try{
     const { data, error } = await c.from('barbers')
-      .select('id, rating, cuts_completed, is_verified, vehicle, home_lat, home_lng, profile:profiles!barbers_profile_id_fkey(full_name, phone), services(name, price_cents, duration_min)')
-      .eq('is_available', true);
-    if(error || !data || !data.length) return false;   // unreachable/empty → keep whatever's there
-    BARBERS = data.map(mapBarberRow);
+      .select('id, profile_id, rating, cuts_completed, is_verified, is_demo, vehicle, home_lat, home_lng, profile:profiles!barbers_profile_id_fkey(full_name), services(name, price_cents, duration_min)')
+      .eq('is_available', true).eq('is_verified', true);
+    if(error || !data) return false;                   // unreachable → keep the last good list
+    const reviewer = isReviewEmail(userProfile.email||'');
+    const me = await mkUserId();
+    BARBERS = data.filter(r => (!r.is_demo || reviewer) && r.profile_id !== me && (r.services||[]).length)
+                  .map(mapBarberRow);
     persistBarbers();
     return true;
   }catch(e){ return false; }
@@ -3326,6 +3314,14 @@ function setRadius(r){
 }
 
 /* ---------- empty-state helper ---------- */
+// Uber's "Drive with Uber" for barbers — always one tap away from the customer list.
+function barberCtaCard(){
+  return '<div onclick="goBarberSide()" style="margin:14px 20px 4px;padding:16px 18px;border-radius:16px;background:var(--card);border:1px solid var(--line2);display:flex;align-items:center;gap:14px;cursor:pointer">'
+    +'<div style="font-size:28px;line-height:1">💈</div>'
+    +'<div style="flex:1"><div style="font-weight:740;font-size:14.5px">Are you a barber?</div>'
+    +'<div style="color:var(--dim);font-size:12.5px;margin-top:2px">Earn on your own schedule. Go online whenever you want.</div></div>'
+    +'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.6"><path d="M9 6l6 6-6 6"/></svg></div>';
+}
 function emptyCard(title, sub, btnText, btnFn){
   return '<div style="margin:18px 20px;padding:24px 20px;background:var(--card);border:1px dashed var(--line2);border-radius:18px;text-align:center">'
     +'<div style="font-size:38px;line-height:1;margin-bottom:8px">✂️</div>'
@@ -3340,7 +3336,7 @@ function barberLL(b,i){
   // Fallback/demo barbers (not from the DB) are placed a short walk from the
   // user wherever they are — so the map, distances and ETAs stay realistic for
   // a reviewer or first user anywhere on earth, not just in NYC.
-  if(b.fromDB===false){
+  if(b.fromDB===false || b.demo){
     const off=BARBER_OFFSETS[i%BARBER_OFFSETS.length];
     return [userLL[0]+off[0], userLL[1]+off[1]];
   }
@@ -3351,7 +3347,7 @@ function barberLL(b,i){
 function buildList(){
   const el=document.getElementById('barberList');
   if(!BARBERS.length){
-    el.innerHTML = emptyCard('No barbers near you yet','We launch in your city the moment our first verified pro joins. Know one? Send them the link.','Invite a barber','openBarberOnboard()');
+    el.innerHTML = emptyCard('No barbers online near you right now','Barbers show up here the moment they go online. Check back soon — or if you cut hair, be the first in your area.','Are you a barber? Start earning','goBarberSide()');
     return;
   }
   // Compute distance for each
@@ -3410,7 +3406,7 @@ function buildList(){
         </div>
       </div>
     </div>`;
-  }).join('');
+  }).join('') + barberCtaCard();
 }
 function setBarber(i){
   current=i; const b=BARBERS[i];
@@ -3482,23 +3478,6 @@ function toggleFavBarber(i){
 }
 
 /* ---------- trips & inbox empty-state renderers ---------- */
-function renderTrips(){
-  const el=document.getElementById('tripsBody'); if(!el) return;
-  el.innerHTML = '<div class="sect"><h3>Upcoming</h3></div>'
-    + emptyCard('No upcoming trips','Book a cut from the Home tab — you\'ll see live tracking here.','Find a barber','navTab(\'home\')')
-    + '<div class="sect" style="margin-top:14px"><h3>Past</h3></div>'
-    + '<div style="padding:0 20px;color:var(--faint);font-size:12.5px;text-align:center">Past appointments will show up after your first cut.</div>'
-    + '<div style="height:20px"></div>';
-}
-function renderInbox(){
-  const el=document.getElementById('inboxBody'); if(!el) return;
-  el.innerHTML = '<div class="lrow">'
-    + '<div class="av" style="background:var(--card3);color:var(--blue)">'
-    + '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.2"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>'
-    + '</div>'
-    + '<div class="lr"><b>Catch a Fade</b><small>Welcome — book your first cut and your barber\'s messages will appear here.</small></div>'
-    + '<div class="lt">now</div></div>';
-}
 
 /* ---------- service / options ---------- */
 /* ---- service filter (multi-select pills) ---- */
@@ -3726,40 +3705,7 @@ function recalc(){
 
 /* ---------- finding -> tracking (instant-book: your chosen pro is confirmed) ---------- */
 let findingT1, findingT2;
-function startFinding(paymentIntentId){
-  nav('finding');
-  document.getElementById('findTitle').textContent='Confirming your booking…';
-  document.getElementById('findSub').textContent='Locking in '+BARBERS[current].n+' for your appointment.';
-  recordBooking(paymentIntentId);   // best-effort: write the booking to the database
-  clearTimeout(findingT1); clearTimeout(findingT2);
-  findingT1=setTimeout(()=>{ document.getElementById('findTitle').textContent='Booking confirmed!';
-    document.getElementById('findSub').textContent=BARBERS[current].n+' is your barber.'; },1900);
-  findingT2=setTimeout(()=>{ stack=stack.filter(s=>s!=='finding'); startTracking(); },3000);
-}
 // Persist the booking to Supabase when signed in; the app keeps working without it.
-function recordBooking(paymentIntentId){
-  try{
-    var c=sbReady(); if(!c) return;
-    var b=BARBERS[current]||{};
-    if(!b.fromDB || !b.id) return;                       // fallback roster rows aren't DB rows
-    c.auth.getSession().then(function(res){
-      var sess=res && res.data && res.data.session;
-      if(!sess || !sess.user) return;
-      var fee=Math.round(svcPrice*FEE_PERCENT), price=Math.round(svcPrice*100);
-      c.from('bookings').insert({
-        customer_id: sess.user.id, barber_id: b.id, status:'accepted',
-        service_price_cents: price, fee_cents: fee, total_cents: price+fee,
-        address: (document.getElementById('bkLoc')||{}).textContent||null,
-        lat: userLL[0], lng: userLL[1],
-        arrival_pin: tripPin||null, payment_intent_id: paymentIntentId||null
-      }).then(function(){}).catch(function(){});
-    }).catch(function(){});
-  }catch(e){}
-}
-function cancelFinding(){
-  clearTimeout(findingT1); clearTimeout(findingT2);
-  back(); notify('Search cancelled','You can re-request whenever you’re ready.');
-}
 function leaveTracking(){
   // Minimising a trip must not freeze it — the mini trip bar stays live and
   // tapping it returns to a trip that has kept progressing. Leave trackTimer running.
@@ -3806,7 +3752,7 @@ function setTripState(s){
   const wait=document.getElementById('waitFee');
   if(grace) grace.style.display=(s==='onway' && computeFee()===0)?'flex':'none';
   if(pin) pin.style.display=(s==='arrived')?'block':'none';
-  if(wait) wait.style.display=(s==='arrived')?'flex':'none';
+  if(wait) wait.style.display='none';   // no wait-time fee is charged, so none is shown
   updateCancelBtn();
 }
 function startGraceCountdown(){
@@ -3845,38 +3791,6 @@ function openCancelConfirm(){
   document.getElementById('cancelModal').classList.add('show');
 }
 function closeCancelConfirm(){ document.getElementById('cancelModal').classList.remove('show'); }
-function confirmCancel(){
-  const fee=computeFee();
-  closeCancelConfirm();
-  clearInterval(trackTimer); clearInterval(graceTickT); clearInterval(waitTickT); clearTimeout(tripArriveT); clearTimeout(tripCompleteT);
-  tripState='idle'; endTrip(); navTab('home');
-  // The booking was charged up front, so a cancellation has to give the money
-  // back: everything inside the free window, otherwise all but the flat fee.
-  const pid=_activePaymentIntentId;
-  if(pid){
-    notify('Cancelling…', fee===0 ? 'Refunding your payment in full.' : 'Refunding your payment minus the $'+fee.toFixed(2)+' cancellation fee.');
-    apiFetch('/api/refund-booking', {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ paymentIntentId: pid, freeCancellation: fee===0 })
-    }, 60000)
-    .then(function(j){
-      if(j && j.ok){
-        const back=(Number(j.refunded||0)/100);
-        notify('Booking cancelled ✓', back>0
-          ? '$'+back.toFixed(2)+' refunded to your card (3–5 business days)'+(j.cancellationFee?' — $'+(j.cancellationFee/100).toFixed(2)+' cancellation fee kept.':'.')
-          : 'No charge was taken for this booking.');
-      } else {
-        notify('Booking cancelled', 'We couldn\'t confirm the refund automatically. Contact support and we\'ll process it right away.');
-      }
-    })
-    .catch(function(){
-      notify('Booking cancelled', 'We couldn\'t confirm the refund automatically. Contact support and we\'ll process it right away.');
-    });
-  } else {
-    notify('Booking cancelled', fee===0?'No charge — you were within the free window.':'A $'+fee.toFixed(2)+' cancellation fee applies to this booking.');
-  }
-  _activePaymentIntentId=null;
-}
 
 /* ---------- Leaflet real maps ---------- */
 let homeMapInst, trackMapInst, trackBarberMarker, trackRoute;
@@ -4007,14 +3921,14 @@ function trackDrawRoute(path){
     });
     trackBarberMarker = new google.maps.Marker({
       position:{lat:path[0][0],lng:path[0][1]}, map:trackMapInst,
-      icon:googleBarberIcon(BARBERS[current],current)
+      icon:googleBarberIcon(tripBarber(),current)
     });
     const b=new google.maps.LatLngBounds();
     path.forEach(p=>b.extend({lat:p[0],lng:p[1]}));
     trackMapInst.fitBounds(b,{top:40,bottom:40,left:40,right:40});
   } else {
     trackRoute = L.polyline(path,{color:'#2A58CC',weight:4,dashArray:'2 9',opacity:.85}).addTo(trackMapInst);
-    trackBarberMarker = L.marker(path[0],{icon:barberDivIcon(BARBERS[current])}).addTo(trackMapInst);
+    trackBarberMarker = L.marker(path[0],{icon:barberDivIcon(tripBarber())}).addTo(trackMapInst);
     trackMapInst.fitBounds(L.latLngBounds(path).pad(0.25));
   }
 }
@@ -4029,102 +3943,6 @@ function trackCenterOnUser(){
   else trackMapInst.setView(userLL,16);
 }
 
-function startTracking(){
-  nav('tracking');
-  startTrip();
-  tripStartedAt=Date.now();
-  tripPin=genPin();
-  document.getElementById('pinDigits').innerHTML='<span>'+tripPin[0]+'</span><span>'+tripPin[1]+'</span><span>'+tripPin[2]+'</span><span>'+tripPin[3]+'</span>';
-  setTripState('onway');
-  startGraceCountdown();
-  ['stepWay','stepArr','stepCut'].forEach(id=>{ const e=document.getElementById(id); e.classList.remove('done'); e.classList.remove('now'); });
-  document.getElementById('stepWay').classList.add('now');
-  // Rebuild through the stable wrapper: #etaMin itself is replaced when a trip
-  // completes, so looking it up on the NEXT booking would return null.
-  (function(){ var ew=document.getElementById('etaWrap');
-    if(ew) ew.innerHTML='<span id="etaMin">8</span><span style="font-size:18px;color:var(--dim)"> min away</span>'; })();
-  // The previous completed trip replaces #tbEta's container with a LIVE badge;
-  // rebuild the mini trip-bar ETA so a fresh #tbEta exists for THIS booking
-  // (otherwise startTrip()/updateTripBar() would null-deref on the 2nd trip).
-  (function(){ var tbe=document.getElementById('tbEta');
-    if(tbe && tbe.parentElement) tbe.parentElement.innerHTML='<b id="tbEta">8</b><small>min</small>'; })();
-  const firstName=BARBERS[current].n.split(' ')[0];
-  document.getElementById('trkState').textContent=BARBERS[current].n+' is on the way';
-  // trip card + chat header show the REAL booked barber
-  (function(tb){
-    var ini=(tb.in || tb.n.split(' ').map(function(p){return p[0]||'';}).join('')).slice(0,2).toUpperCase();
-    var el;
-    if(el=document.getElementById('tcAv')) el.textContent=ini;
-    if(el=document.getElementById('tcName')) el.textContent=tb.n;
-    if(el=document.getElementById('tcMeta')) el.innerHTML='<span class="star">★ '+(tb.r||'5.0')+'</span><span class="dot"></span>'+(svcName||'Haircut')+'<span class="dot"></span>Verified Pro';
-    if(el=document.getElementById('chAv')) el.textContent=ini;
-    if(el=document.getElementById('chName')) el.textContent=tb.n;
-  })(BARBERS[current]);
-  showToast('Booking confirmed!',firstName+' is heading your way. Free cancel for 2 min.');
-  updateTripBar(8, firstName+' is on the way', BARBERS[current].n+' · live trip');
-  // Set up Leaflet route + barber marker
-  setTimeout(()=>{
-    initTrackMap();
-    if(!trackMapInst) return;
-    clearTrackVisuals();
-    const startLL=[userLL[0]+0.012, userLL[1]+0.014];
-    const path=[];
-    const STEPS=24;
-    for(let i=0;i<=STEPS;i++){
-      const t=i/STEPS;
-      // gentle double-bend so the route reads like real streets, not a straight line
-      const lat=startLL[0]+(userLL[0]-startLL[0])*t + Math.sin(t*Math.PI)*0.0006 + Math.sin(t*Math.PI*3)*0.00015;
-      const lng=startLL[1]+(userLL[1]-startLL[1])*t - Math.sin(t*Math.PI)*0.0009 - Math.sin(t*Math.PI*2)*0.0002;
-      path.push([lat,lng]);
-    }
-    trackDrawRoute(path);
-    const TRIP_MS=8*60*1000;        // ~8-minute travel window, real time
-    const tStart=Date.now();
-    let lastEta=8, said5=false;
-    clearInterval(trackTimer); clearTimeout(tripArriveT); clearTimeout(tripCompleteT);
-    trackTimer=setInterval(()=>{
-      const p=Math.min(1,(Date.now()-tStart)/TRIP_MS);
-      // glide smoothly between route points instead of jumping
-      const fp=p*(path.length-1);
-      const i=Math.min(Math.floor(fp), path.length-2);
-      const f=fp-i;
-      trackMoveBarber([ path[i][0]+(path[i+1][0]-path[i][0])*f,
-                        path[i][1]+(path[i+1][1]-path[i][1])*f ]);
-      const eta=Math.max(1,Math.ceil((1-p)*8));
-      if(eta!==lastEta){ lastEta=eta; document.getElementById('etaMin').textContent=eta; updateTripBar(eta); }
-      if(!said5 && eta<=5){ said5=true; showToast('5 minutes away',firstName+' is close — get ready!'); }
-      if(p>=1){
-        clearInterval(trackTimer);
-        trackMoveBarber(userLL);
-        document.getElementById('etaMin').textContent='0';
-        document.getElementById('trkState').textContent='Your barber has arrived';
-        document.getElementById('stepWay').classList.replace('now','done');
-        document.getElementById('stepArr').classList.add('now');
-        showToast(firstName+' has arrived','Share your PIN: '+tripPin);
-        updateTripBar(0, firstName+' has arrived', 'PIN '+tripPin+' · at your door');
-        setTripState('arrived');
-        startWaitCountdown();
-        trackCenterOnUser();
-        tripArriveT=setTimeout(()=>{
-          document.getElementById('stepArr').classList.replace('now','done');
-          document.getElementById('stepCut').classList.add('now');
-          document.getElementById('trkState').textContent='Appointment in progress';
-          (function(){ var ew=document.getElementById('etaWrap');
-            if(ew) ew.innerHTML='<span style="font-size:22px">Enjoy your fade ✂</span>'; })();
-          showToast('Appointment started','Sit back — payment & rating come next.');
-          updateTripBar(null, 'Appointment in progress', 'Cutting · enjoy your fade');
-          const tbe=document.getElementById('tbEta');
-          if(tbe) tbe.parentElement.innerHTML='<b style="font-size:13px;color:var(--green)">●</b><small style="color:var(--green)">LIVE</small>';
-          setTripState('active');
-          clearInterval(waitTickT);
-          document.getElementById('waitFee').style.display='none';
-          document.getElementById('pinCard').style.display='none';
-          tripCompleteT=setTimeout(()=>goToRating(),5000);
-        },2600);
-      }
-    },40);
-  },200);
-}
 
 /* ---------- REAL card payment (Stripe) ----------
  * Flow: confirmBooking → openPayment → server creates a PaymentIntent
@@ -4172,7 +3990,9 @@ function openPayment(opts, onSuccess){
     if(!_stripe) _stripe = Stripe(cfg.publishableKey);
     return apiFetch('/api/create-payment-intent', {
       method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ servicePrice: priceCents, idempotencyKey: _payIdemKey })
+      body: JSON.stringify(opts.barberId
+        ? { barberId: opts.barberId, serviceName: opts.serviceName||'', accessToken: opts.accessToken, idempotencyKey: _payIdemKey }
+        : { servicePrice: priceCents, idempotencyKey: _payIdemKey })
     });
   })
   .then(function(pi){
@@ -4189,7 +4009,9 @@ function openPayment(opts, onSuccess){
     document.getElementById('payFeeAmt').textContent   = '$'+((bd.platformFee||0)/100).toFixed(2);
     document.getElementById('payTotalAmt').textContent = '$'+((bd.total||priceCents)/100).toFixed(2);
     var btn=document.getElementById('payBtn');
-    btn.textContent='Pay $'+((bd.total||priceCents)/100).toFixed(2); btn.disabled=false;
+    _payBtnLabel = (opts.barberId ? 'Request · $' : 'Pay $')+((bd.total||priceCents)/100).toFixed(2);
+    btn.textContent=_payBtnLabel; btn.disabled=false;
+    var hn=document.getElementById('payHoldNote'); if(hn) hn.style.display=opts.barberId?'block':'none';
     payShowErr('');
     if(!_stripeCard){
       var elements=_stripe.elements();
@@ -4202,9 +4024,12 @@ function openPayment(opts, onSuccess){
     document.getElementById('paySheet').classList.add('show');
   })
   .catch(function(err){
-    notifyErr('Payments unavailable', 'We couldn\'t reach the payment service. Please try again in a few minutes.');
+    var m=String(err&&err.message||'');
+    if(m && m!=='payments-not-configured' && !/fetch|network|abort/i.test(m)) notifyErr('Can\'t book right now', m);
+    else notifyErr('Payments unavailable', 'We couldn\'t reach the payment service. Please try again in a few minutes.');
   });
 }
+var _payBtnLabel='Pay';
 function paySubmit(){
   if(_payBusy || !_stripe || !_payClientSecret) return;
   _payBusy=true;
@@ -4214,20 +4039,21 @@ function paySubmit(){
   .then(function(res){
     _payBusy=false;
     if(res.error){
-      btn.disabled=false; btn.textContent='Pay';
+      btn.disabled=false; btn.textContent=_payBtnLabel;
       payShowErr(res.error.message||'Your card was declined. Try another card.');
       haptic();
       return;
     }
     closePaySheet(false);
-    notify('Payment confirmed ✓','Your card was charged securely via Stripe.');
+    if(res.paymentIntent && res.paymentIntent.status==='requires_capture') notify('Card authorized ✓','You\'re only charged once your cut is done.');
+    else notify('Payment confirmed ✓','Your card was charged securely via Stripe.');
     _activePaymentIntentId = (res.paymentIntent && res.paymentIntent.id) || _payIntentId || null;
     if(_payOnSuccess){ var cb=_payOnSuccess; _payOnSuccess=null; cb(res.paymentIntent); }
   })
   .catch(function(){
     // network drop mid-confirm: never leave the sheet stuck on "Processing…"
     _payBusy=false;
-    btn.disabled=false; btn.textContent='Pay';
+    btn.disabled=false; btn.textContent=_payBtnLabel;
     payShowErr('Connection lost while confirming. You were not charged twice — try again.');
     haptic();
   });
@@ -4238,21 +4064,6 @@ function closePaySheet(cancelled){
 }
 
 /* ---------- booking confirm — real charge, then dispatch ---------- */
-function confirmBooking(){
-  // 5.1.1: browsing is free; BOOKING is the account-based feature that may
-  // require sign-in. Guests get sent to create an account right here.
-  if(!userProfile.loggedIn){
-    notify('Sign in to book','Create a free account to confirm your booking — browsing stays free.');
-    goAuth('signup');
-    return;
-  }
-  const b=BARBERS[current];
-  openPayment({
-    merchant:'Catch a Fade · '+b.n.split(' ')[0],
-    item:(svcName||'Haircut')+' · house call',
-    amount: svcPrice
-  }, function(pi){ startFinding(pi && pi.id); });
-}
 
 /* ---------- new message ---------- */
 /* ---------- user profile (persisted; empty until the user signs in / edits) ---------- */
@@ -4462,11 +4273,6 @@ function openBarberOnboard(){
   signup = {step:1, email:'', phone:'', firstName:'', lastName:'', years:'', bio:'', address:'', radius:5, services:{}, consent:false, idDone:false, selfieDone:false, otpSent:false};
   nav('barberOnboard');
   setTimeout(renderWizStep, 60);
-}
-function goBarberSide(){
-  const mine=localStorage.getItem('fadex_is_barber');
-  if(mine){ renderDashPortfolio(); renderDashReviews(); nav('barberDash'); }
-  else { openBarberOnboard(); }
 }
 function cancelOnboard(){ back(); }
 
@@ -4738,12 +4544,6 @@ function queuePendingApplication(){
     localStorage.setItem('fadex_is_barber','pending');
   }catch(e){}
 }
-function finishBarberSignup(){
-  // application flow complete — back to the customer app; dash unlocks on approval
-  signup = {step:1, email:'', phone:'', firstName:'', lastName:'', years:'', bio:'', address:'', radius:5, services:{}, consent:false, idDone:false, selfieDone:false, otpSent:false};
-  navTab('home');
-  notify('Application received','We\'ll email you as soon as you\'re approved.');
-}
 
 function openNewMessage(){
   const el=document.getElementById('newMsgList');
@@ -4765,11 +4565,11 @@ function goToRating(){
   if(_tipChips[2]) _tipChips[2].classList.add('on'); // 20% default
   var _rtags=document.getElementById('rateTags'); if(_rtags) _rtags.style.display='none';
   const rtEl=document.getElementById('rateText'); if(rtEl) rtEl.value='';
-  const b=BARBERS[current];
+  const b=tripBarber();
   document.getElementById('rateAv').textContent=b.in;
   document.getElementById('rateAv').style.background=b.g;
   document.getElementById('rateName').textContent=b.n.split(' ')[0];
-  document.getElementById('rateSvc').textContent='Skin Fade · 42 min';
+  document.getElementById('rateSvc').textContent=(svcName||'Haircut')+' · '+b.n;
   updateRateBtn();
   endTrip();
   nav('rating');
@@ -4799,12 +4599,13 @@ function submitRating(){
     revs.unshift({u:uN,in:uIn,g:'var(--grad)',stars:rateStars,text:rateText,date:'Just now',tags:[...ratingTags],mine:true});
     localStorage.setItem(revKey, JSON.stringify(revs));
   }
+  mkSaveReview(rateStars, rateText, [...ratingTags]);
   fillReceipt();
   nav('receipt');
-  notify('Rating submitted', rateStars+'★ for '+BARBERS[current].n.split(' ')[0]+' — thanks for the feedback!');
+  notify('Rating submitted', rateStars+'★ for '+tripBarber().n.split(' ')[0]+' — thanks for the feedback!');
 }
 function fillReceipt(){
-  const b=BARBERS[current];
+  const b=tripBarber();
   document.getElementById('rcpAv').textContent=b.in;
   document.getElementById('rcpAv').style.background=b.g;
   document.getElementById('rcpBarber').textContent=b.n;
@@ -5162,18 +4963,6 @@ function pickResult(i){
 function clearLoc(){ const i=document.getElementById('locInput'); if(i) i.value=''; searchLoc(''); }
 function openLocSearch(){ clearLoc(); nav('locationSearch'); setTimeout(()=>{const i=document.getElementById('locInput'); if(i) i.focus();},360); }
 /* ---------- chat ---------- */
-function quickSend(t){
-  const m=document.getElementById('msgs');
-  const d=document.createElement('div');
-  d.className='msg mine'; d.textContent=t;
-  m.appendChild(d);
-  m.parentElement.scrollTop=m.parentElement.scrollHeight;
-  setTimeout(()=>{
-    const r=document.createElement('div');
-    r.className='msg them'; r.textContent='👍';
-    m.appendChild(r); m.parentElement.scrollTop=m.parentElement.scrollHeight;
-  },800);
-}
 
 /* ---------- theme ---------- */
 function toggleTheme(){
@@ -5198,33 +4987,27 @@ function toggleTheme(){
 })();
 
 /* ---------- barber dash ---------- */
-function toggleOnline(){
-  const s=document.getElementById('bigSwitch'); s.classList.toggle('on');
-  const on=s.classList.contains('on');
-  document.getElementById('onTitle').textContent=on?"You're online":"You're offline";
-  document.getElementById('onSub').textContent=on?'Customers nearby can now find and book you':'Not receiving new job requests';
-}
 
 /* ---------- portfolio & reviews ---------- */
-const BP_SEED=[
-  [{label:'Mid skin fade',bg:'var(--grad)'},{label:'Beard sculpt + lineup',bg:'var(--gradWarm)'},{label:'Textured crop',bg:'var(--gradGreen)'},{label:'Burst fade',bg:'linear-gradient(135deg,#C82222,#7A1515)'},{label:'High top',bg:'linear-gradient(135deg,#FFCf5A,#FF9F4A)'}],
-  [{label:'Skin fade + lineup',bg:'var(--gradGreen)'},{label:'Taper fade',bg:'linear-gradient(135deg,#C82222,#7A1515)'},{label:'Waves cut',bg:'var(--grad)'},{label:'Box fade',bg:'var(--gradWarm)'}],
-  [{label:'Bald fade',bg:'var(--gradWarm)'},{label:'Drop fade',bg:'var(--grad)'},{label:'Temple fade',bg:'linear-gradient(135deg,#FFCf5A,#FF9F4A)'},{label:'Mohawk fade',bg:'var(--gradGreen)'}],
-];
-const BR_SEED=[
-  [{u:'Jordan L.',in:'JL',g:'var(--gradWarm)',stars:5,text:'Best fade I\'ve had in years and he came to my apartment. Showed up early, super clean setup.',tags:['sharp','ontime'],date:'2 days ago'},
-   {u:'DeShawn K.',in:'DK',g:'var(--grad)',stars:5,text:'This man is a wizard with clippers. My taper was immaculate.',tags:['sharp','friendly'],date:'1 week ago'},
-   {u:'Marcus T.',in:'MT',g:'var(--gradGreen)',stars:4,text:'Great cut, very professional. Setup was clean and he was on time.',tags:['pro','clean'],date:'2 weeks ago'},
-   {u:'Isaiah R.',in:'IR',g:'linear-gradient(135deg,#C82222,#7A1515)',stars:5,text:'Never going to a shop again. Dude came to my crib and gave me the cleanest fade.',tags:['sharp','value'],date:'3 weeks ago'}],
-  [{u:'Chris B.',in:'CB',g:'var(--gradGreen)',stars:5,text:'Came right on time, setup was immaculate. Best cut in the city no debate.',tags:['ontime','clean'],date:'3 days ago'},
-   {u:'Tyler M.',in:'TM',g:'var(--grad)',stars:4,text:'Super professional, fade was on point.',tags:['pro','sharp'],date:'1 week ago'},
-   {u:'Jaylen W.',in:'JW',g:'var(--gradWarm)',stars:5,text:'I\'ve been looking for a barber like this for years. No cap.',tags:['friendly','value'],date:'2 weeks ago'}],
-  [{u:'Sam D.',in:'SD',g:'var(--gradWarm)',stars:5,text:'Perfect fade every time. He remembers exactly how I like it.',tags:['sharp','pro'],date:'5 days ago'},
-   {u:'Antoine F.',in:'AF',g:'var(--gradGreen)',stars:4,text:'Clean cut, showed up on time. Would book again.',tags:['ontime','clean'],date:'2 weeks ago'}],
-];
 function getRevKey(i){ return 'fadex_reviews_'+(BARBERS[i]?BARBERS[i].n.replace(/\s/g,'_'):'b'+i); }
 function getPortKey(i){ return 'fadex_portfolio_'+(BARBERS[i]?BARBERS[i].n.replace(/\s/g,'_'):'b'+i); }
+// Real reviews from the database, cached per barber; renderBarberProfile
+// re-renders once they arrive.
+const _dbReviews={};
+function mkFetchReviews(i){
+  const b=BARBERS[i]; const c=sbReady(); if(!b||!b.fromDB||!c||_dbReviews[b.id]) return;
+  _dbReviews[b.id]='loading';
+  c.from('reviews').select('rating, body, created_at').eq('barber_id',b.id).order('created_at',{ascending:false}).limit(30)
+   .then(function(r){
+     _dbReviews[b.id]=(r.data||[]).map(function(v){ return {u:'Verified customer',in:'★',g:'var(--grad)',stars:v.rating,text:v.body||'',
+       date:new Date(v.created_at).toLocaleDateString([], {month:'short',day:'numeric'}),tags:[]}; });
+     if(current===i && stack[stack.length-1]==='barberProfile') renderBarberProfile(i);
+   },function(){ delete _dbReviews[b.id]; });
+}
 function loadBarberReviews(i){
+  const b=BARBERS[i];
+  if(b && Array.isArray(_dbReviews[b.id])) return _dbReviews[b.id];
+  mkFetchReviews(i);
   const stored=localStorage.getItem(getRevKey(i));
   if(stored){ try{ return JSON.parse(stored); }catch(e){} }
   return [];   // no fabricated reviews — only what customers actually wrote
@@ -5516,6 +5299,17 @@ function authEmailSubmit(){
 // against the server's fixed code (its password IS that code), everyone else
 // gets a real Supabase password account — created instantly, no email sent.
 function passwordAuth(email, pw, isLogin){
+  // The review account is a real Supabase user (the server keeps its password =
+  // the code in the review notes), so the reviewer can book end to end. The
+  // server-code path below stays as a fallback if Supabase is unreachable.
+  if(isReviewEmail(email) && !passwordAuth._fallback){
+    var rc=(typeof sbReady==='function')?sbReady():null;
+    if(rc) return rc.auth.signInWithPassword({ email:email, password:pw }).then(function(res){
+      if(res && !res.error) return { ok:true, email:email };
+      passwordAuth._fallback=true;
+      return passwordAuth(email,pw,isLogin).finally(function(){ passwordAuth._fallback=false; });
+    });
+  }
   if(typeof isReviewEmail==='function' ? isReviewEmail(email) : /^review@/.test(email)){
     var seed = function(){ return fetch((window.API_BASE||'')+'/api/send-code', {
       method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ email:email }) }).then(function(r){ return r.json(); }); };
@@ -5714,12 +5508,22 @@ function finishAuth(provider){
   if(_authEmail && !userProfile.email) userProfile.email = _authEmail;
   persistProfile();
   render(); renderProfile();
+  // who just signed in decides the roster (the review account also sees the demo
+  // barber) and whether there's barber mode / a live booking to resume
+  loadBarbersFromSupabase().then(function(ok){ if(ok) refreshBarbersUI(); });
+  mkOnAppStart();
   var label = provider==='apple' ? 'Apple' : provider==='google' ? 'Google' : 'email';
   deviceNotify(_authMode==='login' ? 'Welcome back to CatchAFade' : 'You\'re all set', 'Signed in with '+label+'. Barbers near you are loading.');
 }
 /* ---------- sign out + account deletion (Apple 5.1.1(v)) ---------- */
 function signOut(){
-  try{ var c=sbReady(); if(c) c.auth.signOut(); }catch(e){}
+  // A barber who signs out must stop receiving requests.
+  try{
+    var c0=sbReady();
+    if(mkMyBarber && mkOnline && c0) c0.from('barbers').update({ is_available:false }).eq('id',mkMyBarber.id).then(function(){},function(){});
+    mkSetOnlineUI(false); mkClearActive(); mkMyBarber=null; mkMe=null; mkJob=null;
+  }catch(e){}
+  try{ var c=sbReady(); if(c) setTimeout(function(){ c.auth.signOut(); }, 300); }catch(e){}
   // Signing out must leave NO personal data on the device: photos of a
   // government ID, a selfie, saved cards, home address and a trusted contact's
   // details are all far more sensitive than the session flag itself.
@@ -5853,21 +5657,7 @@ function obStatTick(){
   }, 38);
 }
 
-/* Screen 8 — live demo profile modal (MOCK DATA) */
-const OB_DEMO=[
-  {n:'Marcus Brown', i:'MB', g:'linear-gradient(135deg,#2A58CC,#C82222)', meta:'0.4 mi · ⭐ 4.9', price:'$28–$45'},
-  {n:'Devon Reid',   i:'DR', g:'linear-gradient(135deg,#1D40A8,#2A58CC)', meta:'0.8 mi · ⭐ 4.8', price:'$30–$50'},
-  {n:'Jaylen Mills', i:'JM', g:'linear-gradient(135deg,#C82222,#7A1515)', meta:'1.2 mi · ⭐ 5.0', price:'$35–$60'}
-];
-function ob8Open(i){
-  const b=OB_DEMO[i]; if(!b) return;
-  const av=document.getElementById('ob8mAv');
-  if(av){ av.textContent=b.i; av.style.background=b.g; }
-  document.getElementById('ob8mName').textContent=b.n;
-  document.getElementById('ob8mMeta').textContent=b.meta;
-  document.getElementById('ob8mPrice').textContent=b.price;
-  document.getElementById('ob8Modal').classList.add('show'); haptic();
-}
+function ob8Open(){}
 function ob8Close(){ document.getElementById('ob8Modal').classList.remove('show'); }
 
 /* Screen 9 — social-proof dots + counter */
@@ -5963,7 +5753,7 @@ loadBarbersFromSupabase().then(function(ok){ if(ok) refreshBarbersUI(); });
 // Backend may have been asleep at launch — retry whenever the app returns to the
 // foreground while we're still showing the bundled fallback roster.
 document.addEventListener('visibilitychange', function(){
-  if(document.visibilityState==='visible' && (!BARBERS.length || !BARBERS[0].fromDB)){
+  if(document.visibilityState==='visible' && true){
     loadBarbersFromSupabase().then(function(ok){ if(ok) refreshBarbersUI(); });
   }
   // Stuck on the coarse IP guess? The classic path is: user denies location, sees the
@@ -5992,6 +5782,690 @@ document.addEventListener('visibilitychange', function(){
     }
   }).catch(function(){});
 })();
+
+/* =====================================================================
+ *  REAL MARKETPLACE — customer requests, barber accepts, live trip.
+ *  Every status change goes through the server (/api/bookings/*), which
+ *  holds the card on request and charges it only when the cut is done.
+ *  Live updates come from Supabase realtime, with polling as a fallback.
+ * ===================================================================== */
+const MK_ACTIVE = ['requested','accepted','en_route','arrived','in_progress'];
+const MK_REQUEST_TTL = 3*60*1000;          // matches the server's REQUEST_TTL_MS
+async function mkSession(){
+  const c=sbReady(); if(!c) return null;
+  try{ const r=await c.auth.getSession(); return (r&&r.data&&r.data.session)||null; }catch(e){ return null; }
+}
+async function mkUserId(){ const s=await mkSession(); return s&&s.user ? s.user.id : null; }
+async function mkApi(path, body){
+  const s=await mkSession();
+  if(!s) return { ok:false, error:'Please sign in first.' };
+  try{
+    return await apiFetch(path, { method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(Object.assign({ accessToken:s.access_token }, body||{})) }, 60000);
+  }catch(e){ return { ok:false, error:'Can\'t reach the server. Check your connection and try again.' }; }
+}
+function mkMoney(c){ return '$'+(Number(c||0)/100).toFixed(2); }
+function mkFirst(n){ return String(n||'Your barber').split(' ')[0]; }
+function mkMiles(a,b){ return haversine(a[0],a[1],b[0],b[1]); }
+function mkEtaMin(miles){ return Math.max(1, Math.round(miles/18*60)); }   // ~18 mph city driving
+async function mkProfileName(id){
+  const c=sbReady(); if(!c||!id) return '';
+  try{ const r=await c.from('profiles').select('full_name').eq('id',id).maybeSingle(); return (r.data&&r.data.full_name)||''; }catch(e){ return ''; }
+}
+
+/* ---------- customer: the barber of the current trip ---------- */
+let mkTripBarberObj=null;
+function tripBarber(){ return mkTripBarberObj || BARBERS[current] || { n:'Your barber', in:'CF', g:'var(--grad)', r:'5.0' }; }
+async function mkResolveBarber(barberId){
+  const i=BARBERS.findIndex(b=>b.id===barberId);
+  if(i>=0){ current=i; mkTripBarberObj=BARBERS[i]; return mkTripBarberObj; }
+  const c=sbReady();
+  try{
+    const r=await c.from('barbers').select('id, rating, profile:profiles!barbers_profile_id_fkey(full_name)').eq('id',barberId).maybeSingle();
+    const name=(r.data&&r.data.profile&&r.data.profile.full_name)||'Your barber';
+    mkTripBarberObj={ id:barberId, n:name, in:nameInitials(name), g:BARBER_GRADIENTS[0], r:Number((r.data&&r.data.rating)||5).toFixed(1), fromDB:true };
+  }catch(e){ mkTripBarberObj={ id:barberId, n:'Your barber', in:'CF', g:BARBER_GRADIENTS[0], r:'5.0', fromDB:true }; }
+  return mkTripBarberObj;
+}
+
+/* ---------- customer: request a booking ---------- */
+async function confirmBooking(){
+  // 5.1.1: browsing is free; BOOKING is the account-based feature.
+  const sess=await mkSession();
+  if(!sess){
+    notify('Sign in to book','Create a free account to request a barber — browsing stays free.');
+    goAuth('signup');
+    return;
+  }
+  const b=BARBERS[current];
+  if(!b || !b.fromDB){ notifyErr('Barber unavailable','Pick a barber from the list on Home.'); return; }
+  mkTripBarberObj=b;
+  openPayment({
+    merchant:'Catch a Fade · '+mkFirst(b.n),
+    item:(svcName||'Haircut')+' · house call',
+    amount: svcPrice, barberId: b.id, serviceName: svcName, accessToken: sess.access_token
+  }, function(pi){ mkRequestBooking(pi && pi.id); });
+}
+async function mkRequestBooking(piId){
+  nav('finding');
+  const first=mkFirst(tripBarber().n);
+  document.getElementById('findTitle').textContent='Sending your request…';
+  document.getElementById('findSub').textContent='Reaching '+first+'.';
+  const loc=(document.getElementById('bkLoc')||{}).textContent||userProfile.address||'';
+  const j=await mkApi('/api/bookings/request', { paymentIntentId:piId, address:loc, lat:userLL[0], lng:userLL[1] });
+  if(!j || !j.ok){
+    notifyErr('Request didn\'t go through', (j&&j.error)||'Please try again. Your card was not charged.');
+    stack=stack.filter(s=>s!=='finding'); render();
+    return;
+  }
+  mkWatchBooking(j.booking);
+}
+
+/* ---------- customer: follow the booking live ---------- */
+let mkBooking=null, mkLastStatus=null, mkBkChan=null, mkBkPoll=null, mkFindTick=null, mkSelfCancel=false, mkTripUI=false;
+function mkWatchBooking(bk){
+  mkStopWatching();
+  mkBooking=bk; mkLastStatus=null; mkSelfCancel=false; mkTripUI=false;
+  _activePaymentIntentId=bk.payment_intent_id||null;
+  try{ localStorage.setItem('fadex_active_booking', bk.id); }catch(e){}
+  const c=sbReady();
+  try{
+    mkBkChan=c.channel('bk-'+bk.id)
+      .on('postgres_changes',{event:'UPDATE',schema:'public',table:'bookings',filter:'id=eq.'+bk.id},p=>mkApplyBooking(p.new))
+      .subscribe();
+  }catch(e){}
+  mkBkPoll=setInterval(async()=>{
+    try{ const r=await c.from('bookings').select('*').eq('id',bk.id).maybeSingle(); if(r&&r.data) mkApplyBooking(r.data); }catch(e){}
+  },4000);
+  mkApplyBooking(bk);
+}
+function mkStopWatching(){
+  const c=sbReady();
+  try{ if(mkBkChan&&c) c.removeChannel(mkBkChan); }catch(e){}
+  mkBkChan=null; clearInterval(mkBkPoll); clearInterval(mkFindTick); mkStopBarberLoc();
+}
+function mkClearActive(){ mkStopWatching(); mkBooking=null; mkLastStatus=null; mkTripUI=false; try{ localStorage.removeItem('fadex_active_booking'); }catch(e){} }
+async function mkApplyBooking(bk){
+  if(!bk || (mkBooking && bk.id!==mkBooking.id)) return;
+  mkBooking=bk;
+  if(bk.status===mkLastStatus) return;
+  mkLastStatus=bk.status;
+  const b=await mkResolveBarber(bk.barber_id);
+  const first=mkFirst(b.n);
+  svcName=bk.service_name||svcName; svcPrice=Number(bk.service_price_cents||0)/100;
+  switch(bk.status){
+    case 'requested': {
+      if(stack[stack.length-1]!=='finding') nav('finding');
+      document.getElementById('findTitle').textContent='Waiting for '+first+' to accept…';
+      const created=new Date(bk.created_at).getTime()||Date.now();
+      clearInterval(mkFindTick);
+      const tick=()=>{
+        const left=Math.max(0, MK_REQUEST_TTL-(Date.now()-created));
+        document.getElementById('findSub').textContent='Your card isn\'t charged unless your cut happens. '
+          +Math.floor(left/60000)+':'+String(Math.floor(left/1000)%60).padStart(2,'0')+' left to respond.';
+        if(left<=0){ clearInterval(mkFindTick); mkApi('/api/bookings/action',{bookingId:bk.id,action:'expire'}).then(r=>{ if(r&&r.booking) mkApplyBooking(r.booking); }); }
+      };
+      tick(); mkFindTick=setInterval(tick,1000);
+      break;
+    }
+    case 'accepted': case 'en_route': case 'arrived': case 'in_progress':
+      clearInterval(mkFindTick);
+      if(!mkTripUI) mkStartTripUI(bk, b);
+      mkTripStatus(bk, b);
+      break;
+    case 'completed':
+      try{ localStorage.setItem('fadex_last_booking', bk.id); }catch(e){}
+      mkClearActive();
+      userProfile.cutCount=(userProfile.cutCount||0)+1; persistProfile();
+      showToast('Cut complete ✂', 'Your card was charged '+mkMoney(bk.total_cents)+'.');
+      goToRating();
+      break;
+    default: {   // declined / expired / cancelled / no_show
+      const mine=mkSelfCancel;
+      mkClearActive(); endTrip();
+      stack=stack.filter(s=>s!=='finding' && s!=='tracking'); if(!stack.length) stack=['home']; render();
+      if(mine) break;
+      if(bk.status==='declined') notify(first+' can\'t take this one','Your card was not charged. Try another barber.');
+      else if(bk.status==='expired') notify(first+' didn\'t respond','Your card was not charged. Try another barber.');
+      else notify('Booking cancelled', first+' had to cancel. Your card was not charged.');
+      refreshBarbersUI();
+    }
+  }
+}
+function mkStartTripUI(bk, b){
+  mkTripUI=true;
+  stack=stack.filter(s=>s!=='finding');
+  if(stack[stack.length-1]!=='tracking') stack.push('tracking');
+  render();
+  startTrip();
+  tripStartedAt=new Date(bk.accepted_at||Date.now()).getTime();
+  tripPin=String(bk.arrival_pin||'');
+  document.getElementById('pinDigits').innerHTML=tripPin.split('').map(d=>'<span>'+d+'</span>').join('');
+  let el;
+  if(el=document.getElementById('tcAv')){ el.textContent=b.in; el.style.background=b.g; }
+  if(el=document.getElementById('tcName')) el.textContent=b.n;
+  if(el=document.getElementById('tcMeta')) el.innerHTML='<span class="star">★ '+(b.r||'5.0')+'</span><span class="dot"></span>'+escapeHtml(svcName||'Haircut')+'<span class="dot"></span>Verified Pro';
+  if(el=document.getElementById('chAv')) el.textContent=b.in;
+  if(el=document.getElementById('chName')) el.textContent=b.n;
+  (function(){ var ew=document.getElementById('etaWrap'); if(ew) ew.innerHTML='<span id="etaMin">–</span><span style="font-size:18px;color:var(--dim)"> min away</span>'; })();
+  (function(){ var tbe=document.getElementById('tbEta'); if(tbe && tbe.parentElement) tbe.parentElement.innerHTML='<b id="tbEta">–</b><small>min</small>'; })();
+  ['stepWay','stepArr','stepCut'].forEach(id=>{ const e=document.getElementById(id); e.classList.remove('done','now'); });
+  setTripState('onway'); startGraceCountdown();
+  setTimeout(()=>{ initTrackMap(); if(trackMapInst){ clearTrackVisuals(); trackCenterOnUser(); } mkWatchBarberLoc(bk.barber_id); },250);
+}
+function mkTripStatus(bk, b){
+  const first=mkFirst(b.n);
+  const st=document.getElementById('trkState');
+  const step=(id,cls)=>{ const e=document.getElementById(id); if(e){ e.classList.remove('done','now'); if(cls) e.classList.add(cls); } };
+  if(bk.status==='accepted'){
+    st.textContent=first+' accepted · getting ready';
+    step('stepWay','now'); showToast(first+' accepted!', 'Free cancellation for 2 minutes.');
+    updateTripBar(null, first+' accepted', b.n+' · live trip');
+  } else if(bk.status==='en_route'){
+    st.textContent=b.n+' is on the way'; step('stepWay','now');
+    showToast(first+' is on the way', 'Track them live on the map.');
+    updateTripBar(null, first+' is on the way', b.n+' · live trip');
+  } else if(bk.status==='arrived'){
+    step('stepWay','done'); step('stepArr','now');
+    st.textContent=first+' has arrived';
+    (function(){ var ew=document.getElementById('etaWrap'); if(ew) ew.innerHTML='<span style="font-size:22px">At your door</span>'; })();
+    showToast(first+' has arrived','Share your PIN: '+tripPin);
+    updateTripBar(0, first+' has arrived', 'PIN '+tripPin+' · at your door');
+    setTripState('arrived'); trackCenterOnUser();
+  } else if(bk.status==='in_progress'){
+    step('stepWay','done'); step('stepArr','done'); step('stepCut','now');
+    st.textContent='Appointment in progress';
+    (function(){ var ew=document.getElementById('etaWrap'); if(ew) ew.innerHTML='<span style="font-size:22px">Enjoy your fade ✂</span>'; })();
+    showToast('Appointment started','Your card is charged when '+first+' finishes.');
+    updateTripBar(null,'Appointment in progress','Cutting · enjoy your fade');
+    const tbe=document.getElementById('tbEta'); if(tbe) tbe.parentElement.innerHTML='<b style="font-size:13px;color:var(--green)">●</b><small style="color:var(--green)">LIVE</small>';
+    setTripState('active');
+    document.getElementById('pinCard').style.display='none';
+  }
+}
+/* the barber's real position, streamed from their phone */
+let mkLocChan=null, mkLocPoll=null, mkLocDrawn=false;
+function mkWatchBarberLoc(barberId){
+  mkStopBarberLoc();
+  const c=sbReady(); if(!c) return;
+  try{
+    mkLocChan=c.channel('loc-'+barberId)
+      .on('postgres_changes',{event:'*',schema:'public',table:'barber_locations',filter:'barber_id=eq.'+barberId},p=>mkOnBarberLoc(p.new))
+      .subscribe();
+  }catch(e){}
+  const pull=async()=>{ try{ const r=await c.from('barber_locations').select('*').eq('barber_id',barberId).maybeSingle(); if(r&&r.data) mkOnBarberLoc(r.data); }catch(e){} };
+  pull(); mkLocPoll=setInterval(pull,5000);
+}
+function mkStopBarberLoc(){
+  const c=sbReady();
+  try{ if(mkLocChan&&c) c.removeChannel(mkLocChan); }catch(e){}
+  mkLocChan=null; clearInterval(mkLocPoll); mkLocDrawn=false;
+}
+function mkOnBarberLoc(row){
+  if(!row || row.lat==null || !mkBooking) return;
+  const ll=[Number(row.lat),Number(row.lng)];
+  const dest=[Number(mkBooking.lat)||userLL[0], Number(mkBooking.lng)||userLL[1]];
+  if(trackMapInst){
+    if(!mkLocDrawn){ clearTrackVisuals(); trackDrawRoute([ll,dest]); mkLocDrawn=true; }
+    else trackMoveBarber(ll);
+  }
+  if(['accepted','en_route'].includes(mkBooking.status)){
+    const eta=mkEtaMin(mkMiles(ll,dest));
+    const em=document.getElementById('etaMin'); if(em) em.textContent=eta;
+    updateTripBar(eta);
+  }
+}
+/* customer cancel (trip screen) */
+function cancelFinding(){
+  if(!mkBooking){ back(); return; }
+  mkSelfCancel=true;
+  const id=mkBooking.id;
+  mkApi('/api/bookings/action',{bookingId:id,action:'cancel'}).then(j=>{
+    notify('Request cancelled','Your card was not charged.');
+    if(j && j.booking) mkApplyBooking(j.booking); else { mkClearActive(); navTab('home'); }
+  });
+}
+function confirmCancel(){
+  closeCancelConfirm();
+  if(!mkBooking){ endTrip(); navTab('home'); return; }
+  mkSelfCancel=true;
+  const id=mkBooking.id;
+  clearInterval(graceTickT); clearInterval(waitTickT);
+  tripState='idle'; endTrip();
+  notify('Cancelling…','One moment.');
+  mkApi('/api/bookings/action',{bookingId:id,action:'cancel'}).then(j=>{
+    if(j && j.ok){
+      const fee=Number(j.cancellationFee||0);
+      notify('Booking cancelled ✓', fee>0 ? 'A '+mkMoney(fee)+' cancellation fee was charged; the rest of the hold was released.' : 'No charge — the hold on your card was released.');
+      mkApplyBooking(j.booking);
+    } else {
+      mkSelfCancel=false;
+      notifyErr('Couldn\'t cancel', (j&&j.error)||'Please try again.');
+    }
+  });
+}
+/* reviews go to the database (they drive the barber's real rating) */
+async function mkSaveReview(stars, text, tags){
+  try{
+    const c=sbReady(); const uid=await mkUserId();
+    const bkId=localStorage.getItem('fadex_last_booking'); const b=tripBarber();
+    if(!c||!uid||!bkId||!b.id) return;
+    const body=[text].concat(tags&&tags.length?['('+tags.join(', ')+')']:[]).filter(Boolean).join(' ');
+    await c.from('reviews').insert({ booking_id:bkId, customer_id:uid, barber_id:b.id, rating:stars, body:body||null });
+  }catch(e){}
+}
+
+/* ---------- trips + inbox (customer) ---------- */
+const MK_STATUS_LABEL={requested:'Waiting for barber',accepted:'Accepted',en_route:'On the way',arrived:'Arrived',in_progress:'In progress',completed:'Completed',cancelled:'Cancelled',declined:'Declined',expired:'No response',no_show:'Cancelled at the door'};
+async function mkMyBookings(){
+  const c=sbReady(); const uid=await mkUserId(); if(!c||!uid) return [];
+  try{
+    const r=await c.from('bookings').select('*, barber:barbers(id, profile:profiles!barbers_profile_id_fkey(full_name))').eq('customer_id',uid).order('created_at',{ascending:false}).limit(40);
+    return r.data||[];
+  }catch(e){ return []; }
+}
+async function renderTrips(){
+  const el=document.getElementById('tripsBody'); if(!el) return;
+  const uid=await mkUserId();
+  if(!uid){
+    el.innerHTML=emptyCard('No trips yet','Sign in and book a cut — your appointments show up here.','Find a barber','navTab(\'home\')');
+    return;
+  }
+  const rows=await mkMyBookings();
+  const row=(k)=>{
+    const name=(k.barber&&k.barber.profile&&k.barber.profile.full_name)||'Barber';
+    const when=new Date(k.created_at).toLocaleString([], {month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
+    const active=MK_ACTIVE.includes(k.status);
+    return '<div class="lrow"'+(active?' onclick="mkResumeBooking(\''+k.id+'\')"':'')+'>'
+      +'<div class="av" style="background:var(--grad)">'+escapeHtml(nameInitials(name))+'</div>'
+      +'<div class="lr"><b>'+escapeHtml(name)+' · '+escapeHtml(k.service_name||'Haircut')+'</b><small>'+when+' · '+(MK_STATUS_LABEL[k.status]||k.status)+'</small></div>'
+      +'<div class="lt">'+(k.status==='completed'?mkMoney(k.total_cents):(k.cancel_fee_cents?mkMoney(k.cancel_fee_cents):''))+'</div></div>';
+  };
+  const act=rows.filter(k=>MK_ACTIVE.includes(k.status)), past=rows.filter(k=>!MK_ACTIVE.includes(k.status));
+  el.innerHTML='<div class="sect"><h3>Upcoming</h3></div>'
+    +(act.length?act.map(row).join(''):emptyCard('No upcoming trips','Book a cut from the Home tab — you\'ll see live tracking here.','Find a barber','navTab(\'home\')'))
+    +'<div class="sect" style="margin-top:14px"><h3>Past</h3></div>'
+    +(past.length?past.map(row).join(''):'<div style="padding:0 20px;color:var(--faint);font-size:12.5px;text-align:center">Past appointments show up after your first booking.</div>')
+    +'<div style="height:20px"></div>';
+}
+async function mkResumeBooking(id){
+  const c=sbReady(); if(!c) return;
+  const r=await c.from('bookings').select('*').eq('id',id).maybeSingle();
+  if(r.data && MK_ACTIVE.includes(r.data.status)){ mkWatchBooking(r.data); }
+  else renderTrips();
+}
+async function renderInbox(){
+  const el=document.getElementById('inboxBody'); if(!el) return;
+  const rows=(await mkMyBookings()).filter(k=>MK_ACTIVE.includes(k.status));
+  const job=mkJob && MK_ACTIVE.includes(mkJob.status) ? mkJob : null;
+  let html='';
+  rows.forEach(k=>{
+    const name=(k.barber&&k.barber.profile&&k.barber.profile.full_name)||'Your barber';
+    html+='<div class="lrow" onclick="mkResumeBooking(\''+k.id+'\').then(()=>mkOpenTripChat())"><div class="av" style="background:var(--grad)">'+escapeHtml(nameInitials(name))+'</div>'
+      +'<div class="lr"><b>'+escapeHtml(name)+'</b><small>Chat about your '+escapeHtml(k.service_name||'cut')+'</small></div><div class="lt">live</div></div>';
+  });
+  if(job) html+='<div class="lrow" onclick="mkOpenJobChat()"><div class="av" style="background:var(--gradGreen)">'+escapeHtml(nameInitials(mkJobCustName||'Customer'))+'</div>'
+      +'<div class="lr"><b>'+escapeHtml(mkJobCustName||'Your customer')+'</b><small>Current job · '+escapeHtml(job.service_name||'Cut')+'</small></div><div class="lt">live</div></div>';
+  el.innerHTML = html || ('<div class="lrow"><div class="av" style="background:var(--card3);color:var(--blue)">✂</div>'
+    +'<div class="lr"><b>Catch a Fade</b><small>Messages with your barber show up here during a booking.</small></div></div>');
+}
+
+/* ---------- real chat (customer ↔ barber, per booking) ---------- */
+let mkChatId=null, mkChatChan=null;
+function mkOpenTripChat(){
+  if(!mkBooking){ notify('No active trip','Chat opens once a barber accepts your booking.'); return; }
+  const b=tripBarber();
+  mkOpenChat(mkBooking.id, b.n, b.in, '● '+(MK_STATUS_LABEL[mkBooking.status]||'Your trip'));
+}
+function mkOpenJobChat(){
+  if(!mkJob) return;
+  mkOpenChat(mkJob.id, mkJobCustName||'Your customer', nameInitials(mkJobCustName||'C'), '● '+(MK_STATUS_LABEL[mkJob.status]||'Current job'));
+}
+async function mkOpenChat(bookingId, name, initials, sub){
+  const c=sbReady(); if(!c) return;
+  document.getElementById('chName').textContent=name;
+  document.getElementById('chAv').textContent=initials;
+  const cs=document.getElementById('chSub'); if(cs) cs.textContent=sub||'';
+  document.getElementById('chatField').placeholder='Message '+mkFirst(name)+'…';
+  const box=document.getElementById('msgs'); box.innerHTML='';
+  try{ if(mkChatChan) c.removeChannel(mkChatChan); }catch(e){}
+  mkChatId=bookingId;
+  nav('chat');
+  const me=await mkUserId();
+  const add=(m)=>{
+    if(document.getElementById('m-'+m.id)) return;
+    const d=document.createElement('div'); d.id='m-'+m.id;
+    d.className='msg '+(m.sender_id===me?'mine':'them'); d.textContent=m.body;
+    box.appendChild(d); box.parentElement.scrollTop=box.parentElement.scrollHeight;
+  };
+  try{ const r=await c.from('messages').select('*').eq('booking_id',bookingId).order('created_at'); (r.data||[]).forEach(add); }catch(e){}
+  try{
+    mkChatChan=c.channel('chat-'+bookingId)
+      .on('postgres_changes',{event:'INSERT',schema:'public',table:'messages',filter:'booking_id=eq.'+bookingId},p=>add(p.new))
+      .subscribe();
+  }catch(e){}
+}
+async function mkSendChat(text){
+  const f=document.getElementById('chatField');
+  const body=String(text!=null?text:(f?f.value:'')).trim();
+  if(!body || !mkChatId) return;
+  if(f && text==null) f.value='';
+  const c=sbReady(); const me=await mkUserId(); if(!c||!me) return;
+  const r=await c.from('messages').insert({ booking_id:mkChatId, sender_id:me, body:body.slice(0,2000) }).select().single();
+  if(r.error){ notifyErr('Message not sent', 'Check your connection and try again.'); return; }
+  const box=document.getElementById('msgs');
+  if(!document.getElementById('m-'+r.data.id)){
+    const d=document.createElement('div'); d.id='m-'+r.data.id; d.className='msg mine'; d.textContent=r.data.body;
+    box.appendChild(d); box.parentElement.scrollTop=box.parentElement.scrollHeight;
+  }
+}
+function quickSend(t){ mkSendChat(t); }
+
+/* =====================================================================
+ *  BARBER SIDE — "Are you a barber?" → apply → approved → go online →
+ *  accept requests → navigate → PIN → complete → get paid.
+ * ===================================================================== */
+let mkMe=null, mkMyBarber=null, mkOnline=false, mkJob=null, mkJobCustName='', mkJobCustPhone='';
+let mkReqChan=null, mkReqPoll=null, mkGeoWatch=null, mkLastLocPush=0, mkLastHomePush=0, mkMyLL=null, mkIncoming=null, mkReqTick=null, mkSeenReq={};
+async function mkLoadMe(){
+  const j=await mkApi('/api/me',{});
+  if(j && j.ok){ mkMe=j; mkMyBarber=j.barber||null; }
+  const lbl=document.getElementById('barberRowLabel');
+  if(lbl) lbl.textContent = mkMyBarber ? 'Barber mode' : 'Are you a barber? Start earning';
+  return j;
+}
+async function goBarberSide(){
+  const s=await mkSession();
+  if(!s){ openBarberOnboard(); return; }
+  notify('Opening barber mode…','One moment.');
+  await mkLoadMe();
+  if(mkMyBarber) mkOpenDashboard(); else openBarberOnboard();
+}
+function finishBarberSignup(){
+  signup = {step:1, email:'', phone:'', firstName:'', lastName:'', years:'', bio:'', address:'', radius:5, services:{}, consent:false, idDone:false, selfieDone:false, otpSent:false};
+  goBarberSide();
+}
+async function mkOpenDashboard(){
+  if(stack[stack.length-1]!=='barberDash') nav('barberDash');
+  try{ renderDashPortfolio(); }catch(e){}
+  await mkRenderDashboard();
+}
+async function mkRenderDashboard(){
+  const b=mkMyBarber; if(!b) return;
+  const myName=(await mkProfileName(b.profile_id))||userProfile.name||'Barber';
+  const av=document.getElementById('bdAv'); if(av) av.textContent=nameInitials(myName);
+  // status banner: review → payouts
+  let status='';
+  if(!b.is_verified){
+    status='<div class="tripExtra warn" style="margin:4px 20px 12px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2.3"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>'
+      +'<div><b>Application under review</b><small>We check every barber before they can take bookings. You\'ll be able to go online as soon as you\'re approved.</small></div></div>';
+  }
+  document.getElementById('bdStatus').innerHTML=status;
+  mkSetOnlineUI(!!b.is_available && !!b.is_verified);
+  // earnings from completed jobs
+  try{
+    const c=sbReady();
+    const r=await c.from('bookings').select('status, service_price_cents, completed_at, created_at, accepted_at').eq('barber_id',b.id).order('created_at',{ascending:false}).limit(500);
+    const rows=r.data||[];
+    const day=new Date(); day.setHours(0,0,0,0);
+    const week=new Date(day); week.setDate(week.getDate()-6);
+    const done=rows.filter(k=>k.status==='completed');
+    const sum=(arr)=>arr.reduce((a,k)=>a+Number(k.service_price_cents||0),0);
+    const today=done.filter(k=>new Date(k.completed_at||k.created_at)>=day);
+    const wk=done.filter(k=>new Date(k.completed_at||k.created_at)>=week);
+    document.getElementById('bdToday').textContent=mkMoney(sum(today));
+    document.getElementById('bdTodaySub').textContent=today.length? today.length+' cut'+(today.length===1?'':'s')+' today' : (mkOnline?'You\'re online — requests will pop up here':'Go online to start receiving requests');
+    document.getElementById('bdWeek').textContent='$'+Math.round(sum(wk)/100);
+    document.getElementById('bdCuts').textContent=String(wk.length);
+    // acceptance = requests you accepted ÷ requests you were offered and answered or let lapse
+    const offered=rows.filter(k=>k.status!=='requested');
+    const accepted=offered.filter(k=>k.accepted_at);
+    document.getElementById('bdAcc').textContent=offered.length? Math.round(accepted.length/offered.length*100)+'%' : '—';
+    document.getElementById('bdRating').textContent=done.length? Number(b.rating||5).toFixed(1) : '—';
+  }catch(e){}
+  // services
+  try{
+    const c=sbReady(); const r=await c.from('services').select('name, price_cents').eq('barber_id',b.id).order('price_cents');
+    document.getElementById('bdServices').innerHTML=(r.data||[]).map(s=>'<div class="setRow" style="cursor:default"><div class="st">'+escapeHtml(s.name)+'</div><b>'+mkMoney(s.price_cents)+'</b></div>').join('')
+      || '<div style="padding:0 20px;color:var(--faint);font-size:12.5px">No services listed yet.</div>';
+  }catch(e){}
+  // reviews
+  try{
+    const c=sbReady(); const r=await c.from('reviews').select('rating, body, created_at').eq('barber_id',b.id).order('created_at',{ascending:false}).limit(20);
+    document.getElementById('dashReviews').innerHTML=(r.data||[]).map(v=>'<div class="setRow" style="cursor:default;align-items:flex-start"><div class="st"><span class="star">'+'★'.repeat(v.rating)+'</span><div style="color:var(--dim);font-size:12.5px;font-weight:500;margin-top:3px">'+escapeHtml(v.body||'')+'</div></div></div>').join('')
+      || '<div style="padding:0 20px;color:var(--faint);font-size:12.5px">Reviews from your customers show up here.</div>';
+  }catch(e){}
+  mkRenderPayouts();
+  mkRenderAdmin();
+  mkBarberRefresh();
+}
+function mkSetOnlineUI(on){
+  mkOnline=on;
+  const sw=document.getElementById('bigSwitch'); if(sw) sw.classList.toggle('on',on);
+  const t=document.getElementById('onTitle'), sub=document.getElementById('onSub');
+  if(t) t.textContent=on?'You\'re online':'You\'re offline';
+  if(sub) sub.textContent=on?'Keep the app open — new requests pop up here':(mkMyBarber&&!mkMyBarber.is_verified?'Available once your account is approved':'Go online to start receiving requests');
+  if(on) mkStartBarberLoop(); else mkStopBarberLoop();
+}
+async function toggleOnline(){
+  if(!mkMyBarber){ goBarberSide(); return; }
+  if(!mkMyBarber.is_verified){ notify('Under review','You can go online as soon as your account is approved.'); return; }
+  const on=!mkOnline;
+  const c=sbReady();
+  const r=await c.from('barbers').update({ is_available:on }).eq('id',mkMyBarber.id).select().single();
+  if(r.error){ notifyErr('Couldn\'t update','Check your connection and try again.'); return; }
+  mkMyBarber=r.data; mkSetOnlineUI(on); haptic();
+  notify(on?'You\'re online ✂':'You\'re offline', on?'Customers near you can now request you.':'You won\'t receive new requests.');
+}
+/* while online: share location + listen for requests */
+function mkStartBarberLoop(){
+  if(!mkMyBarber) return;
+  const c=sbReady();
+  if(!mkReqChan){
+    try{
+      mkReqChan=c.channel('jobs-'+mkMyBarber.id)
+        .on('postgres_changes',{event:'*',schema:'public',table:'bookings',filter:'barber_id=eq.'+mkMyBarber.id},()=>mkBarberRefresh())
+        .subscribe();
+    }catch(e){}
+  }
+  clearInterval(mkReqPoll); mkReqPoll=setInterval(mkBarberRefresh,5000);
+  if(mkGeoWatch==null && navigator.geolocation){
+    mkGeoWatch=navigator.geolocation.watchPosition(p=>{
+      mkMyLL=[p.coords.latitude,p.coords.longitude];
+      const now=Date.now();
+      if(now-mkLastLocPush>6000){
+        mkLastLocPush=now;
+        c.from('barber_locations').upsert({ barber_id:mkMyBarber.id, lat:mkMyLL[0], lng:mkMyLL[1], updated_at:new Date().toISOString() }).then(()=>{},()=>{});
+      }
+      // keep "distance from you" on the customer list honest
+      if(now-mkLastHomePush>60000){
+        mkLastHomePush=now;
+        c.from('barbers').update({ home_lat:mkMyLL[0], home_lng:mkMyLL[1] }).eq('id',mkMyBarber.id).then(()=>{},()=>{});
+      }
+    },()=>{},{enableHighAccuracy:true, timeout:15000, maximumAge:5000});
+  }
+}
+function mkStopBarberLoop(){
+  const c=sbReady();
+  // an active job keeps location + updates flowing even if the barber goes offline
+  if(mkJob && MK_ACTIVE.includes(mkJob.status) && mkJob.status!=='requested') return;
+  try{ if(mkReqChan&&c) c.removeChannel(mkReqChan); }catch(e){}
+  mkReqChan=null; clearInterval(mkReqPoll); mkReqPoll=null;
+  if(mkGeoWatch!=null && navigator.geolocation){ try{ navigator.geolocation.clearWatch(mkGeoWatch); }catch(e){} }
+  mkGeoWatch=null;
+}
+async function mkBarberRefresh(){
+  if(!mkMyBarber) return;
+  const c=sbReady();
+  let rows=[];
+  try{
+    const r=await c.from('bookings').select('*').eq('barber_id',mkMyBarber.id).in('status',MK_ACTIVE).order('created_at',{ascending:false});
+    rows=r.data||[];
+  }catch(e){ return; }
+  const job=rows.find(k=>k.status!=='requested')||null;
+  const prevStatus=mkJob&&mkJob.status;
+  if(job && (!mkJob || mkJob.id!==job.id)){
+    mkJobCustName=(await mkProfileName(job.customer_id))||'Customer';
+  }
+  mkJob=job;
+  if(job && !mkOnline) mkStartBarberLoop();
+  if(job || prevStatus) mkRenderJob();
+  // newest open request that we haven't answered or let lapse
+  const req=rows.find(k=>k.status==='requested' && !mkSeenReq[k.id] && Date.now()-new Date(k.created_at).getTime()<MK_REQUEST_TTL);
+  if(req && !job && (!mkIncoming || mkIncoming.id!==req.id)) mkShowRequest(req);
+  if(mkIncoming && !rows.find(k=>k.id===mkIncoming.id && k.status==='requested')) mkHideRequest();
+}
+async function mkShowRequest(bk){
+  mkIncoming=bk;
+  document.getElementById('rqSvc').textContent=bk.service_name||'Haircut';
+  document.getElementById('rqEarn').textContent=mkMoney(bk.service_price_cents);
+  document.getElementById('rqAddr').textContent=bk.address||'Customer\'s location';
+  document.getElementById('rqCust').textContent=mkFirst(await mkProfileName(bk.customer_id)||'Customer');
+  const here=mkMyLL || userLL;
+  document.getElementById('rqDist').textContent=(bk.lat!=null? (Math.round(mkMiles(here,[bk.lat,bk.lng])*10)/10)+' mi · ~'+mkEtaMin(mkMiles(here,[bk.lat,bk.lng]))+' min' : '—');
+  document.getElementById('reqSheet').classList.add('show');
+  const created=new Date(bk.created_at).getTime();
+  clearInterval(mkReqTick);
+  const tick=()=>{
+    const left=Math.max(0,MK_REQUEST_TTL-(Date.now()-created));
+    document.getElementById('rqLeft').textContent=Math.floor(left/60000)+':'+String(Math.floor(left/1000)%60).padStart(2,'0');
+    if(left<=0){ mkSeenReq[bk.id]=1; mkHideRequest(); }
+  };
+  tick(); mkReqTick=setInterval(tick,1000);
+  mkAlert();
+}
+function mkHideRequest(){ clearInterval(mkReqTick); mkIncoming=null; const s=document.getElementById('reqSheet'); if(s) s.classList.remove('show'); }
+function mkAlert(){
+  try{ if(window.haptic) haptic(); }catch(e){}
+  try{
+    const ac=new (window.AudioContext||window.webkitAudioContext)();
+    [0,0.22,0.44].forEach(t=>{ const o=ac.createOscillator(), g=ac.createGain(); o.frequency.value=880; o.connect(g); g.connect(ac.destination);
+      g.gain.setValueAtTime(0.0001,ac.currentTime+t); g.gain.exponentialRampToValueAtTime(0.25,ac.currentTime+t+0.02); g.gain.exponentialRampToValueAtTime(0.0001,ac.currentTime+t+0.18);
+      o.start(ac.currentTime+t); o.stop(ac.currentTime+t+0.2); });
+  }catch(e){}
+}
+async function mkAcceptRequest(){
+  if(!mkIncoming) return;
+  const id=mkIncoming.id; mkSeenReq[id]=1;
+  const btn=document.getElementById('rqAccept'); btn.disabled=true; btn.textContent='Accepting…';
+  const j=await mkApi('/api/bookings/action',{bookingId:id,action:'accept'});
+  btn.disabled=false; btn.textContent='Accept';
+  mkHideRequest();
+  if(!j||!j.ok){ notifyErr('Couldn\'t accept', (j&&j.error)||'Try again.'); mkBarberRefresh(); return; }
+  notify('Job accepted ✂','Tap "Start driving" when you head out.');
+  if(stack[stack.length-1]!=='barberDash') nav('barberDash');
+  mkBarberRefresh();
+}
+async function mkDeclineRequest(){
+  if(!mkIncoming) return;
+  const id=mkIncoming.id; mkSeenReq[id]=1; mkHideRequest();
+  await mkApi('/api/bookings/action',{bookingId:id,action:'decline'});
+  mkBarberRefresh();
+}
+function mkRenderJob(){
+  const el=document.getElementById('bdJob'); if(!el) return;
+  const k=mkJob;
+  if(!k){ el.innerHTML=''; return; }
+  const dest=(k.lat!=null)?[k.lat,k.lng]:null;
+  const nav= dest ? '<button class="btn ghost" style="flex:1;font-size:13px;padding:12px" onclick="mkNavigate()">Navigate</button>' : '';
+  const chat='<button class="btn ghost" style="flex:1;font-size:13px;padding:12px" onclick="mkOpenJobChat()">Chat</button>';
+  let main='';
+  if(k.status==='accepted') main='<button class="btn green" style="width:100%" onclick="mkJobAction(\'en_route\')">Start driving</button>';
+  else if(k.status==='en_route') main='<button class="btn green" style="width:100%" onclick="mkJobAction(\'arrived\')">I\'ve arrived</button>';
+  else if(k.status==='arrived') main='<div style="font-size:12.5px;color:var(--dim);margin-bottom:8px">Ask the customer for the 4-digit PIN in their app.</div>'
+      +'<div style="display:flex;gap:8px"><input id="bdPin" inputmode="numeric" maxlength="4" placeholder="PIN" style="flex:1;min-width:0;background:var(--card3);border:1px solid var(--line2);border-radius:12px;padding:12px;color:var(--text);font-size:18px;letter-spacing:6px;text-align:center"/>'
+      +'<button class="btn green" style="flex:1" onclick="mkJobAction(\'start\')">Start cut</button></div>';
+  else if(k.status==='in_progress') main='<button class="btn green" style="width:100%" onclick="mkJobAction(\'complete\')">Complete cut · get paid '+mkMoney(k.service_price_cents)+'</button>';
+  el.innerHTML='<div style="margin:0 20px 14px;padding:16px;border-radius:18px;background:var(--card);border:1px solid var(--line2)">'
+    +'<div style="font-size:11px;letter-spacing:.08em;color:var(--green);font-weight:760">CURRENT JOB · '+escapeHtml((MK_STATUS_LABEL[k.status]||'').toUpperCase())+'</div>'
+    +'<div style="font-size:18px;font-weight:780;margin-top:4px">'+escapeHtml(mkJobCustName||'Customer')+' · '+escapeHtml(k.service_name||'Haircut')+'</div>'
+    +'<div style="color:var(--dim);font-size:13px;margin-top:3px">'+escapeHtml(k.address||'')+'</div>'
+    +'<div style="color:var(--dim);font-size:13px;margin-top:2px">You earn '+mkMoney(k.service_price_cents)+' + tips</div>'
+    +'<div style="display:flex;gap:8px;margin:12px 0">'+nav+chat+'</div>'+main
+    +(['accepted','en_route','arrived'].includes(k.status)?'<div style="text-align:center;margin-top:10px"><span style="color:#FF7A7A;font-size:12.5px;font-weight:650;cursor:pointer" onclick="mkJobAction(\'cancel\')">Cancel job</span></div>':'')
+    +'</div>';
+}
+function mkNavigate(){
+  if(!mkJob||mkJob.lat==null) return;
+  location.href='https://maps.apple.com/?daddr='+mkJob.lat+','+mkJob.lng+'&dirflg=d';
+}
+async function mkJobAction(action){
+  if(!mkJob) return;
+  if(action==='cancel' && !confirm('Cancel this job? The customer won\'t be charged.')) return;
+  const body={ bookingId:mkJob.id, action:action };
+  if(action==='start'){ body.pin=(document.getElementById('bdPin')||{}).value||''; }
+  const j=await mkApi('/api/bookings/action', body);
+  if(!j||!j.ok){ notifyErr('Not updated', (j&&j.error)||'Try again.'); return; }
+  mkJob=j.booking; haptic();
+  if(action==='complete'){
+    notify('Cut complete ✂','You earned '+mkMoney(j.booking.service_price_cents)+'. Nice work.');
+    mkJob=null; mkRenderJob(); mkRenderDashboard();
+    if(!mkOnline) mkStopBarberLoop();
+    return;
+  }
+  if(action==='cancel'){ notify('Job cancelled','The customer was not charged.'); mkJob=null; }
+  mkRenderJob();
+}
+/* payouts (Stripe Connect Express) */
+async function mkRenderPayouts(){
+  const el=document.getElementById('bdPayouts'); if(!el) return;
+  el.innerHTML='<div style="padding:0 20px;color:var(--faint);font-size:12.5px">Checking payout status…</div>';
+  const j=await mkApi('/api/connect/status',{});
+  let html;
+  if(j && j.ok && j.connected && j.payoutsEnabled){
+    html='<div class="setRow" onclick="mkPayoutDashboard()"><div class="st" style="color:var(--green)">Payouts active ✓<div style="color:var(--faint);font-size:11.5px;font-weight:500;margin-top:2px">Earnings go straight to your bank via Stripe</div></div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></div>';
+  } else {
+    const started=j && j.connected;
+    html='<div class="setRow" onclick="mkSetupPayouts()"><div class="st" style="color:var(--blue)">'+(started?'Finish payout setup':'Set up payouts')+'<div style="color:var(--faint);font-size:11.5px;font-weight:500;margin-top:2px">Connect your bank with Stripe to get paid for every cut</div></div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></div>';
+  }
+  el.innerHTML=html;
+}
+async function mkSetupPayouts(){
+  notify('Opening Stripe…','You\'ll add your bank details on Stripe\'s secure page.');
+  const j=await mkApi('/api/connect/onboard',{});
+  if(j && j.ok && j.url){ location.href=j.url; return; }
+  notifyErr('Payouts unavailable', (j&&j.error)||'Please try again later.');
+}
+async function mkPayoutDashboard(){
+  const j=await mkApi('/api/connect/dashboard',{});
+  if(j && j.ok && j.url) location.href=j.url;
+}
+/* admin: approve new barbers */
+async function mkRenderAdmin(){
+  const el=document.getElementById('bdAdmin'); if(!el) return;
+  if(!mkMe || !mkMe.isAdmin){ el.innerHTML=''; return; }
+  const j=await mkApi('/api/admin/barbers',{});
+  const rows=(j&&j.barbers)||[];
+  el.innerHTML='<div class="sect" style="margin-top:20px"><h3>Admin · barber approvals</h3></div>'
+    +(rows.length? rows.map(r=>{
+      const name=(r.profile&&r.profile.full_name)||'Barber';
+      return '<div style="margin:0 20px 10px;padding:14px;border-radius:14px;background:var(--card);border:1px solid var(--line2)">'
+        +'<b>'+escapeHtml(name)+'</b> '+(r.is_verified?'<span style="color:var(--green);font-size:12px">approved</span>':'<span style="color:var(--orange);font-size:12px">pending</span>')
+        +'<div style="color:var(--dim);font-size:12px;margin-top:3px">'+escapeHtml(r.email||'')+(r.profile&&r.profile.phone?' · '+escapeHtml(r.profile.phone):'')+'</div>'
+        +'<div style="color:var(--dim);font-size:12px;margin-top:3px">'+escapeHtml(r.bio||'')+'</div>'
+        +'<div style="color:var(--dim);font-size:12px;margin-top:3px">'+(r.services||[]).map(s=>escapeHtml(s.name)+' '+mkMoney(s.price_cents)).join(' · ')+'</div>'
+        +'<button class="btn '+(r.is_verified?'ghost':'green')+'" style="width:100%;margin-top:10px;font-size:13px;padding:11px" onclick="mkAdminVerify(\''+r.id+'\','+(!r.is_verified)+')">'+(r.is_verified?'Revoke approval':'Approve barber')+'</button></div>';
+    }).join('') : '<div style="padding:0 20px;color:var(--faint);font-size:12.5px">No barber applications yet.</div>');
+}
+async function mkAdminVerify(id, verified){
+  const j=await mkApi('/api/admin/verify',{barberId:id, verified:verified});
+  if(j&&j.ok){ notify(verified?'Barber approved ✓':'Approval revoked', verified?'They can go online now.':'They\'re hidden from customers.'); mkRenderAdmin(); }
+  else notifyErr('Not updated',(j&&j.error)||'Try again.');
+}
+
+/* ---------- resume on launch + keep the customer list fresh ---------- */
+async function mkOnAppStart(){
+  const s=await mkSession(); if(!s) return;
+  await mkLoadMe();
+  // a barber who was online keeps receiving requests after an app restart
+  if(mkMyBarber && mkMyBarber.is_verified && mkMyBarber.is_available) mkSetOnlineUI(true);
+  if(mkMyBarber) mkBarberRefresh();
+  // a customer with a live booking goes straight back to it
+  const id=localStorage.getItem('fadex_active_booking');
+  if(id) mkResumeBooking(id);
+}
+setTimeout(mkOnAppStart, 1200);
+setInterval(()=>{ if(stack[stack.length-1]==='home' && document.visibilityState==='visible'){ loadBarbersFromSupabase().then(ok=>{ if(ok) buildList(); }); } }, 30000);
 </script>
 <!-- Native bridge: inert on the web, upgrades to real native flows inside the iOS app. -->
 <script src="native-bridge.js"></script>
