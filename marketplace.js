@@ -18,6 +18,7 @@ const crypto = require('crypto');
 const REQUEST_TTL_MS = 3 * 60 * 1000;   // a request nobody accepts within 3 min expires
 const FREE_CANCEL_MS = 2 * 60 * 1000;   // Uber-style: free cancel for 2 min after accept
 const DEMO_BARBER_EMAIL = 'demo-barber@catchafade.app';
+const AGREEMENT_VERSION = '2026-10-13';      // Independent Barber Agreement (/barber-agreement)
 
 function readJSON(req, limit) {
   return new Promise((resolve) => {
@@ -535,6 +536,25 @@ module.exports = function createMarketplace(ctx) {
         return sendJSON(res, 200, { ok: true }), true;
       }
 
+      // ---- barber license + Independent Barber Agreement ----
+      // Kept in the account's app_metadata: only the server can write it, so a
+      // barber can't edit their own record after we verified it.
+      if (post && p === '/api/barber/compliance') {
+        const d = await readJSON(req); const u = d && await authUser(d.accessToken);
+        if (!u) return sendJSON(res, 401, { ok: false, error: 'sign in required' }), true;
+        const license = String(d.licenseNumber || '').trim().toUpperCase().replace(/[^A-Z0-9-]/g, '').slice(0, 30);
+        const state = String(d.licenseState || 'FL').trim().toUpperCase().replace(/[^A-Z]/g, '').slice(0, 2) || 'FL';
+        if (license.length < 3) return sendJSON(res, 400, { ok: false, error: 'Enter your barber license number.' }), true;
+        if (!d.agreed) return sendJSON(res, 400, { ok: false, error: 'Please accept the Independent Barber Agreement.' }), true;
+        const meta = Object.assign({}, u.app_metadata || {}, {
+          barber_license: license, barber_license_state: state,
+          barber_agreement: { version: AGREEMENT_VERSION, accepted_at: new Date().toISOString() }
+        });
+        const { error } = await supabase.auth.admin.updateUserById(u.id, { app_metadata: meta });
+        if (error) return sendJSON(res, 500, { ok: false, error: error.message }), true;
+        return sendJSON(res, 200, { ok: true }), true;
+      }
+
       // ---- admin: approve new barbers ----
       if (post && (p === '/api/admin/barbers' || p === '/api/admin/verify')) {
         const d = await readJSON(req); const u = d && await authUser(d.accessToken);
@@ -552,9 +572,11 @@ module.exports = function createMarketplace(ctx) {
           .eq('is_demo', false).order('created_at', { ascending: false });
         const out = [];
         for (const r of rows || []) {
-          let email = '';
-          try { const g = await supabase.auth.admin.getUserById(r.profile.id); email = (g.data && g.data.user && g.data.user.email) || ''; } catch (e) {}
-          out.push({ ...r, email, docs: r.profile ? await docLinks(r.profile.id) : { id: null, selfie: null } });
+          let email = '', am = {};
+          try { const g = await supabase.auth.admin.getUserById(r.profile.id); const gu = g.data && g.data.user; email = (gu && gu.email) || ''; am = (gu && gu.app_metadata) || {}; } catch (e) {}
+          out.push({ ...r, email, docs: r.profile ? await docLinks(r.profile.id) : { id: null, selfie: null },
+                     license: am.barber_license || '', licenseState: am.barber_license_state || '',
+                     agreedAt: (am.barber_agreement && am.barber_agreement.accepted_at) || '' });
         }
         return sendJSON(res, 200, { ok: true, barbers: out }), true;
       }

@@ -234,12 +234,15 @@ const TERMS_HTML = pageHTML('Terms of Service — Catch a Fade',
   '<h1>Terms of Service</h1><p class="muted">Catch a Fade &middot; Effective July 1, 2026</p>'
   + '<p>By using Catch a Fade you agree to these terms.</p>'
   + '<h2>The service</h2><p>Catch a Fade is a marketplace that connects customers with independent barbers. We provide the platform; the barbers provide the services.</p>'
-  + '<h2>Independent barbers</h2><p>Barbers on Catch a Fade are independent contractors, not our employees. They set their own prices and are responsible for the services they deliver.</p>'
+  + '<h2>Independent barbers</h2><p>Barbers on Catch a Fade are independent contractors, not our employees. They set their own prices and are responsible for the services they deliver. Barbers also agree to the <a href="/barber-agreement">Independent Barber Agreement</a>.</p>'
   + '<h2>Fees and payments</h2><p>A 25% platform service fee is added to the barber\'s listed price at checkout and shown before you confirm. Payments are processed by Stripe.</p>'
-  + '<h2>Cancellations</h2><p>You may cancel free of charge within 2 minutes of booking. After that, a flat $5 cancellation fee applies to compensate the barber for their time.</p>'
+  + '<h2>Cancellations</h2><p>You may cancel free of charge before a barber accepts your request and for 2 minutes after they accept. After that, or once the barber has arrived, a flat $5 cancellation fee applies to compensate the barber for their time.</p>'
   + '<h2>Your account</h2><p>Keep your account information accurate and your login to yourself. You can delete your account at any time in the app under <b>Account</b>.</p>'
-  + '<h2>Governing law</h2><p>These terms are governed by the laws of the United States.</p>'
+  + '<h2>Governing law</h2><p>These terms are governed by the laws of the State of Florida, United States.</p>'
   + '<h2>Contact</h2><p>Questions about these terms? Email <a href="mailto:TZUFEINI@gmail.com">TZUFEINI@gmail.com</a>.</p>');
+const BARBER_AGREEMENT_HTML = pageHTML('Independent Barber Agreement — Catch a Fade',
+  '<h1>Independent Barber Agreement</h1><p class="muted">Catch a Fade &middot; Version 2026-10-13</p>'
+  + "<p>This Independent Barber Agreement (\"Agreement\") is between you, the barber, and Zuf Eini, doing business as Catch a Fade (\"Catch a Fade,\" \"we,\" \"us\"). It applies whenever you use the Catch a Fade app to offer haircut and grooming services. By checking the box in the app you agree to it.</p>\n<h2>1. You are an independent contractor</h2>\n<p>You are not an employee, agent or partner of Catch a Fade. You receive no wages, benefits or reimbursement from us. You decide whether, when and where to go online, and you may decline any request. You are free to work through other apps, your own shop or your own clients at any time.</p>\n<h2>2. License and the law</h2>\n<p>You must hold, and keep current, every license your state requires to cut hair for pay (in Florida, a barber license issued by the Department of Business and Professional Regulation). You give us your license number so we can verify it, and you will tell us right away if it lapses, is suspended or is revoked. You follow all health, sanitation and safety rules that apply to your work. We may remove you from the platform if we cannot verify your license.</p>\n<h2>3. Tools and expenses</h2>\n<p>You supply your own clippers, tools, products and transportation, and you pay your own expenses, including travel to customers.</p>\n<h2>4. Prices and payment</h2>\n<p>You set your own service prices in the app. Customers pay through the app by card. For every completed service you receive 100% of your listed price, paid out by Stripe to the bank account you connect through Stripe Connect. Catch a Fade charges the customer a separate service fee on top of your price; that fee is ours. When a customer cancels late, the late-cancellation fee goes to you. Payout timing is set by Stripe.</p>\n<h2>5. Taxes</h2>\n<p>You are responsible for your own taxes on what you earn. Stripe may send you a Form 1099 for your earnings.</p>\n<h2>6. Conduct and safety</h2>\n<p>You treat every customer with respect, arrive when you say you will, confirm the customer's arrival PIN before starting, and follow the in-app safety policies. Harassment, discrimination, fraud, unsafe conduct or repeated poor ratings may lead to removal from the platform.</p>\n<h2>7. Responsibility and insurance</h2>\n<p>You are responsible for the services you perform and for any damage or injury they cause. You are encouraged to carry your own liability insurance. To the extent the law allows, you agree to cover claims brought against Catch a Fade that arise from your services or your breach of this Agreement.</p>\n<h2>8. Customer information</h2>\n<p>You use a customer's name, address, phone number and messages only to complete their booking, and you never share or keep them for any other purpose.</p>\n<h2>9. Ending this Agreement</h2>\n<p>Either of us may end this Agreement at any time. You can stop by going offline or deleting your account in the app. Payments for services you already completed are still paid out.</p>\n<h2>10. Changes and governing law</h2>\n<p>We may update this Agreement; we will show the new version in the app, and continuing to use the app as a barber means you accept it. This Agreement is governed by the laws of the State of Florida.</p>\n<p>Questions? Email <a href=\"mailto:TZUFEINI@gmail.com\">TZUFEINI@gmail.com</a>.</p>");
 const SUPPORT_HTML = pageHTML('Catch a Fade Support',
   '<h1>Catch a Fade Support</h1>'
   + '<p>Need a hand? Email us at <a href="mailto:TZUFEINI@gmail.com">TZUFEINI@gmail.com</a> and we\'ll get back to you.</p>'
@@ -248,7 +251,7 @@ const SUPPORT_HTML = pageHTML('Catch a Fade Support',
 const MARKETPLACE_PATHS = new Set([
   '/api/me', '/api/review-setup', '/api/register-push', '/api/create-payment-intent', '/api/bookings/request', '/api/bookings/action',
   '/api/connect/onboard', '/api/connect/status', '/api/connect/dashboard', '/connect/done', '/connect/refresh',
-  '/api/admin/barbers', '/api/admin/verify', '/api/barber/docs'
+  '/api/admin/barbers', '/api/admin/verify', '/api/barber/docs', '/api/barber/compliance'
 ]);
 marketplace = require('./marketplace')({
   stripe, supabase, sendJSON, sendHTML, pageHTML, rateLimited, FEE_PERCENT, CANCEL_FEE_CENTS,
@@ -462,6 +465,7 @@ const server = http.createServer((req, res) => {
   if (req.method === 'GET' && url.pathname === '/privacy') return sendHTML(res, PRIVACY_HTML);
   if (req.method === 'GET' && url.pathname === '/terms') return sendHTML(res, TERMS_HTML);
   if (req.method === 'GET' && url.pathname === '/support') return sendHTML(res, SUPPORT_HTML);
+  if (req.method === 'GET' && url.pathname === '/barber-agreement') return sendHTML(res, BARBER_AGREEMENT_HTML);
 
   // Delete account: the app sends the signed-in user's access token; we verify it
   // against Supabase auth, then delete the user (the profiles row cascade cleans
