@@ -233,7 +233,7 @@ const SUPPORT_HTML = pageHTML('Catch a Fade Support',
   + '<p>For the fastest answers, use the in-app <b>Help &amp; Support</b> chat, available right inside the app.</p>');
 
 const MARKETPLACE_PATHS = new Set([
-  '/api/me', '/api/register-push', '/api/create-payment-intent', '/api/bookings/request', '/api/bookings/action',
+  '/api/me', '/api/review-setup', '/api/register-push', '/api/create-payment-intent', '/api/bookings/request', '/api/bookings/action',
   '/api/connect/onboard', '/api/connect/status', '/api/connect/dashboard', '/connect/done', '/connect/refresh',
   '/api/admin/barbers', '/api/admin/verify'
 ]);
@@ -247,6 +247,7 @@ const server = http.createServer((req, res) => {
   if (req.method === 'OPTIONS') { res.writeHead(204, CORS); return res.end(); }
 
   const url = new URL(req.url, 'http://localhost');
+  if (url.pathname.startsWith('/api/')) marketplace.ensureReviewAccounts().catch(() => {});
   if (MARKETPLACE_PATHS.has(url.pathname)) {
     marketplace.handle(req, res, url).then((handled) => {
       if (!handled) sendJSON(res, 404, { ok: false, error: 'not found' });

@@ -159,47 +159,60 @@ module.exports = function createMarketplace(ctx) {
   // The reviewer signs in as a real Supabase user, and only that account sees a
   // demo barber whose side of the trip is driven by the server — Apple can't
   // run a second phone to play the barber. Real customers never see it.
-  let demoBarberId = null;
+  let demoBarberId = null, reviewSetup = { ok: false, at: 0, steps: [] };
+  // Idempotent. Every step reports its error (Supabase returns errors instead of
+  // throwing, so silent failures were easy to miss), and it retries on later
+  // requests until it succeeds — e.g. if it ran before the DB migration.
   async function ensureReviewAccounts() {
-    if (!supabase) return;
+    if (!supabase) return reviewSetup;
+    if (reviewSetup.ok) return reviewSetup;
+    if (Date.now() - reviewSetup.at < 30000) return reviewSetup;   // don't hammer
+    const steps = []; const log = (k, err) => { steps.push(err ? k + ': ' + (err.message || err) : k + ': ok'); };
+    reviewSetup = { ok: false, at: Date.now(), steps };
     try {
       const list = await supabase.auth.admin.listUsers({ page: 1, perPage: 1000 });
+      log('listUsers', list.error);
       const users = (list.data && list.data.users) || [];
       const find = (e) => users.find(u => String(u.email || '').toLowerCase() === e);
-      // reviewer customer: password = the review code shown in App Store Connect
       let rv = find(REVIEW_EMAIL);
       if (!rv) {
         const r = await supabase.auth.admin.createUser({ email: REVIEW_EMAIL, password: REVIEW_CODE, email_confirm: true, user_metadata: { full_name: 'App Review' } });
-        rv = r.data && r.data.user;
+        log('create reviewer', r.error); rv = r.data && r.data.user;
       } else {
-        await supabase.auth.admin.updateUserById(rv.id, { password: REVIEW_CODE, email_confirm: true });
+        const r = await supabase.auth.admin.updateUserById(rv.id, { password: REVIEW_CODE, email_confirm: true });
+        log('reset reviewer password', r.error);
       }
-      // demo barber (server-driven)
+      if (rv) { const r = await supabase.from('profiles').upsert({ id: rv.id, full_name: 'App Review' }, { onConflict: 'id' }); log('reviewer profile', r.error); }
       let db = find(DEMO_BARBER_EMAIL);
       if (!db) {
         const r = await supabase.auth.admin.createUser({ email: DEMO_BARBER_EMAIL, password: crypto.randomBytes(18).toString('hex'), email_confirm: true, user_metadata: { full_name: 'Demo Barber (App Review)' } });
-        db = r.data && r.data.user;
+        log('create demo barber', r.error); db = r.data && r.data.user;
       }
-      if (!db) return;
-      await supabase.from('profiles').upsert({ id: db.id, role: 'barber', full_name: 'Demo Barber (App Review)' }, { onConflict: 'id' });
-      const { data: row } = await supabase.from('barbers').upsert({
+      if (!db) throw new Error('no demo barber user');
+      let r = await supabase.from('profiles').upsert({ id: db.id, role: 'barber', full_name: 'Demo Barber (App Review)' }, { onConflict: 'id' });
+      log('demo profile', r.error);
+      // is_available stays false so older app builds (which list every
+      // "available" barber) never show it; new builds include it for the reviewer.
+      r = await supabase.from('barbers').upsert({
         profile_id: db.id, bio: 'Demo barber for App Review — completes the trip automatically.',
-        // is_available stays false so older app builds (which list every
-        // "available" barber) never show it; new builds include it for the reviewer.
         is_verified: true, is_available: false, is_demo: true, rating: 5.0
       }, { onConflict: 'profile_id' }).select().single();
-      if (row) {
-        demoBarberId = row.id;
-        const { data: svc } = await supabase.from('services').select('id').eq('barber_id', row.id);
-        if (!svc || !svc.length) {
-          await supabase.from('services').insert([
-            { barber_id: row.id, name: 'Fade', price_cents: 3500, duration_min: 45 },
-            { barber_id: row.id, name: 'Haircut', price_cents: 3000, duration_min: 40 },
-            { barber_id: row.id, name: 'Beard trim', price_cents: 2000, duration_min: 20 }
-          ]);
-        }
+      log('demo barber row', r.error);
+      if (!r.data) throw new Error('demo barber row missing');
+      demoBarberId = r.data.id;
+      const { data: svc } = await supabase.from('services').select('id').eq('barber_id', demoBarberId);
+      if (!svc || !svc.length) {
+        const ins = await supabase.from('services').insert([
+          { barber_id: demoBarberId, name: 'Fade', price_cents: 3500, duration_min: 45 },
+          { barber_id: demoBarberId, name: 'Haircut', price_cents: 3000, duration_min: 40 },
+          { barber_id: demoBarberId, name: 'Beard trim', price_cents: 2000, duration_min: 20 }
+        ]);
+        log('demo services', ins.error);
       }
-    } catch (e) { console.warn('[marketplace] review accounts:', e.message); }
+      reviewSetup.ok = !steps.some(x => !/: ok$/.test(x));
+    } catch (e) { log('setup', e); }
+    console.log('[marketplace] review setup ' + (reviewSetup.ok ? 'OK' : 'FAILED') + ' — ' + steps.join(' | '));
+    return reviewSetup;
   }
   // Drive the demo barber through a real booking so every status, the live map
   // and the payment capture are exercised end to end.
@@ -234,6 +247,11 @@ module.exports = function createMarketplace(ctx) {
     async handle(req, res, url) {
       const p = url.pathname;
       const post = req.method === 'POST';
+
+      if (p === '/api/review-setup') {
+        if (!reviewSetup.ok) await ensureReviewAccounts();
+        return sendJSON(res, 200, { ok: reviewSetup.ok, steps: reviewSetup.steps }), true;
+      }
 
       // Who am I: admin flag + my barber row (if I applied) + payout status.
       if (post && p === '/api/me') {
