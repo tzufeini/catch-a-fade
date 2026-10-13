@@ -1,0 +1,23 @@
+# Keeps the free tiers awake, so the app never needs a paid plan to stay up:
+# - Supabase pauses a free project after 7 days without activity.
+# - Render's free web service sleeps after 15 minutes idle (the next customer
+#   waits ~30 s, and in-flight booking timers are lost).
+# A real database read plus a server hit every 10 minutes keeps both running.
+# The Supabase key here is the public "publishable" key the app already ships.
+name: Keep alive
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Wake the server
+        run: curl -fsS --retry 3 --retry-delay 20 --max-time 90 https://catch-a-fade.onrender.com/api/health
+      - name: Read from the database
+        run: >
+          curl -fsS --retry 3 --max-time 30
+          "https://jjiiaxqnqnbmuqdbsbdl.supabase.co/rest/v1/barbers?select=id&limit=1"
+          -H "apikey: sb_publishable_jJ6e6ElTmFMv5IPs64GZpQ_Xy7q4G60"
