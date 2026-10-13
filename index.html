@@ -725,6 +725,18 @@ body.light .park{background:rgba(70,201,139,.22);}
 /* Screens you can't see don't animate. The barber-pole CTAs, radar rings and
    spinners on hidden screens otherwise keep the GPU busy the whole session. */
 .screen:not(.active):not(.prev) *,.screen:not(.active):not(.prev) *::before,.screen:not(.active):not(.prev) *::after{animation:none!important;will-change:auto!important;}
+/* legal document sheet — the white, system-font look of Apple/Google/Microsoft agreements */
+.legalDocWrap{padding:6px 12px 70px;}
+.legalDoc{background:#fff;color:#1d1d1f;border-radius:14px;padding:26px 20px 30px;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;}
+.legalDoc .ld-kicker{font-size:11px;font-weight:600;letter-spacing:.12em;color:#6e6e73;margin-bottom:6px;}
+.legalDoc h1{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1.15;margin:0 0 6px;color:#1d1d1f;}
+.legalDoc .ld-eff{font-size:12.5px;color:#6e6e73;padding-bottom:16px;margin-bottom:18px;border-bottom:1px solid #d2d2d7;}
+.legalDoc h3{font-size:15px;font-weight:700;color:#1d1d1f;margin:24px 0 8px;letter-spacing:-.01em;}
+.legalDoc p{font-size:13.5px;line-height:1.6;color:#1d1d1f;margin:0 0 11px;}
+.legalDoc p b{font-weight:600;}
+.legalDoc p.caps{font-size:12.5px;line-height:1.55;letter-spacing:.01em;}
+.legalDoc a{color:#0066cc;text-decoration:none;}
+.legalDoc .ld-end{margin-top:26px;padding-top:14px;border-top:1px solid #d2d2d7;font-size:11.5px;color:#6e6e73;text-align:center;}
 /* barber landing */
 .bl-row{display:flex;gap:13px;align-items:flex-start;margin:0 20px 10px;padding:13px 14px;border-radius:14px;background:var(--card);border:1px solid var(--line2);}
 .bl-ic{width:34px;height:34px;flex-shrink:0;border-radius:10px;background:rgba(46,132,196,.16);color:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;}
@@ -2755,53 +2767,109 @@ html.native .ob-tip{ font-size:14px; }
       <div class="iconbtn" onclick="back()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M15 5l-7 7 7 7"/></svg></div>
       <h2>Barber Agreement</h2>
     </div>
-    <div class="body legal">
-      <div class="lt">Independent Barber Agreement</div>
-      <div class="eff">Effective October 13, 2026.</div>
-      <p>This Independent Barber Agreement (the "Agreement") is entered into by and between Zuf Eini, doing business as Catch a Fade ("Catch a Fade," "we," "us" or "our"), and the individual barber accepting this Agreement ("Barber" or "you"). This Agreement governs your access to and use of the Catch a Fade mobile application and related services (collectively, the "Platform") to offer barbering and grooming services (the "Services") to users of the Platform ("Customers"). By selecting the acceptance checkbox in the Platform, you acknowledge that you have read and understood this Agreement and agree to be bound by it.</p>
-      <h3>1. Independent Contractor Relationship</h3>
-      <p><b>1.1 Status.</b> You are an independent contractor. Nothing in this Agreement creates an employment, agency, partnership or joint-venture relationship between you and Catch a Fade.</p>
-      <p><b>1.2 Control.</b> You retain sole discretion over whether, when and where you make yourself available through the Platform, and you may accept or decline any request.</p>
-      <p><b>1.3 No Benefits.</b> You are not entitled to wages, employee benefits or reimbursement of expenses from Catch a Fade.</p>
-      <p><b>1.4 Non-Exclusivity.</b> You may provide services through other platforms, through your own business or directly to your own clients at any time.</p>
-      <h3>2. Licensing and Legal Compliance</h3>
-      <p><b>2.1 Licensure.</b> You represent and warrant that you hold, and will maintain in good standing for as long as you use the Platform, every license required by applicable law to perform the Services for compensation, including, in Florida, a barber license issued by the Florida Department of Business and Professional Regulation.</p>
-      <p><b>2.2 Verification.</b> You will provide your license number and authorize Catch a Fade to verify it. You will notify Catch a Fade promptly if your license lapses or is suspended or revoked.</p>
-      <p><b>2.3 Compliance.</b> You will comply with all applicable laws, regulations and health, sanitation and safety standards in performing the Services.</p>
-      <p><b>2.4 Removal.</b> Catch a Fade may suspend or deactivate your access to the Platform if your license cannot be verified or is no longer valid.</p>
-      <h3>3. Equipment and Expenses</h3>
-      <p>You are responsible for providing, at your own expense, all tools, equipment, products and transportation necessary to perform the Services, and for all expenses you incur, including travel to Customer locations.</p>
-      <h3>4. Pricing, Fees and Payment</h3>
-      <p><b>4.1 Pricing.</b> You determine the prices of the Services you list on the Platform.</p>
-      <p><b>4.2 Payment Processing.</b> Customers pay through the Platform. Payments are processed by Stripe, and payouts are made to the bank account you designate through Stripe Connect, subject to Stripe's terms and payout schedule.</p>
-      <p><b>4.3 Your Earnings.</b> For each completed Service, you receive one hundred percent (100%) of your listed price.</p>
-      <p><b>4.4 Service Fee.</b> Catch a Fade charges Customers a separate service fee in addition to your listed price. The service fee is retained by Catch a Fade.</p>
-      <p><b>4.5 Cancellation Fees.</b> Late-cancellation fees paid by Customers under the Platform's cancellation policy are paid to you.</p>
-      <h3>5. Taxes</h3>
-      <p>You are solely responsible for reporting and paying all taxes on your earnings. Stripe may issue you an IRS Form 1099 where required by law.</p>
-      <h3>6. Professional Conduct and Safety</h3>
-      <p><b>6.1 Standards.</b> You will perform the Services in a professional, courteous and competent manner, arrive at the time you commit to, and treat every Customer with respect.</p>
-      <p><b>6.2 Arrival Verification.</b> You will confirm the Customer's arrival PIN in the Platform before beginning a Service.</p>
-      <p><b>6.3 Prohibited Conduct.</b> Harassment, discrimination, fraud, unsafe conduct and other violations of Platform policies are prohibited.</p>
-      <p><b>6.4 Enforcement.</b> Catch a Fade may suspend or deactivate your access to the Platform for violations of this Agreement or Platform policies, or for sustained low Customer ratings.</p>
-      <h3>7. Responsibility, Insurance and Indemnification</h3>
-      <p><b>7.1 Responsibility.</b> You are solely responsible for the Services you perform and for any damage or injury arising from them.</p>
-      <p><b>7.2 Insurance.</b> You are encouraged to maintain appropriate professional liability insurance.</p>
-      <p><b>7.3 Indemnification.</b> To the fullest extent permitted by law, you agree to indemnify and hold harmless Catch a Fade from and against any claims, losses and expenses arising out of the Services you perform or your breach of this Agreement.</p>
-      <h3>8. Customer Information</h3>
-      <p>You will use Customer information, including names, addresses, telephone numbers and messages, solely to complete the applicable booking, and will not disclose, retain or use such information for any other purpose.</p>
-      <h3>9. Term and Termination</h3>
-      <p><b>9.1 Termination.</b> Either party may terminate this Agreement at any time. You may terminate it by going offline permanently or by deleting your account in the Platform.</p>
-      <p><b>9.2 Effect of Termination.</b> Amounts owed for Services completed before termination will be paid out in accordance with Section 4.</p>
-      <h3>10. General Provisions</h3>
-      <p><b>10.1 Amendments.</b> Catch a Fade may amend this Agreement from time to time. The current version will be available in the Platform, and your continued use of the Platform as a Barber after an amendment constitutes your acceptance of it.</p>
-      <p><b>10.2 Governing Law.</b> This Agreement is governed by the laws of the State of Florida, without regard to its conflict-of-laws principles.</p>
-      <p><b>10.3 Entire Agreement.</b> This Agreement, together with the Catch a Fade Terms of Service and Privacy Policy, constitutes the entire agreement between the parties regarding its subject matter.</p>
-      <p><b>10.4 Severability.</b> If any provision of this Agreement is held unenforceable, the remaining provisions will remain in full force and effect.</p>
-      <h3>Contact</h3>
-      <p>Questions regarding this Agreement may be directed to <a href="mailto:TZUFEINI@gmail.com">TZUFEINI@gmail.com</a>.</p>
-      <div class="end">© 2026 Catch a Fade</div>
-    </div>
+    <div class="body legalDocWrap"><article class="legalDoc">
+      <div class="ld-kicker">CATCH A FADE</div>
+      <h1>Independent Barber Agreement</h1>
+      <div class="ld-eff">Effective October 13, 2026</div>
+      <p class="caps">PLEASE READ THIS AGREEMENT CAREFULLY BEFORE USING THE CATCH A FADE PLATFORM TO OFFER SERVICES. BY SELECTING THE ACCEPTANCE CHECKBOX IN THE PLATFORM, OR BY GOING ONLINE OR PERFORMING ANY SERVICE THROUGH THE PLATFORM, YOU AGREE TO BE BOUND BY THIS AGREEMENT. IF YOU DO NOT AGREE, DO NOT ACCEPT THIS AGREEMENT AND DO NOT USE THE PLATFORM AS A BARBER.</p>
+      <p>This Independent Barber Agreement (the "Agreement") is entered into by and between Zuf Eini, doing business as Catch a Fade ("Catch a Fade," "we," "us" or "our"), and the individual barber who accepts it ("Barber" or "you"). It governs your access to and use of the Catch a Fade Platform to offer Services to Customers. This Agreement is in addition to, and should be read together with, the Catch a Fade Terms of Service and Privacy Policy.</p>
+      <h3>1. Definitions</h3>
+      <p>In this Agreement, the following capitalized terms have the meanings set out below:</p>
+      <p><b>"Account"</b> means the account you create on the Platform to offer Services.</p>
+      <p><b>"Booking"</b> means a request for Services submitted by a Customer through the Platform that you have accepted.</p>
+      <p><b>"Cancellation Fee"</b> means the fee charged to a Customer who cancels a Booking outside the free-cancellation period described in the Platform's cancellation policy.</p>
+      <p><b>"Customer"</b> means a user of the Platform who requests or receives Services.</p>
+      <p><b>"Customer Information"</b> means any information about a Customer that you receive through the Platform, including name, address, location, telephone number, photographs and messages.</p>
+      <p><b>"Listed Price"</b> means the price you set on the Platform for a Service.</p>
+      <p><b>"Platform"</b> means the Catch a Fade mobile application, website, software, and related services operated by Catch a Fade.</p>
+      <p><b>"Services"</b> means the barbering and grooming services you offer and perform for Customers through the Platform.</p>
+      <p><b>"Service Fee"</b> means the fee Catch a Fade charges Customers for use of the Platform, in addition to the Listed Price.</p>
+      <p><b>"Stripe"</b> means Stripe, Inc. and its affiliates, the third-party payment processor used by the Platform.</p>
+      <h3>2. Acceptance and Eligibility</h3>
+      <p><b>2.1 Acceptance.</b> You accept this Agreement by selecting the acceptance checkbox in the Platform. Catch a Fade records the date, time and version of the Agreement you accept.</p>
+      <p><b>2.2 Eligibility.</b> To offer Services through the Platform, you must (a) be at least eighteen (18) years of age; (b) have the legal capacity to enter into a binding contract; (c) hold every license required to perform the Services in the jurisdiction where you perform them, as described in Section 4; and (d) complete the Platform's application and verification process.</p>
+      <p><b>2.3 Accurate Information.</b> You agree to provide accurate, current and complete information during the application process and to keep that information up to date.</p>
+      <p><b>2.4 One Account.</b> You may maintain only one Barber Account, and you may not allow any other person to use it or to perform Services under it.</p>
+      <h3>3. Relationship of the Parties</h3>
+      <p><b>3.1 Independent Contractor.</b> You are an independent contractor. Nothing in this Agreement creates an employment, agency, partnership, franchise or joint-venture relationship between you and Catch a Fade.</p>
+      <p><b>3.2 Control of Your Work.</b> You retain sole discretion over whether, when and where you make yourself available through the Platform, which requests you accept or decline, and the manner and means by which you perform the Services, subject to the standards described in this Agreement.</p>
+      <p><b>3.3 No Benefits.</b> You are not entitled to wages, salary, overtime, employee benefits or reimbursement of expenses from Catch a Fade.</p>
+      <p><b>3.4 Non-Exclusivity.</b> This Agreement is non-exclusive. You may provide services through other platforms, through your own business or directly to your own clients at any time.</p>
+      <p><b>3.5 No Authority to Bind.</b> Neither party has authority to enter into any contract or incur any obligation on behalf of the other.</p>
+      <h3>4. Licensing, Verification and Legal Compliance</h3>
+      <p><b>4.1 Licensure.</b> You represent and warrant that you hold, and will maintain in good standing for as long as you use the Platform, every license required by applicable law to perform the Services for compensation, including, in Florida, a barber license issued by the Florida Department of Business and Professional Regulation.</p>
+      <p><b>4.2 Verification.</b> You will provide your license number, a photograph of a valid government-issued identification document and a photograph of yourself. You authorize Catch a Fade to use this information to verify your identity and licensure, including through publicly available licensing records.</p>
+      <p><b>4.3 Notice of Changes.</b> You will notify Catch a Fade promptly if your license lapses, is suspended, restricted or revoked, or if any information you provided becomes inaccurate.</p>
+      <p><b>4.4 Compliance with Law.</b> You will comply with all laws, regulations and professional standards that apply to the Services, including applicable health, sanitation, infection-control and safety requirements.</p>
+      <p><b>4.5 Approval.</b> Catch a Fade reviews each application and may approve or decline it. You may not accept Bookings until your Account has been approved.</p>
+      <h3>5. Your Account</h3>
+      <p><b>5.1 Security.</b> You are responsible for maintaining the confidentiality of your Account credentials and for all activity that occurs under your Account.</p>
+      <p><b>5.2 Unauthorized Use.</b> You will notify Catch a Fade immediately of any unauthorized access to or use of your Account.</p>
+      <p><b>5.3 Profile Content.</b> You are responsible for the accuracy of your profile, including your name, photographs, description, services and prices.</p>
+      <h3>6. Use of the Platform</h3>
+      <p><b>6.1 Going Online.</b> When you choose to go online, the Platform may send you requests from Customers. Each request shows the requested Service, its Listed Price and the Customer's approximate location before you decide whether to accept it.</p>
+      <p><b>6.2 Location Sharing.</b> While you are online or completing a Booking, the Platform uses your device's location to match you with nearby requests and to show the Customer your progress toward their location. You may go offline at any time to stop sharing your location.</p>
+      <p><b>6.3 Performing a Booking.</b> After accepting a Booking, you will travel to the Customer's location, confirm the Customer's arrival PIN in the Platform before beginning the Service, perform the Service, and mark the Booking complete in the Platform.</p>
+      <p><b>6.4 Communications.</b> You will communicate with Customers about a Booking through the Platform's messaging features.</p>
+      <h3>7. Pricing, Payments and Payouts</h3>
+      <p><b>7.1 Pricing.</b> You determine the Listed Price of each Service you offer. You may change your prices at any time; changes apply to Bookings requested after the change.</p>
+      <p><b>7.2 Payment Processing.</b> Customers pay through the Platform. Payments are processed by Stripe. To receive payouts, you must create a connected account with Stripe and agree to the Stripe Connected Account Agreement, which includes the Stripe Services Agreement. Catch a Fade is not a bank and does not hold your funds.</p>
+      <p><b>7.3 Your Earnings.</b> For each completed Booking, you receive one hundred percent (100%) of the Listed Price of the Service performed.</p>
+      <p><b>7.4 Service Fee.</b> Catch a Fade charges Customers a Service Fee in addition to the Listed Price. The Service Fee is retained by Catch a Fade and is not part of your earnings.</p>
+      <p><b>7.5 Cancellation Fees.</b> Cancellation Fees paid by Customers in accordance with the Platform's cancellation policy are paid to you.</p>
+      <p><b>7.6 Payout Timing.</b> Payouts are made to the bank account you designate in your Stripe account according to Stripe's payout schedule. Catch a Fade is not responsible for delays caused by Stripe or by your bank.</p>
+      <p><b>7.7 Refunds and Disputes.</b> If a Customer payment is refunded or reversed because a Booking was not performed as agreed, the related earnings may be adjusted. Catch a Fade will notify you of any adjustment and give you an opportunity to respond.</p>
+      <h3>8. Taxes</h3>
+      <p>You are solely responsible for determining, reporting and paying all taxes that apply to your earnings. Stripe may issue you an IRS Form 1099 or other tax documents where required by law. Catch a Fade does not withhold taxes from your earnings.</p>
+      <h3>9. Equipment and Expenses</h3>
+      <p>You are responsible for providing, at your own expense, all tools, equipment, products, supplies and transportation necessary to perform the Services, and for all expenses you incur in connection with the Services, including travel to Customer locations.</p>
+      <h3>10. Standards of Conduct and Safety</h3>
+      <p><b>10.1 Professional Standards.</b> You will perform the Services in a professional, courteous and competent manner, arrive at the time you commit to, and treat every Customer with respect.</p>
+      <p><b>10.2 Non-Discrimination.</b> You will not refuse, cancel or alter Services, or treat any Customer differently, on the basis of race, color, religion, national origin, sex, sexual orientation, gender identity, disability, age or any other characteristic protected by law.</p>
+      <p><b>10.3 Prohibited Conduct.</b> You will not engage in harassment, threats, violence, fraud, theft or any unsafe or unlawful conduct, and you will not perform Services while impaired by alcohol or drugs.</p>
+      <p><b>10.4 Sanitation.</b> You will clean and disinfect your tools and equipment in accordance with applicable sanitation standards before each Service.</p>
+      <p><b>10.5 Safety Features.</b> You will use the Platform's safety features as intended, including arrival-PIN verification, and you will report any safety incident to Catch a Fade promptly.</p>
+      <h3>11. Ratings and Feedback</h3>
+      <p>Customers may rate and review the Services you perform, and those ratings may be displayed on your profile. Ratings help maintain the quality and safety of the Platform. Catch a Fade may remove reviews that are abusive, unlawful or unrelated to the Services.</p>
+      <h3>12. Customer Information and Privacy</h3>
+      <p><b>12.1 Use of Customer Information.</b> You will use Customer Information solely to complete the applicable Booking. You will not disclose, sell, retain or use Customer Information for any other purpose, including marketing, and you will delete any Customer Information you have stored outside the Platform when the Booking is complete.</p>
+      <p><b>12.2 Your Information.</b> Catch a Fade collects and uses your information, including your location while you are online, as described in the Catch a Fade Privacy Policy.</p>
+      <p><b>12.3 Verification Documents.</b> Photographs of your identification document and of yourself are stored securely and are accessible only to Catch a Fade personnel responsible for reviewing applications.</p>
+      <h3>13. Intellectual Property</h3>
+      <p><b>13.1 License to Use the Platform.</b> Subject to your compliance with this Agreement, Catch a Fade grants you a limited, revocable, non-exclusive, non-transferable license to use the Platform solely to offer and perform Services.</p>
+      <p><b>13.2 Restrictions.</b> You will not copy, modify, reverse engineer, resell or interfere with the Platform, or access it by any automated means.</p>
+      <p><b>13.3 Marks.</b> "Catch a Fade" and its logos are the property of Catch a Fade. You may not use them without prior written permission, except as displayed within the Platform.</p>
+      <p><b>13.4 Your Content.</b> You retain ownership of the photographs and other content you upload to your profile. You grant Catch a Fade a non-exclusive, royalty-free license to display that content on the Platform for as long as it remains on your profile.</p>
+      <h3>14. Insurance</h3>
+      <p>You are encouraged to maintain professional and general liability insurance appropriate to the Services you perform. Catch a Fade does not provide insurance coverage for you or for the Services.</p>
+      <h3>15. Indemnification</h3>
+      <p>To the fullest extent permitted by law, you agree to indemnify, defend and hold harmless Catch a Fade from and against any claims, liabilities, damages, losses and expenses, including reasonable attorneys' fees, arising out of or related to (a) the Services you perform; (b) your breach of this Agreement; or (c) your violation of any law or of the rights of any third party.</p>
+      <h3>16. Disclaimers</h3>
+      <p class="caps">THE PLATFORM IS PROVIDED "AS IS" AND "AS AVAILABLE." TO THE FULLEST EXTENT PERMITTED BY LAW, CATCH A FADE DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. CATCH A FADE DOES NOT GUARANTEE ANY MINIMUM NUMBER OF REQUESTS, BOOKINGS OR EARNINGS, OR THAT THE PLATFORM WILL BE UNINTERRUPTED OR ERROR-FREE.</p>
+      <h3>17. Limitation of Liability</h3>
+      <p class="caps">TO THE FULLEST EXTENT PERMITTED BY LAW, CATCH A FADE WILL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL OR PUNITIVE DAMAGES, OR FOR ANY LOSS OF PROFITS OR REVENUE, ARISING OUT OF OR RELATED TO THIS AGREEMENT OR THE PLATFORM. CATCH A FADE'S TOTAL LIABILITY TO YOU FOR ALL CLAIMS ARISING OUT OF OR RELATED TO THIS AGREEMENT WILL NOT EXCEED THE GREATER OF ONE HUNDRED U.S. DOLLARS (US$100) OR THE AMOUNTS OWED TO YOU UNDER SECTION 7 THAT REMAIN UNPAID. NOTHING IN THIS AGREEMENT LIMITS LIABILITY THAT CANNOT BE LIMITED UNDER APPLICABLE LAW.</p>
+      <h3>18. Suspension, Deactivation and Termination</h3>
+      <p><b>18.1 Termination by You.</b> You may terminate this Agreement at any time by going offline permanently or by deleting your Account in the Platform.</p>
+      <p><b>18.2 Suspension or Deactivation by Catch a Fade.</b> Catch a Fade may suspend or deactivate your Account if (a) your license or identity cannot be verified or is no longer valid; (b) you materially breach this Agreement or Platform policies; (c) you receive sustained low Customer ratings; or (d) suspension is reasonably necessary to protect the safety of Customers, Barbers or the public. Catch a Fade may also terminate this Agreement at any time.</p>
+      <p><b>18.3 Notice and Review.</b> Where practicable, Catch a Fade will notify you of the reason for a suspension or deactivation. You may contact Catch a Fade to request a review of the decision.</p>
+      <p><b>18.4 Effect of Termination.</b> Earnings for Bookings completed before termination will be paid out in accordance with Section 7. Sections 7.7, 8, 12, 13, 15, 16, 17, 21 and 22 survive termination of this Agreement.</p>
+      <h3>19. Changes to This Agreement</h3>
+      <p>Catch a Fade may amend this Agreement from time to time. When we make material changes, we will show the updated Agreement in the Platform and update the "Effective" date above. Your continued use of the Platform as a Barber after the updated Agreement takes effect constitutes your acceptance of it. If you do not agree to the changes, you must stop using the Platform as a Barber.</p>
+      <h3>20. Electronic Communications and Notices</h3>
+      <p>You consent to receive communications from Catch a Fade electronically, including through the Platform, by push notification and by email. Notices to you will be sent to the email address associated with your Account. Notices to Catch a Fade must be sent to the email address listed in the Contact section below.</p>
+      <h3>21. Governing Law and Venue</h3>
+      <p>This Agreement is governed by the laws of the State of Florida, without regard to its conflict-of-laws principles. Any dispute arising out of or related to this Agreement will be brought exclusively in the state or federal courts located in Alachua County, Florida, and each party consents to the personal jurisdiction of those courts.</p>
+      <h3>22. General Provisions</h3>
+      <p><b>22.1 Entire Agreement.</b> This Agreement, together with the Catch a Fade Terms of Service and Privacy Policy, constitutes the entire agreement between the parties regarding its subject matter and supersedes any prior agreements on that subject.</p>
+      <p><b>22.2 Severability.</b> If any provision of this Agreement is held invalid or unenforceable, that provision will be enforced to the maximum extent permissible and the remaining provisions will remain in full force and effect.</p>
+      <p><b>22.3 No Waiver.</b> A failure or delay by either party to enforce any provision of this Agreement is not a waiver of that provision or of any other provision.</p>
+      <p><b>22.4 Assignment.</b> You may not assign or transfer this Agreement without Catch a Fade's prior written consent. Catch a Fade may assign this Agreement to an affiliate or to a successor in connection with a merger, acquisition or sale of its business or assets.</p>
+      <p><b>22.5 Force Majeure.</b> Neither party is liable for any failure or delay in performance caused by events beyond its reasonable control.</p>
+      <p><b>22.6 Headings.</b> Section headings are for convenience only and do not affect the interpretation of this Agreement.</p>
+      <h3>23. Contact</h3>
+      <p>Questions or notices regarding this Agreement may be directed to Catch a Fade at <a href="mailto:TZUFEINI@gmail.com">TZUFEINI@gmail.com</a>.</p>
+      <div class="ld-end">© 2026 Catch a Fade. All rights reserved.</div>
+    </article></div>
   </section>
 
   <section class="screen" id="barberOnboard">
