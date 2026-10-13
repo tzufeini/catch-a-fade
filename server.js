@@ -248,7 +248,7 @@ const SUPPORT_HTML = pageHTML('Catch a Fade Support',
 const MARKETPLACE_PATHS = new Set([
   '/api/me', '/api/review-setup', '/api/register-push', '/api/create-payment-intent', '/api/bookings/request', '/api/bookings/action',
   '/api/connect/onboard', '/api/connect/status', '/api/connect/dashboard', '/connect/done', '/connect/refresh',
-  '/api/admin/barbers', '/api/admin/verify'
+  '/api/admin/barbers', '/api/admin/verify', '/api/barber/docs'
 ]);
 marketplace = require('./marketplace')({
   stripe, supabase, sendJSON, sendHTML, pageHTML, rateLimited, FEE_PERCENT, CANCEL_FEE_CENTS,

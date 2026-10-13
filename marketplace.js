@@ -44,6 +44,35 @@ module.exports = function createMarketplace(ctx) {
   const isAdmin = (u) => !!u && ADMIN_EMAILS.includes(String(u.email || '').toLowerCase());
   const isReviewer = (u) => !!u && String(u.email || '').toLowerCase() === REVIEW_EMAIL;
 
+  const DOCS_BUCKET = 'barber-docs';
+  let docsBucketReady = false;
+  async function ensureDocsBucket() {
+    if (docsBucketReady) return true;
+    try {
+      const { data } = await supabase.storage.getBucket(DOCS_BUCKET);
+      if (!data) {
+        const { error } = await supabase.storage.createBucket(DOCS_BUCKET, { public: false, fileSizeLimit: '5MB' });
+        if (error && !/exist/i.test(error.message)) throw error;
+      }
+      docsBucketReady = true;
+    } catch (e) { console.error('[docs bucket]', e && e.message); }
+    return docsBucketReady;
+  }
+  // { id: url|null, selfie: url|null } — signed for 1 hour, admins only.
+  async function docLinks(profileId) {
+    const out = { id: null, selfie: null };
+    try {
+      const { data } = await supabase.storage.from(DOCS_BUCKET).list(profileId);
+      for (const f of data || []) {
+        const kind = f.name.split('.')[0];
+        if (kind !== 'id' && kind !== 'selfie') continue;
+        const s = await supabase.storage.from(DOCS_BUCKET).createSignedUrl(profileId + '/' + f.name, 3600);
+        if (s.data) out[kind] = s.data.signedUrl;
+      }
+    } catch (e) {}
+    return out;
+  }
+
   async function barberForUser(uid) {
     const { data } = await supabase.from('barbers').select('*').eq('profile_id', uid).maybeSingle();
     return data || null;
@@ -487,6 +516,25 @@ module.exports = function createMarketplace(ctx) {
                : '<h1>That link expired</h1><p>Go back to the Catch a Fade app and tap <b>Set up payouts</b> again to get a fresh link.</p>')), true;
       }
 
+      // ---- barber verification photos (government ID + selfie) ----
+      // Stored in a PRIVATE bucket; only admins ever see them, through
+      // short-lived signed links in the approvals list.
+      if (post && p === '/api/barber/docs') {
+        const d = await readJSON(req, 6 * 1024 * 1024); const u = d && await authUser(d.accessToken);
+        if (!u) return sendJSON(res, 401, { ok: false, error: 'sign in required' }), true;
+        if (rateLimited(req, 'docs', 12, 60 * 60 * 1000)) return sendJSON(res, 429, { ok: false, error: 'Too many uploads. Try again later.' }), true;
+        const kind = d.kind === 'selfie' ? 'selfie' : d.kind === 'id' ? 'id' : '';
+        const m = /^data:image\/(jpeg|png|webp);base64,(.+)$/.exec(String(d.dataUrl || ''));
+        if (!kind || !m) return sendJSON(res, 400, { ok: false, error: 'Send a JPEG or PNG photo.' }), true;
+        const bytes = Buffer.from(m[2], 'base64');
+        if (bytes.length < 2000 || bytes.length > 4.5 * 1024 * 1024) return sendJSON(res, 400, { ok: false, error: 'That photo is too small or too large.' }), true;
+        if (!(await ensureDocsBucket())) return sendJSON(res, 500, { ok: false, error: 'Storage is unavailable. Try again shortly.' }), true;
+        const { error } = await supabase.storage.from(DOCS_BUCKET)
+          .upload(u.id + '/' + kind + '.' + (m[1] === 'jpeg' ? 'jpg' : m[1]), bytes, { contentType: 'image/' + m[1], upsert: true });
+        if (error) return sendJSON(res, 500, { ok: false, error: error.message }), true;
+        return sendJSON(res, 200, { ok: true }), true;
+      }
+
       // ---- admin: approve new barbers ----
       if (post && (p === '/api/admin/barbers' || p === '/api/admin/verify')) {
         const d = await readJSON(req); const u = d && await authUser(d.accessToken);
@@ -496,6 +544,7 @@ module.exports = function createMarketplace(ctx) {
             .update({ is_verified: !!d.verified, ...(d.verified ? {} : { is_available: false }) })
             .eq('id', String(d.barberId || '')).select().single();
           if (error) return sendJSON(res, 400, { ok: false, error: error.message }), true;
+          if (d.verified) pushBarber(data.id, 'You\'re approved ✂', 'Open Catch a Fade, set up payouts and go online to start taking requests.', { type: 'barber_approved' });
           return sendJSON(res, 200, { ok: true, barber: data }), true;
         }
         const { data: rows } = await supabase.from('barbers')
@@ -505,7 +554,7 @@ module.exports = function createMarketplace(ctx) {
         for (const r of rows || []) {
           let email = '';
           try { const g = await supabase.auth.admin.getUserById(r.profile.id); email = (g.data && g.data.user && g.data.user.email) || ''; } catch (e) {}
-          out.push({ ...r, email });
+          out.push({ ...r, email, docs: r.profile ? await docLinks(r.profile.id) : { id: null, selfie: null } });
         }
         return sendJSON(res, 200, { ok: true, barbers: out }), true;
       }

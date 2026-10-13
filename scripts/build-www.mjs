@@ -15,6 +15,9 @@ const ASSETS = [
   'index.html',
   'native-bridge.js',
   'apple-touch-icon.png',
+  'vendor/leaflet.js',
+  'vendor/leaflet.css',
+  'vendor/supabase.js',
 ];
 
 async function exists(p) { try { await access(p); return true; } catch { return false; } }
