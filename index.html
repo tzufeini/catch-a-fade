@@ -3037,7 +3037,7 @@ async function loadBarbersFromSupabase(){
   try{
     const { data, error } = await c.from('barbers')
       .select('id, profile_id, rating, cuts_completed, is_verified, is_demo, vehicle, home_lat, home_lng, profile:profiles!barbers_profile_id_fkey(full_name), services(name, price_cents, duration_min)')
-      .eq('is_available', true).eq('is_verified', true);
+      .eq('is_verified', true).or('is_available.eq.true,is_demo.eq.true');
     if(error || !data) return false;                   // unreachable → keep the last good list
     const reviewer = isReviewEmail(userProfile.email||'');
     const me = await mkUserId();

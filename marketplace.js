@@ -139,7 +139,9 @@ module.exports = function createMarketplace(ctx) {
       await supabase.from('profiles').upsert({ id: db.id, role: 'barber', full_name: 'Demo Barber (App Review)' }, { onConflict: 'id' });
       const { data: row } = await supabase.from('barbers').upsert({
         profile_id: db.id, bio: 'Demo barber for App Review — completes the trip automatically.',
-        is_verified: true, is_available: true, is_demo: true, rating: 5.0
+        // is_available stays false so older app builds (which list every
+        // "available" barber) never show it; new builds include it for the reviewer.
+        is_verified: true, is_available: false, is_demo: true, rating: 5.0
       }, { onConflict: 'profile_id' }).select().single();
       if (row) {
         demoBarberId = row.id;
