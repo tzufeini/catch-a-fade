@@ -6456,6 +6456,7 @@ async function mkAdminVerify(id, verified){
 /* ---------- resume on launch + keep the customer list fresh ---------- */
 async function mkOnAppStart(){
   const s=await mkSession(); if(!s) return;
+  try{ if(window.CAF_SEND_PUSH_TOKEN) window.CAF_SEND_PUSH_TOKEN(); }catch(e){}   // link this phone to the account
   await mkLoadMe();
   // a barber who was online keeps receiving requests after an app restart
   if(mkMyBarber && mkMyBarber.is_verified && mkMyBarber.is_available) mkSetOnlineUI(true);

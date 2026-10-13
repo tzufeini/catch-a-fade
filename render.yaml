@@ -31,3 +31,13 @@ services:
         sync: false
       - key: SUPABASE_SECRET_KEY
         sync: false
+      # Barber approvals (comma-separated emails that see the admin section)
+      - key: ADMIN_EMAILS
+        value: "tzufeini@gmail.com"
+      # Apple push notifications (developer.apple.com → Keys → APNs)
+      - key: APNS_KEY_P8
+        sync: false
+      - key: APNS_KEY_ID
+        sync: false
+      - key: APNS_TEAM_ID
+        value: "8P38L363W8"

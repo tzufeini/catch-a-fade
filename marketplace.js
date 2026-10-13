@@ -31,7 +31,7 @@ function pin4() { return String(1000 + crypto.randomInt(9000)); }
 
 module.exports = function createMarketplace(ctx) {
   const { stripe, supabase, sendJSON, sendHTML, pageHTML, rateLimited, FEE_PERCENT,
-          CANCEL_FEE_CENTS, REVIEW_EMAIL, REVIEW_CODE, ADMIN_EMAILS } = ctx;
+          CANCEL_FEE_CENTS, REVIEW_EMAIL, REVIEW_CODE, ADMIN_EMAILS, push } = ctx;
 
   async function authUser(token) {
     if (!supabase || !token) return null;
@@ -57,6 +57,51 @@ module.exports = function createMarketplace(ctx) {
     if (error) throw new Error(error.message);
     return data;
   }
+  // ---- push notifications (no-ops until APNs keys are configured) ----
+  async function pushUser(uid, title, body, data) {
+    if (!push || !push.enabled || !uid) return;
+    try {
+      const { data: p } = await supabase.from('profiles').select('push_token').eq('id', uid).maybeSingle();
+      if (p && p.push_token) await push.send(p.push_token, title, body, data);
+    } catch (e) {}
+  }
+  async function pushBarber(barberId, title, body, data) {
+    try {
+      const { data: b } = await supabase.from('barbers').select('profile_id, is_demo').eq('id', barberId).maybeSingle();
+      if (b && !b.is_demo) await pushUser(b.profile_id, title, body, data);
+    } catch (e) {}
+  }
+  async function firstNameOf(uid) {
+    try { const { data } = await supabase.from('profiles').select('full_name').eq('id', uid).maybeSingle(); return String((data && data.full_name) || '').split(' ')[0]; }
+    catch (e) { return ''; }
+  }
+  async function barberFirstName(barberId) {
+    try { const { data } = await supabase.from('barbers').select('profile_id').eq('id', barberId).maybeSingle(); return data ? await firstNameOf(data.profile_id) : ''; }
+    catch (e) { return ''; }
+  }
+  const money = (c) => '$' + (Number(c || 0) / 100).toFixed(2);
+  // Tell the other side of the booking what just happened.
+  async function announce(bk, by) {
+    const id = { bookingId: bk.id };
+    const barber = (await barberFirstName(bk.barber_id)) || 'Your barber';
+    const cust = (await firstNameOf(bk.customer_id)) || 'Your customer';
+    const toCustomer = {
+      accepted: [barber + ' accepted your booking', 'Free cancellation for 2 minutes.'],
+      en_route: [barber + ' is on the way', 'Track them live in the app.'],
+      arrived: [barber + ' has arrived', 'Share your PIN: ' + bk.arrival_pin],
+      completed: ['Cut complete ✂', 'You were charged ' + money(bk.total_cents) + '. Rate ' + barber + '?'],
+      declined: [barber + ' can\'t take this one', 'Your card was not charged.'],
+      expired: [barber + ' didn\'t respond', 'Your card was not charged.'],
+      cancelled: [barber + ' cancelled', 'Your card was not charged.']
+    };
+    const toBarber = {
+      cancelled: [cust + ' cancelled', 'The job was removed from your queue.'],
+      no_show: [cust + ' cancelled at the door', 'You keep the cancellation fee.']
+    };
+    if (by === 'barber' && toCustomer[bk.status]) await pushUser(bk.customer_id, toCustomer[bk.status][0], toCustomer[bk.status][1], id);
+    if (by === 'customer' && toBarber[bk.status]) await pushBarber(bk.barber_id, toBarber[bk.status][0], toBarber[bk.status][1], id);
+  }
+
   // Customer-facing copy of a booking: the barber never needs the PIN from us,
   // and the customer always gets theirs.
   function publicBooking(b) { return b; }
@@ -165,20 +210,20 @@ module.exports = function createMarketplace(ctx) {
     const step = async (fn, ms) => new Promise(r => setTimeout(async () => { try { await fn(); } catch (e) { console.warn('[demo]', e.message); } r(); }, ms));
     (async () => {
       const alive = async () => { const b = await loadBooking(id); return b && !['cancelled', 'expired', 'declined', 'completed'].includes(b.status) ? b : null; };
-      await step(async () => { if (await alive()) await setBooking(id, { status: 'accepted', accepted_at: new Date().toISOString() }); }, 6000);
-      await step(async () => { if (await alive()) await setBooking(id, { status: 'en_route' }); }, 4000);
+      await step(async () => { if (await alive()) announce(await setBooking(id, { status: 'accepted', accepted_at: new Date().toISOString() }), 'barber'); }, 6000);
+      await step(async () => { if (await alive()) announce(await setBooking(id, { status: 'en_route' }), 'barber'); }, 4000);
       for (let i = 0; i <= 20; i++) {
         if (!(await alive())) return;
         const t = i / 20;
         await supabase.from('barber_locations').upsert({ barber_id: booking.barber_id, lat: start[0] + (dest[0] - start[0]) * t, lng: start[1] + (dest[1] - start[1]) * t, updated_at: new Date().toISOString() });
         await new Promise(r => setTimeout(r, 3000));
       }
-      await step(async () => { if (await alive()) await setBooking(id, { status: 'arrived' }); }, 500);
+      await step(async () => { if (await alive()) announce(await setBooking(id, { status: 'arrived' }), 'barber'); }, 500);
       await step(async () => { if (await alive()) await setBooking(id, { status: 'in_progress' }); }, 20000);
       await step(async () => {
         const b = await alive(); if (!b) return;
         await captureHold(b.payment_intent_id);
-        await setBooking(id, { status: 'completed', completed_at: new Date().toISOString() });
+        announce(await setBooking(id, { status: 'completed', completed_at: new Date().toISOString() }), 'barber');
       }, 20000);
     })();
   }
@@ -196,6 +241,16 @@ module.exports = function createMarketplace(ctx) {
         if (!u) return sendJSON(res, 401, { ok: false, error: 'sign in required' }), true;
         const barber = await barberForUser(u.id);
         return sendJSON(res, 200, { ok: true, isAdmin: isAdmin(u), barber }), true;
+      }
+
+      if (post && p === '/api/register-push') {
+        const d = await readJSON(req, 4000) || {};
+        const tok = String(d.token || '').trim();
+        const u = d.accessToken ? await authUser(d.accessToken) : null;
+        if (u && /^[0-9a-fA-F]{32,200}$/.test(tok)) {
+          await supabase.from('profiles').upsert({ id: u.id, push_token: tok }, { onConflict: 'id' });
+        }
+        return sendJSON(res, 200, { ok: !!tok, saved: !!u }), true;
       }
 
       // ---- payment hold for a real booking ----
@@ -269,6 +324,8 @@ module.exports = function createMarketplace(ctx) {
         if (error) { await cancelHold(piId); return sendJSON(res, 500, { ok: false, error: error.message }), true; }
         const { data: barber } = await supabase.from('barbers').select('is_demo').eq('id', bk.barber_id).maybeSingle();
         if (barber && barber.is_demo) runDemoTrip(bk);
+        else pushBarber(bk.barber_id, 'New request · ' + (bk.service_name || 'Haircut'),
+          'You earn ' + money(bk.service_price_cents) + '. Open Catch a Fade to accept — 3 min to respond.', { bookingId: bk.id });
         return sendJSON(res, 200, { ok: true, booking: publicBooking(bk) }), true;
       }
 
@@ -285,56 +342,59 @@ module.exports = function createMarketplace(ctx) {
         const now = new Date().toISOString();
         const age = Date.now() - new Date(bk.created_at).getTime();
         const bad = (msg) => (sendJSON(res, 400, { ok: false, error: msg, booking: bk }), true);
+        // wrap the reply so the other party hears about every successful change
+        const _send = sendJSON;
+        const reply = (status, obj) => { if (obj && obj.ok && obj.booking) announce(obj.booking, asBarber ? 'barber' : 'customer'); return _send(res, status, obj); };
         try {
           if (asBarber) {
             if (action === 'accept') {
               if (bk.status !== 'requested') return bad('This request is no longer available.');
               if (age > REQUEST_TTL_MS) { await cancelHold(bk.payment_intent_id); await setBooking(bk.id, { status: 'expired' }); return bad('This request expired.'); }
-              return sendJSON(res, 200, { ok: true, booking: await setBooking(bk.id, { status: 'accepted', accepted_at: now }) }), true;
+              return reply(200, { ok: true, booking: await setBooking(bk.id, { status: 'accepted', accepted_at: now }) }), true;
             }
             if (action === 'decline') {
               if (bk.status !== 'requested') return bad('Already handled.');
               await cancelHold(bk.payment_intent_id);
-              return sendJSON(res, 200, { ok: true, booking: await setBooking(bk.id, { status: 'declined' }) }), true;
+              return reply(200, { ok: true, booking: await setBooking(bk.id, { status: 'declined' }) }), true;
             }
             if (action === 'en_route') {
               if (bk.status !== 'accepted') return bad('Accept the job first.');
-              return sendJSON(res, 200, { ok: true, booking: await setBooking(bk.id, { status: 'en_route' }) }), true;
+              return reply(200, { ok: true, booking: await setBooking(bk.id, { status: 'en_route' }) }), true;
             }
             if (action === 'arrived') {
               if (!['accepted', 'en_route'].includes(bk.status)) return bad('Not on the way to this job.');
-              return sendJSON(res, 200, { ok: true, booking: await setBooking(bk.id, { status: 'arrived' }) }), true;
+              return reply(200, { ok: true, booking: await setBooking(bk.id, { status: 'arrived' }) }), true;
             }
             if (action === 'start') {
               if (bk.status !== 'arrived') return bad('Mark yourself as arrived first.');
               if (String(d.pin || '').trim() !== String(bk.arrival_pin)) return bad('That PIN doesn\'t match. Ask the customer for the 4-digit PIN in their app.');
-              return sendJSON(res, 200, { ok: true, booking: await setBooking(bk.id, { status: 'in_progress' }) }), true;
+              return reply(200, { ok: true, booking: await setBooking(bk.id, { status: 'in_progress' }) }), true;
             }
             if (action === 'complete') {
               if (bk.status !== 'in_progress') return bad('Start the cut with the customer\'s PIN first.');
               await captureHold(bk.payment_intent_id);
               const done = await setBooking(bk.id, { status: 'completed', completed_at: now });
               await supabase.from('barbers').update({ cuts_completed: (myBarber.cuts_completed || 0) + 1 }).eq('id', myBarber.id);
-              return sendJSON(res, 200, { ok: true, booking: done }), true;
+              return reply(200, { ok: true, booking: done }), true;
             }
             if (action === 'cancel') {
               if (!['accepted', 'en_route', 'arrived'].includes(bk.status)) return bad('Can\'t cancel now.');
               await cancelHold(bk.payment_intent_id);
-              return sendJSON(res, 200, { ok: true, booking: await setBooking(bk.id, { status: 'cancelled' }) }), true;
+              return reply(200, { ok: true, booking: await setBooking(bk.id, { status: 'cancelled' }) }), true;
             }
           }
           if (asCustomer) {
             if (action === 'expire' || (action === 'cancel' && bk.status === 'requested')) {
-              if (bk.status !== 'requested') return sendJSON(res, 200, { ok: true, booking: bk }), true;
+              if (bk.status !== 'requested') return reply(200, { ok: true, booking: bk }), true;
               await cancelHold(bk.payment_intent_id);
-              return sendJSON(res, 200, { ok: true, booking: await setBooking(bk.id, { status: action === 'expire' ? 'expired' : 'cancelled' }) }), true;
+              return reply(200, { ok: true, booking: await setBooking(bk.id, { status: action === 'expire' ? 'expired' : 'cancelled' }) }), true;
             }
             if (action === 'cancel') {
               if (!['accepted', 'en_route', 'arrived'].includes(bk.status)) return bad('This booking can no longer be cancelled.');
               const sinceAccept = Date.now() - new Date(bk.accepted_at || bk.created_at).getTime();
               const fee = (bk.status === 'arrived' || sinceAccept > FREE_CANCEL_MS) ? CANCEL_FEE_CENTS : 0;
               if (fee > 0) await captureHold(bk.payment_intent_id, fee); else await cancelHold(bk.payment_intent_id);
-              return sendJSON(res, 200, { ok: true, cancellationFee: fee,
+              return reply(200, { ok: true, cancellationFee: fee,
                 booking: await setBooking(bk.id, { status: bk.status === 'arrived' ? 'no_show' : 'cancelled', cancel_fee_cents: fee }) }), true;
             }
           }

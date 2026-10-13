@@ -64,7 +64,10 @@ drop trigger if exists reviews_refresh_rating on public.reviews;
 create trigger reviews_refresh_rating after insert on public.reviews
   for each row execute function public.refresh_barber_rating();
 
--- 6. Realtime: bookings + locations were already published; add chat.
+-- 6. Push notifications: each account's current device token (server-only use).
+alter table public.profiles add column if not exists push_token text;
+
+-- 7. Realtime: bookings + locations were already published; add chat.
 do $$
 begin
   begin execute 'alter publication supabase_realtime add table public.messages'; exception when others then null; end;

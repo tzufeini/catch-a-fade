@@ -264,21 +264,44 @@ function hookPushAfterAuth() {
   safe(() => {
     PushNotifications.addListener('registration', (token) => {
       window.CAF_PUSH_TOKEN = token.value;
-      // Best-effort: hand the device token to the backend so it can send
-      // booking updates. The endpoint is optional; failure is harmless.
-      if (window.API_BASE) {
-        safe(() => fetch(window.API_BASE + '/api/register-push', {
-          method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ token: token.value, platform: 'ios' }),
-        }).catch(() => {}));
-      }
+      sendPushToken(token.value);
     });
+    // Foreground: the in-app realtime feed already updates the screen; a push
+    // for a new job also pulls the barber's queue right away.
     PushNotifications.addListener('pushNotificationReceived', (n) => {
       toast(n.title || 'Catch a Fade', n.body || '');
+      safe(() => { if (typeof window.mkBarberRefresh === 'function') window.mkBarberRefresh(); });
     });
-    PushNotifications.addListener('pushNotificationActionPerformed', () => {});
+    // Tapped from the lock screen: open whichever side the push is about.
+    PushNotifications.addListener('pushNotificationActionPerformed', (a) => {
+      const title = String((a && a.notification && a.notification.title) || '');
+      safe(() => {
+        if (/^New request/.test(title) && typeof window.goBarberSide === 'function') window.goBarberSide();
+        else if (typeof window.mkOnAppStart === 'function') window.mkOnAppStart();
+      });
+    });
   });
+  // Already signed in from a previous launch → permission was asked before,
+  // so this just refreshes the token silently.
+  safe(() => { if (localStorage.getItem('fadex_logged_in') === '1') registerPush(); });
 }
+
+// Tie the device token to the signed-in account so the server can reach this
+// phone (a barber gets new requests, a customer gets trip updates).
+async function sendPushToken(tok) {
+  if (!window.API_BASE || !tok) return;
+  let accessToken = '';
+  try {
+    const c = typeof window.sbReady === 'function' ? window.sbReady() : null;
+    const r = c ? await c.auth.getSession() : null;
+    accessToken = (r && r.data && r.data.session && r.data.session.access_token) || '';
+  } catch (e) {}
+  safe(() => fetch(window.API_BASE + '/api/register-push', {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ token: tok, platform: 'ios', accessToken }),
+  }).catch(() => {}));
+}
+window.CAF_SEND_PUSH_TOKEN = () => { if (window.CAF_PUSH_TOKEN) sendPushToken(window.CAF_PUSH_TOKEN); };
 
 async function registerPush() {
   if (_pushHooked) return; _pushHooked = true;

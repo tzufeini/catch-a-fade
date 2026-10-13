@@ -233,13 +233,14 @@ const SUPPORT_HTML = pageHTML('Catch a Fade Support',
   + '<p>For the fastest answers, use the in-app <b>Help &amp; Support</b> chat, available right inside the app.</p>');
 
 const MARKETPLACE_PATHS = new Set([
-  '/api/me', '/api/create-payment-intent', '/api/bookings/request', '/api/bookings/action',
+  '/api/me', '/api/register-push', '/api/create-payment-intent', '/api/bookings/request', '/api/bookings/action',
   '/api/connect/onboard', '/api/connect/status', '/api/connect/dashboard', '/connect/done', '/connect/refresh',
   '/api/admin/barbers', '/api/admin/verify'
 ]);
 marketplace = require('./marketplace')({
   stripe, supabase, sendJSON, sendHTML, pageHTML, rateLimited, FEE_PERCENT, CANCEL_FEE_CENTS,
-  REVIEW_EMAIL, REVIEW_CODE, ADMIN_EMAILS, MIN_SERVICE_CENTS, MAX_SERVICE_CENTS
+  REVIEW_EMAIL, REVIEW_CODE, ADMIN_EMAILS, MIN_SERVICE_CENTS, MAX_SERVICE_CENTS,
+  push: require('./push')(Object.assign({}, LOCAL, process.env))
 });
 
 const server = http.createServer((req, res) => {
@@ -381,18 +382,6 @@ const server = http.createServer((req, res) => {
 
   // Device push tokens from the iOS app. Stored in memory for now; a real
   // deployment would persist these and use them to send APNs booking updates.
-  if (req.method === 'POST' && url.pathname === '/api/register-push') {
-    let body = '';
-    req.on('data', c => { body += c; if (body.length > 4000) req.destroy(); });
-    req.on('end', () => {
-      let data; try { data = JSON.parse(body || '{}'); } catch (e) { return sendJSON(res, 400, { ok: false }); }
-      const token = String(data.token || '').trim();
-      if (token) { PUSH_TOKENS.add(token); console.log('registered push token (' + PUSH_TOKENS.size + ' total)'); }
-      return sendJSON(res, 200, { ok: !!token });
-    });
-    return;
-  }
-
   // Supabase: the app fetches the URL + PUBLISHABLE key (both safe to be public).
   if (req.method === 'GET' && url.pathname === '/api/supabase-config') {
     return sendJSON(res, 200, {
