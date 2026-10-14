@@ -26,8 +26,9 @@ body:not(.light) .leaflet-tile-pane{filter:grayscale(1) invert(1) brightness(.86
   border-radius:50% 50% 50% 4px;transform:rotate(45deg);border:2.5px solid #0E1118;
   box-shadow:0 6px 14px rgba(0,0,0,.55);cursor:pointer;}
 .barber-pin span{transform:rotate(-45deg);font-weight:800;color:#fff;font-size:12px;}
-.user-dot{width:18px;height:18px;border-radius:50%;background:#2A58CC;
-  border:3px solid #fff;box-shadow:0 0 0 6px rgba(42,88,204,.28),0 3px 8px rgba(0,0,0,.5);}
+.user-dot{width:16px;height:16px;border-radius:50%;background:#111;
+  border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.35);}
+body:not(.light) .user-dot{background:#fff;border-color:#111;box-shadow:0 2px 8px rgba(0,0,0,.6);}
 :root{
   --bg:#0C0C0F; --bg2:#101014; --card:#1A1A20; --card2:#22222A; --card3:#2B2B34;
   --line:rgba(255,255,255,.07); --line2:rgba(255,255,255,.12);
@@ -765,8 +766,8 @@ html.native .ob-barber .t2{font-size:14.5px;}
 #ob1 [data-a]{animation:none!important;opacity:1!important;transform:none!important;}
 /* Apple Maps in black & white like Uber: only the map tiles are desaturated —
    our pins, the blue "you" dot, the radius circle and routes keep their colour. */
-.mk-map-view canvas.syrup-canvas{filter:grayscale(1) contrast(1.08) brightness(1.02);}
-body:not(.light) .mk-map-view canvas.syrup-canvas{filter:grayscale(1) contrast(1.1) brightness(.95);}
+.mk-map-view canvas.syrup-canvas{filter:grayscale(1) contrast(.9) brightness(1.07);}
+body:not(.light) .mk-map-view canvas.syrup-canvas{filter:grayscale(1) contrast(.92) brightness(.9);}
 /* In-app notifications: a dark card in the middle of the screen, not a top banner */
 .toast{top:50%!important;left:50%!important;right:auto!important;width:min(300px,82%);flex-direction:column;text-align:center;gap:10px!important;
   padding:20px 18px 18px!important;background:rgba(18,18,22,.95)!important;color:#fff;border:1px solid rgba(255,255,255,.08)!important;border-radius:20px!important;
@@ -4095,7 +4096,7 @@ function applePin(ll, html, offsetY){
     const d=document.createElement('div'); d.innerHTML=html; return d.firstChild;
   }, { anchorOffset:new DOMPoint(0, offsetY||0), calloutEnabled:false, animates:false });
 }
-function appleUserPin(ll){ return applePin(ll, '<div class="user-dot"></div>', 9); }
+function appleUserPin(ll){ return applePin(ll, '<div class="user-dot"></div>', 8); }
 function appleBarberPin(ll, b){ return applePin(ll, '<div class="barber-pin" style="background:'+b.g+'"><span>'+b.in+'</span></div>', 0); }
 function appleMap(el, interactive, spanDeg){
   const m=new mapkit.Map(el,{
@@ -4114,9 +4115,7 @@ function initHomeMapApple(){
   const el=document.getElementById('homeMap'); if(!el) return;
   if(homeMapInst && homeMapInst._isApple) return;
   resetMapContainer(el, homeMapInst); homeMapInst=null;
-  homeMapInst=appleMap(el, false, 0.04);
-  homeMapInst.addOverlay(new mapkit.CircleOverlay(mkCoord(userLL), 1500, { style:new mapkit.Style({
-    strokeColor:'#2A58CC', strokeOpacity:.55, lineWidth:1, lineDash:[4,6], fillColor:'#2A58CC', fillOpacity:.07 }) }));
+  homeMapInst=appleMap(el, false, 0.011);
   homeMapInst._user=appleUserPin(userLL);
   homeMapInst.addAnnotation(homeMapInst._user);
   BARBERS.forEach((b,i)=>{
@@ -4130,7 +4129,7 @@ function initTrackMapApple(){
   const el=document.getElementById('trackMap'); if(!el) return;
   if(trackMapInst && trackMapInst._isApple) return;
   resetMapContainer(el, trackMapInst); trackMapInst=null; trackBarberMarker=null; trackRoute=null;
-  trackMapInst=appleMap(el, true, 0.02);
+  trackMapInst=appleMap(el, true, 0.011);
   trackMapInst.addAnnotation(appleUserPin(userLL));
 }
 function initHomeMap(){
@@ -4156,10 +4155,9 @@ function initHomeMapLeaflet(){
   const el=document.getElementById('homeMap'); if(!el || typeof L==='undefined') return;
   if(homeMapInst && !homeMapInst._isGoogle && !homeMapInst._isApple && homeMapInst.invalidateSize){ homeMapInst.invalidateSize(); return; }
   resetMapContainer(el, homeMapInst); homeMapInst=null;
-  homeMapInst = L.map('homeMap',{zoomControl:false,attributionControl:true,scrollWheelZoom:false,dragging:false,doubleClickZoom:false,boxZoom:false,touchZoom:false,keyboard:false}).setView(userLL,14);
+  homeMapInst = L.map('homeMap',{zoomControl:false,attributionControl:true,scrollWheelZoom:false,dragging:false,doubleClickZoom:false,boxZoom:false,touchZoom:false,keyboard:false}).setView(userLL,16);
   L.tileLayer(curTiles(), TILE_OPTS).addTo(homeMapInst);
   L.marker(userLL,{icon:userDivIcon()}).addTo(homeMapInst);
-  L.circle(userLL,{radius:1500,color:'#2A58CC',fillColor:'#2A58CC',fillOpacity:0.06,weight:1,dashArray:'4 6'}).addTo(homeMapInst);
   BARBERS.forEach((b,i)=>{
     if(isBarberBlocked(i)) return;              // blocked users stay off the map
     const ll=barberLL(b,i);
@@ -4168,7 +4166,7 @@ function initHomeMapLeaflet(){
   if(navigator.geolocation){
     navigator.geolocation.getCurrentPosition(p=>{
       userLL=[p.coords.latitude,p.coords.longitude];
-      homeMapInst.setView(userLL,14);
+      homeMapInst.setView(userLL,16);
     },()=>{},{timeout:4000,maximumAge:60000});
   }
 }
