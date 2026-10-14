@@ -16,7 +16,9 @@
 <style>
 /* leaflet overrides */
 .leaflet-container{background:#0E1118;font-family:inherit;outline:none;touch-action:pan-y;}
-body:not(.light) .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.9) contrast(.9);}
+/* fallback map in black & white like Uber: light = grey paper, dark = charcoal */
+.leaflet-tile-pane{filter:grayscale(1) contrast(1.06) brightness(1.03);}
+body:not(.light) .leaflet-tile-pane{filter:grayscale(1) invert(1) brightness(.86) contrast(.9);}
 .leaflet-control-attribution{font-size:9px;background:rgba(0,0,0,.4);color:#666;padding:1px 4px;}
 .leaflet-control-attribution a{color:#777;text-decoration:none;}
 .leaflet-control-zoom{display:none;}
@@ -761,6 +763,20 @@ html.native .ob-barber .t1{font-size:17.5px;}
 html.native .ob-barber .t2{font-size:14.5px;}
 /* The welcome screen is the first thing you see: shown still, no entrance animation */
 #ob1 [data-a]{animation:none!important;opacity:1!important;transform:none!important;}
+/* Apple Maps in black & white like Uber: only the map tiles are desaturated —
+   our pins, the blue "you" dot, the radius circle and routes keep their colour. */
+.mk-map-view canvas.syrup-canvas{filter:grayscale(1) contrast(1.08) brightness(1.02);}
+body:not(.light) .mk-map-view canvas.syrup-canvas{filter:grayscale(1) contrast(1.1) brightness(.95);}
+/* In-app notifications: a dark card in the middle of the screen, not a top banner */
+.toast{top:50%!important;left:50%!important;right:auto!important;width:min(300px,82%);flex-direction:column;text-align:center;gap:10px!important;
+  padding:20px 18px 18px!important;background:rgba(18,18,22,.95)!important;color:#fff;border:1px solid rgba(255,255,255,.08)!important;border-radius:20px!important;
+  -webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);box-shadow:0 26px 60px -14px rgba(0,0,0,.6)!important;
+  opacity:0;pointer-events:none;transform:translate(-50%,-50%) scale(.9)!important;transition:opacity .2s ease,transform .28s cubic-bezier(.2,.9,.3,1.25)!important;z-index:400!important;}
+.toast.show{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1)!important;}
+.toast > div:first-child{width:46px!important;height:46px!important;border-radius:50%!important;}
+.toast b{font-size:16px!important;font-weight:750;color:#fff!important;display:block;}
+.toast small{color:rgba(255,255,255,.72)!important;font-size:13.5px!important;line-height:1.4;margin-top:4px;}
+#tracking .toast{left:50%!important;}
 /* barber landing */
 .bl-row{display:flex;gap:13px;align-items:flex-start;margin:0 20px 10px;padding:13px 14px;border-radius:14px;background:var(--card);border:1px solid var(--line2);}
 .bl-ic{width:34px;height:34px;flex-shrink:0;border-radius:10px;background:rgba(46,132,196,.16);color:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;}
@@ -1081,8 +1097,12 @@ html.native .ob-barber .t2{font-size:14.5px;}
 #ob16{background:linear-gradient(175deg,#F4EDE1 0%,#F7F0E3 52%,#F9F2E5 100%)!important;}
 #obProg{background:rgba(0,0,0,.09);}
 /* content cards & chips → light surfaces (selected / accent states keep their own colors) */
-.ob-opt,.ob-bcard,.ob6-card,.ob-tcard,.ob-prow{background:#FBF8F2;border-color:#E3DCCF;}
-.ob-rcard{background:#FBF8F2;border-color:#E3DCCF;border-left-color:var(--ob-gold);}
+.ob-opt,.ob-bcard,.ob6-card,.ob-tcard,.ob-prow{background:rgba(21,17,13,.055);border-color:rgba(21,17,13,.10);box-shadow:none;}
+.ob-opt.on{background:#15110D!important;border-color:#15110D!important;transform:scale(1.015);box-shadow:0 12px 26px -12px rgba(21,17,13,.55)!important;}
+.ob-opt.on .lbl{color:#F2ECDD!important;}
+.ob-opt.on .chk{background:#C7414E!important;}
+.ob-opt:active{transform:scale(.98);}
+.ob-rcard{background:rgba(21,17,13,.055);border-color:rgba(21,17,13,.10);border-left-color:var(--ob-gold);}
 .ob-badge{background:#EFE9DE;border-color:#DED6C8;}
 .ob8-tog,.ob8-chip,.ob-bookLock{background:#EDE6DB;}
 .ob8-chip,.ob-bookLock{border-color:#DCD4C6;}
@@ -1322,13 +1342,13 @@ html.native .ob-tip{ font-size:14px; }
     </div>
   </div>
 
-  <div class="toast" id="gToast">
+  <div class="toast" id="gToast" onclick="this.classList.remove('show')">
     <div style="width:34px;height:34px;border-radius:10px;background:var(--grad);display:flex;align-items:center;justify-content:center;flex-shrink:0">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4 10-11"/></svg>
     </div>
     <div><b id="gToastT">Done</b><small id="gToastS"></small></div>
   </div>
-  <div class="toast" id="errToast">
+  <div class="toast" id="errToast" onclick="this.classList.remove('show')">
     <div style="width:34px;height:34px;border-radius:10px;background:#c0392b;display:flex;align-items:center;justify-content:center;flex-shrink:0">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
     </div>
@@ -1498,7 +1518,7 @@ html.native .ob-tip{ font-size:14px; }
     </div>
     <div class="ob-nav" data-a="2">
       <button class="ob-cta" onclick="obNext()">Let's go →</button>
-      <button class="ob-barber" onclick="sessionStorage.setItem('fadex_seen_ob','1');goBarberSide()"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2ECDD" stroke-width="2" stroke-linecap="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></span><span class="tx"><span class="t1" style="display:block">Are you a barber?</span><span class="t2" style="display:block">Earn cutting hair on your own schedule</span></span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#15110D" stroke-width="2.6" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></button>
+      <button class="ob-barber" onclick="markOnboarded();goBarberSide()"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2ECDD" stroke-width="2" stroke-linecap="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></span><span class="tx"><span class="t1" style="display:block">Are you a barber?</span><span class="t2" style="display:block">Earn cutting hair on your own schedule</span></span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#15110D" stroke-width="2.6" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></button>
     </div>
   </section>
 
@@ -1541,11 +1561,11 @@ html.native .ob-tip{ font-size:14px; }
             <line x1="158" y1="0" x2="158" y2="166" stroke="#2E84C4" stroke-width=".6"/>
           </svg>
           <svg style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 236 166" fill="none">
-            <path d="M34 127 L34 74 L120 74 L120 38 L174 38" stroke="var(--ob-gold)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="229" stroke-dashoffset="229" style="animation:obRoute 1.3s .3s ease-in-out forwards"/>
+            <path d="M34 127 L34 74 L120 74 L120 38 L182 38" stroke="var(--ob-gold)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="237" stroke-dashoffset="237" style="animation:obRoute 1.3s .3s ease-in-out forwards"/>
           </svg>
           <span style="position:absolute;left:20px;top:127px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:23px;line-height:1;animation:obPop .4s .2s ease-out both">💈</span>
           <span style="position:absolute;left:196px;top:24px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-size:25px;line-height:1;animation:obPop .4s 1.55s ease-out both">🏠</span>
-          <span style="position:absolute;left:0;top:0;width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:16px;line-height:1;offset-path:path('M34 127 L34 74 L120 74 L120 38 L174 38');offset-rotate:0deg;animation:obTravel 1.3s .3s ease-in-out forwards">✂️</span>
+          <span style="position:absolute;left:0;top:0;width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:16px;line-height:1;offset-path:path('M34 127 L34 74 L120 74 L120 38 L182 38');offset-rotate:0deg;animation:obTravel 1.3s .3s ease-in-out forwards">✂️</span>
         </div>
       </div>
       <div class="ob-text">
@@ -1824,6 +1844,8 @@ html.native .ob-tip{ font-size:14px; }
         <label style="margin-top:11px;display:block">Password</label>
         <input id="authPassInput" type="password" autocomplete="current-password" placeholder="6+ characters" onkeydown="if(event.key==='Enter')authEmailSubmit()"/>
         <button class="btn grad" style="margin-top:13px" id="authGoBtn" onclick="authEmailSubmit()">Continue</button>
+        <div class="auth-switch" id="authForgot" onclick="forgotPassword()">Forgot password?</div>
+        <div style="font-size:12px;color:var(--faint);text-align:center;margin-top:8px">New here? We'll create your account. Already have one? We'll sign you in.</div>
         <div class="auth-switch" onclick="authEmailBack()">← Other ways to sign in</div>
       </div>
 
@@ -2993,7 +3015,9 @@ loadGoogleMaps();
 /* ---------- nav stack ---------- */
 const TABS=['home','bookings','messages','profile'];
 const OB_TOTAL = 16; // total onboarding screens (Acts 1–3)
-let stack = ['ob1']; // always run the onboarding before the app, on every launch
+// Onboarding is for first-time users only: anyone who finished or skipped it, or
+// is signed in, opens straight on home.
+let stack = (function(){ try{ if(localStorage.getItem('fadex_logged_in')==='1' || localStorage.getItem('fadex_onboarded')==='1') return ['home']; }catch(e){} return ['ob1']; })();
 function render(){
   const top=stack[stack.length-1], under=stack[stack.length-2];
   document.querySelectorAll('.screen').forEach(s=>{
@@ -4093,6 +4117,7 @@ function appleMap(el, interactive, spanDeg){
     isScrollEnabled:interactive, isZoomEnabled:interactive, isRotationEnabled:false,
     colorScheme: isLight()? mapkit.Map.ColorSchemes.Light : mapkit.Map.ColorSchemes.Dark,
     pointOfInterestFilter: mapkit.PointOfInterestFilter.excludingAllCategories,
+    mapType: mapkit.Map.MapTypes.MutedStandard,     // Apple's quiet, grey style — the Uber look
     region:new mapkit.CoordinateRegion(mkCoord(userLL), new mapkit.CoordinateSpan(spanDeg, spanDeg))
   });
   m._isApple=true;
@@ -5132,22 +5157,9 @@ function notify(t,s){
   gT=setTimeout(()=>el.classList.remove('show'),3000);
 }
 /* ---- real device (OS) notifications for the sign-in flow ---- */
-function ensureNotifyPermission(){
-  try{ if(('Notification' in window) && Notification.permission==='default'){ Notification.requestPermission(); } }catch(e){}
-}
-function deviceNotify(title, body){
-  // Always show the in-app toast so the flow works everywhere…
-  notify(title, body);
-  // …and fire a REAL OS notification to the device when allowed.
-  try{
-    if(!('Notification' in window)) return;
-    if(Notification.permission==='granted'){
-      new Notification(title, {body:body, icon:'data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64"><defs><pattern id="p" width="18" height="11" patternTransform="rotate(25)" patternUnits="userSpaceOnUse"><rect width="18" height="11" fill="#F2ECDD"/><rect width="6" height="11" fill="#B23A45"/><rect x="9" width="6" height="11" fill="#1E3A66"/></pattern><clipPath id="r"><rect width="64" height="64" rx="14"/></clipPath></defs><g clip-path="url(#r)"><rect width="64" height="64" fill="#F2ECDD"/><rect width="64" height="11" fill="url(#p)"/><rect y="53" width="64" height="11" fill="url(#p)"/><text x="32" y="42" font-family="Georgia,serif" font-weight="bold" font-size="23" fill="#1E3A66" text-anchor="middle">CAF</text></g></svg>'), tag:'catchafade-auth'});
-    } else if(Notification.permission==='default'){
-      Notification.requestPermission().then(function(p){ if(p==='granted'){ new Notification(title,{body:body, tag:'catchafade-auth'}); } });
-    }
-  }catch(e){}
-}
+// Sign-in messages stay inside the app (centred card) — no system banners.
+function ensureNotifyPermission(){}
+function deviceNotify(title, body){ notify(title, body); }
 let eT;
 function notifyErr(t,s){
   document.getElementById('errToastT').textContent=t;
@@ -5544,13 +5556,14 @@ function obNext(){
   if(next>OB_TOTAL){ obComplete(); return; }
   stack.push('ob'+next); render(); haptic();
 }
+function markOnboarded(){ try{ sessionStorage.setItem('fadex_seen_ob','1'); localStorage.setItem('fadex_onboarded','1'); }catch(e){} }
 function obSkip(){
   // 5.1.1: skipping the marketing screens lands you IN the app, browsing
   // freely — never on a forced sign-in wall.
   guestBrowse();
 }
 function obComplete(){
-  sessionStorage.setItem('fadex_seen_ob','1');
+  markOnboarded();
   while(stack.length && /^ob\d+$/.test(stack[stack.length-1])) stack.pop();
   if(!stack.length) stack.push('welcome');
   render();
@@ -5559,7 +5572,7 @@ function obComplete(){
 let _authMode='signup';
 function goAuth(mode){
   _authMode = (mode==='login') ? 'login' : 'signup';
-  sessionStorage.setItem('fadex_seen_ob','1');
+  markOnboarded();
   // leave onboarding, land on the branded welcome as the base, then open auth on top
   while(stack.length && stack[stack.length-1].startsWith('ob')) stack.pop();
   if(!stack.length) stack.push('welcome');
@@ -5662,7 +5675,7 @@ function closeGoogleAuth(){ clearTimeout(_gaT); document.getElementById('googleA
 let _authEmail='';
 function guestBrowse(){
   // 5.1.1: browsing barbers is not account-based — let people straight in.
-  sessionStorage.setItem('fadex_seen_ob','1');
+  markOnboarded();
   while(stack.length && (/^ob\d+$/.test(stack[stack.length-1]) || stack[stack.length-1]==='auth' || stack[stack.length-1]==='authCode' || stack[stack.length-1]==='welcome')) stack.pop();
   stack.push('home');
   render();
@@ -5681,7 +5694,8 @@ function authEmailSubmit(){
   passwordAuth(v, pw, _authMode==='login')
     .then(function(res){
       if(btn){ btn.disabled=false; btn.textContent='Continue'; }
-      if(!res.ok){ notifyErr(res.title||'Couldn\'t sign in', res.msg||'Please try again.'); return; }
+      if(!res.ok){ notifyErr(res.title||'Couldn\'t sign in', res.msg||'Please try again.'); if(res.wrongPassword){ var fp=document.getElementById('authForgot'); if(fp) fp.style.display='block'; } return; }
+      _authMode = res.created ? 'signup' : 'login';       // finishAuth words its welcome from this
       try{ if(res.email) userProfile.email=res.email; userProfile.loggedIn=true; }catch(e){}
       while(stack.length && (stack[stack.length-1]==='authCode' || stack[stack.length-1]==='auth')) stack.pop();
       finishAuth('email');
@@ -5718,26 +5732,51 @@ function passwordAuth(email, pw, isLogin){
   }
   var c = (typeof sbReady==='function') ? sbReady() : null;
   if(!c) return Promise.resolve({ ok:false, msg:'Check your connection and try again.' });
-  if(isLogin){
-    return c.auth.signInWithPassword({ email:email, password:pw }).then(function(res){
-      if(res && res.error) return { ok:false, title:'Couldn\'t log in', msg:'Wrong email or password. New here? Switch to "Create an account".' };
-      return { ok:true, email:(res.data&&res.data.user&&res.data.user.email)||email };
+  // One step, like Uber: log in if the account exists, create it if it doesn't.
+  // The person never has to pick "Log in" vs "Sign up" correctly up front.
+  var who=function(r){ return (r&&r.data&&r.data.user&&r.data.user.email)||email; };
+  return c.auth.signInWithPassword({ email:email, password:pw }).then(function(res){
+    if(res && !res.error) return { ok:true, email:who(res), existing:true };
+    return c.auth.signUp({ email:email, password:pw }).then(function(r2){
+      var msg=(r2 && r2.error && r2.error.message)||'';
+      if(!r2.error && r2.data && r2.data.user && r2.data.user.identities && r2.data.user.identities.length===0)
+        msg='already registered';                         // Supabase's quiet "exists" answer
+      if(!msg) return { ok:true, email:who(r2), created:true };
+      if(/already|registered|exists/i.test(msg))
+        return { ok:false, wrongPassword:true, title:'Wrong password', msg:'This email already has an account. Check your password, or tap “Forgot password?”.' };
+      if(/password/i.test(msg)) return { ok:false, title:'Choose a stronger password', msg:'Use at least 6 characters.' };
+      if(/email/i.test(msg)) return { ok:false, title:'Check your email', msg:'That email address doesn\'t look right.' };
+      return { ok:false, title:'Couldn\'t sign in', msg:msg||'Please try again.' };
     });
-  }
-  return c.auth.signUp({ email:email, password:pw }).then(function(res){
-    if(res && res.error){
-      // Account already exists → just sign them in with the password they typed.
-      if(/already|registered|exists/i.test(res.error.message||'')){
-        return c.auth.signInWithPassword({ email:email, password:pw }).then(function(r2){
-          if(r2 && r2.error) return { ok:false, title:'Account exists', msg:'That email already has an account, but the password didn\'t match. Switch to "Log in".' };
-          return { ok:true, email:(r2.data&&r2.data.user&&r2.data.user.email)||email };
-        });
-      }
-      return { ok:false, msg:res.error.message||'Please try again.' };
-    }
-    return { ok:true, email:(res.data&&res.data.user&&res.data.user.email)||email };
   });
 }
+// "Forgot password?" — Supabase emails a reset link that opens the app's web page,
+// where the person sets a new password (see the PASSWORD_RECOVERY handler).
+function forgotPassword(){
+  var v=(document.getElementById('authEmailInput').value||'').trim();
+  if(!v || v.indexOf('@')<1){ notify('Enter your email first','Type the email on your account, then tap “Forgot password?”.'); return; }
+  var c=(typeof sbReady==='function')?sbReady():null; if(!c) return;
+  c.auth.resetPasswordForEmail(v, { redirectTo:'https://catch-a-fade.onrender.com/' }).then(function(r){
+    if(r && r.error){ notifyErr('Couldn\'t send the email', /rate|seconds|many/i.test(r.error.message||'') ? 'Please wait a minute and try again.' : 'Please try again.'); return; }
+    notify('Check your inbox','We sent a link to '+v+' to reset your password.');
+  });
+}
+(function watchPasswordRecovery(){
+  try{
+    var c=(typeof sbReady==='function')?sbReady():null; if(!c) return;
+    c.auth.onAuthStateChange(function(ev){
+      if(ev!=='PASSWORD_RECOVERY') return;
+      setTimeout(function(){
+        var pw=prompt('Choose a new password for Catch a Fade (6+ characters):');
+        if(!pw || pw.length<6){ notifyErr('Password not changed','It needs at least 6 characters.'); return; }
+        c.auth.updateUser({ password:pw }).then(function(r){
+          if(r && r.error) notifyErr('Couldn\'t update it','Open the link from your email again.');
+          else notify('Password updated','You\'re signed in.');
+        });
+      }, 400);
+    });
+  }catch(e){}
+})();
 // Sends the code via EmailJS v4 — publicKey passed in the send() options arg (no init needed).
 function sendEmailCode(recipientEmail, passcode){
   if(!emailjsReady()) return Promise.reject(new Error('emailjs-not-configured'));
@@ -5898,7 +5937,7 @@ function finishAuth(provider){
   // sign-in succeeded → drop any onboarding/auth screens and enter the app
   while(stack.length && (/^ob\d+$/.test(stack[stack.length-1]) || stack[stack.length-1]==='auth' || stack[stack.length-1]==='authCode' || stack[stack.length-1]==='welcome')) stack.pop();
   stack.push('home');
-  sessionStorage.setItem('fadex_seen_ob','1');
+  markOnboarded();
   localStorage.setItem('fadex_logged_in','1');           // survive cold launches
   userProfile.loggedIn = true;
   if(_authEmail && !userProfile.email) userProfile.email = _authEmail;
@@ -5927,9 +5966,8 @@ function signOut(){
    'fadex_barber_selfie','fadex_pending_barber','fadex_is_barber','fadex_cards',
    'fadex_trusted','fadex_blocked'
   ].forEach(function(k){ try{ localStorage.removeItem(k); }catch(e){} });
-  sessionStorage.removeItem('fadex_seen_ob');
   userProfile.loggedIn=false; userProfile.name=''; userProfile.email=''; userProfile.phone=''; userProfile.address=''; userProfile.cutCount=0;
-  stack=['ob1']; render();
+  stack=['ob16']; render();
   notify('Signed out','See you soon.');
 }
 function confirmDeleteAccount(){
@@ -6077,12 +6115,20 @@ function ob9Build(){
   const COLS=6, ROWS=6;
   for(let k=0;k<COLS*ROWS;k++){
     const c=k%COLS, r=Math.floor(k/COLS);
-    if(r===2 && (c===2||c===3)) continue;                  // keep the "you" dot clear
     const jx=((k*37)%11)-5, jy=((k*53)%9)-4;
-    const x=(8+c*(84/(COLS-1))+jx).toFixed(1), y=(14+r*(80/(ROWS-1))+jy).toFixed(1);
+    let x=8+c*(84/(COLS-1))+jx, y=14+r*(80/(ROWS-1))+jy;
+    // keep a little clearance around the blue "you" dot in the centre (pin tip = x,y)
+    const dx=x-50, dy=y-50, d=Math.hypot(dx, dy*1.4);
+    if(d<11){ const k2=11/(d||1); x=50+dx*k2; y=50+dy*k2; }
+    x=x.toFixed(1); y=y.toFixed(1);
     const anim=reduced ? '' : ('animation:ob9Pin .55s '+(0.04*k).toFixed(2)+'s cubic-bezier(.2,1.6,.35,1) both');
     pins.push('<span class="ob9-pin" style="left:'+x+'%;top:'+y+'%;'+(reduced?'':anim)+'">📍</span>');
   }
+  // extra pins close around the middle (but beside the dot, not on it)
+  [[38,40],[61,42],[41,63],[60,61],[50,33],[36,53],[65,52]].forEach(function(pt,j){
+    const anim=reduced ? '' : ('animation:ob9Pin .55s '+(1.0+0.05*j).toFixed(2)+'s cubic-bezier(.2,1.6,.35,1) both');
+    pins.push('<span class="ob9-pin" style="left:'+pt[0]+'%;top:'+pt[1]+'%;'+anim+'">📍</span>');
+  });
   // 3) a "you" dot in the middle for reference
   html+='<span style="position:absolute;left:50%;top:50%;width:12px;height:12px;border-radius:50%;background:#2E84C4;border:2.5px solid #0A1320;transform:translate(-50%,-50%);box-shadow:0 0 0 6px rgba(46,132,196,.22);z-index:1"></span>';
   html+=pins.join('');
@@ -6167,7 +6213,7 @@ document.addEventListener('visibilitychange', function(){
 // for email-fallback/Apple users), skip onboarding and go straight home.
 (function(){
   function goHome(){
-    sessionStorage.setItem('fadex_seen_ob','1');
+    markOnboarded();
     var top = stack[stack.length-1];
     if(top!=='home' && !/^(booking|tracking|barber|chat)/.test(top||'')){ stack=['home']; render(); refreshBarbersUI(); renderProfile(); }
   }
