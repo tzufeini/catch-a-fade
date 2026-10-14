@@ -46,3 +46,8 @@ services:
         sync: false
       - key: STRIPE_TEST_PUBLISHABLE_KEY
         sync: false
+      # Apple Maps (developer.apple.com → Keys → MapKit JS)
+      - key: MAPKIT_KEY_P8
+        sync: false
+      - key: MAPKIT_KEY_ID
+        sync: false

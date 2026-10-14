@@ -253,6 +253,7 @@ const MARKETPLACE_PATHS = new Set([
   '/api/connect/onboard', '/api/connect/status', '/api/connect/dashboard', '/connect/done', '/connect/refresh',
   '/api/admin/barbers', '/api/admin/verify', '/api/barber/docs', '/api/barber/compliance'
 ]);
+const mapkit = require('./mapkit')(Object.assign({}, LOCAL, process.env));
 marketplace = require('./marketplace')({
   stripe, supabase, sendJSON, sendHTML, pageHTML, rateLimited, FEE_PERCENT, CANCEL_FEE_CENTS,
   REVIEW_EMAIL, REVIEW_CODE, ADMIN_EMAILS, MIN_SERVICE_CENTS, MAX_SERVICE_CENTS,
@@ -273,6 +274,14 @@ const server = http.createServer((req, res) => {
       if (!res.headersSent) sendJSON(res, 500, { ok: false, error: 'server error' });
     });
     return;
+  }
+
+  // Apple Maps (MapKit JS) token for the app's maps. Rate-limited per IP.
+  if (req.method === 'GET' && url.pathname === '/api/mapkit-token') {
+    if (rateLimited(req, 'mapkit', 120, 60 * 60 * 1000)) return sendJSON(res, 429, { ok: false, error: 'rate limited' });
+    if (!mapkit.enabled) return sendJSON(res, 200, { ok: false, error: 'maps not configured' });
+    try { return sendJSON(res, 200, { ok: true, token: mapkit.token() }); }
+    catch (e) { console.error('[mapkit]', e && e.message); return sendJSON(res, 500, { ok: false, error: 'token error' }); }
   }
 
   if (req.method === 'GET' && url.pathname === '/api/health') {

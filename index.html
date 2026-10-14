@@ -3244,7 +3244,7 @@ function refreshBarbersUI(){
   try{
     if(typeof buildList==='function') buildList();
     if(typeof renderFavs==='function') renderFavs();
-    homeMapInst=null;
+    destroyMap(homeMapInst); homeMapInst=null;
     const hm=document.getElementById('homeMap'); if(hm) hm.innerHTML='';
     if(stack[stack.length-1]==='home' && typeof initHomeMap==='function') initHomeMap();
   }catch(e){}
@@ -3323,7 +3323,10 @@ function startGpsWatch(){
     setLocPill('Nearby in '+(userCity||'your area'));
     // live-move the user marker on the map
     if(homeMapInst){
-      if(homeMapInst._isGoogle){
+      if(homeMapInst._isApple){
+        homeMapInst.setCenterAnimated(mkCoord(userLL));
+        if(homeMapInst._user) homeMapInst._user.coordinate=mkCoord(userLL);
+      } else if(homeMapInst._isGoogle){
         homeMapInst.setCenter({lat:userLL[0],lng:userLL[1]});
         updateAccuracyCircle();
       } else {
@@ -3419,7 +3422,7 @@ async function detectUserLocation(force){
     }
   }
   // Re-center & rebuild map at real coords
-  homeMapInst=null;
+  destroyMap(homeMapInst); homeMapInst=null;
   const el=document.getElementById('homeMap'); if(el) el.innerHTML='';
   initHomeMap();
   setTimeout(()=>{ if(_locMode==='gps') updateAccuracyCircle(); }, 600);
@@ -4033,11 +4036,98 @@ function barberDivIcon(b){
 function userDivIcon(){
   return L.divIcon({className:'',html:'<div class="user-dot"></div>',iconSize:[18,18],iconAnchor:[9,9]});
 }
+/* ---------- Apple Maps (MapKit JS) ----------
+ * Preferred map. The server signs a short-lived token (/api/mapkit-token);
+ * if maps aren't configured or Apple is unreachable, everything below stays
+ * on the OpenStreetMap (Leaflet) map instead. */
+let _appleReady=false, _appleState='idle';   // idle | loading | ready | failed
+function loadAppleMaps(){
+  if(_appleState!=='idle') return;
+  _appleState='loading';
+  apiFetch('/api/mapkit-token',{},15000).then(function(j){
+    if(!j || !j.ok || !j.token){ _appleState='failed'; return; }
+    let first=j.token;
+    const s=document.createElement('script');
+    s.src='https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.js';   // full build: map, annotations, overlays in one file
+    s.crossOrigin='anonymous'; s.async=true;
+    s.onerror=appleMapsFailed;
+    s.onload=function(){
+      try{
+        mapkit.addEventListener('configuration-change', function(e){
+          if(e.status==='Initialized' && !_appleReady){ _appleReady=true; _appleState='ready'; refreshMapsForApple(); }
+        });
+        mapkit.addEventListener('error', appleMapsFailed);
+        mapkit.init({ authorizationCallback: function(done){
+          if(first){ const t=first; first=null; done(t); return; }
+          apiFetch('/api/mapkit-token',{},15000).then(function(k){ if(k && k.token) done(k.token); }).catch(function(){});
+        }});
+      }catch(e){ appleMapsFailed(); }
+    };
+    document.head.appendChild(s);
+  }).catch(function(){ _appleState='failed'; });
+}
+function appleMapsFailed(){
+  const was=_appleReady; _appleReady=false; _appleState='failed';
+  if(was) refreshMapsForApple();               // swap any Apple map back to OpenStreetMap
+}
+function refreshMapsForApple(){
+  const top=stack[stack.length-1];
+  if(top==='home'){ destroyMap(homeMapInst); homeMapInst=null; initHomeMap(); }
+  if(top==='tracking'){ destroyMap(trackMapInst); trackMapInst=null; trackBarberMarker=null; trackRoute=null; mkLocDrawn=false; initTrackMap(); trackCenterOnUser(); }
+}
+function destroyMap(m){ try{ if(m && m._isApple) m.destroy(); }catch(e){} }
+function mkCoord(ll){ return new mapkit.Coordinate(Number(ll[0]), Number(ll[1])); }
+// Our own HTML pins on Apple's map. anchorOffset puts a pin's tip (or a dot's
+// centre) exactly on the coordinate.
+function applePin(ll, html, offsetY){
+  return new mapkit.Annotation(mkCoord(ll), function(){
+    const d=document.createElement('div'); d.innerHTML=html; return d.firstChild;
+  }, { anchorOffset:new DOMPoint(0, offsetY||0), calloutEnabled:false, animates:false });
+}
+function appleUserPin(ll){ return applePin(ll, '<div class="user-dot"></div>', 9); }
+function appleBarberPin(ll, b){ return applePin(ll, '<div class="barber-pin" style="background:'+b.g+'"><span>'+b.in+'</span></div>', 0); }
+function appleMap(el, interactive, spanDeg){
+  const m=new mapkit.Map(el,{
+    showsCompass:mapkit.FeatureVisibility.Hidden, showsScale:mapkit.FeatureVisibility.Hidden,
+    showsZoomControl:false, showsMapTypeControl:false, showsUserLocation:false,
+    isScrollEnabled:interactive, isZoomEnabled:interactive, isRotationEnabled:false,
+    colorScheme: isLight()? mapkit.Map.ColorSchemes.Light : mapkit.Map.ColorSchemes.Dark,
+    pointOfInterestFilter: mapkit.PointOfInterestFilter.excludingAllCategories,
+    region:new mapkit.CoordinateRegion(mkCoord(userLL), new mapkit.CoordinateSpan(spanDeg, spanDeg))
+  });
+  m._isApple=true;
+  return m;
+}
+function initHomeMapApple(){
+  const el=document.getElementById('homeMap'); if(!el) return;
+  if(homeMapInst && homeMapInst._isApple) return;
+  resetMapContainer(el, homeMapInst); homeMapInst=null;
+  homeMapInst=appleMap(el, false, 0.04);
+  homeMapInst.addOverlay(new mapkit.CircleOverlay(mkCoord(userLL), 1500, { style:new mapkit.Style({
+    strokeColor:'#2A58CC', strokeOpacity:.55, lineWidth:1, lineDash:[4,6], fillColor:'#2A58CC', fillOpacity:.07 }) }));
+  homeMapInst._user=appleUserPin(userLL);
+  homeMapInst.addAnnotation(homeMapInst._user);
+  BARBERS.forEach((b,i)=>{
+    if(isBarberBlocked(i)) return;              // blocked users stay off the map
+    const a=appleBarberPin(barberLL(b,i), b);
+    a.addEventListener('select', ()=>{ homeMapInst.selectedAnnotation=null; openBarber(i); });
+    homeMapInst.addAnnotation(a);
+  });
+}
+function initTrackMapApple(){
+  const el=document.getElementById('trackMap'); if(!el) return;
+  if(trackMapInst && trackMapInst._isApple) return;
+  resetMapContainer(el, trackMapInst); trackMapInst=null; trackBarberMarker=null; trackRoute=null;
+  trackMapInst=appleMap(el, true, 0.02);
+  trackMapInst.addAnnotation(appleUserPin(userLL));
+}
 function initHomeMap(){
+  if(_appleReady && window.mapkit){ initHomeMapApple(); return; }
   if(_googleReady && GOOGLE_MAPS_KEY){ initHomeMapGoogle(); return; }
   initHomeMapLeaflet();
 }
 function initTrackMap(){
+  if(_appleReady && window.mapkit){ initTrackMapApple(); return; }
   if(_googleReady && GOOGLE_MAPS_KEY){ initTrackMapGoogle(); return; }
   initTrackMapLeaflet();
 }
@@ -4045,13 +4135,14 @@ function initTrackMap(){
 // initialized"), which happens when we fall back from Google to Leaflet. Tear
 // down whatever is in the container first so the fallback always succeeds.
 function resetMapContainer(el, prev){
-  try{ if(prev && typeof prev.remove==='function' && !prev._isGoogle) prev.remove(); }catch(e){}
+  destroyMap(prev);
+  try{ if(prev && typeof prev.remove==='function' && !prev._isGoogle && !prev._isApple) prev.remove(); }catch(e){}
   try{ if(el && el._leaflet_id) el._leaflet_id = null; }catch(e){}
   try{ if(el) el.innerHTML=''; }catch(e){}
 }
 function initHomeMapLeaflet(){
   const el=document.getElementById('homeMap'); if(!el || typeof L==='undefined') return;
-  if(homeMapInst && !homeMapInst._isGoogle && homeMapInst.invalidateSize){ homeMapInst.invalidateSize(); return; }
+  if(homeMapInst && !homeMapInst._isGoogle && !homeMapInst._isApple && homeMapInst.invalidateSize){ homeMapInst.invalidateSize(); return; }
   resetMapContainer(el, homeMapInst); homeMapInst=null;
   homeMapInst = L.map('homeMap',{zoomControl:false,attributionControl:true,scrollWheelZoom:false,dragging:false,doubleClickZoom:false,boxZoom:false,touchZoom:false,keyboard:false}).setView(userLL,14);
   L.tileLayer(curTiles(), TILE_OPTS).addTo(homeMapInst);
@@ -4102,7 +4193,7 @@ function initHomeMapGoogle(){
 }
 function initTrackMapLeaflet(){
   const el=document.getElementById('trackMap'); if(!el || typeof L==='undefined') return;
-  if(trackMapInst && !trackMapInst._isGoogle && trackMapInst.invalidateSize){ trackMapInst.invalidateSize(); return; }
+  if(trackMapInst && !trackMapInst._isGoogle && !trackMapInst._isApple && trackMapInst.invalidateSize){ trackMapInst.invalidateSize(); return; }
   resetMapContainer(el, trackMapInst); trackMapInst=null; trackBarberMarker=null; trackRoute=null;
   trackMapInst = L.map('trackMap',{zoomControl:false,attributionControl:true,scrollWheelZoom:false,dragging:true,doubleClickZoom:false,boxZoom:false}).setView(userLL,15);
   L.tileLayer(curTiles(), TILE_OPTS).addTo(trackMapInst);
@@ -4123,6 +4214,11 @@ function initTrackMapGoogle(){
 }
 function clearTrackVisuals(){
   if(!trackMapInst) return;
+  if(trackMapInst._isApple){
+    if(trackBarberMarker){ trackMapInst.removeAnnotation(trackBarberMarker); trackBarberMarker=null; }
+    if(trackRoute){ trackMapInst.removeOverlay(trackRoute); trackRoute=null; }
+    return;
+  }
   if(trackMapInst._isGoogle){
     if(trackBarberMarker){ trackBarberMarker.setMap(null); trackBarberMarker=null; }
     if(trackRoute){ trackRoute.setMap(null); trackRoute=null; }
@@ -4132,6 +4228,14 @@ function clearTrackVisuals(){
   }
 }
 function trackDrawRoute(path){
+  if(trackMapInst._isApple){
+    trackRoute=new mapkit.PolylineOverlay(path.map(mkCoord), { style:new mapkit.Style({ strokeColor:'#2A58CC', strokeOpacity:.85, lineWidth:4, lineDash:[2,9], lineCap:'round' }) });
+    trackMapInst.addOverlay(trackRoute);
+    trackBarberMarker=appleBarberPin(path[0], tripBarber());
+    trackMapInst.addAnnotation(trackBarberMarker);
+    trackMapInst.showItems([trackRoute, trackBarberMarker], { animate:true, padding:new mapkit.Padding(70,50,70,50) });
+    return;
+  }
   if(trackMapInst._isGoogle){
     trackRoute = new google.maps.Polyline({
       path:path.map(p=>({lat:p[0],lng:p[1]})), geodesic:true,
@@ -4154,11 +4258,13 @@ function trackDrawRoute(path){
 }
 function trackMoveBarber(ll){
   if(!trackBarberMarker) return;
+  if(trackMapInst._isApple){ trackBarberMarker.coordinate=mkCoord(ll); return; }
   if(trackMapInst._isGoogle) trackBarberMarker.setPosition({lat:ll[0],lng:ll[1]});
   else trackBarberMarker.setLatLng(ll);
 }
 function trackCenterOnUser(){
   if(!trackMapInst) return;
+  if(trackMapInst._isApple){ trackMapInst.setRegionAnimated(new mapkit.CoordinateRegion(mkCoord(userLL), new mapkit.CoordinateSpan(0.012,0.012))); return; }
   if(trackMapInst._isGoogle){ trackMapInst.setCenter({lat:userLL[0],lng:userLL[1]}); trackMapInst.setZoom(16); }
   else trackMapInst.setView(userLL,16);
 }
@@ -4177,6 +4283,8 @@ function apiFetch(path, opts, ms){
     function(r){ clearTimeout(t); return r.json(); },
     function(e){ clearTimeout(t); throw e; });
 }
+// Apple Maps: fetch the token and library while onboarding / splash is on screen.
+setTimeout(function(){ try{ loadAppleMaps(); }catch(e){} }, 400);
 // Fire-and-forget warm-up: wake the backend the moment the app opens so
 // auth/payments are fast by the time the user reaches them. Slight delay so
 // the native bridge has settled window.API_BASE first.
