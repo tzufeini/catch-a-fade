@@ -748,12 +748,19 @@ body.light .agreeBar{background:rgba(255,255,255,.94);}
 .agreeYes{background:#3a3a3c;color:#8e8e93;}
 .agreeYes:not(:disabled){background:#0a84ff;color:#fff;}
 .agreeYes:not(:disabled):active{background:#0060df;}
-/* "Are you a barber?" — a real button, not a footnote: recruiting barbers matters */
-.ob-barber{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;margin-top:12px;padding:15px 16px;border-radius:14px;background:#FFFDF8;border:2px solid #15110D;color:#15110D;font-size:15.5px;font-weight:820;cursor:pointer;box-shadow:0 8px 20px -10px rgba(0,0,0,.35);}
-.ob-barber .pole{font-size:20px;line-height:1;}
-.ob-barber b{color:#C7414E;font-weight:850;}
-.ob-barber:active{transform:scale(.97);}
-html.native .ob-barber{font-size:17.5px;padding:17px;}
+/* "Are you a barber?" — Uber's "drive with us" row: hairline above, round icon,
+   bold question, one-line subtitle, chevron. No box, sits on our cream. */
+.ob-barber{display:flex;align-items:center;gap:14px;width:100%;margin-top:18px;padding:16px 2px 4px;border:0;border-top:1px solid rgba(21,17,13,.14);background:transparent;color:#15110D;text-align:left;cursor:pointer;font-family:inherit;}
+.ob-barber .ic{width:44px;height:44px;border-radius:50%;background:#15110D;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.ob-barber .tx{flex:1;min-width:0;}
+.ob-barber .t1{font-size:16px;font-weight:800;letter-spacing:-.2px;}
+.ob-barber .t2{font-size:13px;color:rgba(21,17,13,.6);margin-top:2px;font-weight:550;}
+.ob-barber .chev{flex-shrink:0;opacity:.55;}
+.ob-barber:active{opacity:.6;}
+html.native .ob-barber .t1{font-size:17.5px;}
+html.native .ob-barber .t2{font-size:14.5px;}
+/* The welcome screen is the first thing you see: shown still, no entrance animation */
+#ob1 [data-a]{animation:none!important;opacity:1!important;transform:none!important;}
 /* barber landing */
 .bl-row{display:flex;gap:13px;align-items:flex-start;margin:0 20px 10px;padding:13px 14px;border-radius:14px;background:var(--card);border:1px solid var(--line2);}
 .bl-ic{width:34px;height:34px;flex-shrink:0;border-radius:10px;background:rgba(46,132,196,.16);color:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;}
@@ -1491,7 +1498,7 @@ html.native .ob-tip{ font-size:14px; }
     </div>
     <div class="ob-nav" data-a="2">
       <button class="ob-cta" onclick="obNext()">Let's go →</button>
-      <button class="ob-barber" onclick="sessionStorage.setItem('fadex_seen_ob','1');goBarberSide()"><span class="pole">💈</span>Are you a barber? <b>Start earning →</b></button>
+      <button class="ob-barber" onclick="sessionStorage.setItem('fadex_seen_ob','1');goBarberSide()"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2ECDD" stroke-width="2" stroke-linecap="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></span><span class="tx"><span class="t1" style="display:block">Are you a barber?</span><span class="t2" style="display:block">Earn cutting hair on your own schedule</span></span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#15110D" stroke-width="2.6" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></button>
     </div>
   </section>
 
@@ -1782,7 +1789,7 @@ html.native .ob-tip{ font-size:14px; }
     <div class="ob-nav">
       <button class="ob-cta" style="animation:obUp .38s .18s ease-out both,obPulse 1.8s .8s ease-in-out 2;" onclick="goAuth('signup')">Sign Up Free</button>
       <div class="ob-ghost" style="animation:obUp .38s .32s ease-out both;" onclick="goAuth('login')">Already have an account? <b>Log in</b></div>
-      <button class="ob-barber" style="animation:obUp .38s .44s ease-out both;" onclick="goBarberSide()"><span class="pole">💈</span>Are you a barber? <b>Start earning →</b></button>
+      <button class="ob-barber" style="animation:obUp .38s .44s ease-out both;" onclick="goBarberSide()"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2ECDD" stroke-width="2" stroke-linecap="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></span><span class="tx"><span class="t1" style="display:block">Are you a barber?</span><span class="t2" style="display:block">Earn cutting hair on your own schedule</span></span><svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#15110D" stroke-width="2.6" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></button>
     </div>
   </section>
 
@@ -3065,12 +3072,9 @@ function haptic(){ if(navigator.vibrate) navigator.vibrate(8); }
   const ciRT = document.getElementById('ciRT');
   const ciRB = document.getElementById('ciRB');
   if(!overlay) return;
-  // The scissor intro plays once, on the very first launch. After that the app
-  // opens straight to where you were — no 2 s wait on every open.
-  try{
-    if(localStorage.getItem('fadex_splash_seen')){ overlay.style.display='none'; return; }
-    localStorage.setItem('fadex_splash_seen','1');
-  }catch(e){}
+  // No intro animation: the app opens straight on "Welcome to CatchAFade."
+  overlay.style.display='none';
+  return;
 
   const SCI_H  = 90;    // glow(5) + scissors SVG(83) + gap(2)
   const LOGO_HOLD      = 380;   // ms logo shows before crossfade

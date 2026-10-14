@@ -26,16 +26,11 @@ function pole(id, scale) {
   </pattern>`;
 }
 
-// App icon: WHITE full-bleed background + centered cream rounded tile + black CAF.
-// No barber-pole stripes — those stay in the in-app UI, not the icon. iOS masks the
-// outer corners, so the white shows as a thin margin around the cream tile.
+// App icon: full-bleed cream (edge to edge — iOS rounds the corners itself) + black CAF.
+// The earlier version put a cream tile on a white square, which showed as a white rim.
 const ICON = 1024;
-const iconMargin = Math.round(ICON * 0.045);
-const iconTile = ICON - iconMargin * 2;
-const iconR = Math.round(iconTile * 0.22);
 const iconSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="${ICON}" height="${ICON}" viewBox="0 0 ${ICON} ${ICON}">
-  <rect width="${ICON}" height="${ICON}" fill="${WHITE}"/>
-  <rect x="${iconMargin}" y="${iconMargin}" width="${iconTile}" height="${iconTile}" rx="${iconR}" fill="${CREAM}"/>
+  <rect width="${ICON}" height="${ICON}" fill="${CREAM}"/>
   <text x="${ICON / 2}" y="${ICON / 2}" font-family="${SERIF}" font-weight="700"
         font-size="392" fill="${BLACK}" text-anchor="middle" dominant-baseline="central"
         letter-spacing="4">CAF</text>
