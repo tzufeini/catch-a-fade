@@ -748,6 +748,12 @@ body.light .agreeBar{background:rgba(255,255,255,.94);}
 .agreeYes{background:#3a3a3c;color:#8e8e93;}
 .agreeYes:not(:disabled){background:#0a84ff;color:#fff;}
 .agreeYes:not(:disabled):active{background:#0060df;}
+/* "Are you a barber?" — a real button, not a footnote: recruiting barbers matters */
+.ob-barber{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;margin-top:12px;padding:15px 16px;border-radius:14px;background:#FFFDF8;border:2px solid #15110D;color:#15110D;font-size:15.5px;font-weight:820;cursor:pointer;box-shadow:0 8px 20px -10px rgba(0,0,0,.35);}
+.ob-barber .pole{font-size:20px;line-height:1;}
+.ob-barber b{color:#C7414E;font-weight:850;}
+.ob-barber:active{transform:scale(.97);}
+html.native .ob-barber{font-size:17.5px;padding:17px;}
 /* barber landing */
 .bl-row{display:flex;gap:13px;align-items:flex-start;margin:0 20px 10px;padding:13px 14px;border-radius:14px;background:var(--card);border:1px solid var(--line2);}
 .bl-ic{width:34px;height:34px;flex-shrink:0;border-radius:10px;background:rgba(46,132,196,.16);color:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;}
@@ -892,7 +898,7 @@ body.light .agreeBar{background:rgba(255,255,255,.94);}
 .ob-s{font-size:21px;line-height:1.5;color:var(--ob-dimm);max-width:330px;margin:0 auto;}
 .ob-nav{padding:16px 26px 48px;position:relative;z-index:1;}
 .ob-cta{position:relative;z-index:0;overflow:hidden;width:100%;padding:16px;border:none;border-radius:14px;background:#2a0f12;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.95),0 0 2px rgba(0,0,0,.7);font-size:15.5px;font-weight:820;cursor:pointer;letter-spacing:-.1px;box-shadow:0 12px 28px -12px rgba(0,0,0,.75);transition:transform .12s,opacity .12s;}
-.ob-cta::before{content:"";position:absolute;top:-90px;left:-90px;right:-90px;bottom:-90px;background:var(--bp-spiral-img);animation:bpSlide 5.5s linear infinite;z-index:-1;will-change:transform;}
+.ob-cta::before{content:"";position:absolute;top:0;left:0;right:-58px;bottom:-42px;background:var(--bp-spiral-img);animation:bpSlide 5.5s linear infinite;z-index:-1;will-change:transform;}
 .ob-cta::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.18);z-index:-1;}
 .ob-cta:active{transform:scale(.97);opacity:.88;}
 .ob-ghost{text-align:center;margin-top:12px;font-size:13px;color:var(--ob-dimm);cursor:pointer;}
@@ -1485,7 +1491,7 @@ html.native .ob-tip{ font-size:14px; }
     </div>
     <div class="ob-nav" data-a="2">
       <button class="ob-cta" onclick="obNext()">Let's go →</button>
-      <div class="ob-ghost" onclick="sessionStorage.setItem('fadex_seen_ob','1');goBarberSide()">Are you a barber? <b>Start earning →</b></div>
+      <button class="ob-barber" onclick="sessionStorage.setItem('fadex_seen_ob','1');goBarberSide()"><span class="pole">💈</span>Are you a barber? <b>Start earning →</b></button>
     </div>
   </section>
 
@@ -1528,11 +1534,11 @@ html.native .ob-tip{ font-size:14px; }
             <line x1="158" y1="0" x2="158" y2="166" stroke="#2E84C4" stroke-width=".6"/>
           </svg>
           <svg style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 236 166" fill="none">
-            <path d="M34 134 L34 74 L120 74 L120 38 L202 38" stroke="var(--ob-gold)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="262" stroke-dashoffset="262" style="animation:obRoute 1.3s .3s ease-in-out forwards"/>
+            <path d="M34 127 L34 74 L120 74 L120 38 L174 38" stroke="var(--ob-gold)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="229" stroke-dashoffset="229" style="animation:obRoute 1.3s .3s ease-in-out forwards"/>
           </svg>
-          <span style="position:absolute;left:23px;top:122px;font-size:23px;animation:obPop .4s .2s ease-out both">💈</span>
-          <span style="position:absolute;left:190px;top:18px;font-size:25px;animation:obPop .4s 1.55s ease-out both">🏠</span>
-          <span style="position:absolute;left:0;top:0;font-size:18px;offset-path:path('M34 134 L34 74 L120 74 L120 38 L202 38');animation:obTravel 1.3s .3s ease-in-out forwards">✂️</span>
+          <span style="position:absolute;left:20px;top:127px;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:23px;line-height:1;animation:obPop .4s .2s ease-out both">💈</span>
+          <span style="position:absolute;left:196px;top:24px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-size:25px;line-height:1;animation:obPop .4s 1.55s ease-out both">🏠</span>
+          <span style="position:absolute;left:0;top:0;width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:16px;line-height:1;offset-path:path('M34 127 L34 74 L120 74 L120 38 L174 38');offset-rotate:0deg;animation:obTravel 1.3s .3s ease-in-out forwards">✂️</span>
         </div>
       </div>
       <div class="ob-text">
@@ -1762,6 +1768,7 @@ html.native .ob-tip{ font-size:14px; }
 
   <!-- OB 16 · CTA / Sign-Up Gate -->
   <section class="screen ob-screen ob-noise" id="ob16">
+    <span class="ob-skip" onclick="obSkip()">Skip</span>
     <div class="ob10-glow"></div>
     <div class="ob-body" style="justify-content:center;padding-top:0">
       <div class="ob-vis" style="flex:none;height:150px">
@@ -1775,8 +1782,7 @@ html.native .ob-tip{ font-size:14px; }
     <div class="ob-nav">
       <button class="ob-cta" style="animation:obUp .38s .18s ease-out both,obPulse 1.8s .8s ease-in-out 2;" onclick="goAuth('signup')">Sign Up Free</button>
       <div class="ob-ghost" style="animation:obUp .38s .32s ease-out both;" onclick="goAuth('login')">Already have an account? <b>Log in</b></div>
-      <div class="ob-ghost" style="animation:obUp .38s .44s ease-out both;" onclick="guestBrowse()">Browse barbers first — <b>no account needed</b></div>
-      <div class="ob-ghost" style="animation:obUp .38s .56s ease-out both;" onclick="goBarberSide()">Are you a barber? <b>Start earning →</b></div>
+      <button class="ob-barber" style="animation:obUp .38s .44s ease-out both;" onclick="goBarberSide()"><span class="pole">💈</span>Are you a barber? <b>Start earning →</b></button>
     </div>
   </section>
 
@@ -3264,6 +3270,9 @@ let _locMode = 'none'; // 'gps' | 'ip' | 'none'
 let _gpsWatchId = null;
 let _accuracyCircle = null;
 let _locPrimeShown = false; // in-app "Enable location" ask shown once per session
+function saveLastLocation(ll, city){
+  try{ if(ll) localStorage.setItem('fadex_last_loc', JSON.stringify({ll:ll, city:city||'', t:Date.now()})); }catch(e){}
+}
 function haversine(lat1,lng1,lat2,lng2){
   const R=3958.8, dLat=(lat2-lat1)*Math.PI/180, dLng=(lng2-lng1)*Math.PI/180;
   const a=Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLng/2)**2;
@@ -3292,16 +3301,21 @@ function browserGeo(){
     navigator.geolocation.getCurrentPosition(
       p=>{ userAccuracy = p.coords.accuracy; res([p.coords.latitude,p.coords.longitude]); },
       e=>rej(e&&e.code===1?'denied':'fail'),
-      {timeout:12000, maximumAge:0, enableHighAccuracy:true}
+      {timeout:8000, maximumAge:120000, enableHighAccuracy:false}
     );
   });
 }
 function startGpsWatch(){
   if(!navigator.geolocation || _gpsWatchId!=null) return;
   _gpsWatchId = navigator.geolocation.watchPosition(p=>{
-    userLL = [p.coords.latitude, p.coords.longitude];
+    const next=[p.coords.latitude, p.coords.longitude];
+    const movedMi = userLL ? haversine(userLL[0],userLL[1],next[0],next[1]) : 1;
     userAccuracy = p.coords.accuracy;
+    const wasGps = _locMode==='gps';
     _locMode = 'gps';
+    saveLastLocation(next, userCity);
+    if(wasGps && movedMi < 0.03){ setLocPill('Nearby in '+(userCity||'your area')); return; }  // <50 m: nothing to redraw
+    userLL = next;
     setLocPill('Nearby in '+(userCity||'your area'));
     // live-move the user marker on the map
     if(homeMapInst){
@@ -3372,9 +3386,11 @@ async function detectUserLocation(force){
   try {
     const ll = await browserGeo();
     userLL = ll; _locDetected=true; _locMode='gps';
-    try { const name = await reverseGeocode(ll); userCity = name || 'Your area'; } catch(e){ userCity='Your area'; }
+    try{ localStorage.setItem('fadex_geo_ok','1'); }catch(e){}
+    saveLastLocation(ll, userCity);
     setLocPill('Nearby in '+(userCity||'your area'), 'gps');
     startGpsWatch();
+    reverseGeocode(ll).then(name=>{ if(name){ userCity=name; saveLastLocation(userLL, name); setLocPill('Nearby in '+name, 'gps'); } }).catch(()=>{});
   } catch(e){
     // GPS unavailable — denied, blocked at the site level, OS location off, or timed out.
     // Try city-level IP location so the app STILL WORKS (the user opted in by tapping
@@ -3430,6 +3446,11 @@ async function maybeRequestLocation(){
     if(_locMode==='gps') startGpsWatch();
     return;
   }
+  // Already granted on this phone (iOS remembers it) → never ask again, just locate.
+  try {
+    const native = window.CAF_GEO_CHECK ? await window.CAF_GEO_CHECK() : '';
+    if(native==='granted' || (native!=='denied' && localStorage.getItem('fadex_geo_ok'))){ detectUserLocation(true); return; }
+  } catch(e){}
   // If the browser already granted permission, skip the ask and locate directly.
   try {
     if(navigator.permissions && navigator.permissions.query){
@@ -3979,10 +4000,22 @@ function closeCancelConfirm(){ document.getElementById('cancelModal').classList.
 let homeMapInst, trackMapInst, trackBarberMarker, trackRoute;
 const DEFAULT_CENTER = [40.7580, -73.9855]; // Manhattan default
 let userLL = DEFAULT_CENTER.slice();
+// Open on the last known location instantly; GPS refines it in the background.
+(function restoreLastLocation(){
+  try{
+    const j=JSON.parse(localStorage.getItem('fadex_last_loc')||'null');
+    if(j && j.ll && j.ll.length===2 && Date.now()-(j.t||0) < 7*864e5){
+      userLL=j.ll; userCity=j.city||''; _locDetected=true; _locMode='gps';
+      setTimeout(()=>{ try{ setLocPill('Nearby in '+(userCity||'your area'), 'gps'); }catch(e){} }, 0);
+    }
+  }catch(e){}
+})();
 const BARBER_OFFSETS = [[0.0095,0.0042],[0.0058,-0.0067],[-0.0074,-0.0033],[-0.0051,0.0078],[0.0036,0.0095]];
 // CARTO basemaps started stamping "API KEY REQUIRED" on keyless tiles (Oct 2026),
 // so the fallback map uses the standard OSM tiles; dark mode darkens them in CSS.
 const TILE_OSM = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+// Map credit shows only the required "© OpenStreetMap", not the Leaflet name and flag.
+if(window.L && L.Control && L.Control.Attribution) L.Control.Attribution.prototype.options.prefix = false;
 function isLight(){ return document.body.classList.contains('light'); }
 function curTiles(){ return TILE_OSM; }
 const TILE_OPTS = {maxZoom:19, attribution:'© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'};
@@ -5927,11 +5960,15 @@ function ob9Build(){
     +'<path d="M0 200 L120 120 L200 150 L320 70" stroke="#8FD0FF" stroke-width="1.8" fill="none" opacity=".85"/>'
     +'</svg>';
   // 2) lots of red location pins dropping out of the sky onto the map
-  const N=24;
+  // 6 x 6 grid with a fixed jitter so pins cover every part of the map, bottom included
   const pins=[];
-  for(let k=0;k<N;k++){
-    const x=(7+((k*53)%86)).toFixed(1), y=(12+((k*71)%74)).toFixed(1);
-    const anim=reduced ? '' : ('animation:ob9Pin .55s '+(0.055*k).toFixed(2)+'s cubic-bezier(.2,1.6,.35,1) both');
+  const COLS=6, ROWS=6;
+  for(let k=0;k<COLS*ROWS;k++){
+    const c=k%COLS, r=Math.floor(k/COLS);
+    if(r===2 && (c===2||c===3)) continue;                  // keep the "you" dot clear
+    const jx=((k*37)%11)-5, jy=((k*53)%9)-4;
+    const x=(8+c*(84/(COLS-1))+jx).toFixed(1), y=(14+r*(80/(ROWS-1))+jy).toFixed(1);
+    const anim=reduced ? '' : ('animation:ob9Pin .55s '+(0.04*k).toFixed(2)+'s cubic-bezier(.2,1.6,.35,1) both');
     pins.push('<span class="ob9-pin" style="left:'+x+'%;top:'+y+'%;'+(reduced?'':anim)+'">📍</span>');
   }
   // 3) a "you" dot in the middle for reference

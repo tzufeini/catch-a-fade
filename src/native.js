@@ -148,10 +148,12 @@ function installGeolocation() {
         try {
           const perm = await Geolocation.requestPermissions({ permissions: ['location'] });
           if (perm && perm.location === 'denied') throw { code: 1, message: 'denied' };
+          // A one-off fix uses the fast (Wi-Fi/cell, recently cached) location unless the
+          // caller explicitly asks for GPS; the watch below sharpens it to GPS accuracy.
           const p = await Geolocation.getCurrentPosition({
-            enableHighAccuracy: opts.enableHighAccuracy !== false,
-            timeout: opts.timeout || 12000,
-            maximumAge: opts.maximumAge || 0,
+            enableHighAccuracy: opts.enableHighAccuracy === true,
+            timeout: opts.timeout || 8000,
+            maximumAge: opts.maximumAge != null ? opts.maximumAge : 60000,
           });
           success && success({
             coords: {
@@ -191,6 +193,11 @@ function installGeolocation() {
       const wid = id && id.id ? id.id : id;
       if (wid) safe(() => Geolocation.clearWatch({ id: wid }));
     },
+  };
+  // Lets the page skip its "Enable location" ask when iOS has already granted it.
+  window.CAF_GEO_CHECK = async () => {
+    try { const r = await Geolocation.checkPermissions(); return (r && (r.location || r.coarseLocation)) || ''; }
+    catch (e) { return ''; }
   };
   try {
     Object.defineProperty(navigator, 'geolocation', { value: impl, configurable: true });
