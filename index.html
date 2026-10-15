@@ -1515,7 +1515,7 @@ html.native .ob-tip{ font-size:14px; }
     <div class="tb-av" id="tbAv">✂</div>
     <div class="tb-info">
       <b id="tbState">Your barber is on the way</b>
-      <small id="tbSub">Live trip · tap to view</small>
+      <small id="tbSub">Barber coming to you · tap to view</small>
     </div>
     <div class="tb-eta"><b id="tbEta">8</b><small>min</small></div>
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.6"><path d="M9 6l6 6-6 6"/></svg>
@@ -2127,7 +2127,7 @@ html.native .ob-tip{ font-size:14px; }
         <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span>Home</span>
       </div>
       <div class="tab" data-t="bookings" onclick="navTab('bookings')">
-        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4.5" width="18" height="17" rx="3"/><line x1="3" y1="9.5" x2="21" y2="9.5"/><line x1="8" y1="2" x2="8" y2="7"/><line x1="16" y1="2" x2="16" y2="7"/></svg><span>Trips</span>
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4.5" width="18" height="17" rx="3"/><line x1="3" y1="9.5" x2="21" y2="9.5"/><line x1="8" y1="2" x2="8" y2="7"/><line x1="16" y1="2" x2="16" y2="7"/></svg><span>Appointments</span>
       </div>
       <div class="tab" data-t="messages" onclick="navTab('messages')">
         <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12a8 8 0 0 1-11.5 7.2L4 21l1.8-5.5A8 8 0 1 1 21 12z"/></svg><span>Inbox</span>
@@ -2325,7 +2325,7 @@ html.native .ob-tip{ font-size:14px; }
         </div>
         <div style="display:flex;gap:9px;padding:12px 20px 8px">
           <button class="btn ghost" style="flex:1;font-size:13px;padding:12px" onclick="shareTrip()">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="vertical-align:-2px;margin-right:5px"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.6" y1="10.6" x2="15.4" y2="6.4"/><line x1="8.6" y1="13.4" x2="15.4" y2="17.6"/></svg>Share trip</button>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" style="vertical-align:-2px;margin-right:5px"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.6" y1="10.6" x2="15.4" y2="6.4"/><line x1="8.6" y1="13.4" x2="15.4" y2="17.6"/></svg>Share appointment</button>
           <button class="btn ghost" style="flex:1;font-size:13px;padding:12px" onclick="nav('safety')">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="#2E84C4" stroke="#2E84C4" stroke-width="1.6" stroke-linejoin="round" style="vertical-align:-2px;margin-right:5px"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z"/></svg>Safety</button>
         </div>
@@ -2336,12 +2336,12 @@ html.native .ob-tip{ font-size:14px; }
 
   <!-- ============ BOOKINGS / TRIPS ============ -->
   <section class="screen" id="bookings">
-    <div class="head"><h2>Your trips</h2>
+    <div class="head"><h2>Your appointments</h2>
       <div class="iconbtn"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4.5" width="18" height="17" rx="3"/><line x1="3" y1="9.5" x2="21" y2="9.5"/></svg></div></div>
     <div class="body" id="tripsBody"></div>
     <nav class="tabbar">
       <div class="tab" data-t="home" onclick="navTab('home')"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span>Home</span></div>
-      <div class="tab on" data-t="bookings" onclick="navTab('bookings')"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4.5" width="18" height="17" rx="3"/><line x1="3" y1="9.5" x2="21" y2="9.5"/><line x1="8" y1="2" x2="8" y2="7"/><line x1="16" y1="2" x2="16" y2="7"/></svg><span>Trips</span></div>
+      <div class="tab on" data-t="bookings" onclick="navTab('bookings')"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4.5" width="18" height="17" rx="3"/><line x1="3" y1="9.5" x2="21" y2="9.5"/><line x1="8" y1="2" x2="8" y2="7"/><line x1="16" y1="2" x2="16" y2="7"/></svg><span>Appointments</span></div>
       <div class="tab" data-t="messages" onclick="navTab('messages')"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12a8 8 0 0 1-11.5 7.2L4 21l1.8-5.5A8 8 0 1 1 21 12z"/></svg><span>Inbox</span></div>
       <div class="tab" data-t="profile" onclick="navTab('profile')"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg><span>Account</span></div>
     </nav>
@@ -2354,7 +2354,7 @@ html.native .ob-tip{ font-size:14px; }
     <div class="body" id="inboxBody"></div>
     <nav class="tabbar">
       <div class="tab" data-t="home" onclick="navTab('home')"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span>Home</span></div>
-      <div class="tab" data-t="bookings" onclick="navTab('bookings')"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4.5" width="18" height="17" rx="3"/><line x1="3" y1="9.5" x2="21" y2="9.5"/><line x1="8" y1="2" x2="8" y2="7"/><line x1="16" y1="2" x2="16" y2="7"/></svg><span>Trips</span></div>
+      <div class="tab" data-t="bookings" onclick="navTab('bookings')"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4.5" width="18" height="17" rx="3"/><line x1="3" y1="9.5" x2="21" y2="9.5"/><line x1="8" y1="2" x2="8" y2="7"/><line x1="16" y1="2" x2="16" y2="7"/></svg><span>Appointments</span></div>
       <div class="tab on" data-t="messages" onclick="navTab('messages')"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12a8 8 0 0 1-11.5 7.2L4 21l1.8-5.5A8 8 0 1 1 21 12z"/></svg><span>Inbox</span></div>
       <div class="tab" data-t="profile" onclick="navTab('profile')"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg><span>Account</span></div>
     </nav>
@@ -2366,7 +2366,7 @@ html.native .ob-tip{ font-size:14px; }
       <div class="iconbtn" onclick="back()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M15 5l-7 7 7 7"/></svg></div>
       <div class="av" style="width:38px;height:38px;border-radius:11px;background:var(--grad);font-size:14px" id="chAv">✂</div>
       <div style="flex:1"><div style="font-weight:720;font-size:15px" id="chName">Your barber</div>
-        <div style="font-size:11.5px;color:var(--green);font-weight:600" id="chSub">● Your trip</div></div>
+        <div style="font-size:11.5px;color:var(--green);font-weight:600" id="chSub">● Your appointment</div></div>
     </div>
     <div class="body">
       <div class="msgs" id="msgs"></div>
@@ -2428,7 +2428,7 @@ html.native .ob-tip{ font-size:14px; }
     </div>
     <nav class="tabbar">
       <div class="tab" data-t="home" onclick="navTab('home')"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span>Home</span></div>
-      <div class="tab" data-t="bookings" onclick="navTab('bookings')"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4.5" width="18" height="17" rx="3"/><line x1="3" y1="9.5" x2="21" y2="9.5"/><line x1="8" y1="2" x2="8" y2="7"/><line x1="16" y1="2" x2="16" y2="7"/></svg><span>Trips</span></div>
+      <div class="tab" data-t="bookings" onclick="navTab('bookings')"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4.5" width="18" height="17" rx="3"/><line x1="3" y1="9.5" x2="21" y2="9.5"/><line x1="8" y1="2" x2="8" y2="7"/><line x1="16" y1="2" x2="16" y2="7"/></svg><span>Appointments</span></div>
       <div class="tab" data-t="messages" onclick="navTab('messages')"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12a8 8 0 0 1-11.5 7.2L4 21l1.8-5.5A8 8 0 1 1 21 12z"/></svg><span>Inbox</span></div>
       <div class="tab on" data-t="profile" onclick="navTab('profile')"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg><span>Account</span></div>
     </nav>
@@ -2607,7 +2607,7 @@ html.native .ob-tip{ font-size:14px; }
       <div class="sect"><h3>During your appointment</h3></div>
       <div class="setRow" onclick="shareTrip()">
         <div class="si"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.6" y1="10.6" x2="15.4" y2="6.4"/><line x1="8.6" y1="13.4" x2="15.4" y2="17.6"/></svg></div>
-        <div class="st">Share my trip with a contact</div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg>
+        <div class="st">Share my appointment<br/><small style="color:var(--dim);font-weight:500">Let someone you trust know a barber is coming to you.</small></div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg>
       </div>
       <div class="setRow" style="cursor:default">
         <div class="si"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.2"><path d="M12 21s-7-5.2-7-11a7 7 0 1 1 14 0c0 5.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
@@ -2620,7 +2620,7 @@ html.native .ob-tip{ font-size:14px; }
       <div class="setRow" onclick="addTrustedContact()"><div class="si"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.6"><path d="M12 6v12M6 12h12"/></svg></div><div class="st" style="color:var(--blue)">Add trusted contact</div></div>
       <div class="sect"><h3>More</h3></div>
       <div class="setRow" onclick="openReport('safety problem')"><div class="si"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="2.2"><path d="M5 21V4h11l-1.5 3.5L16 11H5"/></svg></div><div class="st">Report a problem</div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></div>
-      <div class="setRow" onclick="notify('Safety tips','Meet in a well-lit space, keep your phone nearby, and share your trip with a trusted contact from this screen.')"><div class="si"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="2.2"><path d="M4 19V5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2 2 2 0 0 1 2-2h13"/></svg></div><div class="st">Safety resources & tips</div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></div>
+      <div class="setRow" onclick="notify('Safety tips','When your barber arrives, check that their name and photo match the app, and only share your PIN in person at the door. You can share your appointment with someone you trust from this screen.')"><div class="si"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="2.2"><path d="M4 19V5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2 2 2 0 0 1 2-2h13"/></svg></div><div class="st">Safety resources & tips</div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></div>
     </div>
   </section>
 
@@ -3083,7 +3083,7 @@ function startTrip(){
   const av=document.getElementById('tbAv');
   av.textContent=b.in; av.style.background=b.g;
   document.getElementById('tbState').textContent=b.n.split(' ')[0]+' accepted';
-  document.getElementById('tbSub').textContent=b.n+' · live trip';
+  document.getElementById('tbSub').textContent=b.n+' · coming to you';
   var _tbe=document.getElementById('tbEta'); if(_tbe) _tbe.textContent='–';
   showTripBar();
 }
@@ -4630,7 +4630,7 @@ function scLocalAnswer(q){
   if(/pin/.test(q)) return 'When your barber arrives you\'ll see a 4-digit PIN in the app. Tell it to them — they enter it in their app to confirm they\'re at the right address, and then the cut officially starts.';
   if(/tip/.test(q)) return 'You can tip your barber directly after the cut — 100% of every tip goes straight to them.';
   if(/surge|price|cost|charge|expensive/.test(q)) return 'Your price is the barber\'s listed rate for the service you pick, plus a 25% platform service fee. You always see the exact total before you confirm.';
-  if(/late|no.?show|where.*barber|barber.*late|eta/.test(q)) return 'You can follow your barber\'s progress on the map. If they\'re running more than 5 minutes late, you can cancel at no cost from the trip screen.';
+  if(/late|no.?show|where.*barber|barber.*late|eta/.test(q)) return 'You can follow your barber\'s progress on the map. If they\'re running more than 5 minutes late, you can cancel at no cost from your appointment screen.';
   if(/lost|left|forgot/.test(q)) return 'Sorry about that! Tap "Report a lost item" on the Help screen and tell us what was left behind — we\'ll connect you with your barber right away.';
   if(/refund|wrong|bad|complaint|terrible/.test(q)) return 'Sorry to hear that. Use "Report a problem" on the Help screen, or email TZUFEINI@gmail.com — refunds usually process within 3–5 business days.';
   if(/safe|background|check|verified/.test(q)) return 'Every Catch a Fade pro goes through identity verification and a portfolio review before they can take bookings. Look for the "Verified Pro" badge on their profile.';
@@ -5100,8 +5100,8 @@ function showToast(t,s){
 }
 function shareTrip(){
   var b=BARBERS[current]||{};
-  var txt='I\'m getting a haircut with '+(b.n||'a Catch a Fade barber')+' — following my appointment live on Catch a Fade.';
-  if(navigator.share){ navigator.share({title:'Catch a Fade — live trip', text:txt}).catch(function(){}); }
+  var txt=(b.n||'A Catch a Fade barber')+' is coming to my place for a haircut. I\'m following their arrival live on Catch a Fade.';
+  if(navigator.share){ navigator.share({title:'Catch a Fade — my appointment', text:txt}).catch(function(){}); }
   else showToast('Sharing unavailable','Your device doesn\'t support sharing from here.');
 }
 /* ---------- reports (lost item / problem / safety) — a real channel ---------- */
@@ -5181,7 +5181,7 @@ function addTrustedContact(){
   var phone=prompt('Contact phone number'); if(!phone || !phone.trim()) return;
   localStorage.setItem('fadex_trusted', JSON.stringify({ name:name.trim(), phone:phone.trim() }));
   renderTrustedContact();
-  notify('Trusted contact saved', name.trim()+' — use "Share my trip" during appointments.');
+  notify('Trusted contact saved', name.trim()+' — use "Share my appointment" when a barber is coming to you.');
 }
 function renderTrustedContact(){
   var el=document.getElementById('trustedRow'); if(!el) return;
@@ -6458,11 +6458,11 @@ function mkTripStatus(bk, b){
   if(bk.status==='accepted'){
     st.textContent=first+' accepted · getting ready';
     step('stepWay','now'); showToast(first+' accepted!', 'Free cancellation for 2 minutes.');
-    updateTripBar(null, first+' accepted', b.n+' · live trip');
+    updateTripBar(null, first+' accepted', b.n+' · coming to you');
   } else if(bk.status==='en_route'){
     st.textContent=b.n+' is on the way'; step('stepWay','now');
     showToast(first+' is on the way', 'Track them live on the map.');
-    updateTripBar(null, first+' is on the way', b.n+' · live trip');
+    updateTripBar(null, first+' is on the way', b.n+' · coming to you');
   } else if(bk.status==='arrived'){
     step('stepWay','done'); step('stepArr','now');
     st.textContent=first+' has arrived';
@@ -6566,7 +6566,7 @@ async function renderTrips(){
   const el=document.getElementById('tripsBody'); if(!el) return;
   const uid=await mkUserId();
   if(!uid){
-    el.innerHTML=emptyCard('No trips yet','Sign in and book a cut — your appointments show up here.','Find a barber','navTab(\'home\')');
+    el.innerHTML=emptyCard('No appointments yet','Sign in and book a cut — your appointments show up here.','Find a barber','navTab(\'home\')');
     return;
   }
   const rows=await mkMyBookings();
@@ -6581,7 +6581,7 @@ async function renderTrips(){
   };
   const act=rows.filter(k=>MK_ACTIVE.includes(k.status)), past=rows.filter(k=>!MK_ACTIVE.includes(k.status));
   el.innerHTML='<div class="sect"><h3>Upcoming</h3></div>'
-    +(act.length?act.map(row).join(''):emptyCard('No upcoming trips','Book a cut from the Home tab — you\'ll see live tracking here.','Find a barber','navTab(\'home\')'))
+    +(act.length?act.map(row).join(''):emptyCard('No upcoming appointments','Book a cut from the Home tab — you\'ll see your barber on the way here.','Find a barber','navTab(\'home\')'))
     +'<div class="sect" style="margin-top:14px"><h3>Past</h3></div>'
     +(past.length?past.map(row).join(''):'<div style="padding:0 20px;color:var(--faint);font-size:12.5px;text-align:center">Past appointments show up after your first booking.</div>')
     +'<div style="height:20px"></div>';
@@ -6611,9 +6611,9 @@ async function renderInbox(){
 /* ---------- real chat (customer ↔ barber, per booking) ---------- */
 let mkChatId=null, mkChatChan=null;
 function mkOpenTripChat(){
-  if(!mkBooking){ notify('No active trip','Chat opens once a barber accepts your booking.'); return; }
+  if(!mkBooking){ notify('No active appointment','Chat opens once a barber accepts your booking.'); return; }
   const b=tripBarber();
-  mkOpenChat(mkBooking.id, b.n, b.in, '● '+(MK_STATUS_LABEL[mkBooking.status]||'Your trip'));
+  mkOpenChat(mkBooking.id, b.n, b.in, '● '+(MK_STATUS_LABEL[mkBooking.status]||'Your appointment'));
 }
 function mkOpenJobChat(){
   if(!mkJob) return;
