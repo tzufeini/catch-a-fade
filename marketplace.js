@@ -33,7 +33,7 @@ function pin4() { return String(1000 + crypto.randomInt(9000)); }
 module.exports = function createMarketplace(ctx) {
   const { stripe, supabase, sendJSON, sendHTML, pageHTML, rateLimited, FEE_PERCENT,
           CANCEL_FEE_CENTS, REVIEW_EMAIL, REVIEW_CODE, ADMIN_EMAILS, push,
-          stripeTest, STRIPE_PUBLISHABLE, STRIPE_TEST_PUBLISHABLE } = ctx;
+          stripeTest, STRIPE_PUBLISHABLE, STRIPE_TEST_PUBLISHABLE, anthropicKey, sendEmail } = ctx;
 
   async function authUser(token) {
     if (!supabase || !token) return null;
@@ -59,14 +59,29 @@ module.exports = function createMarketplace(ctx) {
     } catch (e) { console.error('[docs bucket]', e && e.message); }
     return docsBucketReady;
   }
-  // { id: url|null, selfie: url|null } — signed for 1 hour, admins only.
+  // Profile photos are public: customers see them on approved barbers.
+  const AVATAR_BUCKET = 'avatars';
+  let avatarBucketReady = false;
+  async function ensureAvatarBucket() {
+    if (avatarBucketReady) return true;
+    try {
+      const { data } = await supabase.storage.getBucket(AVATAR_BUCKET);
+      if (!data) {
+        const { error } = await supabase.storage.createBucket(AVATAR_BUCKET, { public: true, fileSizeLimit: '5MB' });
+        if (error && !/exist/i.test(error.message)) throw error;
+      }
+      avatarBucketReady = true;
+    } catch (e) { console.error('[avatar bucket]', e && e.message); }
+    return avatarBucketReady;
+  }
+  // { id, selfie, photo: url|null } — signed for 1 hour, admins only.
   async function docLinks(profileId) {
-    const out = { id: null, selfie: null };
+    const out = { id: null, selfie: null, photo: null };
     try {
       const { data } = await supabase.storage.from(DOCS_BUCKET).list(profileId);
       for (const f of data || []) {
         const kind = f.name.split('.')[0];
-        if (kind !== 'id' && kind !== 'selfie') continue;
+        if (kind !== 'id' && kind !== 'selfie' && kind !== 'photo') continue;
         const s = await supabase.storage.from(DOCS_BUCKET).createSignedUrl(profileId + '/' + f.name, 3600);
         if (s.data) out[kind] = s.data.signedUrl;
       }
@@ -102,6 +117,11 @@ module.exports = function createMarketplace(ctx) {
       if (b && !b.is_demo) await pushUser(b.profile_id, title, body, data);
     } catch (e) {}
   }
+  // Automatic barber review (license + identity) — see barber-review.js.
+  const review = require('./barber-review')({ supabase, anthropicKey, pushUser, sendEmail,
+    adminEmail: ADMIN_EMAILS[0], DOCS_BUCKET });
+  if (supabase) review.start();
+
   async function firstNameOf(uid) {
     try { const { data } = await supabase.from('profiles').select('full_name').eq('id', uid).maybeSingle(); return String((data && data.full_name) || '').split(' ')[0]; }
     catch (e) { return ''; }
@@ -524,7 +544,7 @@ module.exports = function createMarketplace(ctx) {
         const d = await readJSON(req, 6 * 1024 * 1024); const u = d && await authUser(d.accessToken);
         if (!u) return sendJSON(res, 401, { ok: false, error: 'sign in required' }), true;
         if (rateLimited(req, 'docs', 12, 60 * 60 * 1000)) return sendJSON(res, 429, { ok: false, error: 'Too many uploads. Try again later.' }), true;
-        const kind = d.kind === 'selfie' ? 'selfie' : d.kind === 'id' ? 'id' : '';
+        const kind = ['id', 'selfie', 'photo'].includes(d.kind) ? d.kind : '';
         const m = /^data:image\/(jpeg|png|webp);base64,(.+)$/.exec(String(d.dataUrl || ''));
         if (!kind || !m) return sendJSON(res, 400, { ok: false, error: 'Send a JPEG or PNG photo.' }), true;
         const bytes = Buffer.from(m[2], 'base64');
@@ -533,7 +553,31 @@ module.exports = function createMarketplace(ctx) {
         const { error } = await supabase.storage.from(DOCS_BUCKET)
           .upload(u.id + '/' + kind + '.' + (m[1] === 'jpeg' ? 'jpg' : m[1]), bytes, { contentType: 'image/' + m[1], upsert: true });
         if (error) return sendJSON(res, 500, { ok: false, error: error.message }), true;
+        if (kind === 'photo' && await ensureAvatarBucket()) {
+          const path = u.id + '.' + (m[1] === 'jpeg' ? 'jpg' : m[1]);
+          const up = await supabase.storage.from(AVATAR_BUCKET).upload(path, bytes, { contentType: 'image/' + m[1], upsert: true });
+          if (!up.error) {
+            const url = supabase.storage.from(AVATAR_BUCKET).getPublicUrl(path).data.publicUrl + '?v=' + Date.now();
+            await supabase.from('profiles').update({ avatar_url: url }).eq('id', u.id);
+            return sendJSON(res, 200, { ok: true, avatarUrl: url }), true;
+          }
+        }
         return sendJSON(res, 200, { ok: true }), true;
+      }
+
+      // ---- automatic review: application received / status ----
+      if (post && (p === '/api/barber/submitted' || p === '/api/barber/review-status')) {
+        const d = await readJSON(req); const u = d && await authUser(d.accessToken);
+        if (!u) return sendJSON(res, 401, { ok: false, error: 'sign in required' }), true;
+        if (p === '/api/barber/submitted') await review.received(u.id);
+        return sendJSON(res, 200, Object.assign({ ok: true }, await review.status(u.id))), true;
+      }
+      if (post && p === '/api/admin/review') {
+        const d = await readJSON(req); const u = d && await authUser(d.accessToken);
+        if (!isAdmin(u)) return sendJSON(res, 403, { ok: false, error: 'admins only' }), true;
+        const { data: b } = await supabase.from('barbers').select('profile_id').eq('id', String(d.barberId || '')).maybeSingle();
+        if (!b) return sendJSON(res, 404, { ok: false, error: 'no such barber' }), true;
+        return sendJSON(res, 200, { ok: true, review: await review.run(b.profile_id, { force: true }) }), true;
       }
 
       // ---- barber license + Independent Barber Agreement ----
@@ -576,7 +620,8 @@ module.exports = function createMarketplace(ctx) {
           try { const g = await supabase.auth.admin.getUserById(r.profile.id); const gu = g.data && g.data.user; email = (gu && gu.email) || ''; am = (gu && gu.app_metadata) || {}; } catch (e) {}
           out.push({ ...r, email, docs: r.profile ? await docLinks(r.profile.id) : { id: null, selfie: null },
                      license: am.barber_license || '', licenseState: am.barber_license_state || '',
-                     agreedAt: (am.barber_agreement && am.barber_agreement.accepted_at) || '' });
+                     agreedAt: (am.barber_agreement && am.barber_agreement.accepted_at) || '',
+                     review: am.barber_review || null });
         }
         return sendJSON(res, 200, { ok: true, barbers: out }), true;
       }

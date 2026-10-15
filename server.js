@@ -223,11 +223,13 @@ const PRIVACY_HTML = pageHTML('Privacy Policy — Catch a Fade',
   + '<li><b>Stripe</b> — payment processing. Card details go straight to Stripe; we never receive or store them.</li>'
   + '<li><b>Supabase</b> — account, authentication and booking records.</li>'
   + '<li><b>Resend</b> — delivers your sign-in code by email.</li>'
-  + '<li><b>Anthropic</b> — powers the in-app support assistant. What you type into support chat is sent to Anthropic to generate a reply.</li>'
+  + '<li><b>Anthropic</b> — powers the in-app support assistant and our automated barber identity check. What you type into support chat is sent to Anthropic to generate a reply. If you apply as a barber, your ID photo, selfie and profile photo are sent to Anthropic to confirm they show the same person.</li>'
+  + '<li><b>Florida Department of Business and Professional Regulation</b> — if you apply as a barber, we check the license number you enter against the state\'s public license records.</li>'
   + '<li><b>Google Maps, OpenStreetMap/Nominatim and Photon (Komoot)</b> — maps, and address search. When you type an address to search, that text is sent to a maps provider to return suggestions.</li>'
   + '</ul>'
   + '<p>We do not sell your personal data, and we do not share it for advertising.</p>'
   + '<h2>How we use and share it</h2><p>We use your information only to run the service: creating your account, arranging bookings, processing payments, and providing support. We share with your barber only what a booking needs — your name and the booking location. We do not sell your personal information.</p>'
+  + '<h2>Barber applications</h2><p>Barber applications are reviewed automatically: we confirm your license is active in Florida\'s public records and use an automated check to confirm your ID, selfie and profile photo match the name in your application. You\'re told the reason if we can\'t approve you, and you can correct it and apply again. ID photos and selfies are stored privately; your profile photo is shown to customers once you\'re approved.</p>'
   + '<h2>Deleting your account</h2><p>You can delete your account at any time in the app under <b>Account</b>. This removes your profile and the data associated with it.</p>'
   + '<h2>Contact</h2><p>Questions about this policy? Email <a href="mailto:TZUFEINI@gmail.com">TZUFEINI@gmail.com</a>.</p>');
 const TERMS_HTML = pageHTML('Terms of Service — Catch a Fade',
@@ -251,14 +253,29 @@ const SUPPORT_HTML = pageHTML('Catch a Fade Support',
 const MARKETPLACE_PATHS = new Set([
   '/api/me', '/api/review-setup', '/api/register-push', '/api/create-payment-intent', '/api/bookings/request', '/api/bookings/action',
   '/api/connect/onboard', '/api/connect/status', '/api/connect/dashboard', '/connect/done', '/connect/refresh',
-  '/api/admin/barbers', '/api/admin/verify', '/api/barber/docs', '/api/barber/compliance'
+  '/api/admin/barbers', '/api/admin/verify', '/api/admin/review', '/api/barber/docs', '/api/barber/compliance',
+  '/api/barber/submitted', '/api/barber/review-status'
 ]);
+// Transactional email via Resend. Until a domain is verified (MAIL_FROM), Resend's
+// test sender only delivers to the account owner, so other addresses fail quietly.
+async function sendEmail(to, subject, text) {
+  if (!RESEND_KEY || !to) return false;
+  try {
+    const r = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + RESEND_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ from: process.env.MAIL_FROM || FROM, to, subject, text })
+    });
+    return r.ok;
+  } catch (e) { return false; }
+}
 const mapkit = require('./mapkit')(Object.assign({}, LOCAL, process.env));
 marketplace = require('./marketplace')({
   stripe, supabase, sendJSON, sendHTML, pageHTML, rateLimited, FEE_PERCENT, CANCEL_FEE_CENTS,
   REVIEW_EMAIL, REVIEW_CODE, ADMIN_EMAILS, MIN_SERVICE_CENTS, MAX_SERVICE_CENTS,
   push: require('./push')(Object.assign({}, LOCAL, process.env)),
-  stripeTest, STRIPE_PUBLISHABLE, STRIPE_TEST_PUBLISHABLE
+  stripeTest, STRIPE_PUBLISHABLE, STRIPE_TEST_PUBLISHABLE,
+  anthropicKey: ANTHROPIC_KEY, sendEmail
 });
 
 const server = http.createServer((req, res) => {
