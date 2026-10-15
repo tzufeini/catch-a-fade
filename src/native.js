@@ -225,9 +225,19 @@ async function appleSignIn() {
   if (typeof window.haptic === 'function') window.haptic();
   try {
     const { result } = await SocialLogin.login({ provider: 'apple', options: { scopes: ['name', 'email'] } });
+    const idToken = result && (result.idToken || (result.accessToken && result.accessToken.token));
+    // A real account: Apple's identity token becomes a Supabase session, exactly
+    // like an email login, so bookings and payments work afterwards.
+    const c = typeof window.sbReady === 'function' ? window.sbReady() : null;
+    if (!c || !idToken) throw new Error('no-token');
+    const { data, error } = await c.auth.signInWithIdToken({ provider: 'apple', token: idToken });
+    if (error) throw error;
     const p = (result && result.profile) || {};
     const name = [p.givenName, p.familyName].filter(Boolean).join(' ').trim();
-    setProfile(name, p.email);          // Apple only sends name/email on the FIRST sign-in
+    const email = (data && data.user && data.user.email) || p.email || '';
+    setProfile(name, email);          // Apple only sends the name on the FIRST sign-in
+    if (name && data && data.user) safe(() => c.from('profiles').upsert({ id: data.user.id, full_name: name }, { onConflict: 'id' }));
+    try { localStorage.setItem('fadex_logged_in', '1'); } catch (e) {}
     if (typeof window.finishAuth === 'function') window.finishAuth('apple');
   } catch (e) {
     if (!isCancel(e)) toastErr('Sign in failed', 'Could not sign in with Apple. Please try again.');
