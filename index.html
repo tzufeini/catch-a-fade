@@ -2174,26 +2174,21 @@ html.native .ob-tip{ font-size:14px; }
         <div class="stat"><b id="bpRate">4.97</b><small>★ RATING</small></div>
         <div class="stat"><b id="bpCuts">1,240</b><small>CUTS DONE</small></div>
         <div class="stat"><b id="bpYears">8 yr</b><small>EXPERIENCE</small></div>
-        <div class="stat"><b style="color:var(--green)">99%</b><small>RELIABILITY</small></div>
+        <div class="stat"><b style="color:var(--green)">✓</b><small>LICENSED</small></div>
       </div>
 
-      <div class="sect"><h3>Portfolio</h3></div>
-      <div class="gallery" id="bpGallery">
-        <div class="gtile" style="background:var(--grad)"><span>Mid skin fade</span></div>
-        <div class="gtile" style="background:var(--gradWarm)"><span>Beard sculpt + lineup</span></div>
-        <div class="gtile" style="background:var(--gradGreen)"><span>Textured crop</span></div>
-        <div class="gtile" style="background:linear-gradient(135deg,#C82222,#7A1515)"><span>Burst fade</span></div>
+      <div id="bpPortWrap" style="display:none">
+        <div class="sect"><h3>Portfolio</h3></div>
+        <div class="gallery" id="bpGallery"></div>
       </div>
 
-      <div class="sect" style="margin-top:8px"><h3>About</h3></div>
-      <p class="about">8 years behind the chair, formerly at a top downtown shop before going independent. I bring a full sterilized kit, premium clippers and a portable chair — your place becomes the studio. Calm, precise, and great with first-timers.</p>
-
-      <div class="sect" style="margin-top:14px"><h3>Specialties & Languages</h3></div>
-      <div class="tagWrap">
-        <span class="chip on">Skin fades</span><span class="chip on">Tapers</span>
-        <span class="chip on">Beard work</span><span class="chip on">Scissor cuts</span>
-        <span class="chip">English</span><span class="chip">Spanish</span>
+      <div id="bpAboutWrap" style="display:none">
+        <div class="sect" style="margin-top:8px"><h3>About</h3></div>
+        <p class="about" id="bpAbout"></p>
       </div>
+
+      <div class="sect" style="margin-top:14px"><h3>Services</h3></div>
+      <div class="tagWrap" id="bpServices"></div>
 
       <div class="sect" style="margin-top:16px"><h3 id="revCountHead">Reviews · 1,240</h3></div>
       <div id="revBox"></div>
@@ -3262,12 +3257,14 @@ function mapBarberRow(row, i){
   return {
     id: row.id, n: name, in: nameInitials(name),
     g: BARBER_GRADIENTS[i % BARBER_GRADIENTS.length],
-    r: Number(row.rating).toFixed(1), cuts: String(row.cuts_completed), yr: '',
+    r: Number(row.rating).toFixed(1), cuts: String(row.cuts_completed),
     sp: svc.slice(0,3).map(s=>s.name).join(' · ') || 'Cuts',
     pr: svc.length ? Math.round(svc[0].price_cents/100) : 35,
     services: servicesObj, lat: row.home_lat, lng: row.home_lng,
     verified: !!row.is_verified, fromDB: true, demo: !!row.is_demo,
-    img: (row.profile && row.profile.avatar_url) || ''
+    img: (row.profile && row.profile.avatar_url) || '',
+    about: String(row.bio||'').split(' · ')[0].trim(),
+    yr: (/(\d+) yr experience/.exec(row.bio||'')||[])[1] || ''
   };
 }
 // Fetch available barbers from the real database, replacing the demo list.
@@ -3275,7 +3272,7 @@ async function loadBarbersFromSupabase(){
   const c = sbReady(); if(!c) return false;
   try{
     const { data, error } = await c.from('barbers')
-      .select('id, profile_id, rating, cuts_completed, is_verified, is_demo, vehicle, home_lat, home_lng, profile:profiles!barbers_profile_id_fkey(full_name, avatar_url), services(name, price_cents, duration_min)')
+      .select('id, profile_id, bio, rating, cuts_completed, is_verified, is_demo, vehicle, home_lat, home_lng, profile:profiles!barbers_profile_id_fkey(full_name, avatar_url), services(name, price_cents, duration_min)')
       .eq('is_verified', true).or('is_available.eq.true,is_demo.eq.true');
     if(error || !data) return false;                   // unreachable → keep the last good list
     const reviewer = isReviewEmail(userProfile.email||'');
@@ -3672,7 +3669,7 @@ function setBarber(i){
   document.getElementById('bpSpec').textContent=b.sp;
   document.getElementById('bpRate').textContent=b.r;
   document.getElementById('bpCuts').textContent=b.cuts;
-  document.getElementById('bpYears').textContent=b.yr;
+  document.getElementById('bpYears').textContent=b.yr ? b.yr+' yr' : 'New';
   document.getElementById('bpPrice').textContent='$'+b.pr;
   setAv(document.getElementById('bkAv'),b);
   document.getElementById('bkName').textContent=b.n;
@@ -4993,7 +4990,8 @@ async function submitBarberApplication(){
     await c.from('profiles').upsert({ id:uid, role:'barber', full_name:fullName, phone:signup.phone }, { onConflict:'id' });
     // geocode is best-effort; the row still lands without coordinates
     var coords=null; try{ coords=await geocodeAddress(signup.address); }catch(e){}
-    var bio=(signup.bio||'') + (signup.years?(' · '+signup.years+' yr experience'):'') + ' · '+signup.address+' · '+signup.radius+' mi radius';
+    // Public: shown on the barber's profile. Never include their address.
+    var bio=(signup.bio||'') + (signup.years?(' · '+signup.years+' yr experience'):'') + ' · '+signup.radius+' mi radius';
     var ins=await c.from('barbers').upsert({
       profile_id: uid, bio: bio.slice(0,500),
       home_lat: coords?coords.lat:null, home_lng: coords?coords.lng:null,
@@ -5461,7 +5459,6 @@ function toggleTheme(){
 
 /* ---------- portfolio & reviews ---------- */
 function getRevKey(i){ return 'fadex_reviews_'+(BARBERS[i]?BARBERS[i].n.replace(/\s/g,'_'):'b'+i); }
-function getPortKey(i){ return 'fadex_portfolio_'+(BARBERS[i]?BARBERS[i].n.replace(/\s/g,'_'):'b'+i); }
 // Real reviews from the database, cached per barber; renderBarberProfile
 // re-renders once they arrive.
 const _dbReviews={};
@@ -5483,18 +5480,22 @@ function loadBarberReviews(i){
   if(stored){ try{ return JSON.parse(stored); }catch(e){} }
   return [];   // no fabricated reviews — only what customers actually wrote
 }
-function loadBarberPortfolio(i){
-  const stored=localStorage.getItem(getPortKey(i));
-  if(stored){ try{ return JSON.parse(stored); }catch(e){} }
-  return [];   // no fabricated portfolio — only what the barber uploaded
-}
 
 function renderBarberProfile(i){
   const b=BARBERS[i];
   // Portfolio
-  const port=loadBarberPortfolio(i);
-  const gEl=document.getElementById('bpGallery');
-  if(gEl) gEl.innerHTML=port.map(p=>'<div class="gtile" style="background:'+p.bg+'"><span>'+p.label+'</span></div>').join('');
+  const gEl=document.getElementById('bpGallery'), gWrap=document.getElementById('bpPortWrap');
+  if(gEl){ gEl.innerHTML=''; gWrap.style.display='none'; }
+  if(gEl && b && b.fromDB){
+    apiFetch('/api/portfolio?barberId='+encodeURIComponent(b.id), {}, 20000).then(function(j){
+      if(current!==i || !j || !(j.photos||[]).length) return;
+      gEl.innerHTML=portTiles(j.photos); gWrap.style.display='';
+    }).catch(function(){});
+  }
+  const ab=document.getElementById('bpAbout');
+  if(ab){ ab.textContent=(b&&b.about)||''; document.getElementById('bpAboutWrap').style.display=(b&&b.about)?'':'none'; }
+  const sv=document.getElementById('bpServices');
+  if(sv) sv.innerHTML=Object.keys((b&&b.services)||{}).map(function(k){ return '<span class="chip on">'+escapeHtml(k)+' · $'+escapeHtml(b.services[k].price)+'</span>'; }).join('');
   // Review count heading
   const revs=loadBarberReviews(i);
   const revHead=document.getElementById('revCountHead');
@@ -5538,14 +5539,26 @@ function renderBarberProfile(i){
   if(rEl) rEl.innerHTML=html;
 }
 
-function renderDashPortfolio(){
-  const idx=BARBERS.length-1; // last signed-in barber = current barber account
-  const port=loadBarberPortfolio(idx<0?0:idx);
+// Photos of a barber's cuts — stored on the server, shown on their public profile.
+function portTiles(photos){
+  return (photos||[]).map(function(p){
+    return '<div class="gtile" style="background:#1b1b1f url(\''+String(p.url).replace(/'/g,'%27')+'\') center/cover">'+(p.label?'<span>'+escapeHtml(p.label)+'</span>':'')+'</div>';
+  }).join('');
+}
+let _dashPort=[];
+async function renderDashPortfolio(fresh){
   const el=document.getElementById('dashPortfolio'); if(!el) return;
-  const grads=['var(--grad)','var(--gradWarm)','var(--gradGreen)','linear-gradient(135deg,#1D40A8,#2A58CC)','linear-gradient(135deg,#C82222,#7A1515)','linear-gradient(135deg,#2A58CC,#7A1515)'];
-  let html=port.map((p,pi)=>'<div class="dashPortTile" style="background:'+p.bg+'" onclick="notify(\'Portfolio photo\',\''+p.label+' — tap & hold to delete.\')"><span>'+p.label+'</span></div>').join('');
-  html+='<div class="uploadTile" onclick="addPortfolioPhoto()"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 6v12M6 12h12"/></svg><span>Upload photo</span></div>';
+  if(!fresh){ const j=await mkApi('/api/barber/portfolio', { action:'list' }); _dashPort=(j && j.photos)||[]; }
+  let html=_dashPort.map(function(p){
+    return '<div class="dashPortTile" style="background:#1b1b1f url(\''+String(p.url).replace(/'/g,'%27')+'\') center/cover" onclick="removePortfolioPhoto(\''+escapeHtml(p.name)+'\')">'+(p.label?'<span>'+escapeHtml(p.label)+'</span>':'')+'</div>';
+  }).join('');
+  if(_dashPort.length<12) html+='<div class="uploadTile" onclick="addPortfolioPhoto()"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 6v12M6 12h12"/></svg><span>Add a photo of your work</span></div>';
   el.innerHTML=html;
+}
+async function removePortfolioPhoto(name){
+  if(!confirm('Remove this photo from your portfolio?')) return;
+  const j=await mkApi('/api/barber/portfolio', { action:'remove', name:name });
+  if(j && j.ok){ _dashPort=j.photos||[]; renderDashPortfolio(true); }
 }
 function renderDashReviews(){
   const idx=BARBERS.length-1;
@@ -5569,16 +5582,18 @@ function renderDashReviews(){
 
 let _portLabel='';
 function addPortfolioPhoto(){
-  const labels=['Skin fade','Taper fade','Bald fade','Drop fade','Burst fade','Beard sculpt','Lineup','Textured crop','High top','Box fade'];
-  const label=prompt('Name this cut (e.g. Skin fade, Lineup, Beard sculpt):',labels[Math.floor(Math.random()*labels.length)]);
-  if(!label||!label.trim()) return;
-  const idx=BARBERS.length-1;
-  const port=loadBarberPortfolio(idx<0?0:idx);
-  const grads=['var(--grad)','var(--gradWarm)','var(--gradGreen)','linear-gradient(135deg,#1D40A8,#2A58CC)','linear-gradient(135deg,#C82222,#7A1515)','linear-gradient(135deg,#2A58CC,#7A1515)'];
-  port.push({label:label.trim(),bg:grads[port.length%grads.length]});
-  localStorage.setItem(getPortKey(idx<0?0:idx), JSON.stringify(port));
-  renderDashPortfolio();
-  notify('Photo added','Your portfolio now has '+port.length+' looks.');
+  const inp=document.createElement('input'); inp.type='file'; inp.accept='image/*';
+  inp.onchange=async function(){
+    if(!inp.files || !inp.files[0]) return;
+    let dataUrl; try{ dataUrl=await shrinkPhoto(inp.files[0]); }catch(e){ notifyErr('Couldn\'t read that photo','Try another picture.'); return; }
+    const label=(prompt('Name this cut (optional), e.g. Skin fade, Lineup:','')||'').trim();
+    notify('Uploading…','Adding it to your portfolio.');
+    const j=await mkApi('/api/barber/portfolio', { action:'add', dataUrl:dataUrl, label:label });
+    if(!j || !j.ok){ notifyErr('Couldn\'t add that photo', (j&&j.error)||'Try again in a moment.'); return; }
+    _dashPort=j.photos||[]; renderDashPortfolio(true);
+    notify('Photo added','Customers see it on your profile.');
+  };
+  inp.click();
 }
 
 /* ---------- skeleton load ---------- */

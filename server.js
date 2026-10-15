@@ -254,7 +254,7 @@ const MARKETPLACE_PATHS = new Set([
   '/api/me', '/api/review-setup', '/api/register-push', '/api/create-payment-intent', '/api/bookings/request', '/api/bookings/action',
   '/api/connect/onboard', '/api/connect/status', '/api/connect/dashboard', '/connect/done', '/connect/refresh',
   '/api/admin/barbers', '/api/admin/verify', '/api/admin/review', '/api/barber/docs', '/api/barber/compliance',
-  '/api/barber/submitted', '/api/barber/review-status'
+  '/api/barber/submitted', '/api/barber/review-status', '/api/barber/portfolio', '/api/portfolio'
 ]);
 // Transactional email via Resend. Until a domain is verified (MAIL_FROM), Resend's
 // test sender only delivers to the account owner, so other addresses fail quietly.

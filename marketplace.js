@@ -74,6 +74,18 @@ module.exports = function createMarketplace(ctx) {
     } catch (e) { console.error('[avatar bucket]', e && e.message); }
     return avatarBucketReady;
   }
+  const PORTFOLIO_MAX = 12;
+  // [{ name, url, label }] newest first; file names are "<ms>-<label-slug>.jpg".
+  async function portfolioOf(profileId) {
+    try {
+      const { data } = await supabase.storage.from(AVATAR_BUCKET).list('portfolio/' + profileId, { limit: 50, sortBy: { column: 'name', order: 'desc' } });
+      return (data || []).filter(f => /\.(jpe?g|png|webp)$/i.test(f.name)).map(f => {
+        const slug = f.name.replace(/^\d+-/, '').replace(/\.[a-z]+$/i, '');
+        return { name: f.name, url: supabase.storage.from(AVATAR_BUCKET).getPublicUrl('portfolio/' + profileId + '/' + f.name).data.publicUrl,
+                 label: slug === 'cut' ? '' : slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) };
+      });
+    } catch (e) { return []; }
+  }
   // { id, selfie, photo: url|null } — signed for 1 hour, admins only.
   async function docLinks(profileId) {
     const out = { id: null, selfie: null, photo: null };
@@ -563,6 +575,34 @@ module.exports = function createMarketplace(ctx) {
           }
         }
         return sendJSON(res, 200, { ok: true }), true;
+      }
+
+      // ---- portfolio: photos of the barber's cuts, public on their profile ----
+      if (req.method === 'GET' && p === '/api/portfolio') {
+        const { data: b } = await supabase.from('barbers').select('profile_id, is_verified, is_demo').eq('id', String(url.searchParams.get('barberId') || '')).maybeSingle();
+        if (!b || !(b.is_verified || b.is_demo)) return sendJSON(res, 200, { ok: true, photos: [] }), true;
+        return sendJSON(res, 200, { ok: true, photos: await portfolioOf(b.profile_id) }), true;
+      }
+      if (post && p === '/api/barber/portfolio') {
+        const d = await readJSON(req, 6 * 1024 * 1024); const u = d && await authUser(d.accessToken);
+        if (!u) return sendJSON(res, 401, { ok: false, error: 'sign in required' }), true;
+        if (!(await ensureAvatarBucket())) return sendJSON(res, 500, { ok: false, error: 'Storage is unavailable. Try again shortly.' }), true;
+        const dir = 'portfolio/' + u.id;
+        if (d.action === 'add') {
+          if (rateLimited(req, 'portfolio', 30, 60 * 60 * 1000)) return sendJSON(res, 429, { ok: false, error: 'Too many uploads. Try again later.' }), true;
+          if ((await portfolioOf(u.id)).length >= PORTFOLIO_MAX) return sendJSON(res, 400, { ok: false, error: 'Your portfolio is full. Remove a photo first.' }), true;
+          const m = /^data:image\/(jpeg|png|webp);base64,(.+)$/.exec(String(d.dataUrl || ''));
+          if (!m) return sendJSON(res, 400, { ok: false, error: 'Send a JPEG or PNG photo.' }), true;
+          const bytes = Buffer.from(m[2], 'base64');
+          if (bytes.length < 2000 || bytes.length > 4.5 * 1024 * 1024) return sendJSON(res, 400, { ok: false, error: 'That photo is too small or too large.' }), true;
+          const slug = String(d.label || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40) || 'cut';
+          const { error } = await supabase.storage.from(AVATAR_BUCKET).upload(dir + '/' + Date.now() + '-' + slug + '.' + (m[1] === 'jpeg' ? 'jpg' : m[1]), bytes, { contentType: 'image/' + m[1] });
+          if (error) return sendJSON(res, 500, { ok: false, error: error.message }), true;
+        } else if (d.action === 'remove') {
+          const name = String(d.name || '').replace(/[^a-z0-9.-]/gi, '');
+          if (name) await supabase.storage.from(AVATAR_BUCKET).remove([dir + '/' + name]);
+        }
+        return sendJSON(res, 200, { ok: true, photos: await portfolioOf(u.id) }), true;
       }
 
       // ---- automatic review: application received / status ----
