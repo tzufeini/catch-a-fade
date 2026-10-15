@@ -11,5 +11,10 @@
 	     App Store / TestFlight builds. -->
 	<key>aps-environment</key>
 	<string>development</string>
+	<!-- Apple Pay (processed by Stripe). -->
+	<key>com.apple.developer.in-app-payments</key>
+	<array>
+		<string>merchant.com.catchafade.app</string>
+	</array>
 </dict>
 </plist>

@@ -15,6 +15,7 @@
     "assets": "node scripts/make-source-assets.mjs && npx capacitor-assets generate --ios"
   },
   "dependencies": {
+    "@capacitor-community/stripe": "^8.3.0",
     "@capacitor/app": "^8.1.0",
     "@capacitor/cli": "^8.4.0",
     "@capacitor/core": "^8.4.0",

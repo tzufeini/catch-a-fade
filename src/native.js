@@ -19,6 +19,7 @@ import { Haptics, ImpactStyle } from '@capacitor/haptics';
 import { Geolocation } from '@capacitor/geolocation';
 import { PushNotifications } from '@capacitor/push-notifications';
 import { SocialLogin } from '@capgo/capacitor-social-login';
+import { Stripe as StripeNative } from '@capacitor-community/stripe';
 
 /* =====================================================================
  *  CONFIG — fill these in before your App Store build.
@@ -131,6 +132,9 @@ async function boot() {
   await initSocialLogin();
   window.openAppleAuth = appleSignIn;
   window.openGoogleAuth = googleSignIn;
+
+  // ---- Apple Pay (Stripe) ----
+  window.CAF_APPLE_PAY = applePayBridge;
 
   // ---- push: register after the user signs in (best practice) ----
   hookPushAfterAuth();
@@ -327,3 +331,37 @@ async function registerPush() {
     if (perm && perm.receive === 'granted') await PushNotifications.register();
   } catch (e) { /* user declined — fine */ }
 }
+
+/* ------------------------------------------------------------------ *
+ *  Apple Pay — confirms the booking's Stripe PaymentIntent with the
+ *  card in the user's Wallet. Merchant: merchant.com.catchafade.app
+ *  (its Payment Processing certificate lives in the Stripe dashboard).
+ * ------------------------------------------------------------------ */
+const APPLE_MERCHANT_ID = 'merchant.com.catchafade.app';
+let _apPk = null;
+async function apInit(pk) {
+  if (pk && pk !== _apPk) { await StripeNative.initialize({ publishableKey: pk }); _apPk = pk; }
+}
+const applePayBridge = {
+  // true when this iPhone has Apple Pay set up with a supported card
+  async available(pk) {
+    try { await apInit(pk); await StripeNative.isApplePayAvailable(); return true; }
+    catch (_) { return false; }
+  },
+  // items: [{label, amount}] in dollars; the last item is the total.
+  // Resolves 'completed' | 'canceled' | 'failed'.
+  async pay({ pk, clientSecret, items }) {
+    await apInit(pk);
+    await StripeNative.createApplePay({
+      paymentIntentClientSecret: clientSecret,
+      paymentSummaryItems: items,
+      merchantIdentifier: APPLE_MERCHANT_ID,
+      countryCode: 'US',
+      currency: 'USD',
+    });
+    const { paymentResult } = await StripeNative.presentApplePay();
+    if (paymentResult === 'applePayCompleted') return 'completed';
+    if (paymentResult === 'applePayCanceled') return 'canceled';
+    return 'failed';
+  },
+};
