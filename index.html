@@ -409,6 +409,12 @@ body.light .park{background:rgba(70,201,139,.22);}
 @media (prefers-reduced-motion: reduce){ .radar i,.radar .core,#tracking.active .trackCard{animation:none!important} }
 
 /* ===== TRACKING ===== */
+.busyNote{display:flex;align-items:center;gap:7px;margin:0 0 12px;padding:10px 13px;border-radius:13px;background:rgba(243,156,18,.12);color:#B86E00;font-size:12.5px;font-weight:700;}
+.againBtn{border:0;border-radius:999px;background:var(--text);color:var(--bg);font:700 11.5px/1 inherit;padding:7px 11px;cursor:pointer;}
+.rebookCard{display:flex;align-items:center;gap:12px;margin:0 0 12px;padding:12px 14px;border-radius:18px;background:var(--card);border:1.5px solid var(--line2);cursor:pointer;}
+.rebookCard .av{width:44px;height:44px;border-radius:13px;font-size:15px;flex-shrink:0;}
+.rebookCard b{display:block;font-size:14.5px;font-weight:760;}
+.rebookCard small{display:block;color:var(--dim);font-size:12px;margin-top:2px;}
 .licRow{margin:2px 20px 14px;padding:12px 14px;border-radius:14px;background:rgba(70,201,139,.09);border:1px solid rgba(70,201,139,.28);display:flex;align-items:center;gap:11px;font-size:13px;line-height:1.35;}
 .licRow b{display:block;font-size:13.5px;}
 .licRow small{color:var(--dim);font-size:11.5px;}
@@ -1406,7 +1412,6 @@ html.native .ob-tip{ font-size:14px; }
       <div class="apTitle" style="display:flex;align-items:center;justify-content:center;gap:6px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>SECURE PAYMENT</div>
       <div class="apMerchant" id="payMerchant">Catch a Fade</div>
       <div class="apLine"><div class="apLabel" id="payItem">Haircut</div><div class="apValue" id="payItemAmt">$0.00</div></div>
-      <div class="apLine"><div class="apLabel">Service fee</div><div class="apValue" id="payFeeAmt">$0.00</div></div>
       <div class="apLine apTotal"><div class="apLabel">Total</div><div class="apValue" id="payTotalAmt">$0.00</div></div>
       <button id="applePayBtn" type="button" onclick="payWithApplePay()" style="display:none;width:100%;margin-top:16px;height:50px;border:0;border-radius:12px;background:#000;color:#fff;font:600 19px -apple-system,system-ui,sans-serif;align-items:center;justify-content:center;gap:6px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)"><svg width="17" height="20" viewBox="0 0 17 20" fill="currentColor" aria-hidden="true"><path d="M14.1 10.6c0-2.5 2-3.7 2.1-3.8-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.9-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.3 10.1.8 1.2 1.8 2.6 3.1 2.5 1.2-.1 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.4 1-1.4 1.3-2.7 1.4-2.8-.1 0-2.5-1-2.5-4.1zM11.7 3.2c.7-.8 1.1-1.9 1-3.1-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.4z"/></svg>Pay</button>
       <div id="applePayOr" style="display:none;align-items:center;gap:10px;color:#8E8E99;font-size:11.5px;font-weight:650;margin-top:14px"><span style="flex:1;height:1px;background:rgba(255,255,255,.14)"></span>or pay with card<span style="flex:1;height:1px;background:rgba(255,255,255,.14)"></span></div>
@@ -2237,19 +2242,11 @@ html.native .ob-tip{ font-size:14px; }
       <div class="bcard" style="margin:0 0 16px;cursor:default">
         <div class="av" id="bkAv" style="width:54px;height:54px;background:var(--grad);font-size:18px">✂</div>
         <div class="bInfo"><div class="bName" id="bkName">Your barber</div>
-          <div class="bMeta"><span class="star">★ 4.97</span><span class="dot"></span>1.2 mi away<span class="dot"></span><span style="color:var(--green)">~12 min</span></div></div>
+          <div class="bMeta" id="bkMeta"></div></div>
       </div>
 
       <h3 style="font-size:13px;font-weight:720;color:var(--dim);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px">Service</h3>
-      <div class="opt on" onclick="pickOpt(this,38)"><div class="emo" style="background:var(--grad)">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
-        </div><div class="ol"><b>Skin Fade</b><small>~40 min · most popular</small></div><div class="op">$38</div></div>
-      <div class="opt" onclick="pickOpt(this,58)"><div class="emo" style="background:var(--gradWarm)">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 2l2.8 6.2L21 9l-4.5 4.3L17.6 20 12 16.8 6.4 20l1.1-6.7L3 9l6.2-.8z"/></svg>
-        </div><div class="ol"><b>Premium Package</b><small>Cut + beard + hot towel · ~70 min</small></div><div class="op">$58</div></div>
-      <div class="opt" onclick="pickOpt(this,20)"><div class="emo" style="background:var(--gradGreen)">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M5 8c0 6 3 11 7 11s7-5 7-11"/></svg>
-        </div><div class="ol"><b>Beard Trim & Shape</b><small>~20 min</small></div><div class="op">$20</div></div>
+      <div id="bkSvcs"></div>
 
       <h3 style="font-size:13px;font-weight:720;color:var(--dim);text-transform:uppercase;letter-spacing:.6px;margin:18px 0 10px">Location</h3>
       <div class="opt on" onclick="openLocSearch()"><div class="emo" style="background:var(--card3)">
@@ -2276,9 +2273,8 @@ html.native .ob-tip{ font-size:14px; }
         </div><div class="ol"><b>Credit / debit card</b><small>Entered securely at checkout · via Stripe</small></div></div>
 
       <div style="background:var(--card);border:1px solid var(--line);border-radius:16px;padding:15px;margin-top:18px">
-        <div class="line"><span id="lnSvcName">Skin Fade</span> <b id="lnSvc">$38.00</b></div>
-        <div class="line">Service fee (25%) <b id="lnFee">$9.50</b></div>
-        <div class="line total">Total <b id="lnTotal">$47.50</b></div>
+        <div class="line total"><span id="lnSvcName">Skin Fade</span> <b id="lnTotal">$25.00</b></div>
+        <div id="lnBusy" style="display:none;font-size:11.5px;color:var(--orange);font-weight:650;margin-top:4px">Busy near you · prices are a little higher right now</div>
         <div style="font-size:11px;color:var(--faint);margin-top:6px;line-height:1.5">Free to cancel within 2 min, then a flat $5 cancellation fee — just like a rideshare.</div>
       </div>
       <div style="display:flex;gap:7px;align-items:center;margin-top:12px;color:var(--faint);font-size:11.5px">
@@ -2745,9 +2741,9 @@ html.native .ob-tip{ font-size:14px; }
           <span class="pill verified" style="padding:3px 8px">Skin Fade</span>
         </div>
         <div style="padding-top:12px">
-          <div class="receiptRow"><span id="rcpSvcName">Skin Fade</span> <b id="rcpSvc">$38.00</b></div>
-          <div class="receiptRow">Service fee (25%) <b id="rcpSF">$9.50</b></div>
-          <div class="receiptRow total">Total <b id="rcpTotal">$47.50</b></div>
+          <div class="receiptRow"><span id="rcpSvcName">Skin Fade</span> <b id="rcpSvc"></b></div>
+          <div class="receiptRow total">Total <b id="rcpTotal">$25.00</b></div>
+          <div style="font-size:11px;color:var(--faint);margin-top:6px">Includes the Catch a Fade service fee.</div>
         </div>
       </div>
       <div style="display:flex;gap:7px;align-items:center;color:var(--faint);font-size:11.5px;margin-top:13px;justify-content:center">
@@ -2776,7 +2772,7 @@ html.native .ob-tip{ font-size:14px; }
       <div class="faq" onclick="toggleFaq(this)"><b>Are the barbers verified?</b><small>Every Catch a Fade pro goes through identity verification and a portfolio review before taking bookings. Look for the "Verified Pro" badge on their profile.</small></div>
       <div class="faq" onclick="toggleFaq(this)"><b>How does tipping work?</b><small>You can pre-tip at booking or tip after the cut on the rating screen. 100% of every tip goes directly to your barber.</small></div>
       <div class="faq" onclick="toggleFaq(this)"><b>What's the PIN for?</b><small>When your barber arrives, you'll see a 4-digit PIN. Share it with them — they'll enter it in their app to confirm they're at the right address before the cut starts.</small></div>
-      <div class="faq" onclick="toggleFaq(this)"><b>How is the price calculated?</b><small>Your total is the barber's listed price for the service plus a 25% platform service fee. You always see the exact total before you confirm — no hidden charges.</small></div>
+      <div class="faq" onclick="toggleFaq(this)"><b>How is the price calculated?</b><small>You see one price: the barber's rate plus Catch a Fade's service fee, together. When lots of people are booking nearby, prices can be a little higher — you'll see a note, and you always see the exact total before you confirm.</small></div>
       <div class="faq" onclick="toggleFaq(this)"><b>Can I request the same barber again?</b><small>Yes — add them to your favorites from their profile or the rating screen, then book them directly any time.</small></div>
       <div class="sect"><h3>Contact</h3></div>
       <div class="setRow" onclick="openSupportChat()"><div class="si"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.2"><path d="M21 12a8 8 0 0 1-11.5 7.2L4 21l1.8-5.5A8 8 0 1 1 21 12z"/></svg></div><div class="st">Message support<span class="pill" style="margin-left:8px;background:rgba(46,132,196,.14);color:var(--blue);font-size:10px;padding:2.5px 7px">CAF Support · AI</span></div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></div>
@@ -2826,7 +2822,7 @@ html.native .ob-tip{ font-size:14px; }
         <div style="color:var(--dim);font-size:14px;line-height:1.5;margin-top:10px">Customers near you request a cut in the app — you go to them, at home, the office or a hotel.</div>
       </div>
       <div class="sect"><h3>Why barbers cut with us</h3></div>
-      <div class="bl-row"><div class="bl-ic">$</div><div><b>You set your prices</b><small>You keep 100% of your listed price. Customers pay our service fee on top.</small></div></div>
+      <div class="bl-row"><div class="bl-ic">$</div><div><b>You set what you earn</b><small>Set your price for each service and that's what you get paid. Customers see one all-in price that includes our service fee, and when it's busy you earn more.</small></div></div>
       <div class="bl-row"><div class="bl-ic">⏻</div><div><b>Go online when you want</b><small>One switch. No shifts, no minimums, no boss.</small></div></div>
       <div class="bl-row"><div class="bl-ic">📍</div><div><b>Requests come to you</b><small>See the service, price and distance first — then accept or decline.</small></div></div>
       <div class="bl-row"><div class="bl-ic">🏦</div><div><b>Paid through Stripe</b><small>Customers pay by card in the app. Your earnings go straight to your bank.</small></div></div>
@@ -2889,7 +2885,7 @@ html.native .ob-tip{ font-size:14px; }
       <h3>H. Pricing, Payments and Payouts</h3>
       <p><b>Determination of prices.</b> Each Barber determines, in their sole discretion, the Listed Price of every Service they offer through the Platform. Listed Prices may be revised at any time, and any revision shall apply only to Bookings requested after it takes effect.</p>
       <p><b>Payment processing.</b> Customers remit payment through the Platform, and all payments are processed by Stripe, Inc. and its affiliates ("Stripe"). As a condition of receiving payouts, you shall establish a connected account with Stripe and accept the Stripe Connected Account Agreement, which incorporates the Stripe Services Agreement. Catch a Fade is not a bank, money transmitter or escrow agent and does not hold funds on your behalf.</p>
-      <p><b>Compensation.</b> In respect of each completed Booking, you shall receive one hundred percent (100%) of the Listed Price of the Service performed. The Service Fee is charged to the Customer in addition to the Listed Price, is retained by Catch a Fade, and does not form part of your compensation. Cancellation Fees paid by Customers in accordance with the Platform's cancellation policy shall be remitted to you.</p>
+      <p><b>Compensation.</b> In respect of each completed Booking, you shall receive one hundred percent (100%) of the Listed Price of the Service performed. The Service Fee is charged to the Customer in addition to the Listed Price, is retained by Catch a Fade, and does not form part of your compensation. Customers are shown a single price that includes the Service Fee. During periods of high demand in an area, the price shown to Customers and your compensation for a Booking may both be increased by the same multiplier, and the amount you will earn is shown to you with each request before you accept it. Cancellation Fees paid by Customers in accordance with the Platform's cancellation policy shall be remitted to you.</p>
       <p><b>Payouts.</b> Payouts are disbursed to the bank account you designate through Stripe in accordance with Stripe's payout schedule. Catch a Fade shall bear no responsibility for delays attributable to Stripe or to your financial institution.</p>
       <p><b>Refunds and adjustments.</b> Where a Customer payment is refunded or reversed because a Booking was not performed as agreed, the corresponding compensation may be adjusted. Catch a Fade shall notify you of any such adjustment and afford you a reasonable opportunity to respond before it is finalized.</p>
       <h3>I. Taxes</h3>
@@ -3074,7 +3070,7 @@ function render(){
   });
   document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.t===top));
   showTripBar();
-  if(top==='home'){ setTimeout(initHomeMap,80); maybeRequestLocation(); }
+  if(top==='home'){ setTimeout(initHomeMap,80); maybeRequestLocation(); refreshPricing(); }
   if(top==='tracking') setTimeout(initTrackMap,80);
   if(top==='bookings') renderTrips();
   if(top==='messages') renderInbox();
@@ -3288,7 +3284,7 @@ function mapBarberRow(row, i){
   const svc = (row.services||[]).slice().sort((a,b)=>a.price_cents-b.price_cents);
   const name = (row.profile && row.profile.full_name) || 'Barber';
   const servicesObj = {};
-  svc.forEach(s=>{ servicesObj[s.name] = { price: String(Math.round(s.price_cents/100)) }; });
+  svc.forEach(s=>{ servicesObj[s.name] = { price: String(Math.round(s.price_cents/100)), min: s.duration_min||0 }; });
   return {
     id: row.id, n: name, in: nameInitials(name),
     g: BARBER_GRADIENTS[i % BARBER_GRADIENTS.length],
@@ -3674,7 +3670,14 @@ function buildList(){
       .sort((a,b)=> b.s-a.s || a.ix-b.ix)   // best style-match first, keep distance order within ties
       .map(o=>o.x);
   }
-  el.innerHTML = showList.map(({b,i,dist})=>{
+  let rebook=null; try{ rebook=JSON.parse(localStorage.getItem('fadex_rebook')||'null'); }catch(e){}
+  const rbI = rebook ? BARBERS.findIndex(x=>x.id===rebook.barberId) : -1;
+  const rebookHtml = rbI>=0 ? '<div class="rebookCard" onclick="bookAgain(\''+BARBERS[rbI].id+'\',\''+escapeHtml(String(rebook.service||'').replace(/\'/g,''))+'\')">'
+      +'<div class="av" style="background:'+(BARBERS[rbI].img?'var(--card3)':BARBERS[rbI].g)+'">'+bAvInner(BARBERS[rbI])+'</div>'
+      +'<div style="flex:1;min-width:0"><b>Book again with '+escapeHtml(BARBERS[rbI].n.split(' ')[0])+'</b><small>'+escapeHtml(rebook.service||'Your last cut')+' · online now</small></div>'
+      +'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></div>' : '';
+  const busyHtml = PRICING.mult>1 ? '<div class="busyNote"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>Busy near you · prices are a little higher right now</div>' : '';
+  el.innerHTML = busyHtml + rebookHtml + showList.map(({b,i,dist})=>{
     const matchN = matchOn ? styleMatchScore(b) : 0;
     const mi = dist<10 ? (Math.round(dist*10)/10).toFixed(1) : Math.round(dist);
     const eta = Math.max(3, Math.round(dist*4));
@@ -3690,7 +3693,7 @@ function buildList(){
       <div class="bRight">
         <div class="eta">~${eta} min</div>
         <div class="bBuy">
-          <div class="price">$${b.pr}</div>
+          <div class="price">${money0(custPrice(b.pr))}</div>
           <button class="bookmini" onclick="event.stopPropagation();setBarber(${i});nav('booking')">Book</button>
         </div>
       </div>
@@ -3705,9 +3708,15 @@ function setBarber(i){
   document.getElementById('bpRate').textContent=b.r;
   document.getElementById('bpCuts').textContent=b.cuts;
   document.getElementById('bpYears').textContent=b.yr ? b.yr+' yr' : 'New';
-  document.getElementById('bpPrice').textContent='$'+b.pr;
+  document.getElementById('bpPrice').textContent=money0(custPrice(b.pr));
   setAv(document.getElementById('bkAv'),b);
   document.getElementById('bkName').textContent=b.n;
+  try{
+    const ll=barberLL(b,i), dist=haversine(userLL[0],userLL[1],ll[0],ll[1]);
+    document.getElementById('bkMeta').innerHTML='<span class="star">★ '+escapeHtml(b.r||'5.0')+'</span><span class="dot"></span>'
+      +(dist<10?(Math.round(dist*10)/10).toFixed(1):Math.round(dist))+' mi away<span class="dot"></span><span style="color:var(--green)">~'+Math.max(3,Math.round(dist*4))+' min</span>';
+  }catch(e){}
+  renderBookingServices(b, window._bookSvc); window._bookSvc=null;
   applyFavHeart(favorites.indexOf(i)>=0);
 }
 function openBarber(i){ setBarber(i); renderBarberProfile(i); nav('barberProfile'); }
@@ -3908,6 +3917,25 @@ function applyPhoto(input){
   reader.readAsDataURL(input.files[0]);
 }
 let svcPrice=38, svcName='Skin Fade';
+// The booking screen lists exactly what this barber offers, at their prices
+// (the server charges the same catalog). preferred: a service name to pre-select.
+function renderBookingServices(b, preferred){
+  const el=document.getElementById('bkSvcs'); if(!el || !b) return;
+  const list=Object.keys(b.services||{}).map(function(k){ return { name:k, price:Number(b.services[k].price)||0, min:b.services[k].min||0 }; })
+    .sort(function(x,y){ return x.price-y.price; });
+  if(!list.length){ el.innerHTML='<div style="color:var(--dim);font-size:13px;padding:6px 2px 4px">This barber hasn\'t listed services yet.</div>'; return; }
+  const want=String(preferred||'').toLowerCase();
+  const chosen=list.find(function(x){ return x.name.toLowerCase()===want; })
+    || list.find(function(x){ return [...activeSvcs].some(function(a){ return x.name.toLowerCase().includes(String(a).toLowerCase()); }); })
+    || list[0];
+  const grads=['var(--grad)','var(--gradWarm)','var(--gradGreen)'];
+  const icon='<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>';
+  el.innerHTML=list.map(function(x,ix){
+    return '<div class="opt'+(x===chosen?' on':'')+'" onclick="pickOpt(this,'+x.price+')"><div class="emo" style="background:'+grads[ix%3]+'">'+icon+'</div>'
+      +'<div class="ol"><b>'+escapeHtml(x.name)+'</b><small>~'+(x.min||45)+' min · at your place</small></div><div class="op">'+money0(custPrice(x.price))+'</div></div>';
+  }).join('');
+  svcName=chosen.name; svcPrice=chosen.price; recalc();
+}
 function pickOpt(el,p){
   el.parentElement.querySelectorAll('.opt').forEach(o=>{ if(o.querySelector('.radio')===null) o.classList.remove('on'); });
   document.querySelectorAll('#booking .opt').forEach(o=>{ if(o.querySelector('.op')) o.classList.remove('on'); });
@@ -3976,18 +4004,35 @@ function pickPM(el){
   const nm=el.querySelector('.ol b').childNodes[0].textContent.trim();
   notify('Default updated',nm+' is now your default payment method.');
 }
-/* Pricing = the server's model exactly: barber's price + 25% platform fee. */
-let FEE_PERCENT = 25;   // display default; the SERVER is authoritative and
-// overwrites this from the payment-intent breakdown before anything is charged.
+/* Pricing = the server's model exactly (marketplace.js quote()): customers see one
+ * all-in price, barbers earn their listed price, and Catch a Fade keeps PRICING.take
+ * percent of what the customer pays. PRICING.mult > 1 when it's busy nearby.
+ * The SERVER is authoritative; the pay sheet always shows its exact total. */
+let PRICING = { take: 25, mult: 1 }, _pricingAt = 0;
+function custPrice(listed){
+  const s=Math.round(Number(listed||0)*100*PRICING.mult);
+  return Math.max(s+100, Math.round(s/(1-PRICING.take/100)/100)*100)/100;
+}
+function money0(d){ return '$'+(Math.round(d*100)%100 ? d.toFixed(2) : String(Math.round(d))); }
+async function refreshPricing(force){
+  if(!force && Date.now()-_pricingAt<60000) return;
+  _pricingAt=Date.now();
+  try{
+    const j=await apiFetch('/api/pricing?lat='+userLL[0]+'&lng='+userLL[1], {}, 15000);
+    if(j && j.ok){
+      const changed = j.multiplier!==PRICING.mult || j.takePercent!==PRICING.take;
+      PRICING={ take:Number(j.takePercent)||25, mult:Number(j.multiplier)||1 };
+      if(changed){ buildList(); recalc(); }
+    }
+  }catch(e){}
+}
 let _activePaymentIntentId = null;   // set once a booking is paid, used for refunds on cancel
 function recalc(){
-  const fee = Math.round(svcPrice*FEE_PERCENT)/100;
-  const total = svcPrice+fee;
-  document.getElementById('lnSvc').textContent='$'+svcPrice.toFixed(2);
+  const total = custPrice(svcPrice);
   const nm=document.getElementById('lnSvcName'); if(nm) nm.textContent=svcName;
-  const fe=document.getElementById('lnFee'); if(fe) fe.textContent='$'+fee.toFixed(2);
-  document.getElementById('lnTotal').textContent='$'+total.toFixed(2);
-  document.getElementById('confTotal').textContent='$'+total.toFixed(2);
+  document.getElementById('lnTotal').textContent=money0(total);
+  document.getElementById('confTotal').textContent=money0(total);
+  const busy=document.getElementById('lnBusy'); if(busy) busy.style.display=PRICING.mult>1?'block':'none';
 }
 
 /* ---------- finding -> tracking (instant-book: your chosen pro is confirmed) ---------- */
@@ -4393,7 +4438,7 @@ function openPayment(opts, onSuccess){
     return apiFetch('/api/create-payment-intent', {
       method:'POST', headers:{'Content-Type':'application/json'},
       body: JSON.stringify(opts.barberId
-        ? { barberId: opts.barberId, serviceName: opts.serviceName||'', accessToken: opts.accessToken, idempotencyKey: _payIdemKey }
+        ? { barberId: opts.barberId, serviceName: opts.serviceName||'', accessToken: opts.accessToken, idempotencyKey: _payIdemKey, lat: userLL[0], lng: userLL[1] }
         : { servicePrice: priceCents, idempotencyKey: _payIdemKey })
     });
   })
@@ -4409,12 +4454,12 @@ function openPayment(opts, onSuccess){
     var bd = pi.breakdown||{};
     // The server computes the real fee — mirror it so every figure the user
     // sees (pay sheet, receipt) matches what is actually charged.
-    if(bd.feePercent!=null && !isNaN(Number(bd.feePercent))) FEE_PERCENT = Number(bd.feePercent);
+    if(bd.takePercent!=null && !isNaN(Number(bd.takePercent))) PRICING.take = Number(bd.takePercent);
+    if(bd.multiplier!=null && !isNaN(Number(bd.multiplier))) PRICING.mult = Number(bd.multiplier);
     _payIntentId = pi.paymentIntentId || null;
     document.getElementById('payMerchant').textContent = opts.merchant||'Catch a Fade';
     document.getElementById('payItem').textContent     = opts.item||'Haircut';
-    document.getElementById('payItemAmt').textContent  = '$'+((bd.servicePrice||priceCents)/100).toFixed(2);
-    document.getElementById('payFeeAmt').textContent   = '$'+((bd.platformFee||0)/100).toFixed(2);
+    document.getElementById('payItemAmt').textContent  = '$'+((bd.total||priceCents)/100).toFixed(2);   // one price, fee included
     document.getElementById('payTotalAmt').textContent = '$'+((bd.total||priceCents)/100).toFixed(2);
     var btn=document.getElementById('payBtn');
     _payBtnLabel = (opts.barberId ? 'Request · $' : 'Pay $')+((bd.total||priceCents)/100).toFixed(2);
@@ -4430,8 +4475,7 @@ function openPayment(opts, onSuccess){
       _stripeCard.on('change', function(ev){ payShowErr(ev.error ? ev.error.message : ''); });
     }
     _payItems = [
-      { label: opts.item||'Haircut', amount: (bd.servicePrice||priceCents)/100 },
-      { label: 'Service fee', amount: (bd.platformFee||0)/100 },
+      { label: opts.item||'Haircut', amount: (bd.total||priceCents)/100 },
       { label: 'Catch a Fade', amount: (bd.total||priceCents)/100 }
     ];
     _payPk = pi.publishableKey || _stripePk;
@@ -4789,7 +4833,7 @@ function renderWizStep(){
           +'<span>$<input type="number" min="5" placeholder="—" value="'+price+'" onclick="event.stopPropagation()" oninput="updateSvcPrice(\''+svc+'\',this.value)"/></span>'
           +'</div>';
       }).join('')+'</div>'
-      +'<div style="margin-top:14px;color:var(--faint);font-size:12px;line-height:1.5">You keep 100% of tips. A 25% platform service fee is added on top of your price at checkout — clients pay it, not you.</div>';
+      +'<div style="margin-top:14px;color:var(--faint);font-size:12px;line-height:1.5">Enter what you want to earn for each service. Customers see one all-in price that includes Catch a Fade\'s service fee, and when it\'s busy nearby your earnings go up too.</div>';
     case 8: var services=Object.keys(signup.services).filter(function(k){return signup.services[k];});
       return '<div class="wizTitle">Review & submit</div>'
       +'<div class="wizSub">One last check. We review applications within 24 hours.</div>'
@@ -4814,7 +4858,7 @@ function renderWizStep(){
       +'<div class="wizSub" style="text-align:center">Saving your profile and sending it for review.</div>';
     case 10: return '<div class="approveCheck"><svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4 10-11"/></svg></div>'
       +'<div class="wizTitle" style="text-align:center">Application received!</div>'
-      +'<div class="wizSub" style="text-align:center">We\'ll check your license, ID and photos and let you know within 24 hours. Once you\'re approved, set up payouts and go online. You keep 100% of your listed price; customers pay the service fee on top.</div>';
+      +'<div class="wizSub" style="text-align:center">We\'ll check your license, ID and photos and let you know within 24 hours. Once you\'re approved, set up payouts and go online. You earn the full price you set for each service.</div>';
     default: return '';
   }})();
   body.innerHTML = html;
@@ -5146,12 +5190,10 @@ function fillReceipt(){
   const b=tripBarber();
   setAv(document.getElementById('rcpAv'),b);
   document.getElementById('rcpBarber').textContent=b.n;
-  // mirror the ACTUAL charge: barber's price + the 25% platform fee
-  const fee = Math.round(svcPrice*FEE_PERCENT)/100;
-  const total = svcPrice+fee;
+  // mirror the ACTUAL charge (the booking's total, from the server)
+  const total = window._lastChargeCents ? window._lastChargeCents/100 : custPrice(svcPrice);
   const nm=document.getElementById('rcpSvcName'); if(nm) nm.textContent=svcName;
-  document.getElementById('rcpSvc').textContent='$'+svcPrice.toFixed(2);
-  document.getElementById('rcpSF').textContent='$'+fee.toFixed(2);
+  document.getElementById('rcpSvc').textContent='';
   document.getElementById('rcpTotal').textContent='$'+total.toFixed(2);
   document.getElementById('rcpDate').textContent=new Date().toLocaleString([], {weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
 }
@@ -5560,7 +5602,7 @@ function renderBarberProfile(i){
   const ab=document.getElementById('bpAbout');
   if(ab){ ab.textContent=(b&&b.about)||''; document.getElementById('bpAboutWrap').style.display=(b&&b.about)?'':'none'; }
   const sv=document.getElementById('bpServices');
-  if(sv) sv.innerHTML=Object.keys((b&&b.services)||{}).map(function(k){ return '<span class="chip on">'+escapeHtml(k)+' · $'+escapeHtml(b.services[k].price)+'</span>'; }).join('');
+  if(sv) sv.innerHTML=Object.keys((b&&b.services)||{}).map(function(k){ return '<span class="chip on">'+escapeHtml(k)+' · '+money0(custPrice(b.services[k].price))+'</span>'; }).join('');
   // Review count heading
   const revs=loadBarberReviews(i);
   const revHead=document.getElementById('revCountHead');
@@ -6541,7 +6583,8 @@ async function mkApplyBooking(bk){
       mkTripStatus(bk, b);
       break;
     case 'completed':
-      try{ localStorage.setItem('fadex_last_booking', bk.id); }catch(e){}
+      window._lastChargeCents=Number(bk.total_cents)||0;
+      try{ localStorage.setItem('fadex_last_booking', bk.id); localStorage.setItem('fadex_rebook', JSON.stringify({ barberId:bk.barber_id, service:bk.service_name||'' })); }catch(e){}
       mkClearActive();
       userProfile.cutCount=(userProfile.cutCount||0)+1; persistProfile();
       showToast('Cut complete ✂', 'Your card was charged '+mkMoney(bk.total_cents)+'.');
@@ -6691,7 +6734,7 @@ const MK_STATUS_LABEL={requested:'Waiting for barber',accepted:'Accepted',en_rou
 async function mkMyBookings(){
   const c=sbReady(); const uid=await mkUserId(); if(!c||!uid) return [];
   try{
-    const r=await c.from('bookings').select('*, barber:barbers(id, profile:profiles!barbers_profile_id_fkey(full_name))').eq('customer_id',uid).order('created_at',{ascending:false}).limit(40);
+    const r=await c.from('bookings').select('*, barber:barbers(id, profile:profiles!barbers_profile_id_fkey(full_name, avatar_url))').eq('customer_id',uid).order('created_at',{ascending:false}).limit(40);
     return r.data||[];
   }catch(e){ return []; }
 }
@@ -6707,10 +6750,13 @@ async function renderTrips(){
     const name=(k.barber&&k.barber.profile&&k.barber.profile.full_name)||'Barber';
     const when=new Date(k.created_at).toLocaleString([], {month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
     const active=MK_ACTIVE.includes(k.status);
+    const img=k.barber&&k.barber.profile&&k.barber.profile.avatar_url;
+    const again=k.status==='completed' && k.barber && k.barber.id
+      ? '<button class="againBtn" onclick="event.stopPropagation();bookAgain(\''+k.barber.id+'\',\''+escapeHtml(String(k.service_name||'').replace(/'/g,''))+'\',\''+escapeHtml(mkFirst(name).replace(/'/g,''))+'\')">Book again</button>' : '';
     return '<div class="lrow"'+(active?' onclick="mkResumeBooking(\''+k.id+'\')"':'')+'>'
-      +'<div class="av" style="background:var(--grad)">'+escapeHtml(nameInitials(name))+'</div>'
+      +'<div class="av" style="background:'+(img?'var(--card3)':'var(--grad)')+'">'+bAvInner({img:img, in:nameInitials(name)})+'</div>'
       +'<div class="lr"><b>'+escapeHtml(name)+' · '+escapeHtml(k.service_name||'Haircut')+'</b><small>'+when+' · '+(MK_STATUS_LABEL[k.status]||k.status)+'</small></div>'
-      +'<div class="lt">'+(k.status==='completed'?mkMoney(k.total_cents):(k.cancel_fee_cents?mkMoney(k.cancel_fee_cents):''))+'</div></div>';
+      +'<div class="lt" style="display:flex;flex-direction:column;align-items:flex-end;gap:6px">'+(k.status==='completed'?mkMoney(k.total_cents):(k.cancel_fee_cents?mkMoney(k.cancel_fee_cents):''))+again+'</div></div>';
   };
   const act=rows.filter(k=>MK_ACTIVE.includes(k.status)), past=rows.filter(k=>!MK_ACTIVE.includes(k.status));
   el.innerHTML='<div class="sect"><h3>Upcoming</h3></div>'
@@ -6718,6 +6764,31 @@ async function renderTrips(){
     +'<div class="sect" style="margin-top:14px"><h3>Past</h3></div>'
     +(past.length?past.map(row).join(''):'<div style="padding:0 20px;color:var(--faint);font-size:12.5px;text-align:center">Past appointments show up after your first booking.</div>')
     +'<div style="height:20px"></div>';
+}
+// Opened from a barber's booking link (catchafade://b/<id>).
+async function openBarberById(id){
+  let i=BARBERS.findIndex(function(x){ return x.id===id; });
+  if(i<0){ try{ await loadBarbersFromSupabase(); refreshBarbersUI(); }catch(e){} i=BARBERS.findIndex(function(x){ return x.id===id; }); }
+  if(i<0){ notify('This barber is offline right now','They\'ll show up on the map as soon as they\'re available.'); return; }
+  stack=['home']; render(); openBarber(i);
+}
+window.openBarberById=openBarberById;
+// A barber's public booking page, to post on Instagram or send to clients.
+function barberLink(id){ return 'https://catch-a-fade.onrender.com/b/'+id; }
+async function shareBarberLink(){
+  if(!mkMyBarber) return;
+  const url=barberLink(mkMyBarber.id);
+  const text='Book me on Catch a Fade. I come to you.';
+  try{ if(navigator.share){ await navigator.share({ title:'Book me on Catch a Fade', text:text, url:url }); return; } }catch(e){ return; }
+  try{ await navigator.clipboard.writeText(url); notify('Link copied','Paste it in your Instagram bio or send it to clients.'); }
+  catch(e){ notify('Your booking link', url); }
+}
+// One tap to rebook the same barber and service (Uber's "recent" shortcut).
+function bookAgain(barberId, service, first){
+  const i=BARBERS.findIndex(function(x){ return x.id===barberId; });
+  if(i<0){ notify((first||'Your barber')+' isn\'t online right now','They\'ll show up on the map as soon as they\'re available.'); return; }
+  window._bookSvc=service||null;
+  setBarber(i); nav('booking');
 }
 async function mkResumeBooking(id){
   const c=sbReady(); if(!c) return;
@@ -6850,6 +6921,9 @@ async function mkRenderDashboard(){
     try{
       const pj=await apiFetch('/api/portfolio?barberId='+encodeURIComponent(b.id), {}, 20000);
       if(pj && pj.license) status+='<div class="licRow" style="margin:4px 20px 12px">'+licenseRowHtml(pj.license)+'</div>';
+      status+='<div class="rebookCard" style="margin:0 20px 12px" onclick="shareBarberLink()"><div class="av" style="background:var(--text);color:var(--bg)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg></div>'
+        +'<div style="flex:1;min-width:0"><b>Share my booking link</b><small>Put it in your Instagram bio so clients book you directly.</small></div>'
+        +'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></div>';
     }catch(e){}
   }
   document.getElementById('bdStatus').innerHTML=status;
@@ -7032,7 +7106,7 @@ function mkRenderJob(){
     +'<div style="font-size:11px;letter-spacing:.08em;color:var(--green);font-weight:760">CURRENT JOB · '+escapeHtml((MK_STATUS_LABEL[k.status]||'').toUpperCase())+'</div>'
     +'<div style="font-size:18px;font-weight:780;margin-top:4px">'+escapeHtml(mkJobCustName||'Customer')+' · '+escapeHtml(k.service_name||'Haircut')+'</div>'
     +'<div style="color:var(--dim);font-size:13px;margin-top:3px">'+escapeHtml(k.address||'')+'</div>'
-    +'<div style="color:var(--dim);font-size:13px;margin-top:2px">You earn '+mkMoney(k.service_price_cents)+' + tips</div>'
+    +'<div style="color:var(--dim);font-size:13px;margin-top:2px">You earn '+mkMoney(k.service_price_cents)+'</div>'
     +'<div style="display:flex;gap:8px;margin:12px 0">'+nav+chat+'</div>'+main
     +(['accepted','en_route','arrived'].includes(k.status)?'<div style="text-align:center;margin-top:10px"><span style="color:#FF7A7A;font-size:12.5px;font-weight:650;cursor:pointer" onclick="mkJobAction(\'cancel\')">Cancel job</span></div>':'')
     +'</div>';

@@ -88,8 +88,8 @@
       const loc = $('bkLoc'); if (loc) loc.textContent = 'Home · 1420 NW 10th Ave';
       $('payMerchant').textContent = 'Catch a Fade';
       $('payItem').textContent = 'Skin Fade · Andre Cole';
-      $('payItemAmt').textContent = '$19.00'; $('payFeeAmt').textContent = '$4.75'; $('payTotalAmt').textContent = '$23.75';
-      $('payBtn').textContent = 'Request · $23.75';
+      $('payItemAmt').textContent = '$25.00'; $('payTotalAmt').textContent = '$25.00';
+      $('payBtn').textContent = 'Request · $25.00';
       $('payHoldNote').style.display = 'block';
       $('stripeCardBox').innerHTML = '<div style="display:flex;gap:10px;color:#62626C;font:16px -apple-system,system-ui,sans-serif"><span style="flex:1">Card number</span><span>MM / YY</span><span>CVC</span></div>';
       showApplePayOption(true);
@@ -104,7 +104,7 @@
       $('tcMeta').innerHTML = '<span class="star">★ 5.0</span><span class="dot"></span>Skin Fade<span class="dot"></span>Verified Pro';
       $('trkState').textContent = 'Andre is on the way to you';
       $('etaMin').textContent = '6';
-      $('tdAddr').textContent = 'Home · 1420 NW 10th Ave'; $('tdSvc').textContent = 'Skin Fade'; $('tdTotal').textContent = '$23.75';
+      $('tdAddr').textContent = 'Home · 1420 NW 10th Ave'; $('tdSvc').textContent = 'Skin Fade'; $('tdTotal').textContent = '$25.00';
       $('trkDetails').style.display = '';
       try {
         clearTrackVisuals();

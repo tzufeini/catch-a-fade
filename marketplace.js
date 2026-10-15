@@ -18,7 +18,7 @@ const crypto = require('crypto');
 const REQUEST_TTL_MS = 3 * 60 * 1000;   // a request nobody accepts within 3 min expires
 const FREE_CANCEL_MS = 2 * 60 * 1000;   // Uber-style: free cancel for 2 min after accept
 const DEMO_BARBER_EMAIL = 'demo-barber@catchafade.app';
-const AGREEMENT_VERSION = '2026-10-13';      // Independent Barber Agreement (/barber-agreement)
+const AGREEMENT_VERSION = '2026-10-15';      // Independent Barber Agreement (/barber-agreement)
 
 function readJSON(req, limit) {
   return new Promise((resolve) => {
@@ -129,6 +129,77 @@ module.exports = function createMarketplace(ctx) {
       if (b && !b.is_demo) await pushUser(b.profile_id, title, body, data);
     } catch (e) {}
   }
+  /* ---- Uber-style pricing ----
+   * Customers see one all-in price; barbers see what they earn (their listed
+   * price). Catch a Fade keeps TAKE_PERCENT of what the customer pays — disclosed
+   * in the Terms and the Independent Barber Agreement, just not itemized at
+   * checkout. When open requests nearby outnumber online barbers, prices and the
+   * barber's earnings rise together (up to SURGE_MAX), like Uber's surge. */
+  const TAKE_PERCENT = FEE_PERCENT;              // share of the customer's price
+  const SURGE_MAX = 1.5, SURGE_BOX = 0.15;       // ~10 miles around the customer
+  function quote(listedCents, mult) {
+    const servicePrice = Math.round(listedCents * (mult || 1));                       // what the barber earns
+    const total = Math.max(servicePrice + 100, Math.round(servicePrice / (1 - TAKE_PERCENT / 100) / 100) * 100);  // whole dollars
+    return { servicePrice, platformFee: total - servicePrice, total, multiplier: mult || 1 };
+  }
+  const surgeCache = new Map();
+  async function demandMultiplier(lat, lng) {
+    lat = Number(lat); lng = Number(lng);
+    if (!supabase || !Number.isFinite(lat) || !Number.isFinite(lng)) return 1;
+    const key = lat.toFixed(1) + ',' + lng.toFixed(1);
+    const hit = surgeCache.get(key);
+    if (hit && Date.now() - hit.at < 60 * 1000) return hit.mult;
+    const since = new Date(Date.now() - 30 * 60 * 1000).toISOString();
+    const [dem, sup] = await Promise.all([
+      supabase.from('bookings').select('id', { count: 'exact', head: true }).gte('created_at', since)
+        .in('status', ['requested', 'accepted', 'en_route', 'arrived', 'in_progress'])
+        .gte('lat', lat - SURGE_BOX).lte('lat', lat + SURGE_BOX).gte('lng', lng - SURGE_BOX).lte('lng', lng + SURGE_BOX),
+      supabase.from('barbers').select('id', { count: 'exact', head: true }).eq('is_verified', true).eq('is_available', true).eq('is_demo', false)
+        .gte('home_lat', lat - SURGE_BOX).lte('home_lat', lat + SURGE_BOX).gte('home_lng', lng - SURGE_BOX).lte('home_lng', lng + SURGE_BOX)
+    ]);
+    const demand = dem.count || 0, supply = sup.count || 0;
+    // surge only when demand outruns supply: +25% per extra request per barber, in 5% steps
+    const ratio = demand / Math.max(1, supply);
+    const mult = ratio <= 1 ? 1 : Math.round(Math.min(SURGE_MAX, 1 + (ratio - 1) * 0.25) * 20) / 20;
+    surgeCache.set(key, { mult, at: Date.now() });
+    return mult;
+  }
+
+  const BARBER_PAGE = /^\/b\/[0-9a-f-]{36}$/;
+  const APP_STORE_URL = 'https://apps.apple.com/us/app/catch-a-fade/id6790179224';
+  const esc = (v) => String(v == null ? '' : v).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  function barberPage(b, photos, license) {
+    const head = (title, desc, img) => '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
+      + '<title>' + esc(title) + '</title><meta name="description" content="' + esc(desc) + '">'
+      + '<meta property="og:title" content="' + esc(title) + '"><meta property="og:description" content="' + esc(desc) + '">'
+      + (img ? '<meta property="og:image" content="' + esc(img) + '">' : '')
+      + '<meta name="apple-itunes-app" content="app-id=6790179224">'
+      + '<style>body{margin:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;background:#F4EDE1;color:#15110D}'
+      + '.w{max-width:520px;margin:0 auto;padding:28px 20px 48px}.av{width:96px;height:96px;border-radius:28px;object-fit:cover;background:#15110D;color:#F4EDE1;display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:800}'
+      + 'h1{font-size:28px;margin:16px 0 4px;letter-spacing:-.5px}.m{color:#5C616C;font-size:14px}.lic{margin:16px 0;padding:12px 14px;border-radius:14px;background:rgba(70,201,139,.12);border:1px solid rgba(70,201,139,.35);font-size:14px}'
+      + '.lic b{display:block}.s{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid rgba(21,17,13,.1);font-size:15px}.s b{font-weight:750}'
+      + 'h2{font-size:13px;text-transform:uppercase;letter-spacing:.8px;color:#5C616C;margin:26px 0 8px}.g{display:grid;grid-template-columns:1fr 1fr;gap:8px}.g img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:14px}'
+      + '.btn{display:block;text-align:center;padding:16px;border-radius:16px;font-weight:750;font-size:16px;text-decoration:none;margin-top:12px}.p{background:#15110D;color:#F4EDE1}.o{border:1.5px solid #15110D;color:#15110D}'
+      + '.f{margin-top:28px;font-size:12px;color:#8C9099;text-align:center}</style></head><body><div class="w">';
+    if (!b) return head('Catch a Fade', 'Licensed barbers who come to you.', '') + '<h1>This barber isn\'t available</h1><p class="m">Find licensed barbers who come to you in the Catch a Fade app.</p><a class="btn p" href="' + APP_STORE_URL + '">Get Catch a Fade</a></div></body></html>';
+    const name = (b.profile && b.profile.full_name) || 'Barber', first = name.split(' ')[0];
+    const img = b.profile && b.profile.avatar_url;
+    const about = String(b.bio || '').split(' · ')[0];
+    const svcs = (b.services || []).slice().sort((x, y) => x.price_cents - y.price_cents);
+    const price = (c) => '$' + (quote(c, 1).total / 100).toFixed(0);
+    const desc = first + ' is a licensed barber who comes to you. Book a cut in the Catch a Fade app' + (svcs.length ? ', from ' + price(svcs[0].price_cents) : '') + '.';
+    return head(name + ' · Catch a Fade', desc, img)
+      + (img ? '<img class="av" src="' + esc(img) + '" alt="">' : '<div class="av">' + esc(name.split(' ').map(w => w[0]).join('').slice(0, 2)) + '</div>')
+      + '<h1>' + esc(name) + '</h1><div class="m">★ ' + Number(b.rating || 5).toFixed(1) + ' · ' + Number(b.cuts_completed || 0) + ' cuts · comes to your place</div>'
+      + (license ? '<div class="lic"><b>✓ Florida barber license ' + esc(license.number) + '</b>Active · verified with the state' + (license.expires ? ' · valid until ' + esc(license.expires) : '') + '</div>' : '')
+      + (about ? '<p style="font-size:15px;line-height:1.55">' + esc(about) + '</p>' : '')
+      + (svcs.length ? '<h2>Services</h2>' + svcs.map(x => '<div class="s"><span>' + esc(x.name) + '</span><b>' + price(x.price_cents) + '</b></div>').join('') : '')
+      + (photos && photos.length ? '<h2>Recent work</h2><div class="g">' + photos.slice(0, 6).map(ph => '<img src="' + esc(ph.url) + '" alt="' + esc(ph.label) + '">').join('') + '</div>' : '')
+      + '<a class="btn p" href="catchafade://b/' + esc(b.id) + '">Book ' + esc(first) + ' in the app</a>'
+      + '<a class="btn o" href="' + APP_STORE_URL + '">Get Catch a Fade on the App Store</a>'
+      + '<div class="f">Prices include the Catch a Fade service fee and may be higher when it\'s busy.</div></div></body></html>';
+  }
+
   // Automatic barber review (license + identity) — see barber-review.js.
   const review = require('./barber-review')({ supabase, anthropicKey, pushUser, sendEmail,
     adminEmail: ADMIN_EMAILS[0], DOCS_BUCKET });
@@ -367,13 +438,14 @@ module.exports = function createMarketplace(ctx) {
         if (!svcs || !svcs.length) return sendJSON(res, 400, { ok: false, error: 'This barber has no services listed yet.' }), true;
         const want = String(d.serviceName || '').toLowerCase();
         const svc = svcs.find(s => s.name.toLowerCase() === want) || svcs[0];
-        const servicePrice = svc.price_cents;
-        const fee = Math.round(servicePrice * FEE_PERCENT / 100);
-        const total = servicePrice + fee;
+        const lat = Number(d.lat), lng = Number(d.lng);
+        const mult = await demandMultiplier(Number.isFinite(lat) && d.lat != null ? lat : barber.home_lat, Number.isFinite(lng) && d.lng != null ? lng : barber.home_lng).catch(() => 1);
+        const q = quote(svc.price_cents, mult);
+        const servicePrice = q.servicePrice, fee = q.platformFee, total = q.total;
         const params = {
           amount: total, currency: 'usd', capture_method: 'manual', payment_method_types: ['card'],
           metadata: { customer_id: u.id, barber_id: barber.id, service_name: svc.name,
-                      servicePrice: String(servicePrice), platformFee: String(fee), feePercent: String(FEE_PERCENT) }
+                      servicePrice: String(servicePrice), platformFee: String(fee), takePercent: String(TAKE_PERCENT), multiplier: String(mult) }
         };
         const sc = stripeFor(u);
         if (barber.stripe_account_id && sc === stripe) {
@@ -390,7 +462,7 @@ module.exports = function createMarketplace(ctx) {
           const pi = idem ? await sc.paymentIntents.create(params, { idempotencyKey: idem }) : await sc.paymentIntents.create(params);
           piClients.set(pi.id, sc);
           return sendJSON(res, 200, { ok: true, clientSecret: pi.client_secret, paymentIntentId: pi.id, publishableKey: pkFor(u),
-            breakdown: { servicePrice, platformFee: fee, total, feePercent: FEE_PERCENT, serviceName: svc.name } }), true;
+            breakdown: { servicePrice, platformFee: fee, total, takePercent: TAKE_PERCENT, multiplier: mult, serviceName: svc.name } }), true;
         } catch (err) {
           console.error('[create-payment-intent] stripe error:', err.message);
           return sendJSON(res, 200, { ok: false, error: err.message }), true;
@@ -575,6 +647,24 @@ module.exports = function createMarketplace(ctx) {
           }
         }
         return sendJSON(res, 200, { ok: true }), true;
+      }
+
+      // ---- a barber's shareable booking page: catch-a-fade.onrender.com/b/<id> ----
+      if (req.method === 'GET' && BARBER_PAGE.test(p)) {
+        const id = p.slice(3);
+        const { data: b } = await supabase.from('barbers')
+          .select('id, profile_id, bio, rating, cuts_completed, is_verified, is_demo, profile:profiles!barbers_profile_id_fkey(full_name, avatar_url), services(name, price_cents)')
+          .eq('id', id).maybeSingle();
+        if (!b || !b.is_verified || b.is_demo) { res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' }); res.end(barberPage(null)); return true; }
+        res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'public, max-age=300' });
+        res.end(barberPage(b, await portfolioOf(b.profile_id), await review.publicLicense(b.profile_id)));
+        return true;
+      }
+
+      // ---- current pricing near the customer (one-price display + busy note) ----
+      if (req.method === 'GET' && p === '/api/pricing') {
+        const mult = await demandMultiplier(url.searchParams.get('lat'), url.searchParams.get('lng')).catch(() => 1);
+        return sendJSON(res, 200, { ok: true, takePercent: TAKE_PERCENT, multiplier: mult }), true;
       }
 
       // ---- portfolio: photos of the barber's cuts, public on their profile ----

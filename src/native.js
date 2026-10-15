@@ -121,6 +121,11 @@ async function boot() {
   });
 
   // ---- hardware back (no-op safety on iOS) ----
+  // ---- links into the app: catchafade://b/<barberId> (from a barber's booking page) ----
+  safe(() => App.addListener('appUrlOpen', (e) => {
+    const m = /^catchafade:\/\/b\/([0-9a-f-]{36})/i.exec((e && e.url) || '');
+    if (m && typeof window.openBarberById === 'function') window.openBarberById(m[1]);
+  }));
   safe(() => App.addListener('backButton', () => {
     if (typeof window.back === 'function') window.back();
   }));
