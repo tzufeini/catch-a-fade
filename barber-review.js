@@ -22,6 +22,8 @@ const DBPR_TTL_MS = 20 * 60 * 60 * 1000;
 const REVIEW_DELAY_MS = 90 * 1000;          // let the "received" push land first
 const SWEEP_MS = 10 * 60 * 1000;
 const RETRY_AFTER_MS = 30 * 60 * 1000;
+const RECHECK_MS = 24 * 60 * 60 * 1000;    // approved barbers' licenses, once a day
+const RENEW_WARN_DAYS = 30;
 const REVIEW_MODEL = 'claude-opus-5-5';
 
 // "Ana-María O'Neil" → "ANA MARIA ONEIL"
@@ -229,6 +231,47 @@ module.exports = function createBarberReview(ctx) {
     } finally { running.delete(uid); }
   }
 
+  // Daily: every approved barber's license must still be active. A lapsed,
+  // suspended or revoked license takes the barber offline until it's fixed.
+  async function recheckLicenses() {
+    if (!(await loadDbpr())) return;
+    try {
+      const { data } = await supabase.from('barbers').select('id, profile_id, profile:profiles!barbers_profile_id_fkey(full_name)').eq('is_verified', true).eq('is_demo', false);
+      for (const b of data || []) {
+        const user = await getUser(b.profile_id).catch(() => null);
+        if (!user) continue;
+        const meta = user.app_metadata || {};
+        const fullName = (b.profile && b.profile.full_name) || '';
+        const lic = await checkLicense(meta.barber_license, fullName);
+        if (lic.status === 'unavailable') return;
+        const rv = meta.barber_review || {};
+        const license_check = { status: lic.status, number: lic.record && lic.record.number, name: lic.record && lic.record.name,
+          expires: lic.record && lic.record.expires, checked_at: new Date().toISOString() };
+        if (lic.status !== 'verified') {
+          const reasons = [lic.status === 'not_found' || lic.status === 'inactive'
+            ? 'Florida\'s records no longer show an active barber license for you. Renew or reinstate it, then update your application.'
+            : 'The name on your barber license no longer matches your account.'];
+          await setReview(user, { status: 'suspended', decided_at: new Date().toISOString(), reasons, license_check });
+          await supabase.from('barbers').update({ is_verified: false, is_available: false }).eq('id', b.id);
+          await notify(user, 'Your barber license needs attention',
+            'You\'re offline until your Florida barber license is active again. Open the app for details.',
+            'Hi ' + fullName.split(' ')[0] + ',\n\n' + reasons[0] + '\n\nYou won\'t receive requests until this is fixed.\n\nCatch a Fade', { type: 'barber_suspended' });
+          if (adminEmail && sendEmail) sendEmail(adminEmail, 'Barber license lapsed: ' + fullName, JSON.stringify(license_check)).catch(() => {});
+          continue;
+        }
+        const patch = { license_check };
+        const [mm, dd, yy] = String(license_check.expires || '').split('/').map(Number);
+        const days = yy ? (new Date(yy, mm - 1, dd) - Date.now()) / 86400000 : Infinity;
+        if (days <= RENEW_WARN_DAYS && rv.renew_reminded !== license_check.expires) {
+          patch.renew_reminded = license_check.expires;
+          await notify(user, 'Renew your barber license',
+            'Your Florida barber license expires on ' + license_check.expires + '. Renew it to keep taking bookings.', null, { type: 'license_renew' });
+        }
+        await setReview(user, patch);
+      }
+    } catch (e) { console.error('[review] license recheck', e.message); }
+  }
+
   // Picks up anything a restart or an outage left behind.
   async function sweep() {
     try {
@@ -250,6 +293,8 @@ module.exports = function createBarberReview(ctx) {
     if (!supabase) return;
     setTimeout(sweep, 60 * 1000);
     setInterval(sweep, SWEEP_MS);
+    setTimeout(recheckLicenses, 5 * 60 * 1000);
+    setInterval(recheckLicenses, RECHECK_MS);
     loadDbpr().catch(() => {});
   }
 
@@ -259,5 +304,12 @@ module.exports = function createBarberReview(ctx) {
     return rv ? { status: rv.status, reasons: rv.reasons || [], submittedAt: rv.submitted_at || null, decidedAt: rv.decided_at || null } : { status: 'none', reasons: [] };
   }
 
-  return { received, run, sweep, start, status, checkLicense, decide, _test: { licenseKeys, namesMatch, norm } };
+  // What customers see on a profile: the verified license number and its expiry.
+  async function publicLicense(uid) {
+    const user = await getUser(uid).catch(() => null);
+    const lc = user && ((user.app_metadata || {}).barber_review || {}).license_check;
+    return lc && lc.status === 'verified' && lc.number ? { number: lc.number, expires: lc.expires || '' } : null;
+  }
+
+  return { received, run, sweep, start, status, checkLicense, decide, publicLicense, recheckLicenses, _test: { licenseKeys, namesMatch, norm } };
 };

@@ -581,7 +581,15 @@ module.exports = function createMarketplace(ctx) {
       if (req.method === 'GET' && p === '/api/portfolio') {
         const { data: b } = await supabase.from('barbers').select('profile_id, is_verified, is_demo').eq('id', String(url.searchParams.get('barberId') || '')).maybeSingle();
         if (!b || !(b.is_verified || b.is_demo)) return sendJSON(res, 200, { ok: true, photos: [] }), true;
-        return sendJSON(res, 200, { ok: true, photos: await portfolioOf(b.profile_id) }), true;
+        return sendJSON(res, 200, { ok: true, photos: await portfolioOf(b.profile_id), license: b.is_demo ? null : await review.publicLicense(b.profile_id) }), true;
+      }
+      // ---- live license check while a barber fills in the application ----
+      if (post && p === '/api/license-check') {
+        if (rateLimited(req, 'liccheck', 30, 60 * 60 * 1000)) return sendJSON(res, 429, { ok: false, error: 'Too many checks. Try again later.' }), true;
+        const d = await readJSON(req);
+        const r = await review.checkLicense(d && d.license, d && d.fullName);
+        // never echo the license holder's name back
+        return sendJSON(res, 200, { ok: true, status: r.status, type: r.record && r.record.type, expires: r.status === 'verified' ? r.record.expires : undefined }), true;
       }
       if (post && p === '/api/barber/portfolio') {
         const d = await readJSON(req, 6 * 1024 * 1024); const u = d && await authUser(d.accessToken);

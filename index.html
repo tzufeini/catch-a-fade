@@ -387,13 +387,31 @@ body.light .park{background:rgba(70,201,139,.22);}
 /* ===== FINDING overlay ===== */
 #finding{background:radial-gradient(600px 600px at 50% 42%,rgba(42,88,204,.22),var(--bg));}
 .radar{width:170px;height:170px;border-radius:50%;position:relative;margin:0 auto 30px;}
-.radar i{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(42,88,204,.35);animation:rad 2.6s ease-out infinite;}
-.radar i:nth-child(2){animation-delay:.9s}.radar i:nth-child(3){animation-delay:1.8s}
-@keyframes rad{0%{transform:scale(.2);opacity:1}100%{transform:scale(1);opacity:0}}
+.radar i{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(42,88,204,.38);opacity:0;
+  animation:rad 3.2s cubic-bezier(.15,.55,.35,1) infinite;will-change:transform,opacity;transition:border-color .5s ease;}
+.radar i:nth-child(2){animation-delay:.8s}.radar i:nth-child(3){animation-delay:1.6s}.radar i:nth-child(4){animation-delay:2.4s}
+@keyframes rad{0%{transform:scale(.25);opacity:0}12%{opacity:.9}100%{transform:scale(1.12);opacity:0}}
 .radar .core{position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);
-  width:58px;height:58px;border-radius:18px;background:var(--grad);display:flex;align-items:center;justify-content:center;}
+  width:58px;height:58px;border-radius:18px;background:var(--grad);display:flex;align-items:center;justify-content:center;
+  overflow:hidden;will-change:transform;animation:coreBreath 2.4s ease-in-out infinite;
+  transition:width .55s cubic-bezier(.2,1.25,.4,1),height .55s cubic-bezier(.2,1.25,.4,1),border-radius .55s ease,box-shadow .55s ease;}
+@keyframes coreBreath{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.06)}}
+.radar .acceptTick{position:absolute;left:calc(50% + 26px);top:calc(50% + 22px);width:26px;height:26px;border-radius:50%;
+  background:var(--green);color:#fff;font-size:14px;display:flex;align-items:center;justify-content:center;
+  border:3px solid var(--bg);opacity:0;transform:scale(.3);transition:opacity .3s ease .35s,transform .45s cubic-bezier(.2,1.6,.4,1) .35s;z-index:2;}
+/* barber accepted: their face pops into the centre, rings turn green */
+#finding.accepted .radar i{border-color:rgba(70,201,139,.55);}
+#finding.accepted .radar .core{width:88px;height:88px;border-radius:50%;animation:none;transform:translate(-50%,-50%);box-shadow:0 10px 30px -8px rgba(70,201,139,.6);}
+#finding.accepted .radar .acceptTick{opacity:1;transform:scale(1);}
+#finding.accepted #findTitle,#finding.accepted #findSub{animation:fadeUp .45s cubic-bezier(.2,.8,.2,1) both;}
+#tracking.active .trackCard{animation:tcUp .55s cubic-bezier(.2,.8,.2,1) both;}
+@keyframes tcUp{from{opacity:0;transform:translateY(46px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){ .radar i,.radar .core,#tracking.active .trackCard{animation:none!important} }
 
 /* ===== TRACKING ===== */
+.licRow{margin:2px 20px 14px;padding:12px 14px;border-radius:14px;background:rgba(70,201,139,.09);border:1px solid rgba(70,201,139,.28);display:flex;align-items:center;gap:11px;font-size:13px;line-height:1.35;}
+.licRow b{display:block;font-size:13.5px;}
+.licRow small{color:var(--dim);font-size:11.5px;}
 .trkDetails{margin:4px 20px 6px;border-top:1px solid var(--line);}
 .tdRow{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);}
 .tdIc{width:34px;height:34px;border-radius:10px;background:var(--card);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--text);}
@@ -2184,6 +2202,8 @@ html.native .ob-tip{ font-size:14px; }
         <div class="stat"><b style="color:var(--green)">✓</b><small>LICENSED</small></div>
       </div>
 
+      <div class="licRow" id="bpLicense" style="display:none"></div>
+
       <div id="bpPortWrap" style="display:none">
         <div class="sect"><h3>Portfolio</h3></div>
         <div class="gallery" id="bpGallery"></div>
@@ -2277,7 +2297,7 @@ html.native .ob-tip{ font-size:14px; }
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
     </div>
     <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 36px;text-align:center">
-      <div class="radar"><i></i><i></i><i></i>
+      <div class="radar"><i></i><i></i><i></i><i></i><b class="acceptTick">✓</b>
         <div class="core"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></div>
       </div>
       <h2 style="font-size:22px;font-weight:780" id="findTitle">Finding your barber…</h2>
@@ -4749,8 +4769,8 @@ function renderWizStep(){
       +'<div class="wizSub">This is what clients see when they pick you.</div>'
       +'<div class="wizFld"><label>First name</label><input id="wFirst" value="'+escapeHtml(signup.firstName)+'" autocomplete="given-name"/></div>'
       +'<div class="wizFld"><label>Last name</label><input id="wLast" value="'+escapeHtml(signup.lastName)+'" autocomplete="family-name"/></div>'
-      +'<div class="wizFld"><label>Barber license number</label><input id="wLicense" value="'+escapeHtml(signup.license||'')+'" placeholder="e.g. BB1234567" autocapitalize="characters" autocomplete="off"/>'
-      +'<div style="font-size:12px;color:var(--faint);margin-top:6px">Your state barber license. We verify it before you can take bookings.</div></div>'
+      +'<div class="wizFld"><label>Florida barber license number · required</label><input id="wLicense" value="'+escapeHtml(signup.license||'')+'" placeholder="e.g. BB1234567" autocapitalize="characters" autocomplete="off" oninput="signup.licOk=null;document.getElementById(\'licNote\').innerHTML=licNoteHtml(null)"/>'
+      +'<div id="licNote" style="font-size:12px;margin-top:6px;line-height:1.45">'+licNoteHtml(signup.licOk||null)+'</div></div>'
       +'<div class="wizFld"><label>Years of experience</label><input id="wYears" type="number" min="0" max="60" value="'+escapeHtml(signup.years)+'" placeholder="e.g. 5"/></div>'
       +'<div class="wizFld"><label>Short bio</label><textarea id="wBio" placeholder="A sentence about your style.">'+escapeHtml(signup.bio||'')+'</textarea></div>';
     case 6: return '<div class="wizTitle">Where do you serve clients?</div>'
@@ -4777,7 +4797,7 @@ function renderWizStep(){
       +'<div class="reviewItem"><b>Name</b><span class="rv">'+escapeHtml((signup.firstName+' '+signup.lastName).trim()||'—')+'</span></div>'
       +'<div class="reviewItem"><b>Email</b><span class="rv">'+escapeHtml(signup.email||'—')+'</span></div>'
       +'<div class="reviewItem"><b>Phone</b><span class="rv">'+escapeHtml(signup.phone||'—')+'</span></div>'
-      +'<div class="reviewItem"><b>License</b><span class="rv">'+escapeHtml(signup.license||'—')+'</span></div>'
+      +'<div class="reviewItem"><b>License</b><span class="rv">'+escapeHtml(signup.license||'—')+(signup.licOk&&signup.licOk.status==='verified'?' <span style="color:var(--green)">✓ verified</span>':'')+'</span></div>'
       +'<div class="reviewItem"><b>Experience</b><span class="rv">'+escapeHtml(signup.years?signup.years+' yr':'—')+'</span></div>'
       +'<div class="reviewItem"><b>Service area</b><span class="rv">'+escapeHtml(signup.address||'—')+'</span></div>'
       +'<div class="reviewItem"><b>Services</b><span class="rv">'+services.length+' selected</span></div>'
@@ -4875,7 +4895,7 @@ function wizVerifyOtp(code){
   .catch(function(){ clearTimeout(t); return { ok:false, msg:'Couldn\'t verify — check your connection.' }; });
 }
 
-function wizNext(){
+async function wizNext(){
   var s = signup.step;
   if(s===1){
     // 2.1a: emailed codes never reached reviewers (sandboxed sender). The
@@ -4907,6 +4927,11 @@ function wizNext(){
     signup.license   = (document.getElementById('wLicense').value||'').trim().toUpperCase();
     if(!signup.firstName || !signup.lastName){ notify('Add your name','First and last name are required.'); return; }
     if(signup.license.replace(/[^A-Z0-9]/g,'').length<3){ notify('License number','Enter your barber license number so we can verify it.'); return; }
+    // Checked live against Florida's public license records before moving on.
+    if(signup._checking) return;
+    signup._checking=true;
+    let lic=null; try{ lic=await checkLicenseLive(signup.license, signup.firstName+' '+signup.lastName); }finally{ signup._checking=false; }
+    if(lic && lic.status!=='verified' && lic.status!=='unavailable') return;
   } else if(s===6){
     signup.address = (document.getElementById('wAddress').value||'').trim();
     if(!signup.address){ notify('Service area','Enter the address you\'ll work out of.'); return; }
@@ -4940,6 +4965,27 @@ function shrinkPhoto(file){
     img.onerror=function(){ URL.revokeObjectURL(url); reject(new Error('unreadable')); };
     img.src=url;
   });
+}
+// License status line under the license field (wizard step 5).
+function licNoteHtml(r){
+  if(!r) return '<span style="color:var(--faint)">Starts with BB or BR. We check it against Florida\'s official license records.</span>';
+  const ok='<span style="color:var(--green);font-weight:700">✓ ', bad='<span style="color:#D63031;font-weight:700">';
+  if(r.status==='verified') return ok+'Active Florida '+(r.type==='BR'?'restricted ':'')+'barber license found'+(r.expires?' · valid until '+escapeHtml(r.expires):'')+'</span>';
+  if(r.status==='not_found') return bad+'We couldn\'t find an active Florida barber license with this number. Check it on your license card.</span>';
+  if(r.status==='inactive') return bad+'This license isn\'t active right now. You can apply once it\'s renewed or reinstated.</span>';
+  if(r.status==='name_mismatch') return bad+'This license is under a different name. Enter your first and last name exactly as they appear on your license.</span>';
+  return '<span style="color:var(--faint)">We\'ll verify your license during review.</span>';
+}
+async function checkLicenseLive(license, fullName){
+  const note=document.getElementById('licNote');
+  if(note) note.innerHTML='<span style="color:var(--faint)">Checking Florida license records…</span>';
+  let r=null;
+  try{ r=await apiFetch('/api/license-check',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({license:license,fullName:fullName})},20000); }catch(e){}
+  if(!r || !r.ok) r={status:'unavailable'};
+  signup.licOk=r;
+  if(note) note.innerHTML=licNoteHtml(r);
+  if(r.status!=='verified' && r.status!=='unavailable') haptic();
+  return r;
 }
 async function uploadBarberDoc(kind, dataUrl){
   const j=await mkApi('/api/barber/docs', { kind:kind, dataUrl:dataUrl });
@@ -5500,10 +5546,14 @@ function renderBarberProfile(i){
   const b=BARBERS[i];
   // Portfolio
   const gEl=document.getElementById('bpGallery'), gWrap=document.getElementById('bpPortWrap');
+  const licEl=document.getElementById('bpLicense');
   if(gEl){ gEl.innerHTML=''; gWrap.style.display='none'; }
+  if(licEl) licEl.style.display='none';
   if(gEl && b && b.fromDB){
     apiFetch('/api/portfolio?barberId='+encodeURIComponent(b.id), {}, 20000).then(function(j){
-      if(current!==i || !j || !(j.photos||[]).length) return;
+      if(current!==i || !j) return;
+      if(j.license && licEl){ licEl.innerHTML=licenseRowHtml(j.license); licEl.style.display='flex'; }
+      if(!(j.photos||[]).length) return;
       gEl.innerHTML=portTiles(j.photos); gWrap.style.display='';
     }).catch(function(){});
   }
@@ -5554,6 +5604,11 @@ function renderBarberProfile(i){
   if(rEl) rEl.innerHTML=html;
 }
 
+// A verified Florida barber license, as shown to customers and on the dashboard.
+function licenseRowHtml(l){
+  return '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.2" style="flex-shrink:0"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>'
+    +'<div><b>Florida barber license '+escapeHtml(l.number)+'</b><small>Active · verified with the state'+(l.expires?' · valid until '+escapeHtml(l.expires):'')+'</small></div>';
+}
 // Photos of a barber's cuts — stored on the server, shown on their public profile.
 function portTiles(photos){
   return (photos||[]).map(function(p){
@@ -6385,6 +6440,7 @@ async function confirmBooking(){
   }, function(pi){ mkRequestBooking(pi && pi.id); });
 }
 async function mkRequestBooking(piId){
+  resetFindingScreen();
   nav('finding');
   const first=mkFirst(tripBarber().n);
   document.getElementById('findTitle').textContent='Sending your request…';
@@ -6423,6 +6479,29 @@ function mkStopWatching(){
   mkBkChan=null; clearInterval(mkBkPoll); clearInterval(mkFindTick); mkStopBarberLoc();
 }
 function mkClearActive(){ mkStopWatching(); mkBooking=null; mkLastStatus=null; mkTripUI=false; try{ localStorage.removeItem('fadex_active_booking'); }catch(e){} }
+// The moment a barber accepts: their photo pops into the search circle, then the
+// app glides into live tracking.
+let mkAccepting=false, _findCoreHtml=null;
+function resetFindingScreen(){
+  const f=document.getElementById('finding'); if(!f) return;
+  const core=f.querySelector('.radar .core');
+  if(_findCoreHtml===null) _findCoreHtml=core.innerHTML;
+  f.classList.remove('accepted'); core.innerHTML=_findCoreHtml; core.style.background='';
+}
+function playAcceptMoment(b){
+  return new Promise(function(done){
+    const f=document.getElementById('finding'); if(!f){ done(); return; }
+    resetFindingScreen();
+    const core=f.querySelector('.radar .core');
+    core.innerHTML=b.img ? '<img class="avImg" src="'+escapeHtml(b.img)+'" alt="">' : '<span style="color:#fff;font-weight:800;font-size:24px">'+escapeHtml(b.in||'')+'</span>';
+    if(!b.img) core.style.background=b.g;
+    document.getElementById('findTitle').textContent=mkFirst(b.n)+' accepted';
+    document.getElementById('findSub').textContent='Your barber is getting ready to come to you.';
+    requestAnimationFrame(function(){ f.classList.add('accepted'); });
+    haptic();
+    setTimeout(done, 1500);
+  });
+}
 async function mkApplyBooking(bk){
   if(!bk || (mkBooking && bk.id!==mkBooking.id)) return;
   mkBooking=bk;
@@ -6433,6 +6512,7 @@ async function mkApplyBooking(bk){
   svcName=bk.service_name||svcName; svcPrice=Number(bk.service_price_cents||0)/100;
   switch(bk.status){
     case 'requested': {
+      resetFindingScreen();
       if(stack[stack.length-1]!=='finding') nav('finding');
       document.getElementById('findTitle').textContent='Waiting for '+first+' to accept…';
       const created=new Date(bk.created_at).getTime()||Date.now();
@@ -6448,6 +6528,15 @@ async function mkApplyBooking(bk){
     }
     case 'accepted': case 'en_route': case 'arrived': case 'in_progress':
       clearInterval(mkFindTick);
+      if(mkAccepting) break;            // the accept moment applies the latest status when it ends
+      if(!mkTripUI && stack[stack.length-1]==='finding'){
+        mkAccepting=true;
+        try{ await playAcceptMoment(b); }catch(e){}
+        mkAccepting=false;
+        if(!mkBooking || mkBooking.id!==bk.id) break;      // cancelled meanwhile
+        bk=mkBooking;
+        if(!['accepted','en_route','arrived','in_progress'].includes(bk.status)) break;
+      }
       if(!mkTripUI) mkStartTripUI(bk, b);
       mkTripStatus(bk, b);
       break;
@@ -6747,15 +6836,21 @@ async function mkRenderDashboard(){
   let status='';
   if(!b.is_verified){
     const rv=await mkApi('/api/barber/review-status', {});
-    if(rv && rv.status==='declined'){
+    if(rv && (rv.status==='declined' || rv.status==='suspended')){
       status='<div class="tripExtra warn" style="margin:4px 20px 12px;border-color:rgba(214,48,49,.35)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D63031" stroke-width="2.3"><circle cx="12" cy="12" r="9"/><path d="M12 7v6M12 16.5v.5"/></svg>'
-        +'<div><b>We couldn\'t approve your application</b>'
+        +'<div><b>'+(rv.status==='suspended'?'You\'re offline: your license needs attention':'We couldn\'t approve your application')+'</b>'
         +(rv.reasons||[]).map(function(r){ return '<small style="display:block;margin-top:4px">• '+escapeHtml(r)+'</small>'; }).join('')
         +'<button class="btn" style="margin-top:10px;padding:9px 16px;font-size:13px" onclick="openBarberOnboard()">Apply again</button></div></div>';
     } else {
       status='<div class="tripExtra warn" style="margin:4px 20px 12px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2.3"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>'
         +'<div><b>Application under review</b><small>We\'re checking your license, ID and photos. You\'ll get a notification within 24 hours, and you can go online as soon as you\'re approved.</small></div></div>';
     }
+  }
+  if(b.is_verified){
+    try{
+      const pj=await apiFetch('/api/portfolio?barberId='+encodeURIComponent(b.id), {}, 20000);
+      if(pj && pj.license) status+='<div class="licRow" style="margin:4px 20px 12px">'+licenseRowHtml(pj.license)+'</div>';
+    }catch(e){}
   }
   document.getElementById('bdStatus').innerHTML=status;
   mkSetOnlineUI(!!b.is_available && !!b.is_verified);
