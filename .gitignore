@@ -20,3 +20,6 @@ assets/
 # ...but the SIE study site's own assets MUST be committed (they get deployed)
 !sie-exam-prep/assets/
 !sie-exam-prep/assets/**
+
+# App Store screenshot renders (generated)
+screenshots/site/

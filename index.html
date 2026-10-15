@@ -394,8 +394,15 @@ body.light .park{background:rgba(70,201,139,.22);}
   width:58px;height:58px;border-radius:18px;background:var(--grad);display:flex;align-items:center;justify-content:center;}
 
 /* ===== TRACKING ===== */
+.trkDetails{margin:4px 20px 6px;border-top:1px solid var(--line);}
+.tdRow{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);}
+.tdIc{width:34px;height:34px;border-radius:10px;background:var(--card);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--text);}
+.tdTx{flex:1;min-width:0;}
+.tdTx small{display:block;color:var(--dim);font-size:11.5px;font-weight:600;}
+.tdTx b{display:block;font-size:14px;font-weight:700;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.tdAmt{font-size:15px;font-weight:800;}
 .trackCard{
-  background:var(--bg);border-radius:24px 24px 0 0;margin-top:-24px;position:relative;z-index:10;
+  flex:1;background:var(--bg);border-radius:24px 24px 0 0;margin-top:-24px;position:relative;z-index:10;
   padding:8px 0 0;box-shadow:0 -16px 40px -12px rgba(0,0,0,.6);
 }
 .steps{display:flex;padding:14px 22px 4px;}
@@ -1378,7 +1385,7 @@ html.native .ob-tip{ font-size:14px; }
   <div class="applePay" id="paySheet">
     <div class="apSheet">
       <div class="apHandle"></div>
-      <div class="apTitle" style="display:flex;align-items:center;justify-content:center;gap:6px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>SECURE CARD PAYMENT</div>
+      <div class="apTitle" style="display:flex;align-items:center;justify-content:center;gap:6px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>SECURE PAYMENT</div>
       <div class="apMerchant" id="payMerchant">Catch a Fade</div>
       <div class="apLine"><div class="apLabel" id="payItem">Haircut</div><div class="apValue" id="payItemAmt">$0.00</div></div>
       <div class="apLine"><div class="apLabel">Service fee</div><div class="apValue" id="payFeeAmt">$0.00</div></div>
@@ -2308,6 +2315,14 @@ html.native .ob-tip{ font-size:14px; }
           <div class="bRight" style="gap:8px;flex-direction:row">
             <div class="iconbtn" onclick="mkOpenTripChat()"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12a8 8 0 0 1-11.5 7.2L4 21l1.8-5.5A8 8 0 1 1 21 12z"/></svg></div>
           </div>
+        </div>
+        <div class="trkDetails" id="trkDetails" style="display:none">
+          <div class="tdRow"><div class="tdIc"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></div>
+            <div class="tdTx"><small>Your barber is coming to</small><b id="tdAddr">Your location</b></div></div>
+          <div class="tdRow"><div class="tdIc"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4L8.1 15.9M14.5 14.5L20 20M8.1 8.1L12 12"/></svg></div>
+            <div class="tdTx"><small>Service</small><b id="tdSvc">Haircut</b></div><b class="tdAmt" id="tdTotal"></b></div>
+          <div class="tdRow"><div class="tdIc"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="5" width="20" height="14" rx="3"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
+            <div class="tdTx"><small>Payment</small><b>Authorized · charged when your cut is done</b></div></div>
         </div>
         <div class="tripExtra good" id="graceBanner" style="display:none">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.3"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
@@ -3331,7 +3346,7 @@ function setLocPill(text, mode){
   const sub = document.getElementById('locPillSub');
   if(sub){
     if(mode2==='gps'){
-      sub.innerHTML = 'GPS · ±'+(userAccuracy?Math.round(userAccuracy*3.28):'—')+' ft';
+      sub.innerHTML = userAccuracy ? 'GPS · ±'+Math.round(userAccuracy*3.28)+' ft' : 'GPS';
       sub.style.color='var(--green)';
     } else if(mode2==='ip'){
       sub.innerHTML = 'Rough estimate · tap for precise GPS';
@@ -4272,7 +4287,7 @@ function trackDrawRoute(path){
     trackMapInst.addOverlay(trackRoute);
     trackBarberMarker=appleBarberPin(path[0], tripBarber());
     trackMapInst.addAnnotation(trackBarberMarker);
-    trackMapInst.showItems([trackRoute, trackBarberMarker], { animate:true, padding:new mapkit.Padding(70,50,70,50) });
+    trackMapInst.showItems([trackRoute, trackBarberMarker], { animate:true, padding:new mapkit.Padding(110,60,60,60) });
     return;
   }
   if(trackMapInst._isGoogle){
@@ -6470,6 +6485,10 @@ function mkStartTripUI(bk, b){
   if(el=document.getElementById('tcMeta')) el.innerHTML='<span class="star">★ '+(b.r||'5.0')+'</span><span class="dot"></span>'+escapeHtml(svcName||'Haircut')+'<span class="dot"></span>Verified Pro';
   if(el=document.getElementById('chAv')) setAv(el,b);
   if(el=document.getElementById('chName')) el.textContent=b.n;
+  if(el=document.getElementById('tdAddr')) el.textContent=bk.address||'Your location';
+  if(el=document.getElementById('tdSvc')) el.textContent=bk.service_name||svcName||'Haircut';
+  if(el=document.getElementById('tdTotal')) el.textContent=bk.total_cents?mkMoney(bk.total_cents):'';
+  if(el=document.getElementById('trkDetails')) el.style.display='';
   (function(){ var ew=document.getElementById('etaWrap'); if(ew) ew.innerHTML='<span id="etaMin">–</span><span style="font-size:18px;color:var(--dim)"> min away</span>'; })();
   (function(){ var tbe=document.getElementById('tbEta'); if(tbe && tbe.parentElement) tbe.parentElement.innerHTML='<b id="tbEta">–</b><small>min</small>'; })();
   ['stepWay','stepArr','stepCut'].forEach(id=>{ const e=document.getElementById(id); e.classList.remove('done','now'); });
