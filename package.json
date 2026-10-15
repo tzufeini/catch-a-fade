@@ -8,7 +8,8 @@
   },
   "scripts": {
     "start": "node server.js",
-    "build:native": "esbuild src/native.js --bundle --minify --format=iife --target=es2017 --outfile=native-bridge.js",
+    "build:native": "esbuild src/native.js --bundle --minify --format=iife --target=es2017 --define:__CAF_DEV__=false --outfile=native-bridge.js",
+    "build:dev": "esbuild src/native.js --bundle --minify --format=iife --target=es2017 --define:__CAF_DEV__=true --outfile=native-bridge.js && node scripts/build-www.mjs",
     "build": "npm run build:native && node scripts/build-www.mjs",
     "ios:sync": "npm run build && npx cap sync ios",
     "ios:open": "npx cap open ios",

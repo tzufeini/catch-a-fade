@@ -409,6 +409,19 @@ body.light .park{background:rgba(70,201,139,.22);}
 @media (prefers-reduced-motion: reduce){ .radar i,.radar .core,#tracking.active .trackCard{animation:none!important} }
 
 /* ===== TRACKING ===== */
+.questCard{margin:12px 20px 0;padding:15px 16px;border-radius:18px;background:linear-gradient(135deg,#1D2B6B,#2A58CC);color:#fff;position:relative;overflow:hidden;}
+.questCard b{font-size:15.5px;font-weight:780;display:block;}
+.questCard small{display:block;opacity:.8;font-size:12px;margin-top:3px;}
+.questBar{height:8px;border-radius:99px;background:rgba(255,255,255,.22);margin-top:12px;overflow:hidden;}
+.questBar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#46C98B,#9BF0C3);transition:width .8s cubic-bezier(.2,.8,.2,1);}
+.questBonus{position:absolute;right:14px;top:13px;background:rgba(255,255,255,.16);border-radius:99px;padding:5px 10px;font-weight:800;font-size:13px;}
+.demandMap{position:relative;height:210px;margin:0 20px;border-radius:18px;overflow:hidden;background:var(--card);}
+.surgePill{background:rgba(243,156,18,.15);color:#B86E00;border-radius:99px;padding:4px 9px;font-size:11px;font-weight:800;letter-spacing:0;text-transform:none;}
+.tipChips{display:flex;gap:8px;padding:0 20px;justify-content:center;flex-wrap:wrap;}
+.tipChip{border:1.5px solid var(--line2);background:var(--card);color:var(--text);border-radius:999px;padding:10px 16px;font:700 14px/1 inherit;cursor:pointer;transition:transform .15s ease,background .2s ease;}
+.tipChip.on{background:var(--text);color:var(--bg);border-color:var(--text);transform:scale(1.04);}
+.flexInfo{display:flex;align-items:center;gap:11px;margin-top:9px;padding:12px 14px;border-radius:14px;background:rgba(70,201,139,.09);border:1px solid rgba(70,201,139,.3);}
+.flexInfo b{display:block;font-size:13.5px;}.flexInfo small{display:block;color:var(--dim);font-size:12px;margin-top:2px;line-height:1.4;}
 .busyNote{display:flex;align-items:center;gap:7px;margin:0 0 12px;padding:10px 13px;border-radius:13px;background:rgba(243,156,18,.12);color:#B86E00;font-size:12.5px;font-weight:700;}
 .againBtn{border:0;border-radius:999px;background:var(--text);color:var(--bg);font:700 11.5px/1 inherit;padding:7px 11px;cursor:pointer;}
 .rebookCard{display:flex;align-items:center;gap:12px;margin:0 0 12px;padding:12px 14px;border-radius:18px;background:var(--card);border:1.5px solid var(--line2);cursor:pointer;}
@@ -1926,7 +1939,7 @@ html.native .ob-tip{ font-size:14px; }
       <p>You are responsible for providing a safe, lawful, and accessible location for the service, and for ensuring that anyone present consents to the service being performed. You must be present, or ensure the intended client is present, at the time of the appointment.</p>
 
       <h3>6. Pricing, Fees, and Surge</h3>
-      <p>Prices for services are set based on the Barber's rates and the options you select. The total price, including any applicable service fee, travel component, taxes, or surge multiplier, is shown to you before you confirm a booking. During periods of high demand, prices may increase by a multiplier to encourage more Barbers to come online; any such multiplier will always be disclosed to you before you confirm.</p>
+      <p>Prices for services are set based on the Barber's rates and the options you select. The total price, including any applicable service fee, travel component, taxes, or surge multiplier, is shown to you before you confirm a booking. During periods of high demand, prices may increase by a multiplier to encourage more Barbers to come online; any such multiplier will always be disclosed to you before you confirm. If you choose Wait &amp; Save, you pay a lower price and your Barber may arrive at any time within the window shown at booking. Tips are optional and are paid entirely to your Barber.</p>
       <p>Promotional pricing, discounts, and credits are subject to their own terms and may be modified or withdrawn at any time.</p>
 
       <h3>7. Payments and Authorization</h3>
@@ -2256,8 +2269,12 @@ html.native .ob-tip{ font-size:14px; }
 
       <h3 style="font-size:13px;font-weight:720;color:var(--dim);text-transform:uppercase;letter-spacing:.6px;margin:18px 0 10px">When</h3>
       <div class="seg" id="whenSeg">
-        <button class="on" onclick="pickASAP()">⚡ ASAP · ~12 min</button>
-        <button onclick="openSchedule()">Schedule</button>
+        <button class="on" id="whenAsap" onclick="pickASAP()">⚡ ASAP</button>
+        <button id="whenFlex" onclick="pickFlex()">Wait &amp; Save</button>
+      </div>
+      <div id="flexInfo" class="flexInfo" style="display:none">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <div><b id="flexTitle">Save on your cut</b><small>Your barber comes any time in the next 2 hours. Same barber, lower price.</small></div>
       </div>
       <div id="schedInfo" style="display:none;margin-top:9px">
         <div class="opt on" style="margin-bottom:0" onclick="openSchedule()">
@@ -2298,6 +2315,7 @@ html.native .ob-tip{ font-size:14px; }
       </div>
       <h2 style="font-size:22px;font-weight:780" id="findTitle">Finding your barber…</h2>
       <p style="color:var(--dim);font-size:14.5px;margin-top:8px;line-height:1.5" id="findSub">Matching you with the closest available pro for a Skin Fade.</p>
+      <button class="btn ghost" id="findLeave" style="display:none;margin-top:22px;padding:12px 22px" onclick="stack=['home'];render();">Back to home</button>
     </div>
   </section>
 
@@ -2483,6 +2501,12 @@ html.native .ob-tip{ font-size:14px; }
         <small>TODAY'S EARNINGS</small>
         <div class="amt" id="bdToday">$0.00</div>
         <div class="sub" id="bdTodaySub">No cuts yet today</div>
+      </div>
+      <div id="bdQuest"></div>
+      <div id="bdDemandWrap" style="display:none">
+        <div class="sect" style="margin-top:14px"><h3 style="display:flex;align-items:center;justify-content:space-between">Where clients are booking <span id="bdSurge"></span></h3></div>
+        <div class="demandMap"><div id="demandMap" style="position:absolute;inset:0"></div></div>
+        <div id="bdDemandNote" style="color:var(--faint);font-size:11.5px;margin:7px 20px 0">Brighter areas had more requests in the last 2 weeks. Go online near them.</div>
       </div>
       <div class="sect" style="margin-top:14px"><h3>This week</h3></div>
       <div class="miniGrid">
@@ -2703,6 +2727,17 @@ html.native .ob-tip{ font-size:14px; }
         <button class="rateStar" onclick="pickStar(4)">★</button>
         <button class="rateStar" onclick="pickStar(5)">★</button>
       </div>
+      <div id="tipBox" style="display:none">
+        <div class="sect" style="text-align:center"><h3>Add a tip for <span id="tipName">your barber</span></h3></div>
+        <div class="tipChips" id="tipChips">
+          <button class="tipChip on" data-c="0" onclick="pickTip(this)">No tip</button>
+          <button class="tipChip" data-c="300" onclick="pickTip(this)">$3</button>
+          <button class="tipChip" data-c="500" onclick="pickTip(this)">$5</button>
+          <button class="tipChip" data-c="800" onclick="pickTip(this)">$8</button>
+          <button class="tipChip" data-c="other" onclick="pickTip(this)">Other</button>
+        </div>
+        <div style="text-align:center;color:var(--faint);font-size:11.5px;margin-top:6px">100% of your tip goes to your barber.</div>
+      </div>
       <div id="rateTags" style="display:none">
         <div class="sect" style="text-align:center"><h3>What stood out?</h3></div>
         <div class="tagCloud">
@@ -2742,6 +2777,7 @@ html.native .ob-tip{ font-size:14px; }
         </div>
         <div style="padding-top:12px">
           <div class="receiptRow"><span id="rcpSvcName">Skin Fade</span> <b id="rcpSvc"></b></div>
+          <div class="receiptRow" id="rcpTipRow" style="display:none">Tip <b id="rcpTip"></b></div>
           <div class="receiptRow total">Total <b id="rcpTotal">$25.00</b></div>
           <div style="font-size:11px;color:var(--faint);margin-top:6px">Includes the Catch a Fade service fee.</div>
         </div>
@@ -2885,7 +2921,7 @@ html.native .ob-tip{ font-size:14px; }
       <h3>H. Pricing, Payments and Payouts</h3>
       <p><b>Determination of prices.</b> Each Barber determines, in their sole discretion, the Listed Price of every Service they offer through the Platform. Listed Prices may be revised at any time, and any revision shall apply only to Bookings requested after it takes effect.</p>
       <p><b>Payment processing.</b> Customers remit payment through the Platform, and all payments are processed by Stripe, Inc. and its affiliates ("Stripe"). As a condition of receiving payouts, you shall establish a connected account with Stripe and accept the Stripe Connected Account Agreement, which incorporates the Stripe Services Agreement. Catch a Fade is not a bank, money transmitter or escrow agent and does not hold funds on your behalf.</p>
-      <p><b>Compensation.</b> In respect of each completed Booking, you shall receive one hundred percent (100%) of the Listed Price of the Service performed. The Service Fee is charged to the Customer in addition to the Listed Price, is retained by Catch a Fade, and does not form part of your compensation. Customers are shown a single price that includes the Service Fee. During periods of high demand in an area, the price shown to Customers and your compensation for a Booking may both be increased by the same multiplier, and the amount you will earn is shown to you with each request before you accept it. Cancellation Fees paid by Customers in accordance with the Platform's cancellation policy shall be remitted to you.</p>
+      <p><b>Compensation.</b> In respect of each completed Booking, you shall receive one hundred percent (100%) of the Listed Price of the Service performed. The Service Fee is charged to the Customer in addition to the Listed Price, is retained by Catch a Fade, and does not form part of your compensation. Customers are shown a single price that includes the Service Fee. During periods of high demand in an area, the price shown to Customers and your compensation for a Booking may both be increased by the same multiplier, and the amount you will earn is shown to you with each request before you accept it. Tips paid by Customers through the Platform are remitted to you in full. Some requests are flexible ("Wait &amp; Save") and may be accepted at any time within the window shown with the request; your compensation for a flexible Booking is your Listed Price. Catch a Fade may offer optional incentives, such as a bonus for completing a number of Bookings in a week, on the terms shown in the Platform at the time. Cancellation Fees paid by Customers in accordance with the Platform's cancellation policy shall be remitted to you.</p>
       <p><b>Payouts.</b> Payouts are disbursed to the bank account you designate through Stripe in accordance with Stripe's payout schedule. Catch a Fade shall bear no responsibility for delays attributable to Stripe or to your financial institution.</p>
       <p><b>Refunds and adjustments.</b> Where a Customer payment is refunded or reversed because a Booking was not performed as agreed, the corresponding compensation may be adjusted. Catch a Fade shall notify you of any such adjustment and afford you a reasonable opportunity to respond before it is finalized.</p>
       <h3>I. Taxes</h3>
@@ -3716,6 +3752,11 @@ function setBarber(i){
     document.getElementById('bkMeta').innerHTML='<span class="star">★ '+escapeHtml(b.r||'5.0')+'</span><span class="dot"></span>'
       +(dist<10?(Math.round(dist*10)/10).toFixed(1):Math.round(dist))+' mi away<span class="dot"></span><span style="color:var(--green)">~'+Math.max(3,Math.round(dist*4))+' min</span>';
   }catch(e){}
+  try{
+    const ll2=barberLL(b,i), eta=Math.max(3,Math.round(haversine(userLL[0],userLL[1],ll2[0],ll2[1])*4));
+    const wa=document.getElementById('whenAsap'); if(wa) wa.textContent='⚡ ASAP · ~'+eta+' min';
+  }catch(e){}
+  bookFlex=false; try{ pickASAP(); }catch(e){}
   renderBookingServices(b, window._bookSvc); window._bookSvc=null;
   applyFavHeart(favorites.indexOf(i)>=0);
 }
@@ -3944,11 +3985,20 @@ function pickOpt(el,p){
   recalc();
 }
 let schedDay=null, schedTime=null;
+let bookFlex=false;
 function pickASAP(){
-  const seg=document.getElementById('whenSeg'), btns=seg.querySelectorAll('button');
-  btns.forEach(x=>x.classList.remove('on')); btns[0].classList.add('on');
-  document.getElementById('schedInfo').style.display='none';
-  schedDay=null; schedTime=null;
+  bookFlex=false;
+  document.getElementById('whenAsap').classList.add('on'); document.getElementById('whenFlex').classList.remove('on');
+  document.getElementById('flexInfo').style.display='none';
+  const si=document.getElementById('schedInfo'); if(si) si.style.display='none';
+  schedDay=null; schedTime=null; recalc();
+}
+// Wait & Save: flexible for up to 2 hours, pay less (Uber's Wait & Save).
+function pickFlex(){
+  bookFlex=true;
+  document.getElementById('whenFlex').classList.add('on'); document.getElementById('whenAsap').classList.remove('on');
+  document.getElementById('flexInfo').style.display='flex';
+  recalc(); haptic();
 }
 function openSchedule(){ buildDayStrip(); buildTimeGrid(); updateSchedBtn(); nav('schedule'); }
 function buildDayStrip(){
@@ -4013,6 +4063,11 @@ function custPrice(listed){
   const s=Math.round(Number(listed||0)*100*PRICING.mult);
   return Math.max(s+100, Math.round(s/(1-PRICING.take/100)/100)*100)/100;
 }
+// Wait & Save price: no surge, 15% off the all-in price (from our fee, not the barber's pay).
+function custPriceFlex(listed){
+  const s=Math.round(Number(listed||0)*100);
+  return Math.max(s+100, Math.round(s/(1-PRICING.take/100)*(1-(PRICING.flexDiscount||0.15))/100)*100)/100;
+}
 function money0(d){ return '$'+(Math.round(d*100)%100 ? d.toFixed(2) : String(Math.round(d))); }
 async function refreshPricing(force){
   if(!force && Date.now()-_pricingAt<60000) return;
@@ -4021,18 +4076,20 @@ async function refreshPricing(force){
     const j=await apiFetch('/api/pricing?lat='+userLL[0]+'&lng='+userLL[1], {}, 15000);
     if(j && j.ok){
       const changed = j.multiplier!==PRICING.mult || j.takePercent!==PRICING.take;
-      PRICING={ take:Number(j.takePercent)||25, mult:Number(j.multiplier)||1 };
+      PRICING={ take:Number(j.takePercent)||25, mult:Number(j.multiplier)||1, flexDiscount:Number(j.flexDiscount)||0.15 };
       if(changed){ buildList(); recalc(); }
     }
   }catch(e){}
 }
 let _activePaymentIntentId = null;   // set once a booking is paid, used for refunds on cancel
 function recalc(){
-  const total = custPrice(svcPrice);
+  const full = custPrice(svcPrice), total = bookFlex ? custPriceFlex(svcPrice) : full;
+  const fb=document.getElementById('whenFlex');
+  if(fb) fb.innerHTML='Wait &amp; Save · <span style="color:var(--green)">save '+money0(Math.max(0,full-custPriceFlex(svcPrice)))+'</span>';
   const nm=document.getElementById('lnSvcName'); if(nm) nm.textContent=svcName;
   document.getElementById('lnTotal').textContent=money0(total);
   document.getElementById('confTotal').textContent=money0(total);
-  const busy=document.getElementById('lnBusy'); if(busy) busy.style.display=PRICING.mult>1?'block':'none';
+  const busy=document.getElementById('lnBusy'); if(busy) busy.style.display=(PRICING.mult>1 && !bookFlex)?'block':'none';
 }
 
 /* ---------- finding -> tracking (instant-book: your chosen pro is confirmed) ---------- */
@@ -4435,10 +4492,12 @@ function openPayment(opts, onSuccess){
   .then(function(cfg){
     if(!cfg || !cfg.ok || !cfg.publishableKey) throw new Error('payments-not-configured');
     if(!_stripe){ _stripe = Stripe(cfg.publishableKey); _stripePk = cfg.publishableKey; }
+    if(opts.tip) return apiFetch('/api/tips', { method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ accessToken: opts.accessToken, bookingId: opts.tip.bookingId, amountCents: opts.tip.amountCents }) });
     return apiFetch('/api/create-payment-intent', {
       method:'POST', headers:{'Content-Type':'application/json'},
       body: JSON.stringify(opts.barberId
-        ? { barberId: opts.barberId, serviceName: opts.serviceName||'', accessToken: opts.accessToken, idempotencyKey: _payIdemKey, lat: userLL[0], lng: userLL[1] }
+        ? { barberId: opts.barberId, serviceName: opts.serviceName||'', accessToken: opts.accessToken, idempotencyKey: _payIdemKey, lat: userLL[0], lng: userLL[1], flex: !!opts.flex }
         : { servicePrice: priceCents, idempotencyKey: _payIdemKey })
     });
   })
@@ -4462,7 +4521,7 @@ function openPayment(opts, onSuccess){
     document.getElementById('payItemAmt').textContent  = '$'+((bd.total||priceCents)/100).toFixed(2);   // one price, fee included
     document.getElementById('payTotalAmt').textContent = '$'+((bd.total||priceCents)/100).toFixed(2);
     var btn=document.getElementById('payBtn');
-    _payBtnLabel = (opts.barberId ? 'Request · $' : 'Pay $')+((bd.total||priceCents)/100).toFixed(2);
+    _payBtnLabel = (opts.tip ? 'Tip $' : opts.barberId ? 'Request · $' : 'Pay $')+((bd.total||priceCents)/100).toFixed(2);
     btn.textContent=_payBtnLabel; btn.disabled=false;
     var hn=document.getElementById('payHoldNote'); if(hn) hn.style.display=opts.barberId?'block':'none';
     payShowErr('');
@@ -5149,12 +5208,29 @@ function goToRating(){
   var _rtags=document.getElementById('rateTags'); if(_rtags) _rtags.style.display='none';
   const rtEl=document.getElementById('rateText'); if(rtEl) rtEl.value='';
   const b=tripBarber();
+  tipCents=0;
+  document.querySelectorAll('#tipChips .tipChip').forEach((x,ix)=>{ x.classList.toggle('on', ix===0); if(x.dataset.c==='other') x.textContent='Other'; });
+  const tb=document.getElementById('tipBox'); if(tb) tb.style.display=window._lastBookingId?'block':'none';
+  const tn=document.getElementById('tipName'); if(tn) tn.textContent=b.n.split(' ')[0];
   setAv(document.getElementById('rateAv'),b);
   document.getElementById('rateName').textContent=b.n.split(' ')[0];
   document.getElementById('rateSvc').textContent=(svcName||'Haircut')+' · '+b.n;
   updateRateBtn();
   endTrip();
   nav('rating');
+}
+let tipCents=0;
+function pickTip(el){
+  let c=el.dataset.c;
+  if(c==='other'){
+    const v=prompt('Tip amount in dollars ($1 to $200):','10');
+    const n=Math.round(parseFloat(String(v||'').replace(/[^0-9.]/g,''))*100);
+    if(!n || n<100 || n>20000) return;
+    c=String(n); el.textContent='$'+(n/100).toFixed(n%100?2:0);
+  }
+  tipCents=Number(c)||0;
+  document.querySelectorAll('#tipChips .tipChip').forEach(x=>x.classList.toggle('on', x===el));
+  updateRateBtn(); haptic();
 }
 function pickStar(n){
   rateStars=n;
@@ -5166,7 +5242,7 @@ function toggleTag(el){ const t=el.dataset.tag; if(ratingTags.has(t)){ratingTags
 function updateRateBtn(){
   const b=document.getElementById('submitRate');
   if(rateStars===0){ b.textContent='Tap a star to rate'; b.disabled=true; b.style.opacity=.5; }
-  else { b.textContent='Submit rating'; b.disabled=false; b.style.opacity=1; }
+  else { b.textContent=tipCents>0 ? 'Submit and tip $'+(tipCents/100).toFixed(tipCents%100?2:0) : 'Submit rating'; b.disabled=false; b.style.opacity=1; }
 }
 function submitRating(){
   if(rateStars===0) return;
@@ -5182,18 +5258,36 @@ function submitRating(){
     localStorage.setItem(revKey, JSON.stringify(revs));
   }
   mkSaveReview(rateStars, rateText, [...ratingTags]);
+  const first=tripBarber().n.split(' ')[0];
+  if(tipCents>0 && window._lastBookingId){ startTip(first); return; }
+  window._lastTipCents=0;
   fillReceipt();
   nav('receipt');
-  notify('Rating submitted', rateStars+'★ for '+tripBarber().n.split(' ')[0]+' — thanks for the feedback!');
+  notify('Rating submitted', rateStars+'★ for '+first+' — thanks for the feedback!');
+}
+// Tip: a separate payment (card or Apple Pay), 100% to the barber.
+async function startTip(first){
+  const sess=await mkSession(); if(!sess){ fillReceipt(); nav('receipt'); return; }
+  const amount=tipCents;
+  openPayment({ merchant:'Tip for '+first, item:'Tip for '+first, amount:amount/100, accessToken:sess.access_token,
+    tip:{ bookingId:window._lastBookingId, amountCents:amount } }, async function(pi){
+    const j=await mkApi('/api/tips/confirm', { bookingId:window._lastBookingId, paymentIntentId:(pi&&pi.id)||_payIntentId });
+    window._lastTipCents = j && j.ok ? amount : 0;
+    fillReceipt(); nav('receipt');
+    if(j && j.ok) notify('Thanks for the tip 💸', first+' gets all of it.');
+    else notifyErr('Tip didn\'t go through', (j&&j.error)||'Your rating was saved.');
+  });
 }
 function fillReceipt(){
   const b=tripBarber();
   setAv(document.getElementById('rcpAv'),b);
   document.getElementById('rcpBarber').textContent=b.n;
   // mirror the ACTUAL charge (the booking's total, from the server)
-  const total = window._lastChargeCents ? window._lastChargeCents/100 : custPrice(svcPrice);
+  const cut = window._lastChargeCents ? window._lastChargeCents/100 : custPrice(svcPrice);
+  const tip = (window._lastTipCents||0)/100, total = cut+tip;
   const nm=document.getElementById('rcpSvcName'); if(nm) nm.textContent=svcName;
-  document.getElementById('rcpSvc').textContent='';
+  document.getElementById('rcpSvc').textContent='$'+cut.toFixed(2);
+  const tr=document.getElementById('rcpTipRow'); if(tr){ tr.style.display=tip>0?'flex':'none'; document.getElementById('rcpTip').textContent='$'+tip.toFixed(2); }
   document.getElementById('rcpTotal').textContent='$'+total.toFixed(2);
   document.getElementById('rcpDate').textContent=new Date().toLocaleString([], {weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
 }
@@ -6477,8 +6571,8 @@ async function confirmBooking(){
   mkTripBarberObj=b;
   openPayment({
     merchant:'Catch a Fade · '+mkFirst(b.n),
-    item:(svcName||'Haircut')+' · house call',
-    amount: svcPrice, barberId: b.id, serviceName: svcName, accessToken: sess.access_token
+    item:(svcName||'Haircut')+(bookFlex?' · Wait & Save':' · house call'),
+    amount: svcPrice, barberId: b.id, serviceName: svcName, accessToken: sess.access_token, flex: bookFlex
   }, function(pi){ mkRequestBooking(pi && pi.id); });
 }
 async function mkRequestBooking(piId){
@@ -6555,13 +6649,18 @@ async function mkApplyBooking(bk){
   switch(bk.status){
     case 'requested': {
       resetFindingScreen();
+      try{ liveSync(bk, b); }catch(e){}
       if(stack[stack.length-1]!=='finding') nav('finding');
-      document.getElementById('findTitle').textContent='Waiting for '+first+' to accept…';
+      document.getElementById('findTitle').textContent=bk.flex ? 'Request sent to '+first : 'Waiting for '+first+' to accept…';
       const created=new Date(bk.created_at).getTime()||Date.now();
+      const ttl = bk.flex && bk.flex_until ? Math.max(MK_REQUEST_TTL, Date.parse(bk.flex_until)-created) : MK_REQUEST_TTL;
+      const lv=document.getElementById('findLeave'); if(lv) lv.style.display=bk.flex?'block':'none';
       clearInterval(mkFindTick);
       const tick=()=>{
-        const left=Math.max(0, MK_REQUEST_TTL-(Date.now()-created));
-        document.getElementById('findSub').textContent='Your card isn\'t charged unless your cut happens. '
+        const left=Math.max(0, ttl-(Date.now()-created));
+        document.getElementById('findSub').textContent = bk.flex
+          ? 'Wait & Save: '+first+' can confirm until '+new Date(created+ttl).toLocaleTimeString([], {hour:'numeric',minute:'2-digit'})+'. We\'ll notify you, so you can close the app.'
+          : 'Your card isn\'t charged unless your cut happens. '
           +Math.floor(left/60000)+':'+String(Math.floor(left/1000)%60).padStart(2,'0')+' left to respond.';
         if(left<=0){ clearInterval(mkFindTick); mkApi('/api/bookings/action',{bookingId:bk.id,action:'expire'}).then(r=>{ if(r&&r.booking) mkApplyBooking(r.booking); }); }
       };
@@ -6583,7 +6682,8 @@ async function mkApplyBooking(bk){
       mkTripStatus(bk, b);
       break;
     case 'completed':
-      window._lastChargeCents=Number(bk.total_cents)||0;
+      try{ liveSync(bk, b); }catch(e){}
+      window._lastChargeCents=Number(bk.total_cents)||0; window._lastBookingId=bk.id;
       try{ localStorage.setItem('fadex_last_booking', bk.id); localStorage.setItem('fadex_rebook', JSON.stringify({ barberId:bk.barber_id, service:bk.service_name||'' })); }catch(e){}
       mkClearActive();
       userProfile.cutCount=(userProfile.cutCount||0)+1; persistProfile();
@@ -6591,6 +6691,7 @@ async function mkApplyBooking(bk){
       goToRating();
       break;
     default: {   // declined / expired / cancelled / no_show
+      try{ liveSync(bk, b); }catch(e){}
       const mine=mkSelfCancel;
       mkClearActive(); endTrip();
       stack=stack.filter(s=>s!=='finding' && s!=='tracking'); if(!stack.length) stack=['home']; render();
@@ -6627,8 +6728,28 @@ function mkStartTripUI(bk, b){
   setTripState('onway'); startGraceCountdown();
   setTimeout(()=>{ initTrackMap(); if(trackMapInst){ clearTrackVisuals(); trackCenterOnUser(); } mkWatchBarberLoc(bk.barber_id); },250);
 }
+/* Lock-screen Live Activity (native, iOS 16.2+). Copy matches ACTIVITY_COPY in
+ * marketplace.js, which keeps it updated by push while the app is closed. */
+const LIVE_COPY={ requested:[0,'Waiting for {b} to accept','Request sent'], accepted:[1,'{b} accepted','Getting ready to come to you'],
+  en_route:[2,'{b} is on the way','Coming to your place'], arrived:[3,'{b} has arrived','Share your PIN: {pin}'],
+  in_progress:[4,'Your cut is in progress','Enjoy your fade'], completed:[5,'Cut complete','Thanks for booking with Catch a Fade'],
+  cancelled:[5,'Booking cancelled','Your card was not charged'], declined:[5,'{b} can\'t take this one','Your card was not charged'],
+  expired:[5,'Request expired','Your card was not charged'], no_show:[5,'Booking cancelled',''] };
+let _liveFor=null, _liveEtaAt=0;
+function liveState(bk, first, eta){
+  const c=LIVE_COPY[bk.status]||LIVE_COPY.requested, f=t=>t.replace('{b}',first||'Your barber').replace('{pin}',bk.arrival_pin||'');
+  return { status:bk.status, headline:f(c[1]), detail:f(c[2]), eta:Number(eta)||0, step:c[0] };
+}
+function liveSync(bk, b, eta){
+  const L=window.CAF_LIVE; if(!L || !bk || !b) return;
+  const st=liveState(bk, mkFirst(b.n), eta);
+  if(st.step>=5){ if(_liveFor===bk.id){ L.end(st); _liveFor=null; } return; }
+  if(_liveFor!==bk.id){ _liveFor=bk.id; L.start(Object.assign({ bookingId:bk.id, barberName:b.n, initials:b.in||nameInitials(b.n), service:bk.service_name||svcName||'Haircut' }, st)); }
+  else L.update(st);
+}
 function mkTripStatus(bk, b){
   const first=mkFirst(b.n);
+  liveSync(bk, b);
   const st=document.getElementById('trkState');
   const step=(id,cls)=>{ const e=document.getElementById(id); if(e){ e.classList.remove('done','now'); if(cls) e.classList.add(cls); } };
   if(bk.status==='accepted'){
@@ -6687,6 +6808,7 @@ function mkOnBarberLoc(row){
     const eta=mkEtaMin(mkMiles(ll,dest));
     const em=document.getElementById('etaMin'); if(em) em.textContent=eta;
     updateTripBar(eta);
+    if(Date.now()-_liveEtaAt>30000){ _liveEtaAt=Date.now(); try{ liveSync(mkBooking, tripBarber(), eta); }catch(e){} }
   }
 }
 /* customer cancel (trip screen) */
@@ -6895,8 +7017,50 @@ async function mkOpenDashboard(){
   try{ renderDashPortfolio(); }catch(e){}
   await mkRenderDashboard();
 }
+// Weekly goal (Uber's "quests"): complete N cuts Mon–Sun, get a bonus.
+async function renderQuest(){
+  const el=document.getElementById('bdQuest'); if(!el) return;
+  const q=await mkApi('/api/barber/quests', {});
+  if(!q || !q.ok || !q.target){ el.innerHTML=''; return; }
+  const pct=Math.min(100, Math.round(q.done/q.target*100));
+  const ends=new Date(q.endsAt), left=Math.max(0, Math.ceil((ends-Date.now())/86400000));
+  el.innerHTML='<div class="questCard"><span class="questBonus">+'+mkMoney(q.bonusCents)+'</span>'
+    +'<b>'+(q.paid?'Weekly goal complete 🎉':'Weekly goal: '+q.target+' cuts')+'</b>'
+    +'<small>'+(q.paid?'Your bonus is on its way to your bank.':q.done+' of '+q.target+' done · '+left+' day'+(left===1?'':'s')+' left · bonus paid automatically')+'</small>'
+    +'<div class="questBar"><i style="width:0%"></i></div></div>';
+  requestAnimationFrame(()=>{ const bar=el.querySelector('.questBar i'); if(bar) bar.style.width=pct+'%'; });
+}
+// Demand heatmap: where requests came from recently (aggregated ~1 km cells).
+let demandMapInst=null;
+async function renderDemand(){
+  const wrap=document.getElementById('bdDemandWrap'), el=document.getElementById('demandMap'); if(!wrap||!el) return;
+  const j=await mkApi('/api/barber/demand', { lat:userLL[0], lng:userLL[1] });
+  if(!j || !j.ok){ wrap.style.display='none'; return; }
+  wrap.style.display='';
+  const sg=document.getElementById('bdSurge'); if(sg) sg.innerHTML=j.multiplier>1?'<span class="surgePill">⚡ Busy now · '+j.multiplier.toFixed(2).replace(/0$/,'')+'×</span>':'';
+  const note=document.getElementById('bdDemandNote');
+  if(note) note.textContent=(j.cells||[]).length ? 'Brighter areas had more requests in the last 2 weeks. Go online near them.' : 'No requests nearby yet. As customers book, busy areas light up here.';
+  const max=Math.max(1, ...(j.cells||[]).map(c=>c.count));
+  try{ if(demandMapInst){ destroyMap(demandMapInst); if(demandMapInst.remove && !demandMapInst._isApple) demandMapInst.remove(); } }catch(e){}
+  el.innerHTML=''; demandMapInst=null;
+  if(_appleReady && window.mapkit){
+    demandMapInst=appleMap(el, true, 0.09);
+    demandMapInst.addAnnotation(appleUserPin(userLL));
+    (j.cells||[]).forEach(function(c){
+      const k=c.count/max;
+      demandMapInst.addOverlay(new mapkit.CircleOverlay(mkCoord([c.lat,c.lng]), 260+520*k,
+        { style:new mapkit.Style({ fillColor:'#F08C00', fillOpacity:.16+.42*k, strokeOpacity:0, lineWidth:0 }) }));
+    });
+  } else if(typeof L!=='undefined'){
+    demandMapInst=L.map(el,{zoomControl:false,attributionControl:false}).setView(userLL,12);
+    L.tileLayer(curTiles(), TILE_OPTS).addTo(demandMapInst);
+    (j.cells||[]).forEach(function(c){ const k=c.count/max; L.circle([c.lat,c.lng],{radius:260+520*k,stroke:false,fillColor:'#F08C00',fillOpacity:.16+.42*k}).addTo(demandMapInst); });
+  }
+}
 async function mkRenderDashboard(){
   const b=mkMyBarber; if(!b) return;
+  if(b.is_verified){ renderQuest(); setTimeout(renderDemand, 200); }
+  else { const q=document.getElementById('bdQuest'); if(q) q.innerHTML=''; const w=document.getElementById('bdDemandWrap'); if(w) w.style.display='none'; }
   const myName=(await mkProfileName(b.profile_id))||userProfile.name||'Barber';
   const av=document.getElementById('bdAv'); if(av) av.textContent=nameInitials(myName);
   try{

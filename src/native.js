@@ -10,7 +10,7 @@
  *    • Routes /api/* to the deployed backend
  *  Rebuild after editing:  npm run build:native   (or npm run build)
  * ===================================================================== */
-import { Capacitor } from '@capacitor/core';
+import { Capacitor, registerPlugin } from '@capacitor/core';
 import { App } from '@capacitor/app';
 import { StatusBar, Style } from '@capacitor/status-bar';
 import { SplashScreen } from '@capacitor/splash-screen';
@@ -125,6 +125,8 @@ async function boot() {
   safe(() => App.addListener('appUrlOpen', (e) => {
     const m = /^catchafade:\/\/b\/([0-9a-f-]{36})/i.exec((e && e.url) || '');
     if (m && typeof window.openBarberById === 'function') window.openBarberById(m[1]);
+    // development builds only (npm run build:dev): preview the lock-screen card
+    if (__CAF_DEV__ && /^catchafade:\/\/live-test/.test((e && e.url) || '')) liveActivityDemo();
   }));
   safe(() => App.addListener('backButton', () => {
     if (typeof window.back === 'function') window.back();
@@ -140,6 +142,9 @@ async function boot() {
 
   // ---- Apple Pay (Stripe) ----
   window.CAF_APPLE_PAY = applePayBridge;
+
+  // ---- lock-screen Live Activity ("Andre is 6 min away") ----
+  safe(() => setupLiveActivity());
 
   // ---- push: register after the user signs in (best practice) ----
   hookPushAfterAuth();
@@ -370,3 +375,36 @@ const applePayBridge = {
     return 'failed';
   },
 };
+
+/* ------------------------------------------------------------------ *
+ *  Live Activity — native plugin CAFLivePlugin (ios/App/App). The page
+ *  calls window.CAF_LIVE.start/update/end; the activity's push token goes
+ *  to the server so it can update the lock screen while the app is closed.
+ * ------------------------------------------------------------------ */
+const CAFLive = registerPlugin('CAFLive');
+function setupLiveActivity() {
+  const call = (fn, opts) => CAFLive[fn](opts || {}).catch(() => ({ ok: false }));
+  window.CAF_LIVE = {
+    start: (o) => call('start', o),
+    update: (o) => call('update', o),
+    end: (o) => call('end', o),
+  };
+  CAFLive.addListener('pushToken', ({ token, bookingId }) => {
+    if (token && bookingId && typeof window.mkApi === 'function') {
+      window.mkApi('/api/bookings/activity', { bookingId, token }).catch(() => {});
+    }
+  });
+}
+
+// Development builds only: walks the Live Activity through a booking in ~40s.
+async function liveActivityDemo() {
+  if (!__CAF_DEV__ || !window.CAF_LIVE) return;
+  const L = window.CAF_LIVE, wait = (ms) => new Promise((r) => setTimeout(r, ms));
+  await L.start({ bookingId: 'demo', barberName: 'Andre Cole', initials: 'AC', service: 'Skin Fade',
+    status: 'accepted', headline: 'Andre accepted', detail: 'Getting ready to come to you', eta: 0, step: 1 });
+  await wait(8000);
+  for (const m of [6, 5, 4]) { await L.update({ status: 'en_route', headline: 'Andre is on the way', detail: 'Coming to your place', eta: m, step: 2 }); await wait(6000); }
+  await L.update({ status: 'arrived', headline: 'Andre has arrived', detail: 'Share your PIN: 4821', eta: 0, step: 3 });
+  await wait(8000);
+  await L.end({ status: 'completed', headline: 'Cut complete', detail: 'Thanks for booking with Catch a Fade', eta: 0, step: 5 });
+}

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0494158599E9890D59C024E9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1727E7D8B362090A4CFB1A2 /* Foundation.framework */; };
+		1E303D9AAD571F6E25514E4C /* CAFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCE980C60CFEBDD467110E /* CAFViewController.swift */; };
+		2EDA6F968A8374C87AF6D2E1 /* CAFLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619477D61A756E8DDB088293 /* CAFLiveActivity.swift */; };
 		2FAD9763203C412B000D30F8 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2FAD9762203C412B000D30F8 /* config.xml */; };
 		4D22ABE92AF431CB00220026 /* CapApp-SPM in Frameworks */ = {isa = PBXBuildFile; productRef = 4D22ABE82AF431CB00220026 /* CapApp-SPM */; };
 		50379B232058CBB4000EE86E /* capacitor.config.json in Resources */ = {isa = PBXBuildFile; fileRef = 50379B222058CBB4000EE86E /* capacitor.config.json */; };
@@ -15,10 +18,40 @@
 		504EC30F1FED79650016851F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 504EC30E1FED79650016851F /* Assets.xcassets */; };
 		504EC3121FED79650016851F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 504EC3101FED79650016851F /* LaunchScreen.storyboard */; };
 		50B271D11FEDC1A000F3C39B /* public in Resources */ = {isa = PBXBuildFile; fileRef = 50B271D01FEDC1A000F3C39B /* public */; };
+		5E33465253C6800902C61B80 /* CAFActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C7B863CAEFBBEB78FF501D /* CAFActivityAttributes.swift */; };
+		5FD60E8843AC23090F138036 /* CAFLivePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AC2E2433F0B3BE5A41F973 /* CAFLivePlugin.swift */; };
+		66A2F1E1734BD746D3095E15 /* CAFActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C7B863CAEFBBEB78FF501D /* CAFActivityAttributes.swift */; };
+		B2C8D13D5B5FCD3F280ADC5C /* CAFLiveActivity.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3759C4C8F630A9ACDD588CB5 /* CAFLiveActivity.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7DB8305CA7AA3D695EF28641 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 504EC2FC1FED79650016851F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FBDDD0344A5FE241B1B47FD1;
+			remoteInfo = CAFLiveActivity;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		37D4F7C27E5A21E91904DB26 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				B2C8D13D5B5FCD3F280ADC5C /* CAFLiveActivity.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2FAD9762203C412B000D30F8 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
+		3759C4C8F630A9ACDD588CB5 /* CAFLiveActivity.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CAFLiveActivity.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		408E261B5471B25C11977750 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50379B222058CBB4000EE86E /* capacitor.config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = capacitor.config.json; sourceTree = "<group>"; };
 		504EC3041FED79650016851F /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		504EC3071FED79650016851F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -27,7 +60,12 @@
 		504EC3111FED79650016851F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		504EC3131FED79650016851F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50B271D01FEDC1A000F3C39B /* public */ = {isa = PBXFileReference; lastKnownFileType = folder; path = public; sourceTree = "<group>"; };
+		619477D61A756E8DDB088293 /* CAFLiveActivity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CAFLiveActivity.swift; sourceTree = "<group>"; };
 		958DCC722DB07C7200EA8C5F /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = debug.xcconfig; path = ../debug.xcconfig; sourceTree = SOURCE_ROOT; };
+		98C7B863CAEFBBEB78FF501D /* CAFActivityAttributes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CAFActivityAttributes.swift; sourceTree = "<group>"; };
+		B4BCE980C60CFEBDD467110E /* CAFViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CAFViewController.swift; sourceTree = "<group>"; };
+		C1AC2E2433F0B3BE5A41F973 /* CAFLivePlugin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CAFLivePlugin.swift; sourceTree = "<group>"; };
+		D1727E7D8B362090A4CFB1A2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,15 +77,34 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B6627FA546C9BF0EF5EB15AD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0494158599E9890D59C024E9 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		459911890518283AA08D4C05 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FB3C2E92C2E74C51DA66FE0C /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		504EC2FB1FED79650016851F = {
 			isa = PBXGroup;
 			children = (
 				958DCC722DB07C7200EA8C5F /* debug.xcconfig */,
 				504EC3061FED79650016851F /* App */,
 				504EC3051FED79650016851F /* Products */,
+				E66475A3ACDB37CADDF0B2EF /* Shared */,
+				459911890518283AA08D4C05 /* Frameworks */,
+				83C42F42BF3B07C5B6F844A1 /* CAFLiveActivity */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				504EC3041FED79650016851F /* App.app */,
+				3759C4C8F630A9ACDD588CB5 /* CAFLiveActivity.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,8 +128,37 @@
 				504EC3131FED79650016851F /* Info.plist */,
 				2FAD9762203C412B000D30F8 /* config.xml */,
 				50B271D01FEDC1A000F3C39B /* public */,
+				C1AC2E2433F0B3BE5A41F973 /* CAFLivePlugin.swift */,
+				B4BCE980C60CFEBDD467110E /* CAFViewController.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		83C42F42BF3B07C5B6F844A1 /* CAFLiveActivity */ = {
+			isa = PBXGroup;
+			children = (
+				619477D61A756E8DDB088293 /* CAFLiveActivity.swift */,
+				408E261B5471B25C11977750 /* Info.plist */,
+			);
+			name = CAFLiveActivity;
+			path = CAFLiveActivity;
+			sourceTree = "<group>";
+		};
+		E66475A3ACDB37CADDF0B2EF /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				98C7B863CAEFBBEB78FF501D /* CAFActivityAttributes.swift */,
+			);
+			name = Shared;
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		FB3C2E92C2E74C51DA66FE0C /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				D1727E7D8B362090A4CFB1A2 /* Foundation.framework */,
+			);
+			name = iOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -84,10 +171,12 @@
 				504EC3001FED79650016851F /* Sources */,
 				504EC3011FED79650016851F /* Frameworks */,
 				504EC3021FED79650016851F /* Resources */,
+				37D4F7C27E5A21E91904DB26 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				EFE9D83F53AF5523EF9AF8DB /* PBXTargetDependency */,
 			);
 			name = App;
 			packageProductDependencies = (
@@ -96,6 +185,23 @@
 			productName = App;
 			productReference = 504EC3041FED79650016851F /* App.app */;
 			productType = "com.apple.product-type.application";
+		};
+		FBDDD0344A5FE241B1B47FD1 /* CAFLiveActivity */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6369AC86E99E7CD2714E8E09 /* Build configuration list for PBXNativeTarget "CAFLiveActivity" */;
+			buildPhases = (
+				7A6DC0C8A371ECDCC8E9D103 /* Sources */,
+				B6627FA546C9BF0EF5EB15AD /* Frameworks */,
+				905CC910C50D134181C88152 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CAFLiveActivity;
+			productName = CAFLiveActivity;
+			productReference = 3759C4C8F630A9ACDD588CB5 /* CAFLiveActivity.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -130,6 +236,7 @@
 			projectRoot = "";
 			targets = (
 				504EC3031FED79650016851F /* App */,
+				FBDDD0344A5FE241B1B47FD1 /* CAFLiveActivity */,
 			);
 		};
 /* End PBXProject section */
@@ -148,6 +255,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		905CC910C50D134181C88152 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -156,10 +270,31 @@
 			buildActionMask = 2147483647;
 			files = (
 				504EC3081FED79650016851F /* AppDelegate.swift in Sources */,
+				5FD60E8843AC23090F138036 /* CAFLivePlugin.swift in Sources */,
+				1E303D9AAD571F6E25514E4C /* CAFViewController.swift in Sources */,
+				5E33465253C6800902C61B80 /* CAFActivityAttributes.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7A6DC0C8A371ECDCC8E9D103 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2EDA6F968A8374C87AF6D2E1 /* CAFLiveActivity.swift in Sources */,
+				66A2F1E1734BD746D3095E15 /* CAFActivityAttributes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EFE9D83F53AF5523EF9AF8DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CAFLiveActivity;
+			target = FBDDD0344A5FE241B1B47FD1 /* CAFLiveActivity */;
+			targetProxy = 7DB8305CA7AA3D695EF28641 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		504EC30B1FED79650016851F /* Main.storyboard */ = {
@@ -181,6 +316,34 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		061633090C6AED7389DDEEE5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "Apple Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 24;
+				DEVELOPMENT_TEAM = 8P38L363W8;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = CAFLiveActivity/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.4;
+				PRODUCT_BUNDLE_IDENTIFIER = com.catchafade.app.LiveActivity;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "CatchAFade LiveActivity AppStore";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		504EC3141FED79650016851F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 958DCC722DB07C7200EA8C5F /* debug.xcconfig */;
@@ -297,21 +460,21 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = App/App.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_TEAM = 8P38L363W8;
-				CURRENT_PROJECT_VERSION = 22;
 				INFOPLIST_FILE = App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.4;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-DDEBUG\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.catchafade.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -322,7 +485,7 @@
 				CODE_SIGN_ENTITLEMENTS = App/App.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 22;
+				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_TEAM = 8P38L363W8;
 				INFOPLIST_FILE = App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -330,15 +493,41 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.catchafade.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "CatchAFade AppStore Manual";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
+		};
+		923C39174B6A49F5A2D123AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 24;
+				DEVELOPMENT_TEAM = 8P38L363W8;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = CAFLiveActivity/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.4;
+				PRODUCT_BUNDLE_IDENTIFIER = com.catchafade.app.LiveActivity;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
 		};
 /* End XCBuildConfiguration section */
 
@@ -357,6 +546,15 @@
 			buildConfigurations = (
 				504EC3171FED79650016851F /* Debug */,
 				504EC3181FED79650016851F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6369AC86E99E7CD2714E8E09 /* Build configuration list for PBXNativeTarget "CAFLiveActivity" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				061633090C6AED7389DDEEE5 /* Release */,
+				923C39174B6A49F5A2D123AB /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

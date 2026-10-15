@@ -33,15 +33,15 @@ module.exports = function createPush(env) {
     return jwt;
   }
 
-  function sendTo(host, deviceToken, payload) {
+  function sendTo(host, deviceToken, payload, kind) {
     return new Promise((resolve) => {
       let client;
       try { client = http2.connect('https://' + host); } catch (e) { return resolve({ status: 0, reason: e.message }); }
       client.on('error', (e) => resolve({ status: 0, reason: e.message }));
       const req = client.request({
         ':method': 'POST', ':path': '/3/device/' + deviceToken,
-        authorization: 'bearer ' + token(), 'apns-topic': TOPIC,
-        'apns-push-type': 'alert', 'apns-priority': '10', 'content-type': 'application/json'
+        authorization: 'bearer ' + token(), 'apns-topic': kind === 'liveactivity' ? TOPIC + '.push-type.liveactivity' : TOPIC,
+        'apns-push-type': kind === 'liveactivity' ? 'liveactivity' : 'alert', 'apns-priority': '10', 'content-type': 'application/json'
       });
       let status = 0, data = '';
       req.on('response', (h) => { status = h[':status']; });
@@ -64,5 +64,21 @@ module.exports = function createPush(env) {
     return r.status === 200;
   }
 
-  return { enabled, send };
+  // Lock-screen Live Activity update/end ("Andre is on the way · 6 min").
+  // contentState must match the Swift ContentState in CAFActivityAttributes.
+  async function liveActivity(activityToken, event, contentState, alert) {
+    if (!enabled || !activityToken) return false;
+    const now = Math.floor(Date.now() / 1000);
+    const aps = { timestamp: now, event, 'content-state': contentState };
+    if (event === 'end') aps['dismissal-date'] = now + 15 * 60;
+    if (alert) aps.alert = alert;
+    let r = await sendTo('api.push.apple.com', activityToken, { aps }, 'liveactivity');
+    if (r.status === 400 && /BadDeviceToken|BadEnvironmentKeyInToken/.test(r.reason)) {
+      r = await sendTo('api.sandbox.push.apple.com', activityToken, { aps }, 'liveactivity');
+    }
+    if (r.status !== 200) console.warn('[push] live activity failed', r.status, r.reason);
+    return r.status === 200;
+  }
+
+  return { enabled, send, liveActivity };
 };

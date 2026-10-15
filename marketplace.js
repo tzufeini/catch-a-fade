@@ -16,9 +16,13 @@
 const crypto = require('crypto');
 
 const REQUEST_TTL_MS = 3 * 60 * 1000;   // a request nobody accepts within 3 min expires
+const FLEX_WINDOW_MS = 2 * 60 * 60 * 1000;  // Wait & Save: the barber has up to 2 hours
+const FLEX_DISCOUNT = 0.15;                  // ...and the customer pays 15% less (from our fee, not the barber's pay)
+const QUEST_TARGET = Number(process.env.QUEST_TARGET || 10);         // cuts per week
+const QUEST_BONUS_CENTS = Number(process.env.QUEST_BONUS_CENTS || 1500); // bonus for hitting it
 const FREE_CANCEL_MS = 2 * 60 * 1000;   // Uber-style: free cancel for 2 min after accept
 const DEMO_BARBER_EMAIL = 'demo-barber@catchafade.app';
-const AGREEMENT_VERSION = '2026-10-15';      // Independent Barber Agreement (/barber-agreement)
+const AGREEMENT_VERSION = '2026-10-15b';      // Independent Barber Agreement (/barber-agreement)
 
 function readJSON(req, limit) {
   return new Promise((resolve) => {
@@ -137,10 +141,12 @@ module.exports = function createMarketplace(ctx) {
    * barber's earnings rise together (up to SURGE_MAX), like Uber's surge. */
   const TAKE_PERCENT = FEE_PERCENT;              // share of the customer's price
   const SURGE_MAX = 1.5, SURGE_BOX = 0.15;       // ~10 miles around the customer
-  function quote(listedCents, mult) {
-    const servicePrice = Math.round(listedCents * (mult || 1));                       // what the barber earns
-    const total = Math.max(servicePrice + 100, Math.round(servicePrice / (1 - TAKE_PERCENT / 100) / 100) * 100);  // whole dollars
-    return { servicePrice, platformFee: total - servicePrice, total, multiplier: mult || 1 };
+  function quote(listedCents, mult, flex) {
+    mult = flex ? 1 : (mult || 1);                                                     // Wait & Save never surges
+    const servicePrice = Math.round(listedCents * mult);                               // what the barber earns
+    const full = servicePrice / (1 - TAKE_PERCENT / 100);
+    const total = Math.max(servicePrice + 100, Math.round(full * (flex ? 1 - FLEX_DISCOUNT : 1) / 100) * 100);  // whole dollars
+    return { servicePrice, platformFee: total - servicePrice, total, multiplier: mult, flex: !!flex };
   }
   const surgeCache = new Map();
   async function demandMultiplier(lat, lng) {
@@ -233,8 +239,90 @@ module.exports = function createMarketplace(ctx) {
       no_show: [cust + ' cancelled at the door', 'You keep the cancellation fee.']
     };
     if (by === 'barber' && toCustomer[bk.status]) await pushUser(bk.customer_id, toCustomer[bk.status][0], toCustomer[bk.status][1], id);
+    // lock-screen Live Activity follows every change, whoever made it
+    if (bk.activity_token && push && push.liveActivity) {
+      const ended = ['completed', 'cancelled', 'declined', 'expired', 'no_show'].includes(bk.status);
+      const st = activityState(bk, barber);
+      push.liveActivity(bk.activity_token, ended ? 'end' : 'update', st).catch(() => {});
+    }
     if (by === 'customer' && toBarber[bk.status]) await pushBarber(bk.barber_id, toBarber[bk.status][0], toBarber[bk.status][1], id);
   }
+
+  // What the lock-screen Live Activity shows (keys match the Swift ContentState).
+  const ACTIVITY_COPY = {
+    requested: [0, 'Waiting for {b} to accept', 'Request sent'],
+    accepted: [1, '{b} accepted', 'Getting ready to come to you'],
+    en_route: [2, '{b} is on the way', 'Coming to your place'],
+    arrived: [3, '{b} has arrived', 'Share your PIN: {pin}'],
+    in_progress: [4, 'Your cut is in progress', 'Enjoy your fade'],
+    completed: [5, 'Cut complete', 'Thanks for booking with Catch a Fade'],
+    cancelled: [5, 'Booking cancelled', 'Your card was not charged'],
+    declined: [5, '{b} can\'t take this one', 'Your card was not charged'],
+    expired: [5, 'Request expired', 'Your card was not charged'],
+    no_show: [5, 'Booking cancelled', '']
+  };
+  function activityState(bk, barberFirst, etaMin) {
+    const c = ACTIVITY_COPY[bk.status] || ACTIVITY_COPY.requested;
+    const f = (t) => t.replace('{b}', barberFirst || 'Your barber').replace('{pin}', bk.arrival_pin || '');
+    return { status: bk.status, headline: f(c[1]), detail: f(c[2]), eta: Number(etaMin) || 0, step: c[0] };
+  }
+  const requestTtl = (bk) => (bk.flex && bk.flex_until) ? Math.max(REQUEST_TTL_MS, Date.parse(bk.flex_until) - Date.parse(bk.created_at)) : REQUEST_TTL_MS;
+
+  /* ---- quests: "complete 10 cuts this week, earn a $15 bonus" ----
+   * Weeks run Monday 00:00 to Sunday 23:59 Eastern. The bonus is a Stripe transfer
+   * to the barber's connected account, paid once per week (idempotent). */
+  function questWeek(d) {
+    const et = new Date((d || new Date()).toLocaleString('en-US', { timeZone: 'America/New_York' }));
+    const day = (et.getDay() + 6) % 7;                       // Monday = 0
+    const start = new Date(et); start.setHours(0, 0, 0, 0); start.setDate(et.getDate() - day);
+    const end = new Date(start); end.setDate(start.getDate() + 7);
+    const offset = (d || new Date()).getTime() - et.getTime();   // back to real UTC instants
+    return { key: start.toISOString().slice(0, 10), start: new Date(start.getTime() + offset), end: new Date(end.getTime() + offset) };
+  }
+  async function questStatus(barber) {
+    const w = questWeek();
+    const { count } = await supabase.from('bookings').select('id', { count: 'exact', head: true })
+      .eq('barber_id', barber.id).eq('status', 'completed')
+      .gte('completed_at', w.start.toISOString()).lt('completed_at', w.end.toISOString());
+    let paid = false;
+    try { const g = await supabase.auth.admin.getUserById(barber.profile_id); paid = !!(((g.data.user || {}).app_metadata || {}).quests_paid || {})[w.key]; } catch (e) {}
+    return { week: w.key, endsAt: w.end.toISOString(), target: QUEST_TARGET, bonusCents: QUEST_BONUS_CENTS, done: count || 0, paid };
+  }
+  async function payQuestIfDue(barber) {
+    if (!stripe || barber.is_demo || QUEST_BONUS_CENTS <= 0) return;
+    const q = await questStatus(barber);
+    if (q.paid || q.done < q.target) return;
+    if (!barber.stripe_account_id) { await pushBarber(barber.id, 'You hit this week\'s goal 🎉', 'Set up payouts in the app to receive your ' + money(q.bonusCents) + ' bonus.', { type: 'quest' }); return; }
+    await stripe.transfers.create({ amount: q.bonusCents, currency: 'usd', destination: barber.stripe_account_id,
+      description: 'Catch a Fade weekly bonus ' + q.week, metadata: { barber_id: barber.id, quest_week: q.week } },
+      { idempotencyKey: 'quest_' + barber.id + '_' + q.week });
+    const g = await supabase.auth.admin.getUserById(barber.profile_id);
+    const am = (g.data.user || {}).app_metadata || {};
+    await supabase.auth.admin.updateUserById(barber.profile_id, { app_metadata: Object.assign({}, am, { quests_paid: Object.assign({}, am.quests_paid || {}, { [q.week]: true }) }) });
+    await pushBarber(barber.id, 'Weekly goal complete 🎉', 'Your ' + money(q.bonusCents) + ' bonus is on its way to your bank.', { type: 'quest' });
+  }
+
+  // Housekeeping every 5 minutes: expire unanswered requests (releasing the
+  // card hold) and pay any weekly bonus that was blocked earlier.
+  async function housekeeping() {
+    if (!supabase) return;
+    try {
+      const { data: open } = await supabase.from('bookings').select('*').eq('status', 'requested').limit(200);
+      for (const bk of open || []) {
+        if (Date.now() - Date.parse(bk.created_at) <= requestTtl(bk) + 30 * 1000) continue;
+        await cancelHold(bk.payment_intent_id);
+        const done = await setBooking(bk.id, { status: 'expired' });
+        await announce(done, 'barber');
+      }
+    } catch (e) { console.error('[housekeeping] expire', e.message); }
+    try {
+      if (new Date().getMinutes() < 5) {            // about once an hour
+        const { data: bs } = await supabase.from('barbers').select('*').eq('is_verified', true).eq('is_demo', false).not('stripe_account_id', 'is', null);
+        for (const b of bs || []) await payQuestIfDue(b).catch(() => {});
+      }
+    } catch (e) { console.error('[housekeeping] quests', e.message); }
+  }
+  if (supabase) setInterval(housekeeping, 5 * 60 * 1000);
 
   // Customer-facing copy of a booking: the barber never needs the PIN from us,
   // and the customer always gets theirs.
@@ -440,12 +528,14 @@ module.exports = function createMarketplace(ctx) {
         const svc = svcs.find(s => s.name.toLowerCase() === want) || svcs[0];
         const lat = Number(d.lat), lng = Number(d.lng);
         const mult = await demandMultiplier(Number.isFinite(lat) && d.lat != null ? lat : barber.home_lat, Number.isFinite(lng) && d.lng != null ? lng : barber.home_lng).catch(() => 1);
-        const q = quote(svc.price_cents, mult);
+        const flex = !!d.flex;
+        const q = quote(svc.price_cents, mult, flex);
         const servicePrice = q.servicePrice, fee = q.platformFee, total = q.total;
         const params = {
           amount: total, currency: 'usd', capture_method: 'manual', payment_method_types: ['card'],
           metadata: { customer_id: u.id, barber_id: barber.id, service_name: svc.name,
-                      servicePrice: String(servicePrice), platformFee: String(fee), takePercent: String(TAKE_PERCENT), multiplier: String(mult) }
+                      servicePrice: String(servicePrice), platformFee: String(fee), takePercent: String(TAKE_PERCENT),
+                      multiplier: String(q.multiplier), flex: flex ? '1' : '0' }
         };
         const sc = stripeFor(u);
         if (barber.stripe_account_id && sc === stripe) {
@@ -462,7 +552,7 @@ module.exports = function createMarketplace(ctx) {
           const pi = idem ? await sc.paymentIntents.create(params, { idempotencyKey: idem }) : await sc.paymentIntents.create(params);
           piClients.set(pi.id, sc);
           return sendJSON(res, 200, { ok: true, clientSecret: pi.client_secret, paymentIntentId: pi.id, publishableKey: pkFor(u),
-            breakdown: { servicePrice, platformFee: fee, total, takePercent: TAKE_PERCENT, multiplier: mult, serviceName: svc.name } }), true;
+            breakdown: { servicePrice, platformFee: fee, total, takePercent: TAKE_PERCENT, multiplier: q.multiplier, flex, serviceName: svc.name } }), true;
         } catch (err) {
           console.error('[create-payment-intent] stripe error:', err.message);
           return sendJSON(res, 200, { ok: false, error: err.message }), true;
@@ -489,14 +579,83 @@ module.exports = function createMarketplace(ctx) {
           address: String(d.address || '').slice(0, 300) || null,
           lat: Number.isFinite(Number(d.lat)) ? Number(d.lat) : null,
           lng: Number.isFinite(Number(d.lng)) ? Number(d.lng) : null,
-          arrival_pin: pin4(), payment_intent_id: piId
+          arrival_pin: pin4(), payment_intent_id: piId,
+          flex: pi.metadata.flex === '1',
+          flex_until: pi.metadata.flex === '1' ? new Date(Date.now() + FLEX_WINDOW_MS).toISOString() : null
         }).select().single();
         if (error) { await cancelHold(piId); return sendJSON(res, 500, { ok: false, error: error.message }), true; }
         const { data: barber } = await supabase.from('barbers').select('is_demo').eq('id', bk.barber_id).maybeSingle();
         if (barber && barber.is_demo) runDemoTrip(bk);
+        else if (bk.flex) pushBarber(bk.barber_id, 'New flexible request · ' + (bk.service_name || 'Haircut'),
+          'You earn ' + money(bk.service_price_cents) + '. Any time in the next 2 hours. Open Catch a Fade to accept.', { bookingId: bk.id });
         else pushBarber(bk.barber_id, 'New request · ' + (bk.service_name || 'Haircut'),
           'You earn ' + money(bk.service_price_cents) + '. Open Catch a Fade to accept — 3 min to respond.', { bookingId: bk.id });
         return sendJSON(res, 200, { ok: true, booking: publicBooking(bk) }), true;
+      }
+
+      // ---- lock-screen Live Activity: the customer's activity push token ----
+      if (post && p === '/api/bookings/activity') {
+        const d = await readJSON(req); const u = d && await authUser(d.accessToken);
+        if (!u) return sendJSON(res, 401, { ok: false, error: 'sign in required' }), true;
+        const tok = String(d.token || '').trim();
+        if (!/^[0-9a-fA-F]{32,300}$/.test(tok)) return sendJSON(res, 400, { ok: false, error: 'bad token' }), true;
+        const { error } = await supabase.from('bookings').update({ activity_token: tok }).eq('id', String(d.bookingId || '')).eq('customer_id', u.id);
+        return sendJSON(res, 200, { ok: !error }), true;
+      }
+
+      // ---- tips after the cut: a separate charge, 100% to the barber ----
+      if (post && (p === '/api/tips' || p === '/api/tips/confirm')) {
+        const d = await readJSON(req); const u = d && await authUser(d.accessToken);
+        if (!u) return sendJSON(res, 401, { ok: false, error: 'sign in required' }), true;
+        const bk = await loadBooking(String(d.bookingId || ''));
+        if (!bk || bk.customer_id !== u.id || bk.status !== 'completed') return sendJSON(res, 400, { ok: false, error: 'You can tip after your cut is complete.' }), true;
+        if (bk.tip_cents > 0) return sendJSON(res, 400, { ok: false, error: 'You already tipped for this cut. Thank you!' }), true;
+        const sc = stripeFor(u);
+        if (p === '/api/tips') {
+          if (rateLimited(req, 'tip', 10, 60 * 60 * 1000)) return sendJSON(res, 429, { ok: false, error: 'Too many attempts. Try again later.' }), true;
+          const amount = Math.round(Number(d.amountCents) || 0);
+          if (amount < 100 || amount > 20000) return sendJSON(res, 400, { ok: false, error: 'Tips can be $1 to $200.' }), true;
+          const params = { amount, currency: 'usd', payment_method_types: ['card'],
+            description: 'Tip for your Catch a Fade barber', metadata: { kind: 'tip', booking_id: bk.id, customer_id: u.id, barber_id: bk.barber_id } };
+          const { data: barber } = await supabase.from('barbers').select('stripe_account_id').eq('id', bk.barber_id).maybeSingle();
+          if (barber && barber.stripe_account_id && sc === stripe) {
+            try { const a = await stripe.accounts.retrieve(barber.stripe_account_id); if (a.charges_enabled) params.transfer_data = { destination: barber.stripe_account_id }; } catch (e) {}
+          }
+          const pi = await sc.paymentIntents.create(params, { idempotencyKey: 'tip_' + bk.id + '_' + amount });
+          piClients.set(pi.id, sc);
+          return sendJSON(res, 200, { ok: true, clientSecret: pi.client_secret, paymentIntentId: pi.id, publishableKey: pkFor(u), amountCents: amount }), true;
+        }
+        const piId = String(d.paymentIntentId || '');
+        let pi; try { pi = await (await piClient(piId)).paymentIntents.retrieve(piId); } catch (e) { return sendJSON(res, 400, { ok: false, error: 'payment not found' }), true; }
+        if (pi.metadata.kind !== 'tip' || pi.metadata.booking_id !== bk.id || pi.status !== 'succeeded') return sendJSON(res, 400, { ok: false, error: 'The tip didn\'t go through.' }), true;
+        const done = await setBooking(bk.id, { tip_cents: pi.amount, tip_payment_intent_id: pi.id });
+        const cust = (await firstNameOf(u.id)) || 'Your customer';
+        pushBarber(bk.barber_id, cust + ' tipped you ' + money(pi.amount) + ' 💸', '100% of tips go to you.', { bookingId: bk.id, type: 'tip' });
+        return sendJSON(res, 200, { ok: true, booking: done }), true;
+      }
+
+      // ---- barbers: where the demand is (heatmap) and this week's goal ----
+      if (post && (p === '/api/barber/demand' || p === '/api/barber/quests')) {
+        const d = await readJSON(req); const u = d && await authUser(d.accessToken);
+        if (!u) return sendJSON(res, 401, { ok: false, error: 'sign in required' }), true;
+        const barber = await barberForUser(u.id);
+        if (!barber) return sendJSON(res, 400, { ok: false, error: 'Apply as a barber first.' }), true;
+        if (p === '/api/barber/quests') return sendJSON(res, 200, Object.assign({ ok: true }, await questStatus(barber))), true;
+        const lat = Number(d.lat != null ? d.lat : barber.home_lat), lng = Number(d.lng != null ? d.lng : barber.home_lng);
+        if (!Number.isFinite(lat) || !Number.isFinite(lng)) return sendJSON(res, 200, { ok: true, cells: [], multiplier: 1 }), true;
+        const box = 0.3, since = new Date(Date.now() - 14 * 24 * 3600 * 1000).toISOString();
+        const { data: rows } = await supabase.from('bookings').select('lat, lng, created_at').gte('created_at', since)
+          .not('lat', 'is', null).gte('lat', lat - box).lte('lat', lat + box).gte('lng', lng - box).lte('lng', lng + box).limit(2000);
+        // ~1 km cells; only aggregate counts leave the server, never addresses
+        const cells = new Map();
+        for (const r of rows || []) {
+          const k = (Math.round(r.lat * 100) / 100).toFixed(2) + ',' + (Math.round(r.lng * 100) / 100).toFixed(2);
+          cells.set(k, (cells.get(k) || 0) + 1);
+        }
+        const out = [...cells.entries()].map(([k, n]) => { const [a, b] = k.split(',').map(Number); return { lat: a, lng: b, count: n }; })
+          .sort((x, y) => y.count - x.count).slice(0, 120);
+        const multiplier = await demandMultiplier(lat, lng).catch(() => 1);
+        return sendJSON(res, 200, { ok: true, cells: out, multiplier }), true;
       }
 
       // ---- every status change goes through here ----
@@ -519,7 +678,7 @@ module.exports = function createMarketplace(ctx) {
           if (asBarber) {
             if (action === 'accept') {
               if (bk.status !== 'requested') return bad('This request is no longer available.');
-              if (age > REQUEST_TTL_MS) { await cancelHold(bk.payment_intent_id); await setBooking(bk.id, { status: 'expired' }); return bad('This request expired.'); }
+              if (age > requestTtl(bk)) { await cancelHold(bk.payment_intent_id); await setBooking(bk.id, { status: 'expired' }); return bad('This request expired.'); }
               return reply(200, { ok: true, booking: await setBooking(bk.id, { status: 'accepted', accepted_at: now }) }), true;
             }
             if (action === 'decline') {
@@ -545,6 +704,7 @@ module.exports = function createMarketplace(ctx) {
               await captureHold(bk.payment_intent_id);
               const done = await setBooking(bk.id, { status: 'completed', completed_at: now });
               await supabase.from('barbers').update({ cuts_completed: (myBarber.cuts_completed || 0) + 1 }).eq('id', myBarber.id);
+              payQuestIfDue(myBarber).catch(e => console.error('[quest]', e.message));
               return reply(200, { ok: true, booking: done }), true;
             }
             if (action === 'cancel') {
@@ -664,7 +824,7 @@ module.exports = function createMarketplace(ctx) {
       // ---- current pricing near the customer (one-price display + busy note) ----
       if (req.method === 'GET' && p === '/api/pricing') {
         const mult = await demandMultiplier(url.searchParams.get('lat'), url.searchParams.get('lng')).catch(() => 1);
-        return sendJSON(res, 200, { ok: true, takePercent: TAKE_PERCENT, multiplier: mult }), true;
+        return sendJSON(res, 200, { ok: true, takePercent: TAKE_PERCENT, multiplier: mult, flexDiscount: FLEX_DISCOUNT, flexWindowMin: FLEX_WINDOW_MS / 60000 }), true;
       }
 
       // ---- portfolio: photos of the barber's cuts, public on their profile ----

@@ -10,6 +10,16 @@
 	<string>Catch a Fade</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -21,16 +31,6 @@
 			</array>
 		</dict>
 	</array>
-	<key>CFBundleIdentifier</key>
-	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundleName</key>
-	<string>$(PRODUCT_NAME)</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-	<key>CFBundleShortVersionString</key>
-	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
@@ -44,12 +44,14 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Catch a Fade uses your camera to take a profile photo or share a reference photo of the haircut you want.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Catch a Fade uses your location to show verified barbers near you and to track your barber on the way to your appointment.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Catch a Fade uses your location to show verified barbers near you and to track your barber on the way to your appointment.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Catch a Fade uses your location to show verified barbers near you and to track your barber on the way to your appointment.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Catch a Fade lets you pick a photo from your library for your profile or to show your barber the style you want.</string>
+	<key>NSSupportsLiveActivities</key>
+	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
