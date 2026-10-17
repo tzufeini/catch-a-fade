@@ -331,6 +331,59 @@ module.exports = function createMarketplace(ctx) {
     await pushBarber(barber.id, 'Weekly goal complete 🎉', 'Your ' + money(q.bonusCents) + ' bonus is on its way to your bank.', { type: 'quest' });
   }
 
+  // Earnings not yet sent to the barber (shown on their dashboard).
+  async function heldCents(barber) {
+    try {
+      const { data } = await supabase.from('bookings').select('status, service_price_cents, cancel_fee_cents, tip_cents, payout_transfer_id, tip_transfer_id')
+        .eq('barber_id', barber.id).in('status', ['completed', 'no_show', 'cancelled']).limit(500);
+      return (data || []).reduce((sum, b) => sum
+        + (!b.payout_transfer_id ? (b.status === 'completed' ? b.service_price_cents : (b.cancel_fee_cents || 0)) : 0)
+        + (!b.tip_transfer_id && b.tip_cents > 0 ? b.tip_cents : 0), 0);
+    } catch (e) { return 0; }
+  }
+
+  /* ---- held earnings ----
+   * A barber can take cuts before connecting payouts; those charges land on the
+   * platform. Once their Stripe account can receive transfers, send each
+   * completed cut's earnings (and any tips / late-cancel fees) to them, tied to
+   * the original charge. payout_transfer_id / tip_transfer_id make it one-time. */
+  async function releaseHeldEarnings(barber) {
+    if (!stripe || !barber || barber.is_demo || !barber.stripe_account_id) return 0;
+    let acct;
+    try { acct = await stripe.accounts.retrieve(barber.stripe_account_id); } catch (e) { return 0; }
+    if (!acct.charges_enabled) return 0;
+    const { data: rows } = await supabase.from('bookings')
+      .select('id, status, payment_intent_id, service_price_cents, cancel_fee_cents, tip_cents, tip_payment_intent_id, payout_transfer_id, tip_transfer_id')
+      .eq('barber_id', barber.id).in('status', ['completed', 'no_show', 'cancelled']).limit(200);
+    let paid = 0;
+    const send = async (piId, amount, key, bookingId) => {
+      const pi = await stripe.paymentIntents.retrieve(piId);
+      if (pi.transfer_data) return 'destination';                 // already paid at charge time
+      if (pi.status !== 'succeeded' || !pi.latest_charge || amount <= 0) return 'none';
+      const t = await stripe.transfers.create({ amount: Math.min(amount, pi.amount_received), currency: 'usd',
+        destination: barber.stripe_account_id, source_transaction: pi.latest_charge,
+        description: 'Catch a Fade earnings', metadata: { booking_id: bookingId, kind: key } },
+        { idempotencyKey: 'held_' + key + '_' + bookingId });
+      paid += t.amount;
+      return t.id;
+    };
+    for (const bk of rows || []) {
+      try {
+        if (!bk.payout_transfer_id && bk.payment_intent_id) {
+          const amount = bk.status === 'completed' ? bk.service_price_cents : (bk.cancel_fee_cents || 0);
+          const id = amount > 0 ? await send(bk.payment_intent_id, amount, 'cut', bk.id) : 'none';
+          await supabase.from('bookings').update({ payout_transfer_id: id }).eq('id', bk.id);
+        }
+        if (!bk.tip_transfer_id && bk.tip_cents > 0 && bk.tip_payment_intent_id) {
+          const id = await send(bk.tip_payment_intent_id, bk.tip_cents, 'tip', bk.id);
+          await supabase.from('bookings').update({ tip_transfer_id: id }).eq('id', bk.id);
+        }
+      } catch (e) { console.error('[held earnings]', bk.id, e.message); }   // retried next run
+    }
+    if (paid > 0) await pushBarber(barber.id, 'You\'ve been paid ' + money(paid) + ' 💸', 'Your earnings are on their way to your bank.', { type: 'payout' });
+    return paid;
+  }
+
   // Housekeeping every 5 minutes: expire unanswered requests (releasing the
   // card hold) and pay any weekly bonus that was blocked earlier.
   async function housekeeping() {
@@ -347,7 +400,10 @@ module.exports = function createMarketplace(ctx) {
     try {
       if (new Date().getMinutes() < 5) {            // about once an hour
         const { data: bs } = await supabase.from('barbers').select('*').eq('is_verified', true).eq('is_demo', false).not('stripe_account_id', 'is', null);
-        for (const b of bs || []) await payQuestIfDue(b).catch(() => {});
+        for (const b of bs || []) {
+          await releaseHeldEarnings(b).catch(() => {});
+          await payQuestIfDue(b).catch(() => {});
+        }
       }
     } catch (e) { console.error('[housekeeping] quests', e.message); }
   }
@@ -774,10 +830,11 @@ module.exports = function createMarketplace(ctx) {
         const base = 'https://' + (req.headers['x-forwarded-host'] || req.headers.host);
         try {
           if (p === '/api/connect/status') {
-            if (!barber.stripe_account_id) return sendJSON(res, 200, { ok: true, connected: false }), true;
+            if (!barber.stripe_account_id) return sendJSON(res, 200, { ok: true, connected: false, heldCents: await heldCents(barber) }), true;
             const a = await stripe.accounts.retrieve(barber.stripe_account_id);
+            if (a.charges_enabled) await releaseHeldEarnings(barber).catch(e => console.error('[held earnings]', e.message));
             return sendJSON(res, 200, { ok: true, connected: true, chargesEnabled: a.charges_enabled,
-              payoutsEnabled: a.payouts_enabled, detailsSubmitted: a.details_submitted }), true;
+              payoutsEnabled: a.payouts_enabled, detailsSubmitted: a.details_submitted, heldCents: await heldCents(barber) }), true;
           }
           if (p === '/api/connect/dashboard') {
             if (!barber.stripe_account_id) return sendJSON(res, 400, { ok: false, error: 'Set up payouts first.' }), true;
