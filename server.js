@@ -54,6 +54,15 @@ try {
     stripe = Stripe(STRIPE_SECRET, stripeOpts);
   }
 } catch (e) { console.warn('stripe lib not loaded:', e.message); }
+// Check the key at startup (and hourly), so a bad paste shows up in /api/health
+// instead of at a customer's checkout.
+let stripeKeyOk = null;
+async function checkStripeKey() {
+  if (!stripe) { stripeKeyOk = false; return; }
+  try { await stripe.balance.retrieve(); stripeKeyOk = true; }
+  catch (e) { stripeKeyOk = false; console.error('[stripe] key check failed:', e.type || '', e.message); }
+}
+checkStripeKey(); setInterval(checkStripeKey, 60 * 60 * 1000);
 // Optional second Stripe account in TEST mode, used only for Apple's review
 // account once the main keys are live (the reviewer pays with a test card).
 const STRIPE_TEST_SECRET = process.env.STRIPE_TEST_SECRET_KEY || LOCAL.STRIPE_TEST_SECRET_KEY || '';
@@ -316,7 +325,7 @@ const server = http.createServer((req, res) => {
 
   if (req.method === 'GET' && url.pathname === '/api/health') {
     console.log('[health]', (req.headers['user-agent'] || '').slice(0, 60));
-    return sendJSON(res, 200, { ok: true, resend: !!RESEND_KEY, stripe: !!stripe, supabase: !!(SUPABASE_URL && SUPABASE_SECRET) });
+    return sendJSON(res, 200, { ok: true, resend: !!RESEND_KEY, stripe: !!stripe, stripeKey: stripeKeyOk, supabase: !!(SUPABASE_URL && SUPABASE_SECRET) });
   }
 
   if (req.method === 'POST' && url.pathname === '/api/send-code') {
