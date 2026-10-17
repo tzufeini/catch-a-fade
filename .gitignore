@@ -23,3 +23,7 @@ assets/
 
 # App Store screenshot renders (generated)
 screenshots/site/
+
+# Recruiting notes and lead lists stay local (the repo is public)
+print/*.md
+print/*.csv
