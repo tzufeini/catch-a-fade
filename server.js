@@ -250,6 +250,18 @@ const SUPPORT_HTML = pageHTML('Catch a Fade Support',
   + '<p>Need a hand? Email us at <a href="mailto:TZUFEINI@gmail.com">TZUFEINI@gmail.com</a> and we\'ll get back to you.</p>'
   + '<p>For the fastest answers, use the in-app <b>Help &amp; Support</b> chat, available right inside the app.</p>');
 
+// Only the web app and the static folders are public: never server code, notes or config.
+const PUBLIC_FILES = new Set(['index.html', 'apple-touch-icon.png', 'native-bridge.js']);
+const PRIVATE_DIRS = new Set(['scripts', 'src', 'supabase', 'ios', 'node_modules']);
+function isPublicPath(p) {
+  const parts = p.split('/').filter(Boolean);
+  if (!parts.length || parts.some(s => s.startsWith('.'))) return false;
+  if (parts.length === 1) return PUBLIC_FILES.has(parts[0]);
+  return !PRIVATE_DIRS.has(parts[0]);
+}
+
+const recruit = require('./recruit');
+
 const MARKETPLACE_PATHS = new Set([
   '/api/me', '/api/review-setup', '/api/register-push', '/api/create-payment-intent', '/api/bookings/request', '/api/bookings/action',
   '/api/connect/onboard', '/api/connect/status', '/api/connect/dashboard', '/connect/done', '/connect/refresh',
@@ -493,6 +505,8 @@ const server = http.createServer((req, res) => {
   if (req.method === 'GET' && url.pathname === '/terms') return sendHTML(res, TERMS_HTML);
   if (req.method === 'GET' && url.pathname === '/support') return sendHTML(res, SUPPORT_HTML);
   if (req.method === 'GET' && url.pathname === '/barber-agreement') return sendHTML(res, BARBER_AGREEMENT_HTML);
+  if (req.method === 'GET' && (url.pathname === '/barbers' || url.pathname === '/barbers/')) return sendHTML(res, recruit.landing());
+  if (req.method === 'GET' && url.pathname === '/barbers/flyer') return sendHTML(res, recruit.flyer());
 
   // Delete account: the app sends the signed-in user's access token; we verify it
   // against Supabase auth, then delete the user (the profiles row cascade cleans
@@ -555,6 +569,7 @@ const server = http.createServer((req, res) => {
   // Static files
   let pathname = decodeURIComponent(url.pathname);
   if (pathname === '/') pathname = '/index.html';
+  if (!isPublicPath(pathname)) { res.writeHead(404); return res.end('not found'); }
   const filePath = path.normalize(path.join(ROOT, pathname));
   if (!filePath.startsWith(ROOT)) { res.writeHead(403); return res.end('forbidden'); }
   fs.readFile(filePath, (err, content) => {

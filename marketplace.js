@@ -828,6 +828,18 @@ module.exports = function createMarketplace(ctx) {
         const barber = await barberForUser(u.id);
         if (!barber) return sendJSON(res, 400, { ok: false, error: 'Apply as a barber first.' }), true;
         const base = 'https://' + (req.headers['x-forwarded-host'] || req.headers.host);
+        // An account made with the other Stripe mode (test before going live) doesn't
+        // exist here: forget it, so the barber can set up payouts again instead of being stuck.
+        if (barber.stripe_account_id) {
+          try { await stripe.accounts.retrieve(barber.stripe_account_id); }
+          catch (e) {
+            if (e && (e.code === 'resource_missing' || e.statusCode === 404 || /no such account|does not have access/i.test(e.message || ''))) {
+              console.log('[connect] dropping account from the other Stripe mode', barber.id);
+              await supabase.from('barbers').update({ stripe_account_id: null }).eq('id', barber.id);
+              barber.stripe_account_id = null;
+            }
+          }
+        }
         try {
           if (p === '/api/connect/status') {
             if (!barber.stripe_account_id) return sendJSON(res, 200, { ok: true, connected: false, heldCents: await heldCents(barber) }), true;
