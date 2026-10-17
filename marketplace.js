@@ -79,6 +79,35 @@ module.exports = function createMarketplace(ctx) {
     return avatarBucketReady;
   }
   const PORTFOLIO_MAX = 12;
+  // Claude checks a portfolio upload: a real photo of hair/barber work, nothing
+  // explicit, violent, hateful, or carrying phone numbers/handles to take clients
+  // off the app. Fails open only if the check itself can't run.
+  async function screenPortfolioPhoto(type, b64, label) {
+    if (!anthropicKey) return { ok: true };
+    const bad = /\b(porn|nude|nudes|onlyfans|n[i1]gg|f[a@]gg)\w*/i;
+    if (bad.test(String(label || ''))) return { ok: false, error: 'That caption isn\'t allowed.' };
+    try {
+      const r = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: { 'x-api-key': anthropicKey, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
+        body: JSON.stringify({ model: 'claude-haiku-5-5', max_tokens: 120, messages: [{ role: 'user', content: [
+          { type: 'image', source: { type: 'base64', media_type: 'image/' + type, data: b64 } },
+          { type: 'text', text: 'A barber wants to post this photo in their public portfolio on a haircut-booking app. '
+            + 'Answer only with JSON: {"allowed":true|false,"reason":"short"}. Allow photos that show haircuts, hairstyles, beards, '
+            + 'barber work or tools. Do not allow nudity or sexual content, violence, weapons, drugs, hate symbols, '
+            + 'unrelated content, or visible phone numbers, emails or social handles.' }
+        ] }] })
+      });
+      const j = await r.json();
+      if (!r.ok) throw new Error((j && j.error && j.error.message) || ('anthropic ' + r.status));
+      const t = (j.content || []).map(c => c.text || '').join('');
+      const v = JSON.parse(t.slice(t.indexOf('{'), t.lastIndexOf('}') + 1));
+      return v.allowed ? { ok: true } : { ok: false, error: 'This photo can\'t be added to your portfolio. Use a clear photo of a haircut you did.' };
+    } catch (e) {
+      console.error('[portfolio screen]', e.message);
+      return { ok: true };
+    }
+  }
   // [{ name, url, label }] newest first; file names are "<ms>-<label-slug>.jpg".
   async function portfolioOf(profileId) {
     try {
@@ -853,6 +882,9 @@ module.exports = function createMarketplace(ctx) {
           if (!m) return sendJSON(res, 400, { ok: false, error: 'Send a JPEG or PNG photo.' }), true;
           const bytes = Buffer.from(m[2], 'base64');
           if (bytes.length < 2000 || bytes.length > 4.5 * 1024 * 1024) return sendJSON(res, 400, { ok: false, error: 'That photo is too small or too large.' }), true;
+          // Guideline 1.2: portfolio photos are public, so each one is screened first.
+          const verdict = await screenPortfolioPhoto(m[1], m[2], d.label);
+          if (!verdict.ok) return sendJSON(res, 400, { ok: false, error: verdict.error }), true;
           const slug = String(d.label || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40) || 'cut';
           const { error } = await supabase.storage.from(AVATAR_BUCKET).upload(dir + '/' + Date.now() + '-' + slug + '.' + (m[1] === 'jpeg' ? 'jpg' : m[1]), bytes, { contentType: 'image/' + m[1] });
           if (error) return sendJSON(res, 500, { ok: false, error: error.message }), true;

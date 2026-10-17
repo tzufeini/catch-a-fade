@@ -6812,7 +6812,7 @@ async function mkSendChat(text){
   if(f && text==null) f.value='';
   const c=sbReady(); const me=await mkUserId(); if(!c||!me) return;
   const r=await c.from('messages').insert({ booking_id:mkChatId, sender_id:me, body:body.slice(0,2000) }).select().single();
-  if(r.error){ notifyErr('Message not sent', 'Check your connection and try again.'); return; }
+  if(r.error){ notifyErr('Message not sent', /allowed/i.test(r.error.message||'') ? r.error.message : 'Check your connection and try again.'); return; }
   const box=document.getElementById('msgs');
   if(!document.getElementById('m-'+r.data.id)){
     const d=document.createElement('div'); d.id='m-'+r.data.id; d.className='msg mine'; d.textContent=r.data.body;
