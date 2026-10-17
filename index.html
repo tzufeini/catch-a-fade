@@ -1376,7 +1376,7 @@ html.native .ob-tip{ font-size:14px; }
       <div id="applePayOr" style="display:none;align-items:center;gap:10px;color:#8E8E99;font-size:11.5px;font-weight:650;margin-top:14px"><span style="flex:1;height:1px;background:rgba(255,255,255,.14)"></span>or pay with card<span style="flex:1;height:1px;background:rgba(255,255,255,.14)"></span></div>
       <div id="stripeCardBox" style="background:#26262E;border:1px solid rgba(255,255,255,.14);border-radius:13px;padding:15px 14px;margin:16px 0 2px"></div>
       <div id="payErr" style="display:none;color:#FF7B7B;font-size:12.5px;font-weight:650;margin-top:9px;line-height:1.4"></div>
-      <button class="btn green" id="payBtn" style="width:100%;margin-top:13px" onclick="paySubmit()">Pay</button>
+      <button class="btn green" id="payBtn" data-hap="press" style="width:100%;margin-top:13px" onclick="paySubmit()">Pay</button>
       <div id="payHoldNote" style="display:none;color:#A6A6B0;font-size:11.5px;line-height:1.45;text-align:center;margin-top:9px">Your card is only authorized now. You're charged when your cut is done — nothing is charged if the barber can't make it.</div>
       <div style="display:flex;gap:6px;align-items:center;justify-content:center;margin-top:10px;color:#8E8E99;font-size:11px">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#46C98B" stroke-width="2.4"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z"/></svg>
@@ -1397,7 +1397,7 @@ html.native .ob-tip{ font-size:14px; }
       <div class="apLine"><div class="apLabel">Customer</div><div class="apValue" id="rqCust">—</div></div>
       <div class="apLine"><div class="apLabel">Distance</div><div class="apValue" id="rqDist">—</div></div>
       <div class="apLine"><div class="apLabel">Address</div><div class="apValue" id="rqAddr" style="max-width:62%;text-align:right;white-space:normal">—</div></div>
-      <button class="btn green" id="rqAccept" style="width:100%;margin-top:16px" onclick="mkAcceptRequest()">Accept</button>
+      <button class="btn green" id="rqAccept" data-hap="press" style="width:100%;margin-top:16px" onclick="mkAcceptRequest()">Accept</button>
       <button class="apCancel" onclick="mkDeclineRequest()">Decline</button>
     </div>
   </div>
@@ -1469,7 +1469,7 @@ html.native .ob-tip{ font-size:14px; }
       <h3 id="cancelModalTitle">Cancel booking?</h3>
       <p id="cancelFeeLine">A $5 cancellation fee will apply since your barber is already on the way.</p>
       <div class="actions">
-        <button class="btn danger" id="cancelConfirmBtn" onclick="confirmCancel()">Cancel · pay $5</button>
+        <button class="btn danger" id="cancelConfirmBtn" data-hap="press" onclick="confirmCancel()">Cancel · pay $5</button>
         <button class="btn ghost" onclick="closeCancelConfirm()">Keep booking</button>
       </div>
     </div>
@@ -2246,7 +2246,7 @@ html.native .ob-tip{ font-size:14px; }
       </div>
     </div>
     <div class="stickyBuy">
-      <button class="btn green" onclick="confirmBooking()">Confirm · <span id="confTotal">$51.50</span></button>
+      <button class="btn green" data-hap="press" onclick="confirmBooking()">Confirm · <span id="confTotal">$51.50</span></button>
     </div>
   </section>
 
@@ -2411,6 +2411,7 @@ html.native .ob-tip{ font-size:14px; }
       <div class="setRow" onclick="openStylePrefs()"><div class="si"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.2"><path d="M6 3v6a6 6 0 0 0 12 0V3M6 9h12"/><circle cx="12" cy="19" r="2"/></svg></div><div class="st">My styles<div id="prefStyleSub" style="color:var(--faint);font-size:11.5px;font-weight:500;margin-top:2px">Match me with the right barbers</div></div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></div>
       <div class="setRow" onclick="nav('paymentMethods')"><div class="si"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.2"><rect x="2" y="5" width="20" height="14" rx="3"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div><div class="st">Payment methods</div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></div>
       <div class="setRow" style="cursor:default"><div class="si"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="2.2"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg></div><div class="st">Dark mode</div><div class="switch on" id="themeSwitch" role="switch" aria-label="Toggle dark mode" onclick="toggleTheme()" style="cursor:pointer;flex-shrink:0"></div></div>
+      <div class="setRow" style="cursor:default"><div class="si"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="2.2"><rect x="7" y="3" width="10" height="18" rx="2.5"/><path d="M3 9v6M21 9v6"/></svg></div><div class="st">Vibration<div style="color:var(--faint);font-size:11.5px;font-weight:500;margin-top:2px">Feel taps, payments and when your barber accepts</div></div><div class="switch on" id="hapticSwitch" role="switch" aria-label="Vibration" onclick="toggleHaptics()" style="cursor:pointer;flex-shrink:0"></div></div>
       <div class="setRow" onclick="nav('safety')"><div class="si"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.2"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z"/></svg></div><div class="st">Safety & trust center</div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></div>
       <div class="setRow" onclick="openHelp()"><div class="si"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 0 1 5 0c0 1.7-2.5 2-2.5 4M12 17.5h.01"/></svg></div><div class="st">Help & support</div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></div>
       <div class="setRow" onclick="nav('termsDoc')"><div class="si"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--text)" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div><div class="st">Terms of Service</div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></div>
@@ -2440,7 +2441,7 @@ html.native .ob-tip{ font-size:14px; }
       <div class="onlineCard">
         <div style="flex:1"><div style="font-weight:720;font-size:16px" id="onTitle">You're offline</div>
           <div style="color:var(--dim);font-size:12.5px;margin-top:2px" id="onSub">Go online to start receiving requests</div></div>
-        <div class="bigSwitch" id="bigSwitch" role="switch" aria-label="Go online" onclick="toggleOnline()"></div>
+        <div class="bigSwitch" id="bigSwitch" data-hap="press" role="switch" aria-label="Go online" onclick="toggleOnline()"></div>
       </div>
       <div id="bdJob"></div>
       <div class="earnCard">
@@ -3107,10 +3108,54 @@ function updateTripBar(eta,state,sub){
   if(sub) document.getElementById('tbSub').textContent=sub;
 }
 function endTrip(){ tripActive=false; showTripBar(); }
-function nav(id){ if(stack[stack.length-1]===id)return; stack.push(id); render(); haptic(); }
-function back(){ if(stack.length>1){stack.pop();render();haptic();} }
-function navTab(id){ stack=[id]; render(); haptic(); }
-function haptic(){ if(navigator.vibrate) navigator.vibrate(8); }
+function nav(id){ if(stack[stack.length-1]===id)return; stack.push(id); render(); }
+function back(){ if(stack.length>1){stack.pop();render();} }
+function navTab(id){ stack=[id]; render(); haptic('select'); }
+
+/* ---------- haptics ----------
+ * One vocabulary for the whole app, following Apple's guidelines and the way Uber,
+ * Lyft, Airbnb, Cash App, Venmo and Robinhood use the Taptic Engine:
+ *   select    choosing between options: tabs, chips, stars, tips, ASAP / Wait & Save
+ *   tap       pressing a button
+ *   toggle    flipping a switch
+ *   soft      a small, friendly confirmation: favorite, a new chat message
+ *   press     committing: Request, Pay, Accept, Go online, Start / Complete cut
+ *   success / warning / error   how something turned out
+ *   match     a barber accepted your request (custom pattern)
+ *   incoming  a new request for a barber (custom pattern, repeats while it's on screen)
+ * Scrolling, typing, opening screens and background updates never vibrate.
+ * Turned off by Vibration in the app's Settings, or by the phone's System Haptics. */
+let hapticsOn=(function(){ try{ return localStorage.getItem('fadex_haptics')!=='0'; }catch(e){ return true; } })();
+let _hapAt=0, _hapKind='';
+const HAP_WEB={ select:6, tap:8, toggle:8, soft:6, press:14, heavy:22, success:[12,60,18], warning:[18,80,18], error:[20,50,20,50,20], match:[14,90,30], incoming:[60,90,60,90,60] };
+function haptic(kind){
+  if(!hapticsOn) return;
+  kind=kind||'tap'; _hapAt=Date.now(); _hapKind=kind;
+  try{
+    if(window.CAF_HAPTIC) window.CAF_HAPTIC(kind);
+    else if(navigator.vibrate) navigator.vibrate(HAP_WEB[kind]||8);
+  }catch(e){}
+}
+function toggleHaptics(){
+  hapticsOn=!hapticsOn;
+  try{ localStorage.setItem('fadex_haptics', hapticsOn?'1':'0'); }catch(e){}
+  const sw=document.getElementById('hapticSwitch'); if(sw) sw.classList.toggle('on',hapticsOn);
+  haptic('toggle');
+}
+// Buttons tap back. This runs after the button's own handler, so a button that
+// already played something more specific (select, press, error…) doesn't double up.
+// data-hap="press" marks a commit button; data-hap="none" keeps one quiet.
+const HAP_SELECT='.tab,.chip,.tipChip,.svcPill,.seg button,.opt,.ob-opt,.rateStar,.ob-star,.dayCard,.timeSlot,.favToggle';
+const HAP_ANY=HAP_SELECT+',.switch,[data-hap],button,.btn,.iconbtn,.ob-cta,.againBtn,.agreeYes';
+document.addEventListener('click', function(e){
+  if(Date.now()-_hapAt<150) return;
+  const t=e.target && e.target.closest ? e.target.closest(HAP_ANY) : null;
+  if(!t || t.disabled) return;
+  const want=t.getAttribute('data-hap');
+  if(want==='none') return;
+  if(!want && /^\s*(back|closePaySheet|closeCancelConfirm)\(/.test(t.getAttribute('onclick')||'')) return;   // going back is quiet, like iOS
+  haptic(want || (t.matches(HAP_SELECT)?'select': t.matches('.switch')?'toggle':'tap'));
+});
 
 /* (The old scissors intro animation was removed — the app opens straight on the welcome screen.) */
 
@@ -3466,7 +3511,7 @@ function setRadius(r){
   localStorage.setItem('fadex_radius', String(r));
   document.getElementById('radiusLbl').textContent = (r===50 ? 'any' : r);
   document.getElementById('radiusModal').classList.remove('show');
-  buildList();
+  buildList(); haptic('select');
 }
 
 /* ---------- empty-state helper ---------- */
@@ -3608,7 +3653,7 @@ function applyFavHeart(on){
 function toggleFav(){
   const idx=favorites.indexOf(current); let added;
   if(idx>=0){ favorites.splice(idx,1); added=false; } else { favorites.push(current); added=true; }
-  applyFavHeart(added); renderFavs();
+  applyFavHeart(added); renderFavs(); haptic(added?'soft':'tap');
   notify(added?'Added to favorites':'Removed from favorites',BARBERS[current].n);
 }
 function renderFavs(){
@@ -3646,6 +3691,7 @@ function toggleFavBarber(i){
   persistFavorites();
   renderFavs(); renderAddFav();
   if(typeof current!=='undefined' && current===i) applyFavHeart(added);
+  haptic(added?'soft':'tap');
   notify(added?'Added to favorites':'Removed from favorites',BARBERS[i].n);
 }
 
@@ -3702,7 +3748,7 @@ function filterToggle(el, key){
     el.classList.add('on');
   }
   buildList();
-  haptic();
+  haptic('select');
 }
 
 function clearSvcFilter(){
@@ -3731,13 +3777,13 @@ function toggleStyleChip(key){
   if(!_pendingStyles) _pendingStyles=[];
   const i=_pendingStyles.indexOf(key);
   if(i>=0) _pendingStyles.splice(i,1); else _pendingStyles.push(key);
-  renderStylePrefChips(); haptic();
+  renderStylePrefChips(); haptic('select');
 }
 function toggleMatchStyles(){
   userProfile.matchStyles = !userProfile.matchStyles;
   const sw=document.getElementById('matchStylesSwitch');
   if(sw) sw.classList.toggle('on', userProfile.matchStyles);
-  haptic();
+  haptic('toggle');
 }
 function saveStylePrefs(){
   userProfile.prefStyles = (_pendingStyles||[]).slice();
@@ -3815,7 +3861,7 @@ function renderBookingServices(b, preferred){
 function pickOpt(el,p){
   el.parentElement.querySelectorAll('.opt').forEach(o=>{ if(o.querySelector('.radio')===null) o.classList.remove('on'); });
   document.querySelectorAll('#booking .opt').forEach(o=>{ if(o.querySelector('.op')) o.classList.remove('on'); });
-  el.classList.add('on'); svcPrice=p;
+  el.classList.add('on'); svcPrice=p; haptic('select');
   try{ svcName = el.querySelector('.ol b').textContent.trim(); }catch(e){}
   recalc();
 }
@@ -3826,14 +3872,14 @@ function pickASAP(){
   document.getElementById('whenAsap').classList.add('on'); document.getElementById('whenFlex').classList.remove('on');
   document.getElementById('flexInfo').style.display='none';
   const si=document.getElementById('schedInfo'); if(si) si.style.display='none';
-  schedDay=null; schedTime=null; recalc();
+  schedDay=null; schedTime=null; recalc(); haptic('select');
 }
 // Wait & Save: flexible for up to 2 hours, pay less (Uber's Wait & Save).
 function pickFlex(){
   bookFlex=true;
   document.getElementById('whenFlex').classList.add('on'); document.getElementById('whenAsap').classList.remove('on');
   document.getElementById('flexInfo').style.display='flex';
-  recalc(); haptic();
+  recalc(); haptic('select');
 }
 function openSchedule(){ buildDayStrip(); buildTimeGrid(); updateSchedBtn(); nav('schedule'); }
 function buildDayStrip(){
@@ -3861,11 +3907,11 @@ function buildTimeGrid(){
 }
 function pickDay(el){
   document.querySelectorAll('#dayStrip .dayCard').forEach(d=>d.classList.remove('on'));
-  el.classList.add('on'); schedDay=el.dataset.full; updateSchedBtn();
+  el.classList.add('on'); schedDay=el.dataset.full; updateSchedBtn(); haptic('select');
 }
 function pickTime(el){
   document.querySelectorAll('#timeGrid .timeSlot').forEach(t=>t.classList.remove('on'));
-  el.classList.add('on'); schedTime=el.dataset.t; updateSchedBtn();
+  el.classList.add('on'); schedTime=el.dataset.t; updateSchedBtn(); haptic('select');
 }
 function updateSchedBtn(){
   const b=document.getElementById('schedConfirm');
@@ -3881,11 +3927,11 @@ function confirmSchedule(){
 }
 function pickPay(el){
   document.querySelectorAll('#booking .opt').forEach(o=>{ if(o.querySelector('.radio')) o.classList.remove('on'); });
-  el.classList.add('on');
+  el.classList.add('on'); haptic('select');
 }
 function pickPM(el){
   el.parentElement.querySelectorAll('.opt').forEach(o=>{ if(o.querySelector('.radio')) o.classList.remove('on'); });
-  el.classList.add('on');
+  el.classList.add('on'); haptic('select');
   const nm=el.querySelector('.ol b').childNodes[0].textContent.trim();
   notify('Default updated',nm+' is now your default payment method.');
 }
@@ -4013,6 +4059,7 @@ function openCancelConfirm(){
   else line.textContent='A $'+fee+' cancellation fee applies — your barber is already on the way to you.';
   document.getElementById('cancelConfirmBtn').textContent = fee===0?'Cancel · free':'Cancel · pay $'+fee;
   document.getElementById('cancelModal').classList.add('show');
+  if(fee>0) haptic('warning');
 }
 function closeCancelConfirm(){ document.getElementById('cancelModal').classList.remove('show'); }
 
@@ -4122,7 +4169,7 @@ function initHomeMapApple(){
   BARBERS.forEach((b,i)=>{
     if(isBarberBlocked(i)) return;              // blocked users stay off the map
     const a=appleBarberPin(barberLL(b,i), b);
-    a.addEventListener('select', ()=>{ homeMapInst.selectedAnnotation=null; openBarber(i); });
+    a.addEventListener('select', ()=>{ homeMapInst.selectedAnnotation=null; haptic('select'); openBarber(i); });
     homeMapInst.addAnnotation(a);
   });
 }
@@ -4400,8 +4447,8 @@ function payWithApplePay(){
   .then(function(r){
     _payBusy=false;
     if(r==='canceled') return;
-    if(r!=='completed'){ payShowErr('Apple Pay didn\'t go through. Try again or use a card.'); haptic(); return; }
-    closePaySheet(false);
+    if(r!=='completed'){ payShowErr('Apple Pay didn\'t go through. Try again or use a card.'); haptic('error'); return; }
+    closePaySheet(false); haptic('success');
     if(_payHold) notify('Apple Pay authorized ✓','You\'re only charged once your cut is done.');
     else notify('Payment confirmed ✓','Paid with Apple Pay.');
     _activePaymentIntentId = _payIntentId || null;
@@ -4423,10 +4470,10 @@ function paySubmit(){
     if(res.error){
       btn.disabled=false; btn.textContent=_payBtnLabel;
       payShowErr(res.error.message||'Your card was declined. Try another card.');
-      haptic();
+      haptic('error');
       return;
     }
-    closePaySheet(false);
+    closePaySheet(false); haptic('success');
     if(res.paymentIntent && res.paymentIntent.status==='requires_capture') notify('Card authorized ✓','You\'re only charged once your cut is done.');
     else notify('Payment confirmed ✓','Your card was charged securely via Stripe.');
     _activePaymentIntentId = (res.paymentIntent && res.paymentIntent.id) || _payIntentId || null;
@@ -4437,7 +4484,7 @@ function paySubmit(){
     _payBusy=false;
     btn.disabled=false; btn.textContent=_payBtnLabel;
     payShowErr('Connection lost while confirming. You were not charged twice — try again.');
-    haptic();
+    haptic('error');
   });
 }
 function closePaySheet(cancelled){
@@ -4922,7 +4969,7 @@ async function checkLicenseLive(license, fullName){
   if(!r || !r.ok) r={status:'unavailable'};
   signup.licOk=r;
   if(note) note.innerHTML=licNoteHtml(r);
-  if(r.status!=='verified' && r.status!=='unavailable') haptic();
+  if(r.status!=='unavailable') haptic(r.status==='verified'?'success':'error');
   return r;
 }
 async function uploadBarberDoc(kind, dataUrl){
@@ -4951,6 +4998,7 @@ function wizPickPhoto(kind){
 function toggleSvc(el, svc){
   if(!signup.services[svc]){ signup.services[svc] = {on:true, price:''}; el.classList.add('on'); }
   else { signup.services[svc] = null; el.classList.remove('on'); }
+  haptic('select');
 }
 function updateSvcPrice(svc, v){ if(signup.services[svc]) signup.services[svc].price=v; }
 /* ---------- Independent Barber Agreement: read to the end, then Agree ---------- */
@@ -4972,14 +5020,14 @@ function barberAgreementAnswer(ok){
   if(typeof signup==='object' && signup) signup.agree=!!ok;
   back();
   if(stack[stack.length-1]==='barberOnboard') renderWizStep();
-  if(ok) haptic();
+  if(ok) haptic('success');
 }
 function toggleConsent(){ signup.consent = !signup.consent; renderWizStep(); }
 
 /* Write the application to Supabase: profile(role=barber) + barbers row
  * (is_verified=false, is_available=false — hidden until we approve) + services. */
 async function submitBarberApplication(){
-  var done=function(){ signup.step=10; renderWizStep(); };
+  var done=function(){ signup.step=10; renderWizStep(); haptic('success'); };
   try{
     var c=sbReady();
     var sess = c ? (await c.auth.getSession()).data.session : null;
@@ -5065,15 +5113,15 @@ function pickTip(el){
   }
   tipCents=Number(c)||0;
   document.querySelectorAll('#tipChips .tipChip').forEach(x=>x.classList.toggle('on', x===el));
-  updateRateBtn(); haptic();
+  updateRateBtn(); haptic('select');
 }
 function pickStar(n){
   rateStars=n;
   document.querySelectorAll('#rating .rateStar').forEach((s,i)=>s.classList.toggle('on',i<n));
   document.getElementById('rateTags').style.display='block';
-  updateRateBtn();
+  updateRateBtn(); haptic('select');
 }
-function toggleTag(el){ const t=el.dataset.tag; if(ratingTags.has(t)){ratingTags.delete(t);el.classList.remove('on');}else{ratingTags.add(t);el.classList.add('on');} }
+function toggleTag(el){ const t=el.dataset.tag; if(ratingTags.has(t)){ratingTags.delete(t);el.classList.remove('on');}else{ratingTags.add(t);el.classList.add('on');} haptic('select'); }
 function updateRateBtn(){
   const b=document.getElementById('submitRate');
   if(rateStars===0){ b.textContent='Tap a star to rate'; b.disabled=true; b.style.opacity=.5; }
@@ -5096,6 +5144,7 @@ function submitRating(){
   const first=tripBarber().n.split(' ')[0];
   if(tipCents>0 && window._lastBookingId){ startTip(first); return; }
   window._lastTipCents=0;
+  haptic('success');
   fillReceipt();
   nav('receipt');
   notify('Rating submitted', rateStars+'★ for '+first+' — thanks for the feedback!');
@@ -5109,7 +5158,7 @@ async function startTip(first){
     const j=await mkApi('/api/tips/confirm', { bookingId:window._lastBookingId, paymentIntentId:(pi&&pi.id)||_payIntentId });
     window._lastTipCents = j && j.ok ? amount : 0;
     fillReceipt(); nav('receipt');
-    if(j && j.ok) notify('Thanks for the tip 💸', first+' gets all of it.');
+    if(j && j.ok){ haptic('success'); notify('Thanks for the tip 💸', first+' gets all of it.'); }
     else notifyErr('Tip didn\'t go through', (j&&j.error)||'Your rating was saved.');
   });
 }
@@ -5249,6 +5298,7 @@ function ensureNotifyPermission(){}
 function deviceNotify(title, body){ notify(title, body); }
 let eT;
 function notifyErr(t,s){
+  if(!(_hapKind==='error' && Date.now()-_hapAt<400)) haptic('error');
   document.getElementById('errToastT').textContent=t;
   document.getElementById('errToastS').textContent=s;
   const el=document.getElementById('errToast');
@@ -5258,7 +5308,7 @@ function notifyErr(t,s){
 function shakeField(wrapperId){
   const el=document.getElementById(wrapperId);
   if(!el) return;
-  el.classList.remove('err');
+  el.classList.remove('err'); haptic('error');
   requestAnimationFrame(()=>el.classList.add('err'));
   setTimeout(()=>el.classList.remove('err'),2400);
 }
@@ -5631,7 +5681,7 @@ function addPortfolioPhoto(){
     notify('Uploading…','Adding it to your portfolio.');
     const j=await mkApi('/api/barber/portfolio', { action:'add', dataUrl:dataUrl, label:label });
     if(!j || !j.ok){ notifyErr('Couldn\'t add that photo', (j&&j.error)||'Try again in a moment.'); return; }
-    _dashPort=j.photos||[]; renderDashPortfolio(true);
+    _dashPort=j.photos||[]; renderDashPortfolio(true); haptic('success');
     notify('Photo added','Customers see it on your profile.');
   };
   inp.click();
@@ -5711,7 +5761,7 @@ function applyAuthMode(){
   if(sso) sso.style.display='flex';
   if(ef) ef.style.display='none';
 }
-function authSwitch(){ _authMode = (_authMode==='login') ? 'signup' : 'login'; applyAuthMode(); haptic(); }
+function authSwitch(){ _authMode = (_authMode==='login') ? 'signup' : 'login'; applyAuthMode(); haptic('select'); }
 function authWith(provider){
   if(provider==='apple') return openAppleAuth();
   if(provider==='google') return openGoogleAuth();
@@ -6015,12 +6065,13 @@ function verifyCode(){
   var authOk = function(res){
     try{ if(res && res.data && res.data.user && res.data.user.email) userProfile.email = res.data.user.email; userProfile.loggedIn = true; }catch(e){}
     while(stack.length && (stack[stack.length-1]==='authCode' || stack[stack.length-1]==='auth')) stack.pop();
+    haptic('success');
     finishAuth('email');
   };
   var authBad = function(msg){
     document.getElementById('otpRow').classList.add('err');
+    haptic('error');
     notifyErr('Incorrect code', msg || 'That code doesn\'t match. Tap Resend for a new one.');
-    haptic();
   };
   if(_useSupabaseAuth){
     // REAL: ask Supabase to verify the code → creates a persistent session.
@@ -6133,7 +6184,7 @@ function obClearTimers(){
 function ob4Pick(key, el){
   obAnswers.howYouCut = key;
   el.parentNode.querySelectorAll('.ob-opt').forEach(o=>o.classList.remove('on'));
-  el.classList.add('on'); haptic();
+  el.classList.add('on'); haptic('select');
   var nx=document.getElementById('ob4Next'); if(nx) nx.classList.remove('dim'); // wait for Next, don't auto-advance
 }
 
@@ -6142,7 +6193,7 @@ function ob5Toggle(key, el){
   const i = obAnswers.whatMatters.indexOf(key);
   if(i>=0){ obAnswers.whatMatters.splice(i,1); el.classList.remove('on'); }
   else { obAnswers.whatMatters.push(key); el.classList.add('on'); }   // pick as many as you want
-  haptic();
+  haptic('select');
   const nx=document.getElementById('ob5Next');
   if(nx) nx.classList.toggle('dim', obAnswers.whatMatters.length===0);
 }
@@ -6271,7 +6322,7 @@ function ob9Build(){
 function ob10Rate(n){
   const stars=document.querySelectorAll('#ob10Stars .ob-star');
   stars.forEach((s,idx)=>{ s.style.animation='none'; void s.offsetWidth; s.classList.toggle('lit', idx<n); s.style.animation=''; });
-  haptic();
+  haptic('select');
   setTimeout(()=>{ notify('Thanks!', n>=4 ? 'We appreciate the love. ⭐' : 'Thanks for the feedback.'); obNext(); }, 650);
 }
 
@@ -6294,7 +6345,7 @@ function ob12Build(){
 function ob14Pick(key, el){
   obAnswers.commitmentLevel=key;
   el.parentNode.querySelectorAll('.ob-opt').forEach(o=>o.classList.remove('on'));
-  el.classList.add('on'); haptic();
+  el.classList.add('on'); haptic('select');
   var nx=document.getElementById('ob14Next'); if(nx) nx.classList.remove('dim'); // wait for Next, don't auto-advance
 }
 function ob15Apply(){
@@ -6469,7 +6520,7 @@ function playAcceptMoment(b){
     document.getElementById('findTitle').textContent=mkFirst(b.n)+' accepted';
     document.getElementById('findSub').textContent='Your barber is getting ready to come to you.';
     requestAnimationFrame(function(){ f.classList.add('accepted'); });
-    haptic();
+    haptic('match');
     setTimeout(done, 1500);
   });
 }
@@ -6477,6 +6528,7 @@ async function mkApplyBooking(bk){
   if(!bk || (mkBooking && bk.id!==mkBooking.id)) return;
   mkBooking=bk;
   if(bk.status===mkLastStatus) return;
+  const liveChange=mkLastStatus!==null;   // a change while you're watching, not a resume
   mkLastStatus=bk.status;
   const b=await mkResolveBarber(bk.barber_id);
   const first=mkFirst(b.n);
@@ -6515,6 +6567,8 @@ async function mkApplyBooking(bk){
       }
       if(!mkTripUI) mkStartTripUI(bk, b);
       mkTripStatus(bk, b);
+      // accepted already played the match; arrived is Uber's "driver arrived" success
+      if(liveChange && bk.status!=='accepted') haptic(bk.status==='arrived' ? 'success' : 'soft');
       break;
     case 'completed':
       try{ liveSync(bk, b); }catch(e){}
@@ -6522,6 +6576,7 @@ async function mkApplyBooking(bk){
       try{ localStorage.setItem('fadex_last_booking', bk.id); localStorage.setItem('fadex_rebook', JSON.stringify({ barberId:bk.barber_id, service:bk.service_name||'' })); }catch(e){}
       mkClearActive();
       userProfile.cutCount=(userProfile.cutCount||0)+1; persistProfile();
+      if(liveChange) haptic('success');
       showToast('Cut complete ✂', 'Your card was charged '+mkMoney(bk.total_cents)+'.');
       goToRating();
       break;
@@ -6531,6 +6586,7 @@ async function mkApplyBooking(bk){
       mkClearActive(); endTrip();
       stack=stack.filter(s=>s!=='finding' && s!=='tracking'); if(!stack.length) stack=['home']; render();
       if(mine) break;
+      if(liveChange) haptic('warning');
       if(bk.status==='declined') notify(first+' can\'t take this one','Your card was not charged. Try another barber.');
       else if(bk.status==='expired') notify(first+' didn\'t respond','Your card was not charged. Try another barber.');
       else notify('Booking cancelled', first+' had to cancel. Your card was not charged.');
@@ -6737,7 +6793,7 @@ async function shareBarberLink(){
   const url=barberLink(mkMyBarber.id);
   const text='Book me on Catch a Fade. I come to you.';
   try{ if(navigator.share){ await navigator.share({ title:'Book me on Catch a Fade', text:text, url:url }); return; } }catch(e){ return; }
-  try{ await navigator.clipboard.writeText(url); notify('Link copied','Paste it in your Instagram bio or send it to clients.'); }
+  try{ await navigator.clipboard.writeText(url); haptic('success'); notify('Link copied','Paste it in your Instagram bio or send it to clients.'); }
   catch(e){ notify('Your booking link', url); }
 }
 // One tap to rebook the same barber and service (Uber's "recent" shortcut).
@@ -6797,8 +6853,11 @@ async function mkOpenChat(bookingId, name, initials, sub){
     const d=document.createElement('div'); d.id='m-'+m.id;
     d.className='msg '+(m.sender_id===me?'mine':'them'); d.textContent=m.body;
     box.appendChild(d); box.parentElement.scrollTop=box.parentElement.scrollHeight;
+    if(live && m.sender_id!==me) haptic('soft');
   };
+  let live=false;
   try{ const r=await c.from('messages').select('*').eq('booking_id',bookingId).order('created_at'); (r.data||[]).forEach(add); }catch(e){}
+  live=true;
   try{
     mkChatChan=c.channel('chat-'+bookingId)
       .on('postgres_changes',{event:'INSERT',schema:'public',table:'messages',filter:'booking_id=eq.'+bookingId},p=>add(p.new))
@@ -6979,7 +7038,7 @@ async function toggleOnline(){
   const c=sbReady();
   const r=await c.from('barbers').update({ is_available:on }).eq('id',mkMyBarber.id).select().single();
   if(r.error){ notifyErr('Couldn\'t update','Check your connection and try again.'); return; }
-  mkMyBarber=r.data; mkSetOnlineUI(on); haptic();
+  mkMyBarber=r.data; mkSetOnlineUI(on); haptic(on?'success':'tap');
   notify(on?'You\'re online ✂':'You\'re offline', on?'Customers near you can now request you.':'You won\'t receive new requests.');
 }
 /* while online: share location + listen for requests */
@@ -7059,9 +7118,13 @@ async function mkShowRequest(bk){
   tick(); mkReqTick=setInterval(tick,1000);
   mkAlert();
 }
-function mkHideRequest(){ clearInterval(mkReqTick); mkIncoming=null; const s=document.getElementById('reqSheet'); if(s) s.classList.remove('show'); }
+function mkHideRequest(){ clearInterval(mkReqTick); clearInterval(mkReqBuzz); mkIncoming=null; const s=document.getElementById('reqSheet'); if(s) s.classList.remove('show'); }
+// Like a ride request: the phone keeps pulsing until the barber answers (up to ~20 s).
+let mkReqBuzz=null;
 function mkAlert(){
-  try{ if(window.haptic) haptic(); }catch(e){}
+  haptic('incoming');
+  clearInterval(mkReqBuzz); let n=0;
+  mkReqBuzz=setInterval(function(){ if(!mkIncoming || ++n>5 || document.hidden){ clearInterval(mkReqBuzz); return; } haptic('incoming'); },4000);
   try{
     const ac=new (window.AudioContext||window.webkitAudioContext)();
     [0,0.22,0.44].forEach(t=>{ const o=ac.createOscillator(), g=ac.createGain(); o.frequency.value=880; o.connect(g); g.connect(ac.destination);
@@ -7077,6 +7140,7 @@ async function mkAcceptRequest(){
   btn.disabled=false; btn.textContent='Accept';
   mkHideRequest();
   if(!j||!j.ok){ notifyErr('Couldn\'t accept', (j&&j.error)||'Try again.'); mkBarberRefresh(); return; }
+  haptic('success');
   notify('Job accepted ✂','Tap "Start driving" when you head out.');
   if(stack[stack.length-1]!=='barberDash') nav('barberDash');
   mkBarberRefresh();
@@ -7095,12 +7159,12 @@ function mkRenderJob(){
   const nav= dest ? '<button class="btn ghost" style="flex:1;font-size:13px;padding:12px" onclick="mkNavigate()">Navigate</button>' : '';
   const chat='<button class="btn ghost" style="flex:1;font-size:13px;padding:12px" onclick="mkOpenJobChat()">Chat</button>';
   let main='';
-  if(k.status==='accepted') main='<button class="btn green" style="width:100%" onclick="mkJobAction(\'en_route\')">Start driving</button>';
-  else if(k.status==='en_route') main='<button class="btn green" style="width:100%" onclick="mkJobAction(\'arrived\')">I\'ve arrived</button>';
+  if(k.status==='accepted') main='<button class="btn green" style="width:100%" data-hap="press" onclick="mkJobAction(\'en_route\')">Start driving</button>';
+  else if(k.status==='en_route') main='<button class="btn green" style="width:100%" data-hap="press" onclick="mkJobAction(\'arrived\')">I\'ve arrived</button>';
   else if(k.status==='arrived') main='<div style="font-size:12.5px;color:var(--dim);margin-bottom:8px">Ask the customer for the 4-digit PIN in their app.</div>'
       +'<div style="display:flex;gap:8px"><input id="bdPin" inputmode="numeric" maxlength="4" placeholder="PIN" style="flex:1;min-width:0;background:var(--card3);border:1px solid var(--line2);border-radius:12px;padding:12px;color:var(--text);font-size:18px;letter-spacing:6px;text-align:center"/>'
-      +'<button class="btn green" style="flex:1" onclick="mkJobAction(\'start\')">Start cut</button></div>';
-  else if(k.status==='in_progress') main='<button class="btn green" style="width:100%" onclick="mkJobAction(\'complete\')">Complete cut · get paid '+mkMoney(k.service_price_cents)+'</button>';
+      +'<button class="btn green" style="flex:1" data-hap="press" onclick="mkJobAction(\'start\')">Start cut</button></div>';
+  else if(k.status==='in_progress') main='<button class="btn green" style="width:100%" data-hap="press" onclick="mkJobAction(\'complete\')">Complete cut · get paid '+mkMoney(k.service_price_cents)+'</button>';
   el.innerHTML='<div style="margin:0 20px 14px;padding:16px;border-radius:18px;background:var(--card);border:1px solid var(--line2)">'
     +'<div style="font-size:11px;letter-spacing:.08em;color:var(--green);font-weight:760">CURRENT JOB · '+escapeHtml((MK_STATUS_LABEL[k.status]||'').toUpperCase())+'</div>'
     +'<div style="font-size:18px;font-weight:780;margin-top:4px">'+escapeHtml(mkJobCustName||'Customer')+' · '+escapeHtml(k.service_name||'Haircut')+'</div>'
@@ -7116,12 +7180,14 @@ function mkNavigate(){
 }
 async function mkJobAction(action){
   if(!mkJob) return;
+  if(action==='cancel') haptic('warning');
   if(action==='cancel' && !confirm('Cancel this job? The customer won\'t be charged.')) return;
   const body={ bookingId:mkJob.id, action:action };
   if(action==='start'){ body.pin=(document.getElementById('bdPin')||{}).value||''; }
   const j=await mkApi('/api/bookings/action', body);
   if(!j||!j.ok){ notifyErr('Not updated', (j&&j.error)||'Try again.'); return; }
-  mkJob=j.booking; haptic();
+  mkJob=j.booking;
+  if(action==='complete' || action==='start') haptic('success');
   if(action==='complete'){
     notify('Cut complete ✂','You earned '+mkMoney(j.booking.service_price_cents)+'. Nice work.');
     mkJob=null; mkRenderJob(); mkRenderDashboard();

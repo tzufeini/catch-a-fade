@@ -15,7 +15,7 @@ import { App } from '@capacitor/app';
 import { StatusBar, Style } from '@capacitor/status-bar';
 import { SplashScreen } from '@capacitor/splash-screen';
 import { Keyboard } from '@capacitor/keyboard';
-import { Haptics, ImpactStyle } from '@capacitor/haptics';
+import { Haptics, ImpactStyle, NotificationType } from '@capacitor/haptics';
 import { Geolocation } from '@capacitor/geolocation';
 import { PushNotifications } from '@capacitor/push-notifications';
 import { SocialLogin } from '@capgo/capacitor-social-login';
@@ -132,8 +132,12 @@ async function boot() {
     if (typeof window.back === 'function') window.back();
   }));
 
-  // ---- haptics: upgrade the page's haptic() to real Taptic Engine ----
-  window.haptic = function () { safe(() => Haptics.impact({ style: ImpactStyle.Light })); };
+  // ---- haptics: the page's haptic(kind) plays through the Taptic Engine ----
+  // CAFHaptics (ios/App/App/CAFHapticsPlugin.swift) has every kind, including the
+  // custom "barber accepted" and "new request" patterns; the stock plugin is the fallback.
+  window.CAF_HAPTIC = function (kind) {
+    CAFHaptics.play({ kind }).catch(() => safe(() => hapticFallback(kind)));
+  };
 
   // ---- real social sign-in ----
   await initSocialLogin();
@@ -236,7 +240,6 @@ async function initSocialLogin() {
 }
 
 async function appleSignIn() {
-  if (typeof window.haptic === 'function') window.haptic();
   try {
     const { result } = await SocialLogin.login({ provider: 'apple', options: { scopes: ['name', 'email'] } });
     const idToken = result && (result.idToken || (result.accessToken && result.accessToken.token));
@@ -259,7 +262,6 @@ async function appleSignIn() {
 }
 
 async function googleSignIn() {
-  if (typeof window.haptic === 'function') window.haptic();
   if (!CFG.googleIOSClientId) {
     toastErr('Google sign-in unavailable', 'Add your Google iOS client ID to finish setup.');
     return;
@@ -382,6 +384,15 @@ const applePayBridge = {
  *  to the server so it can update the lock screen while the app is closed.
  * ------------------------------------------------------------------ */
 const CAFLive = registerPlugin('CAFLive');
+const CAFHaptics = registerPlugin('CAFHaptics');
+function hapticFallback(kind) {
+  const outcome = { success: NotificationType.Success, warning: NotificationType.Warning, error: NotificationType.Error }[kind];
+  if (outcome) return Haptics.notification({ type: outcome });
+  if (kind === 'select') { Haptics.selectionStart(); Haptics.selectionChanged(); return; }
+  const style = kind === 'incoming' || kind === 'heavy' ? ImpactStyle.Heavy
+    : kind === 'press' || kind === 'match' ? ImpactStyle.Medium : ImpactStyle.Light;
+  return Haptics.impact({ style });
+}
 function setupLiveActivity() {
   const call = (fn, opts) => CAFLive[fn](opts || {}).catch(() => ({ ok: false }));
   window.CAF_LIVE = {
