@@ -335,6 +335,10 @@ async function sendPushToken(tok) {
   }).catch(() => {}));
 }
 window.CAF_SEND_PUSH_TOKEN = () => { if (window.CAF_PUSH_TOKEN) sendPushToken(window.CAF_PUSH_TOKEN); };
+// "Notify me when a barber is near": ask for permission if it was never asked,
+// and report whether notifications are allowed ('granted' | 'denied' | 'prompt').
+window.CAF_ENABLE_PUSH = async () => { await registerPush(); if (window.CAF_PUSH_TOKEN) sendPushToken(window.CAF_PUSH_TOKEN); };
+window.CAF_PUSH_STATUS = async () => { try { return (await PushNotifications.checkPermissions()).receive; } catch (e) { return 'unknown'; } };
 
 async function registerPush() {
   if (_pushHooked) return; _pushHooked = true;

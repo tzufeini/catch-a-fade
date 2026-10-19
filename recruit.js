@@ -44,12 +44,14 @@ function landing() {
     + '.step b{display:block;font-size:15.5px}.step span{font-size:14px;color:var(--dim);line-height:1.45}'
     + 'ul.need{list-style:none;padding:0;margin:0}ul.need li{padding:10px 0 10px 28px;position:relative;font-size:15px;border-bottom:1px solid var(--line)}ul.need li:before{content:"✓";position:absolute;left:4px;color:var(--green);font-weight:900}'
     + 'details{border-bottom:1px solid var(--line);padding:14px 0}summary{font-weight:700;font-size:15.5px;cursor:pointer;list-style:none}summary::-webkit-details-marker{display:none}summary:after{content:"+";float:right;color:var(--dim);font-weight:500}details[open] summary:after{content:"–"}details p{margin:8px 0 0;font-size:14.5px;line-height:1.5;color:#3A3530}'
+    + '.demand{display:none;margin:0 0 18px;padding:12px 14px;border-radius:14px;background:rgba(46,158,106,.12);border:1px solid rgba(46,158,106,.3);font-size:14.5px;line-height:1.4}.demand b{font-weight:800}'
     + '.end{margin-top:34px}.f{margin-top:30px;font-size:12px;color:#8C9099;text-align:center;line-height:1.8}.f a{color:#8C9099}'
     + '@media(min-width:600px){h1{font-size:46px}}'
     + '</style></head><body><div class="w">'
     + '<div class="top"><div class="mark">' + SCISSORS + '</div>Catch a Fade<small>For barbers</small></div>'
     + '<h1>Cut at their place. Keep what you charge.</h1>'
     + '<p class="lede">Catch a Fade sends house-call requests to licensed barbers, starting in Gainesville, FL. Set your prices, go online when you want, and keep 100% of your price plus every tip.</p>'
+    + '<div class="demand" id="demand"></div>'
     + '<a class="btn" href="' + APP_STORE_URL + '">Get the app and apply</a>'
     + '<p class="hint">Already have it? Open Catch a Fade and tap <b>Are you a barber?</b></p>'
     + '<div class="stats"><div class="st"><b>100%</b><span>of the price you set</span></div><div class="st"><b>100%</b><span>of your tips</span></div>'
@@ -65,7 +67,11 @@ function landing() {
     + '<h2>Questions</h2>' + faq.map(q => '<details><summary>' + q[0] + '</summary><p>' + q[1] + '</p></details>').join('')
     + '<div class="end"><a class="btn" href="' + APP_STORE_URL + '">Download Catch a Fade</a></div>'
     + '<div class="f"><a href="/barber-agreement">Barber agreement</a> · <a href="/terms">Terms</a> · <a href="/privacy">Privacy</a> · <a href="/support">Support</a><br>Barbers on Catch a Fade are independent professionals.</div>'
-    + '</div></body></html>';
+    + '</div>'
+    // real demand: customers in Gainesville who asked to be told when a barber is online (shown from 3 up)
+    + '<script>fetch("/api/waitlist/count?lat=29.65&lng=-82.34").then(function(r){return r.json()}).then(function(j){'
+    + 'if(j&&j.ok&&j.waiting>=3){var d=document.getElementById("demand");d.innerHTML="🔔 <b>"+j.waiting+" people</b> in Gainesville are waiting for a barber to go online.";d.style.display="block"}}).catch(function(){})</script>'
+    + '</body></html>';
 }
 
 function flyer() {

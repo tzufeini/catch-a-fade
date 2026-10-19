@@ -424,6 +424,20 @@ body.light .park{background:rgba(70,201,139,.22);}
 .flexInfo b{display:block;font-size:13.5px;}.flexInfo small{display:block;color:var(--dim);font-size:12px;margin-top:2px;line-height:1.4;}
 .busyNote{display:flex;align-items:center;gap:7px;margin:0 0 12px;padding:10px 13px;border-radius:13px;background:rgba(243,156,18,.12);color:#B86E00;font-size:12.5px;font-weight:700;}
 .againBtn{border:0;border-radius:999px;background:var(--text);color:var(--bg);font:700 11.5px/1 inherit;padding:7px 11px;cursor:pointer;}
+.waitCard{margin:16px 20px 6px;padding:24px 20px 18px;background:var(--card);border:1px solid var(--line2);border-radius:20px;text-align:center}
+.waitIcon{width:64px;height:64px;margin:0 auto 12px;position:relative;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(42,88,204,.10);color:var(--blue)}
+.waitIcon i{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(42,88,204,.35);animation:waitRing 2.4s ease-out infinite;opacity:0}
+.waitIcon i:nth-child(2){animation-delay:1.2s}
+.waitCard.on .waitIcon{background:rgba(70,201,139,.14);color:var(--green)}
+.waitCard.on .waitIcon i{border-color:rgba(70,201,139,.4)}
+@keyframes waitRing{0%{transform:scale(1);opacity:.9}100%{transform:scale(1.7);opacity:0}}
+.waitT{font-size:16.5px;font-weight:760;margin-bottom:6px;letter-spacing:-.2px}
+.waitS{font-size:13px;color:var(--dim);line-height:1.5;margin-bottom:16px}
+.waitCard .btn{font-size:14.5px;padding:14px}
+.waitLink{margin-top:12px;font-size:13px;color:var(--dim);cursor:pointer}
+.waitLink b{color:var(--blue);font-weight:700}
+.waitStop{margin-top:10px;font-size:12px;color:var(--faint);cursor:pointer;text-decoration:underline}
+@media (prefers-reduced-motion: reduce){.waitIcon i{animation:none}}
 .rebookCard{display:flex;align-items:center;gap:12px;margin:0 0 12px;padding:12px 14px;border-radius:18px;background:var(--card);border:1.5px solid var(--line2);cursor:pointer;}
 .rebookCard .av{width:44px;height:44px;border-radius:13px;font-size:15px;flex-shrink:0;}
 .rebookCard b{display:block;font-size:14.5px;font-weight:760;}
@@ -2453,6 +2467,7 @@ html.native .ob-tip{ font-size:14px; }
       <div id="bdDemandWrap" style="display:none">
         <div class="sect" style="margin-top:14px"><h3 style="display:flex;align-items:center;justify-content:space-between">Where clients are booking <span id="bdSurge"></span></h3></div>
         <div class="demandMap"><div id="demandMap" style="position:absolute;inset:0"></div></div>
+        <div id="bdWaiting" class="busyNote" style="display:none;margin:10px 20px 0;background:rgba(42,88,204,.10);color:var(--blue)"></div>
         <div id="bdDemandNote" style="color:var(--faint);font-size:11.5px;margin:7px 20px 0">Brighter areas had more requests in the last 2 weeks. Go online near them.</div>
       </div>
       <div class="sect" style="margin-top:14px"><h3>This week</h3></div>
@@ -3532,6 +3547,69 @@ function emptyCard(title, sub, btnText, btnFn){
     +'</div>';
 }
 
+/* ---------- "Notify me when a barber is near" ----------
+ * Uber's "no cars available": while barbers are still signing up, a customer
+ * can ask to be told the moment one goes online nearby (server: /api/waitlist,
+ * pushed from housekeeping). */
+let _waitlist=(function(){ try{ return JSON.parse(localStorage.getItem('fadex_waitlist')||'null'); }catch(e){ return null; } })();
+function waitlistCard(){
+  const on=_waitlist && _waitlist.waiting;
+  const bell='<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>';
+  const check='<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+  const others=on && _waitlist.nearby>1 ? ' You and '+(_waitlist.nearby-1)+' other'+(_waitlist.nearby>2?'s':'')+' nearby are waiting.' : '';
+  return '<div class="waitCard'+(on?' on':'')+'"><div class="waitIcon"><i></i><i></i>'+(on?check:bell)+'</div>'
+    +(on
+      ? '<div class="waitT">You\'re on the list</div><div class="waitS">We\'ll send you a notification the moment a barber is online near you.'+others+'</div>'
+        +'<button class="btn ghost" onclick="inviteBarber()">Invite a barber you know</button>'
+        +'<div class="waitStop" onclick="leaveWaitlist()">Stop notifying me</div>'
+      : '<div class="waitT">No barbers online near you yet</div><div class="waitS">We\'re signing up licensed barbers in your area. Get a notification the moment one goes online.</div>'
+        +'<button class="btn grad" data-hap="press" onclick="notifyMe()">Notify me</button>'
+        +'<div class="waitLink" onclick="inviteBarber()">Know a barber? <b>Invite them</b></div>')
+    +'</div>';
+}
+function setWaitlist(w){
+  _waitlist=w;
+  try{ if(w) localStorage.setItem('fadex_waitlist', JSON.stringify(w)); else localStorage.removeItem('fadex_waitlist'); }catch(e){}
+  if(!BARBERS.length) buildList();
+}
+let _waitChecked=false;
+async function refreshWaitlist(){
+  if(_waitChecked) return;
+  if(!(await mkSession())) return;            // guests: check again after they sign in
+  _waitChecked=true;
+  if(localStorage.getItem('fadex_notify_after_auth')==='1'){ localStorage.removeItem('fadex_notify_after_auth'); notifyMe(); return; }
+  const j=await mkApi('/api/waitlist', { action:'status' });
+  if(j && j.ok && (!!j.waiting !== !!(_waitlist&&_waitlist.waiting) || (j.nearby||0)!==((_waitlist&&_waitlist.nearby)||0)))
+    setWaitlist(j.waiting ? { waiting:true, nearby:j.nearby||0 } : null);
+}
+async function notifyMe(){
+  if(!(await mkSession())){
+    notify('Create a free account','So we can let you know when a barber is near you.');
+    try{ localStorage.setItem('fadex_notify_after_auth','1'); }catch(e){}
+    goAuth('signup'); return;
+  }
+  try{ if(window.CAF_ENABLE_PUSH) await window.CAF_ENABLE_PUSH(); }catch(e){}
+  const j=await mkApi('/api/waitlist', { action:'join', lat:userLL[0], lng:userLL[1] });
+  if(!j || !j.ok){ notifyErr('Couldn\'t add you', (j&&j.error)||'Check your connection and try again.'); return; }
+  haptic('success');
+  setWaitlist({ waiting:true, nearby:j.nearby||1 });
+  let pushOff=false; try{ pushOff = window.CAF_PUSH_STATUS && (await window.CAF_PUSH_STATUS())==='denied'; }catch(e){}
+  if(pushOff) notify('Turn on notifications','Settings → Catch a Fade → Notifications, so we can reach you when a barber is near.');
+  else notify('You\'re on the list ✓','We\'ll notify you the moment a barber is online near you.');
+}
+async function leaveWaitlist(){
+  const j=await mkApi('/api/waitlist', { action:'leave' });
+  if(j && j.ok){ setWaitlist(null); notify('Notifications off','You can turn them back on here anytime.'); }
+}
+// customers recruit barbers: share the /barbers page
+async function inviteBarber(){
+  const url=(window.API_BASE||'https://catch-a-fade.onrender.com')+'/barbers';
+  const text='Catch a Fade sends licensed barbers house-call clients. You set your prices and keep 100% plus tips.';
+  try{ if(navigator.share){ await navigator.share({ title:'Get booked on Catch a Fade', text:text, url:url }); return; } }catch(e){ return; }
+  try{ await navigator.clipboard.writeText(url); haptic('success'); notify('Link copied','Send it to a barber you know.'); }
+  catch(e){ notify('Share this link', url); }
+}
+
 /* ---------- home list ---------- */
 function barberLL(b,i){
   // Fallback/demo barbers (not from the DB) are placed a short walk from the
@@ -3548,7 +3626,8 @@ function barberLL(b,i){
 function buildList(){
   const el=document.getElementById('barberList');
   if(!BARBERS.length){
-    el.innerHTML = emptyCard('No barbers online near you right now','Barbers show up here the moment they go online. Check back soon — or if you cut hair, be the first in your area.','Are you a barber? Start earning','goBarberSide()');
+    el.innerHTML = waitlistCard() + barberCtaCard();
+    refreshWaitlist();
     return;
   }
   // Compute distance for each
@@ -6934,6 +7013,12 @@ async function renderDemand(){
   const sg=document.getElementById('bdSurge'); if(sg) sg.innerHTML=j.multiplier>1?'<span class="surgePill">⚡ Busy now · '+j.multiplier.toFixed(2).replace(/0$/,'')+'×</span>':'';
   const note=document.getElementById('bdDemandNote');
   if(note) note.textContent=(j.cells||[]).length ? 'Brighter areas had more requests in the last 2 weeks. Go online near them.' : 'No requests nearby yet. As customers book, busy areas light up here.';
+  try{
+    const w=await apiFetch('/api/waitlist/count?lat='+userLL[0].toFixed(3)+'&lng='+userLL[1].toFixed(3), {}, 15000);
+    const el2=document.getElementById('bdWaiting');
+    if(el2){ const n=(w&&w.ok&&w.waiting)||0; el2.style.display=n>0?'':'none';
+      el2.innerHTML='<b>'+n+' customer'+(n===1?'':'s')+'</b> near you asked to be notified when a barber goes online.'+(mkOnline?' You\'re online, so they\'ve been told.':' Go online to get booked.'); }
+  }catch(e){}
   const max=Math.max(1, ...(j.cells||[]).map(c=>c.count));
   try{ if(demandMapInst){ destroyMap(demandMapInst); if(demandMapInst.remove && !demandMapInst._isApple) demandMapInst.remove(); } }catch(e){}
   el.innerHTML=''; demandMapInst=null;

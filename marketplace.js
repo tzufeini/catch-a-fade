@@ -297,6 +297,50 @@ module.exports = function createMarketplace(ctx) {
   }
   const requestTtl = (bk) => (bk.flex && bk.flex_until) ? Math.max(REQUEST_TTL_MS, Date.parse(bk.flex_until) - Date.parse(bk.created_at)) : REQUEST_TTL_MS;
 
+  /* ---- waitlist: customers who asked to hear when a barber is near ----
+   * Locations are kept at ~1 km. When a verified barber is online, everyone
+   * waiting within WAITLIST_MILES gets one push, then nothing for 12 hours. */
+  const WAITLIST_MILES = 10, WAITLIST_EVERY_MS = 12 * 3600 * 1000;
+  const round2 = (v) => Math.round(v * 100) / 100;
+  function milesBetween(a, b) {
+    const R = 3958.8, rad = Math.PI / 180, dLat = (b[0] - a[0]) * rad, dLng = (b[1] - a[1]) * rad;
+    const h = Math.sin(dLat / 2) ** 2 + Math.cos(a[0] * rad) * Math.cos(b[0] * rad) * Math.sin(dLng / 2) ** 2;
+    return 2 * R * Math.asin(Math.sqrt(h));
+  }
+  const milesBox = (lat) => ({ dLat: WAITLIST_MILES / 69, dLng: WAITLIST_MILES / (69 * Math.max(0.2, Math.cos(lat * Math.PI / 180))) });
+  async function waitingNear(lat, lng) {
+    const { dLat, dLng } = milesBox(lat);
+    const { data } = await supabase.from('waitlist').select('lat, lng')
+      .gte('lat', lat - dLat).lte('lat', lat + dLat).gte('lng', lng - dLng).lte('lng', lng + dLng).limit(5000);
+    return (data || []).filter(w => milesBetween([lat, lng], [w.lat, w.lng]) <= WAITLIST_MILES).length;
+  }
+  async function notifyWaitlist() {
+    const { data: online } = await supabase.from('barbers')
+      .select('id, home_lat, home_lng, profile:profiles!barbers_profile_id_fkey(full_name), services(name)')
+      .eq('is_verified', true).eq('is_available', true).eq('is_demo', false);
+    const bookable = (online || []).filter(b => (b.services || []).length);
+    if (!bookable.length) return;
+    const { data: locs } = await supabase.from('barber_locations').select('barber_id, lat, lng').in('barber_id', bookable.map(b => b.id));
+    const live = new Map((locs || []).map(l => [l.barber_id, [Number(l.lat), Number(l.lng)]]));
+    const cutoff = new Date(Date.now() - WAITLIST_EVERY_MS).toISOString();
+    const told = new Set();
+    for (const b of bookable) {
+      const at = live.get(b.id) || (b.home_lat != null ? [Number(b.home_lat), Number(b.home_lng)] : null);
+      if (!at || !Number.isFinite(at[0])) continue;
+      const { dLat, dLng } = milesBox(at[0]);
+      const { data: waiting } = await supabase.from('waitlist').select('customer_id, lat, lng, notified_at')
+        .gte('lat', at[0] - dLat).lte('lat', at[0] + dLat).gte('lng', at[1] - dLng).lte('lng', at[1] + dLng)
+        .or('notified_at.is.null,notified_at.lt.' + cutoff).limit(500);
+      const first = String((b.profile && b.profile.full_name) || 'A barber').split(' ')[0];
+      for (const w of waiting || []) {
+        if (told.has(w.customer_id) || milesBetween(at, [w.lat, w.lng]) > WAITLIST_MILES) continue;
+        told.add(w.customer_id);
+        await supabase.from('waitlist').update({ notified_at: new Date().toISOString() }).eq('customer_id', w.customer_id);
+        await pushUser(w.customer_id, 'A barber is online near you ✂', first + ' can come to you now. Open Catch a Fade to book.', { type: 'waitlist' });
+      }
+    }
+  }
+
   /* ---- quests: "complete 10 cuts this week, earn a $15 bonus" ----
    * Weeks run Monday 00:00 to Sunday 23:59 Eastern. The bonus is a Stripe transfer
    * to the barber's connected account, paid once per week (idempotent). */
@@ -406,6 +450,7 @@ module.exports = function createMarketplace(ctx) {
         }
       }
     } catch (e) { console.error('[housekeeping] quests', e.message); }
+    try { await notifyWaitlist(); } catch (e) { console.error('[housekeeping] waitlist', e.message); }
   }
   if (supabase) setInterval(housekeeping, 5 * 60 * 1000);
 
@@ -675,6 +720,7 @@ module.exports = function createMarketplace(ctx) {
           'You earn ' + money(bk.service_price_cents) + '. Any time in the next 2 hours. Open Catch a Fade to accept.', { bookingId: bk.id });
         else pushBarber(bk.barber_id, 'New request · ' + (bk.service_name || 'Haircut'),
           'You earn ' + money(bk.service_price_cents) + '. Open Catch a Fade to accept — 3 min to respond.', { bookingId: bk.id });
+        supabase.from('waitlist').delete().eq('customer_id', u.id).then(() => {}, () => {});   // booked: no longer waiting
         return sendJSON(res, 200, { ok: true, booking: publicBooking(bk) }), true;
       }
 
@@ -741,6 +787,32 @@ module.exports = function createMarketplace(ctx) {
           .sort((x, y) => y.count - x.count).slice(0, 120);
         const multiplier = await demandMultiplier(lat, lng).catch(() => 1);
         return sendJSON(res, 200, { ok: true, cells: out, multiplier }), true;
+      }
+
+      // ---- "Notify me when a barber is near" (customers waiting while supply ramps up) ----
+      if (post && p === '/api/waitlist') {
+        const d = await readJSON(req); const u = d && await authUser(d.accessToken);
+        if (!u) return sendJSON(res, 401, { ok: false, error: 'sign in required' }), true;
+        if (rateLimited(req, 'waitlist', 30, 60 * 60 * 1000)) return sendJSON(res, 429, { ok: false, error: 'Too many tries. Try again later.' }), true;
+        if (d.action === 'leave') {
+          await supabase.from('waitlist').delete().eq('customer_id', u.id);
+          return sendJSON(res, 200, { ok: true, waiting: false }), true;
+        }
+        if (d.action === 'join') {
+          const lat = Number(d.lat), lng = Number(d.lng);
+          if (!Number.isFinite(lat) || !Number.isFinite(lng) || Math.abs(lat) > 90 || Math.abs(lng) > 180)
+            return sendJSON(res, 400, { ok: false, error: 'We need your location to know when a barber is near.' }), true;
+          const { error } = await supabase.from('waitlist').upsert({ customer_id: u.id, lat: round2(lat), lng: round2(lng) }, { onConflict: 'customer_id' });
+          if (error) return sendJSON(res, 500, { ok: false, error: error.message }), true;
+        }
+        const { data: me } = await supabase.from('waitlist').select('lat, lng').eq('customer_id', u.id).maybeSingle();
+        return sendJSON(res, 200, { ok: true, waiting: !!me, nearby: me ? await waitingNear(me.lat, me.lng) : 0 }), true;
+      }
+      // how many customers are waiting around a spot (a count only, for barbers and the /barbers page)
+      if (req.method === 'GET' && p === '/api/waitlist/count') {
+        const lat = Number(url.searchParams.get('lat')), lng = Number(url.searchParams.get('lng'));
+        if (!Number.isFinite(lat) || !Number.isFinite(lng)) return sendJSON(res, 400, { ok: false, error: 'lat and lng required' }), true;
+        return sendJSON(res, 200, { ok: true, waiting: await waitingNear(lat, lng) }), true;
       }
 
       // ---- every status change goes through here ----
