@@ -810,8 +810,9 @@ module.exports = function createMarketplace(ctx) {
       }
       // how many customers are waiting around a spot (a count only, for barbers and the /barbers page)
       if (req.method === 'GET' && p === '/api/waitlist/count') {
-        const lat = Number(url.searchParams.get('lat')), lng = Number(url.searchParams.get('lng'));
-        if (!Number.isFinite(lat) || !Number.isFinite(lng)) return sendJSON(res, 400, { ok: false, error: 'lat and lng required' }), true;
+        const qa = url.searchParams.get('lat'), qn = url.searchParams.get('lng');
+        const lat = Number(qa), lng = Number(qn);
+        if (!qa || !qn || !Number.isFinite(lat) || !Number.isFinite(lng)) return sendJSON(res, 400, { ok: false, error: 'lat and lng required' }), true;
         return sendJSON(res, 200, { ok: true, waiting: await waitingNear(lat, lng) }), true;
       }
 
