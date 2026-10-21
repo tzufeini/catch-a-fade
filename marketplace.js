@@ -550,10 +550,14 @@ module.exports = function createMarketplace(ctx) {
         log('reset reviewer password', r.error);
       }
       if (rv) { const r = await supabase.from('profiles').upsert({ id: rv.id, full_name: 'App Review' }, { onConflict: 'id' }); log('reviewer profile', r.error); }
+      // App Review signs in as this barber (same code as the review account) to see the barber side
       let db = find(DEMO_BARBER_EMAIL);
       if (!db) {
-        const r = await supabase.auth.admin.createUser({ email: DEMO_BARBER_EMAIL, password: crypto.randomBytes(18).toString('hex'), email_confirm: true, user_metadata: { full_name: 'Demo Barber (App Review)' } });
+        const r = await supabase.auth.admin.createUser({ email: DEMO_BARBER_EMAIL, password: REVIEW_CODE, email_confirm: true, user_metadata: { full_name: 'Demo Barber (App Review)' } });
         log('create demo barber', r.error); db = r.data && r.data.user;
+      } else {
+        const r = await supabase.auth.admin.updateUserById(db.id, { password: REVIEW_CODE, email_confirm: true });
+        log('reset demo barber password', r.error);
       }
       if (!db) throw new Error('no demo barber user');
       let r = await supabase.from('profiles').upsert({ id: db.id, role: 'barber', full_name: 'Demo Barber (App Review)' }, { onConflict: 'id' });
@@ -900,6 +904,9 @@ module.exports = function createMarketplace(ctx) {
         if (!stripe) return sendJSON(res, 200, { ok: false, error: 'payments not configured' }), true;
         const barber = await barberForUser(u.id);
         if (!barber) return sendJSON(res, 400, { ok: false, error: 'Apply as a barber first.' }), true;
+        if (barber.is_demo) return sendJSON(res, 200, p === '/api/connect/status'
+          ? { ok: true, connected: false, demo: true, heldCents: 0 }
+          : { ok: false, error: 'Payouts are turned off for the App Review demo account. Real barbers connect their bank through Stripe here.' }), true;
         const base = 'https://' + (req.headers['x-forwarded-host'] || req.headers.host);
         // An account made with the other Stripe mode (test before going live) doesn't
         // exist here: forget it, so the barber can set up payouts again instead of being stuck.

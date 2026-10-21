@@ -438,6 +438,11 @@ body.light .park{background:rgba(70,201,139,.22);}
 .waitLink b{color:var(--blue);font-weight:700}
 .waitStop{margin-top:10px;font-size:12px;color:var(--faint);cursor:pointer;text-decoration:underline}
 @media (prefers-reduced-motion: reduce){.waitIcon i{animation:none}}
+.scConsent{margin:10px 2px 6px;padding:16px;border-radius:16px;background:var(--card);border:1px solid var(--line2);text-align:left}
+.scConsent b{font-size:14.5px;display:block;margin-bottom:6px}
+.scConsent p{font-size:12.5px;color:var(--dim);line-height:1.5;margin:0 0 12px}
+.scConsent .btn{font-size:14px;padding:12px;width:100%}
+.scConsentAlt{text-align:center;margin-top:10px;font-size:12.5px;color:var(--blue);font-weight:700;cursor:pointer}
 .rebookCard{display:flex;align-items:center;gap:12px;margin:0 0 12px;padding:12px 14px;border-radius:18px;background:var(--card);border:1.5px solid var(--line2);cursor:pointer;}
 .rebookCard .av{width:44px;height:44px;border-radius:13px;font-size:15px;flex-shrink:0;}
 .rebookCard b{display:block;font-size:14.5px;font-weight:760;}
@@ -1592,7 +1597,7 @@ html.native .ob-tip{ font-size:14px; }
       <div class="ob-text">
         <span class="ob-line" data-a="1"></span>
         <div class="ob-h" data-a="2">CatchAFade sends a<br/>live barber to you.</div>
-        <div class="ob-s" data-a="3">Real barbers near you, ready now, coming to your door.</div>
+        <div class="ob-s" data-a="3">Licensed barbers near you, coming to your door.</div>
       </div>
     </div>
     <div class="ob-nav" data-a="4"><button class="ob-cta" onclick="obNext()">How does it work? →</button></div>
@@ -1692,7 +1697,7 @@ html.native .ob-tip{ font-size:14px; }
     <div class="ob-body" style="justify-content:center;">
       <div class="ob-text" style="margin-bottom:16px">
         <div class="ob-h" data-a="0">Booking takes<br/>under a minute.</div>
-        <div class="ob-s" data-a="1" style="margin-top:10px">Like a ride — but it's a barber.</div>
+        <div class="ob-s" data-a="1" style="margin-top:10px">Pick a barber, pick your cut, done.</div>
       </div>
       <div class="ob-blist">
         <div class="ob-bcard" data-a="2" style="cursor:default">
@@ -1722,7 +1727,7 @@ html.native .ob-tip{ font-size:14px; }
       <div class="ob-text">
         <span class="ob-line" data-a="1"></span>
         <div class="ob-h" data-a="2">Your first cut is<br/>closer than you think.</div>
-        <div class="ob-s" data-a="3">Book a verified barber to your door — on your schedule.</div>
+        <div class="ob-s" data-a="3">Book a licensed barber to your door.</div>
       </div>
     </div>
     <div class="ob-nav" data-a="4"><button class="ob-cta" onclick="obNext()">I'm in →</button></div>
@@ -1752,7 +1757,7 @@ html.native .ob-tip{ font-size:14px; }
       <div class="ob-text">
         <span class="ob-line" data-a="1"></span>
         <div class="ob-h" data-a="2">Verified before they<br/>ever show up.</div>
-        <div class="ob-s" data-a="3">ID checked. Portfolio reviewed. Rated by real customers. You always know who's coming.</div>
+        <div class="ob-s" data-a="3">License checked with the state. ID matched. Rated by real customers. You always know who's coming.</div>
       </div>
     </div>
     <div class="ob-nav" data-a="4"><button class="ob-cta" onclick="obNext()">I trust this →</button></div>
@@ -1774,13 +1779,13 @@ html.native .ob-tip{ font-size:14px; }
   <section class="screen ob-screen ob-noise" id="ob13">
     <div class="ob-body" style="justify-content:center;">
       <div class="ob-text" style="margin-bottom:18px">
-        <div class="ob-h" data-a="0">The app is free.<br/>The fee is fair.</div>
-        <div class="ob-s" data-a="1" style="margin-top:9px">No subscription. One small, upfront fee. No hidden charges.</div>
+        <div class="ob-h" data-a="0">The app is free.<br/>The price is clear.</div>
+        <div class="ob-s" data-a="1" style="margin-top:9px">No subscription. You see the full price before you book. No surprise charges.</div>
       </div>
       <div class="ob-ptable">
         <div class="ob-prow" style="animation:obSlide .34s .15s both"><span class="pl">App download</span><span class="pr">$0 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4ADE80" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span></div>
         <div class="ob-prow" style="animation:obSlide .34s .3s both"><span class="pl">Browsing barbers</span><span class="pr">$0 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4ADE80" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span></div>
-        <div class="ob-prow guarantee" style="animation:obSlide .34s .45s both"><span class="pl">The cut itself</span><span class="pr">Best local rate ✓</span></div>
+        <div class="ob-prow guarantee" style="animation:obSlide .34s .45s both"><span class="pl">The cut itself</span><span class="pr">Full price shown first ✓</span></div>
       </div>
     </div>
     <div class="ob-nav" data-a="2"><button class="ob-cta" onclick="obNext()">That's a no-brainer →</button></div>
@@ -1788,7 +1793,7 @@ html.native .ob-tip{ font-size:14px; }
 
   <!-- OB 14 · (removed) "How ready are you…" commitment question -->
 
-  <!-- OB 15 · Testimonials (TODO: Replace with real user reviews from backend) -->
+  <!-- OB 15 · What booking feels like (facts about the service, not customer quotes) -->
   <section class="screen ob-screen ob-noise" id="ob15">
     <div class="ob-body" style="justify-content:center;">
       <div class="ob-text" style="margin-bottom:16px">
@@ -1798,7 +1803,7 @@ html.native .ob-tip{ font-size:14px; }
       <div class="ob-tscroll" data-a="2">
         <div class="ob-tcard"><div class="ob-tstars">⚡</div><div class="ob-tquote">Book in minutes — no calls, no waiting rooms, no parking.</div><div class="ob-tname">Fast by design</div></div>
         <div class="ob-tcard"><div class="ob-tstars">🏠</div><div class="ob-tquote">Your barber comes to your door with a full pro setup.</div><div class="ob-tname">Wherever you are</div></div>
-        <div class="ob-tcard"><div class="ob-tstars">✂️</div><div class="ob-tquote">Every pro submits ID and a portfolio before they can take bookings.</div><div class="ob-tname">Quality you can trust</div></div>
+        <div class="ob-tcard"><div class="ob-tstars">✂️</div><div class="ob-tquote">Every barber's license is checked with the state and their ID matched before they can take bookings.</div><div class="ob-tname">Quality you can trust</div></div>
       </div>
     </div>
     <div class="ob-nav" data-a="3"><button class="ob-cta" onclick="obNext()">I'm ready →</button></div>
@@ -1908,14 +1913,14 @@ html.native .ob-tip{ font-size:14px; }
 
       <h3>8. Cancellations, Late Arrivals, and No-Shows</h3>
       <p>You may cancel free of charge before a Barber accepts your request and for two minutes after a Barber accepts it. After that window, or once the Barber has arrived, a flat cancellation fee (currently $5) applies to compensate the Barber for their time. The exact fee is shown to you in the app before you confirm a cancellation. If your Barber is unreasonably late, contact support and we will review the fee.</p>
-      <p>If a Barber fails to arrive within a reasonable time after the promised estimate, the booking may be cancelled at no cost to you and we will attempt to match you with another available Barber. If you are not present or ready at the appointment location, the Barber may treat the appointment as a no-show and a fee may apply.</p>
+      <p>If a Barber fails to arrive within a reasonable time after the promised estimate, contact support and we will cancel the booking at no cost to you. If you are not present or ready at the appointment location, the Barber may treat the appointment as a no-show and a fee may apply.</p>
 
       <h3>9. Barbers Are Independent Professionals</h3>
       <p>Barbers are independent contractors and are not employees, agents, or partners of Catch a Fade. They control how, when, and whether they provide services, and they are solely responsible for the quality, safety, and legality of the services they perform. Catch a Fade does not direct or control the manner in which a Barber performs a service.</p>
       <p>Any dispute regarding the quality or outcome of a service is primarily between you and the Barber, although we will make reasonable efforts to help resolve issues through our support channels.</p>
 
       <h3>10. Identity Verification and Background Checks</h3>
-      <p>We take reasonable steps to verify the identity of Barbers on the platform and, where permitted by law, to conduct background and licensing checks. However, no verification process is perfect. We do not guarantee the conduct, qualifications, or background of any Barber or client, and you use the Service at your own risk. Always use good judgment when inviting any person to your location.</p>
+      <p>We take reasonable steps to verify Barbers before they can accept bookings: we check their barber license against the Florida Department of Business and Professional Regulation's public records and confirm that their photo ID matches them. We do not run criminal background checks. However, no verification process is perfect. We do not guarantee the conduct, qualifications, or background of any Barber or client, and you use the Service at your own risk. Always use good judgment when inviting any person to your location.</p>
 
       <h3>11. Your Responsibilities and Conduct</h3>
       <p>You agree to use the Service lawfully and respectfully. You will not harass, threaten, discriminate against, or harm any Barber, client, or member of our staff. You will not use the Service to arrange any unlawful activity, to circumvent our fees by transacting off-platform, to interfere with the Service, or to collect information about other users without their consent.</p>
@@ -1930,40 +1935,37 @@ html.native .ob-tip{ font-size:14px; }
       <h3>14. Promotions, Credits, and Referrals</h3>
       <p>From time to time we may offer promotional codes, account credits, or referral rewards. These have no cash value, are non-transferable except as we expressly permit, cannot be combined unless stated, and may expire. We may modify or cancel a promotion, or revoke credits, if we believe they were obtained through fraud, abuse, or in violation of these Terms.</p>
 
-      <h3>15. Catch a Fade+ Membership</h3>
-      <p>We may offer an optional paid membership ("Catch a Fade+") that provides benefits such as priority scheduling or reduced fees. Membership terms, pricing, and benefits are described at the point of enrollment and may change on notice. Memberships may renew automatically until cancelled; you can manage or cancel your membership in your account settings.</p>
-
-      <h3>16. Intellectual Property</h3>
+      <h3>15. Intellectual Property</h3>
       <p>The Service, including its software, design, logos, trademarks, and content we provide, is owned by Catch a Fade or our licensors and is protected by intellectual property laws. We grant you a limited, personal, non-exclusive, non-transferable, revocable license to use the Service for its intended purpose. You may not copy, modify, distribute, reverse engineer, or create derivative works from the Service except as permitted by law.</p>
 
-      <h3>17. Third-Party Services and Links</h3>
+      <h3>16. Third-Party Services and Links</h3>
       <p>The Service may rely on or link to third-party services, such as maps, payment processors, and identity providers. We are not responsible for the content, policies, or practices of those third parties. Your use of third-party services is at your own risk and subject to their terms.</p>
 
-      <h3>18. Disclaimers</h3>
+      <h3>17. Disclaimers</h3>
       <p>The Service is provided "as is" and "as available," without warranties of any kind, whether express, implied, or statutory, including any implied warranties of merchantability, fitness for a particular purpose, title, and non-infringement. We do not warrant that the Service will be uninterrupted, secure, error-free, or that any Barber or service will meet your expectations.</p>
 
-      <h3>19. Limitation of Liability</h3>
+      <h3>18. Limitation of Liability</h3>
       <p>To the fullest extent permitted by law, Catch a Fade and its officers, directors, employees, and agents will not be liable for any indirect, incidental, special, consequential, or punitive damages, or for any loss of profits, data, goodwill, or other intangible losses, arising out of or related to your use of the Service. Our total liability for any claim arising out of or relating to the Service will not exceed the greater of the amount you paid to us in the six months before the claim or one hundred dollars.</p>
 
-      <h3>20. Indemnification</h3>
+      <h3>19. Indemnification</h3>
       <p>You agree to indemnify and hold harmless Catch a Fade and its affiliates from any claims, damages, liabilities, and expenses, including reasonable legal fees, arising out of your use of the Service, your violation of these Terms, your violation of any law, or your infringement of the rights of any third party.</p>
 
-      <h3>21. Dispute Resolution; Arbitration; Class-Action Waiver</h3>
+      <h3>20. Dispute Resolution; Arbitration; Class-Action Waiver</h3>
       <p>Except where prohibited by law, you and Catch a Fade agree to resolve any dispute arising out of or relating to these Terms or the Service through binding individual arbitration rather than in court, and you waive the right to participate in a class action or class-wide arbitration. You may opt out of this arbitration agreement within thirty days of first accepting these Terms by following the instructions we provide. Nothing in this section prevents either party from seeking relief in small-claims court for qualifying disputes.</p>
 
-      <h3>22. Suspension and Termination</h3>
+      <h3>21. Suspension and Termination</h3>
       <p>You may stop using the Service at any time and may close your account through your settings. We may suspend or terminate your access to the Service, with or without notice, if we believe you have violated these Terms, created risk or legal exposure for us, or for any other lawful reason. Provisions that by their nature should survive termination will survive.</p>
 
-      <h3>23. Changes to the Service and These Terms</h3>
+      <h3>22. Changes to the Service and These Terms</h3>
       <p>We are constantly improving the Service and may add, change, or remove features at any time. We may also revise these Terms as described in Section 1. If a change is material, we will provide reasonable notice. If you do not agree to a change, your remedy is to stop using the Service.</p>
 
-      <h3>24. Governing Law</h3>
+      <h3>23. Governing Law</h3>
       <p>These Terms are governed by the laws of the State of Florida, without regard to its conflict-of-laws rules, except where local consumer-protection laws require otherwise. Any dispute not subject to arbitration will be brought exclusively in the courts located in that jurisdiction.</p>
 
-      <h3>25. Miscellaneous</h3>
+      <h3>24. Miscellaneous</h3>
       <p>These Terms, together with the Privacy Policy and any other policies we reference, are the entire agreement between you and Catch a Fade regarding the Service. If any provision is found unenforceable, the remaining provisions will remain in effect. Our failure to enforce a provision is not a waiver. You may not assign these Terms without our consent; we may assign them in connection with a merger, acquisition, or sale of assets.</p>
 
-      <h3>26. How to Contact Us</h3>
+      <h3>25. How to Contact Us</h3>
       <p>Questions about these Terms can be sent to our support team through the in-app CAF Support chat or by writing to TZUFEINI@gmail.com. We will do our best to respond promptly.</p>
 
       <div class="end">© 2026 Catch a Fade · All rights reserved.</div>
@@ -2008,7 +2010,8 @@ html.native .ob-tip{ font-size:14px; }
       </ul>
 
       <h3>6. How We Share Your Information</h3>
-      <p>We share information only as needed to run the Service and as described here. We share relevant details with the independent barber assigned to your booking so they can reach you and perform the service. We share information with service providers who work on our behalf, such as payment processors, mapping providers, identity-verification vendors, and infrastructure hosts, under obligations to protect it. We may share information to comply with law, to enforce our Terms, to protect rights and safety, or in connection with a business transaction such as a merger or acquisition. We do not sell your personal information in the way that term is commonly understood.</p>
+      <p>We share information only as needed to run the Service and as described here. We share relevant details with the independent barber assigned to your booking so they can reach you and perform the service. We share information with service providers who work on our behalf, such as payment processors, mapping providers, and infrastructure hosts, under obligations to protect it.</p>
+      <p><b>AI provider (Anthropic).</b> We use Claude, an AI made by Anthropic, in three places, and only with your permission: (1) the in-app support assistant: after you allow it, what you type in support chat is sent to Anthropic to write replies; (2) barber applications: with the applicant's consent, their ID photo, selfie and profile photo are sent to Anthropic to confirm they show the same person; (3) barber portfolio photos: with the barber's consent, photos they add are sent to Anthropic to screen for inappropriate content. Anthropic processes this data to provide these features to us and does not use it to train its models. We may share information to comply with law, to enforce our Terms, to protect rights and safety, or in connection with a business transaction such as a merger or acquisition. We do not sell your personal information in the way that term is commonly understood.</p>
 
       <h3>7. Barbers and Your Information</h3>
       <p>To complete a booking, your barber receives the information necessary to find and serve you, such as your first name, the service location, and your contact method within the app. Barbers are independent professionals and are expected to use your information only to provide the service. We are not responsible for a barber's independent handling of your information outside the Service, though we may take action against barbers who misuse it.</p>
@@ -2252,7 +2255,7 @@ html.native .ob-tip{ font-size:14px; }
       <div style="background:var(--card);border:1px solid var(--line);border-radius:16px;padding:15px;margin-top:18px">
         <div class="line total"><span id="lnSvcName">Skin Fade</span> <b id="lnTotal">$25.00</b></div>
         <div id="lnBusy" style="display:none;font-size:11.5px;color:var(--orange);font-weight:650;margin-top:4px">Busy near you · prices are a little higher right now</div>
-        <div style="font-size:11px;color:var(--faint);margin-top:6px;line-height:1.5">Free to cancel within 2 min, then a flat $5 cancellation fee — just like a rideshare.</div>
+        <div style="font-size:11px;color:var(--faint);margin-top:6px;line-height:1.5">Free to cancel within 2 min, then a flat $5 cancellation fee.</div>
       </div>
       <div style="display:flex;gap:7px;align-items:center;margin-top:12px;color:var(--faint);font-size:11.5px">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.4"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
@@ -2591,12 +2594,6 @@ html.native .ob-tip{ font-size:14px; }
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.4"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
         Your card is entered at checkout and processed securely by Stripe. We never store card numbers.
       </div>
-      <div class="sect" style="padding-left:0;margin-top:18px"><h3>Credit</h3></div>
-      <div class="opt" style="cursor:default;margin-bottom:0">
-        <div class="emo" style="background:var(--gradGreen)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M14.5 9.5C14 8.5 13 8 12 8c-1.5 0-2.5 1-2.5 2s1 1.8 2.5 2 2.5 1 2.5 2-1 2-2.5 2c-1 0-2-.5-2.5-1.5M12 6.5v11"/></svg></div>
-        <div class="ol"><b>Catch a Fade credit</b><small>Applied automatically at checkout</small></div>
-        <div class="op">$0.00</div>
-      </div>
     </div>
   </section>
 
@@ -2765,18 +2762,19 @@ html.native .ob-tip{ font-size:14px; }
       <div style="padding:4px 20px 6px">
       </div>
       <div class="sect"><h3>Top questions</h3></div>
-      <div class="faq" onclick="toggleFaq(this)"><b>How is the cancellation fee calculated?</b><small>Cancelling is free until a barber accepts, and for 2 minutes after they accept. After that, or once your barber has arrived, a flat $5 fee applies — the same as a rideshare. Barber running very late? Contact support and we'll review it.</small></div>
-      <div class="faq" onclick="toggleFaq(this)"><b>What if my barber doesn't show up?</b><small>If your barber doesn't arrive within 10 minutes of the promised ETA, the appointment is cancelled at no cost and we automatically match you with another verified pro nearby.</small></div>
-      <div class="faq" onclick="toggleFaq(this)"><b>Are the barbers verified?</b><small>Every Catch a Fade pro goes through identity verification and a portfolio review before taking bookings. Look for the "Verified Pro" badge on their profile.</small></div>
-      <div class="faq" onclick="toggleFaq(this)"><b>How does tipping work?</b><small>You can pre-tip at booking or tip after the cut on the rating screen. 100% of every tip goes directly to your barber.</small></div>
+      <div class="faq" onclick="toggleFaq(this)"><b>How is the cancellation fee calculated?</b><small>Cancelling is free until a barber accepts, and for 2 minutes after they accept. After that, or once your barber has arrived, a flat $5 fee applies. It pays your barber for their time. Barber running very late? Contact support and we'll review it.</small></div>
+      <div class="faq" onclick="toggleFaq(this)"><b>What if my barber doesn't show up?</b><small>You're only charged when your cut is done. If your barber doesn't show up, tap Report a problem or email us and we'll cancel it and refund any cancellation fee.</small></div>
+      <div class="faq" onclick="toggleFaq(this)"><b>Are the barbers verified?</b><small>Before taking bookings, every barber's license is checked against Florida's DBPR records and their photo ID is matched to them. Look for "Licensed ✓" on their profile.</small></div>
+      <div class="faq" onclick="toggleFaq(this)"><b>How does tipping work?</b><small>Add a tip after the cut on the rating screen. 100% of every tip goes directly to your barber.</small></div>
       <div class="faq" onclick="toggleFaq(this)"><b>What's the PIN for?</b><small>When your barber arrives, you'll see a 4-digit PIN. Share it with them — they'll enter it in their app to confirm they're at the right address before the cut starts.</small></div>
       <div class="faq" onclick="toggleFaq(this)"><b>How is the price calculated?</b><small>You see one price: the barber's rate plus Catch a Fade's service fee, together. When lots of people are booking nearby, prices can be a little higher — you'll see a note, and you always see the exact total before you confirm.</small></div>
       <div class="faq" onclick="toggleFaq(this)"><b>Can I request the same barber again?</b><small>Yes — add them to your favorites from their profile or the rating screen, then book them directly any time.</small></div>
       <div class="sect"><h3>Contact</h3></div>
       <div class="setRow" onclick="openSupportChat()"><div class="si"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.2"><path d="M21 12a8 8 0 0 1-11.5 7.2L4 21l1.8-5.5A8 8 0 1 1 21 12z"/></svg></div><div class="st">Message support<span class="pill" style="margin-left:8px;background:rgba(46,132,196,.14);color:var(--blue);font-size:10px;padding:2.5px 7px">CAF Support · AI</span></div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></div>
+      <div class="setRow" onclick="emailSupport()"><div class="si"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div><div class="st">Email us<div style="color:var(--faint);font-size:11.5px;font-weight:500;margin-top:2px">TZUFEINI@gmail.com · a person replies</div></div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></div>
       <div class="setRow" onclick="openReport('lost item')"><div class="si"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2.2"><rect x="4" y="6" width="16" height="14" rx="2"/><path d="M9 6V4a3 3 0 0 1 6 0v2"/></svg></div><div class="st">Report a lost item</div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></div>
       <div class="setRow" onclick="openReport('problem')"><div class="si"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2.2"><path d="M5 21V4h11l-1.5 3.5L16 11H5"/></svg></div><div class="st">Report a problem</div><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></div>
-      <div style="padding:18px 20px;color:var(--faint);font-size:11.5px;text-align:center;line-height:1.5">Catch a Fade · v1.0<br/>© 2026 Catch a Fade · AI support, 24 / 7</div>
+      <div style="padding:18px 20px;color:var(--faint);font-size:11.5px;text-align:center;line-height:1.5">Catch a Fade · <span id="appVersion">v1.0.6</span><br/>© 2026 Catch a Fade · AI assistant 24 / 7, people by email</div>
     </div>
   </section>
 
@@ -2784,7 +2782,7 @@ html.native .ob-tip{ font-size:14px; }
   <section class="screen" id="supportChat">
     <div class="head">
       <div class="iconbtn" onclick="back()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M15 5l-7 7 7 7"/></svg></div>
-      <h2>CAF Support 💈</h2>
+      <h2>Support assistant <span style="font-size:10.5px;font-weight:800;color:var(--blue);background:rgba(42,88,204,.12);border-radius:6px;padding:2px 6px;vertical-align:3px">AI</span></h2>
       <span style="margin-left:auto;display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:var(--green)"><span style="width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green)"></span>online</span>
     </div>
     <div class="body scBody" id="scBody"></div>
@@ -4642,13 +4640,25 @@ function openEditAccount(){
 /* Auto-format a phone field as you type → (123) 456-7890 */
 /* ---------- AI support chat ---------- */
 let scMsgs=[], scBusy=false;
+// Guideline 5.1.2(i): the chat is answered by a third-party AI, so we say so and
+// ask before anything the person types leaves the phone.
+function aiChatAllowed(){ try{ return localStorage.getItem('fadex_ai_chat_ok')==='1'; }catch(e){ return false; } }
 function openSupportChat(){
   if(!scMsgs.length){
     var first=(userProfile&&userProfile.name)? userProfile.name.split(' ')[0] : '';
-    scMsgs=[{role:'assistant',content:'Hey'+(first?' '+first:'')+' 👋 I\'m CAF Support, your Catch a Fade assistant. What can I help you with today? Pick an option below or just type.',opts:true}];
+    scMsgs=[{role:'assistant',content:'Hey'+(first?' '+first:'')+' 👋 I\'m Catch a Fade\'s AI assistant. What can I help you with today? Pick an option below or just type. For a person, tap Email us on the Help screen.',opts:true}];
   }
   nav('supportChat'); scRender();
 }
+function aiChatConsentHTML(){
+  return '<div class="scConsent"><b>This chat is answered by AI</b>'
+    +'<p>Replies are written by Claude, an AI made by Anthropic. If you continue, what you type here is sent to Anthropic to write the replies. Please don\'t share card numbers or passwords.</p>'
+    +'<button class="btn grad" onclick="allowAiChat()">Allow and continue</button>'
+    +'<div class="scConsentAlt" onclick="emailSupport()">Email a person instead</div></div>';
+}
+function allowAiChat(){ try{ localStorage.setItem('fadex_ai_chat_ok','1'); }catch(e){} haptic('success'); scRender(); if(scPending){ var q=scPending; scPending=null; var inp=document.getElementById('scInput'); if(inp) inp.value=q; scSend(); } }
+var scPending=null;
+function emailSupport(){ location.href='mailto:TZUFEINI@gmail.com?subject='+encodeURIComponent('Catch a Fade help'); }
 var SC_OPTS=[
   ['📅','Help with a booking','I need help with a booking'],
   ['💸','Cancellation & fees','How do cancellation fees work?'],
@@ -4687,6 +4697,7 @@ function scRender(){
     if(m.opts && i===scMsgs.length-1) b+=scOptsHTML();
     return b;
   }).join('');
+  if(!aiChatAllowed()) h+=aiChatConsentHTML();
   el.innerHTML=h;
   el.scrollTop=el.scrollHeight;
 }
@@ -4700,6 +4711,7 @@ function scQuick(q){ var inp=document.getElementById('scInput'); if(inp) inp.val
 function scSend(){
   if(scBusy) return;
   var inp=document.getElementById('scInput'); var txt=(inp&&inp.value||'').trim(); if(!txt) return;
+  if(!aiChatAllowed()){ scPending=txt; inp.value=''; scRender(); var c=document.querySelector('#scBody .scConsent'); if(c) c.scrollIntoView({behavior:'smooth',block:'end'}); haptic('warning'); return; }
   inp.value='';
   scMsgs.push({role:'user',content:txt}); scRender(); scShowTyping(true); scBusy=true; haptic();
   // CAF Support "thinks" for at least 1.1–1.9s so replies feel typed, never teleported
@@ -4728,14 +4740,14 @@ function scSend(){
 /* built-in answers used until the Claude API key is connected (and as offline fallback) */
 function scLocalAnswer(q){
   q=q.toLowerCase();
-  if(/cancel|fee/.test(q)) return 'Cancelling is free until a barber accepts, and for 2 minutes after they accept. After that, or once your barber has arrived, a flat $5 cancellation fee applies — the same as a rideshare. If your barber is running very late, message support and we\'ll review it.';
+  if(/cancel|fee/.test(q)) return 'Cancelling is free until a barber accepts, and for 2 minutes after they accept. After that, or once your barber has arrived, a flat $5 cancellation fee applies. It pays your barber for their time. If your barber is running very late, message support and we\'ll review it.';
   if(/pin/.test(q)) return 'When your barber arrives you\'ll see a 4-digit PIN in the app. Tell it to them — they enter it in their app to confirm they\'re at the right address, and then the cut officially starts.';
   if(/tip/.test(q)) return 'You can tip your barber directly after the cut — 100% of every tip goes straight to them.';
-  if(/surge|price|cost|charge|expensive/.test(q)) return 'Your price is the barber\'s listed rate for the service you pick, plus a 25% platform service fee. You always see the exact total before you confirm.';
+  if(/surge|price|cost|charge|expensive/.test(q)) return 'You see one price: the barber\'s rate plus Catch a Fade\'s service fee, together. When it\'s busy nearby it can be a little higher, and you always see the exact total before you confirm.';
   if(/late|no.?show|where.*barber|barber.*late|eta/.test(q)) return 'You can follow your barber\'s progress on the map. If they\'re running more than 5 minutes late, you can cancel at no cost from your appointment screen.';
   if(/lost|left|forgot/.test(q)) return 'Sorry about that! Tap "Report a lost item" on the Help screen and tell us what was left behind — we\'ll connect you with your barber right away.';
   if(/refund|wrong|bad|complaint|terrible/.test(q)) return 'Sorry to hear that. Use "Report a problem" on the Help screen, or email TZUFEINI@gmail.com — refunds usually process within 3–5 business days.';
-  if(/safe|background|check|verified/.test(q)) return 'Every Catch a Fade pro goes through identity verification and a portfolio review before they can take bookings. Look for the "Verified Pro" badge on their profile.';
+  if(/safe|background|check|verified/.test(q)) return 'Before taking bookings, every barber\'s license is checked against Florida\'s DBPR records and their photo ID is matched to them. Look for "Licensed ✓" on their profile. We don\'t run criminal background checks.';
   if(/same barber|favorite|favourite|again/.test(q)) return 'Add a barber to your favorites from their profile or the rating screen — then you can book them directly any time.';
   if(/human|person|agent|real/.test(q)) return 'You can reach a human by emailing TZUFEINI@gmail.com — we reply as fast as we can. In the meantime, tell me what\'s going on and I\'ll do my best to help right now.';
   if(/book|appointment|schedul|reschedul/.test(q)) return 'Sure — what\'s going on with your booking? You can see and manage it under Bookings. Tell me the issue (change the time, wrong address, cancel, rebook) and I\'ll walk you through it.';
@@ -4869,7 +4881,7 @@ function renderWizStep(){
       +'</div>'
       +'<div class="checkbox '+(signup.consent?'on':'')+'" style="margin-top:18px" onclick="toggleConsent()">'
       +'<div class="cb"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4 10-11"/></svg></div>'
-      +'<div><b>I consent to identity verification</b><small>Catch a Fade checks my license in Florida\'s public records and uses an automated check to confirm my ID, selfie and profile photo show me. I confirm the information above is accurate.</small></div></div>'
+      +'<div><b>I consent to identity verification</b><small>Catch a Fade checks my license in Florida\'s public DBPR records and sends my ID photo, selfie and profile photo to Anthropic\'s Claude AI to confirm they show me and match my name. I confirm the information above is accurate.</small></div></div>'
       +'<div class="checkbox '+(signup.agree?'on':'')+'" style="margin-top:12px" onclick="if(signup.agree){signup.agree=false;renderWizStep();}else openBarberAgreement()">'
       +'<div class="cb"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4 10-11"/></svg></div>'
       +'<div><b>I agree to the Independent Barber Agreement</b><small>I work as an independent contractor, keep my barber license current and follow the safety rules. <br/><a style="display:inline-block;margin-top:6px;padding:4px 0;color:var(--blue);font-weight:700" onclick="event.stopPropagation();openBarberAgreement()">Read the agreement →</a></small></div></div>';
@@ -5752,6 +5764,11 @@ function renderDashReviews(){
 
 let _portLabel='';
 function addPortfolioPhoto(){
+  let ok=false; try{ ok=localStorage.getItem('fadex_ai_photos_ok')==='1'; }catch(e){}
+  if(!ok){
+    if(!confirm('Photos you add are checked by Claude, an AI made by Anthropic, for inappropriate content before they appear on your profile. Continue?')) return;
+    try{ localStorage.setItem('fadex_ai_photos_ok','1'); }catch(e){}
+  }
   const inp=document.createElement('input'); inp.type='file'; inp.accept='image/*';
   inp.onchange=async function(){
     if(!inp.files || !inp.files[0]) return;
@@ -7120,6 +7137,12 @@ async function toggleOnline(){
   if(!mkMyBarber){ goBarberSide(); return; }
   if(!mkMyBarber.is_verified){ notify('Under review','You can go online as soon as your account is approved.'); return; }
   const on=!mkOnline;
+  // App Review's demo barber: online only inside this app, so it never shows to real customers
+  if(mkMyBarber.is_demo){
+    mkSetOnlineUI(on); haptic(on?'success':'tap');
+    notify(on?'Online (demo)':'Offline (demo)', on?'Book "Demo Barber" from the review customer account on another device to see a request here.':'You won\'t receive new requests.');
+    return;
+  }
   const c=sbReady();
   const r=await c.from('barbers').update({ is_available:on }).eq('id',mkMyBarber.id).select().single();
   if(r.error){ notifyErr('Couldn\'t update','Check your connection and try again.'); return; }

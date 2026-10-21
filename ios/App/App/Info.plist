@@ -43,13 +43,13 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Catch a Fade uses your camera to take a profile photo or share a reference photo of the haircut you want.</string>
+	<string>Catch a Fade uses your camera to take your profile photo. If you apply as a barber, it is also used for a photo of your ID, a selfie to confirm it's you, and photos of your work.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Catch a Fade uses your location to show verified barbers near you and to track your barber on the way to your appointment.</string>
+	<string>Catch a Fade uses your location to show barbers near you and to follow your barber on the way to your appointment. Barbers share their location while online so their customer can see them coming.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Catch a Fade uses your location to show verified barbers near you and to track your barber on the way to your appointment.</string>
+	<string>Catch a Fade uses your location to show barbers near you and to follow your barber on the way to your appointment. Barbers share their location while online so their customer can see them coming.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Catch a Fade lets you pick a photo from your library for your profile or to show your barber the style you want.</string>
+	<string>Catch a Fade lets you choose a photo from your library for your profile. Barbers can also choose photos of their ID and their work.</string>
 	<key>NSSupportsLiveActivities</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

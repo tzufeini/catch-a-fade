@@ -132,6 +132,9 @@ async function boot() {
     if (typeof window.back === 'function') window.back();
   }));
 
+  // ---- the real version on the Help screen ----
+  safe(async () => { const i = await App.getInfo(); const el = document.getElementById('appVersion'); if (el) el.textContent = 'v' + i.version + ' (' + i.build + ')'; });
+
   // ---- haptics: the page's haptic(kind) plays through the Taptic Engine ----
   // CAFHaptics (ios/App/App/CAFHapticsPlugin.swift) has every kind, including the
   // custom "barber accepted" and "new request" patterns; the stock plugin is the fallback.
