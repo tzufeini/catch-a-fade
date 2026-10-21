@@ -451,6 +451,16 @@ body.light .park{background:rgba(70,201,139,.22);}
 .bkUsualBox.on:after{content:"";position:absolute;left:5px;top:1.5px;width:5px;height:9px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
 .rqNotes{margin-top:10px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.06);font-size:13px;line-height:1.45;white-space:pre-wrap}
 .rqNotes b{display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;opacity:.6;margin-bottom:3px}
+.seg button small{display:block;font-size:10.5px;font-weight:700;color:var(--green);margin-top:1px}
+.dayCard.off,.timeSlot.off{opacity:.3;pointer-events:none}
+.upCard{margin:0 20px 12px;padding:14px 16px;border-radius:18px;background:var(--card);border:1.5px solid var(--blue)}
+.upTop{font-size:11px;letter-spacing:.08em;font-weight:800;color:var(--blue);text-transform:uppercase}
+.upRow{display:flex;align-items:center;gap:12px;margin-top:9px}.upRow .av{width:44px;height:44px;border-radius:13px;font-size:15px;flex-shrink:0}
+.upRow b{display:block;font-size:15px}.upRow small{display:block;color:var(--dim);font-size:12px;margin-top:2px}
+.upFoot{margin-top:10px;font-size:12px;color:var(--dim)}.upFoot span{color:#FF6B6B;font-weight:700;cursor:pointer}
+.aheadHead{margin:18px 20px 4px;font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
+.aheadNote{margin:0 20px 10px;font-size:12.5px;color:var(--faint)}
+.offTag{font-size:11px;color:var(--dim);background:var(--card3);padding:3px 8px;border-radius:7px;font-weight:700}
 .rebookCard{display:flex;align-items:center;gap:12px;margin:0 0 12px;padding:12px 14px;border-radius:18px;background:var(--card);border:1.5px solid var(--line2);cursor:pointer;}
 .rebookCard .av{width:44px;height:44px;border-radius:13px;font-size:15px;flex-shrink:0;}
 .rebookCard b{display:block;font-size:14.5px;font-weight:760;}
@@ -1421,6 +1431,7 @@ html.native .ob-tip{ font-size:14px; }
       <div class="apMerchant" id="rqSvc">Fade</div>
       <div style="text-align:center;font-size:38px;font-weight:800;margin:2px 0 4px" id="rqEarn">$35.00</div>
       <div style="text-align:center;color:#A6A6B0;font-size:12.5px;margin-bottom:12px">you earn · plus 100% of tips</div>
+      <div class="apLine"><div class="apLabel">When</div><div class="apValue" id="rqWhen" style="font-weight:800">Now</div></div>
       <div class="apLine"><div class="apLabel">Customer</div><div class="apValue" id="rqCust">—</div></div>
       <div class="apLine"><div class="apLabel">Distance</div><div class="apValue" id="rqDist">—</div></div>
       <div class="apLine"><div class="apLabel">Address</div><div class="apValue" id="rqAddr" style="max-width:62%;text-align:right;white-space:normal">—</div></div>
@@ -2138,6 +2149,7 @@ html.native .ob-tip{ font-size:14px; }
           <div class="bcard"><div class="av skel" style="width:62px;height:62px"></div><div class="bInfo"><div class="skel" style="width:120px;height:15px"></div><div class="skel" style="width:160px;height:11px;margin-top:9px"></div><div class="skel" style="width:90px;height:11px;margin-top:9px"></div></div></div>
           <div class="bcard"><div class="av skel" style="width:62px;height:62px"></div><div class="bInfo"><div class="skel" style="width:100px;height:15px"></div><div class="skel" style="width:150px;height:11px;margin-top:9px"></div><div class="skel" style="width:110px;height:11px;margin-top:9px"></div></div></div>
         </div>
+        <div id="upcomingCard"></div>
         <div id="barberList" style="display:none;padding-bottom:14px"></div>
       </div>
     </div>
@@ -2247,6 +2259,11 @@ html.native .ob-tip{ font-size:14px; }
       <div class="seg" id="whenSeg">
         <button class="on" id="whenAsap" onclick="pickASAP()">⚡ ASAP</button>
         <button id="whenFlex" onclick="pickFlex()">Wait &amp; Save</button>
+        <button id="whenSched" onclick="openSchedule()">📅 Schedule</button>
+      </div>
+      <div id="offlineNote" class="flexInfo" style="display:none;background:rgba(42,88,204,.08);border-color:rgba(42,88,204,.25)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.2"><rect x="3" y="4.5" width="18" height="17" rx="3"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>
+        <div><b id="offlineTitle">Offline right now</b><small>Pick a day and time and they'll confirm. You're only charged when the cut is done.</small></div>
       </div>
       <div id="flexInfo" class="flexInfo" style="display:none">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
@@ -2474,6 +2491,7 @@ html.native .ob-tip{ font-size:14px; }
         <div class="bigSwitch" id="bigSwitch" data-hap="press" role="switch" aria-label="Go online" onclick="toggleOnline()"></div>
       </div>
       <div id="bdJob"></div>
+      <div id="bdUpcoming"></div>
       <div class="earnCard">
         <small>TODAY'S EARNINGS</small>
         <div class="amt" id="bdToday">$0.00</div>
@@ -3088,7 +3106,7 @@ function render(){
   if(top==='messages') renderInbox();
   if(top==='profile') updatePrefStyleSub();
   if(top==='paymentMethods') renderCards();
-  if(top==='booking') fillBookingNotes();
+  if(top==='booking') onBookingOpen();
   if(top==='safety'){ renderTrustedContact(); renderBlockedList(); }
   // onboarding: progress bar + re-animate entrance + per-screen effects
   const _obP=document.getElementById('obProg'), _obF=document.getElementById('obFill');
@@ -3257,6 +3275,15 @@ async function loadBarbersFromSupabase(){
     const me = await mkUserId();
     BARBERS = data.filter(r => (!r.is_demo || reviewer) && r.profile_id !== me && (r.services||[]).length)
                   .map(mapBarberRow);
+    // offline barbers can still be booked ahead ("Schedule a cut"); never shown on the map
+    try{
+      const off = await c.from('barbers')
+        .select('id, profile_id, bio, rating, cuts_completed, is_verified, is_demo, vehicle, home_lat, home_lng, profile:profiles!barbers_profile_id_fkey(full_name, avatar_url), services(name, price_cents, duration_min)')
+        .eq('is_verified', true).eq('is_available', false).eq('is_demo', false);
+      const have = new Set(BARBERS.map(b=>b.id));
+      (off.data||[]).filter(r => r.profile_id !== me && (r.services||[]).length && !have.has(r.id))
+        .forEach(r => BARBERS.push(Object.assign(mapBarberRow(r, BARBERS.length), { offline:true })));
+    }catch(e){}
     persistBarbers();
     return true;
   }catch(e){ return false; }
@@ -3578,7 +3605,9 @@ function waitlistCard(){
       ? '<div class="waitT">You\'re on the list</div><div class="waitS">We\'ll send you a notification the moment a barber is online near you.'+others+'</div>'
         +'<button class="btn ghost" onclick="inviteBarber()">Invite a barber you know</button>'
         +'<div class="waitStop" onclick="leaveWaitlist()">Stop notifying me</div>'
-      : '<div class="waitT">No barbers online near you yet</div><div class="waitS">We\'re signing up licensed barbers in your area. Get a notification the moment one goes online.</div>'
+      : (BARBERS.some(x=>x.offline)
+          ? '<div class="waitT">No one\'s online right now</div><div class="waitS">Get a notification the moment a barber goes online near you, or book one ahead below.</div>'
+          : '<div class="waitT">No barbers online near you yet</div><div class="waitS">We\'re signing up licensed barbers in your area. Get a notification the moment one goes online.</div>')
         +'<button class="btn grad" data-hap="press" onclick="notifyMe()">Notify me</button>'
         +'<div class="waitLink" onclick="inviteBarber()">Know a barber? <b>Invite them</b></div>')
     +'</div>';
@@ -3586,7 +3615,7 @@ function waitlistCard(){
 function setWaitlist(w){
   _waitlist=w;
   try{ if(w) localStorage.setItem('fadex_waitlist', JSON.stringify(w)); else localStorage.removeItem('fadex_waitlist'); }catch(e){}
-  if(!BARBERS.length) buildList();
+  if(!BARBERS.some(b=>!b.offline)) buildList();
 }
 let _waitChecked=false;
 async function refreshWaitlist(){
@@ -3639,10 +3668,23 @@ function barberLL(b,i){
   const off=BARBER_OFFSETS[i%BARBER_OFFSETS.length];
   return [userLL[0]+off[0], userLL[1]+off[1]];
 }
+function bookAheadHtml(){
+  const off=BARBERS.map((b,i)=>({b,i})).filter(x=>x.b.offline && !isBarberBlocked(x.i));
+  if(!off.length) return '';
+  off.forEach(x=>{ x.d = x.b.lat!=null ? haversine(userLL[0],userLL[1],x.b.lat,x.b.lng) : null; });
+  const near = off.filter(x=> x.d==null || userRadius>=50 || x.d<=userRadius).sort((a,c)=>(a.d==null?1e9:a.d)-(c.d==null?1e9:c.d)).slice(0,12);
+  if(!near.length) return '';
+  return '<div class="aheadHead">Book ahead</div><div class="aheadNote">Offline right now. Pick a time and they\'ll confirm.</div>'
+    + near.map(({b,i,d})=>'<div class="bcard" onclick="openBarber('+i+')"><div class="av" style="background:'+(b.img?'var(--card3)':b.g)+'">'+bAvInner(b)+'</div>'
+      +'<div class="bInfo"><div class="bName">'+escapeHtml(b.n)+'</div><div class="bMeta"><span class="star">★ '+escapeHtml(b.r)+'</span><span class="dot"></span>'+escapeHtml(b.cuts)+' cuts'+(d!=null?'<span class="dot"></span>'+(d<10?(Math.round(d*10)/10).toFixed(1):Math.round(d))+' mi':'')+'</div>'
+      +'<div class="bTags"><span class="tg">'+escapeHtml(b.sp.split(' · ')[0])+'</span></div></div>'
+      +'<div class="bRight"><span class="offTag">Offline</span><div class="bBuy"><div class="price">'+money0(custPriceNoSurge(b.pr))+'</div>'
+      +'<button class="bookmini" onclick="event.stopPropagation();setBarber('+i+');nav(\'booking\')">Schedule</button></div></div></div>').join('');
+}
 function buildList(){
   const el=document.getElementById('barberList');
-  if(!BARBERS.length){
-    el.innerHTML = waitlistCard() + barberCtaCard();
+  if(!BARBERS.some(b=>!b.offline)){
+    el.innerHTML = waitlistCard() + bookAheadHtml() + barberCtaCard();
     refreshWaitlist();
     return;
   }
@@ -3650,7 +3692,7 @@ function buildList(){
   const enriched = BARBERS.map((b,i)=>{
     const ll=barberLL(b,i);
     return {b, i, dist: haversine(userLL[0],userLL[1],ll[0],ll[1])};
-  }).filter(x=>!isBarberBlocked(x.i))   // blocked users never appear (Guideline 1.2)
+  }).filter(x=>!isBarberBlocked(x.i) && !x.b.offline)   // blocked users never appear (Guideline 1.2); offline ones go under Book ahead
     .sort((x,y)=>x.dist-y.dist);
   if(!enriched.length){
     el.innerHTML = emptyCard('No barbers to show','You\'ve blocked everyone we can currently match you with. Unblock someone in Account → Blocked users.','Go to Account','navTab(\'account\')');
@@ -3682,7 +3724,7 @@ function buildList(){
       .map(o=>o.x);
   }
   let rebook=null; try{ rebook=JSON.parse(localStorage.getItem('fadex_rebook')||'null'); }catch(e){}
-  const rbI = rebook ? BARBERS.findIndex(x=>x.id===rebook.barberId) : -1;
+  const rbI = rebook ? BARBERS.findIndex(x=>x.id===rebook.barberId && !x.offline) : -1;
   const rebookHtml = rbI>=0 ? '<div class="rebookCard" onclick="bookAgain(\''+BARBERS[rbI].id+'\',\''+escapeHtml(String(rebook.service||'').replace(/\'/g,''))+'\')">'
       +'<div class="av" style="background:'+(BARBERS[rbI].img?'var(--card3)':BARBERS[rbI].g)+'">'+bAvInner(BARBERS[rbI])+'</div>'
       +'<div style="flex:1;min-width:0"><b>Book again with '+escapeHtml(BARBERS[rbI].n.split(' ')[0])+'</b><small>'+escapeHtml(rebook.service||'Your last cut')+' · online now</small></div>'
@@ -3709,7 +3751,7 @@ function buildList(){
         </div>
       </div>
     </div>`;
-  }).join('') + barberCtaCard();
+  }).join('') + bookAheadHtml() + barberCtaCard();
 }
 function setBarber(i){
   current=i; const b=BARBERS[i];
@@ -3725,7 +3767,8 @@ function setBarber(i){
   try{
     const ll=barberLL(b,i), dist=haversine(userLL[0],userLL[1],ll[0],ll[1]);
     document.getElementById('bkMeta').innerHTML='<span class="star">★ '+escapeHtml(b.r||'5.0')+'</span><span class="dot"></span>'
-      +(dist<10?(Math.round(dist*10)/10).toFixed(1):Math.round(dist))+' mi away<span class="dot"></span><span style="color:var(--green)">~'+Math.max(3,Math.round(dist*4))+' min</span>';
+      +(b.offline ? '<span class="offTag">Offline · book ahead</span>'
+        : (dist<10?(Math.round(dist*10)/10).toFixed(1):Math.round(dist))+' mi away<span class="dot"></span><span style="color:var(--green)">~'+Math.max(3,Math.round(dist*4))+' min</span>');
   }catch(e){}
   try{
     const ll2=barberLL(b,i), eta=Math.max(3,Math.round(haversine(userLL[0],userLL[1],ll2[0],ll2[1])*4));
@@ -3960,65 +4003,95 @@ function pickOpt(el,p){
   try{ svcName = el.querySelector('.ol b').textContent.trim(); }catch(e){}
   recalc();
 }
-let schedDay=null, schedTime=null;
+let schedDay=null, schedTime=null, schedAt=null;   // schedAt: the booked time (Date) when scheduling
 let bookFlex=false;
+function whenLabel(t){
+  const d=new Date(t), now=new Date(), tm=new Date(Date.now()+864e5);
+  const day = d.toDateString()===now.toDateString() ? 'Today' : d.toDateString()===tm.toDateString() ? 'Tomorrow'
+    : d.toLocaleDateString([], {weekday:'short', month:'short', day:'numeric'});
+  return day+' · '+d.toLocaleTimeString([], {hour:'numeric', minute:'2-digit'});
+}
+function timeOnly(t){ return new Date(t).toLocaleTimeString([], {hour:'numeric', minute:'2-digit'}); }
+function resetSchedule(){
+  schedAt=null; schedDay=null; schedTime=null;
+  const ws=document.getElementById('whenSched'); if(ws){ ws.classList.remove('on'); ws.textContent='📅 Schedule'; }
+  const si=document.getElementById('schedInfo'); if(si) si.style.display='none';
+}
 function pickASAP(){
   bookFlex=false;
   document.getElementById('whenAsap').classList.add('on'); document.getElementById('whenFlex').classList.remove('on');
   document.getElementById('flexInfo').style.display='none';
-  const si=document.getElementById('schedInfo'); if(si) si.style.display='none';
-  schedDay=null; schedTime=null; recalc(); haptic('select');
+  resetSchedule(); recalc(); haptic('select');
 }
 // Wait & Save: flexible for up to 2 hours, pay less (Uber's Wait & Save).
 function pickFlex(){
-  bookFlex=true;
+  bookFlex=true; resetSchedule();
   document.getElementById('whenFlex').classList.add('on'); document.getElementById('whenAsap').classList.remove('on');
   document.getElementById('flexInfo').style.display='flex';
   recalc(); haptic('select');
 }
-function openSchedule(){ buildDayStrip(); buildTimeGrid(); updateSchedBtn(); nav('schedule'); }
+function openSchedule(){
+  buildDayStrip();
+  if(!document.querySelector('#dayStrip .dayCard.on')){ const f=document.querySelector('#dayStrip .dayCard:not(.off)'); if(f){ f.classList.add('on'); schedDay=f.dataset.full; } }
+  buildTimeGrid(); updateSchedBtn(); nav('schedule');
+}
 function buildDayStrip(){
   const el=document.getElementById('dayStrip');
   const days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
   const mons=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   const now=new Date(); let h='';
-  for(let i=0;i<14;i++){
+  for(let i=0;i<6;i++){                       // today + 5 days (a card hold lasts 7)
     const d=new Date(now); d.setDate(now.getDate()+i);
     const label=i===0?'Today':i===1?'Tmrw':days[d.getDay()];
     const full=days[d.getDay()]+' '+mons[d.getMonth()]+' '+d.getDate();
-    h+='<div class="dayCard'+(schedDay===full?' on':'')+'" data-full="'+full+'" onclick="pickDay(this)">'
+    const lastToday = i===0 && Date.now()+2*3600e3 > new Date(d.getFullYear(),d.getMonth(),d.getDate(),21,0).getTime();
+    h+='<div class="dayCard'+(schedDay===full?' on':'')+(lastToday?' off':'')+'" data-full="'+full+'" data-ymd="'+d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()+'" onclick="pickDay(this)">'
       +'<small>'+label+'</small><b>'+d.getDate()+'</b><span class="mo">'+mons[d.getMonth()]+'</span></div>';
   }
   el.innerHTML=h;
 }
+function selectedDayDate(){
+  const c=document.querySelector('#dayStrip .dayCard.on'); if(!c) return null;
+  const p=c.dataset.ymd.split('-').map(Number); return new Date(p[0],p[1]-1,p[2]);
+}
 function buildTimeGrid(){
   const el=document.getElementById('timeGrid'); let h='';
+  const day=selectedDayDate(), earliest=Date.now()+2*3600e3;
   for(let m=8*60;m<=21*60;m+=30){
     const hr=Math.floor(m/60), mn=m%60;
     const t=(((hr+11)%12)+1)+':'+(mn?'30':'00')+' '+(hr<12?'AM':'PM');
-    h+='<div class="timeSlot'+(schedTime===t?' on':'')+'" data-t="'+t+'" onclick="pickTime(this)">'+t+'</div>';
+    const at=day ? new Date(day.getFullYear(),day.getMonth(),day.getDate(),hr,mn).getTime() : 0;
+    const off=!day || at<earliest;
+    h+='<div class="timeSlot'+(schedTime===t&&!off?' on':'')+(off?' off':'')+'" data-t="'+t+'" data-at="'+at+'" onclick="pickTime(this)">'+t+'</div>';
   }
   el.innerHTML=h;
+  const on=el.querySelector('.timeSlot.on'); el.dataset.at = on ? on.dataset.at : '';
+  if(!on) schedTime=null;
 }
 function pickDay(el){
   document.querySelectorAll('#dayStrip .dayCard').forEach(d=>d.classList.remove('on'));
-  el.classList.add('on'); schedDay=el.dataset.full; updateSchedBtn(); haptic('select');
+  el.classList.add('on'); schedDay=el.dataset.full; schedTime=null; buildTimeGrid(); updateSchedBtn(); haptic('select');
 }
 function pickTime(el){
   document.querySelectorAll('#timeGrid .timeSlot').forEach(t=>t.classList.remove('on'));
   el.classList.add('on'); schedTime=el.dataset.t; updateSchedBtn(); haptic('select');
+  el.parentElement.dataset.at=el.dataset.at;
 }
 function updateSchedBtn(){
   const b=document.getElementById('schedConfirm');
   b.textContent=(schedDay&&schedTime)?('Confirm · '+schedDay+', '+schedTime):'Select a day & time';
 }
 function confirmSchedule(){
-  if(!schedDay||!schedTime){ notify('Pick a slot','Choose both a day and a time first.'); return; }
-  const seg=document.getElementById('whenSeg'), btns=seg.querySelectorAll('button');
-  btns.forEach(x=>x.classList.remove('on')); btns[1].classList.add('on');
-  document.getElementById('schedLabel').textContent=schedDay+' · '+schedTime;
+  const at=Number((document.getElementById('timeGrid')||{dataset:{}}).dataset.at||0);
+  if(!schedDay||!schedTime||!at){ notify('Pick a slot','Choose both a day and a time first.'); return; }
+  if(at < Date.now()+90*60000){ notify('Too soon','Pick a time at least 2 hours from now.'); buildTimeGrid(); return; }
+  schedAt=new Date(at); bookFlex=false;
+  document.querySelectorAll('#whenSeg button').forEach(x=>x.classList.remove('on'));
+  const ws=document.getElementById('whenSched'); if(ws){ ws.classList.add('on'); ws.textContent='📅 '+whenLabel(schedAt).replace(' · ',' '); }
+  document.getElementById('flexInfo').style.display='none';
+  document.getElementById('schedLabel').textContent=whenLabel(schedAt);
   document.getElementById('schedInfo').style.display='block';
-  back(); notify('Haircut scheduled',schedDay+' at '+schedTime);
+  recalc(); back(); haptic('success');
 }
 function pickPay(el){
   document.querySelectorAll('#booking .opt').forEach(o=>{ if(o.querySelector('.radio')) o.classList.remove('on'); });
@@ -4058,14 +4131,15 @@ async function refreshPricing(force){
   }catch(e){}
 }
 let _activePaymentIntentId = null;   // set once a booking is paid, used for refunds on cancel
+function custPriceNoSurge(listed){ const m=PRICING.mult; PRICING.mult=1; const v=custPrice(listed); PRICING.mult=m; return v; }
 function recalc(){
-  const full = custPrice(svcPrice), total = bookFlex ? custPriceFlex(svcPrice) : full;
+  const full = custPrice(svcPrice), total = bookFlex ? custPriceFlex(svcPrice) : schedAt ? custPriceNoSurge(svcPrice) : full;
   const fb=document.getElementById('whenFlex');
-  if(fb) fb.innerHTML='Wait &amp; Save · <span style="color:var(--green)">save '+money0(Math.max(0,full-custPriceFlex(svcPrice)))+'</span>';
+  if(fb) fb.innerHTML='Wait &amp; Save<small>save '+money0(Math.max(0,full-custPriceFlex(svcPrice)))+'</small>';
   const nm=document.getElementById('lnSvcName'); if(nm) nm.textContent=svcName;
   document.getElementById('lnTotal').textContent=money0(total);
   document.getElementById('confTotal').textContent=money0(total);
-  const busy=document.getElementById('lnBusy'); if(busy) busy.style.display=(PRICING.mult>1 && !bookFlex)?'block':'none';
+  const busy=document.getElementById('lnBusy'); if(busy) busy.style.display=(PRICING.mult>1 && !bookFlex && !schedAt)?'block':'none';
 }
 
 /* ---------- finding -> tracking (instant-book: your chosen pro is confirmed) ---------- */
@@ -4261,7 +4335,7 @@ function initHomeMapApple(){
   homeMapInst=appleMap(el, false, 0.011);
   homeMapInst._user=appleUserPin(userLL);
   homeMapInst.addAnnotation(homeMapInst._user);
-  BARBERS.forEach((b,i)=>{
+  BARBERS.forEach((b,i)=>{ if(b.offline) return;
     if(isBarberBlocked(i)) return;              // blocked users stay off the map
     const a=appleBarberPin(barberLL(b,i), b);
     a.addEventListener('select', ()=>{ homeMapInst.selectedAnnotation=null; haptic('select'); openBarber(i); });
@@ -4301,7 +4375,7 @@ function initHomeMapLeaflet(){
   homeMapInst = L.map('homeMap',{zoomControl:false,attributionControl:true,scrollWheelZoom:false,dragging:false,doubleClickZoom:false,boxZoom:false,touchZoom:false,keyboard:false}).setView(userLL,16);
   L.tileLayer(curTiles(), TILE_OPTS).addTo(homeMapInst);
   L.marker(userLL,{icon:userDivIcon()}).addTo(homeMapInst);
-  BARBERS.forEach((b,i)=>{
+  BARBERS.forEach((b,i)=>{ if(b.offline) return;
     if(isBarberBlocked(i)) return;              // blocked users stay off the map
     const ll=barberLL(b,i);
     L.marker(ll,{icon:barberDivIcon(b)}).on('click',()=>openBarber(i)).addTo(homeMapInst);
@@ -4328,7 +4402,7 @@ function initHomeMapGoogle(){
   new google.maps.Circle({map:homeMapInst, center:{lat:userLL[0],lng:userLL[1]}, radius:1500,
     strokeColor:'#2A58CC', strokeOpacity:0.55, strokeWeight:1,
     fillColor:'#2A58CC', fillOpacity:0.07});
-  BARBERS.forEach((b,i)=>{
+  BARBERS.forEach((b,i)=>{ if(b.offline) return;
     if(isBarberBlocked(i)) return;              // blocked users stay off the map
     const ll=barberLL(b,i);
     const m=new google.maps.Marker({
@@ -4474,7 +4548,7 @@ function openPayment(opts, onSuccess){
     return apiFetch('/api/create-payment-intent', {
       method:'POST', headers:{'Content-Type':'application/json'},
       body: JSON.stringify(opts.barberId
-        ? { barberId: opts.barberId, serviceName: opts.serviceName||'', accessToken: opts.accessToken, idempotencyKey: _payIdemKey, lat: userLL[0], lng: userLL[1], flex: !!opts.flex }
+        ? { barberId: opts.barberId, serviceName: opts.serviceName||'', accessToken: opts.accessToken, idempotencyKey: _payIdemKey, lat: userLL[0], lng: userLL[1], flex: !!opts.flex, scheduledAt: opts.scheduledAt||null }
         : { servicePrice: priceCents, idempotencyKey: _payIdemKey })
     });
   })
@@ -6550,6 +6624,15 @@ document.addEventListener('visibilitychange', function(){
  * ===================================================================== */
 const MK_ACTIVE = ['requested','accepted','en_route','arrived','in_progress'];
 const MK_REQUEST_TTL = 3*60*1000;          // matches the server's REQUEST_TTL_MS
+// when a request stops waiting for the barber (same rules as the server's requestTtl)
+function reqDeadline(bk){
+  const created=new Date(bk.created_at).getTime()||Date.now();
+  if(bk.scheduled_at){ const at=Date.parse(bk.scheduled_at); return created+Math.max(10*60000, Math.min(12*3600e3, at-3600e3-created)); }
+  if(bk.flex && bk.flex_until) return Math.max(created+MK_REQUEST_TTL, Date.parse(bk.flex_until));
+  return created+MK_REQUEST_TTL;
+}
+function leftLabel(ms){ ms=Math.max(0,ms); const h=Math.floor(ms/3600e3), m=Math.floor(ms/60000)%60, s=Math.floor(ms/1000)%60;
+  return h ? h+'h '+String(m).padStart(2,'0')+'m' : m+':'+String(s).padStart(2,'0'); }
 async function mkSession(){
   const c=sbReady(); if(!c) return null;
   try{ const r=await c.auth.getSession(); return (r&&r.data&&r.data.session)||null; }catch(e){ return null; }
@@ -6608,15 +6691,28 @@ async function confirmBooking(){
   }
   const b=BARBERS[current];
   if(!b || !b.fromDB){ notifyErr('Barber unavailable','Pick a barber from the list on Home.'); return; }
+  if(b.offline && !schedAt){ notify(mkFirst(b.n)+' is offline right now','Pick a day and time and they\'ll confirm.'); openSchedule(); return; }
+  if(schedAt && schedAt.getTime() < Date.now()+90*60000){ notify('Pick a later time','That time is too soon now. Choose one at least 2 hours away.'); resetSchedule(); openSchedule(); return; }
   mkTripBarberObj=b;
   openPayment({
     merchant:'Catch a Fade · '+mkFirst(b.n),
-    item:(svcName||'Haircut')+(bookFlex?' · Wait & Save':' · house call'),
-    amount: svcPrice, barberId: b.id, serviceName: svcName, accessToken: sess.access_token, flex: bookFlex
+    item:(svcName||'Haircut')+(schedAt?' · '+whenLabel(schedAt):bookFlex?' · Wait & Save':' · house call'),
+    amount: svcPrice, barberId: b.id, serviceName: svcName, accessToken: sess.access_token, flex: bookFlex,
+    scheduledAt: schedAt ? schedAt.toISOString() : null
   }, function(pi){ mkRequestBooking(pi && pi.id); });
 }
 // fill the notes box with "my usual" whenever the booking screen opens
 function fillBookingNotes(){ const t=document.getElementById('bkNotes'); if(t && !t.value) t.value=myUsual(); }
+function onBookingOpen(){
+  fillBookingNotes();
+  const b=BARBERS[current], off=!!(b && b.offline);
+  ['whenAsap','whenFlex'].forEach(id=>{ const e=document.getElementById(id); if(e) e.style.display=off?'none':''; });
+  const n=document.getElementById('offlineNote'); if(n) n.style.display=off?'flex':'none';
+  const t=document.getElementById('offlineTitle'); if(t && b) t.textContent=mkFirst(b.n)+' is offline right now';
+  if(off && !schedAt){ document.querySelectorAll('#whenSeg button').forEach(x=>x.classList.remove('on')); }
+  if(!off && !schedAt && !bookFlex){ const a=document.getElementById('whenAsap'); if(a) a.classList.add('on'); }
+  recalc();
+}
 async function mkRequestBooking(piId){
   resetFindingScreen();
   nav('finding');
@@ -6630,6 +6726,7 @@ async function mkRequestBooking(piId){
     stack=stack.filter(s=>s!=='finding'); render();
     return;
   }
+  resetSchedule();
   mkWatchBooking(j.booking);
 }
 
@@ -6656,7 +6753,7 @@ function mkStopWatching(){
   try{ if(mkBkChan&&c) c.removeChannel(mkBkChan); }catch(e){}
   mkBkChan=null; clearInterval(mkBkPoll); clearInterval(mkFindTick); mkStopBarberLoc();
 }
-function mkClearActive(){ mkStopWatching(); mkBooking=null; mkLastStatus=null; mkTripUI=false; try{ localStorage.removeItem('fadex_active_booking'); }catch(e){} }
+function mkClearActive(){ mkStopWatching(); mkBooking=null; mkLastStatus=null; mkTripUI=false; try{ localStorage.removeItem('fadex_active_booking'); }catch(e){} renderUpcoming(); }
 // The moment a barber accepts: their photo pops into the search circle, then the
 // app glides into live tracking.
 let mkAccepting=false, _findCoreHtml=null;
@@ -6694,14 +6791,16 @@ async function mkApplyBooking(bk){
       resetFindingScreen();
       try{ liveSync(bk, b); }catch(e){}
       if(stack[stack.length-1]!=='finding') nav('finding');
-      document.getElementById('findTitle').textContent=bk.flex ? 'Request sent to '+first : 'Waiting for '+first+' to accept…';
+      document.getElementById('findTitle').textContent=(bk.flex||bk.scheduled_at) ? 'Request sent to '+first : 'Waiting for '+first+' to accept…';
       const created=new Date(bk.created_at).getTime()||Date.now();
-      const ttl = bk.flex && bk.flex_until ? Math.max(MK_REQUEST_TTL, Date.parse(bk.flex_until)-created) : MK_REQUEST_TTL;
-      const lv=document.getElementById('findLeave'); if(lv) lv.style.display=bk.flex?'block':'none';
+      const ttl = reqDeadline(bk)-created;
+      const lv=document.getElementById('findLeave'); if(lv) lv.style.display=(bk.flex||bk.scheduled_at)?'block':'none';
       clearInterval(mkFindTick);
       const tick=()=>{
         const left=Math.max(0, ttl-(Date.now()-created));
-        document.getElementById('findSub').textContent = bk.flex
+        document.getElementById('findSub').textContent = bk.scheduled_at
+          ? 'For '+whenLabel(bk.scheduled_at)+'. '+first+' can confirm until '+timeOnly(created+ttl)+'. We\'ll notify you, so you can close the app.'
+          : bk.flex
           ? 'Wait & Save: '+first+' can confirm until '+new Date(created+ttl).toLocaleTimeString([], {hour:'numeric',minute:'2-digit'})+'. We\'ll notify you, so you can close the app.'
           : 'Your card isn\'t charged unless your cut happens. '
           +Math.floor(left/60000)+':'+String(Math.floor(left/1000)%60).padStart(2,'0')+' left to respond.';
@@ -6713,6 +6812,11 @@ async function mkApplyBooking(bk){
     case 'accepted': case 'en_route': case 'arrived': case 'in_progress':
       clearInterval(mkFindTick);
       if(mkAccepting) break;            // the accept moment applies the latest status when it ends
+      if(bk.status==='accepted' && bk.scheduled_at){   // booked ahead: confirmed, the trip starts when they head out
+        if(stack[stack.length-1]==='finding'){ mkAccepting=true; try{ await playAcceptMoment(b); }catch(e){} mkAccepting=false; }
+        showScheduledConfirmed(bk, b, liveChange);
+        break;
+      }
       if(!mkTripUI && stack[stack.length-1]==='finding'){
         mkAccepting=true;
         try{ await playAcceptMoment(b); }catch(e){}
@@ -6749,6 +6853,33 @@ async function mkApplyBooking(bk){
       refreshBarbersUI();
     }
   }
+}
+let _upBarber=null;
+function showScheduledConfirmed(bk, b, live){
+  _upBarber=b;
+  stack=stack.filter(s=>s!=='finding'); if(!stack.length) stack=['home'];
+  render(); renderUpcoming();
+  if(live) notify(mkFirst(b.n)+' confirmed ✓', 'See you '+whenLabel(bk.scheduled_at).replace(' · ',' at ')+'. Free to cancel until '+timeOnly(Date.parse(bk.scheduled_at)-2*3600e3)+'.');
+}
+function renderUpcoming(){
+  const el=document.getElementById('upcomingCard'); if(!el) return;
+  const bk=mkBooking;
+  if(!bk || bk.status!=='accepted' || !bk.scheduled_at){ el.innerHTML=''; return; }
+  const b=_upBarber || tripBarber(), at=Date.parse(bk.scheduled_at), freeUntil=at-2*3600e3;
+  el.innerHTML='<div class="upCard"><div class="upTop">Upcoming · '+escapeHtml(whenLabel(at))+'</div>'
+    +'<div class="upRow"><div class="av" style="background:'+(b.img?'var(--card3)':(b.g||'var(--grad)'))+'">'+bAvInner(b)+'</div>'
+    +'<div style="min-width:0"><b>'+escapeHtml(bk.service_name||'Haircut')+' with '+escapeHtml(mkFirst(b.n))+'</b><small>'+escapeHtml(bk.address||'Your location')+'</small></div></div>'
+    +'<div class="upFoot">'+(Date.now()<freeUntil ? 'Free to cancel until '+timeOnly(freeUntil) : 'Cancelling now costs $5')+' · <span onclick="cancelScheduled()">Cancel</span></div></div>';
+}
+async function cancelScheduled(){
+  const bk=mkBooking; if(!bk || !bk.scheduled_at) return;
+  const at=Date.parse(bk.scheduled_at), free=Date.now()<at-2*3600e3 || Date.now()>at+15*60000;
+  haptic('warning');
+  if(!confirm(free ? 'Cancel this booking? It\'s free.' : 'Cancel this booking? A $5 fee applies because it\'s less than 2 hours away.')) return;
+  mkSelfCancel=true;
+  const j=await mkApi('/api/bookings/action',{ bookingId:bk.id, action:'cancel' });
+  if(j && j.ok){ notify('Booking cancelled ✓', Number(j.cancellationFee)>0 ? 'A '+mkMoney(j.cancellationFee)+' fee was charged.' : 'No charge. The hold on your card was released.'); mkApplyBooking(j.booking); renderUpcoming(); }
+  else { mkSelfCancel=false; notifyErr('Couldn\'t cancel', (j&&j.error)||'Try again.'); }
 }
 function mkStartTripUI(bk, b){
   mkTripUI=true;
@@ -6789,6 +6920,7 @@ function liveState(bk, first, eta){
 }
 function liveSync(bk, b, eta){
   const L=window.CAF_LIVE; if(!L || !bk || !b) return;
+  if(bk.scheduled_at && (bk.status==='requested' || bk.status==='accepted')) return;
   const st=liveState(bk, mkFirst(b.n), eta);
   if(st.step>=5){ if(_liveFor===bk.id){ L.end(st); _liveFor=null; } return; }
   if(_liveFor!==bk.id){ _liveFor=bk.id; L.start(Object.assign({ bookingId:bk.id, barberName:b.n, initials:b.in||nameInitials(b.n), service:bk.service_name||svcName||'Haircut' }, st)); }
@@ -7254,7 +7386,10 @@ async function mkBarberRefresh(){
     const r=await c.from('bookings').select('*').eq('barber_id',mkMyBarber.id).in('status',MK_ACTIVE).order('created_at',{ascending:false});
     rows=r.data||[];
   }catch(e){ return; }
-  const job=rows.find(k=>k.status!=='requested')||null;
+  // a cut booked for later doesn't block new requests until ~90 min before it
+  const later=k=>k.status==='accepted' && k.scheduled_at && Date.parse(k.scheduled_at)-Date.now() > 90*60000;
+  const job=rows.find(k=>k.status!=='requested' && !later(k))||null;
+  renderBarberUpcoming(rows.filter(later).sort((a,c)=>Date.parse(a.scheduled_at)-Date.parse(c.scheduled_at)));
   const prevStatus=mkJob&&mkJob.status;
   if(job && (!mkJob || mkJob.id!==job.id)){
     mkJobCustName=(await mkProfileName(job.customer_id))||'Customer';
@@ -7263,7 +7398,7 @@ async function mkBarberRefresh(){
   if(job && !mkOnline) mkStartBarberLoop();
   if(job || prevStatus) mkRenderJob();
   // newest open request that we haven't answered or let lapse
-  const req=rows.find(k=>k.status==='requested' && !mkSeenReq[k.id] && Date.now()-new Date(k.created_at).getTime()<MK_REQUEST_TTL);
+  const req=rows.find(k=>k.status==='requested' && !mkSeenReq[k.id] && Date.now()<reqDeadline(k));
   if(req && !job && (!mkIncoming || mkIncoming.id!==req.id)) mkShowRequest(req);
   if(mkIncoming && !rows.find(k=>k.id===mkIncoming.id && k.status==='requested')) mkHideRequest();
 }
@@ -7277,12 +7412,13 @@ async function mkShowRequest(bk){
   document.getElementById('rqCust').textContent=mkFirst(await mkProfileName(bk.customer_id)||'Customer');
   const here=mkMyLL || userLL;
   document.getElementById('rqDist').textContent=(bk.lat!=null? (Math.round(mkMiles(here,[bk.lat,bk.lng])*10)/10)+' mi · ~'+mkEtaMin(mkMiles(here,[bk.lat,bk.lng]))+' min' : '—');
+  (function(){ const w=document.getElementById('rqWhen'); if(w) w.textContent = bk.scheduled_at ? whenLabel(bk.scheduled_at) : bk.flex ? 'Within 2 hours' : 'Now'; })();
   document.getElementById('reqSheet').classList.add('show');
-  const created=new Date(bk.created_at).getTime();
+  const deadline=reqDeadline(bk);
   clearInterval(mkReqTick);
   const tick=()=>{
-    const left=Math.max(0,MK_REQUEST_TTL-(Date.now()-created));
-    document.getElementById('rqLeft').textContent=Math.floor(left/60000)+':'+String(Math.floor(left/1000)%60).padStart(2,'0');
+    const left=Math.max(0,deadline-Date.now());
+    document.getElementById('rqLeft').textContent=leftLabel(left);
     if(left<=0){ mkSeenReq[bk.id]=1; mkHideRequest(); }
   };
   tick(); mkReqTick=setInterval(tick,1000);
@@ -7311,7 +7447,9 @@ async function mkAcceptRequest(){
   mkHideRequest();
   if(!j||!j.ok){ notifyErr('Couldn\'t accept', (j&&j.error)||'Try again.'); mkBarberRefresh(); return; }
   haptic('success');
-  notify('Job accepted ✂','Tap "Start driving" when you head out.');
+  const acc=j.booking||{};
+  if(acc.scheduled_at) notify('Booked ✂', whenLabel(acc.scheduled_at)+'. We\'ll remind you an hour before.');
+  else notify('Job accepted ✂','Tap "Start driving" when you head out.');
   if(stack[stack.length-1]!=='barberDash') nav('barberDash');
   mkBarberRefresh();
 }
@@ -7320,6 +7458,22 @@ async function mkDeclineRequest(){
   const id=mkIncoming.id; mkSeenReq[id]=1; mkHideRequest();
   await mkApi('/api/bookings/action',{bookingId:id,action:'decline'});
   mkBarberRefresh();
+}
+function renderBarberUpcoming(list){
+  const el=document.getElementById('bdUpcoming'); if(!el) return;
+  if(!list.length){ el.innerHTML=''; return; }
+  el.innerHTML='<div class="sect" style="margin-top:4px"><h3>Upcoming</h3></div>'+list.map(k=>
+    '<div class="setRow" style="cursor:default;align-items:flex-start"><div class="st"><b>'+escapeHtml(whenLabel(k.scheduled_at))+'</b>'
+    +'<div style="color:var(--dim);font-size:12.5px;margin-top:2px">'+escapeHtml(k.service_name||'Haircut')+' · you earn '+mkMoney(k.service_price_cents)+(k.address?' · '+escapeHtml(k.address):'')+'</div>'
+    +(k.notes?'<div style="color:var(--dim);font-size:12px;margin-top:4px">📝 '+escapeHtml(k.notes)+'</div>':'')+'</div>'
+    +'<span style="color:#FF7A7A;font-size:12.5px;font-weight:700;cursor:pointer;flex-shrink:0" onclick="barberCancelUpcoming(\''+k.id+'\')">Cancel</span></div>').join('');
+}
+async function barberCancelUpcoming(id){
+  haptic('warning');
+  if(!confirm('Cancel this booking? The customer won\'t be charged.')) return;
+  const j=await mkApi('/api/bookings/action',{ bookingId:id, action:'cancel' });
+  if(!j||!j.ok){ notifyErr('Not cancelled',(j&&j.error)||'Try again.'); return; }
+  notify('Booking cancelled','The customer was not charged.'); mkBarberRefresh();
 }
 function mkRenderJob(){
   const el=document.getElementById('bdJob'); if(!el) return;
@@ -7336,7 +7490,7 @@ function mkRenderJob(){
       +'<button class="btn green" style="flex:1" data-hap="press" onclick="mkJobAction(\'start\')">Start cut</button></div>';
   else if(k.status==='in_progress') main='<button class="btn green" style="width:100%" data-hap="press" onclick="mkJobAction(\'complete\')">Complete cut · get paid '+mkMoney(k.service_price_cents)+'</button>';
   el.innerHTML='<div style="margin:0 20px 14px;padding:16px;border-radius:18px;background:var(--card);border:1px solid var(--line2)">'
-    +'<div style="font-size:11px;letter-spacing:.08em;color:var(--green);font-weight:760">CURRENT JOB · '+escapeHtml((MK_STATUS_LABEL[k.status]||'').toUpperCase())+'</div>'
+    +'<div style="font-size:11px;letter-spacing:.08em;color:var(--green);font-weight:760">CURRENT JOB · '+escapeHtml((MK_STATUS_LABEL[k.status]||'').toUpperCase())+(k.scheduled_at?' · '+escapeHtml(whenLabel(k.scheduled_at).toUpperCase()):'')+'</div>'
     +'<div style="font-size:18px;font-weight:780;margin-top:4px">'+escapeHtml(mkJobCustName||'Customer')+' · '+escapeHtml(k.service_name||'Haircut')+'</div>'
     +'<div style="color:var(--dim);font-size:13px;margin-top:3px">'+escapeHtml(k.address||'')+'</div>'
     +'<div style="color:var(--dim);font-size:13px;margin-top:2px">You earn '+mkMoney(k.service_price_cents)+'</div>'

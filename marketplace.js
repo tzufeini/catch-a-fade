@@ -255,7 +255,9 @@ module.exports = function createMarketplace(ctx) {
     const barber = (await barberFirstName(bk.barber_id)) || 'Your barber';
     const cust = (await firstNameOf(bk.customer_id)) || 'Your customer';
     const toCustomer = {
-      accepted: [barber + ' accepted your booking', 'Free cancellation for 2 minutes.'],
+      accepted: bk.scheduled_at
+        ? [barber + ' confirmed ' + whenText(bk.scheduled_at) + ' ✂', 'Free to cancel until 2 hours before.']
+        : [barber + ' accepted your booking', 'Free cancellation for 2 minutes.'],
       en_route: [barber + ' is on the way', 'Track them live in the app.'],
       arrived: [barber + ' has arrived', 'Share your PIN: ' + bk.arrival_pin],
       completed: ['Cut complete ✂', 'You were charged ' + money(bk.total_cents) + '. Rate ' + barber + '?'],
@@ -295,7 +297,24 @@ module.exports = function createMarketplace(ctx) {
     const f = (t) => t.replace('{b}', barberFirst || 'Your barber').replace('{pin}', bk.arrival_pin || '');
     return { status: bk.status, headline: f(c[1]), detail: f(c[2]), eta: Number(etaMin) || 0, step: c[0] };
   }
-  const requestTtl = (bk) => (bk.flex && bk.flex_until) ? Math.max(REQUEST_TTL_MS, Date.parse(bk.flex_until) - Date.parse(bk.created_at)) : REQUEST_TTL_MS;
+  /* ---- "Schedule a cut": book a time up to 5 days ahead (a card hold lasts 7) ---- */
+  const SCHEDULE_MIN_MS = 90 * 60 * 1000, SCHEDULE_MAX_MS = 5 * 24 * 3600 * 1000;
+  const SCHEDULE_FREE_CANCEL_MS = 2 * 3600 * 1000, SCHEDULE_LATE_MS = 15 * 60 * 1000;
+  const TZ = 'America/New_York';                     // Florida, where we launch
+  const whenText = (iso) => {
+    const d = new Date(iso), opts = { timeZone: TZ };
+    const day = (x) => x.toLocaleDateString('en-US', Object.assign({ year: 'numeric', month: 'numeric', day: 'numeric' }, opts));
+    const today = day(new Date()), tomorrow = day(new Date(Date.now() + 24 * 3600 * 1000));
+    const label = day(d) === today ? 'today' : day(d) === tomorrow ? 'tomorrow' : d.toLocaleDateString('en-US', Object.assign({ weekday: 'short', month: 'short', day: 'numeric' }, opts));
+    return label + ' at ' + d.toLocaleTimeString('en-US', Object.assign({ hour: 'numeric', minute: '2-digit' }, opts));
+  };
+  const requestTtl = (bk) => {
+    if (bk.scheduled_at) {                           // until 12 h after asking, and at least an hour before the cut
+      const created = Date.parse(bk.created_at), at = Date.parse(bk.scheduled_at);
+      return Math.max(10 * 60 * 1000, Math.min(12 * 3600 * 1000, at - 60 * 60 * 1000 - created));
+    }
+    return (bk.flex && bk.flex_until) ? Math.max(REQUEST_TTL_MS, Date.parse(bk.flex_until) - Date.parse(bk.created_at)) : REQUEST_TTL_MS;
+  };
 
   /* ---- waitlist: customers who asked to hear when a barber is near ----
    * Locations are kept at ~1 km. When a verified barber is online, everyone
@@ -338,6 +357,22 @@ module.exports = function createMarketplace(ctx) {
         await supabase.from('waitlist').update({ notified_at: new Date().toISOString() }).eq('customer_id', w.customer_id);
         await pushUser(w.customer_id, 'A barber is online near you ✂', first + ' can come to you now. Open Catch a Fade to book.', { type: 'waitlist' });
       }
+    }
+  }
+
+  /* ---- an hour before a scheduled cut: remind both sides, once ---- */
+  async function remindScheduled() {
+    const soon = new Date(Date.now() + 60 * 60 * 1000).toISOString(), now = new Date().toISOString();
+    const { data: due } = await supabase.from('bookings').select('*')
+      .eq('status', 'accepted').is('reminded_at', null).not('scheduled_at', 'is', null)
+      .gte('scheduled_at', now).lte('scheduled_at', soon).limit(200);
+    for (const bk of due || []) {
+      await supabase.from('bookings').update({ reminded_at: now }).eq('id', bk.id);
+      const barber = (await barberFirstName(bk.barber_id)) || 'Your barber';
+      const cust = (await firstNameOf(bk.customer_id)) || 'Your customer';
+      await pushUser(bk.customer_id, 'Your cut is ' + whenText(bk.scheduled_at), barber + ' is coming to you. Have your PIN ready in the app.', { bookingId: bk.id });
+      await pushBarber(bk.barber_id, 'Coming up: ' + cust + ' ' + whenText(bk.scheduled_at),
+        (bk.service_name || 'Haircut') + (bk.address ? ' · ' + bk.address : '') + '. Tap Start driving when you head out.', { bookingId: bk.id });
     }
   }
 
@@ -472,6 +507,7 @@ module.exports = function createMarketplace(ctx) {
       }
     } catch (e) { console.error('[housekeeping] quests', e.message); }
     try { await notifyWaitlist(); } catch (e) { console.error('[housekeeping] waitlist', e.message); }
+    try { await remindScheduled(); } catch (e) { console.error('[housekeeping] reminders', e.message); }
   }
   if (supabase) setInterval(housekeeping, 5 * 60 * 1000);
 
@@ -683,14 +719,21 @@ module.exports = function createMarketplace(ctx) {
         const svc = svcs.find(s => s.name.toLowerCase() === want) || svcs[0];
         const lat = Number(d.lat), lng = Number(d.lng);
         const mult = await demandMultiplier(Number.isFinite(lat) && d.lat != null ? lat : barber.home_lat, Number.isFinite(lng) && d.lng != null ? lng : barber.home_lng).catch(() => 1);
-        const flex = !!d.flex;
-        const q = quote(svc.price_cents, mult, flex);
+        let scheduledAt = null;
+        if (d.scheduledAt) {
+          const at = Date.parse(d.scheduledAt);
+          if (!Number.isFinite(at) || at < Date.now() + SCHEDULE_MIN_MS - 5 * 60 * 1000 || at > Date.now() + SCHEDULE_MAX_MS)
+            return sendJSON(res, 400, { ok: false, error: 'Pick a time at least 90 minutes from now and within the next 5 days.' }), true;
+          scheduledAt = new Date(at).toISOString();
+        }
+        const flex = !!d.flex && !scheduledAt;
+        const q = quote(svc.price_cents, scheduledAt ? 1 : mult, flex);
         const servicePrice = q.servicePrice, fee = q.platformFee, total = q.total;
         const params = {
           amount: total, currency: 'usd', capture_method: 'manual', payment_method_types: ['card'],
           metadata: { customer_id: u.id, barber_id: barber.id, service_name: svc.name,
                       servicePrice: String(servicePrice), platformFee: String(fee), takePercent: String(TAKE_PERCENT),
-                      multiplier: String(q.multiplier), flex: flex ? '1' : '0' }
+                      multiplier: String(q.multiplier), flex: flex ? '1' : '0', scheduled_at: scheduledAt || '' }
         };
         const sc = stripeFor(u);
         if (barber.stripe_account_id && sc === stripe) {
@@ -738,6 +781,7 @@ module.exports = function createMarketplace(ctx) {
           lng: Number.isFinite(Number(d.lng)) ? Number(d.lng) : null,
           arrival_pin: pin4(), payment_intent_id: piId,
           flex: pi.metadata.flex === '1',
+          ...(pi.metadata.scheduled_at ? { scheduled_at: pi.metadata.scheduled_at } : {}),
           flex_until: pi.metadata.flex === '1' ? new Date(Date.now() + FLEX_WINDOW_MS).toISOString() : null
         }).select().single();
         if (error) {
@@ -747,6 +791,8 @@ module.exports = function createMarketplace(ctx) {
         }
         const { data: barber } = await supabase.from('barbers').select('is_demo').eq('id', bk.barber_id).maybeSingle();
         if (barber && barber.is_demo) runDemoTrip(bk);
+        else if (bk.scheduled_at) pushBarber(bk.barber_id, 'New booking · ' + whenText(bk.scheduled_at),
+          (bk.service_name || 'Haircut') + ' · you earn ' + money(bk.service_price_cents) + '. Open Catch a Fade to accept.', { bookingId: bk.id });
         else if (bk.flex) pushBarber(bk.barber_id, 'New flexible request · ' + (bk.service_name || 'Haircut'),
           'You earn ' + money(bk.service_price_cents) + '. Any time in the next 2 hours. Open Catch a Fade to accept.', { bookingId: bk.id });
         else pushBarber(bk.barber_id, 'New request · ' + (bk.service_name || 'Haircut'),
@@ -911,7 +957,11 @@ module.exports = function createMarketplace(ctx) {
             if (action === 'cancel') {
               if (!['accepted', 'en_route', 'arrived'].includes(bk.status)) return bad('This booking can no longer be cancelled.');
               const sinceAccept = Date.now() - new Date(bk.accepted_at || bk.created_at).getTime();
-              const fee = (bk.status === 'arrived' || sinceAccept > FREE_CANCEL_MS) ? CANCEL_FEE_CENTS : 0;
+              const at = bk.scheduled_at ? Date.parse(bk.scheduled_at) : 0;
+              const free = at
+                ? bk.status === 'accepted' && (Date.now() < at - SCHEDULE_FREE_CANCEL_MS || Date.now() > at + SCHEDULE_LATE_MS)
+                : sinceAccept <= FREE_CANCEL_MS;
+              const fee = (bk.status === 'arrived' || !free) ? CANCEL_FEE_CENTS : 0;
               if (fee > 0) await captureHold(bk.payment_intent_id, fee); else await cancelHold(bk.payment_intent_id);
               return reply(200, { ok: true, cancellationFee: fee,
                 booking: await setBooking(bk.id, { status: bk.status === 'arrived' ? 'no_show' : 'cancelled', cancel_fee_cents: fee }) }), true;
