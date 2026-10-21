@@ -23,7 +23,7 @@ function landing() {
     + '<title>Barbers · Catch a Fade</title>'
     + '<meta name="description" content="House calls for licensed Florida barbers. Set your prices, choose your hours, keep 100% of your price plus tips.">'
     + '<meta property="og:title" content="Barbers: get booked for house calls">'
-    + '<meta property="og:description" content="Set your prices, choose your hours, keep 100% of your price plus tips. Starting in Gainesville, FL.">'
+    + '<meta property="og:description" content="Set your prices, choose your hours, keep 100% of your price plus tips. Starting in Florida.">'
     + '<meta property="og:image" content="https://catch-a-fade.onrender.com/apple-touch-icon.png">'
     + '<meta name="apple-itunes-app" content="app-id=6790179224">'
     + '<style>'
@@ -50,7 +50,7 @@ function landing() {
     + '</style></head><body><div class="w">'
     + '<div class="top"><div class="mark">' + SCISSORS + '</div>Catch a Fade<small>For barbers</small></div>'
     + '<h1>Cut at their place. Keep what you charge.</h1>'
-    + '<p class="lede">Catch a Fade sends house-call requests to licensed barbers, starting in Gainesville, FL. Set your prices, go online when you want, and keep 100% of your price plus every tip.</p>'
+    + '<p class="lede">Catch a Fade sends house-call requests to licensed barbers, starting in Florida. Set your prices, go online when you want, and keep 100% of your price plus every tip.</p>'
     + '<div class="demand" id="demand"></div>'
     + '<a class="btn" href="' + APP_STORE_URL + '">Get the app and apply</a>'
     + '<p class="hint">Already have it? Open Catch a Fade and tap <b>Are you a barber?</b></p>'
@@ -68,9 +68,9 @@ function landing() {
     + '<div class="end"><a class="btn" href="' + APP_STORE_URL + '">Download Catch a Fade</a></div>'
     + '<div class="f"><a href="/barber-agreement">Barber agreement</a> · <a href="/terms">Terms</a> · <a href="/privacy">Privacy</a> · <a href="/support">Support</a><br>Barbers on Catch a Fade are independent professionals.</div>'
     + '</div>'
-    // real demand: customers in Gainesville who asked to be told when a barber is online (shown from 3 up)
+    // real demand: customers near the launch area who asked to be told when a barber is online (shown from 3 up)
     + '<script>fetch("/api/waitlist/count?lat=29.65&lng=-82.34").then(function(r){return r.json()}).then(function(j){'
-    + 'if(j&&j.ok&&j.waiting>=3){var d=document.getElementById("demand");d.innerHTML="🔔 <b>"+j.waiting+" people</b> in Gainesville are waiting for a barber to go online.";d.style.display="block"}}).catch(function(){})</script>'
+    + 'if(j&&j.ok&&j.waiting>=3){var d=document.getElementById("demand");d.innerHTML="🔔 <b>"+j.waiting+" people</b> are waiting for a barber to go online near them.";d.style.display="block"}}).catch(function(){})</script>'
     + '</body></html>';
 }
 
@@ -99,7 +99,7 @@ function flyer() {
     + '@media screen and (max-width:8.6in){.page{zoom:.45}}'
     + '</style></head><body>'
     + '<div class="bar">Print on letter paper, then post it at barber schools, shops and campus boards.<button onclick="print()">Print flyer</button></div>'
-    + '<div class="page"><div class="hd"><div class="k">BARBERS WANTED · GAINESVILLE</div><h1>Get booked for house calls.</h1></div>'
+    + '<div class="page"><div class="hd"><div class="k">BARBERS WANTED · FLORIDA</div><h1>Get booked for house calls.</h1></div>'
     + '<div class="bd"><ul class="pts">'
     + '<li>Set your own prices<small>Fades, tapers, lineups, beards, kids cuts</small></li>'
     + '<li>Keep 100% of your price<small>Plus 100% of your tips</small></li>'
@@ -119,9 +119,9 @@ function flyer() {
 function home() {
   return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
     + '<title>Catch a Fade · A barber at your door</title>'
-    + '<meta name="description" content="Book a licensed barber to come to your place in Gainesville, FL. See the full price first, pay with Apple Pay, tip after.">'
+    + '<meta name="description" content="Book a licensed barber to come to your place, starting in Florida. See the full price first, pay with Apple Pay, tip after.">'
     + '<meta property="og:title" content="Catch a Fade · A barber at your door">'
-    + '<meta property="og:description" content="Book a licensed barber to come to your place. Starting in Gainesville, FL.">'
+    + '<meta property="og:description" content="Book a licensed barber to come to your place. Starting in Florida.">'
     + '<meta property="og:image" content="https://catch-a-fade.onrender.com/apple-touch-icon.png">'
     + '<meta name="apple-itunes-app" content="app-id=6790179224">'
     + '<link rel="apple-touch-icon" href="/apple-touch-icon.png">'
@@ -149,7 +149,7 @@ function home() {
     + '</style></head><body><div class="w">'
     + '<div class="top"><div class="mark">' + SCISSORS + '</div>Catch a Fade<a href="/barbers">For barbers →</a></div>'
     + '<h1>A barber at your door.</h1>'
-    + '<p class="lede">Book a licensed barber to come to your place: your dorm, your apartment, your house. Starting in Gainesville, FL.</p>'
+    + '<p class="lede">Book a licensed barber to come to your place: your dorm, your apartment, your house. Starting in Florida.</p>'
     + '<a class="btn" href="' + APP_STORE_URL + '"><svg width="17" height="20" viewBox="0 0 17 20" fill="currentColor" aria-hidden="true"><path d="M14.1 10.6c0-2.5 2-3.7 2.1-3.8-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.9-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.3 10.1.8 1.2 1.8 2.6 3.1 2.5 1.2-.1 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.4 1-1.4 1.3-2.7 1.4-2.8-.1 0-2.5-1-2.5-4.1zM11.7 3.2c.7-.8 1.1-1.9 1-3-.9 0-2.1.6-2.8 1.4-.6.7-1.2 1.9-1 3 1 .1 2.1-.5 2.8-1.4z"/></svg>Download on the App Store</a>'
     + '<p class="hint">Free to download. No barber online near you yet? Tap <b>Notify me</b> in the app and we\'ll tell you the moment one is.</p>'
     + '<div class="feats">'
@@ -163,7 +163,7 @@ function home() {
     + '<div class="step"><em>2</em><div><b>Choose your cut</b><span>ASAP, or Wait & Save to pay less when you can wait up to 2 hours.</span></div></div>'
     + '<div class="step"><em>3</em><div><b>They come to you</b><span>Live tracking, a PIN at the door, and a fresh cut without leaving home.</span></div></div>'
     + '<a class="barber" href="/barbers"><b>Are you a barber? ✂</b><span>Set your prices, keep 100% plus tips, go online when you want.</span></a>'
-    + '<div class="foot"><a href="/support">Support</a> · <a href="/terms">Terms</a> · <a href="/privacy">Privacy</a> · <a href="/barbers">Barbers</a><br>© 2026 Catch a Fade · Gainesville, FL</div>'
+    + '<div class="foot"><a href="/support">Support</a> · <a href="/terms">Terms</a> · <a href="/privacy">Privacy</a> · <a href="/barbers">Barbers</a><br>© 2026 Catch a Fade · Florida</div>'
     + '</div></body></html>';
 }
 
