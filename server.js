@@ -578,7 +578,9 @@ const server = http.createServer((req, res) => {
 
   // Static files
   let pathname = decodeURIComponent(url.pathname);
-  if (pathname === '/' && req.method === 'GET') return sendHTML(res, recruit.home());   // the front door
+  // advertising page (Instagram bio, ads): its own address, not part of the app's site
+  if ((pathname === '/get' || pathname === '/get/') && req.method === 'GET') return sendHTML(res, recruit.home());
+  if (pathname === '/') pathname = '/index.html';
   if (pathname === '/app/') { res.writeHead(301, { Location: '/app' + (url.search || '') }); return res.end(); }
   if (pathname === '/app') pathname = '/index.html';                                     // the web app itself
   if (!isPublicPath(pathname)) { res.writeHead(404); return res.end('not found'); }

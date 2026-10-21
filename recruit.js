@@ -113,7 +113,8 @@ function flyer() {
     + '</body></html>';
 }
 
-// The customer front door: catch-a-fade.onrender.com (the web app itself moved to /app).
+// Advertising page for customers: catch-a-fade.onrender.com/get (Instagram bio, ads).
+// Not linked from the app or the site's main page.
 // Only claims that are true today: licensed barbers, price shown first, card charged
 // when the cut is done, tips 100% to the barber.
 function home() {

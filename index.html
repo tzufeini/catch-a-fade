@@ -6068,7 +6068,7 @@ function forgotPassword(){
   var v=(document.getElementById('authEmailInput').value||'').trim();
   if(!v || v.indexOf('@')<1){ notify('Enter your email first','Type the email on your account, then tap “Forgot password?”.'); return; }
   var c=(typeof sbReady==='function')?sbReady():null; if(!c) return;
-  c.auth.resetPasswordForEmail(v, { redirectTo:'https://catch-a-fade.onrender.com/app' }).then(function(r){
+  c.auth.resetPasswordForEmail(v, { redirectTo:'https://catch-a-fade.onrender.com/' }).then(function(r){
     if(r && r.error){ notifyErr('Couldn\'t send the email', /rate|seconds|many/i.test(r.error.message||'') ? 'Please wait a minute and try again.' : 'Please try again.'); return; }
     notify('Check your inbox','We sent a link to '+v+' to reset your password.');
   });
