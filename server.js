@@ -578,7 +578,9 @@ const server = http.createServer((req, res) => {
 
   // Static files
   let pathname = decodeURIComponent(url.pathname);
-  if (pathname === '/') pathname = '/index.html';
+  if (pathname === '/' && req.method === 'GET') return sendHTML(res, recruit.home());   // the front door
+  if (pathname === '/app/') { res.writeHead(301, { Location: '/app' + (url.search || '') }); return res.end(); }
+  if (pathname === '/app') pathname = '/index.html';                                     // the web app itself
   if (!isPublicPath(pathname)) { res.writeHead(404); return res.end('not found'); }
   const filePath = path.normalize(path.join(ROOT, pathname));
   if (!filePath.startsWith(ROOT)) { res.writeHead(403); return res.end('forbidden'); }

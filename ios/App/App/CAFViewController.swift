@@ -8,5 +8,6 @@ class CAFViewController: CAPBridgeViewController {
         bridge?.registerPluginInstance(CAFLivePlugin())
         bridge?.registerPluginInstance(CAFHapticsPlugin())
         bridge?.registerPluginInstance(CAFApplePayPlugin())
+        bridge?.registerPluginInstance(CAFReviewPlugin())
     }
 }

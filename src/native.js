@@ -362,6 +362,9 @@ async function apInit(pk) {
   if (pk && pk !== _apPk) { await StripeNative.initialize({ publishableKey: pk }); _apPk = pk; }
 }
 const CAFApplePay = registerPlugin('CAFApplePay');
+const CAFReview = registerPlugin('CAFReview');
+// Apple's rating popup (iOS decides whether it actually appears)
+window.CAF_REVIEW = () => CAFReview.request().catch(() => {});
 const applePayBridge = {
   // { supported, hasCards }: whether this device can use Apple Pay at all, and
   // whether a card we accept is in Wallet (ios/App/App/CAFApplePayPlugin.swift)

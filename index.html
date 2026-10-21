@@ -443,6 +443,14 @@ body.light .park{background:rgba(70,201,139,.22);}
 .scConsent p{font-size:12.5px;color:var(--dim);line-height:1.5;margin:0 0 12px}
 .scConsent .btn{font-size:14px;padding:12px;width:100%}
 .scConsentAlt{text-align:center;margin-top:10px;font-size:12.5px;color:var(--blue);font-weight:700;cursor:pointer}
+.bkNotes{width:100%;box-sizing:border-box;background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;font:500 14px/1.45 inherit;color:var(--text);resize:none}
+.bkNotes:focus{outline:none;border-color:var(--blue)}
+.bkUsual{display:flex;align-items:center;gap:8px;margin-top:8px;font-size:12.5px;color:var(--dim);cursor:pointer}
+.bkUsualBox{width:18px;height:18px;border-radius:6px;border:1.5px solid var(--line2);flex-shrink:0;position:relative}
+.bkUsualBox.on{background:var(--blue);border-color:var(--blue)}
+.bkUsualBox.on:after{content:"";position:absolute;left:5px;top:1.5px;width:5px;height:9px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.rqNotes{margin-top:10px;padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.06);font-size:13px;line-height:1.45;white-space:pre-wrap}
+.rqNotes b{display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;opacity:.6;margin-bottom:3px}
 .rebookCard{display:flex;align-items:center;gap:12px;margin:0 0 12px;padding:12px 14px;border-radius:18px;background:var(--card);border:1.5px solid var(--line2);cursor:pointer;}
 .rebookCard .av{width:44px;height:44px;border-radius:13px;font-size:15px;flex-shrink:0;}
 .rebookCard b{display:block;font-size:14.5px;font-weight:760;}
@@ -1416,6 +1424,7 @@ html.native .ob-tip{ font-size:14px; }
       <div class="apLine"><div class="apLabel">Customer</div><div class="apValue" id="rqCust">—</div></div>
       <div class="apLine"><div class="apLabel">Distance</div><div class="apValue" id="rqDist">—</div></div>
       <div class="apLine"><div class="apLabel">Address</div><div class="apValue" id="rqAddr" style="max-width:62%;text-align:right;white-space:normal">—</div></div>
+      <div class="rqNotes" id="rqNotes" style="display:none"></div>
       <button class="btn green" id="rqAccept" data-hap="press" style="width:100%;margin-top:16px" onclick="mkAcceptRequest()">Accept</button>
       <button class="apCancel" onclick="mkDeclineRequest()">Decline</button>
     </div>
@@ -2229,6 +2238,10 @@ html.native .ob-tip{ font-size:14px; }
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.2"><path d="M12 21s-7-5.2-7-11a7 7 0 1 1 14 0c0 5.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
         </div><div class="ol"><b id="bkLoc">Set your location</b><small>Where should your barber come?</small></div>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--dim)" stroke-width="2.4"><path d="M9 6l6 6-6 6"/></svg></div>
+
+      <h3 style="font-size:13px;font-weight:720;color:var(--dim);text-transform:uppercase;letter-spacing:.6px;margin:18px 0 10px">Notes for your barber</h3>
+      <textarea id="bkNotes" class="bkNotes" maxlength="300" rows="2" placeholder="e.g. Skin fade, #1 on the sides, keep 2 inches on top, sharp lineup"></textarea>
+      <div class="bkUsual" onclick="toggleSaveUsual()"><span id="bkUsualBox" class="bkUsualBox on"></span>Save as my usual for next time</div>
 
       <h3 style="font-size:13px;font-weight:720;color:var(--dim);text-transform:uppercase;letter-spacing:.6px;margin:18px 0 10px">When</h3>
       <div class="seg" id="whenSeg">
@@ -3054,7 +3067,10 @@ loadGoogleMaps();
 
 /* ---------- nav stack ---------- */
 const TABS=['home','bookings','messages','profile'];
-const OB_TOTAL = 16; // total onboarding screens (Acts 1–3)
+const OB_TOTAL = 16; // highest onboarding screen number
+// The first run is short: welcome → a barber comes to you → licensed & checked → sign up.
+// (The best apps get people to something useful in under 30 seconds.)
+const OB_FLOW = [1, 3, 11, 16];
 // Onboarding is for first-time users only: anyone who finished or skipped it, or
 // is signed in, opens straight on home.
 let stack = (function(){ try{ if(localStorage.getItem('fadex_logged_in')==='1' || localStorage.getItem('fadex_onboarded')==='1') return ['home']; }catch(e){} return ['ob1']; })();
@@ -3072,6 +3088,7 @@ function render(){
   if(top==='messages') renderInbox();
   if(top==='profile') updatePrefStyleSub();
   if(top==='paymentMethods') renderCards();
+  if(top==='booking') fillBookingNotes();
   if(top==='safety'){ renderTrustedContact(); renderBlockedList(); }
   // onboarding: progress bar + re-animate entrance + per-screen effects
   const _obP=document.getElementById('obProg'), _obF=document.getElementById('obFill');
@@ -3080,7 +3097,8 @@ function render(){
   if(top && /^ob\d+$/.test(top)){
     const _obStep=parseInt(top.replace('ob',''),10);
     if(_obP) _obP.style.display='block';
-    if(_obF) _obF.style.width=(_obStep/OB_TOTAL*100)+'%';
+    const _obIx=OB_FLOW.indexOf(_obStep);
+    if(_obF) _obF.style.width=((_obIx<0 ? _obStep/OB_TOTAL : (_obIx+1)/OB_FLOW.length)*100)+'%';
     obClearTimers();                                  // stop any stray count-up/dot timers from a prior screen
     if(top!=='ob8'){ const _m=document.getElementById('ob8Modal'); if(_m) _m.classList.remove('show'); }
     if(top==='ob5') ob5Reset();
@@ -5257,6 +5275,7 @@ function submitRating(){
   haptic('success');
   fillReceipt();
   nav('receipt');
+  maybeAskForReview();
   notify('Rating submitted', rateStars+'★ for '+first+' — thanks for the feedback!');
 }
 // Tip: a separate payment (card or Apple Pay), 100% to the barber.
@@ -5267,10 +5286,19 @@ async function startTip(first){
     tip:{ bookingId:window._lastBookingId, amountCents:amount } }, async function(pi){
     const j=await mkApi('/api/tips/confirm', { bookingId:window._lastBookingId, paymentIntentId:(pi&&pi.id)||_payIntentId });
     window._lastTipCents = j && j.ok ? amount : 0;
-    fillReceipt(); nav('receipt');
+    fillReceipt(); nav('receipt'); maybeAskForReview();
     if(j && j.ok){ haptic('success'); notify('Thanks for the tip 💸', first+' gets all of it.'); }
     else notifyErr('Tip didn\'t go through', (j&&j.error)||'Your rating was saved.');
   });
+}
+// Apple's own rating popup, only right after a 5-star cut and at most every 4 months
+// (Apple itself caps it at 3 a year). Never from a button, never after a problem.
+function maybeAskForReview(){
+  if(rateStars!==5 || !window.CAF_REVIEW) return;
+  let last=0; try{ last=Number(localStorage.getItem('fadex_review_asked')||0); }catch(e){}
+  if(Date.now()-last < 120*24*3600*1000) return;
+  try{ localStorage.setItem('fadex_review_asked', String(Date.now())); }catch(e){}
+  setTimeout(function(){ try{ window.CAF_REVIEW(); }catch(e){} }, 1400);
 }
 function fillReceipt(){
   const b=tripBarber();
@@ -5837,9 +5865,8 @@ function obNext(){
   const top=stack[stack.length-1];
   if(!top || !/^ob\d+$/.test(top)) return;
   const step=parseInt(top.replace('ob',''),10);
-  let next=step+1;
-  while(next<=OB_TOTAL && !document.getElementById('ob'+next)) next++; // skip any removed screens
-  if(next>OB_TOTAL){ obComplete(); return; }
+  const next=OB_FLOW.find(n=>n>step && document.getElementById('ob'+n));
+  if(!next){ obComplete(); return; }
   stack.push('ob'+next); render(); haptic();
 }
 function markOnboarded(){ try{ sessionStorage.setItem('fadex_seen_ob','1'); localStorage.setItem('fadex_onboarded','1'); }catch(e){} }
@@ -6041,7 +6068,7 @@ function forgotPassword(){
   var v=(document.getElementById('authEmailInput').value||'').trim();
   if(!v || v.indexOf('@')<1){ notify('Enter your email first','Type the email on your account, then tap “Forgot password?”.'); return; }
   var c=(typeof sbReady==='function')?sbReady():null; if(!c) return;
-  c.auth.resetPasswordForEmail(v, { redirectTo:'https://catch-a-fade.onrender.com/' }).then(function(r){
+  c.auth.resetPasswordForEmail(v, { redirectTo:'https://catch-a-fade.onrender.com/app' }).then(function(r){
     if(r && r.error){ notifyErr('Couldn\'t send the email', /rate|seconds|many/i.test(r.error.message||'') ? 'Please wait a minute and try again.' : 'Please try again.'); return; }
     notify('Check your inbox','We sent a link to '+v+' to reset your password.');
   });
@@ -6561,6 +6588,16 @@ async function mkResolveBarber(barberId){
 }
 
 /* ---------- customer: request a booking ---------- */
+/* "My usual": the customer's cut notes stay on this phone and go with each request,
+ * so only the barber they book ever sees them. */
+function myUsual(){ try{ return localStorage.getItem('fadex_usual')||''; }catch(e){ return ''; } }
+let _saveUsual=true;
+function toggleSaveUsual(){ _saveUsual=!_saveUsual; const b=document.getElementById('bkUsualBox'); if(b) b.classList.toggle('on',_saveUsual); haptic('select'); }
+function bookingNotes(){
+  const t=document.getElementById('bkNotes'); const v=(t&&t.value||'').replace(/\s+/g,' ').trim().slice(0,300);
+  try{ if(_saveUsual) localStorage.setItem('fadex_usual', v); }catch(e){}
+  return v;
+}
 async function confirmBooking(){
   // 5.1.1: browsing is free; BOOKING is the account-based feature.
   const sess=await mkSession();
@@ -6578,6 +6615,8 @@ async function confirmBooking(){
     amount: svcPrice, barberId: b.id, serviceName: svcName, accessToken: sess.access_token, flex: bookFlex
   }, function(pi){ mkRequestBooking(pi && pi.id); });
 }
+// fill the notes box with "my usual" whenever the booking screen opens
+function fillBookingNotes(){ const t=document.getElementById('bkNotes'); if(t && !t.value) t.value=myUsual(); }
 async function mkRequestBooking(piId){
   resetFindingScreen();
   nav('finding');
@@ -6585,7 +6624,7 @@ async function mkRequestBooking(piId){
   document.getElementById('findTitle').textContent='Sending your request…';
   document.getElementById('findSub').textContent='Reaching '+first+'.';
   const loc=(document.getElementById('bkLoc')||{}).textContent||userProfile.address||'';
-  const j=await mkApi('/api/bookings/request', { paymentIntentId:piId, address:loc, lat:userLL[0], lng:userLL[1] });
+  const j=await mkApi('/api/bookings/request', { paymentIntentId:piId, address:loc, lat:userLL[0], lng:userLL[1], notes:bookingNotes() });
   if(!j || !j.ok){
     notifyErr('Request didn\'t go through', (j&&j.error)||'Please try again. Your card was not charged.');
     stack=stack.filter(s=>s!=='finding'); render();
@@ -7233,6 +7272,8 @@ async function mkShowRequest(bk){
   document.getElementById('rqSvc').textContent=bk.service_name||'Haircut';
   document.getElementById('rqEarn').textContent=mkMoney(bk.service_price_cents);
   document.getElementById('rqAddr').textContent=bk.address||'Customer\'s location';
+  (function(){ const n=document.getElementById('rqNotes'); if(!n) return;
+    n.style.display=bk.notes?'':'none'; n.innerHTML=bk.notes?'<b>Customer notes</b>'+escapeHtml(bk.notes):''; })();
   document.getElementById('rqCust').textContent=mkFirst(await mkProfileName(bk.customer_id)||'Customer');
   const here=mkMyLL || userLL;
   document.getElementById('rqDist').textContent=(bk.lat!=null? (Math.round(mkMiles(here,[bk.lat,bk.lng])*10)/10)+' mi · ~'+mkEtaMin(mkMiles(here,[bk.lat,bk.lng]))+' min' : '—');
@@ -7299,6 +7340,7 @@ function mkRenderJob(){
     +'<div style="font-size:18px;font-weight:780;margin-top:4px">'+escapeHtml(mkJobCustName||'Customer')+' · '+escapeHtml(k.service_name||'Haircut')+'</div>'
     +'<div style="color:var(--dim);font-size:13px;margin-top:3px">'+escapeHtml(k.address||'')+'</div>'
     +'<div style="color:var(--dim);font-size:13px;margin-top:2px">You earn '+mkMoney(k.service_price_cents)+'</div>'
+    +(k.notes?'<div style="margin-top:10px;padding:10px 12px;border-radius:12px;background:var(--card2);font-size:13px;line-height:1.45"><b style="display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim);margin-bottom:3px">Customer notes</b>'+escapeHtml(k.notes)+'</div>':'')
     +'<div style="display:flex;gap:8px;margin:12px 0">'+nav+chat+'</div>'+main
     +(['accepted','en_route','arrived'].includes(k.status)?'<div style="text-align:center;margin-top:10px"><span style="color:#FF7A7A;font-size:12.5px;font-weight:650;cursor:pointer" onclick="mkJobAction(\'cancel\')">Cancel job</span></div>':'')
     +'</div>';

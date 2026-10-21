@@ -341,6 +341,26 @@ module.exports = function createMarketplace(ctx) {
     }
   }
 
+  /* ---- "Time for a fresh cut?" three weeks after a completed cut ----
+   * Once per cut, and only if the customer hasn't booked again since. */
+  const REBOOK_AFTER_DAYS = 21;
+  async function remindRebooks() {
+    const day = 24 * 3600 * 1000;
+    const from = new Date(Date.now() - (REBOOK_AFTER_DAYS + 3) * day).toISOString();
+    const to = new Date(Date.now() - REBOOK_AFTER_DAYS * day).toISOString();
+    const { data: done } = await supabase.from('bookings').select('id, customer_id, barber_id, service_name, updated_at')
+      .eq('status', 'completed').is('rebook_reminded_at', null).gte('updated_at', from).lte('updated_at', to).limit(200);
+    for (const b of done || []) {
+      await supabase.from('bookings').update({ rebook_reminded_at: new Date().toISOString() }).eq('id', b.id);
+      const { count } = await supabase.from('bookings').select('id', { count: 'exact', head: true })
+        .eq('customer_id', b.customer_id).gt('created_at', b.updated_at);
+      if (count) continue;                                   // already booked again
+      const barber = (await barberFirstName(b.barber_id)) || 'your barber';
+      await pushUser(b.customer_id, 'Time for a fresh cut? ✂',
+        'It\'s been 3 weeks since your ' + (b.service_name || 'cut') + ' with ' + barber + '. Tap to book again.', { type: 'rebook', barberId: b.barber_id });
+    }
+  }
+
   /* ---- quests: "complete 10 cuts this week, earn a $15 bonus" ----
    * Weeks run Monday 00:00 to Sunday 23:59 Eastern. The bonus is a Stripe transfer
    * to the barber's connected account, paid once per week (idempotent). */
@@ -448,6 +468,7 @@ module.exports = function createMarketplace(ctx) {
           await releaseHeldEarnings(b).catch(() => {});
           await payQuestIfDue(b).catch(() => {});
         }
+        await remindRebooks().catch(e => console.error('[housekeeping] rebook', e.message));
       }
     } catch (e) { console.error('[housekeeping] quests', e.message); }
     try { await notifyWaitlist(); } catch (e) { console.error('[housekeeping] waitlist', e.message); }
@@ -707,7 +728,9 @@ module.exports = function createMarketplace(ctx) {
         if (pi.status !== 'requires_capture') return sendJSON(res, 400, { ok: false, error: 'Card authorization did not complete.' }), true;
         await supabase.from('profiles').upsert({ id: u.id }, { onConflict: 'id', ignoreDuplicates: true });
         const sp = Number(pi.metadata.servicePrice), fee = Number(pi.metadata.platformFee);
+        const notes = String(d.notes || '').replace(/\s+/g, ' ').trim().slice(0, 300);   // "my usual", for this barber only
         const { data: bk, error } = await supabase.from('bookings').insert({
+          ...(notes ? { notes } : {}),
           customer_id: u.id, barber_id: pi.metadata.barber_id, status: 'requested',
           service_name: pi.metadata.service_name, service_price_cents: sp, fee_cents: fee, total_cents: sp + fee,
           address: String(d.address || '').slice(0, 300) || null,
@@ -717,7 +740,11 @@ module.exports = function createMarketplace(ctx) {
           flex: pi.metadata.flex === '1',
           flex_until: pi.metadata.flex === '1' ? new Date(Date.now() + FLEX_WINDOW_MS).toISOString() : null
         }).select().single();
-        if (error) { await cancelHold(piId); return sendJSON(res, 500, { ok: false, error: error.message }), true; }
+        if (error) {
+          await cancelHold(piId);
+          const blocked = /isn't allowed/.test(error.message || '');
+          return sendJSON(res, blocked ? 400 : 500, { ok: false, error: blocked ? 'Your notes contain language that isn\'t allowed. Edit them and try again. Your card was not charged.' : error.message }), true;
+        }
         const { data: barber } = await supabase.from('barbers').select('is_demo').eq('id', bk.barber_id).maybeSingle();
         if (barber && barber.is_demo) runDemoTrip(bk);
         else if (bk.flex) pushBarber(bk.barber_id, 'New flexible request · ' + (bk.service_name || 'Haircut'),

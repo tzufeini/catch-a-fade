@@ -113,4 +113,58 @@ function flyer() {
     + '</body></html>';
 }
 
-module.exports = { landing, flyer, PAGE_URL };
+// The customer front door: catch-a-fade.onrender.com (the web app itself moved to /app).
+// Only claims that are true today: licensed barbers, price shown first, card charged
+// when the cut is done, tips 100% to the barber.
+function home() {
+  return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
+    + '<title>Catch a Fade · A barber at your door</title>'
+    + '<meta name="description" content="Book a licensed barber to come to your place in Gainesville, FL. See the full price first, pay with Apple Pay, tip after.">'
+    + '<meta property="og:title" content="Catch a Fade · A barber at your door">'
+    + '<meta property="og:description" content="Book a licensed barber to come to your place. Starting in Gainesville, FL.">'
+    + '<meta property="og:image" content="https://catch-a-fade.onrender.com/apple-touch-icon.png">'
+    + '<meta name="apple-itunes-app" content="app-id=6790179224">'
+    + '<link rel="apple-touch-icon" href="/apple-touch-icon.png">'
+    // a password-reset link lands here with tokens in the hash: hand it to the web app
+    + '<script>if(/access_token|type=recovery|error_description/.test(location.hash))location.replace("/app"+location.hash)</script>'
+    + '<style>'
+    + ':root{--bg:#F4EDE1;--ink:#15110D;--dim:#5C616C;--line:rgba(21,17,13,.12);--card:#FBF7F0;--green:#2E9E6A}'
+    + '*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",Segoe UI,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}'
+    + '.w{max-width:560px;margin:0 auto;padding:22px 20px 56px}'
+    + '.top{display:flex;align-items:center;gap:9px;font-weight:800;font-size:16px}.top a{margin-left:auto;font-weight:650;color:var(--dim);font-size:13px;text-decoration:none}'
+    + '.mark{width:34px;height:34px;border-radius:10px;background:var(--ink);color:var(--bg);display:flex;align-items:center;justify-content:center}'
+    + 'h1{font-size:42px;line-height:1.03;letter-spacing:-1.4px;margin:38px 0 14px}'
+    + '.lede{font-size:17px;line-height:1.5;color:#3A3530;margin:0 0 24px}'
+    + '.btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:17px;border-radius:16px;font-weight:760;font-size:16.5px;text-decoration:none;background:var(--ink);color:var(--bg)}'
+    + '.hint{font-size:13px;color:var(--dim);text-align:center;margin:10px 0 0;line-height:1.5}'
+    + '.feats{display:grid;gap:10px;margin:34px 0 0}'
+    + '.f{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px}'
+    + '.f i{font-style:normal;font-size:22px;line-height:1;flex:0 0 auto;margin-top:1px}.f b{display:block;font-size:15.5px;margin-bottom:3px}.f span{font-size:14px;color:var(--dim);line-height:1.45}'
+    + 'h2{font-size:13px;text-transform:uppercase;letter-spacing:.9px;color:var(--dim);margin:38px 0 12px}'
+    + '.step{display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)}.step em{font-style:normal;flex:0 0 30px;height:30px;border-radius:50%;background:var(--ink);color:var(--bg);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px}'
+    + '.step b{display:block;font-size:15.5px}.step span{font-size:14px;color:var(--dim);line-height:1.45}'
+    + '.barber{display:block;margin-top:34px;padding:18px;border-radius:18px;background:var(--ink);color:var(--bg);text-decoration:none}.barber b{font-size:16px;display:block}.barber span{font-size:13.5px;opacity:.75}'
+    + '.foot{margin-top:30px;font-size:12px;color:#8C9099;text-align:center;line-height:1.8}.foot a{color:#8C9099}'
+    + '@media(min-width:600px){h1{font-size:52px}}'
+    + '</style></head><body><div class="w">'
+    + '<div class="top"><div class="mark">' + SCISSORS + '</div>Catch a Fade<a href="/barbers">For barbers →</a></div>'
+    + '<h1>A barber at your door.</h1>'
+    + '<p class="lede">Book a licensed barber to come to your place: your dorm, your apartment, your house. Starting in Gainesville, FL.</p>'
+    + '<a class="btn" href="' + APP_STORE_URL + '"><svg width="17" height="20" viewBox="0 0 17 20" fill="currentColor" aria-hidden="true"><path d="M14.1 10.6c0-2.5 2-3.7 2.1-3.8-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.9-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.3 10.1.8 1.2 1.8 2.6 3.1 2.5 1.2-.1 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.4 1-1.4 1.3-2.7 1.4-2.8-.1 0-2.5-1-2.5-4.1zM11.7 3.2c.7-.8 1.1-1.9 1-3-.9 0-2.1.6-2.8 1.4-.6.7-1.2 1.9-1 3 1 .1 2.1-.5 2.8-1.4z"/></svg>Download on the App Store</a>'
+    + '<p class="hint">Free to download. No barber online near you yet? Tap <b>Notify me</b> in the app and we\'ll tell you the moment one is.</p>'
+    + '<div class="feats">'
+    + '<div class="f"><i>✅</i><div><b>Licensed, checked barbers</b><span>Every barber\'s Florida license is checked with the state, and their ID is matched to them.</span></div></div>'
+    + '<div class="f"><i>💳</i><div><b>Price first, pay after</b><span>You see the full price before you book. Your card is only charged when the cut is done. Apple Pay works.</span></div></div>'
+    + '<div class="f"><i>📍</i><div><b>Watch them come to you</b><span>Follow your barber on the map, then share a 4-digit PIN at the door.</span></div></div>'
+    + '<div class="f"><i>💈</i><div><b>Tip after, 100% to them</b><span>Rate your cut and tip on the spot. Every dollar of the tip goes to your barber.</span></div></div>'
+    + '</div>'
+    + '<h2>How it works</h2>'
+    + '<div class="step"><em>1</em><div><b>Pick a barber</b><span>See who\'s online near you, their work, reviews and prices.</span></div></div>'
+    + '<div class="step"><em>2</em><div><b>Choose your cut</b><span>ASAP, or Wait & Save to pay less when you can wait up to 2 hours.</span></div></div>'
+    + '<div class="step"><em>3</em><div><b>They come to you</b><span>Live tracking, a PIN at the door, and a fresh cut without leaving home.</span></div></div>'
+    + '<a class="barber" href="/barbers"><b>Are you a barber? ✂</b><span>Set your prices, keep 100% plus tips, go online when you want.</span></a>'
+    + '<div class="foot"><a href="/support">Support</a> · <a href="/terms">Terms</a> · <a href="/privacy">Privacy</a> · <a href="/barbers">Barbers</a><br>© 2026 Catch a Fade · Gainesville, FL</div>'
+    + '</div></body></html>';
+}
+
+module.exports = { landing, flyer, home, PAGE_URL };
