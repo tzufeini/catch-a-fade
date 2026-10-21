@@ -1391,7 +1391,7 @@ html.native .ob-tip{ font-size:14px; }
       <div class="apMerchant" id="payMerchant">Catch a Fade</div>
       <div class="apLine"><div class="apLabel" id="payItem">Haircut</div><div class="apValue" id="payItemAmt">$0.00</div></div>
       <div class="apLine apTotal"><div class="apLabel">Total</div><div class="apValue" id="payTotalAmt">$0.00</div></div>
-      <button id="applePayBtn" type="button" onclick="payWithApplePay()" style="display:none;width:100%;margin-top:16px;height:50px;border:0;border-radius:12px;background:#000;color:#fff;font:600 19px -apple-system,system-ui,sans-serif;align-items:center;justify-content:center;gap:6px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)"><svg width="17" height="20" viewBox="0 0 17 20" fill="currentColor" aria-hidden="true"><path d="M14.1 10.6c0-2.5 2-3.7 2.1-3.8-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.9-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.3 10.1.8 1.2 1.8 2.6 3.1 2.5 1.2-.1 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.4 1-1.4 1.3-2.7 1.4-2.8-.1 0-2.5-1-2.5-4.1zM11.7 3.2c.7-.8 1.1-1.9 1-3.1-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.4z"/></svg>Pay</button>
+      <button id="applePayBtn" type="button" onclick="payWithApplePay()" style="display:none;width:100%;margin-top:16px;height:50px;border:0;border-radius:12px;background:#000;color:#fff;font:600 19px -apple-system,system-ui,sans-serif;align-items:center;justify-content:center;gap:6px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)"><span id="applePayPre" style="display:none;margin-right:2px">Set up</span><svg width="17" height="20" viewBox="0 0 17 20" fill="currentColor" aria-hidden="true"><path d="M14.1 10.6c0-2.5 2-3.7 2.1-3.8-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.9-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.3 10.1.8 1.2 1.8 2.6 3.1 2.5 1.2-.1 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.4 1-1.4 1.3-2.7 1.4-2.8-.1 0-2.5-1-2.5-4.1zM11.7 3.2c.7-.8 1.1-1.9 1-3.1-1 0-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3 1.1.1 2.2-.6 2.9-1.4z"/></svg><span id="applePayLbl">Pay</span></button>
       <div id="applePayOr" style="display:none;align-items:center;gap:10px;color:#8E8E99;font-size:11.5px;font-weight:650;margin-top:14px"><span style="flex:1;height:1px;background:rgba(255,255,255,.14)"></span>or pay with card<span style="flex:1;height:1px;background:rgba(255,255,255,.14)"></span></div>
       <div id="stripeCardBox" style="background:#26262E;border:1px solid rgba(255,255,255,.14);border-radius:13px;padding:15px 14px;margin:16px 0 2px"></div>
       <div id="payErr" style="display:none;color:#FF7B7B;font-size:12.5px;font-weight:650;margin-top:9px;line-height:1.4"></div>
@@ -4499,9 +4499,7 @@ function openPayment(opts, onSuccess){
     _payPk = pi.publishableKey || _stripePk;
     _payHold = !!opts.barberId;
     showApplePayOption(false);
-    if(window.CAF_APPLE_PAY){
-      window.CAF_APPLE_PAY.available(_payPk).then(function(ok){ showApplePayOption(ok); }).catch(function(){});
-    }
+    refreshApplePayOption();
     document.getElementById('paySheet').classList.add('show');
   })
   .catch(function(err){
@@ -4512,12 +4510,33 @@ function openPayment(opts, onSuccess){
 }
 var _payBtnLabel='Pay', _stripePk=null;
 var _payItems=null, _payPk=null, _payHold=false;
-function showApplePayOption(on){
+// mode: 'pay' (card in Wallet), 'setup' (device supports Apple Pay, no card yet), false (hidden)
+var _applePayMode=false;
+function showApplePayOption(mode){
+  if(mode===true) mode='pay';
+  _applePayMode=mode;
   var b=document.getElementById('applePayBtn'), o=document.getElementById('applePayOr');
-  if(b) b.style.display=on?'flex':'none';
-  if(o) o.style.display=on?'flex':'none';
+  if(b){ b.style.display=mode?'flex':'none';
+    var pre=document.getElementById('applePayPre'); if(pre) pre.style.display = mode==='setup' ? 'inline' : 'none';   // "Set up  Pay", Apple's own wording
+    b.setAttribute('aria-label', mode==='setup' ? 'Set up Apple Pay' : 'Pay with Apple Pay'); }
+  if(o) o.style.display=mode?'flex':'none';
 }
+function refreshApplePayOption(){
+  if(!window.CAF_APPLE_PAY) return;
+  window.CAF_APPLE_PAY.available(_payPk).then(function(ok){
+    if(ok){ showApplePayOption('pay'); return; }
+    if(window.CAF_APPLE_PAY.status) window.CAF_APPLE_PAY.status().then(function(st){ showApplePayOption(st && st.supported ? 'setup' : false); });
+  }).catch(function(){});
+}
+// back from Wallet after adding a card: offer Apple Pay right away
+document.addEventListener('visibilitychange', function(){
+  if(document.visibilityState==='visible' && _applePayMode==='setup'){
+    var ps=document.getElementById('paySheet'); if(ps && ps.classList.contains('show')) refreshApplePayOption();
+    if(typeof renderCards==='function') renderCards();
+  }
+});
 function payWithApplePay(){
+  if(_applePayMode==='setup' && window.CAF_APPLE_PAY){ window.CAF_APPLE_PAY.setUp(); return; }
   if(_payBusy || !_payClientSecret || !window.CAF_APPLE_PAY) return;
   _payBusy=true; payShowErr('');
   window.CAF_APPLE_PAY.pay({ pk:_payPk, clientSecret:_payClientSecret, items:_payItems })
@@ -5422,10 +5441,12 @@ function cardBrand(num){
   return 'Card';
 }
 function renderCards(){
-  if(window.CAF_APPLE_PAY){
-    window.CAF_APPLE_PAY.available(null).then(function(ok){
-      var sub=document.getElementById('pmApplePaySub');
-      if(sub) sub.textContent = ok ? 'Ready · pay with the cards in your Apple Wallet' : 'Add a card in the Wallet app to use Apple Pay';
+  if(window.CAF_APPLE_PAY && window.CAF_APPLE_PAY.status){
+    window.CAF_APPLE_PAY.status().then(function(st){
+      var sub=document.getElementById('pmApplePaySub'), row=document.getElementById('pmApplePay');
+      if(sub) sub.textContent = st.hasCards ? 'Ready · choose Apple Pay at checkout' : st.supported ? 'Tap to add a card in Wallet' : 'Not available on this device';
+      if(row){ row.style.cursor = (st.supported && !st.hasCards) ? 'pointer' : 'default';
+        row.onclick = (st.supported && !st.hasCards) ? function(){ _applePayMode='setup'; window.CAF_APPLE_PAY.setUp(); } : null; }
     }).catch(function(){});
   }
   const el=document.getElementById('userCards'); if(!el) return;

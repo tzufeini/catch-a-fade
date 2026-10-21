@@ -361,7 +361,15 @@ let _apPk = null;
 async function apInit(pk) {
   if (pk && pk !== _apPk) { await StripeNative.initialize({ publishableKey: pk }); _apPk = pk; }
 }
+const CAFApplePay = registerPlugin('CAFApplePay');
 const applePayBridge = {
+  // { supported, hasCards }: whether this device can use Apple Pay at all, and
+  // whether a card we accept is in Wallet (ios/App/App/CAFApplePayPlugin.swift)
+  async status() {
+    try { return await CAFApplePay.status(); } catch (_) { return { supported: false, hasCards: false }; }
+  },
+  // Apple's "Set up Apple Pay": opens Wallet to add a card
+  async setUp() { try { await CAFApplePay.setUp(); } catch (_) {} },
   // true when this iPhone has Apple Pay set up with a supported card
   async available(pk) {
     try { await apInit(pk); await StripeNative.isApplePayAvailable(); return true; }

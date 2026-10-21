@@ -23,6 +23,7 @@
 		5FD60E8843AC23090F138036 /* CAFLivePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AC2E2433F0B3BE5A41F973 /* CAFLivePlugin.swift */; };
 		66A2F1E1734BD746D3095E15 /* CAFActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C7B863CAEFBBEB78FF501D /* CAFActivityAttributes.swift */; };
 		B2C8D13D5B5FCD3F280ADC5C /* CAFLiveActivity.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3759C4C8F630A9ACDD588CB5 /* CAFLiveActivity.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D592A18D1A2B57EF28CA3385 /* CAFApplePayPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9228DA650BFFBD7AB13BEA49 /* CAFApplePayPlugin.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		504EC3131FED79650016851F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50B271D01FEDC1A000F3C39B /* public */ = {isa = PBXFileReference; lastKnownFileType = folder; path = public; sourceTree = "<group>"; };
 		619477D61A756E8DDB088293 /* CAFLiveActivity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CAFLiveActivity.swift; sourceTree = "<group>"; };
+		9228DA650BFFBD7AB13BEA49 /* CAFApplePayPlugin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CAFApplePayPlugin.swift; sourceTree = "<group>"; };
 		958DCC722DB07C7200EA8C5F /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = debug.xcconfig; path = ../debug.xcconfig; sourceTree = SOURCE_ROOT; };
 		98C7B863CAEFBBEB78FF501D /* CAFActivityAttributes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CAFActivityAttributes.swift; sourceTree = "<group>"; };
 		B4BCE980C60CFEBDD467110E /* CAFViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CAFViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				C1AC2E2433F0B3BE5A41F973 /* CAFLivePlugin.swift */,
 				B4BCE980C60CFEBDD467110E /* CAFViewController.swift */,
 				DA0E89DF7DAABF08E7DC81B2 /* CAFHapticsPlugin.swift */,
+				9228DA650BFFBD7AB13BEA49 /* CAFApplePayPlugin.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 				1E303D9AAD571F6E25514E4C /* CAFViewController.swift in Sources */,
 				5E33465253C6800902C61B80 /* CAFActivityAttributes.swift in Sources */,
 				01A7F46AD24D76C9C3968628 /* CAFHapticsPlugin.swift in Sources */,
+				D592A18D1A2B57EF28CA3385 /* CAFApplePayPlugin.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,7 +330,7 @@
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "Apple Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = 8P38L363W8;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = CAFLiveActivity/Info.plist;
@@ -464,7 +468,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = App/App.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = 8P38L363W8;
 				INFOPLIST_FILE = App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -489,7 +493,7 @@
 				CODE_SIGN_ENTITLEMENTS = App/App.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = 8P38L363W8;
 				INFOPLIST_FILE = App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -513,7 +517,7 @@
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = 8P38L363W8;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = CAFLiveActivity/Info.plist;

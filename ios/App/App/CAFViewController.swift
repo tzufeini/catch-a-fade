@@ -7,5 +7,6 @@ class CAFViewController: CAPBridgeViewController {
     override open func capacitorDidLoad() {
         bridge?.registerPluginInstance(CAFLivePlugin())
         bridge?.registerPluginInstance(CAFHapticsPlugin())
+        bridge?.registerPluginInstance(CAFApplePayPlugin())
     }
 }
