@@ -17,8 +17,11 @@
 /* leaflet overrides */
 .leaflet-container{background:#0E1118;font-family:inherit;outline:none;touch-action:pan-y;}
 /* fallback map in black & white like Uber: light = grey paper, dark = charcoal */
-.leaflet-tile-pane{filter:grayscale(1) contrast(1.06) brightness(1.03);}
-body:not(.light) .leaflet-tile-pane{filter:grayscale(1) invert(1) brightness(.86) contrast(.9);}
+.leaflet-tile{filter:grayscale(1) contrast(1.06) brightness(1.03);}
+body:not(.light) .leaflet-tile{filter:grayscale(1) invert(1) brightness(.86) contrast(.9);}
+/* Apple's map fades in over the plain map colour, so opening the app never flashes another map */
+.mapFadeIn{animation:mapFadeIn .45s ease both;}
+@keyframes mapFadeIn{from{opacity:0}to{opacity:1}}
 .leaflet-control-attribution{font-size:9px;background:rgba(0,0,0,.4);color:#666;padding:1px 4px;}
 .leaflet-control-attribution a{color:#777;text-decoration:none;}
 .leaflet-control-zoom{display:none;}
@@ -4297,7 +4300,7 @@ function loadAppleMaps(){
   if(_appleState!=='idle') return;
   _appleState='loading';
   apiFetch('/api/mapkit-token',{},15000).then(function(j){
-    if(!j || !j.ok || !j.token){ _appleState='failed'; return; }
+    if(!j || !j.ok || !j.token){ appleMapsFailed(); return; }
     let first=j.token;
     const s=document.createElement('script');
     s.src='https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.js';   // full build: map, annotations, overlays in one file
@@ -4316,11 +4319,23 @@ function loadAppleMaps(){
       }catch(e){ appleMapsFailed(); }
     };
     document.head.appendChild(s);
-  }).catch(function(){ _appleState='failed'; });
+  }).catch(appleMapsFailed);
 }
 function appleMapsFailed(){
-  const was=_appleReady; _appleReady=false; _appleState='failed';
-  if(was) refreshMapsForApple();               // swap any Apple map back to OpenStreetMap
+  const was=_appleReady, waiting=_appleState!=='failed' && !was;
+  _appleReady=false; _appleState='failed';
+  if(was || waiting) refreshMapsForApple();    // swap to OpenStreetMap (or draw it for the first time)
+}
+// Apple Maps normally arrives within a second of launch. Until then the map
+// area stays the plain map colour instead of flashing the OpenStreetMap
+// fallback; the fallback only draws if Apple Maps fails or takes over 6 s.
+let _appleWaitTimer=null;
+function appleMapsPending(){
+  if(_appleReady || (_appleState!=='idle' && _appleState!=='loading')) return false;
+  if(!_appleWaitTimer) _appleWaitTimer=setTimeout(function(){
+    if(!_appleReady && (_appleState==='idle' || _appleState==='loading')){ _appleState='slow'; refreshMapsForApple(); }
+  }, 6000);
+  return true;
 }
 function refreshMapsForApple(){
   const top=stack[stack.length-1];
@@ -4355,6 +4370,7 @@ function initHomeMapApple(){
   const el=document.getElementById('homeMap'); if(!el) return;
   if(homeMapInst && homeMapInst._isApple) return;
   resetMapContainer(el, homeMapInst); homeMapInst=null;
+  el.classList.remove('mapFadeIn'); void el.offsetWidth; el.classList.add('mapFadeIn');
   homeMapInst=appleMap(el, false, 0.011);
   homeMapInst._user=appleUserPin(userLL);
   homeMapInst.addAnnotation(homeMapInst._user);
@@ -4374,11 +4390,13 @@ function initTrackMapApple(){
 }
 function initHomeMap(){
   if(_appleReady && window.mapkit){ initHomeMapApple(); return; }
+  if(appleMapsPending()) return;
   if(_googleReady && GOOGLE_MAPS_KEY){ initHomeMapGoogle(); return; }
   initHomeMapLeaflet();
 }
 function initTrackMap(){
   if(_appleReady && window.mapkit){ initTrackMapApple(); return; }
+  if(appleMapsPending()) return;
   if(_googleReady && GOOGLE_MAPS_KEY){ initTrackMapGoogle(); return; }
   initTrackMapLeaflet();
 }
@@ -4533,8 +4551,10 @@ function apiFetch(path, opts, ms){
     function(r){ clearTimeout(t); return r.json(); },
     function(e){ clearTimeout(t); throw e; });
 }
-// Apple Maps: fetch the token and library while onboarding / splash is on screen.
-setTimeout(function(){ try{ loadAppleMaps(); }catch(e){} }, 400);
+// Apple Maps: fetch the token and library right after native-bridge.js (end of
+// <body>) has set API_BASE, while the splash is still on screen.
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', function(){ try{ loadAppleMaps(); }catch(e){} });
+else setTimeout(function(){ try{ loadAppleMaps(); }catch(e){} }, 0);
 // Fire-and-forget warm-up: wake the backend the moment the app opens so
 // auth/payments are fast by the time the user reaches them. Slight delay so
 // the native bridge has settled window.API_BASE first.
