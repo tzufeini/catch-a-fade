@@ -652,6 +652,7 @@ module.exports = function createMarketplace(ctx) {
     (async () => {
       const alive = async () => { const b = await loadBooking(id); return b && !['cancelled', 'expired', 'declined', 'completed'].includes(b.status) ? b : null; };
       await step(async () => { if (await alive()) announce(await setBooking(id, { status: 'accepted', accepted_at: new Date().toISOString() }), 'barber'); }, 6000);
+      if (booking.scheduled_at) return;   // a scheduled cut is only confirmed; it shows as Upcoming until its time
       await step(async () => { if (await alive()) announce(await setBooking(id, { status: 'en_route' }), 'barber'); }, 4000);
       for (let i = 0; i <= 20; i++) {
         if (!(await alive())) return;
