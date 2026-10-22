@@ -257,6 +257,13 @@ body.light .park{background:rgba(70,201,139,.22);}
 .star{color:var(--orange);font-weight:700;}
 .bTags{margin-top:7px;display:flex;gap:5px;}
 .tg{font-size:10.5px;font-weight:650;color:var(--dim);background:var(--card3);padding:3px 8px;border-radius:7px;}
+/* Highlights, like a driver's badges: earned from real data, never a warning */
+.tg.hl{color:var(--green);background:rgba(70,201,139,.13);}
+.tg.hl.top{color:#E0A100;background:rgba(240,180,20,.14);}
+.hlRow{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+.hlRow:empty{display:none;}
+.hlChip{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:720;padding:5px 10px;border-radius:30px;color:var(--green);background:rgba(70,201,139,.13);}
+.hlChip.top{color:#E0A100;background:rgba(240,180,20,.14);}
 .bRight{display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;gap:8px;}
 .bBuy{display:flex;flex-direction:column;align-items:flex-end;gap:6px;}
 .bBuy .price{font-size:16px;font-weight:800;line-height:1;}
@@ -1617,7 +1624,7 @@ html.native .ob-tip{ font-size:14px; }
       <div class="ob-text">
         <span class="ob-line" data-a="1"></span>
         <div class="ob-h" data-a="2">CatchAFade sends a<br/>live barber to you.</div>
-        <div class="ob-s" data-a="3">Licensed barbers near you, coming to your door.</div>
+        <div class="ob-s" data-a="3">Barbers near you, coming to your door.</div>
       </div>
     </div>
     <div class="ob-nav" data-a="4"><button class="ob-cta" onclick="obNext()">How does it work? →</button></div>
@@ -1747,7 +1754,7 @@ html.native .ob-tip{ font-size:14px; }
       <div class="ob-text">
         <span class="ob-line" data-a="1"></span>
         <div class="ob-h" data-a="2">Your first cut is<br/>closer than you think.</div>
-        <div class="ob-s" data-a="3">Book a licensed barber to your door.</div>
+        <div class="ob-s" data-a="3">Book a barber to your door.</div>
       </div>
     </div>
     <div class="ob-nav" data-a="4"><button class="ob-cta" onclick="obNext()">I'm in →</button></div>
@@ -1777,7 +1784,7 @@ html.native .ob-tip{ font-size:14px; }
       <div class="ob-text">
         <span class="ob-line" data-a="1"></span>
         <div class="ob-h" data-a="2">Verified before they<br/>ever show up.</div>
-        <div class="ob-s" data-a="3">License checked with the state. ID matched. Rated by real customers. You always know who's coming.</div>
+        <div class="ob-s" data-a="3">ID matched. Licenses checked with the state. Rated by real customers. You always know who's coming.</div>
       </div>
     </div>
     <div class="ob-nav" data-a="4"><button class="ob-cta" onclick="obNext()">I trust this →</button></div>
@@ -1823,7 +1830,7 @@ html.native .ob-tip{ font-size:14px; }
       <div class="ob-tscroll" data-a="2">
         <div class="ob-tcard"><div class="ob-tstars">⚡</div><div class="ob-tquote">Book in minutes — no calls, no waiting rooms, no parking.</div><div class="ob-tname">Fast by design</div></div>
         <div class="ob-tcard"><div class="ob-tstars">🏠</div><div class="ob-tquote">Your barber comes to your door with a full pro setup.</div><div class="ob-tname">Wherever you are</div></div>
-        <div class="ob-tcard"><div class="ob-tstars">✂️</div><div class="ob-tquote">Every barber's license is checked with the state and their ID matched before they can take bookings.</div><div class="ob-tname">Quality you can trust</div></div>
+        <div class="ob-tcard"><div class="ob-tstars">✂️</div><div class="ob-tquote">Every barber's ID is matched before they can take bookings, and licensed barbers are checked with the state.</div><div class="ob-tname">Quality you can trust</div></div>
       </div>
     </div>
     <div class="ob-nav" data-a="3"><button class="ob-cta" onclick="obNext()">I'm ready →</button></div>
@@ -1912,7 +1919,7 @@ html.native .ob-tip{ font-size:14px; }
       <p>You may not use the Service if you have previously been suspended or removed by us, or if doing so would violate any applicable law.</p>
 
       <h3>3. What Catch a Fade Is</h3>
-      <p>Catch a Fade is a technology platform that connects clients seeking haircuts and grooming services with independent, licensed barbers and stylists ("Barbers") who travel to a location chosen by the client. Catch a Fade itself does not provide haircutting or grooming services and does not employ the Barbers. We provide the marketplace, scheduling, payment processing, live tracking, identity tools, and customer support that make these connections possible.</p>
+      <p>Catch a Fade is a technology platform that connects clients seeking haircuts and grooming services with independent barbers and stylists ("Barbers") who travel to a location chosen by the client. Catch a Fade itself does not provide haircutting or grooming services and does not employ the Barbers. We provide the marketplace, scheduling, payment processing, live tracking, identity tools, and customer support that make these connections possible.</p>
       <p>We do not guarantee the availability of any particular Barber, service, time slot, or location. Availability depends on the independent Barbers active in your area.</p>
 
       <h3>4. Your Account</h3>
@@ -1940,7 +1947,7 @@ html.native .ob-tip{ font-size:14px; }
       <p>Any dispute regarding the quality or outcome of a service is primarily between you and the Barber, although we will make reasonable efforts to help resolve issues through our support channels.</p>
 
       <h3>10. Identity Verification and Background Checks</h3>
-      <p>We take reasonable steps to verify Barbers before they can accept bookings: we check their barber license against the Florida Department of Business and Professional Regulation's public records and confirm that their photo ID matches them. We do not run criminal background checks. However, no verification process is perfect. We do not guarantee the conduct, qualifications, or background of any Barber or client, and you use the Service at your own risk. Always use good judgment when inviting any person to your location.</p>
+      <p>We take reasonable steps to verify Barbers before they can accept bookings: we confirm that their photo ID matches them, and when a Barber gives us a Florida barber license number, we check it against the Florida Department of Business and Professional Regulation's public records. Only Barbers whose license we verified show “Licensed” on their profile; other Barbers may not hold a barber license. We do not run criminal background checks or test any Barber's skills, so look at a Barber's work photos, rating and reviews before you book. No verification process is perfect. We do not guarantee the conduct, qualifications, skill, or background of any Barber or client, and you use the Service at your own risk. Always use good judgment when inviting any person to your location.</p>
 
       <h3>11. Your Responsibilities and Conduct</h3>
       <p>You agree to use the Service lawfully and respectfully. You will not harass, threaten, discriminate against, or harm any Barber, client, or member of our staff. You will not use the Service to arrange any unlawful activity, to circumvent our fees by transacting off-platform, to interfere with the Service, or to collect information about other users without their consent.</p>
@@ -2035,7 +2042,7 @@ html.native .ob-tip{ font-size:14px; }
 
       <h3>7. Barbers and Your Information</h3>
       <p>To complete a booking, your barber receives the information necessary to find and serve you, such as your first name, the service location, and your contact method within the app. Barbers are independent professionals and are expected to use your information only to provide the service. We are not responsible for a barber's independent handling of your information outside the Service, though we may take action against barbers who misuse it.</p>
-      <p>If you apply to be a barber, we review your application automatically. We check the license number you enter against the Florida Department of Business and Professional Regulation's public license records, and we send your ID photo, selfie and profile photo to our AI provider, Anthropic, to confirm they show the same person and match the name in your application. If we can't approve you, we tell you why, and you can correct it and apply again. Your ID photo and selfie are stored privately; your profile photo is shown to customers once you're approved.</p>
+      <p>If you apply to be a barber, we review your application automatically. If you enter a license number, we check it against the Florida Department of Business and Professional Regulation's public license records. We send your ID photo, selfie and profile photo to our AI provider, Anthropic, to confirm they show the same person and match the name in your application. If we can't approve you, we tell you why, and you can correct it and apply again. Your ID photo and selfie are stored privately; your profile photo is shown to customers once you're approved.</p>
 
       <h3>8. Payment Information</h3>
       <p>Payments are processed by third-party payment providers. When you add a payment method, your card details are transmitted to and stored by those providers under their own security standards. We receive limited information, such as the card brand, the last four digits, and the expiration date, so we can display and manage your saved methods. We do not store your full card number on our own servers.</p>
@@ -2190,18 +2197,19 @@ html.native .ob-tip{ font-size:14px; }
         <div class="row" style="gap:16px;align-items:flex-end">
           <div class="av big" id="bpAv" style="background:var(--grad)">✂</div>
           <div style="padding-bottom:4px">
-            <div class="pill verified"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 1.8 3 .2.9 2.9 2.3 1.9-1 2.8 1 2.8-2.3 1.9-.9 2.9-3 .2L12 22l-2.4-1.7-3-.2-.9-2.9-2.3-1.9 1-2.8-1-2.8 2.3-1.9.9-2.9 3-.2z"/><path d="M8.5 12.5l2.5 2.5 4.5-5" stroke="#1A1A20" stroke-width="2" fill="none" stroke-linecap="round"/></svg> Verified Pro</div>
+            <div class="pill verified"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 1.8 3 .2.9 2.9 2.3 1.9-1 2.8 1 2.8-2.3 1.9-.9 2.9-3 .2L12 22l-2.4-1.7-3-.2-.9-2.9-2.3-1.9 1-2.8-1-2.8 2.3-1.9.9-2.9 3-.2z"/><path d="M8.5 12.5l2.5 2.5 4.5-5" stroke="#1A1A20" stroke-width="2" fill="none" stroke-linecap="round"/></svg> ID verified</div>
           </div>
         </div>
         <div class="pName" id="bpName">Your barber</div>
         <div class="pSpec" id="bpSpec">Skin fades · Tapers · Beard sculpting</div>
+        <div class="hlRow" id="bpHighlights"></div>
       </div>
 
       <div class="statGrid">
         <div class="stat"><b id="bpRate">4.97</b><small>★ RATING</small></div>
         <div class="stat"><b id="bpCuts">1,240</b><small>CUTS DONE</small></div>
         <div class="stat"><b id="bpYears">8 yr</b><small>EXPERIENCE</small></div>
-        <div class="stat"><b style="color:var(--green)">✓</b><small>LICENSED</small></div>
+        <div class="stat" id="bpLicStat" style="display:none"><b style="color:var(--green)">✓</b><small>LICENSED</small></div>
       </div>
 
       <div class="licRow" id="bpLicense" style="display:none"></div>
@@ -2795,7 +2803,7 @@ html.native .ob-tip{ font-size:14px; }
       <div class="sect"><h3>Top questions</h3></div>
       <div class="faq" onclick="toggleFaq(this)"><b>How is the cancellation fee calculated?</b><small>Cancelling is free until a barber accepts, and for 2 minutes after they accept. After that, or once your barber has arrived, a flat $5 fee applies. It pays your barber for their time. Barber running very late? Contact support and we'll review it.</small></div>
       <div class="faq" onclick="toggleFaq(this)"><b>What if my barber doesn't show up?</b><small>You're only charged when your cut is done. If your barber doesn't show up, tap Report a problem or email us and we'll cancel it and refund any cancellation fee.</small></div>
-      <div class="faq" onclick="toggleFaq(this)"><b>Are the barbers verified?</b><small>Before taking bookings, every barber's license is checked against Florida's DBPR records and their photo ID is matched to them. Look for "Licensed ✓" on their profile.</small></div>
+      <div class="faq" onclick="toggleFaq(this)"><b>Are the barbers verified?</b><small>Before taking bookings, every barber's photo ID is matched to them. Barbers with a Florida barber license show "Licensed" on their profile once we've checked it with the state. Look at a barber's work photos and reviews to find the right one for you.</small></div>
       <div class="faq" onclick="toggleFaq(this)"><b>How does tipping work?</b><small>Add a tip after the cut on the rating screen. 100% of every tip goes directly to your barber.</small></div>
       <div class="faq" onclick="toggleFaq(this)"><b>What's the PIN for?</b><small>When your barber arrives, you'll see a 4-digit PIN. Share it with them — they'll enter it in their app to confirm they're at the right address before the cut starts.</small></div>
       <div class="faq" onclick="toggleFaq(this)"><b>How is the price calculated?</b><small>You see one price: the barber's rate plus Catch a Fade's service fee, together. When lots of people are booking nearby, prices can be a little higher — you'll see a note, and you always see the exact total before you confirm.</small></div>
@@ -2892,16 +2900,16 @@ html.native .ob-tip{ font-size:14px; }
       <h3>B. Definitions</h3>
       <p>For the purposes of this Agreement: a "Booking" means a request for Services submitted by a Customer and accepted by you through the Platform; the "Listed Price" means the price you establish within the Platform for a particular Service; the "Service Fee" means the fee charged by Catch a Fade to Customers for use of the Platform, which is separate from and in addition to the Listed Price; a "Cancellation Fee" means the fee payable by a Customer who cancels a Booking outside the free-cancellation period described in the Platform; and "Customer Information" means any information relating to a Customer that you obtain through the Platform, including names, addresses, locations, telephone numbers, photographs and messages.</p>
       <h3>C. Eligibility</h3>
-      <p>Access to the Platform as a Barber is conditional upon your satisfying, and continuing to satisfy, each of the following requirements: you are at least eighteen (18) years of age; you possess the legal capacity to enter into a binding contract; you hold every license required by law to perform the Services for compensation in the jurisdiction in which you perform them; and you have successfully completed the application and verification process established by Catch a Fade.</p>
+      <p>Access to the Platform as a Barber is conditional upon your satisfying, and continuing to satisfy, each of the following requirements: you are at least eighteen (18) years of age; you possess the legal capacity to enter into a binding contract; and you have successfully completed the application and verification process established by Catch a Fade.</p>
       <p>You undertake to furnish information that is accurate, current and complete, and to update such information promptly whenever it changes. Each Barber may maintain only one account. Your account is personal to you and may not be shared with, transferred to or operated by any other person, nor may any other person perform Services under it.</p>
       <h3>D. Nature of the Relationship</h3>
       <p>The relationship between you and Catch a Fade is that of independent contracting parties. Nothing in this Agreement shall be construed to create an employment, agency, partnership, franchise or joint-venture relationship between the parties, and neither party possesses the authority to enter into contracts or assume obligations on behalf of the other.</p>
       <p>You retain sole and exclusive discretion over whether, when and where to make yourself available through the Platform, over which requests to accept or decline, and over the manner and means by which the Services are performed, subject only to the standards set forth in this Agreement. You shall not be entitled to wages, salary, overtime compensation, employee benefits or reimbursement of expenses from Catch a Fade.</p>
       <p>This Agreement is non-exclusive. You remain free at all times to provide services through other platforms, through your own establishment, or directly to clients of your own.</p>
-      <h3>E. Licensure and Verification</h3>
-      <p>You represent and warrant that you hold, and covenant that you shall maintain in good standing for the duration of your use of the Platform, every license required by applicable law to perform the Services for compensation. In the State of Florida, this requirement includes a valid barber license issued by the Florida Department of Business and Professional Regulation.</p>
-      <p>In connection with your application, you shall provide your license number, a photograph of a valid government-issued identification document and a photograph of yourself. You hereby authorize Catch a Fade to use such information for the purpose of verifying your identity and licensure, including by reference to publicly available licensing records. Your account must be approved by Catch a Fade before you may accept Bookings.</p>
-      <p>You shall notify Catch a Fade without undue delay should your license lapse or be suspended, restricted or revoked, or should any information previously provided become inaccurate. Catch a Fade may suspend your access to the Platform where your licensure or identity cannot be verified.</p>
+      <h3>E. Licenses and Verification</h3>
+      <p>A license is not required to join the Platform. You are solely responsible for determining which licenses, registrations and permits apply to the Services you perform where you perform them, and for obtaining and maintaining them. Catch a Fade does not make that determination for you and does not provide legal advice. If you provide a license number, you represent and warrant that the license is yours and is valid and in good standing, and you covenant to keep it so for as long as your profile shows it.</p>
+      <p>In connection with your application, you shall provide a photograph of a valid government-issued identification document and a photograph of yourself, and you may provide your license number. You hereby authorize Catch a Fade to use such information for the purpose of verifying your identity and, where you provide a license number, your licensure, including by reference to publicly available licensing records. Where Catch a Fade verifies an active Florida barber license, your profile shows Customers a “Licensed” highlight. Your account must be approved by Catch a Fade before you may accept Bookings.</p>
+      <p>You shall notify Catch a Fade without undue delay should a license you provided lapse or be suspended, restricted or revoked, or should any information previously provided become inaccurate. Catch a Fade removes the “Licensed” highlight where your license can no longer be verified, and may suspend your access to the Platform where your identity cannot be verified.</p>
       <p>You shall comply with all laws, regulations and professional standards applicable to the Services, including those governing health, sanitation, infection control and safety.</p>
       <h3>F. Account Security and Profile</h3>
       <p>You are responsible for maintaining the confidentiality of your account credentials and for all activity conducted through your account. You shall inform Catch a Fade immediately upon becoming aware of any unauthorized access to or use of your account. You are further responsible for ensuring that your profile, including your name, photographs, description, Services and Listed Prices, is accurate and not misleading.</p>
@@ -2941,7 +2949,7 @@ html.native .ob-tip{ font-size:14px; }
       <p>To the fullest extent permitted by applicable law, Catch a Fade shall not be liable for any indirect, incidental, special, consequential or punitive damages, or for any loss of profits or revenue, arising out of or relating to this Agreement or the Platform. The aggregate liability of Catch a Fade for all claims arising out of or relating to this Agreement shall not exceed the greater of one hundred United States dollars (US$100) or the amount of any compensation owed to you under Section H that remains unpaid. Nothing in this Agreement excludes or limits any liability that cannot be excluded or limited under applicable law.</p>
       <h3>S. Suspension and Termination</h3>
       <p>You may terminate this Agreement at any time by ceasing to make yourself available through the Platform or by deleting your account. Catch a Fade may likewise terminate this Agreement at any time.</p>
-      <p>Catch a Fade may suspend or deactivate your account where your licensure or identity cannot be verified or is no longer valid; where you commit a material or repeated breach of this Agreement or of Platform policies; where you receive consistently low Customer ratings; or where suspension is reasonably necessary to protect the safety of Customers, Barbers or the public. Where practicable, Catch a Fade shall inform you of the reason for such action, and you may request a review of the decision through the Platform.</p>
+      <p>Catch a Fade may suspend or deactivate your account where your identity cannot be verified or is no longer valid; where you misrepresent a license; where you commit a material or repeated breach of this Agreement or of Platform policies; where you receive consistently low Customer ratings; or where suspension is reasonably necessary to protect the safety of Customers, Barbers or the public. Where practicable, Catch a Fade shall inform you of the reason for such action, and you may request a review of the decision through the Platform.</p>
       <p>Compensation for Bookings completed prior to termination shall be paid in accordance with Section H. Sections H (with respect to refunds and adjustments), I, M, N, P, Q, R, V and W shall survive the termination of this Agreement.</p>
       <h3>T. Amendments</h3>
       <p>Catch a Fade may amend this Agreement from time to time. Where an amendment is material, the revised Agreement shall be presented within the Platform. Your continued use of the Platform as a Barber after a revised Agreement takes effect shall constitute your acceptance of it. Should you not accept a revised Agreement, you must discontinue your use of the Platform as a Barber.</p>
@@ -3086,7 +3094,7 @@ loadGoogleMaps();
 /* ---------- nav stack ---------- */
 const TABS=['home','bookings','messages','profile'];
 const OB_TOTAL = 16; // highest onboarding screen number
-// The first run is short: welcome → a barber comes to you → licensed & checked → sign up.
+// The first run is short: welcome → a barber comes to you → ID-checked → sign up.
 // (The best apps get people to something useful in under 30 seconds.)
 const OB_FLOW = [1, 3, 11, 16];
 // Onboarding is for first-time users only: anyone who finished or skipped it, or
@@ -3258,18 +3266,24 @@ function mapBarberRow(row, i){
     pr: svc.length ? Math.round(svc[0].price_cents/100) : 35,
     services: servicesObj, lat: row.home_lat, lng: row.home_lng,
     verified: !!row.is_verified, fromDB: true, demo: !!row.is_demo,
+    licensed: row.is_licensed === undefined ? !row.is_demo : !!row.is_licensed,
+    topRated: Number(row.rating) >= 4.8 && Number(row.cuts_completed) >= 10,
     img: (row.profile && row.profile.avatar_url) || '',
     about: String(row.bio||'').split(' · ')[0].trim(),
     yr: (/(\d+) yr experience/.exec(row.bio||'')||[])[1] || ''
   };
 }
 // Fetch available barbers from the real database, replacing the demo list.
+let _barberCols='id, profile_id, bio, rating, cuts_completed, is_verified, is_licensed, is_demo, vehicle, home_lat, home_lng, profile:profiles!barbers_profile_id_fkey(full_name, avatar_url), services(name, price_cents, duration_min)';
 async function loadBarbersFromSupabase(){
   const c = sbReady(); if(!c) return false;
   try{
-    const { data, error } = await c.from('barbers')
-      .select('id, profile_id, bio, rating, cuts_completed, is_verified, is_demo, vehicle, home_lat, home_lng, profile:profiles!barbers_profile_id_fkey(full_name, avatar_url), services(name, price_cents, duration_min)')
+    let { data, error } = await c.from('barbers').select(_barberCols)
       .eq('is_verified', true).or('is_available.eq.true,is_demo.eq.true');
+    if(error && /is_licensed/.test(error.message||'')){     // database not migrated yet
+      _barberCols=_barberCols.replace(' is_licensed,','');
+      ({ data, error } = await c.from('barbers').select(_barberCols).eq('is_verified', true).or('is_available.eq.true,is_demo.eq.true'));
+    }
     if(error || !data) return false;                   // unreachable → keep the last good list
     const reviewer = isReviewEmail(userProfile.email||'');
     const me = await mkUserId();
@@ -3277,8 +3291,7 @@ async function loadBarbersFromSupabase(){
                   .map(mapBarberRow);
     // offline barbers can still be booked ahead ("Schedule a cut"); never shown on the map
     try{
-      const off = await c.from('barbers')
-        .select('id, profile_id, bio, rating, cuts_completed, is_verified, is_demo, vehicle, home_lat, home_lng, profile:profiles!barbers_profile_id_fkey(full_name, avatar_url), services(name, price_cents, duration_min)')
+      const off = await c.from('barbers').select(_barberCols)
         .eq('is_verified', true).eq('is_available', false).eq('is_demo', false);
       const have = new Set(BARBERS.map(b=>b.id));
       (off.data||[]).filter(r => r.profile_id !== me && (r.services||[]).length && !have.has(r.id))
@@ -3607,7 +3620,7 @@ function waitlistCard(){
         +'<div class="waitStop" onclick="leaveWaitlist()">Stop notifying me</div>'
       : (BARBERS.some(x=>x.offline)
           ? '<div class="waitT">No one\'s online right now</div><div class="waitS">Get a notification the moment a barber goes online near you, or book one ahead below.</div>'
-          : '<div class="waitT">No barbers online near you yet</div><div class="waitS">We\'re signing up licensed barbers in your area. Get a notification the moment one goes online.</div>')
+          : '<div class="waitT">No barbers online near you yet</div><div class="waitS">We\'re signing up barbers in your area. Get a notification the moment one goes online.</div>')
         +'<button class="btn grad" data-hap="press" onclick="notifyMe()">Notify me</button>'
         +'<div class="waitLink" onclick="inviteBarber()">Know a barber? <b>Invite them</b></div>')
     +'</div>';
@@ -3649,7 +3662,7 @@ async function leaveWaitlist(){
 // customers recruit barbers: share the /barbers page
 async function inviteBarber(){
   const url=(window.API_BASE||'https://catch-a-fade.onrender.com')+'/barbers';
-  const text='Catch a Fade sends licensed barbers house-call clients. You set your prices and keep 100% plus tips.';
+  const text='Catch a Fade sends barbers house-call clients. You set your prices and keep 100% plus tips.';
   try{ if(navigator.share){ await navigator.share({ title:'Get booked on Catch a Fade', text:text, url:url }); return; } }catch(e){ return; }
   try{ await navigator.clipboard.writeText(url); haptic('success'); notify('Link copied','Send it to a barber you know.'); }
   catch(e){ notify('Share this link', url); }
@@ -3668,6 +3681,12 @@ function barberLL(b,i){
   const off=BARBER_OFFSETS[i%BARBER_OFFSETS.length];
   return [userLL[0]+off[0], userLL[1]+off[1]];
 }
+// "Licensed" and "Top rated" are highlights a barber earns; nobody gets a negative label.
+function barberTags(b, extra){
+  const hl=[b.licensed?'<span class="tg hl">✓ Licensed</span>':'', b.topRated?'<span class="tg hl top">★ Top rated</span>':''].filter(Boolean);
+  const sp=String(b.sp||'').split(' · ').filter(Boolean).map(t=>'<span class="tg">'+escapeHtml(t)+'</span>');
+  return (extra||'')+hl.concat(sp).slice(0, extra?2:3).join('');
+}
 function bookAheadHtml(){
   const off=BARBERS.map((b,i)=>({b,i})).filter(x=>x.b.offline && !isBarberBlocked(x.i));
   if(!off.length) return '';
@@ -3677,7 +3696,7 @@ function bookAheadHtml(){
   return '<div class="aheadHead">Book ahead</div><div class="aheadNote">Offline right now. Pick a time and they\'ll confirm.</div>'
     + near.map(({b,i,d})=>'<div class="bcard" onclick="openBarber('+i+')"><div class="av" style="background:'+(b.img?'var(--card3)':b.g)+'">'+bAvInner(b)+'</div>'
       +'<div class="bInfo"><div class="bName">'+escapeHtml(b.n)+'</div><div class="bMeta"><span class="star">★ '+escapeHtml(b.r)+'</span><span class="dot"></span>'+escapeHtml(b.cuts)+' cuts'+(d!=null?'<span class="dot"></span>'+(d<10?(Math.round(d*10)/10).toFixed(1):Math.round(d))+' mi':'')+'</div>'
-      +'<div class="bTags"><span class="tg">'+escapeHtml(b.sp.split(' · ')[0])+'</span></div></div>'
+      +'<div class="bTags">'+barberTags(b)+'</div></div>'
       +'<div class="bRight"><span class="offTag">Offline</span><div class="bBuy"><div class="price">'+money0(custPriceNoSurge(b.pr))+'</div>'
       +'<button class="bookmini" onclick="event.stopPropagation();setBarber('+i+');nav(\'booking\')">Schedule</button></div></div></div>').join('');
 }
@@ -3741,7 +3760,7 @@ function buildList(){
         <div class="bName">${b.n} <span class="pill verified" style="padding:2px 7px">
           <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 1.8 3 .2.9 2.9 2.3 1.9-1 2.8 1 2.8-2.3 1.9-.9 2.9-3 .2L12 22l-2.4-1.7-3-.2-.9-2.9-2.3-1.9 1-2.8-1-2.8 2.3-1.9.9-2.9 3-.2z"/></svg></span></div>
         <div class="bMeta"><span class="star">★ ${b.r}</span><span class="dot"></span>${b.cuts} cuts<span class="dot"></span>${mi} mi</div>
-        <div class="bTags">${matchN>0?`<span class="tg" style="background:rgba(46,132,196,.18);color:var(--blue);border-color:transparent">✓ Your style</span>`:''}<span class="tg">${b.sp.split(' · ')[0]}</span><span class="tg">${b.sp.split(' · ')[1]||''}</span></div>
+        <div class="bTags">${barberTags(b, matchN>0?`<span class="tg" style="background:rgba(46,132,196,.18);color:var(--blue);border-color:transparent">✓ Your style</span>`:'')}</div>
       </div>
       <div class="bRight">
         <div class="eta">~${eta} min</div>
@@ -3762,11 +3781,15 @@ function setBarber(i){
   document.getElementById('bpCuts').textContent=b.cuts;
   document.getElementById('bpYears').textContent=b.yr ? b.yr+' yr' : 'New';
   document.getElementById('bpPrice').textContent=money0(custPrice(b.pr));
+  document.getElementById('bpLicStat').style.display=b.licensed?'':'none';
+  document.getElementById('bpHighlights').innerHTML=(b.licensed?'<span class="hlChip">✓ Licensed barber</span>':'')
+    +(b.topRated?'<span class="hlChip top">★ Top rated</span>':'');
   setAv(document.getElementById('bkAv'),b);
   document.getElementById('bkName').textContent=b.n;
   try{
     const ll=barberLL(b,i), dist=haversine(userLL[0],userLL[1],ll[0],ll[1]);
     document.getElementById('bkMeta').innerHTML='<span class="star">★ '+escapeHtml(b.r||'5.0')+'</span><span class="dot"></span>'
+      +(b.licensed?'<span style="color:var(--green);font-weight:700">✓ Licensed</span><span class="dot"></span>':'')
       +(b.offline ? '<span class="offTag">Offline · book ahead</span>'
         : (dist<10?(Math.round(dist*10)/10).toFixed(1):Math.round(dist))+' mi away<span class="dot"></span><span style="color:var(--green)">~'+Math.max(3,Math.round(dist*4))+' min</span>');
   }catch(e){}
@@ -4548,7 +4571,7 @@ function openPayment(opts, onSuccess){
     return apiFetch('/api/create-payment-intent', {
       method:'POST', headers:{'Content-Type':'application/json'},
       body: JSON.stringify(opts.barberId
-        ? { barberId: opts.barberId, serviceName: opts.serviceName||'', accessToken: opts.accessToken, idempotencyKey: _payIdemKey, lat: userLL[0], lng: userLL[1], flex: !!opts.flex, scheduledAt: opts.scheduledAt||null }
+        ? { barberId: opts.barberId, serviceName: opts.serviceName||'', accessToken: opts.accessToken, idempotencyKey: _payIdemKey, lat: userLL[0], lng: userLL[1], flex: !!opts.flex, scheduledAt: opts.scheduledAt||null, licenseAware: true }
         : { servicePrice: priceCents, idempotencyKey: _payIdemKey })
     });
   })
@@ -4858,7 +4881,7 @@ function scLocalAnswer(q){
   if(/late|no.?show|where.*barber|barber.*late|eta/.test(q)) return 'You can follow your barber\'s progress on the map. If they\'re running more than 5 minutes late, you can cancel at no cost from your appointment screen.';
   if(/lost|left|forgot/.test(q)) return 'Sorry about that! Tap "Report a lost item" on the Help screen and tell us what was left behind — we\'ll connect you with your barber right away.';
   if(/refund|wrong|bad|complaint|terrible/.test(q)) return 'Sorry to hear that. Use "Report a problem" on the Help screen, or email TZUFEINI@gmail.com — refunds usually process within 3–5 business days.';
-  if(/safe|background|check|verified/.test(q)) return 'Before taking bookings, every barber\'s license is checked against Florida\'s DBPR records and their photo ID is matched to them. Look for "Licensed ✓" on their profile. We don\'t run criminal background checks.';
+  if(/safe|background|check|verified/.test(q)) return 'Before taking bookings, every barber\'s photo ID is matched to them. Barbers with a Florida barber license show "Licensed" on their profile once we\'ve checked it with the state. Look at a barber\'s work photos and reviews before you book. We don\'t run criminal background checks.';
   if(/same barber|favorite|favourite|again/.test(q)) return 'Add a barber to your favorites from their profile or the rating screen — then you can book them directly any time.';
   if(/human|person|agent|real/.test(q)) return 'You can reach a human by emailing TZUFEINI@gmail.com — we reply as fast as we can. In the meantime, tell me what\'s going on and I\'ll do my best to help right now.';
   if(/book|appointment|schedul|reschedul/.test(q)) return 'Sure — what\'s going on with your booking? You can see and manage it under Bookings. Tell me the issue (change the time, wrong address, cancel, rebook) and I\'ll walk you through it.';
@@ -4956,7 +4979,7 @@ function renderWizStep(){
       +'<div class="wizSub">This is what clients see when they pick you.</div>'
       +'<div class="wizFld"><label>First name</label><input id="wFirst" value="'+escapeHtml(signup.firstName)+'" autocomplete="given-name"/></div>'
       +'<div class="wizFld"><label>Last name</label><input id="wLast" value="'+escapeHtml(signup.lastName)+'" autocomplete="family-name"/></div>'
-      +'<div class="wizFld"><label>Florida barber license number · required</label><input id="wLicense" value="'+escapeHtml(signup.license||'')+'" placeholder="e.g. BB1234567" autocapitalize="characters" autocomplete="off" oninput="signup.licOk=null;document.getElementById(\'licNote\').innerHTML=licNoteHtml(null)"/>'
+      +'<div class="wizFld"><label>Florida barber license number · optional</label><input id="wLicense" value="'+escapeHtml(signup.license||'')+'" placeholder="Leave blank if you don\'t have one" autocapitalize="characters" autocomplete="off" oninput="signup.licOk=null;document.getElementById(\'licNote\').innerHTML=licNoteHtml(null)"/>'
       +'<div id="licNote" style="font-size:12px;margin-top:6px;line-height:1.45">'+licNoteHtml(signup.licOk||null)+'</div></div>'
       +'<div class="wizFld"><label>Years of experience</label><input id="wYears" type="number" min="0" max="60" value="'+escapeHtml(signup.years)+'" placeholder="e.g. 5"/></div>'
       +'<div class="wizFld"><label>Short bio</label><textarea id="wBio" placeholder="A sentence about your style.">'+escapeHtml(signup.bio||'')+'</textarea></div>';
@@ -4984,7 +5007,7 @@ function renderWizStep(){
       +'<div class="reviewItem"><b>Name</b><span class="rv">'+escapeHtml((signup.firstName+' '+signup.lastName).trim()||'—')+'</span></div>'
       +'<div class="reviewItem"><b>Email</b><span class="rv">'+escapeHtml(signup.email||'—')+'</span></div>'
       +'<div class="reviewItem"><b>Phone</b><span class="rv">'+escapeHtml(signup.phone||'—')+'</span></div>'
-      +'<div class="reviewItem"><b>License</b><span class="rv">'+escapeHtml(signup.license||'—')+(signup.licOk&&signup.licOk.status==='verified'?' <span style="color:var(--green)">✓ verified</span>':'')+'</span></div>'
+      +'<div class="reviewItem"><b>License</b><span class="rv">'+escapeHtml(signup.license||'None')+(signup.licOk&&signup.licOk.status==='verified'?' <span style="color:var(--green)">✓ verified</span>':'')+'</span></div>'
       +'<div class="reviewItem"><b>Experience</b><span class="rv">'+escapeHtml(signup.years?signup.years+' yr':'—')+'</span></div>'
       +'<div class="reviewItem"><b>Service area</b><span class="rv">'+escapeHtml(signup.address||'—')+'</span></div>'
       +'<div class="reviewItem"><b>Services</b><span class="rv">'+services.length+' selected</span></div>'
@@ -4992,16 +5015,16 @@ function renderWizStep(){
       +'</div>'
       +'<div class="checkbox '+(signup.consent?'on':'')+'" style="margin-top:18px" onclick="toggleConsent()">'
       +'<div class="cb"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4 10-11"/></svg></div>'
-      +'<div><b>I consent to identity verification</b><small>Catch a Fade checks my license in Florida\'s public DBPR records and sends my ID photo, selfie and profile photo to Anthropic\'s Claude AI to confirm they show me and match my name. I confirm the information above is accurate.</small></div></div>'
+      +'<div><b>I consent to identity verification</b><small>Catch a Fade checks any license number I entered in Florida\'s public DBPR records and sends my ID photo, selfie and profile photo to Anthropic\'s Claude AI to confirm they show me and match my name. I confirm the information above is accurate.</small></div></div>'
       +'<div class="checkbox '+(signup.agree?'on':'')+'" style="margin-top:12px" onclick="if(signup.agree){signup.agree=false;renderWizStep();}else openBarberAgreement()">'
       +'<div class="cb"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4 10-11"/></svg></div>'
-      +'<div><b>I agree to the Independent Barber Agreement</b><small>I work as an independent contractor, keep my barber license current and follow the safety rules. <br/><a style="display:inline-block;margin-top:6px;padding:4px 0;color:var(--blue);font-weight:700" onclick="event.stopPropagation();openBarberAgreement()">Read the agreement →</a></small></div></div>';
+      +'<div><b>I agree to the Independent Barber Agreement</b><small>I work as an independent contractor, follow the licensing rules where I work and follow the safety rules. <br/><a style="display:inline-block;margin-top:6px;padding:4px 0;color:var(--blue);font-weight:700" onclick="event.stopPropagation();openBarberAgreement()">Read the agreement →</a></small></div></div>';
     case 9: return '<div class="processCircle"></div>'
       +'<div class="wizTitle" style="text-align:center">Submitting your application…</div>'
       +'<div class="wizSub" style="text-align:center">Saving your profile and sending it for review.</div>';
     case 10: return '<div class="approveCheck"><svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4 10-11"/></svg></div>'
       +'<div class="wizTitle" style="text-align:center">Application received!</div>'
-      +'<div class="wizSub" style="text-align:center">We\'ll check your license, ID and photos and let you know within 24 hours. Once you\'re approved, set up payouts and go online. You earn the full price you set for each service.</div>';
+      +'<div class="wizSub" style="text-align:center">We\'ll check your ID and photos'+(signup.license?' and your license':'')+' and let you know within 24 hours. Once you\'re approved, set up payouts and go online. You earn the full price you set for each service.</div>';
     default: return '';
   }})();
   body.innerHTML = html;
@@ -5113,12 +5136,16 @@ async function wizNext(){
     signup.bio       = (document.getElementById('wBio').value||'').trim();
     signup.license   = (document.getElementById('wLicense').value||'').trim().toUpperCase();
     if(!signup.firstName || !signup.lastName){ notify('Add your name','First and last name are required.'); return; }
-    if(signup.license.replace(/[^A-Z0-9]/g,'').length<3){ notify('License number','Enter your barber license number so we can verify it.'); return; }
-    // Checked live against Florida's public license records before moving on.
-    if(signup._checking) return;
-    signup._checking=true;
-    let lic=null; try{ lic=await checkLicenseLive(signup.license, signup.firstName+' '+signup.lastName); }finally{ signup._checking=false; }
-    if(lic && lic.status!=='verified' && lic.status!=='unavailable') return;
+    // Optional: a license number is checked live against Florida's public records
+    // before moving on and earns the "Licensed" highlight; blank is fine.
+    if(signup.license && signup.license.replace(/[^A-Z0-9]/g,'').length<3){ notify('License number','Check the number, or leave it blank if you don\'t have a license.'); return; }
+    if(!signup.license) signup.licOk=null;
+    else {
+      if(signup._checking) return;
+      signup._checking=true;
+      let lic=null; try{ lic=await checkLicenseLive(signup.license, signup.firstName+' '+signup.lastName); }finally{ signup._checking=false; }
+      if(lic && lic.status!=='verified' && lic.status!=='unavailable') return;
+    }
   } else if(s===6){
     signup.address = (document.getElementById('wAddress').value||'').trim();
     if(!signup.address){ notify('Service area','Enter the address you\'ll work out of.'); return; }
@@ -5155,11 +5182,11 @@ function shrinkPhoto(file){
 }
 // License status line under the license field (wizard step 5).
 function licNoteHtml(r){
-  if(!r) return '<span style="color:var(--faint)">Starts with BB or BR. We check it against Florida\'s official license records.</span>';
+  if(!r) return '<span style="color:var(--faint)">Have a Florida barber license? Add it (starts with BB or BR) and your profile shows “Licensed”. No license? Leave it blank, you can still join. You\'re responsible for the licensing rules where you work.</span>';
   const ok='<span style="color:var(--green);font-weight:700">✓ ', bad='<span style="color:#D63031;font-weight:700">';
   if(r.status==='verified') return ok+'Active Florida '+(r.type==='BR'?'restricted ':'')+'barber license found'+(r.expires?' · valid until '+escapeHtml(r.expires):'')+'</span>';
-  if(r.status==='not_found') return bad+'We couldn\'t find an active Florida barber license with this number. Check it on your license card.</span>';
-  if(r.status==='inactive') return bad+'This license isn\'t active right now. You can apply once it\'s renewed or reinstated.</span>';
+  if(r.status==='not_found') return bad+'We couldn\'t find an active Florida barber license with this number. Check it on your license card, or clear the field to join without one.</span>';
+  if(r.status==='inactive') return bad+'This license isn\'t active right now. Clear the field to join without it, and add it again once it\'s renewed.</span>';
   if(r.status==='name_mismatch') return bad+'This license is under a different name. Enter your first and last name exactly as they appear on your license.</span>';
   return '<span style="color:var(--faint)">We\'ll verify your license during review.</span>';
 }
@@ -7266,7 +7293,7 @@ async function mkRenderDashboard(){
         +'<button class="btn" style="margin-top:10px;padding:9px 16px;font-size:13px" onclick="openBarberOnboard()">Apply again</button></div></div>';
     } else {
       status='<div class="tripExtra warn" style="margin:4px 20px 12px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="2.3"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>'
-        +'<div><b>Application under review</b><small>We\'re checking your license, ID and photos. You\'ll get a notification within 24 hours, and you can go online as soon as you\'re approved.</small></div></div>';
+        +'<div><b>Application under review</b><small>We\'re checking your ID and photos. You\'ll get a notification within 24 hours, and you can go online as soon as you\'re approved.</small></div></div>';
     }
   }
   if(b.is_verified){
@@ -7577,7 +7604,7 @@ async function mkRenderAdmin(target){
         +'<div style="color:var(--dim);font-size:12px;margin-top:3px">'+(r.services||[]).map(s=>escapeHtml(s.name)+' '+mkMoney(s.price_cents)).join(' · ')+'</div>'
         +'<div style="font-size:12px;margin-top:6px">'+(r.license
             ? '<b>License:</b> '+escapeHtml((r.licenseState||'')+' '+r.license)+' · <a href="https://www.myfloridalicense.com/wl11.asp" target="_blank" rel="noopener" style="color:var(--blue);font-weight:650">Verify ↗</a>'
-            : '<span style="color:var(--orange)">No license number on file</span>')+'</div>'
+            : '<span style="color:var(--dim)">No license · shown without the Licensed highlight</span>')+'</div>'
         +'<div style="font-size:12px;margin-top:3px;color:'+(r.agreedAt?'var(--green)':'var(--orange)')+'">'+(r.agreedAt?'✓ Barber Agreement accepted '+new Date(r.agreedAt).toLocaleDateString():'Barber Agreement not accepted')+'</div>'
         +mkDocThumbs(r.docs)
         +'<button class="btn '+(r.is_verified?'ghost':'green')+'" style="width:100%;margin-top:10px;font-size:13px;padding:11px" onclick="mkAdminVerify(\''+r.id+'\','+(!r.is_verified)+')">'+(r.is_verified?'Revoke approval':'Approve barber')+'</button></div>';

@@ -22,7 +22,7 @@ const QUEST_TARGET = Number(process.env.QUEST_TARGET || 10);         // cuts per
 const QUEST_BONUS_CENTS = Number(process.env.QUEST_BONUS_CENTS || 1500); // bonus for hitting it
 const FREE_CANCEL_MS = 2 * 60 * 1000;   // Uber-style: free cancel for 2 min after accept
 const DEMO_BARBER_EMAIL = 'demo-barber@catchafade.app';
-const AGREEMENT_VERSION = '2026-10-15b';      // Independent Barber Agreement (/barber-agreement)
+const AGREEMENT_VERSION = '2026-10-22';      // Independent Barber Agreement (/barber-agreement)
 
 function readJSON(req, limit) {
   return new Promise((resolve) => {
@@ -216,13 +216,13 @@ module.exports = function createMarketplace(ctx) {
       + 'h2{font-size:13px;text-transform:uppercase;letter-spacing:.8px;color:#5C616C;margin:26px 0 8px}.g{display:grid;grid-template-columns:1fr 1fr;gap:8px}.g img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:14px}'
       + '.btn{display:block;text-align:center;padding:16px;border-radius:16px;font-weight:750;font-size:16px;text-decoration:none;margin-top:12px}.p{background:#15110D;color:#F4EDE1}.o{border:1.5px solid #15110D;color:#15110D}'
       + '.f{margin-top:28px;font-size:12px;color:#8C9099;text-align:center}</style></head><body><div class="w">';
-    if (!b) return head('Catch a Fade', 'Licensed barbers who come to you.', '') + '<h1>This barber isn\'t available</h1><p class="m">Find licensed barbers who come to you in the Catch a Fade app.</p><a class="btn p" href="' + APP_STORE_URL + '">Get Catch a Fade</a></div></body></html>';
+    if (!b) return head('Catch a Fade', 'Barbers who come to you.', '') + '<h1>This barber isn\'t available</h1><p class="m">Find barbers who come to you in the Catch a Fade app.</p><a class="btn p" href="' + APP_STORE_URL + '">Get Catch a Fade</a></div></body></html>';
     const name = (b.profile && b.profile.full_name) || 'Barber', first = name.split(' ')[0];
     const img = b.profile && b.profile.avatar_url;
     const about = String(b.bio || '').split(' · ')[0];
     const svcs = (b.services || []).slice().sort((x, y) => x.price_cents - y.price_cents);
     const price = (c) => '$' + (quote(c, 1).total / 100).toFixed(0);
-    const desc = first + ' is a licensed barber who comes to you. Book a cut in the Catch a Fade app' + (svcs.length ? ', from ' + price(svcs[0].price_cents) : '') + '.';
+    const desc = first + ' is ' + (license ? 'a licensed barber' : 'a barber') + ' who comes to you. Book a cut in the Catch a Fade app' + (svcs.length ? ', from ' + price(svcs[0].price_cents) : '') + '.';
     return head(name + ' · Catch a Fade', desc, img)
       + (img ? '<img class="av" src="' + esc(img) + '" alt="">' : '<div class="av">' + esc(name.split(' ').map(w => w[0]).join('').slice(0, 2)) + '</div>')
       + '<h1>' + esc(name) + '</h1><div class="m">★ ' + Number(b.rating || 5).toFixed(1) + ' · ' + Number(b.cuts_completed || 0) + ' cuts · comes to your place</div>'
@@ -711,6 +711,8 @@ module.exports = function createMarketplace(ctx) {
         const { data: barber } = await supabase.from('barbers').select('*').eq('id', d.barberId).maybeSingle();
         if (!barber || !barber.is_verified) return sendJSON(res, 400, { ok: false, error: 'This barber is not available.' }), true;
         if (barber.is_demo && !isReviewer(u)) return sendJSON(res, 400, { ok: false, error: 'This barber is not available.' }), true;
+        // Builds before 1.0.7 (34) tell customers every barber is licensed, so they can't book one who isn't.
+        if (!barber.is_licensed && !barber.is_demo && !d.licenseAware) return sendJSON(res, 400, { ok: false, error: 'Update Catch a Fade in the App Store to book this barber.' }), true;
         if (barber.profile_id === u.id) return sendJSON(res, 400, { ok: false, error: 'You can\'t book yourself.' }), true;
         // The price comes from the barber's catalog, never from the app.
         const { data: svcs } = await supabase.from('services').select('name, price_cents').eq('barber_id', barber.id);
@@ -1142,12 +1144,13 @@ module.exports = function createMarketplace(ctx) {
       if (post && p === '/api/barber/compliance') {
         const d = await readJSON(req); const u = d && await authUser(d.accessToken);
         if (!u) return sendJSON(res, 401, { ok: false, error: 'sign in required' }), true;
+        // The license is optional: barbers without one join on the identity check alone.
         const license = String(d.licenseNumber || '').trim().toUpperCase().replace(/[^A-Z0-9-]/g, '').slice(0, 30);
         const state = String(d.licenseState || 'FL').trim().toUpperCase().replace(/[^A-Z]/g, '').slice(0, 2) || 'FL';
-        if (license.length < 3) return sendJSON(res, 400, { ok: false, error: 'Enter your barber license number.' }), true;
+        if (license && license.length < 3) return sendJSON(res, 400, { ok: false, error: 'Check your barber license number, or leave it blank.' }), true;
         if (!d.agreed) return sendJSON(res, 400, { ok: false, error: 'Please accept the Independent Barber Agreement.' }), true;
         const meta = Object.assign({}, u.app_metadata || {}, {
-          barber_license: license, barber_license_state: state,
+          barber_license: license || null, barber_license_state: license ? state : null,
           barber_agreement: { version: AGREEMENT_VERSION, accepted_at: new Date().toISOString() }
         });
         const { error } = await supabase.auth.admin.updateUserById(u.id, { app_metadata: meta });

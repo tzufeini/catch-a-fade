@@ -16,12 +16,12 @@ function landing() {
     ['Is there a fee for barbers?', 'No sign-up fee and nothing taken from your price. Catch a Fade\'s service fee is added on the customer\'s side, so the price you list is what you earn.'],
     ['When do I work?', 'Whenever you want. Go online in the app and requests near you pop up. Accept the ones that fit; ignore the rest.'],
     ['How do I get paid?', 'Payouts go to your bank through Stripe. Set up payouts in the app once. If you cut before finishing that setup, your earnings are held for you and sent as soon as it\'s done.'],
-    ['How fast is approval?', 'Your Florida license is checked against the state\'s DBPR records and your photo ID is matched to you automatically, usually within a day.'],
+    ['How fast is approval?', 'Your photo ID is matched to you automatically, usually within a day. If you add a Florida barber license, we check it with the state and your profile shows “Licensed”.'],
     ['Do I need an iPhone?', 'Yes, for now. Catch a Fade is on the App Store; Android is coming later.']
   ];
   return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
     + '<title>Barbers · Catch a Fade</title>'
-    + '<meta name="description" content="House calls for licensed Florida barbers. Set your prices, choose your hours, keep 100% of your price plus tips.">'
+    + '<meta name="description" content="House calls for Florida barbers. Set your prices, choose your hours, keep 100% of your price plus tips.">'
     + '<meta property="og:title" content="Barbers: get booked for house calls">'
     + '<meta property="og:description" content="Set your prices, choose your hours, keep 100% of your price plus tips. Starting in Florida.">'
     + '<meta property="og:image" content="https://catch-a-fade.onrender.com/apple-touch-icon.png">'
@@ -50,7 +50,7 @@ function landing() {
     + '</style></head><body><div class="w">'
     + '<div class="top"><div class="mark">' + SCISSORS + '</div>Catch a Fade<small>For barbers</small></div>'
     + '<h1>Cut at their place. Keep what you charge.</h1>'
-    + '<p class="lede">Catch a Fade sends house-call requests to licensed barbers, starting in Florida. Set your prices, go online when you want, and keep 100% of your price plus every tip.</p>'
+    + '<p class="lede">Catch a Fade sends house-call requests to barbers, starting in Florida. Set your prices, go online when you want, and keep 100% of your price plus every tip.</p>'
     + '<div class="demand" id="demand"></div>'
     + '<a class="btn" href="' + APP_STORE_URL + '">Get the app and apply</a>'
     + '<p class="hint">Already have it? Open Catch a Fade and tap <b>Are you a barber?</b></p>'
@@ -59,11 +59,11 @@ function landing() {
     + '<div class="ex"><div class="r"><span>You list a skin fade at</span><b>$20</b></div><div class="r"><span>You earn</span><b>$20 + tip</b></div>'
     + '<p>Our fee is added to the customer\'s price, never taken out of yours. If a customer cancels after you\'ve headed out, the cancellation fee goes to you.</p></div>'
     + '<h2>How it works</h2>'
-    + '<div class="step"><i>1</i><div><b>Apply in the app</b><span>Your license number, a photo of your ID, a selfie and a profile photo.</span></div></div>'
-    + '<div class="step"><i>2</i><div><b>Get approved</b><span>We check your license with the state of Florida and match your ID, usually within a day.</span></div></div>'
+    + '<div class="step"><i>1</i><div><b>Apply in the app</b><span>A photo of your ID, a selfie, a profile photo, and your license number if you have one.</span></div></div>'
+    + '<div class="step"><i>2</i><div><b>Get approved</b><span>We match your ID, and check your license with the state if you add one. Usually within a day.</span></div></div>'
     + '<div class="step"><i>3</i><div><b>Set your services and prices</b><span>Fades, tapers, lineups, beards, kids cuts. You decide what you offer and what it costs.</span></div></div>'
     + '<div class="step"><i>4</i><div><b>Go online and get booked</b><span>Requests near you pop up with the address, service and what you\'ll earn. Accept, drive over, cut, get paid.</span></div></div>'
-    + '<h2>What you need</h2><ul class="need"><li>An active Florida barber license</li><li>A photo ID and a quick selfie</li><li>Your own clippers, cape and sanitizing kit</li><li>An iPhone</li></ul>'
+    + '<h2>What you need</h2><ul class="need"><li>A photo ID and a quick selfie</li><li>Your own clippers, cape and sanitizing kit</li><li>An iPhone</li></ul><p style="margin-top:12px;font-size:14px;opacity:.75">Licensed? Add your Florida barber license and your profile gets a “Licensed” highlight.</p>'
     + '<h2>Questions</h2>' + faq.map(q => '<details><summary>' + q[0] + '</summary><p>' + q[1] + '</p></details>').join('')
     + '<div class="end"><a class="btn" href="' + APP_STORE_URL + '">Download Catch a Fade</a></div>'
     + '<div class="f"><a href="/barber-agreement">Barber agreement</a> · <a href="/terms">Terms</a> · <a href="/privacy">Privacy</a> · <a href="/support">Support</a><br>Barbers on Catch a Fade are independent professionals.</div>'
@@ -107,22 +107,22 @@ function flyer() {
     + '<li>' + QUEST_BONUS + ' weekly bonus<small>When you finish ' + QUEST_TARGET + ' cuts in a week</small></li>'
     + '</ul><div class="qr"><div class="box">' + QR_SVG + '</div><b>Scan to apply</b><span>catch-a-fade.onrender.com/barbers</span></div></div>'
     + '<div class="ex"><div>You list a skin fade at <b>$20</b><small>Our fee is added on the customer\'s side, never taken from yours.</small></div><div style="text-align:right">You earn<br><b>$20 + tip</b></div></div>'
-    + '<div class="how"><div><i>1</i>Download Catch a Fade<span>Free on the App Store</span></div><div><i>2</i>Add your license and ID<span>Approved in about a day</span></div><div><i>3</i>Go online, get booked<span>Requests near you pop up</span></div></div>'
-    + '<div class="fine">Active Florida barber license and an iPhone required. Barbers are independent professionals. App: Catch a Fade on the App Store.</div>'
+    + '<div class="how"><div><i>1</i>Download Catch a Fade<span>Free on the App Store</span></div><div><i>2</i>Add your ID and photos<span>Approved in about a day</span></div><div><i>3</i>Go online, get booked<span>Requests near you pop up</span></div></div>'
+    + '<div class="fine">A photo ID and an iPhone required. Barbers are independent professionals. App: Catch a Fade on the App Store.</div>'
     + '<div class="tabs">' + tab.repeat(7) + '</div></div>'
     + '</body></html>';
 }
 
 // Advertising page for customers: catch-a-fade.onrender.com/get (Instagram bio, ads).
 // Not linked from the app or the site's main page.
-// Only claims that are true today: licensed barbers, price shown first, card charged
+// Only claims that are true today: ID-checked barbers, price shown first, card charged
 // when the cut is done, tips 100% to the barber.
 function home() {
   return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
     + '<title>Catch a Fade · A barber at your door</title>'
-    + '<meta name="description" content="Book a licensed barber to come to your place, starting in Florida. See the full price first, pay with Apple Pay, tip after.">'
+    + '<meta name="description" content="Book a barber to come to your place, starting in Florida. See the full price first, pay with Apple Pay, tip after.">'
     + '<meta property="og:title" content="Catch a Fade · A barber at your door">'
-    + '<meta property="og:description" content="Book a licensed barber to come to your place. Starting in Florida.">'
+    + '<meta property="og:description" content="Book a barber to come to your place. Starting in Florida.">'
     + '<meta property="og:image" content="https://catch-a-fade.onrender.com/apple-touch-icon.png">'
     + '<meta name="apple-itunes-app" content="app-id=6790179224">'
     + '<link rel="apple-touch-icon" href="/apple-touch-icon.png">'
@@ -150,11 +150,11 @@ function home() {
     + '</style></head><body><div class="w">'
     + '<div class="top"><div class="mark">' + SCISSORS + '</div>Catch a Fade<a href="/barbers">For barbers →</a></div>'
     + '<h1>A barber at your door.</h1>'
-    + '<p class="lede">Book a licensed barber to come to your place: your dorm, your apartment, your house. Starting in Florida.</p>'
+    + '<p class="lede">Book a barber to come to your place: your dorm, your apartment, your house. Starting in Florida.</p>'
     + '<a class="btn" href="' + APP_STORE_URL + '"><svg width="17" height="20" viewBox="0 0 17 20" fill="currentColor" aria-hidden="true"><path d="M14.1 10.6c0-2.5 2-3.7 2.1-3.8-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.9-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.3 10.1.8 1.2 1.8 2.6 3.1 2.5 1.2-.1 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.4 1-1.4 1.3-2.7 1.4-2.8-.1 0-2.5-1-2.5-4.1zM11.7 3.2c.7-.8 1.1-1.9 1-3-.9 0-2.1.6-2.8 1.4-.6.7-1.2 1.9-1 3 1 .1 2.1-.5 2.8-1.4z"/></svg>Download on the App Store</a>'
     + '<p class="hint">Free to download. No barber online near you yet? Tap <b>Notify me</b> in the app and we\'ll tell you the moment one is.</p>'
     + '<div class="feats">'
-    + '<div class="f"><i>✅</i><div><b>Licensed, checked barbers</b><span>Every barber\'s Florida license is checked with the state, and their ID is matched to them.</span></div></div>'
+    + '<div class="f"><i>✅</i><div><b>ID-checked barbers</b><span>Every barber\'s ID is matched to them, and licensed barbers are checked with the state. See their work and reviews before you book.</span></div></div>'
     + '<div class="f"><i>💳</i><div><b>Price first, pay after</b><span>You see the full price before you book. Your card is only charged when the cut is done. Apple Pay works.</span></div></div>'
     + '<div class="f"><i>📍</i><div><b>Watch them come to you</b><span>Follow your barber on the map, then share a 4-digit PIN at the door.</span></div></div>'
     + '<div class="f"><i>💈</i><div><b>Tip after, 100% to them</b><span>Rate your cut and tip on the spot. Every dollar of the tip goes to your barber.</span></div></div>'

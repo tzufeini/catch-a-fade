@@ -3,9 +3,11 @@
  * Every application is reviewed without anyone at Catch a Fade in the loop:
  *
  *   1. received   push "we'll review it within 24 hours" (+ email when possible)
- *   2. license    the Florida DBPR public license file (lic03bb.csv, refreshed
- *                 daily) must show an active barber license (BB or BR) under the
- *                 applicant's name
+ *   2. license    optional. When the applicant enters a number, the Florida DBPR
+ *                 public license file (lic03bb.csv, refreshed daily) must show an
+ *                 active barber license (BB or BR) under their name; a verified
+ *                 license shows as a "Licensed" highlight (barbers.is_licensed).
+ *                 Barbers without a license join on the identity check alone.
  *   3. identity   Claude looks at the ID photo, the selfie and the profile photo:
  *                 real government ID, same person, name matches the application,
  *                 profile photo is a clear, appropriate photo of that person
@@ -112,8 +114,8 @@ module.exports = function createBarberReview(ctx) {
     ];
     if (photo) content.push({ type: 'text', text: 'Image 3: the profile photo customers will see.' }, img(photo));
     content.push({ type: 'text', text:
-      'You verify identity for Catch a Fade, an app where licensed barbers do haircuts at customers\' homes. '
-      + 'Name typed in the application: "' + fullName + '". Name on the Florida barber license: "' + (licenseName || 'unknown') + '". Today is ' + new Date().toISOString().slice(0, 10) + '.\n'
+      'You verify identity for Catch a Fade, an app where barbers do haircuts at customers\' homes. '
+      + 'Name typed in the application: "' + fullName + '".' + (licenseName ? ' Name on the Florida barber license: "' + licenseName + '".' : '') + ' Today is ' + new Date().toISOString().slice(0, 10) + '.\n'
       + 'Answer only with this JSON, no other text:\n'
       + '{"id_document":"valid|not_an_id|unreadable|expired","id_name":"name printed on the ID",'
       + '"name_matches":true|false,"selfie_matches_id":"yes|no|unsure",'
@@ -141,8 +143,8 @@ module.exports = function createBarberReview(ctx) {
   // Reasons are shown to the applicant, so each one says what to fix.
   function decide(lic, idc) {
     const reasons = [];
-    if (lic.status === 'not_found') reasons.push('We couldn\'t find an active Florida barber license with the number you entered. Check the number and apply again.');
-    if (lic.status === 'inactive') reasons.push('Your Florida barber license isn\'t active right now.');
+    if (lic.status === 'not_found') reasons.push('We couldn\'t find an active Florida barber license with the number you entered. Check the number, or apply again without one.');
+    if (lic.status === 'inactive') reasons.push('Your Florida barber license isn\'t active right now. Apply again once it\'s renewed, or without a license number.');
     if (lic.status === 'name_mismatch') reasons.push('The name on your barber license doesn\'t match the name in your application. Use your name exactly as it appears on your license.');
     if (idc.id_document && idc.id_document !== 'valid') reasons.push(idc.id_document === 'expired' ? 'Your ID has expired. Apply again with a current ID.' : 'We couldn\'t read your ID. Apply again with a clear photo of your driver\'s license, state ID or passport.');
     if (idc.name_matches === false) reasons.push('The name on your ID doesn\'t match the name in your application.');
@@ -176,7 +178,7 @@ module.exports = function createBarberReview(ctx) {
     const review = await setReview(user, { status: 'pending', submitted_at: new Date().toISOString(), attempts: 0, reasons: [], decided_at: null });
     await notify(user, 'Application received ✓',
       'Thanks for applying to Catch a Fade. We\'ll review your application within 24 hours and let you know.',
-      'Thanks for applying to cut with Catch a Fade.\n\nWe\'re reviewing your license, ID and photos now. You\'ll hear from us within 24 hours.\n\nCatch a Fade');
+      'Thanks for applying to cut with Catch a Fade.\n\nWe\'re reviewing your ' + ((user.app_metadata || {}).barber_license ? 'license, ' : '') + 'ID and photos now. You\'ll hear from us within 24 hours.\n\nCatch a Fade');
     setTimeout(() => run(uid).catch(e => console.error('[review] run', e.message)), REVIEW_DELAY_MS);
     return review;
   }
@@ -196,7 +198,8 @@ module.exports = function createBarberReview(ctx) {
       const fullName = (barber.profile && barber.profile.full_name) || '';
       await setReview(user, { attempts: (prev.attempts || 0) + 1, last_attempt_at: new Date().toISOString() });
 
-      const lic = await checkLicense(meta.barber_license, fullName);
+      // no license number → identity check only (shown without the "Licensed" highlight)
+      const lic = meta.barber_license ? await checkLicense(meta.barber_license, fullName) : { status: 'none' };
       if (lic.status === 'unavailable') return prev;             // retry on the next sweep
       const idc = await identityCheck(uid, fullName, lic.record && lic.record.name);
       if (idc.unavailable) return prev;
@@ -209,7 +212,7 @@ module.exports = function createBarberReview(ctx) {
         license_check: { status: lic.status, number: lic.record && lic.record.number, name: lic.record && lic.record.name, expires: lic.record && lic.record.expires },
         identity_check: idc
       });
-      await supabase.from('barbers').update(approved ? { is_verified: true } : { is_verified: false, is_available: false }).eq('id', barber.id);
+      await supabase.from('barbers').update(approved ? { is_verified: true, is_licensed: lic.status === 'verified' } : { is_verified: false, is_licensed: false, is_available: false }).eq('id', barber.id);
 
       const first = fullName.split(' ')[0];
       if (approved) {
@@ -231,34 +234,36 @@ module.exports = function createBarberReview(ctx) {
     } finally { running.delete(uid); }
   }
 
-  // Daily: every approved barber's license must still be active. A lapsed,
-  // suspended or revoked license takes the barber offline until it's fixed.
+  // Daily: every licensed barber's license must still be active. A lapsed,
+  // suspended or revoked license removes the "Licensed" highlight (barbers
+  // without a license can work too) until it's active again.
   async function recheckLicenses() {
     if (!(await loadDbpr())) return;
     try {
-      const { data } = await supabase.from('barbers').select('id, profile_id, profile:profiles!barbers_profile_id_fkey(full_name)').eq('is_verified', true).eq('is_demo', false);
+      const { data } = await supabase.from('barbers').select('id, profile_id, is_licensed, profile:profiles!barbers_profile_id_fkey(full_name)').eq('is_verified', true).eq('is_demo', false);
       for (const b of data || []) {
         const user = await getUser(b.profile_id).catch(() => null);
         if (!user) continue;
         const meta = user.app_metadata || {};
         const fullName = (b.profile && b.profile.full_name) || '';
+        if (!meta.barber_license) continue;
         const lic = await checkLicense(meta.barber_license, fullName);
         if (lic.status === 'unavailable') return;
         const rv = meta.barber_review || {};
         const license_check = { status: lic.status, number: lic.record && lic.record.number, name: lic.record && lic.record.name,
           expires: lic.record && lic.record.expires, checked_at: new Date().toISOString() };
         if (lic.status !== 'verified') {
-          const reasons = [lic.status === 'not_found' || lic.status === 'inactive'
-            ? 'Florida\'s records no longer show an active barber license for you. Renew or reinstate it, then update your application.'
-            : 'The name on your barber license no longer matches your account.'];
-          await setReview(user, { status: 'suspended', decided_at: new Date().toISOString(), reasons, license_check });
-          await supabase.from('barbers').update({ is_verified: false, is_available: false }).eq('id', b.id);
-          await notify(user, 'Your barber license needs attention',
-            'You\'re offline until your Florida barber license is active again. Open the app for details.',
-            'Hi ' + fullName.split(' ')[0] + ',\n\n' + reasons[0] + '\n\nYou won\'t receive requests until this is fixed.\n\nCatch a Fade', { type: 'barber_suspended' });
-          if (adminEmail && sendEmail) sendEmail(adminEmail, 'Barber license lapsed: ' + fullName, JSON.stringify(license_check)).catch(() => {});
+          if (b.is_licensed) {
+            await supabase.from('barbers').update({ is_licensed: false }).eq('id', b.id);
+            await notify(user, 'Your barber license needs attention',
+              'Florida\'s records no longer show an active barber license for you, so your profile no longer shows "Licensed". You can keep taking bookings.',
+              'Hi ' + fullName.split(' ')[0] + ',\n\nFlorida\'s records no longer show an active barber license for you, so your profile no longer shows the "Licensed" highlight. You can keep taking bookings. Once your license is active again, the highlight comes back on its own.\n\nCatch a Fade', { type: 'license_lapsed' });
+            if (adminEmail && sendEmail) sendEmail(adminEmail, 'Barber license lapsed: ' + fullName, JSON.stringify(license_check)).catch(() => {});
+          }
+          await setReview(user, { license_check });
           continue;
         }
+        if (!b.is_licensed) await supabase.from('barbers').update({ is_licensed: true }).eq('id', b.id);
         const patch = { license_check };
         const [mm, dd, yy] = String(license_check.expires || '').split('/').map(Number);
         const days = yy ? (new Date(yy, mm - 1, dd) - Date.now()) / 86400000 : Infinity;
