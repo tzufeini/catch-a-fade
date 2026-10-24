@@ -6,7 +6,7 @@ services:
     name: catch-a-fade
     runtime: node
     plan: free
-    buildCommand: "npm install"
+    buildCommand: "npm install --omit=dev"   # build tools (Capacitor CLI, esbuild, sharp) are not needed to run the server
     startCommand: node server.js
     autoDeploy: true
     envVars:
