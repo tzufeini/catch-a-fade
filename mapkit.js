@@ -17,15 +17,18 @@ module.exports = function createMapkit(env) {
   const enabled = !!(KEY && KEY_ID && TEAM_ID);
 
   let tok = null, tokExp = 0;
-  // Tokens live 30 minutes; MapKit JS asks for a fresh one when it expires.
+  // Tokens live 12 hours, so the app can keep one between launches and show the
+  // map without waiting for this server; MapKit JS asks for a fresh one when it
+  // expires. Every token handed out has at least an hour left.
+  const TTL = 12 * 3600;
   function token() {
     const now = Math.floor(Date.now() / 1000);
-    if (tok && tokExp - now > 300) return tok;
+    if (tok && tokExp - now > 3600) return tok;
     const b64 = (o) => Buffer.from(JSON.stringify(o)).toString('base64url');
     const head = b64({ alg: 'ES256', kid: KEY_ID, typ: 'JWT' });
-    const body = b64({ iss: TEAM_ID, iat: now, exp: now + 1800 });
+    const body = b64({ iss: TEAM_ID, iat: now, exp: now + TTL });
     const sig = crypto.sign('sha256', Buffer.from(head + '.' + body), { key: KEY, dsaEncoding: 'ieee-p1363' }).toString('base64url');
-    tok = head + '.' + body + '.' + sig; tokExp = now + 1800;
+    tok = head + '.' + body + '.' + sig; tokExp = now + TTL;
     return tok;
   }
 

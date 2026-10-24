@@ -11,6 +11,7 @@
 <title>Catch a Fade — On-Demand Barbers</title>
 <!-- Libraries ship inside the app: launch never waits on a CDN. -->
 <link rel="stylesheet" href="vendor/leaflet.css" />
+<link rel="preconnect" href="https://cdn.apple-mapkit.com" crossorigin>
 <script src="vendor/leaflet.js"></script>
 <script src="vendor/supabase.js"></script>
 <style>
@@ -41,13 +42,13 @@ body:not(.light) .user-dot{background:#fff;border-color:#111;box-shadow:0 2px 8p
   --grad:linear-gradient(135deg,#16315F,#8C1F2C);
   --gradWarm:linear-gradient(135deg,#C82222,#7A1515);
   --gradGreen:linear-gradient(135deg,#46C98B,#3FA9D8);
-  --r:22px; --map:#14141A;
+  --r:22px; --map:#313131;
 }
 body.light{
   --bg:#EFECE6; --bg2:#E7E3DB; --card:#FBF9F5; --card2:#F2EFE8; --card3:#E8E4DB;
   --line:rgba(0,0,0,.07); --line2:rgba(0,0,0,.12);
   --text:#1B1B22; --dim:#6B6B76; --faint:#9A9AA4;
-  --map:#DDE6E0;
+  --map:#ECEBE8;
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 html,body{height:100%;}
@@ -3308,6 +3309,7 @@ function refreshBarbersUI(){
   try{
     if(typeof buildList==='function') buildList();
     if(typeof renderFavs==='function') renderFavs();
+    if(homeMapInst && homeMapInst._isApple){ fillHomeMapApple(); return; }   // new pins, same map
     destroyMap(homeMapInst); homeMapInst=null;
     const hm=document.getElementById('homeMap'); if(hm) hm.innerHTML='';
     if(stack[stack.length-1]==='home' && typeof initHomeMap==='function') initHomeMap();
@@ -3485,10 +3487,15 @@ async function detectUserLocation(force){
       return;
     }
   }
-  // Re-center & rebuild map at real coords
-  destroyMap(homeMapInst); homeMapInst=null;
-  const el=document.getElementById('homeMap'); if(el) el.innerHTML='';
-  initHomeMap();
+  // Re-center at real coords (an Apple map is moved in place; others are rebuilt)
+  if(homeMapInst && homeMapInst._isApple){
+    homeMapInst.region=new mapkit.CoordinateRegion(mkCoord(userLL), new mapkit.CoordinateSpan(0.011,0.011));
+    fillHomeMapApple();
+  } else {
+    destroyMap(homeMapInst); homeMapInst=null;
+    const el=document.getElementById('homeMap'); if(el) el.innerHTML='';
+    initHomeMap();
+  }
   setTimeout(()=>{ if(_locMode==='gps') updateAccuracyCircle(); }, 600);
   buildList();
 }
@@ -4296,25 +4303,41 @@ function userDivIcon(){
  * if maps aren't configured or Apple is unreachable, everything below stays
  * on the OpenStreetMap (Leaflet) map instead. */
 let _appleReady=false, _appleState='idle';   // idle | loading | ready | failed
+// The last MapKit token is kept on the phone (they live 12 h), so a relaunch
+// starts loading Apple Maps right away instead of waiting for our server.
+function savedMapkitToken(){
+  try{
+    const t=localStorage.getItem('fadex_mk_token'); if(!t) return null;
+    const exp=JSON.parse(atob(t.split('.')[1].replace(/-/g,'+').replace(/_/g,'/'))).exp;
+    return exp*1000-Date.now() > 10*60*1000 ? t : null;
+  }catch(e){ return null; }
+}
+function saveMapkitToken(t){ try{ localStorage.setItem('fadex_mk_token', t); }catch(e){} }
 function loadAppleMaps(){
   if(_appleState!=='idle') return;
   _appleState='loading';
-  apiFetch('/api/mapkit-token',{},15000).then(function(j){
+  const saved=savedMapkitToken();
+  (saved ? Promise.resolve({ ok:true, token:saved }) : apiFetch('/api/mapkit-token',{},15000)).then(function(j){
     if(!j || !j.ok || !j.token){ appleMapsFailed(); return; }
+    if(!saved) saveMapkitToken(j.token);
     let first=j.token;
     const s=document.createElement('script');
     s.src='https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.js';   // full build: map, annotations, overlays in one file
     s.crossOrigin='anonymous'; s.async=true;
     s.onerror=appleMapsFailed;
     s.onload=function(){
+      // MapKit fetches its vector renderer only after its bootstrap call returns;
+      // start that download now so it runs alongside (same URL MapKit uses).
+      try{ const l=document.createElement('link'); l.rel='preload'; l.as='script'; l.crossOrigin='anonymous';
+        l.href='https://cdn.apple-mapkit.com/ti/csr/1.x.x/mk-csr.js?mapkitVersion='+encodeURIComponent(mapkit.version); document.head.appendChild(l); }catch(e){}
       try{
         mapkit.addEventListener('configuration-change', function(e){
           if(e.status==='Initialized' && !_appleReady){ _appleReady=true; _appleState='ready'; refreshMapsForApple(); }
         });
-        mapkit.addEventListener('error', appleMapsFailed);
+        mapkit.addEventListener('error', function(){ try{ localStorage.removeItem('fadex_mk_token'); }catch(e){} appleMapsFailed(); });
         mapkit.init({ authorizationCallback: function(done){
           if(first){ const t=first; first=null; done(t); return; }
-          apiFetch('/api/mapkit-token',{},15000).then(function(k){ if(k && k.token) done(k.token); }).catch(function(){});
+          apiFetch('/api/mapkit-token',{},15000).then(function(k){ if(k && k.token){ saveMapkitToken(k.token); done(k.token); } }).catch(function(){});
         }});
       }catch(e){ appleMapsFailed(); }
     };
@@ -4353,7 +4376,26 @@ function applePin(ll, html, offsetY){
 }
 function appleUserPin(ll){ return applePin(ll, '<div class="user-dot"></div>', 8); }
 function appleBarberPin(ll, b){ return applePin(ll, '<div class="barber-pin" style="background:'+b.g+'"><span>'+b.in+'</span></div>', 0); }
+// On a cold start MapKit first paints plain image tiles in Apple's default
+// colours (blue streets, green parks) and only switches to our muted style once
+// its vector renderer has loaded, about a second later. It puts annotation
+// elements on the page at that same moment, so the map stays invisible (its
+// container shows the same grey) until one of our pins exists, then fades in.
+function revealWhenDrawn(el){
+  el.classList.remove('mapFadeIn'); el.style.opacity='0';
+  const t0=Date.now();
+  (function check(){
+    if(!el.isConnected) return;
+    const drawn=!!el.querySelector('.mk-annotation-container *');
+    if(drawn || Date.now()-t0>4000){
+      setTimeout(function(){ el.style.opacity=''; void el.offsetWidth; el.classList.add('mapFadeIn'); }, drawn?200:0);
+      return;
+    }
+    setTimeout(check, 40);
+  })();
+}
 function appleMap(el, interactive, spanDeg){
+  revealWhenDrawn(el);
   const m=new mapkit.Map(el,{
     showsCompass:mapkit.FeatureVisibility.Hidden, showsScale:mapkit.FeatureVisibility.Hidden,
     showsZoomControl:false, showsMapTypeControl:false, showsUserLocation:false,
@@ -4370,8 +4412,13 @@ function initHomeMapApple(){
   const el=document.getElementById('homeMap'); if(!el) return;
   if(homeMapInst && homeMapInst._isApple) return;
   resetMapContainer(el, homeMapInst); homeMapInst=null;
-  el.classList.remove('mapFadeIn'); void el.offsetWidth; el.classList.add('mapFadeIn');
   homeMapInst=appleMap(el, false, 0.011);
+  fillHomeMapApple();
+}
+// Pins on the home map. Used to refresh an existing Apple map in place (new
+// location, new barbers) instead of rebuilding it, which would blank it again.
+function fillHomeMapApple(){
+  try{ homeMapInst.removeAnnotations(homeMapInst.annotations); }catch(e){}
   homeMapInst._user=appleUserPin(userLL);
   homeMapInst.addAnnotation(homeMapInst._user);
   BARBERS.forEach((b,i)=>{ if(b.offline) return;
@@ -4407,7 +4454,7 @@ function resetMapContainer(el, prev){
   destroyMap(prev);
   try{ if(prev && typeof prev.remove==='function' && !prev._isGoogle && !prev._isApple) prev.remove(); }catch(e){}
   try{ if(el && el._leaflet_id) el._leaflet_id = null; }catch(e){}
-  try{ if(el) el.innerHTML=''; }catch(e){}
+  try{ if(el){ el.innerHTML=''; el.style.opacity=''; el.classList.remove('mapFadeIn'); } }catch(e){}
 }
 function initHomeMapLeaflet(){
   const el=document.getElementById('homeMap'); if(!el || typeof L==='undefined') return;
@@ -4431,7 +4478,7 @@ function initHomeMapLeaflet(){
 function initHomeMapGoogle(){
   const el=document.getElementById('homeMap'); if(!el || !window.google) return;
   if(homeMapInst && homeMapInst._isGoogle){ return; }
-  el.innerHTML='';
+  el.innerHTML=''; el.style.opacity='';
   homeMapInst = new google.maps.Map(el,{
     center:{lat:userLL[0],lng:userLL[1]}, zoom:14, disableDefaultUI:true,
     gestureHandling:'none', keyboardShortcuts:false,
@@ -4470,7 +4517,7 @@ function initTrackMapLeaflet(){
 function initTrackMapGoogle(){
   const el=document.getElementById('trackMap'); if(!el || !window.google) return;
   if(trackMapInst && trackMapInst._isGoogle){ return; }
-  el.innerHTML='';
+  el.innerHTML=''; el.style.opacity='';
   trackMapInst = new google.maps.Map(el,{
     center:{lat:userLL[0],lng:userLL[1]}, zoom:15, disableDefaultUI:true,
     gestureHandling:'greedy', keyboardShortcuts:false,
