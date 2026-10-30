@@ -23,6 +23,7 @@
 		5E33465253C6800902C61B80 /* CAFActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C7B863CAEFBBEB78FF501D /* CAFActivityAttributes.swift */; };
 		5FD60E8843AC23090F138036 /* CAFLivePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AC2E2433F0B3BE5A41F973 /* CAFLivePlugin.swift */; };
 		66A2F1E1734BD746D3095E15 /* CAFActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98C7B863CAEFBBEB78FF501D /* CAFActivityAttributes.swift */; };
+		A830A71C5791EAA14005A643 /* CAFSafeDialogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF038418BAF2B9BF9D32560C /* CAFSafeDialogs.swift */; };
 		B2C8D13D5B5FCD3F280ADC5C /* CAFLiveActivity.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3759C4C8F630A9ACDD588CB5 /* CAFLiveActivity.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D592A18D1A2B57EF28CA3385 /* CAFApplePayPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9228DA650BFFBD7AB13BEA49 /* CAFApplePayPlugin.swift */; };
 /* End PBXBuildFile section */
@@ -67,6 +68,7 @@
 		9228DA650BFFBD7AB13BEA49 /* CAFApplePayPlugin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CAFApplePayPlugin.swift; sourceTree = "<group>"; };
 		958DCC722DB07C7200EA8C5F /* debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = debug.xcconfig; path = ../debug.xcconfig; sourceTree = SOURCE_ROOT; };
 		98C7B863CAEFBBEB78FF501D /* CAFActivityAttributes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CAFActivityAttributes.swift; sourceTree = "<group>"; };
+		AF038418BAF2B9BF9D32560C /* CAFSafeDialogs.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CAFSafeDialogs.swift; sourceTree = "<group>"; };
 		B4BCE980C60CFEBDD467110E /* CAFViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CAFViewController.swift; sourceTree = "<group>"; };
 		C1AC2E2433F0B3BE5A41F973 /* CAFLivePlugin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CAFLivePlugin.swift; sourceTree = "<group>"; };
 		D1727E7D8B362090A4CFB1A2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -139,6 +141,7 @@
 				DA0E89DF7DAABF08E7DC81B2 /* CAFHapticsPlugin.swift */,
 				9228DA650BFFBD7AB13BEA49 /* CAFApplePayPlugin.swift */,
 				F3FA5C8672C4A3549DA7A107 /* CAFReviewPlugin.swift */,
+				AF038418BAF2B9BF9D32560C /* CAFSafeDialogs.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				01A7F46AD24D76C9C3968628 /* CAFHapticsPlugin.swift in Sources */,
 				D592A18D1A2B57EF28CA3385 /* CAFApplePayPlugin.swift in Sources */,
 				5636D434B23F620A67DE62BF /* CAFReviewPlugin.swift in Sources */,
+				A830A71C5791EAA14005A643 /* CAFSafeDialogs.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,7 +338,7 @@
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "Apple Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 35;
+				CURRENT_PROJECT_VERSION = 36;
 				DEVELOPMENT_TEAM = 8P38L363W8;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = CAFLiveActivity/Info.plist;
@@ -344,7 +348,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.7;
+				MARKETING_VERSION = 1.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.catchafade.app.LiveActivity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "CatchAFade LiveActivity AppStore";
@@ -472,7 +476,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = App/App.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 35;
+				CURRENT_PROJECT_VERSION = 36;
 				DEVELOPMENT_TEAM = 8P38L363W8;
 				INFOPLIST_FILE = App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -480,7 +484,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.7;
+				MARKETING_VERSION = 1.0.8;
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-DDEBUG\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.catchafade.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -497,7 +501,7 @@
 				CODE_SIGN_ENTITLEMENTS = App/App.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 35;
+				CURRENT_PROJECT_VERSION = 36;
 				DEVELOPMENT_TEAM = 8P38L363W8;
 				INFOPLIST_FILE = App/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -505,7 +509,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.7;
+				MARKETING_VERSION = 1.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.catchafade.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "CatchAFade AppStore Manual";
@@ -521,7 +525,7 @@
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 35;
+				CURRENT_PROJECT_VERSION = 36;
 				DEVELOPMENT_TEAM = 8P38L363W8;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = CAFLiveActivity/Info.plist;
@@ -531,7 +535,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.7;
+				MARKETING_VERSION = 1.0.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.catchafade.app.LiveActivity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;

@@ -4108,7 +4108,7 @@ function pickDay(el){
 function pickTime(el){
   document.querySelectorAll('#timeGrid .timeSlot').forEach(t=>t.classList.remove('on'));
   el.classList.add('on'); schedTime=el.dataset.t; updateSchedBtn(); haptic('select');
-  el.parentElement.dataset.at=el.dataset.at;
+  const grid=document.getElementById('timeGrid'); if(grid) grid.dataset.at=el.dataset.at;
 }
 function updateSchedBtn(){
   const b=document.getElementById('schedConfirm');
