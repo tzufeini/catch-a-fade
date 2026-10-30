@@ -111,6 +111,12 @@ async function boot() {
   window.addEventListener('load', () => setTimeout(() => safe(() => SplashScreen.hide()), 350));
   setTimeout(() => safe(() => SplashScreen.hide()), 1500); // safety net
   safe(() => Keyboard.setAccessoryBarVisible({ isVisible: false }));
+  // When the keyboard closes, put the page back where it belongs. iOS can leave
+  // the whole web view scrolled up after typing, which hid the tab bar.
+  const settlePage = () => { if (window.scrollX || window.scrollY) window.scrollTo(0, 0); };
+  safe(() => Keyboard.addListener('keyboardDidHide', settlePage));
+  document.addEventListener('focusout', () => setTimeout(settlePage, 50));
+  window.addEventListener('scroll', () => { if (!document.activeElement || !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) settlePage(); }, { passive: true });
 
   // Keep the status-bar text colour in sync if the app toggles light/dark.
   safe(() => {

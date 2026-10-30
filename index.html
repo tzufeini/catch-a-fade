@@ -1259,6 +1259,10 @@ body:not(.light) .mk-map-view canvas.syrup-canvas{filter:grayscale(1) contrast(.
  * =================================================================== */
 html.native, html.native body{ height:100%; background:var(--bg); }
 html.native body{ display:block; overflow:hidden; }
+/* The app page itself never moves: only the lists inside a screen scroll.
+   If iOS shifted the whole page (a swipe, or the keyboard closing), the tab
+   bar slid below the screen edge until you swiped it back up. */
+html.native, html.native body{ overflow:hidden; overscroll-behavior:none; }
 /* v1 ships email sign-in only: Apple/Google need provider setup (client ID +
    Sign-in-with-Apple capability) before their buttons may appear on device. */
 html.native .sso.google:not(.ready){ display:none; }

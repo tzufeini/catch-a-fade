@@ -4,7 +4,8 @@
   "webDir": "www",
   "ios": {
     "contentInset": "never",
-    "backgroundColor": "#0C0C0F"
+    "backgroundColor": "#0C0C0F",
+    "scrollEnabled": false
   },
   "plugins": {
     "SplashScreen": {
@@ -13,7 +14,11 @@
       "showSpinner": false
     },
     "PushNotifications": {
-      "presentationOptions": ["badge", "sound", "alert"]
+      "presentationOptions": [
+        "badge",
+        "sound",
+        "alert"
+      ]
     },
     "Keyboard": {
       "resize": "native"
